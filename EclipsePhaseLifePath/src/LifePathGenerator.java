@@ -1,0 +1,1194 @@
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * 
+ */
+
+/**
+ * @author Vigilant
+ *
+ * The generator class takes in the appropriate information,
+ * and then runs the lifepath process to interactively generate a character
+ * through various stages,packages, and tables
+ */
+public class LifePathGenerator {
+
+	public static SecureRandom rng = new SecureRandom();
+	private Character playerChar;
+	private UI UIObject;
+	private boolean isRolling;
+	
+	/**
+	 * Creates the LifePathGenerator
+	 * 
+	 * @param characterName Name of the character being genned
+	 * @param UIObject_ Valid object that can perform user interaction (prompts, alerts)
+	 * @param isRolling Boolean flag for whether dice rolls are rolled, or instead prompts to the user. Not all dice rolls can be manual
+	 */
+	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling)
+	{
+		playerChar = new Character(characterName);
+		UIObject = UIObject_;
+		this.isRolling = isRolling;
+	}	
+	
+	/**
+	 * Attempts to execute the effects of the passed in string. Whenever a "step changing" event would happen, returns the effects for that step 
+	 * 
+	 * @param effectInput Properly formated effect string warning : currently not much error checking.
+	 * @param extraContext Any additional info that might be worth displaying to the user during a choice prompt. often blank.
+	 * @return Any pending effects for the next step
+	 */
+	private String runEffect(String effectInput, String extraContext)
+	{
+		// we let users define \, so that commas can be escaped until after the splitting of a comma delimited effects chain
+		String modifiedInput = effectInput.replace("\\,", "!!COMMA!!");
+		modifiedInput = modifiedInput.replace("\\;", "!!SEMICOLON!!");
+		
+		
+		String[] effects = modifiedInput.split(",");
+		
+		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
+		
+		ArrayList<String> mainStuff = new ArrayList<String>();
+		
+		for (String eff : effects)
+		{
+			String tempEff = eff.replace("!!COMMA!!",",");
+			
+			if (tempEff.contains("!RANDSKILL!"))
+			{
+				if (playerChar.getNumSkills() > 0)
+				{
+					String randSkill = playerChar.getRandSkill();
+					tempEff = eff.replace("!RANDSKILL!", randSkill);
+				}
+				else
+				{
+					throw new IllegalArgumentException("Effect : " + tempEff + " calls for random skill but the character has no skills!");
+				}
+			}
+			
+			
+			mainStuff.add(tempEff);
+			
+			
+		}
+		
+		for (int i = 0; i < mainStuff.size(); i++)
+		{
+			String effect = mainStuff.get(i);
+			
+			try
+			{
+			
+				if (DataProc.containsChoice(effect))
+				{
+						String extraInfo = extraContext;
+						// grab info from the package special notes if it exists
+						// we have to do some redundant preprocessing here
+						if (extraInfo == "" && effect.toLowerCase().startsWith("+package"))
+						{
+							String[] parts = effect.split(";");
+							
+							if (parts.length == 2 && DataProc.dataObjExists(parts[1]))
+							{
+								UniqueNamedData dataObject = DataProc.getDataObj(parts[1]);
+								if (dataObject.getType().equals("package") && ((Package)dataObject).getSpecialNotes().length() != 0)
+								{
+									extraInfo = ((Package)dataObject).getSpecialNotes();
+								}
+							}
+						}
+					
+						// will make dangerous assumption that only one choice prompt exists in effect
+						// will also remove any asterisks that appeared after since they'll probably interfere
+						effect.replaceAll("\\?([0-9]*)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext));
+				}
+				
+				// big wall of cases follow.
+				String errorInfo = ": " + effect;
+
+				// note for some of these, we sacrifice performance by making the if conditions a bit more error aware up front, and leaving
+				// the code a bit simpler. This is probably for the best since even with that the app will have reasonable performance,
+				// and the code is meant to be readable for others to look at
+				
+				// An additional consideration is that thrown exceptions are caught and passed to the UI, so sending descriptive messages is a
+				// good idea
+				
+				if (Skill.isSkill(effect))
+				{
+					Skill temp = Skill.CreateSkillFromString(effect);
+					playerChar.addSkill(temp);
+				}
+				else if (effect.startsWith("inc;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Skill.isSkill(subparts[1]))
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						// executes the add, throwing error if the skill didn't exist
+						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2])) )
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					
+				}
+				else if (effect.startsWith("dec;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Skill.isSkill(subparts[1]) && subparts[2].equalsIgnoreCase("all"))
+					{
+						if (! playerChar.removeSkill(subparts[1]) )
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+						}
+						
+					}
+					else if (Skill.isSkill(subparts[1]) )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2])) )
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					
+				}
+				else if (effect.startsWith("+sklspec"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Skill.isSkill(subparts[1]) && subparts[2].length() > 0)
+					{
+						if (! playerChar.addSkillSpec(subparts[1], subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+trait;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length < 2 || subparts.length > 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() == 2 && Trait.exists(subparts[1]))
+					{
+						playerChar.addTrait(Trait.getTrait(subparts[1], 1));
+					}
+					else if (subparts[1].length() == 3 && Trait.exists(subparts[1]) )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						playerChar.addTrait(Trait.getTrait(subparts[1], Integer.parseInt(subparts[2])));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Trait " + subparts[1] + " does not exist, or other formating problem: ("+ errorInfo + ")");
+					}
+				}
+				else if (effect.startsWith("+morph;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].equalsIgnoreCase("randomroll"))
+					{
+						// no need to return anything, this is just to get a new morph
+						this.runEffect("roll;CHOOSING_A_MORPH","");
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.setCurrentMorph(subparts[1]);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("setapt"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (! playerChar.isValidAptitude(subparts[1]))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
+						}
+						
+						playerChar.setAptitude(subparts[2], Integer.parseInt(subparts[2]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("addapt"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (! playerChar.isValidAptitude(subparts[1]))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
+						}
+						
+						playerChar.incAptitude(subparts[2], Integer.parseInt(subparts[2]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("roll"))
+				{
+					// code moved to function since this is called again for the force roll version
+					this.handleRoll(effect, errorInfo, false);					
+				}
+				else if (effect.startsWith("rollTable"))
+				{
+					// code moved to function since this is called again for the force roll version
+					this.handleRollTable(effect, errorInfo, false);					
+				}
+				else if (effect.startsWith("forceRoll"))
+				{
+					// code moved to function since this is called again for the force roll version
+					this.handleRoll(effect, errorInfo, true);					
+				}
+				else if (effect.startsWith("forceRollTable"))
+				{
+					// code moved to function since this is called again for the force roll version
+					this.handleRollTable(effect, errorInfo, true);					
+				}
+				else if (effect.startsWith("+mox;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Utils.isInteger(subparts[1]))
+					{
+						playerChar.incMox(Integer.parseInt(subparts[1]));
+					}
+					else
+					{						
+						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");											
+					}
+				}
+				else if (effect.startsWith("setmox;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Utils.isInteger(subparts[1]))
+					{
+						playerChar.setMox(Integer.parseInt(subparts[1]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");
+					}
+
+				}
+				else if (effect.startsWith("+gear;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.addGear(subparts[1]);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("background;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.setBackground(subparts[1]);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("nextpath;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.setCurrentPath(subparts[1]);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("stepskip;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						// this.runEffect("rollTable;" + subparts[1], "");
+						return "rollTable;" + subparts[1];				
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+package;"))
+				{
+					String[] subparts = effect.split(";");
+					
+					// checks for package being valid
+					if (subparts.length == 2 || subparts.length == 3)
+					{
+						if ( subparts[1].length() == 0 )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect (" +  errorInfo + "): no package name found");
+						}
+						
+						if (! DataProc.dataObjExists(subparts[1]))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+						}
+						
+						if (! DataProc.getDataObj(subparts[1]).getType().equals("package"))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a package");
+						}
+					}
+					
+					if (subparts.length == 2 )
+					{						
+						Package temp = (Package)DataProc.getDataObj(subparts[1]); 
+						
+						String pkgEffect = temp.getEffects(1);
+						
+						UIObject.statusUpdate("Package added (PP1): " + temp.getName() + " : " + temp.getDescription());
+												
+						this.runEffect(pkgEffect, temp.getSpecialNotes());
+					}
+					else if (subparts.length == 3 )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						Package temp = (Package)DataProc.getDataObj(subparts[1]); 
+						
+						int PP = Integer.parseInt(subparts[2]);
+						
+						String pkgEffect = temp.getEffects(PP);
+						
+						UIObject.statusUpdate("Package added (PP" + PP + "): " + temp.getName() + " : " + temp.getDescription());
+						
+						this.runEffect(pkgEffect, temp.getSpecialNotes());
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+rep;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Rep.exists(subparts[1]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect Rep (" + subparts[1] + ") does not exist");
+						}
+						
+						
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						playerChar.incRepValue(subparts[1], Integer.parseInt(subparts[2]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+credit;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.incCredits(Integer.parseInt(subparts[1]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+psichi;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Sleight.exists(subparts[1] ) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
+						}
+						
+						if (! Sleight.sleightList.get(subparts[1]).getSleightType().equals("chi") )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Chi sleight");
+						}
+
+						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+psigamma;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Sleight.exists(subparts[1] ) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
+						}
+						
+						if (! Sleight.sleightList.get(subparts[1]).getSleightType().equals("gamma") )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Gamma sleight");
+						}
+						
+						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("+psisleight;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 )
+					{
+						if (! Sleight.exists(subparts[1] ) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
+						}
+						
+						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("extendedChoice;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0 && subparts[2].length() > 0)
+					{
+						String response = UIObject.promptUser(subparts[1], ""); // response should be an integer
+						
+						
+						if (Utils.isInteger(response))
+						{
+							int choice = Integer.parseInt(response);
+							
+							String[] choiceEffects = subparts[2].split("/");
+							
+							if (choice < 0 || choice >= choiceEffects.length)
+							{
+								throw new RuntimeException("Response : " + choice + " is less than zero or greater than number of choices");
+							}
+							else
+							{
+								this.runEffect(choiceEffects[choice], subparts[1]);
+							}
+						}
+						else
+						{
+							throw new RuntimeException("Unexpected non-integer response from UI");
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("if;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 3 && subparts.length != 4)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts.length == 3 && subparts[1].length() > 0 && subparts[2].length() > 0)
+					{
+						boolean ifResult = this.resolveConditional(subparts[1]);
+						
+						if (ifResult)
+						{
+							this.runEffect(subparts[2], "");
+						}
+					}
+					else if (subparts.length == 4 && subparts[1].length() > 0 && subparts[2].length() > 0 && subparts[3].length() > 0)
+					{
+						boolean ifResult = this.resolveConditional(subparts[1]);
+						
+						if (ifResult)
+						{
+							this.runEffect(subparts[2], "");
+						}
+						else
+						{
+							this.runEffect(subparts[3], "");
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("func;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2 )
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else
+					{
+						if (DataProc.dataObjExists(subparts[1]) && DataProc.getDataObj(subparts[1]).getType().equals("function"))
+						{
+							Function temp = (Function)DataProc.getDataObj(subparts[1]);
+							this.runEffect(temp.getEffect(), "");
+						}
+						else
+						{
+							throw new IllegalArgumentException("Poorly formated effect, " + subparts[1] + " does not exist or is not a function" + errorInfo);
+						}
+					}
+				}
+				else if (effect.startsWith("msgClient;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2 )
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if ( subparts[1].length() > 0)
+					{
+						UIObject.statusUpdate(subparts[1]);						
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("msgClient;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2 )
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if ( subparts[1].length() > 0)
+					{
+						UIObject.statusUpdate(subparts[1]);						
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("setVar;"))
+				{
+					String[] subparts = effect.split(";");
+					if (subparts.length != 2 )
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if ( subparts[1].length() > 0)
+					{
+						UIObject.statusUpdate(subparts[1]);						
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			
+				// still finishing up adding effects
+				
+				/**
+				 * 
+				 * Any of the below will add a skill if it doesn't exist, or add to it if it's already there
+	<skillname> <number>
+	<skillname>: <subtype> <number> 
+	<skillname>[<specialization>] <number>
+	<skillname>: <subtype> [<specialization>] <number>
+
+	!RANDSKILL! => pick random valid skill character has
+	
+	$getVar(<variable>) (whenever this appears, will attempt to look up the value at run for this variable and replace the text with it 
+
+	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
+	\; is often similarly used for nested commands
+
+	Rest of commands:
+	inc;<skill>;<value>
+	dec;<skill>;<value/all>
+	+SklSpec;<skill>;<specializationName>
+	+Trait;<trait>
+	+Trait;<trait>;level
+	+morph;<morphname>
+	+morph;randomRoll
+	setApt;<aptitudeName>;<value>
+	addApt;<aptitudeName>;<value>		(can also be used to subtract with a negative value)
+	+mox;<value>
+	+gear;<gearName>
+	roll;<dieNumber>;#-#=effect/#-#=effect  (list can be as long as needed)		(ex; roll;1-6=+morph;splicer,7-10=+morph;bouncer) (can only be a single effect)
+	rollTable;<tableName>		(replace ; with comma, spaces and periods in table name with underscore, ex; Table_6_5;Elite)
+		forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
+	rollTable;<tableName>;<replaceValue> (as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
+	background;<name>
+	nextPath;<name>		(replace ; with comma, spaces and periods in table name with underscore, ex; Table_6_5;Elite)
+	stepskip;<number>		(immediately skip to step of this number)
+	+package;<name>			(add package -- assume 1 PP if it needs a value)
+	+package;<name>;<value>		(add package of a certain PP value)
+	+rep;<type>;<value>
+	+credit;<value>
+	+psichi;<name>				(can use ?1?,?2?, etc)
+	+psigamma;<name>
+	+psisleight;<name>
+	+extendedChoice;Text;0=effect/1=effect/2=effect/etc   (this allows us a bit more freedom when a choice is complicated
+	+if;<condition>;<effectWhenTrue>;<effectWhenFalse>		(The latter can be blank)
+	msgClient;<message>			says something to the UI about character changes
+	
+	Conditions: 
+	?hasTrait;trait
+	?hasSkill;skill
+	?hasBackground
+	?hasHadBackground
+	?hasRolled;number
+	?equals;string1;string2  ($getVar:name will try and fetch the value of a character variable with that name)
+	?hasVar;varname	
+	
+	|| and && are partially supported
+	
+	replacing ? with ! is for boolean not. so !hasTrait;trait => not having that trait
+	
+				 * 
+				 */
+
+			}
+			catch( Exception e) 
+			{
+				// do something to prompt the user to fix their error
+				boolean response = UIObject.handleError(e.getMessage());
+				
+				if (response)  // replace with seeing if response says to rollback last effect 
+				{
+					i--;
+					continue;
+				}
+			}
+		}
+		
+		return pendingEffects;
+	}
+	
+	/**
+	 * Takes a conditional effect string and evaluates it against the character
+	 * 
+	 * Boolean || and && are allowed, but keep in mind that the implementation currently doesn't allow for ()
+	 * and will evaluate those statements in a strict left to right order.
+	 * 
+	 * @param condition Condition string to be evaluated
+	 * @return True/False as appropriate to the condition
+	 * @throws IllegalArgumentException if condition is not a recognized condition
+	 */
+	protected boolean resolveConditional(String condition)
+	{
+		if (condition.length() < 1)
+		{
+			throw new IllegalArgumentException("Condition is invalid : " + condition + " is less than 2 characters long");
+		}
+		
+		// split for ||
+		if (condition.contains("||"))
+		{
+			String part1, part2;
+			
+			part1 = condition.substring(0, condition.indexOf("||"));
+			part2 = condition.substring(condition.indexOf("||")+2);
+			
+			return this.resolveConditional(part1) || this.resolveConditional(part2);
+		}
+		
+		if (condition.contains("&&"))
+		{
+			String part1, part2;
+			
+			part1 = condition.substring(0, condition.indexOf("||"));
+			part2 = condition.substring(condition.indexOf("||")+2);
+			
+			return this.resolveConditional(part1) && this.resolveConditional(part2);
+		}
+		
+		String condNoPrefix = condition.substring(1); // the starting character can be either ? or !, so we're careful of this.
+		char firstChar = condition.charAt(0);
+		
+		if (firstChar == '!')
+		{
+			return !this.resolveConditional("?" + condNoPrefix);
+		}
+		
+		/*
+		 *  ?hasTrait;trait
+	?hasSkill;skill
+	?hasRolled;number
+	?hasBackground
+		 */
+		
+		String[] parts = condNoPrefix.split(";");
+			
+		if (condNoPrefix.startsWith("hasTrait;"))
+		{
+			if (parts.length != 2)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+			}
+			
+			
+			if (Trait.exists(parts[1]))
+			{
+				return playerChar.hasTrait(parts[1]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Trait : " + parts[1] + " does not exist!");
+			}
+		}
+		else if (condNoPrefix.startsWith("hasSkill;"))
+		{
+			if (parts.length != 2)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+			}
+				
+			if (Skill.isSkill(parts[1]))
+			{
+				return playerChar.hasSkill(parts[1]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Skill : " + parts[1] + " does not exist!");
+			}
+		}
+		else if (condNoPrefix.startsWith("hasBackground;"))
+		{			
+			if (parts.length != 2)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+			}
+			
+			return playerChar.getBackground().equalsIgnoreCase(parts[1]); 
+		}
+		else if (condNoPrefix.startsWith("hasHadBackground;"))
+		{			
+			if (parts.length != 2)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+			}
+			
+			return playerChar.hasHadBackground(parts[1]);			
+		}
+		else if (condNoPrefix.startsWith("hasRoll;"))
+		{			
+			if (parts.length != 2)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+			}
+			
+			if (!Utils.isInteger(parts[1]))
+			{
+				throw new IllegalArgumentException(condition + " does not specify a number!");
+			}
+			
+			return playerChar.rollsContain(Integer.parseInt(parts[1])); 
+		}
+		else if (condNoPrefix.startsWith("equals;"))
+		{				
+			if (parts.length != 3)
+			{
+				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition);
+			}
+			
+			for (int i = 1; i < parts.length; i++)
+			{
+				if (parts[i].startsWith("$getVar:"))
+				{
+					String name = parts[i].split(":")[1];
+					
+					if (playerChar.hasVar(name))
+					{
+						parts[i] = playerChar.getVar(name);
+					}
+				}
+			}
+			
+			return parts[1].equals(parts[2]);
+			
+		}
+		else if (condNoPrefix.startsWith("hasVar;"))
+		{
+			if (parts.length != 2 || parts[1].length() == 0)
+			{
+				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition);
+			}
+			
+			return playerChar.hasVar(parts[1]);
+			
+		}
+		
+		
+		
+		return false;
+	}
+	
+	/**
+	 * Starts the LifePath process by calling up the first table RANDOM_APTITUDE_TEMPLATE
+	 */
+	public void run()
+	{
+		// PROCESS_START_TABLE is a placeholder that should, regardless of roll, always go to the real first table
+		Table temp = ((Table)DataProc.getDataObj("PROCESS_START_TABLE"));
+		TableRow match = temp.findMatch(rollDice(temp.getDiceRolled(), temp.toString(),false));
+		this.runEffect(match.getEffects(),"");
+		
+	}
+	
+	/**
+	 * Emulates a dice roll
+	 * @param numSides upper limit of the dice roll, will return number from 1 to numSides, inclusive
+	 * @param rollMessage Prompt/Message relevant to the roll, will display if interactive choice mode triggers
+	 * @param forceRoll If true, is always a true random roll, if false, and if isRolling is false, prompts the user to make an interactive choice
+	 * @return
+	 */
+	protected int rollDice(int numSides, String rollMessage, boolean forceRoll)
+	{
+		int roll = -1;
+		
+		// interactive mode if both true
+		if (!forceRoll && !this.isRolling)
+		{
+			String result = "start";
+			
+			// this won't check for out of range, but we'll implement that later
+			while ( !Utils.isInteger(result) && (Integer.parseInt(result) < 0 || Integer.parseInt(result) > numSides) ) 
+			{
+				result = UIObject.promptUser("Choose a result (valid number for 1d"+numSides+"):", rollMessage);
+			}
+			
+			roll = Integer.parseInt(result);
+			
+		}
+		else
+		{
+			int bonus = 0;
+			
+			if (playerChar.hasVar("diceBonus"))
+			{
+				String diceB = playerChar.getVar("diceBonus");
+				if (Utils.isInteger(diceB))
+				{
+					bonus = Integer.parseInt(diceB);
+					
+					// we assume we never want to go above the upper numSides, so bonus has to be stopped from being >= numSides
+					if (bonus >= numSides)
+					{
+						throw new IllegalArgumentException("diceBonus can't be larger than the dice being rolled!");
+					}
+				}
+				
+				// generally we want diceBonus to expire as soon as it's used unless permanent flag is there
+				if (!playerChar.hasVar("diceBonusPerm"))
+				{
+					playerChar.removeVar("diceBonus");
+				}
+			}
+			
+			int adjustment = 1 + bonus; // we start lower bound at 1, not zero, by default, bonus pushes it upwards, guaranteeing lower values never hit
+			int adjNumSides = numSides - bonus; // keeps us from overflowing the upper bound
+			
+			roll = rng.nextInt(adjNumSides)+adjustment;
+		}
+		
+		playerChar.addLastRoll(roll);
+		
+		return (roll);
+	}
+	
+	protected void handleRoll(String effect, String errorInfo, boolean forceRoll)
+	{
+		// do some escaping to handle that most commands like roll;1-6=+morph;splicer,7-10=+morph;bouncer wouldn't actually work
+		// but the reason they wouldn't work isn't understandable to most users (it can't parse the inner ; as special from the outer) 
+		
+		String effectTemp = effect.replaceFirst(";", "|||");
+		effectTemp = effectTemp.replaceFirst(";", "|||");
+		
+		String[] subparts = effect.split("|||");
+		if (subparts.length != 3)
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+		}
+		else if (subparts[1].length() > 0  && subparts[2].length() > 0)
+		{
+			
+			if (! Utils.isInteger(subparts[1]) )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");
+			}
+			
+			if (! subparts[2].substring(0,subparts[2].indexOf('=')).matches("[0-9]+-[0-9]+") )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " does not start with a proper roll range");
+			}
+			
+			if (! (subparts[2].split("/").length > 1) )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " does not have more than one effect");
+			}							
+			
+			int numDie = Integer.parseInt(subparts[1]);
+			String[] effectList = subparts[2].split("/");
+			
+			// we make a fake table to hold the results since this process functions like an inline table
+			ArrayList<TableRow> rows = new ArrayList<TableRow>();
+			
+			for (int x = 0; x < effectList.length; x++)
+			{
+				String currEffect = effectList[x];
+				String range = currEffect.substring(0, currEffect.indexOf('='));
+				String[] bounds = range.split("-");
+				
+				int low = 0;
+				int high = 0;
+				
+				if (bounds.length == 1)
+				{
+					low = Integer.parseInt(bounds[0]);
+					high = Integer.parseInt(bounds[0]);
+				}
+				else if (bounds.length == 2)
+				{
+					low = Integer.parseInt(bounds[0]);
+					high = Integer.parseInt(bounds[1]);
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				
+				// this gets everything after the =
+				rows.add(new TableRow(low,high,"",currEffect.substring(currEffect.indexOf('=')+1))); 							
+			}
+			
+			Table temp = new Table("temp",numDie,rows);
+			
+			int result = this.rollDice(numDie, temp.toString(), forceRoll);
+			TableRow rowReturned = temp.findMatch(result);
+			String tableEffects = rowReturned.getEffects();
+			this.runEffect(tableEffects, rowReturned.getDescription());
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+		}
+	}
+	
+	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
+	{
+		String[] subparts = effect.split(";");
+		if (subparts.length != 2 && subparts.length != 3)
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+		}
+		else if (subparts[1].length() > 0 )
+		{
+			if (! DataProc.dataObjExists(subparts[1]))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+			}
+			
+			if (! DataProc.getDataObj(subparts[1]).getType().equals("table"))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
+			}
+			
+			playerChar.setCurrentTable(subparts[1]); // this is sometimes needed for conditionals
+			
+			Table temp = (Table)DataProc.getDataObj(subparts[1]);
+			
+			if (temp.containsWildCards() && (subparts.length != 3 || subparts[2].length() == 0) )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, Table " + subparts[1] + 
+													" has wildcards but no wildcard value was specified for this call");
+			}
+			
+			int numDie = temp.getDiceRolled();
+			int result = this.rollDice(numDie, temp.toString(),forceRoll);
+			TableRow rowReturned = null;
+			
+			// handle wildcards if one was specified
+			if (subparts.length == 3 && subparts[2].length() > 0)
+			{
+				rowReturned = temp.findMatch(result, subparts[2]);
+			}
+			else
+			{
+				rowReturned = temp.findMatch(result);
+			}
+			
+			String tableEffects = rowReturned.getEffects();
+			this.runEffect(tableEffects, rowReturned.getDescription());
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+		}
+	}
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		// sample dice roll
+		//System.out.println(rng.nextInt(numSides+1));
+		String foo = "?1? ; ?2? ; ?3?";
+
+		DataProc.init("LifepathPackages.dat","internalInfo.dat");
+		
+		int i = 0;
+		
+	}
+
+}

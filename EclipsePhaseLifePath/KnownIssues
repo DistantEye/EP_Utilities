@@ -1,0 +1,5 @@
+1) Nothing stops you from taking the same package over and over
+2) No tracking of derived stats like LUC
+	1) this should get its own trio of rows for base, bonus, final
+3) No handling of morph bonuses (although you are allowed to key in bonuses manually)
+4) No handling when duplicate skills are assigned (should prompt you whether to replace or append)

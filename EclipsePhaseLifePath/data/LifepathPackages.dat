@@ -1,0 +1,1487 @@
+Package
+Brawler
+
+
+PP;1>setApt;COG;10,setApt;COO;20,setApt;INT;15,setApt;REF;20,setApt;SAV;10,setApt;SOM;20,setApt;WIL;10
+--------------------------------------------------------------
+Package
+Dilettante
+
+
+PP;1>setApt;COG;15,setApt;COO;15,setApt;INT;15,setApt;REF;15,setApt;SAV;15,setApt;SOM;15,setApt;WIL;15
+--------------------------------------------------------------
+Package
+Extrovert
+
+
+PP;1>setApt;COG;15,setApt;COO;15,setApt;INT;15,setApt;REF;15,setApt;SAV;20,setApt;SOM;10,setApt;WIL;15
+--------------------------------------------------------------
+Package
+Inquisitive
+
+
+PP;1>setApt;COG;20,setApt;COO;10,setApt;INT;20,setApt;REF;10,setApt;SAV;20,setApt;SOM;10,setApt;WIL;15
+--------------------------------------------------------------
+Package
+Researcher
+
+
+PP;1>setApt;COG;20,setApt;COO;15,setApt;INT;20,setApt;REF;15,setApt;SAV;10,setApt;SOM;10,setApt;WIL;15
+--------------------------------------------------------------
+Package
+Survivor
+
+
+PP;1>setApt;COG;10,setApt;COO;15,setApt;INT;15,setApt;REF;15,setApt;SAV;10,setApt;SOM;20,setApt;WIL;20
+--------------------------------------------------------------
+Package
+Techie
+
+
+PP;1>setApt;COG;20,setApt;COO;15,setApt;INT;10,setApt;REF;15,setApt;SAV;15,setApt;SOM;15,setApt;WIL;15
+--------------------------------------------------------------
+Package
+Thrill Seeker
+
+
+PP;1>setApt;COG;10,setApt;COO;20,setApt;INT;15,setApt;REF;20,setApt;SAV;15,setApt;SOM;15,setApt;WIL;10
+--------------------------------------------------------------
+Package
+COLONIST: COMMAND STAFF
+You helped run one of the pre-Fall colonies, whether it was in Earth orbit, on Luna or Mars, or elsewhere in the system. 
++Hard Work, +Leadership, +Survival
+PP;1>+mox;1,Persuasion 15,Profession: Administration 30,Protocol 40
+PP;3>+mox;1,Academics: ?1? 30,Free Fall* 35,Interest: ?1? 20,Networking: ?1? 40,Persuasion 40,Pilot: ?1? 30,Profession: Administration 40,Protocol 50
+PP;5>+mox;1,addApt;SAV;5,+rep;?1?;50,Academics: ?1? 40,Art: ?1? 40,Beam Weapons 30,Fray 25,Free Fall* 35,Interest: ?1? 30,Intimidation 30,Networking: ?1? 40,Persuasion 40,Pilot: ?1? 30,Profession: Administration 40,Protocol 50
+*Lunar, Martian, and other grounded colonists can replace Free Fall with Freerunning skill.
+-----------------------------------------------------------------
+Package
+COLONIST: FLIGHT STAFF
+You worked on, or even piloted, the ships that kept colonies supplied.
++Exploration, +Personal Career, +Thrill Seeking
+PP;1>+mox;1,Pilot: Spacecraft 40,Profession: Flight Crew 30
+PP;3>+mox;1,Academics: Astrophysics/Engineering 30,Free Fall 40,Hardware: Aerospace 35,Interest: ?1? 20,Navigation 40,Networking: ?1? 30,Pilot: Spacecraft 50,Profession: Flight Crew 40
+PP;5>+mox;1,addApt;REF;5,+rep;?1?;50,Academics: Astrophysics/Engineering 40,Fray 20,Free Fall 40,Gunnery 30,Hardware: Aerospace 40,Interest: ?1? 30,Language: ?1? 30,Navigation 40,Networking: ?2? 30,Pilot: Spacecraft 50,Profession: Flight Crew 50
+*Lunar, Martian, and other grounded colonists can replace Free Fall with Freerunning skill.
+----------------------------------------------------------------------------------------------
+Package
+COLONIST: SECURITY STAFF
+You secured pre-Fall colonies, keeping the rabble in line and guarding against hostile elements.
++Law and Order, +Survival, -Criminals, -Autonomists
+PP;1>+mox;1,Beam Weapons 40,Free Fall 15*,Profession: Security Ops 30
+PP;3>+mox;1,Beam Weapons 50,Free Fall* 40,Clubs 35,Interest: ?1? 30,Intimidation 40,Language: ?1? 20,Networking: ?1? 30,Profession: Security Ops 40
+PP;5>+mox;1,addApt;SOM;5,+rep;?1?;40,Beam Weapon 50, Fray 25, Free Fall* 40, Clubs 35, Interest: ?1? 30, Intimidation 40, Investigation 20, Language: ?1? 30, Networking: ?1? 30, Profession: Security Ops 50, Unarmed Combat 40
+*Lunar, Martian, and other grounded colonists can replace Free Fall with Freerunning skill.
+----------------------------------------------------------------------------------------------
+Package
+COLONIST: SCIENCE STAFF
+You conducted scientific research off-world, whether that was studying the sun’s solar cycles, evaluating lichen growth on Mars, or creating new zero-g manufacturing processes.
++Hard Work, +Personal Career, +Science!
+PP;1>+mox;1,Academics: ?!? 40,Free Fall 15*,Investigation 30
+PP;3>+mox;1,Academics: ?!? 50,Free Fall 30*,Interest: ?1? 15, Interfacing 40, Investigation 40, Networking: Scientists 40, Profession: Lab Technician 30, Research 40
+PP;5>+mox;1,addApt;COG;5,+rep;?1?;50,Academics: ?1? 50,Academics: ?1? 40,Fray 25,Free Fall* 30,Hardware: ?1? 20,Interest: ?1? 30,Interfacing 40,Investigation 50,Networking: Scientists 40,Profession: Lab Technician 30,Programming 35,Research 40
+*Lunar, Martian, and other grounded colonists can replace Free Fall with Freerunning skill.
+----------------------------------------------------------------------------------------------
+Package
+COLONIST: TECH STAFF
+You kept the colony in working order--a matter of survival more than convenience.
++Hard Work, +Problem Solving, +Survival
+PP;1>+mox;1,Free Fall* 15,Hardware: ?1? 40,Profession: ?1? 30
+PP;3>+mox;1,Academics: ?1? 30,Free Fall* 30,Hardware: ?1? 50,Interest: ?1? 20,Interfacing 40,Profession: ?1? 40,Programming 40,Scrounging 35
+PP;5>+mox;1,addApt;COG;5,+rep;?1?;50,Academics: ?1? 40,Fray 20,Free Fall* 30,Hardware: ?1? 50,Hardware: ?1? 40,Interest: ?1? 30,Interfacing 40,Language: ?1? 30,Pilot: ?1? 25,Profession: ?1? 50,Programming 40,Scrounging 35
+*Lunar, Martian, and other grounded colonists can replace Free Fall with Freerunning skill.
+----------------------------------------------------------------------------------------------
+Package
+DRIFTER
+You may be a Martian nomad, an original scum swarm pioneer, a free trader, or just a wanderer. Your people have always gone where the work was, first on Earth and then into space, where hands or your kind of skills were needed. You may not be as highly specialized as some people, but you know a little about a lot of things and have picked up what you need to get by. 
++Exploration, +Hard Work, +Pragmatism, +Survival
+PP;1>+mox;1,Free Fall* 15,Profession: ?1? 30,Scrounging 40
+PP;3>+mox;1,Free Fall* 40,Hardware: ?1? 30,Interest: ?1? 20,Kinetic Weapons 20,Language: ?1? 30,Navigation 20,Networking: ?1? 35,Profession: ?1? 40,Scrounging 50
+PP;5>+mox;2,addApt;INT;5,+rep;?1?;50,Art: ?1? 40,Fray 25,Free Fall* 40,Hardware: ?1? 30,Interest: ?1? 30,Kinetic Weapons 20,Language: ?1? 40,Navigation 20,Networking: ?2? 30,Profession: ?1? 40,Protocol 20,Scrounging 50
+*Martian nomads may exchange Free Fall for Climbing or Freerunning skill.
+-------------------------------------------------------------------------------------------------------------
+Package
+EARTH SURVIVOR
+Unlike a small percentage of transhumanity, you did not escape off-world during the Fall, nor were you lucky enough to be killed. You survived for years, eking out an existence in the post-apocalyptic desolation of Earth while hiding from, and even fighting, the machines and twisted transhuman puppets that still lurked there. Only recently was your body rescued by scrappers or reclaimers or your egocast unwisely accepted by a trusting receiver.
++Survival, +/-Reclaiming Earth, -TITANs
+PP;1>+mox;1,Freerunning 15,Profession: Post-Apocalyptic Survival 30,Scrounging 40
+PP;3>+mox;1,Fray 20,Freerunning 30,Interest: ?1? 20,Infiltration 40,Kinetic Weapons 35,Language: ?1? 30,Pilot: Groundcraft 20,Profession: Post-Apocalyptic Survival 40,Scrounging 50
+PP;5>+mox;2,addApt;WIL;5,Animal Handling 20,Demolitions 20,Fray 25,Freerunning 30,Interest: ?1? 30,Infiltration 40,Kinetic Weapons 40,Language: ?1? 40,Pilot: Groundcraft 25,Profession: ?1? 40,Profession: Post-Apocalyptic Survival 40,Scrounging 50,Seeker Weapons 30,+trait;Neural Damage 
+--------------------------------------------------------------------------------------------------------------------------
+Package
+FALL EVACUEE: ENCLAVER
+You were one of the lucky ones who grew up in safety behind the walls and security systems that kept the masses of the poor out. When the Fall happened,your connections (or your family's) ensured you were one of the first to leave up the beanstalk.
++Personal Career, +Reclaiming Earth, +Survival, +Wealth
+PP;1>+mox;1,Academics: ?1? 30,Profession: ?1? 30,Protocol 25
+PP;3>+mox;1,Academics: ?1? 40,Interest: ?1? 20,Interfacing 35,Networking: ?1? 50,Persuasion 40,Pilot: Groundcraft 30,Profession: ?1? 40,Protocol 30
+PP;5>+mox;1,addAdpt;SAV;5,+rep;?1?;50,Academics: ?1? 40,Art: ?1? 30,Beam Weapons 20,Fray 20,Interest: ?1? 40,Interfacing 35,Kinesics 25,Networking: ?1? 50,Networking: ?1? 20,Persuasion 40,Pilot: Groundcraft 30,Profession: ?1? 40,Protocol 40
+----------------------------------------------------------------------------
+Package
+FALL EVACUEE: UNDERCLASS
+Most of those who survived made it off-planet either by virtue of their birth or earning their way into one of the enclaves. You were either lucky enough to be in the small percentage of non-elites to be evacuated or you managed to bribe, scam, or sneak your way past security during the Fall and secure a position on a shuttle or beanstalk car.
++Personal Development, +Survival, -Hypercapitalism
+PP;1>+mox;1,Networking: ?1? 40,Profession: ?1? 30,Unarmed Combat 15
+PP;3>+mox;1,Blades 30,Interest: ?1? 20,Deception 30,Language: ?1? 30,Networking: ?1? 50,Persuasion 40,Pilot: Groundcraft 25,Profession: ?1? 40,Unarmed Combat 20
+PP;5>+mox;2,addApt;WIL;5,+rep;?1?;50,Academics: ?1? 30,Blades 30,Fray 20,Infiltration 30,Interest: ?1? 40,Deception 30,Language: ?1? 40,Networking: ?1? 50,Persuasion 40,Pilot: Groundcraft 30,Profession: ?1? 40,Unarmed Combat 35
+------------------------------------------------------
+Package
+HYPERELITE: MEDIA PERSONALITY
+People know you. In fact, there's a good chance that they see you on a regular basis. You're an X-caster, a blogger, a famous MARG gamer, a pundit, a performer, the spokesperson for a brand, an athlete, or some other form of celebrity.
++Artistic Expression, +Fame, +Personal Career
+PP;1>+mox;1,Art: ?1? 40,Networking: (Media) 40,+credit;5000 
+PP;3>+mox;1,Art: ?1? 40,Disguise: 25,Interest: ?1? 30,Interfacing 30,Networking: (Media) 50,Persuasion 30,Profession: ?1? 20,Protocol 30 ,+credit;30000 
+PP;5>+mox;1,addApt;SAV;5,+rep;?1?;50,Art: ?1? 40,Disguise: 25,Fray 15,Interest: ?1? 40,Interfacing 30,Language: ?1? 30,Networking: (Media) 50,Networking: ?1? 20,Persuasion 30,Profession: ?1? 40,Protocol 50,+credit;60000 
+-----------------------------------------------------------------------------------------------
+Package
+HYPERELITE: SCION
+You were born into the wealth and privilege that financed transhumanity's expansion into space. It is your family name, rather than any talent or achievement, that makes you well known and in demand at social events.
++Family, +Hypercapitalism, +Wealth
+PP;1>+mox;1,Academics: ?1? 30,Kinesics 30,Protocol 20,+credits;+5000
+PP;3>+mox;1,Academics: ?1? 40,Art: ?1? 30,Interest: ?1? 20,Interfacing 30,Kinesics 50,Networking: Hypercorps 35,Persuasion 30,Protocol 30,+credit;20000
+PP;5>+mox;1,addApt;SAV;5,+rep;?1?1;50,Academics: ?1? 40,Art: ?1? 40,Interest: ?1? 40,Intimidation 20,Kinesics 50,Kinetic Weapons 20,Networking: Hypercorps 40,Persuasion 30,Profession: ?1? 30,Protocol 40,+credit;50000,+trait;Patron
+----------------------------------------------------------------
+Package
+INDENTURE
+You either won a lottery for the poor, where the prize was to go off-world, or you died during the Fall. Either way, you found yourself working away in virtual slavery to a hypercorp. You worked hard constructing habitats, mining asteroids, or terraforming Mars.
++Hard Work, +Survival, -Hypercorps, -Indentured Service
+PP;1>+mox;1,Hardware: ?1? 40,Language: ?1? 15,Profession: ?1? 30
+PP;3>+mox;1,Blades 30,Demolitions 30,Free Fall 40,Hardware: ?1? 50,Interest: ?1? 20,Language: ?1? 30,Profession: ?1? 40,Scrounging 45
+PP;5>+mox;2,addApt;SOM;5,+rep;?1?;50,Blades 30,Demolitions 30,Fray 20,Free Fall 40,Hardware: ?1? 50,Interest: ?1? 30,Interfacing 30,Language: ?1? 40,Networking: Criminal 20,Profession: ?1? 40,Profession: ?1? 40,Scrounging 45
+-----------------------------------------------------------------------------
+Package
+INFOLIFE: EMERGENT UPLIFT
+You were a smart program on the verge of emergence when the programmers reshaped you, encoded you with transhuman values and modes of thinking, and uplifted you to machine sapience. You possess a number of quirks that make you stand out from traditionally programmed AGIs.
++AGI Rights, +Mercurial Cause
+PP;1>+mox;1,Interest: ?1? 30,Infosec 25,Interfacing 40,Programming 30,+Trait;Anomalous Mind trait,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;3>+mox;2,Academics: ?1? 30,Hardware: ?1? 40,Infosec 30,Interest: ?1? 40,Interfacing 50,Networking: ?1? 30,Profession: ?1? 20,Programming 40,Research 30,+Trait;Anomalous Mind trait,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;5>+mox;2,addApt;COG;5,+rep;?1?;50,?2? 30,Academics: ?2? 40,Hardware:?1? 40,Infosec 40,Interest: ?1? 40,Interfacing 50,Networking: ?1? 30,Profession: ?1? 40,Programming 40,Research 35,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+---------------------------------------------------------------------------------
+Package
+INFOLIFE: HUMANITIES AGI
+You were designed to understand and interact with humans. Your programming is optimized for tasks such as per-sonal assistance, marketing, caretaking, and psychology.
++AGI Rights, +Personal Development, +Philanthropy
+PP;1>+mox;1,Academics: Psychology/Sociology 30,Interfacing 40,Kinesics 35+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;3>+mox;1,Academics: Psychology/Sociology 40,Art:Digital Art 20,Impersonation 25,Interfacing 50,Kinesics 40,Networking: ?1? 30,Persuasion 40,Profession: Psychotherapy 30,Research 30+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;5>+mox;1,addApt;SAV;5,+rep;?1?;50,Academics: Psychology/Sociology 40,Art: Digital Art 40,Impersonation 30,Infosec 30,Interest: ?1? 40,Interfacing 50,Kinesics 50,Networking: ?1? 40,Persuasion 40,Profession: Psychotherapy 30,Protocol 30,Research 30,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+-------------------------------------------------------------------------------------
+Package
+INFOLIFE: MACHINE AGI
+What understands machines better than a machine mind? Your code is focused on interacting and controlling soft-ware and hardware so that humans don't have to.
++AGI Rights, +Sousveillance, +Thrill Seeking, -Disorganization
+PP;1>+mox;1,Academics: ?1? 30,Interfacing 40,Programming 35,,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;3>+mox;1,Academics: ?1? 40,Art: ?1? 20,Hardware: Electronics 40,Hardware: Robotics 20,Infosec 35,Interfacing 50,Pilot: ?1? 30,Profession: ?1? 30,Programming 40,,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;5>+mox;1,addApt;REF;5,+rep;?1?;50,Academics: ?2? 40,Art: ?1? 30,Flight 30,Hardware: Electronics 40,Hardware: Robotics 30,Infosec 40,Interfacing 50,Pilot: ?1? 30,Profession: ?1? 40,Programming 50,Research 30,,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+-------------------------------------------------------------------
+Package
+INFOLIFE: RESEARCH AGI
+Your software predecessors were programmed to gather and analyze data, assist in scientific projects, and conduct experiments on their own. AIs such as yourself are valued members of research projects, universities, and data analysis hypercorps. 
++AGI Rights, +Education, +Research
+PP;1>+mox;1,Academics: ?1? 30,Interfacing 35,Research 40,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;3>+mox;1,Academics: ?1? 40,Academics: ?1? 30,Hardware: ?1? 40,Interfacing 40,Investigation 30,Networking: Scientists 25,Profession: ?1? 20,Programming 30,Research 50,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+PP;5>+mox;2,addApt;COG;5,+rep;?1?;50,Academics: ?2? 40,Academics: ?1? 30,Hardware: ?1? 40,Infosec 30,Interfacing 40,Investigation 40,Networking: Scientists 30,Pilot: ?1? 30,Profession: ?1? 40,Programming 40,Research 50,+trait;Real World Naivete,+trait;Social Stigma (AGI)
+-----------------------------------------------------------------------------------
+Package
+ISOLATE: SEPARATIST
+As happened many times throughout history,groups facing persecution fled to new territories where they could practice their beliefs in peace. You hail from one of these groups that traveled to the isolated reaches of the system to find a place they could worship,experiment,or simply exist away from prying or hostile neighbors. As a result of your peoples' self-imposed isolation,you've learned to be far more self-sufficient than most.
++Artistic Expression, +Bioconservatism, +Religion, +Research
+PP;1>+mox;1,Free Fall 15,Profession:?1? 30,Scrounging 40
+PP;3>+mox;1,Animal Handling 25,Art: ?1? 40,Free Fall 30,Hardware: ?1? 40,Medicine: Paramedic 30,Pilot: ?1? 30,Profession: ?1? 50,Scrounging 40
+PP;5>+mox;1,addApt;WIL/INT;5,Academics: ?1? 30,Animal Handling 25,Art:?1? 40,Fray 20,Free Fall 40,Hardware: ?1? 40,Interest: ?1? 30,Interfacing 20,Medicine: Paramedic 30,Pilot: ?1? 40,Profession: ?1? 50,Programming 30,Scrounging 50,+trait;Real World Naivete
+----------------------------------------------------------------------------------------------------------
+Package
+ISOLATE: SURVIVALIST
+Your family feared trouble on Earth, so they established a bunker off-world. They were right. Now they fear that trouble may return and engulf the entire solar system.
++Bioconservatism, +Religion, +Survival, -Autonomists
+PP;1>+mox;1,Free Fall 15,Profession: ?1? 30,Kinetic Weapons 40
+PP;3>+mox;1,Academics: ?1? 20,Free Fall 30,Hardware:?1? 40,Interest: ?1? 30,Kinetic Weapons 50,Medicine: Paramedic 30,Pilot: ?1? 30,Profession: ?1? 40,Seeker Weapons 15
+PP;5>+mox;1,addApt;WIL/INT;5,Academics: ?1? 30,Animal Handling 20,Demolitions 20,Fray 20,Free Fall 30,Hardware: ?1? 40,Interest: ?1? 40,Kinetic Weapons 50,Medicine: Paramedic 30,Navigation 20,Pilot: ?1? 30,Profession: ?2? 40,Seeker Weapons 25 
+----------------------------------------------------------------------------------------------------------
+Package
+LOST: DISTURBED CHILD
+The Lost project unwittingly created a generation of monsters. You are among the odd, deranged, twisted, psychotic, and powerful examples that escaped.
++Neurodiversity, +Sadism, +Vengeance, -Research
+PP;1>+mox;1,Academics: ?1? 30,Control 35,Free Fall 15,+trait;Psi (Level 2),+trait;Mental Disorder?3?,+trait;On the Run,+trait;Real World Naivete,+psichi;?2?
+PP;3>+mox;1,Academics: ?1? 40,Blades 15,Control 50,Deception 40,Fray 15,Free Fall 30,Infiltration 30,Language: ?1? 30,Profession: ?1? 20,+trait; Psi (Level 2),+trait;Mental Disorder ?3?,+trait;On the Run,+trait;Real World Naivete,+psichi;?1?,+psigamma;?3?
+PP;5>+mox;1,addApt;WIL;5,+rep;?1?;50,Academics: ?1? 40,Blades 20,Control 50,Deception 40,Fray 20,Free Fall 30,Infiltration 30,Interest: ?1? 30,Language: ?1? 30,Profession: ?1? 40,Psi Assault 40, Unarmed Combat 20,+trait; Psi (Level 2),+trait;Mental Disorder ?3?,+trait;On the Run,+trait;Real World Naivete,+psichi;?2?,+psigamma;?5?
+------------------------------------------------------------------------------------------------------------------------
+Package
+LOST: MASKED NORMALCY
+You survived the Lost project damaged but intact—or at least able to mask your inner demons from others. You are not as gifted—or as explosive—an async as some of the others, but you are also better at keeping yourself under control.
++Acceptance +Privacy +Self Control
+PP;1>+mox;1,Academics: ?1? 30,Persuasion 35,+trait;Psi (Level 1),+trait;Mental Disorder?2?,+psichi;?2?
+PP;3>+mox;1,Academics: ?1? 40,Free Fall 30,Impersonation 40,Kinesics 45,Language: ?1? 30,Persuasion 50,Profession: ?1? 20 +trait; Psi (Level 1),+trait;Mental Disorder ?2?,+psichi;?4?
+PP;5>+mox;1,+rep;?1?;50,Academics: ?1? 40,Fray 20,Free Fall 30,Impersonation 40,Interest: ?1? 40,Interfacing 30,Kinesics 45,Language: ?1? 40,Persuasion 50,Profession: ?1? 30,Protocol 30,Sense: 50,+trait;Psi (Level 2)+trait;Mental Disorder ?3?,+trait;On The Run,+psichi;?4?,+psigamma;?2?
+------------------------------------------------------------------------------------------------------------------------
+Package
+ORIGINAL SCUM
+More than just a drifter, you were a pioneer in the pursuit for morphological freedom.
++Anarchism, +Hedonism, +Individualism, +Morphological Freedom
+PP;1>+mox;1,Art: ?1? 30,Free Fall 15,Medicine: Biosculpting 40
+PP;3>+mox;1,Art: ?1? 40,Free Fall 30,Interest: ?1? 30,Language: ?1? 20,Medicine: Biosculpting 50,Networking: ?1? 35,Persuasion 40,Psychosurgery 40
+PP;5>+mox;1,addApt;WIL;5,+rep;?1?;50,Art: ?1? 40,Fray 20,Free Fall 30,Interest: ?1? 40,Kinesics 20,Language: ?1? 40,Medicine: Biosculpting 50,Networking: ?1? 40,Networking: ?1? 20,Persuasion 40,Profession: ?1? 30,Psychosurgery 40,Spray Weapons 20
+--------------------------------------------------------------------------------------------------------------------------
+Package
+RE-INSTANTIATED: CIVILIAN CASUALTY
+You died during the Fall. Either the TITAN machines overwhelmed your area or you fell victim to transhumanity's own use of WMDs or savage infighting. You might not even know how you died, as you were recovered from a backup transmitted off-world. However it went down, it wasn't an experience you'd care to repeat. Luckily, you were resleeved quickly.
++Reclaiming Earth, +Survival, -TITAN Tech
+PP;1>?1?* 40,Interfacing 15,Profession: ?1? 30
+PP;3>?1?* 50,Academics: ?1? 20,Interest: ?1? 30,Interfacing 45,Networking: ?1? 40,Pilot: Groundcraft 30,Profession: ?1? 40,Research 30
+PP;5>+mox;1,addApt;INT;5,+rep;?1?;50,?1?* 50,Academics: ?1? 40,Fray 20,Freerunning 20,Interest: ?1? 40,Interest: ?1? 20,Interfacing 45,Kinesics 20,Language: ?1? 30,Networking: ?1? 40,Pilot: Groundcraft 30,Profession: ?1? 40,Research 30,+trait;Edited Memories
+*Choose Any Non Psi-Skill
+------------------------------------------------------------------------------------------------------
+Package
+RE-INSTANTIATED: INFOMORPH
+After your death during the Fall, you spent a substantial period of time in VR worlds before you were eventually resleeved. 
++Reclaiming Earth, +Survival, +/-Virtual Reality, -TITANs
+PP;1>+mox;1,Interfacing 40,Profession: ?1? 30,Programming 15
+PP;3>+mox;1,Academics: ?1? 20,Interest: ?1? 30,Interfacing 50,Networking: ?1? 40,Pilot: Groundcraft 30,Profession: ?1? 40,Programming 45,Research 30
+PP;5>+mox;2,addApt;COG;5,+rep;?1?;50,?1? 40,Academics: ?1? 30,Fray 10,Infosec 20,Interest: ?1? 50,Interest: ?1? 40,Interfacing 50,Networking: ?1? 40,Pilot: Groundcraft 30,Profession: ?1? 40,Programming 45,Research 30,+trait;Edited Memories
+*Any Non Psi-Skill.
+-------------------------------------------------------------------------------------------------------------------
+Package
+RE-INSTANTIATED: MILITARY CASUALTY
+You were killed during the Fall. You may have fallen during a sneak attack, died fighting the TITAN machines on the front lines, or even been murdered by fellow humans as you tried to keep order in transhumanity's darkest hours. At least your sacrifice was rewarded by a quick resleeving.
++Reclaiming Earth, +Survival, -TITANs
+PP;1>+mox;1,?1?* 40,Freerunning 15,Profession: ?1? 30
+PP;3>+mox;1,?1?* 50,Academics: ?1? 20,Fray 20,Freerunning 35,Gunnery 30,Interest: ?1? 30,Pilot: Groundcraft 30,Profession: ?1? 40,Unarmed Combat 30
+PP;5>+mox;#2,addApt;INT;5,+rep;?1?;50,?2?* 50,Academics: ?1? 30,Climbing 30,Fray 25,Freerunning 35,Gunnery 30,Interest: ?1? 50,Language: ?1? 30,Pilot: Groundcraft 15,Profession: ?1? 40,Unarmed Combat 40 ,+trait;Edited Memories
+*Any Combat Skill
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+STREET RAT
+You were raised in a gang, syndicate family, or cartel workforce. You are used to the ways of violence and routing around the law. 
++Black Markets, +Cartel/Gang/Family, +Survival, +Wealth, -Law and Order, -Police
+PP;1>+mox;1,Networking: Criminals 15,Profession: ?1? 30,Unarmed Combat 40
+PP;3>+mox;1,Clubs 30,Fray 20,Infiltration 15,Interest: ?1? 20,Intimidation 30,Language: ?1? 40,Networking: Criminals 30,Pilot: Groundcraft 30,Profession: ?1? 30,Unarmed Combat 40
+PP;5>+mox;#2,addApt;SOM;5,+rep;?1?;50,Clubs 30,Deception 25,Fray 30,Infiltration 25,Interest:?1? 40,Interest: ?1? 30,Intimidation 40,Language: ?1? 40,Networking: Criminals 40,Palming 20,Pilot: Groundcraft 30,Profession: ?1? 40,Unarmed Combat 40
+------------------------------------------------------------------------------
+Package
+UPLIFT: ESCAPEE
+Though you are as intelligent as a human, you were born and raised as a second-class citizen, corporate property, or worse: a test subject. Somehow you escaped or were liberated, and now you try to find yourself in a galaxy that often seems out to get you.
++Privacy, +Survival, +Uplift Rights, -Hypercorps, -Uplift Slavery
+PP;1>+mox;1,Climbing* 40,Interest:?1? 30,Infiltration 25,+trait; Social Stigma (Uplift)
+PP;3>+mox;1,Climbing* 45,Deception 40,Infiltration 50,Impersonation 40,Interest: ?1? 40,Language: ?1? 20,Networking: ?1? 40,Profession: ?1? 30,+trait;On the Run,+trait;Social Stigma (Uplift)
+PP;5>+mox;#2,addApt;SAV;5,+rep;?1?;50,Academics: ?1? 40,Climbing* 50,Deception 40,Fray 25,Infiltration 50,Impersonation 40,Interest: ?1? 40,Language: ?1? 40,Networking: ?1? 40,Palming 25,Profession: ?1? 30,Unarmed Combat 30,+trait;On the Run,+trait;Social Stigma (Uplift)
+*Replace Climbing skill with any skill more appropriate to the uplift type (Flight for neo-avians,Swimming for neo-octopi,Freerunning for neanderthals,ect.)
+----------------------------------------------------------------------------------
+Package
+UPLIFT: FERAL
+The uplift process did not "humanize" you as much as other uplifts. Your natural instincts dominate your behavior far more than any attempts to socialize you to human norms. 
++Mercurial Cause, +Survival, +Uplift Rights, -Hypercorps, -Uplift Slavery
+PP;1>+mox;1,Climbing* 40,Interest: ?1? 30,Unarmed Combat 35,+trait;Anomalous Mind,+trait;Heightened Instinct,+trait;Social Stigma (Uplift)
+PP;3>+mox;2,Climbing* 50,Fray 40,Infiltration 20,Interest: ?2? 45,Intimidation 40,Unarmed Combat 50,+trait;Anomalous Mind,+trait;Heightened Instinct,+trait;Social Stigma (Uplift)
+PP;5>+mox;2,addApt;REF;5,Art: ?1? 30,Climbing* 50,Fray 40,Infiltration 50,Interest: ?3? 40,Intimidation 50,Networking: ?1? 30,Scrounging 20,Unarmed Combat 50,+trait;Anomalous Mind,+trait;Heightened Instinct,+trait;Social Stigma (Uplift)
+*Replace Climbing skill with any skill more appropriate to the uplift type (Flight for neo-avians,Swimming for neo-octopi,Freerunning for neanderthals,ect.)
+----------------------------------------------------------------------------------------------------------
+Package
+UPLIFT: STANDARD SPECIMEN
+Though you must deal with prejudice, you are proof of the success of transhumanity's uplift project.
++Mercurial Cause +Sapient Cause +Uplift Rights, -Uplift Slavery
+PP;1>+mox;1,Academics: ?1? 30,Climbing* 45,Interfacing 20,+trait;Social Stigma (Uplift)
+PP;3>+mox;1,Academics: ?1? 40,Climbing* 50,Fray 20,Interest: ?1? 20,Interfacing 30,Intimidation 30,Kinesics 35,Networking: ?1? 40,Profession: ?1? 30,+trait;Social Stigma (Uplift)
+PP;5>+mox;1,,addApt;COO;5,+rep;?1?;50,Academics: ?1? 40,Climbing* 50,Fray 20,Interest:?1? 40,Interfacing 30,Intimidation 30,Kinesics 40,Language: ?1? 30,Networking: ?1? 40,Persuasion 30,Profession: ?1? 40,Protocol 30,Unarmed Combat 20,+trait;Social Stigma (Uplift)
+*Replace Climbing skill with any skill more appropriate to the uplift type (Flight for neo-avians,Swimming for neo-octopi,Freerunning for neanderthals,ect.)
+----------------------------------------------------------------------------------------------------
+Package
+ANARCHIST
+You've allied yourself with one of the many anarchist collectives working towards greater freedoms and independence.
++Anarchism, +Community,+Liberty, +Morphological Freedom, -Authority, -Hypercapitalism
+PP;1>+mox;1,Academics: Political Science 30,Kinetic Weapons 30,Networking: Autonomists 40
+PP;3>+mox;1,+rep;@;50,Academics: Political Science 50,Free Fall 30,Infosec 30,Interest: ?1? 40,Kinetic Weapons 20,Networking: Autonomists 50,Persuasion 30,Scrounging 30
+-----------------------------------------------------------------------------------------------------------------------
+Package
+ARGONAUT
+Scientific progress can be a two-edged sword. The fact that the argonauts embrace both the wonder and the dangers of new technologies and work towards their responsible use is one of the reasons you joined up.
++Open Source, +Research, +Technoprogressivism
+PP;1>+mox;1,Academics: ?1? 40,Investigation 30,Research 30
+PP;3>+mox;1,+rep;r;50,Academics: ?1? 50,Interest: ?1? 30,Investigation 40,Profession: ?1? 40,Networking: Scientists 40,Programming 40,Research 40
+----------------------------------------------------------------------------------
+Package
+BARSOOMIAN
+Your times among the rural folk and nomads of Mars convinced you that Mars needs to be liberated from the hypercorps.
++Anarchism, +Barsoomian Movement, +Community, +Technoprogressivism, -Hypercorps
+PP;1>Navigation 30,Pilot: ?1? 40,Profession: ?1? 30
+PP;3>+rep;@;50,Hardware: ?1? 35,Interest: ?1? 40,Kinetic Weapons 30,Navigation 30,Networking:Autonomists 40,Pilot: ?1? 40,Profession: ?1? 50,Scrounging 30
+---------------------------------------------------
+Package
+BELTER
+You hail from the lawless frontier of the Main Belt, home to miners, pirates, exiles, and outcasts of every stripe.
++Extropianism, +Hypercapitalism, +Morphological Freedom
+PP;1>Free Fall 40,Navigation 30,Profession: (Asteroid Mining) 30
+PP;3>+mox;1,+rep;?1?;50,Free Fall 50,Interest: ?1? 40,Kinetic Weapons 30,Navigation 30,Networking: ?1? 30,Profession: (Asteroid Mining) 50,Persuasion 20,Pilot: Spacecraft 30
+------------------------------------------------------------------
+Package
+BIOCONSERVATIVE
+You think the ideology of transhumanism is dubious and suspect at best, and may in fact pose an extinction threat to the human species.
++Bioconservatism, +Religion, -AGI Rights, -Uplift Rights, -X-Risks
+PP;1>Freerunning 30,Interest: ?1? 40,Pilot: ?1? 30
+PP;3>Demolitions 30,Freerunning 40,Interest: ?1? 50,Kinetic Weapons 40,Medicine: Paramedic 30,Pilot: ?1? 40,Profession: ?1? 40,Scrounging 30
+---------------------------------------------------------------------------------------------------------------------------
+Package
+BRINKER
+Some folk just aren't all that fond of too many other folk. Being in space and having to live cheek-to-jowl with others makes it kinda hard. Your fellow brinkers understand you need a little "me space" to go along with "me time."
++Bioconservatism, +Exhumanism, +Privacy, +Religion, +Solitude, +Self Reliance
+PP;1>Pilot: (Spacecraft) 40,Profession: ?1? 30,Scrounging 30
+PP;3>+rep;?1?;50,Free Fall 30,Gunnery 20,Hardware: Industrial 40,Interest: ?1? 40,Networking: ?1? 25,Pilot: (Spacecraft) 50,Profession: ?1? 50,Scrounging 40
+------------------------------------------------------------------------------------------
+Package
+CRIMINAL
+As long as there are people there will always be rules, and where there are rules there are opportunities to make a tidy profit providing the sorts of things those rules prohibit. You prefer to think of yourself as a facilitatorr those who want to get around these restrictions.
++Survival, +Thrill Seeking, +Wealth, -Law and Order
+PP;1>Interest: Criminal Groups 30,Palming 30,Intimidation 40
+PP;3>+rep;g;50,Deception 30,Infiltration 30,Interest: Criminal Groups 50,Intimidation 40,Networking: Criminals 40,Palming 30,Profession: ?1? 40,Unarmed Combat 35
+-------------------------------------------------------------------------------------------------------
+Package
+EUROPAN
+You hail from the aquatic depths and under-ice habitats of Europa. 
++Exploration, +Morphological Freedom, +Uplift Rights, -Bioconservatism
+PP;1>Academics: ?1? 30,Pilot: Submarine 30,Swimming 40
+PP;3>+mox;1,+rep;?1?;50,Academics: ?1? 40,Academics: ?1? 20,Interfacing 30,Navigation 35,Networking: ?1? 30,Pilot: Submarine 40,Profession: ?1? 35,Swimming 50
+-----------------------------------------------------------------------------------------------------------------
+Package
+EXHUMAN
+You are a supporter of discarding humanity's genetic shackles and elevating yourself to a newer,improved physical form.
++Exhumanism, +Morphological Freedom, +Personal Development, +Research
+PP;1>Interest: Exhumans 30,Medicine: Biosculpting 40,Psychosurgery 30
+PP;3>+mox;1,Academics: Genetics 40,Disguise 15,Interest: Exhumans 50,Intimidation 30,Medicine: Biosculpting 50,Medicine: ?1? 30,Psychosurgery 30,Unarmed Combat 40
+-------------------------------------------------------------------------------------------------------------------
+Package
+EXTROPIAN
+You are an Extropian because you believe in the unfettered potential of transhumanity. Too many saw the Fall as a cautionary tale to slow down or even stop entirely, but you believe that the only way for transhumanity to survive is forwards and upwards to greater things.
++Extropianism, +Morphological Freedom, Personal Development, -Bioconservativism
+PP;1>Interest: Cutting-Edge Technology 30,Networking: Autonomists 30,Persuasion 40
+PP;3>+rep;@;50,+rep;c;50,Free Fall 20,Interest: Cutting-Edge Technology 40,Interfacing 20,Kinesics 30,Networking: Autonomists 40,Networking: Hypercorps 40,Persuasion 50,Profession: ?1? 50
+-------------------------------------------------------------------------------------------------------------------
+Package
+HYPERCORP
+The Fall upset the natural ebb and flow of trade and innovation in such a way that transhumanity is just starting to recover. Some fools believe that the Fall was a sign that old systems and practices needed to be changed, but people like a sense of continuity. They like having their consumer goods and regular mesh programming, and that's what the hypercorps give them, a link to a shared human experience.
++Hypercapitalism, +Stability, +Wealth, -Anarchism, -AGI Rights, -Uplift Rights
+PP;1>Academics: Economics 30,Persuasion 30,Protocol 40
+PP;3>+mox;1,+rep;c;50,Academics: Economics 50,Interfacing 40,Networking: Hypercorps 40,Networking: Media 20,Persuasion 40,Profession: ?1? 40,Protocol 50
+----------------------------------------------------------------------------------------------------------------------------------
+Package
+JOVIAN
+You are one of the last remnants of true humanity in the galaxy. The rest of these so-called transhumans have allowed themselves to become corrupted by the machines that brought about the fall of humanity and forced the evacuation of Earth. It is up to you and your fellows to make sure humanity survives.
++Bioconservatism, +Jovian Republic, -AGI Rights, -Transhumanism, -Uplift Rights
+PP;1>Pilot: ?1? 30,Profession:Military Ops 30,Seeker Weapons 40
+PP;3>+mox;1,+rep;c;50,Academics: Military Science 30,Intimidation 25,Kinetic Weapons 40,Language: (English or Spanish) 40,Networking: Hypercorps 40,Profession: Military Ops 30,Seeker Weapons 40,Unarmed Combat 35
+--------------------------------------------------------------------------------------------------------------------------------------------
+Package
+LUNAR
+Earth's moon is one of the last bastions of Earth culture, where old traditions are still respected. The rest of the system looks to Luna for the latest in trends and fashions, and you are proud to be on the cutting edge of style.
++Bioconservatism, +Hypercapitalism,+Preserving Traditions, +Reclaiming Earth
+PP;1>Art ?1? 40,Language: ?1? 30,Protocol 30
+PP;3>+mox;1,+rep;c;50,Academics: Pre-Fall History 50,Art ?1? 40,Interfacing 30,Kinesics 40,Language: ?1? 40,Networking: Hypercorps 40,Protocol 40
+----------------------------------------------------------------------------------------------------------------------------------
+Package
+MERCURIAL: INFOLIFE
+You oppose the assimilation of AGIs into transhumanity,believing that each intelligence should forge their own path and culture.
++AGI Rights, +Mercurial Cause, -Assimilation, -Bioconservatism, -Sapient Cause
+PP;1>?1? 40,Interest: Infolife Clades 30,Interfacing 30
+PP;3>+mox;1,+rep;?1?;50,?1? 50,Interest: Infolife Clades 50,Interest: ?1? 40,Interfacing 30,Intimidation 20,Networking: ?1? 30,Persuasion 30,Programming 30
+------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+MERCURIAL: UPLIFT
+You oppose the assimilation of uplifts into transhumanity,believing that each intelligence should forge their own path and culture.
++Mercurial Cause, +Uplift Rights, -Assimilation, -Bioconservatism, -Sapient Cause
+PP;1> ?1? 40,Interest: ?1? 30,Interest: Uplift Clades 30
+PP;3>+mox;1,+rep;?1?;50,?1? 50,Interest: Uplift Clades 50,Interest: ?1? 40,Intimidation 20,Medicine: Uplifts 30,Networking: ?1? 30,Persuasion 30,Unarmed Combat 30
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+NANO-ECOLOGIST
+You support the use of nanotechnology as a less-invasive means of terraforming and transforming alien worlds. 
++Exploration, +Nano-ecology, +Research, +Technoprogressivism
+PP;1>Academics: Ecology/Nanotechnology 30,Freerunning 30,Programming 40
+PP;3>+rep;e;50,Academics: Ecology 40,Academics: Nanotechnology 50,Freerunning 30,Interfacing 25,Investigation 30,Medicine:Nanomedicine 30,Networking: (Ecologists) 40,Programming 50
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+ORBITAL
+Living in orbit above Earth, among a melting pot of transhumanity's displaced cultures, you look down upon a daily reminder of our species' failures.
++Bioconservatism, +Precautionism, +Reclaiming Earth, -AGI Rights
+PP;1>Free Fall 30,Language: ?1? 30,Pilot: ?1? 40
+PP;3>+mox;1,+rep;?1?;50,Clubs 20,Free Fall 35,Interest: ?1? 40,Interfacing 25,Intimidation 20,Language: ?1? 50,Networking: ?1? 40,Pilot: ?1? 50
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+OUT'STER
+You are a denizen of the dark depths of space in the outer Kuiper Belt, delving into your own virtual worlds. 
++AGI Rights, +Exploration, +Morphological Freedom, +Research
+PP;1>Free Fall 30,Interest: Simulspace 30,Interfacing 40
+PP;3>+mox;1,+rep;?1?;50,Academics: ?1? 50,Academics: ?1? 40,Hardware: ?1? 20,Infosec 20,Interfacing 30,Investigation 40,Networking: ?1? 30,Research 50
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+PRESERVATIONIST
+You believe that alien worlds must be protected from contamination and that transhumanity is recklessly despoiling thousands of exoplanets as it expands through the gates.
++Environmentalism, +Preservationism, +Research, -Gatecrashing, -Nano-ecology
+PP;1>Academics: (Ecology) 40,Freerunning 30,Investigation 30
+PP;3>+rep;?1?;50,Academics: (Ecology) 50,Art: ?1? 30,Freerunning 40,Interest: ?1? 30,Investigation 40,Medicine: ?1? 30,Navigation 35,Networking: Ecologists 40
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+RECLAIMER
+You are dedicated to rescuing your species' homeworld from the ruin engulfing it.
++Bioconservatism, +Reclaiming Earth, -AGI Rights
+PP;1>Freerunning 30,Hardware: ?1? 40,Language: ?1? 30
+PP;3>+rep;?1?;50,Demolitions 20,Freerunning 30,Hardware: ?1? 50,Infosec 30,Language: ?1? 50,Language: ?1? 40,Networking: ?1? 20,Pilot: ?1? 25,Seeker Weapons 30
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+RINGER
+You have soared on the solar wind through Saturn's rings and called its many moons your home.
+ +Exploration, +Morphological Freedom, +Personal Development, +Research
+PP;1>Flight 40,Interest: ?1? 30,Scrounging 30
+PP;3>+rep;?1?;50,Academics: ?1? 50,Beam Weapons 25,Flight 50,Free Fall 40,Interest: ?1? 40,Networking:?1? 30,Pilot: Spacecraft 30,Scrounging 30
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+SAPIENT
+You support the full assimilation of uplifts and AGIs into transhumanity.
++AGI Rights, +Sapient Cause, +Uplift Rights, -Bioconservatism
+PP;1>Interest: ?1? 30,Kinesics 30,Protocol 40
+PP;3>+rep;?1?50,Interest: ?1? 50,Interest: ?1? 40,Kinesics 40,Medicine: Uplifts 20,Networking: ?1? 30,Persuasion 40,Protocol 50,Psychosurgery 25
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+SCUM
+You proudly call the exotic, edgy, and lawless ships of a scum swarm your home.
++Anarchism, +Hedonism, +Individualism, +Morphological Freedom
+PP;1>Art: ?1? 30,Free Fall 30,Networking Autonomists 40
+PP;3>+mox;1,+rep;@;50,Art: ?1? 50,Free Fall 40,Interest: ?1? 40,Kinesics 40,Medicine: Biosculpting 30,Networking Autonomists 50,Persuasion 30
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+SIFTER
+You worked the mobile mining operations on Mercury's scorched surface.
++Hard Work, +Mercurian Independence, -Hypercapitalism
+PP;1>Navigation 30,Pilot: Groundcraft 40,Profession: Mining 30
+PP;3>+mox;1,+rep;?1?;50,Climbing 25,Interest: ?1? 40,Navigation 40,Networking: ?1? 30,Palming 25,Pilot: Groundcraft 50,Profession: Mining 50,Unarmed Combat 20
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+SINGULARITY SEEKER
+You seek the means to ascend your ego to god-like levels of intelligence, by any means necessary.
++Exploration, +Morphological Freedom, +Personal Development, +Research
+PP;1>Infosec 30,Interest: TITAN Tech 40,Interfacing 30
+PP;3>Academics: ?1? 40,Hardware: ?1? 40,Infosec 40,Interest: (TITAN Tech) 50,Interfacing 30,Medicine: Nanomedicine 30,Programming 40,Psychosurgery 30
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+SKIMMER
+You have raced the winds in the upper clouds of the ice giants.
++Hard Work, +Independence, +Thrill Seeking
+PP;1>Flight 30,Interest: ?1? 30,Pilot: Aircraft 40
+PP;3>+rep;?1?;50,Flight 40,Gunnery 30,Interest: ?1? 40,Navigation 35,Networking: ?1? 30,Pilot: Aircraft 40,Pilot: Spacecraft 30,Profession: Gas Mining 50
+----------------------------------------------------------------------------------
+Package
+SOCIALITE
+Whether you are an undying oligarch, a young wealthy heir destined never to climb the ladder, or a self-made entrepreneur or celebrity, you love the social life and glitterati spotlight.
++Artistic Expression, +Fame, +Hypercapitalism, +Wealth, -Anarchism
+PP;1>Flight 40,Interest: ?1? 30,Medicine; Nanomedicine 30
+PP;3>+mox;1,+rep;?1?;50,Flight 50,Interest: ?1? 50,Interest: ?1? 40,Medicine: Nanomedicine 40,Navigation 30,Networking: ?1? 30,Pilot: Spacecraft 25
+-----------------------------------------------------------------------------------
+Package
+TITANIAN
+You consider Titan's technosocialist cyberdemocracy the best path forward for transhumanity's future. 
++Research, +Technosocialism, -Bioconservatism, -Hypercapitalism
+PP;1>Academics: ?1? 30,Networking: Autonomists 40,Programming 30
+PP;3>+rep;@;50,Academics: ?1? 50,Academics: ?1? 40,Interfacing 25,Networking: Autonomists 50,Persuasion 30,Pilot: Aircraft 30,Programming 40,Research 30
+----------------------------------------------------------------------------------
+Package
+ULTIMATE
+You pursue the pinnacles of transhuman achievement, physically, mentally, and spiritually.
++Hypercapitalism, +Personal Development, +Ultimates, -Bioconservatism
+PP;1>Academics: ?1? 30,Freerunning 30,Unarmed Combat 40
+PP;3>+rep;c;50,Academics: ?1? 50,Academics: ?1? 40,Blades 25,Climbing 30,Freerunning 40,Intimidation 30,Kinetic Weapons 30,Unarmed Combat 50
+---------------------------------------------------------------------------------------------
+Package
+VENUSIAN
+You call the aerostats of the Venusian clouds your home.
++Hypercapitalism, +Personal Development, +Uplift Rights
+PP;1>Academic: ?1? 30,Networking: Hypercorps 30,Pilot: Aircraft 40
+PP;3>+mox;1,+rep;c;50,Academic: ?1? 50,Beam Weapons 25,Kinesics 30,Navigation 25,Networking: Hypercorps 40,Pilot:Aircraft 40,Profession: ?1? 40,Protocol 30
+-------------------------------------------------------------------------------------------
+Package
+ACADEMIC
+You devote your efforts to the pursuit of knowledge.
++Education, +Open Source, +Personal Career, +Personal Development
+PP;1>Academics: ?1? 40,Academics: ?1? 30,Research 30
+PP;3>+rep;r;50,Academics: ?1? 50,Academics: ?2? 40,Investigation 30,Language: ?1? 30,Networking: Scientists 25,Perception 20,Profession: Instruction 20,Research 40
+PP;5>+rep;r;50,addApt;COG;5,Academics: ?1? 50,Academics: ?2? 40,Investigation 50,Language: ?1? 30,Networking: ?1? 30,Networking: Scientists 50,Perception 30,Persuasion 30,Profession: Instruction 50,Research 45
+----------------------------------------------------------------------------------------------
+Package
+ACTIVIST
+You fight for a cause that you fervently believe in. You are an active member of a group like the anti-assimilationist mercurials, anti-technology bioconservatives, pro-privacy Datacide, Luna's Steel Liberators, Venus's VTP, Mars's Barsoomians, or Titan's Oligarchs.
++Bioconservatism, +Mercurial Cause, +Privacy, +Terraforming, +Venusian Sovereignty
+PP;1>Interest: ?1? 30,Persuasion 40,Research 30
+PP;3>+mox;1,+rep;?1?;50,Academics: ?1? 30,Fray 20,Infosec 20,Interest: ?1? 50,Investigation 20,Language: ?1? 20,Networking: ?1? 30,Perception 20,Persuasion 40,Research 30
+PP;5>+mox;1,+rep;?1?;50,addApt;SAV;5,Academics: ?1? 30,Fray 20,Infiltration 30,Infosec 20,Interest: ?1? 50,Interest: ?1? 20,Investigation 30,Language: ?1? 30,Networking: ?1? 40,Perception 20,Persuasion 50,Protocol 30,Research 40,Unarmed Combat 20
+-----------------------------------------------------------------------------------------------------------
+Package
+ASSASSIN
+Death doesn't have the impact it used to, but sometimes it's enough to simply get someone out of the way for a little while.
++Personal Career, +Privacy, +Survival
+PP;1>Kinetic Weapons 40,Profession: Assassin 30,Unarmed Combat 30
+PP;3>+rep;?1?;50,Blades 25,Fray 30,Infiltration 40,Kinetic Weapons 50,Language: ?1? 40,Perception 20,Profession: Assassin 50,Unarmed Combat 40
+PP;5>+rep;?1?;50,Art: ?1? 30,Blades 35,Disguise 40,Freerunning 30,Fray 30,Infiltration 50,Interest: ?1? 30,Kinetic Weapons 50,Language: ?1? 40,Perception 30,Profession: Assassin 50,Spray Weapons 30,Unarmed Combat 50
+---------------------------------------------------------------------------------------------------------------
+Package
+BODYGUARD
+You protect your clients from harm and the stress and inconvenience of death. More often, you protect them from pestering fans, activists, or others that seek their attention.
++Duty, +Privacy, +Survival
+PP;1>Kinesics 40,Profession: Bodyguard 30,Unarmed Combat 30
+PP;3>+rep;?1?;50,Beam Weapons 30,Fray 30,Intimidation 30,Kinesics 40,Language: ?1? 40,Perception 40,Profession: Bodyguard 50,Unarmed Combat 35
+PP;5>+rep;?1?;50,addApt;REF;5,Beam Weapons 30,Fray 30,Interest: ?2? 30,Intimidation 30,Kinesics 50,Kinetic Weapons 30,Language: ?1? 40,Medicine: Paramedic 25,Perception 50,Profession: Bodyguard 50,Unarmed Combat 50
+-----------------------------------------------------------------------------------------------
+Package
+BOT JAMMER
+Why resleeve when you can jam? You can field bots for every situation, like a mechanical puppetmaster.
++DIY, +Maker Movement, +Thrill Seeking
+PP;1>Hardware: ?1? 30,Interest: ?1? 30,Pilot: ?1? 40
+PP;3>+rep;?1?;50,Academics: ?1? 30,Flight 40,Hardware: ?1? 40,Interest: ?2? 30,Perception 20,Pilot: ?1? 50,Pilot: ?1? 30,Seeker Weapons 25
+PP;5>+rep;?1?;50,addApt;REF;5,Academics: ?1? 30,Flight 50,Fray 20,Hardware: ?1? 40,Interest: ?2? 40,Navigation 20,Perception 30,Pilot: ?1? 50,Pilot: ?2? 30,Profession: ?1? 40,Seeker Weapons 25
+----------------------------------------------------------------------------------------------------------
+Package
+COMBAT ASYNC
+Your psi abilities have been honed to a killing edge.
++Neurodiversity, +Self Control, +Survival, -Bloodlust
+PP;1>Profession: Squad Tactics 30,Psi Assault 30,+trait;Psi (Level 2),Mental Disorder ?2?,+psisleight;?3?
+PP;3>+rep;?1?;50,Fray 20,Infiltration 30,Interest: ?1? 40,Perception 20,Profession: Squad Tactics 50,Psi Assault 50,Spray Weapons 20,Unarmed Combat 20,+trait: Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?4?
+PP;5>+rep;?1?;50,Academics: ?1? 30,Control 30,Fray 30,Infiltration 40,Interest: ?1? 40,Language: ?1? 30,Perception 30,Profession: Squad Tactics 50,Psi Assault 50,Sense 30,Spray Weapons 40,Unarmed Combat 30,+trait: Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?8?
+-------------------------------------------------------------------------------------------------------------
+Package
+CON ARTIST
+You excel at working your way into people's confidence and turning that against them.
++Privacy, +Survival, +Vice
+PP;1>Deception 40,Profession: Con Schemes 30,Persuasion 30
+PP;3>+rep;?1?;50,Deception 50,Disguise 30,Impersonation 30,Kinesics 15,Language: ?1? 40,Palming 20,Perception 20,Profession: Con Schemes 50,Persuasion 40
+PP;5>+rep;?1?;50,addApt;SAV;5,Academics: Psychology 40,Deception 50,Disguise 40,Impersonation 40,Infosec 30,Interest: ?1? 30,Kinesics 25,Language: ?1? 30,Perception 20,Palming 40,Profession: Con Schemes 50,Persuasion 50
+-------------------------------------------------------------------------------------------------------------------------
+Package
+CONTROLLER ASYNC
+Your infection enables you to invade and influence the minds of others.
++Exploration, +Neurodiversity, +Self Control
+PP;1>Academics: Psychology 30,Control 30,+trait;Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?3?
+PP;3>+rep;?1?;50,Blades 20,Demolitions 25,Fray 20,Infiltration 50,Kinetic Weapons 40,Languages: ?1? 40,Perception 20,Profession: Squad Tactics 50,Unarmed Combat 30
+PP;5>+rep;?1?;50,addApt;COO;5,Blades 30,Climbing 30,Demolitions 30,Fray 30,Infiltration 50,Infosec 25,Interest: ?2? 30,Kinetic Weapons 40,Languages: ?1? 40,Perception 20,Profession: Squad Tactics 50,Unarmed Combat 40
+--------------------------------------------------------------------------------------------------------------------------
+Package
+DEALER
+You are a free trader, black marketeer, or hypercorp salesperson. You have what it takes to close the deal.
++Hard Work, +Hypercapitalism, +Personal Career
+PP;1>Kinesics 30,Profession: ?1? 30,Persuasion 40
+PP;3>+rep;?1?;50,Beam Weapons 20,Deception 25,Interest: ?1? 40,Kinesics 40,Networking: ?1? 40,Profession: Haggling 50,Perception 30,Persuasion 50
+PP;5>+rep;?1?;100,addApt;SAV;5,Academics: Economics 30,Beam Weapons 20,Deception 25,Fray 15,Interest: ?1? 30,Kinesics 40,Networking: ?1? 50,Networking: ?1? 40,Networking: ?1? 20,Perception 30,Profession: Haggling 50,Profession: Social Engineering 40,Persuasion 50
+--------------------------------------------------------------------------------------------------------------------------
+Package
+EGO HUNTER
+You specialize in tracking people down who don't want to be found, no matter what morph they are currently sleeved in.
++Justice, +Self Reliance, +The Hunt
+PP;1>Investigation 30,Kinesics 40,Profession: Skip Tracing 30
+PP;3>+rep;?1?;50,Infosec 15,Investigation 30,Kinesics 50,Language: ?1? 40,Perception 15,Profession: Skip Tracing 50,Research 40,Spray Weapons 25,Unarmed Combat 30
+PP;5>+rep;?1?;50,addApt;INT;5,Fray 25,Infosec 30,Interest: ?2? 30,Investigation 40,Kinesics 50,Language: ?1? 40,Networking: ?1? 20,Perception 20,Profession: Skip Tracing 50,Research 50,Spray Weapons 30,Unarmed Combat 30
+------------------------------------------------------------------------------------
+Package
+ENFORCER
+In basic terms, you're a thug, no matter if you work for a hypercorp, cartel head, or habitat overseer.
++Cartel Growth, +Fascism, +Self Reliance, +Stability
+PP;1>Intimidation 40,Profession: Enforcement 30,Unarmed Combat 30
+PP;3>+rep;?1?;50,Clubs 30,Fray 20,Freerunning 30,Intimidation 50,Language: ?1? 40,Perception 20,Profession: Enforcement 50,Spray Weapons 25,Unarmed Combat 30
+PP;5>+rep;?1?;50,addApt;SOM;5,Clubs 30,Fray 20,Freerunning 30,Interest: ?2? 40,Intimidation 50,Language: ?1? 40,Networking?1? 30,Palming 20,Perception 20,Profession Enforcement 50,Spray Weapons 30,Unarmed Combat 45,
+--------------------------------------------------------------------------------------------------
+Package
+EXPLORER 
+While others have to wait for months or years to get even a whiff of a Pandora Gate or one of the rare artifacts retrieved by gatecrashers, you've walked on alien worlds and maybe even held alien technology in your own hands.
++Alien Contact, +Education, +Exploration, +Survival
+PP;1>Freerunning 40,Investigation 30,Profession: Gatecrashing 30
+PP;3>+mox;1,+rep;?1?;50,Academics: ?1? 40,Climbing 30,Fray 25,Freerunning 35,Investigation 20,Perception 20,Profession: Gatecrashing 50,Scrounging 40,Swimming 20
+PP;5>+mox;1,+rep;?1?;50,addApt;SOM;5,Academics: ?1? 40,Climbing 40,Fray 25,Freerunning 40,Infiltration 25,Interest: ?1? 30,Investigation 20,Kinetic Weapons 30,Perception 30,Profession: Gatecrashing 50,Profession: ?1? 30,Scrounging 40,Swimming 30
+---------------------------------------------------------
+Package
+FACE
+You have what it takes to deal with people and make them think they're getting what they want while you have them wrapped around your finger.
++Fame, +Hedonism, +Personal Career, +Thrill Seeking
+PP;1>Kinesics 30,Profession: Social Engineering 30,Persuasion 40
+PP;3>+rep;?1?;50,Deception 35,Kinesics 30,Language: ?1? 40,Networking: ?1? 40,Perception 20,Profession: Social Engineering 50,Persuasion 50,Protocol 30
+PP;5>+mox;1,+rep;?1?;50,addApt;SAV;5,Academics: Psychology 30,Deception 40,Fray 15,Interest: ?1? 30,Kinesics 40,Language: ?1? 40,Networking: ?2? 40,Perception 20,Profession: Social Engineering 50,Persuasion 50,Protocol 35
+-------------------------------------------------------------------------------------
+Package
+GENEHACKER
+You're a biohacker. You meddle with genetics and biotechnology to see what you can create, to improve life and help overcome biological flaws, or simply to keep your biological future in your own hands.
++Artistic Expression, +Morphological Freedom, +Research, +Science!, +Uplift Rights
+PP;1>Academics: (Genetics) 30,Medicine: ?1? 40,Medicine: ?1? 30
+PP;3>+mox;1,+rep;?1?;50,Academics: (Genetics) 50,Academics: ?1? 40,Animal Handling 20,Medicine: ?1? 50,Medicine: ?1? 40,Networking: Scientists 20,Perception 20,Profession: Lab Tech 40
+PP;5>+mox;1,+rep;r;50,addApt;COG;5,Academics: (Genetics) 50,Academics: ?1? 40,Animal Handling 40,Interest: ?1? 30,Interfacing 20,Investigation 30,Medicine: ?1? 50,Medicine: ?2? 40,Networking: Scientists 20,Perception 30,Profession: Lab Tech 40
+-----------------------------------------------------------------------------------
+Package
+HACKER
+Processes on the mesh heed your beck and call, whether you seek to penetrate systems or protect them. 
++Fame, +Open Source, +Owning Systems, +Thrill Seeking, -Hackers
+PP;1>Infosec 40,Profession: Mesh Security Ops 30,Programming 30
+PP;3>+rep;?1?;50,Academics: (Computer Science or Cryptography) 40,Hardware: Electronics 15,Infosec 50,Interfacing 30,Networking: Criminal 20,Perception 20,Profession: Mesh Security Ops 50,Programming 40,Research 30
+PP;5>+mox;1,+rep;g;50,addApt;COG;5,Academics: (Computer Science) 40,Academics (Cryptography) 40,Fray 10,Hardware: Electronics 25,Infiltration 20,Infosec 50,Interfacing 50,Networking: Criminal 30,Perception 20,Profession: Mesh Security Ops 40,Profession: Social Engineering 30,Programming 50,Research 40
+-----------------------------------------------------------------
+Package
+ICON
+You are an artist, x-caster, socialite, or other person who has attracted a fan base.
++Art, +Fame, +Hedonism, +Personal Career, +Thrill Seeking
+PP;1>Art: ?1? 40,Kinesics 30,Protocol 30,
+PP;3>+rep;?1?;50,Art: ?1? 50,Disguise 30,Impersonation 20,Interest: ?1? 40,Kinesics 45,Perception 30,Persuasion 40,Protocol 40
+PP;5>+mox;1,+rep;f;50,+rep;?1?;50,addApt;SAV;5,Art: ?1? 50,Art: ?1? 30,Disguise 40,Fray 10,Impersonation 25,Interest: ?1? 40,Kinesics 45,Networking: ?1? 25,Networking: Socialites 30,Perception 20,Persuasion 40,Profession: ?1? 30,Protocol 40
+---------------------------------------------------------------------
+Package
+INVESTIGATOR
+Your sleuthing skills include old-school detective work and modern data retrieval. You might be a private investigator, a police detective, or an insurance claim agent.
++Self Reliance, +The Hunt
+PP;1>Investigation 40,Profession: Forensics 30,Research 30
+PP;3>+rep;?1?;50,Infosec 40,Investigation 50,Kinesics 30,Kinetic Weapons 20,Perception 25,Profession: Forensics 50,Profession: Police Procedures 40,Research 40
+PP;5>+rep;f;50,+rep;?1?;50,addApt;INT;5,Fray 20,Infosec 30,Interest; ?1? 30,Intimidation 30,Investigation 50,Kinesics 30,Kinetic Weapons 30,Language: ?1? 30,Networking: ?1? 20,Perception 20,Profession: Forensics 50,Profession: Police Procedures 40,Research 40,Unarmed Combat 25
+-----------------------------------------------------------------
+Package
+JOURNO
+You are a walking recorder, seeking out the news and broadcasting what you find to the mesh.
++Sousveillance, +Transparency, -Censorship
+PP;1>Investigation 30,Persuasion 40,Profession: Journalism 30
+PP;3>+rep;?1?;50,Art: Performance 40,Intimidation 20,Investigation 40,Networking: ?1? 20,Persuasion 50,Perception 35,Profession: Journalism 50,Research 40
+PP;5>+rep;?1?;100,addApt;SAV;5,Academics: ?1? 30,Art: Performance 40,Disguise 25,Fray 20,Interest: ?1? 30,Intimidation 30,Investigation 40,Kinesics 20,Networking: ?1? 40,Perception 25,Persuasion 50,Profession: Journalism 50,Research 40
+---------------------------------------------------------------------------------------------
+Package
+MEDIC
+You are a biotech specialist. 
++Helping Others, -Violence
+PP;1> Medicine: (Paramedic) 40,Medicine: ?1? 30,Profession: Medical Care 30
+PP;3>+mox;1,+rep;?1?;50,Academics: ?1? 40,Hardware: Implants 25,Medicine: (Paramedic) 50,Medicine: ?1? 40,Networking: ?1? 20,Perception 35,Persuasion 20,Profession: Medical Care 50
+PP;5>+mox;1,+rep;r;50,addApt;COG;5,Academics: ?1? 40,Academics: ?1? 30,Fray 30,Hardware: Implants 20,Interest: ?1? 30,Interfacing 15,Medicine: (Paramedic) 50,Medicine: ?2? 40,Networking: ?1? 20,Perception 30,Persuasion 20,Profession: Medical Care 50
+-----------------------------------------------------------------
+Package
+PIRATE
+Traveling wasn't something you did because you wanted to see new places and people. More often than not, you needed to skip out of a habitat to avoid arrest. Soon enough, your talent at evading authorities was parlayed into a more profitable career "liberating" cargo from automated haulers and finding the best place to sell the goods.
++Survival, +Thrill Seeking, +Wealth, -Authority
+PP;1>+mox;1,Infiltration 15,Interest: ?1? 30,Pilot: Spacecraft 40
+PP;3>+mox;1,+rep;g;50,Fray 20,Gunnery 20,Infiltration 30,Interest: ?1? 30,Kinetic Weapons 20,Networking: Criminals 20,Perception 20,Pilot: Spacecraft 40,Profession: Piracy 50,Scrounging 30
+PP;5>+mox;1,+rep;g;50,addApt;COO;5,Art: ?1? 30,Fray 20,Gunnery 30,Infiltration 30,
+Interest: ?1? 40, Intimidation 20, Language ?1? 30, Kinetic Weapons 30, Networking: Criminals 30, Perception 20, Pilot: Spacecraft 50, Profession: Piracy 50, Scrounging 30, Unarmed Combat 20
+--------------------------------------------------------------------
+Package
+PSYCHOSURGEON
+You help people stay sane and/or be whatever they want to be in their mind.
++Helping Others, +Neurodiversity, -Madness
+PP;1>Academics: Psychology 30,Medicine: (Psychiatry) 30,Psychosurgery 40
+PP;3>+rep;?1?;50,Academics: Psychology 50,Kinesics 30,Medicine: (Psychiatry) 40,Networking: ?1? 35,Perception 30,Persuasion 20,Profession: Psychotherapy 40,Psychosurgery 50
+PP;5>+mox;1,+rep;?1?;50,addApt;COG;5,Academics: Psychology 50,Academics: ?1? 30,Deception 20,Interest: ?1? 30,Investigation 25,Kinesics 40,Medicine: (Psychiatry) 40,Networking: ?1? 35,Perception 30,Persuasion 30,Profession: Psychotherapy 50,Psychosurgery 50
+--------------------------------------------------------------------
+Package
+SAVANT ASYNC
+Your infection gives you mental abilities beyond the reach of other transhumans.
++Introspection, +Neurodiversity, +Personal Development, +Self Control
+PP;1>Academics: ?1? 30,Investigation 30,+trait;Psi (Level 1),+trait;Mental Disorder ?1?,+psisleight;?4?
+PP;3>+mox;1,+rep?1?1;50,Academics: ?1? 40,Art: ?1? 30,Hardware: ?1? 15,Interest: ?1? 30,Investigation 50,Networking: ?1? 30,Perception 40,+trait;Psi (Level 1),+trait;Mental Disorder ?1?,+psisleight;?5?
+PP;5>+mox;1,+rep;?1?;50,addApt;COG;5,Academics: ?1? 40,Art: ?1? 40,Deception 30,Hardware: ?1? 25,Interest: ?1? 30,Investigation 50,Kinesics 30,Language: ?1? 30,Networking: ?1? 25,Perception 50,Profession: ?1? 30 ,+trait;Psi (Level 1),+trait;Mental Disorder ?1?,+psisleight;?6?
+---------------------------------------------------------------------------------------------
+Package
+SCANNER ASYNC
+Your mind is altered in a way that provides you with preternatural senses.
++Exploration, +Neurodiversity, +Personal Development, +Self Control
+PP;1>Academics: ?1? 30,Sense 30,+trait;Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?3?
+PP;3>+rep;?1?;50.Academics: ?1? 30,Impersonation 35,Interest: ?2? 30,Kinesics 35,Perception 40,Sense 50,+trait;Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?4? 
+PP;5>+mox;1,+rep;?1?;50,addApt;INT;5,Academics: ?1? 40,Impersonation 35,Interest: ?1? 40,Investigation 30,Kinesics 35,Language: ?1? 40,Perception 50,Persuasion 25,Profession: ?1? 30,Sense 50,+trait;Psi (Level 2),+trait;Mental Disorder ?2?,+psisleight;?6? 
+---------------------------------------------------------------------------------------
+Package
+SCAVENGER
+The universe can be a hard place for those who are too different. This means that many traditional jobs are denied to these kinds of people and they must find other ways of getting by, such as scavenging and taking odd jobs for meager amounts of credit or the promise of a favor later on.
++Survival, +Wealth, -Authority
+PP;1>Hardware: ?1? 30,Profession: Scavenging 30,Scrounging 40
+PP;3>+rep;?1?;50,Art: Sculpture 40,Hardware: ?1? 40,Networking:?1? 40,Perception 35,Pilot: ?1? 40,Profession: Scavenging 50,Scrounging 50
+PP;5>+mox;2,+rep;?1?;50,addApt;COG;5,Academics: ?1? 25,Art: Sculpture 40,Fray 20,Hardware: ?1? 40,Hardware: ?1? 30,Interest: ?1? 30,Networking: ?2? 30,Perception 40,Pilot: ?1? 40,Profession: Scavenging 40,Scrounging 50
+---------------------------------------------------------------------------------------
+Package
+SCIENTIST
+You seek to understand how the universe works--or at least certain elements of it.
++Research, +Science!, +Technoprogressivism, -Bioconservatism
+PP;1>Academics: ?1? 40,Academics: ?1? 30,Investigation 30
+PP;3>+rep;?1?;50,Academics: ?1? 50,Academics: ?1? 30,Investigation 40,Networking: Scientists 35,Perception 40,Profession: Lab Tech 30,Programming 30,Research 40
+PP;5>+mox;1,+rep;r;50,addApt;COG;5,Academics: ?1? 50,Academics: ?1? 40,Animal Handling 20,Fray 15,Hardware: Electronics 25,Investigation 50,Language: ?1? 30,Networking: Scientists 40,Perception 40,Profession: Lab Tech 40,Programming 40,Research 40
+----------------------------------------------------------------------------------------
+Package
+SMART ANIMAL HANDLER
+You raise and care for the smart animals that are a vital part of many transhuman settlements.
++Nano-ecology, +Research, +Uplift Rights
+PP;1>Animal Handling 40,Medicine: Veterinary 30,Profession: Smart Animal Training 30
+PP;3>+mox;1,+rep;?1?;50,Academics: (Zoology) 40,Animal Handling 50,Fray 20,Intimidation 20,Kinesics 40,Medicine: Veterinary 40,Perception 20,Profession: Smart Animal Training 50
+PP;5>+mox;1,+rep;?1?;50,addApt;INT;5,Academics: (Zoology) 40,Academics: ?1? 30,Animal Handling 50,Fray 30,Intimidation 30,Kinesics 30,Medicine: Veterinary 50,Networking: ?1? 30,Perception 30,Profession: Smart Animal Training 50,Profession: ?1? 30,Scrounging 30
+------------------------------------------------------------------
+Package
+SMUGGLER
+There is an art to getting unapproved merchandise into and out of high security habitats,and you are a virtuoso. Even inner system habs hold restrictive views on unfettered capitalism. You don't consider yourself a criminal so much as a subtle expediter of market forces,an angel of supply come to make a bargain with the devil of demand.
++Personal Career, +Survival, +Wealth, -Authority
+PP;1>Networking: ?1? 30,Persuasion 40,Profession: (Smuggling) 30
+PP;3>+rep;?1?1;50,Deception 40,Interest: Black Markets 40,Kinesics 25,Networking: ?1? 40,Networking: ?1? 20,Perception 30,Persuasion 50,Profession: (Smuggling) 50
+PP;5>+mox;1,+rep;?1?;50,addApt;INT;5,Academics: ?1? 30,Deception 40,Fray 30,Interest: Black Markets 40,Interest: ?1? 30,Kinesics 25,Networking: ?2? 40,Perception 30,Persuasion 50,Profession: (Smuggling) 50,Protocol 25
+----------------------------------------------------------------
+Package
+SOLDIER
+You served as a soldier for a pre-Fall nation-state, hypercorp, or habitat polity, or you worked as a mercenary-for-hire--or you simply were forced to take up arms as a conflict erupted around you.
++Duty, +Personal Development, +Survival, +Victory, -Peace
+PP;1>Kinetic Weapons 40,Profession: Squad Tactics 30,Unarmed Combat 30
+PP;3>+rep;?1?;50,Climbing 25,Fray 20,Freerunning 20,Interest: ?1? 40,Kinetic Weapons 50,Perception 20,Profession: Squad Tactics 50,Throwing Weapons 30,Unarmed Combat 40
+PP;5>+mox;1,+rep;?1?;50,addApt;SOM;5,Blades 30,Climbing 40,Fray 30,Freerunning 30,Interest: ?2? 30,Kinetic Weapons 50,Language: ?1? 40,Perception 30,Profession: Squad Tactics 50,Throwing Weapons 30,Unarmed Combat 40
+-------------------------------------------------------------------
+Package
+SPY
+You are a covert agent, skilled at infiltrating the opposition to ferret out secrets or further your own agenda.
++Secret Identity, -Secrets
+PP;1>Deception 40,Infiltration 30,Profession: Spycraft 30
+PP;3>+rep;?1?;50,Academics: Cryptography 40,Deception 50,Fray 20,Impersonation 25,Infiltration 40,Infosec 40,Perception 30,Profession: Spycraft 50
+PP;5>+mox;1,+rep;?1?;50,addApt;Sav;5,Academics: Cryptography 40,Deception 50,Fray 30,Impersonation 25,Infiltration 40,Infosec 40,Investigation 25,Languages: ?2? 30,Palming 30,Perception 40,Profession: Spycraft 50
+---------------------------------------------------------
+Package
+TECHIE
+You are the person who keeps the machines running--or knows how to shut them down.
++DIY, +Education, +Science!, +Sousveillance, +Technoprogressivism
+PP;1>Hardware: ?1? 40,Interfacing 30,Profession: ?1? 30
+PP;3>+rep;?1?;50,Academics: ?1? 40,Hardware: ?1? 50,Hardware: ?1? 25,Interfacing 40,Infosec 20,Networking: ?1? 20,Perception 20,Profession: ?1? 50,Programming 30
+PP;5>+mox;1,+rep;?1?;50,addApt;COG;5,Academics: ?1? 40,Fray 15,Hardware: ?1? 50,Hardware: ?1? 40,Interest: ?1? 30,Interfacing 45,Infosec 25,Language: ?1? 30,Networking: ?1? 35,Pilot: ?1? 30,Profession: ?1? 50,Programming 40
+--------------------------------------------------------------------------------------
+Package
+THIEF
+You survive by stealing from others, whether by picking pockets or breaking and entering.
++Wealth
+PP;1>Infiltration 30,Palming 40,Profession: Thieving 30
+PP;3>+rep;g;50,Climbing 25,Fray 20,Infiltration 40,Infosec 20,Interest: ?1? 40,Networking: Criminals 30,Palming 50,Perception 20,Profession: Thieving 50,
+PP;5>+mox;1,+rep;g;50,addApt;COO;5,Art: ?1? 30,Blades 20,Climbing 40,Fray 30,Hardware:Electronics 15,Infiltration 40,Infosec 25,Interest: ?1? 40,Language: ?1? 30,Networking: Criminals 30,Palming 50,Perception 30,Profession: Thieving 50
+--------------------------------------------------------------------------------------
+Package
+WRECKER
+You are optimized for killing machines. You either excelled at fighting TITAN constructs during the Fall or you continue to hunt them down in the aftermath.
++Explosions, +Survival, -TITANs
+PP;1>Demolitions 30,Interest: TITAN Tech 30,Seeker Weapons 40
+PP;3>+rep;?1?;50,Demolitions 40,Fray 25,Infiltration 30,Interest: (TITAN Tech) 50,Kinetic Weapons 30,Perception 30,Profession: Squad Tactics 40,Seeker Weapons 50
+PP;5>+mox;1,+rep;g;50,addApt;COO;5,Demolitions 40,Fray 40,Infiltration 30,Infosec 20,Interest: (TITAN Tech) 50,Interest: ?1? 30,Kinetic Weapons 40,Perception 30,Profession: Wrecking Machines 30,Profession: Squad Tactics 40,Seeker Weapons 50,Throwing Weapons 30
+--------------------------------------------------
+Package
+ARTIST
+
+
+PP;1>Art: ?1? 40,Disguise 30,Interest: ?1? 30
+---------------------------------------------------------------
+Package
+ESSENTIAL SKILLS
+
+
+PP;1>Fray 30,Networking: ?1? 30,Perception 40
+-----------------------------------------------------
+Package
+MENTALIST
+
+
+PP;1> ?2?* 40,+psisleight;?2?
+*Choose Two Psi Skills
+-------------------------------------------------------------
+Package
+SPACER
+
+
+PP;1>Free Fall 40,Kinesics 30,Medicine: ?1? 30
+--------------------------------------------------
+Package
+ASYNC
+
+
+PP;1>Interest: ?1? 45,+trait;Psi (Level 1),+trait;Mental Disorder ?1?,+trait;Psi Chameleon (Level 1)/Psi Defense (Level 1),+psichi;?5?
+------------------------------------------------------
+Package
+GEARHEAD
+
+
+PP;1>Hardware: ?1? 40,+credit;60000
+----------------------------------------------------------------------------------------
+Package
+NETWORKER
+
+
+PP;1>+rep;?3?;100,Networking ?3? 30
+------------------------------------------------------------------------------------------
+Package
+STUDENT
+
+
+PP;1>Academics ?1? 40,Interests ?1? 30,Research 30
+-----------------------------------------------------------------------
+Package
+ASYNC ADEPT
+
+
+PP;1>?1?* 40,+trait;Psi (Level 2),+Trait;Mental Disorder ?2?,+psisleight;?7?
+*Choose One Psi Skill
+----------------------------------------------------
+Package
+HEAVY WEAPONS TRAINING
+
+
+PP;1>Demolitions 30,Gunnery 30,Seeker Weapons 40
+------------------------------------------------------------------------------------------
+Package
+PARAMEDIC
+
+
+PP;1>Medicine: Paramedic 40,Medicine: Nanomedicine 30,Programming 30
+----------------------------------------------------
+Package
+SURVIVAL TRAINING
+
+
+PP;1>Kinetic Weapons 30,Medicine: Paramedic 30,Scrounging 40
+------------------------------------------------------------------------------------------
+Package
+ATHLETICS
+
+
+PP;1>Climbing 30,Freerunning 40,Swimming 30
+------------------------------------------------------------
+Package
+JACK-OF-ALL-TRADES
+
+
+PP;1>?1? 40*,?2? 30*
+* Choose any one skill at  40, and any two at 30.
+--------------------------------------------------------------
+Package
+SLACKER
+
+
+PP;1>Interest: ?1? 40,Interest: ?1? 30,Scrounging 30
+----------------------------------------------------------------------
+Package
+TECH TRAINING
+
+
+PP;1>Hardware: ?1? 40,Hardware: ?1? 30,Programming 30
+-------------------------------------------------------------
+Package
+COMPUTER TRAINING
+
+
+PP;1>Infosec 40,Interfacing 30,Programming 30
+------------------------------------------------------------------------
+Package
+LUCKY
+
+
+PP;1>+mox;3,?1? 30,?1? 25,
+------------------------------------------------------------
+Package
+SNEAKY
+
+
+PP;1>Disguise 40,Impersonation 30,Infiltration 30
+----------------------------------------------------------
+Package
+WEAPONS TRAINING
+
+
+PP;1>Beam Weapons 30,Kinetic Weapons 40,Spray Weapons 30
+--------------------------------------------------------------
+Package
+CONNECTED
+
+
+PP;1>Networking ?1? 40,+trait;Allies/ +trait;Patron,+credit;30000
+------------------------------------------------------
+Package
+MARTIAL ARTS
+
+
+PP;1>Blades 30,Throwing Weapons 30,Unarmed Combat 40
+--------------------------------------------------------------
+Package
+SOCIAL BUTTERFLY
+
+
+PP;1>Deception 30,Persuasion 40,Protocol 30
+--------------------------------------------------------------
+TABLE
+APTITUDE_TEMPLATES
+10
+1`Brawler`+package;Brawler
+2`Dilettante`+package;Dilettante
+3`Extrovert`+package;Extrovert
+4`Inquisitive`+package;Inquisitive
+5`Researcher`+package;Researcher
+6`Survivor`+package;Survivor
+7`Techie`+package;Techie
+8`Thrill Seeker`+package;Thrill Seeker
+9-10`Choose or reroll`+extendedChoice;Choose from (Brawler,Dilettante,Extrovert,Inquisitive,Researcher,Survivor,Techie,Thrill Seeker) or Reroll;1=+package;Brawler/2=+package;Dilettante/3=+package;Extrovert/4=+package;Inquisitive/5=+package;Researcher/6=+package;Survivor/7=+package;Techie/8=+package;Thrill Seeker/9=roll;APTITUDE_TEMPLATES
+--------------------------------------------------------------
+TABLE
+LANGUAGE_FIELDS
+100 
+01–06`Arabic`Language: Arabic !!X!!
+07–09`Bengali`Language: Bengali !!X!!
+10–14`Cantonese/Yue`Language: Cantonese/Yue !!X!!
+15`Dutch`Language: Dutch !!X!!
+16–24`English`Language: English !!X!!
+25–27`Farsi/Persian`Language: Farsi/Persian !!X!!
+28–31`French`Language: French !!X!!
+32–35`German`Language: German !!X!!
+36–41`Hindi`Language: Hindi !!X!!
+42`Italian`Language: Italian !!X!!
+43–47`Japanese`Language: Japanese !!X!!
+48–51`Javanese`Language: Javanese !!X!!
+52–53`Korean`Language: Korean !!X!!
+54–62`Mandarin`Language: Mandarin !!X!!
+63`Polish`Language: Polish !!X!!
+64–68`Portuguese`Language: Portuguese !!X!!
+69–71`Punjabi`Language: Punjabi !!X!!
+72–76`Russian`Language: Russian !!X!!
+77–78`Skandinaviska`Language: Skandinaviska !!X!!
+79–84`Spanish`Language: Spanish !!X!!
+85`Swedish`Language: Swedish !!X!!
+86–87`Tamil`Language: Tamil !!X!!
+88–89`Turkish`Language: Turkish !!X!!
+90–92`Urdu`Language: Urdu !!X!!
+93–94`Vietnwamese`Language: Vietnwamese !!X!!
+95–98`Wu`Language: Wu !!X!!
+99–00`Other`Language: Other !!X!!
+--------------------------------------------------------------
+TABLE
+ACADEMICS_FIELDS
+100 
+01–03`Anthropology`Academics: Anthropology !!X!!
+04–07`(Xeno)Archeology`Academics: (Xeno)Archeology !!X!!
+08–10`Astronomy`Academics: Astronomy !!X!!
+11–16`(Astro)Biology`Academics: (Astro)Biology !!X!!
+17–19`(Xeno)Botany`Academics: (Xeno)Botany !!X!!
+20–24`Chemistry`Academics: Chemistry !!X!!
+25–26`Climatology`Academics: Climatology !!X!!
+27–29`Cognitive`Academics: Cognitive !!X!! Science
+30–33`Computer`Academics: Computer !!X!! Science
+34–36`Cryptography`Academics: Cryptography !!X!!
+37–38`Ecology`Academics: Ecology !!X!!
+39–40`Economics`Academics: Economics !!X!!
+41–44`Engineering`Academics: Engineering !!X!!
+45–47`(Xeno)Genetics`Academics: (Xeno)Genetics !!X!!
+48–50`Geology`Academics: Geology !!X!!
+51–53`(Pre`Academics: (Pre !!X!!-Fall/Post-Fall) History
+54–56`(Xeno)Linguistics`Academics: (Xeno)Linguistics !!X!!
+57–59`Mathematics`Academics: Mathematics !!X!!
+60–63`Materials`Academics: Materials !!X!! Science
+64–66`Memetics`Academics: Memetics !!X!!
+67–68`Microbiology`Academics: Microbiology !!X!!
+69–71`Military`Academics: Military !!X!! Science
+72–75`Nanotechnology`Academics: Nanotechnology !!X!!
+76–79`Neuroscience`Academics: Neuroscience !!X!!
+80–82`Philosophy`Academics: Philosophy !!X!!
+83–88`(Astro)Physics`Academics: (Astro)Physics !!X!!
+89–91`Political`Academics: Political !!X!! Science
+92–95`Psychology`Academics: Psychology !!X!!
+96–97`(Astro)Sociology`Academics: (Astro)Sociology !!X!!
+98–00`(Xeno)Zoology`Academics: (Xeno)Zoology !!X!!
+--------------------------------------------------------------
+TABLE
+ART_FIELDS
+100 
+01–05`Architecture`Art: Architecture !!X!!
+06–10`Bodysculpting`Art: Bodysculpting !!X!!
+11–15`Cooking`Art: Cooking !!X!!
+16–20`Criticism`Art: Criticism !!X!!
+21–25`Dance`Art: Dance !!X!!
+26–30`Digital`Art: Digital !!X!! Art
+31–35`Drama`Art: Drama !!X!!
+36–40`Drawing`Art: Drawing !!X!!
+41–45`Erotic`Art: Erotic !!X!! Entertainment
+46–50`Fashion`Art: Fashion !!X!!
+51–55`Game`Art: Game !!X!! Design
+56–60`Music`Art: Music !!X!!
+61–65`Painting`Art: Painting !!X!!
+66–70`Performance`Art: Performance !!X!!
+71–75`Poetry`Art: Poetry !!X!!
+76–80`Sculpture`Art: Sculpture !!X!!
+81–85`Simulspace`Art: Simulspace !!X!! Design
+86–90`Singing`Art: Singing !!X!!
+91–95`Speech`Art: Speech !!X!!
+96–00`Writing`Art: Writing !!X!!
+--------------------------------------------------------------
+TABLE
+HARDWARE_FIELDS
+100 
+01–13`Aerospace`Hardware: Aerospace !!X!!
+14–21`Armorer`Hardware: Armorer !!X!!
+22–41`Electronics`Hardware: Electronics !!X!!
+42–53`Groundcraft`Hardware: Groundcraft !!X!!
+54–61`Implants`Hardware: Implants !!X!!
+62–74`Industrial`Hardware: Industrial !!X!!
+75–82`Nautical`Hardware: Nautical !!X!!
+83–00`Robotics`Hardware: Robotics !!X!!
+--------------------------------------------------------------
+TABLE
+INTEREST_FIELDS
+100
+01–02`Alien Relics`Interest: Alien Relics !!X!!
+03–04`Ancient Sports`Interest: Ancient Sports !!X!!
+05–06`Art`Interest: Art !!X!!
+07–08`Beers/Wine`Interest: Beers/Wine !!X!!
+09–10`Black/Red Markets`Interest: Black/Red Markets !!X!!
+11–12`Blogs`Interest: Blogs !!X!!
+13–14`Celebrity Gossip`Interest: Celebrity Gossip !!X!!
+15–16`Conspiracies`Interest: Conspiracies !!X!!
+17–18`Cultural Memes/Trends`Interest: Cultural Memes/Trends !!X!!
+19–20`Cutting`Interest: Cutting !!X!!-Edge Technology
+21–22`Drug Dealers`Interest: Drug Dealers !!X!!
+23–24`Drugs/Petals/Narcoalgorithms`Interest: Drugs/Petals/Narcoalgorithms !!X!!
+25–26`Economics/Markets`Interest: Economics/Markets !!X!!
+27–28`Exoplanets`Interest: Exoplanets !!X!!
+29–30`Food`Interest: Food !!X!!
+31–32`Gambling`Interest: Gambling !!X!!
+33–34`Gangs`Interest: Gangs !!X!!
+35–36`Gatecrashing`Interest: Gatecrashing !!X!!
+37–38`Groups`Interest: Groups !!X!!
+39–40`Habitats`Interest: Habitats !!X!!
+41–42`History`Interest: History !!X!!
+43–44`Law`Interest: Law !!X!!
+45–46`Literature`Interest: Literature !!X!!
+47–48`MARGs`Interest: MARGs !!X!!
+49–50`Martial Arts`Interest: Martial Arts !!X!!
+51–52`(Topic) Mesh Forums`Interest: (Topic) Mesh Forums !!X!!
+53–54`Morphs`Interest: Morphs !!X!!
+55–56`Music`Interest: Music !!X!!
+57–58`Nanofab Designs`Interest: Nanofab Designs !!X!!
+59–60`Nightclubs`Interest: Nightclubs !!X!!
+61–62`Old`Interest: Old !!X!!-Earth Nation-States
+63–64`Old`Interest: Old !!X!!-Earth Trivia
+65–66`Old`Interest: Old !!X!!-Earth Relics
+67–68`Pandora Gates`Interest: Pandora Gates !!X!!
+69–70`Places of Interest (Location)`Interest: Places of Interest (Location) !!X!!
+71–72`Politics`Interest: Politics !!X!!
+73–74`Pornography`Interest: Pornography !!X!!
+75–76`(AGI/Uplift) Rights`Interest: (AGI/Uplift) Rights !!X!!
+77–78`Robot Models`Interest: Robot Models !!X!!
+79–80`Rumors`Interest: Rumors !!X!!
+81–82`Science Fiction`Interest: Science Fiction !!X!!
+83–84`Smart Animals`Interest: Smart Animals !!X!!
+85–86`Spaceship Models`Interest: Spaceship Models !!X!!
+87–88`Sports`Interest: Sports !!X!!
+89–90`TITANs`Interest: TITANs !!X!!
+91–92`Trivia`Interest: Trivia !!X!!
+93–94`Vehicle Models`Interest: Vehicle Models !!X!!
+95–96`Weapons`Interest: Weapons !!X!!
+97–98`X`Interest: X !!X!!-Casters
+99–00`XP`Interest: XP !!X!!
+--------------------------------------------------------------
+TABLE
+MEDICINE_FIELDS
+100 
+01–08`Biosculpting`Medicine: Biosculpting !!X!!
+09–13`Exotic Biomorphs`Medicine: Exotic Biomorphs !!X!!
+14–21`Gene Therapy`Medicine: Gene Therapy !!X!!
+22–34`General Practice`Medicine: General Practice !!X!!
+35–42`Implant Surgery`Medicine: Implant Surgery !!X!!
+43–52`Nanomedicine`Medicine: Nanomedicine !!X!!
+53–65`Paramedic`Medicine: Paramedic !!X!!
+66–70`Pods`Medicine: Pods !!X!!
+71–75`Psychiatry`Medicine: Psychiatry !!X!!
+76–80`Remote Surgery`Medicine: Remote Surgery !!X!!
+81–90`Trauma Surgery`Medicine: Trauma Surgery !!X!!
+91–95`Uplifts (by type)`Medicine: Uplifts (by type) !!X!!
+96–00`Veterinary`Medicine: Veterinary !!X!!
+--------------------------------------------------------------
+TABLE
+NETWORKING_FIELDS
+100
+01–20`Autonomists`Networking: Autonomists !!X!!
+21–34`Criminals`Networking: Criminals !!X!!
+35–44`Ecologists`Networking: Ecologists !!X!!
+45–54`Firewall`Networking: Firewall !!X!!
+55–72`Hypercorps`Networking: Hypercorps !!X!!
+73–86`Media`Networking: Media !!X!!
+87–00`Scientists`Networking: Scientists !!X!!
+--------------------------------------------------------------
+TABLE
+PILOT_FIELDS
+100
+01–20`Aircraft`Pilot: Aircraft !!X!!
+21–40`Anthroform`Pilot: Anthroform !!X!!
+41–45`Exotic Vehicle`Pilot: Exotic Vehicle !!X!!
+46–70`Groundcraft`Pilot: Groundcraft !!X!!
+71–95`Spacecraft`Pilot: Spacecraft !!X!!
+96–00`Watercraft`Pilot: Watercraft !!X!!
+--------------------------------------------------------------
+TABLE
+PROFESSION_FIELDS
+100
+01–02`Accounting`Profession: Accounting !!X!!
+03–04`Administration`Profession: Administration !!X!!
+05–06`Appraisal`Profession: Appraisal !!X!!
+07–08`Artisan`Profession: Artisan !!X!!
+09–10`Asteroid Mining/Prospecting`Profession: Asteroid Mining/Prospecting !!X!!
+11–12`Banking`Profession: Banking !!X!!
+13–14`Biodesign`Profession: Biodesign !!X!!
+15–16`Bodyguarding`Profession: Bodyguarding !!X!!
+17–18`Cool Hunting`Profession: Cool Hunting !!X!!
+19–20`Con Schemes`Profession: Con Schemes !!X!!
+21–22`Culture Jamming`Profession: Culture Jamming !!X!!
+23–24`Customs Procedures`Profession: Customs Procedures !!X!!
+25–26`Darknet Operations`Profession: Darknet Operations !!X!!
+27–28`Distribution`Profession: Distribution !!X!!
+29–30`Ego Hunting`Profession: Ego Hunting !!X!!
+31–32`Escorting`Profession: Escorting !!X!!
+33–34`Excavation`Profession: Excavation !!X!!
+35–36`First Contact`Profession: First Contact !!X!!
+37–38`Forensics`Profession: Forensics !!X!!
+39–40`Gatecrashing`Profession: Gatecrashing !!X!!
+41–42`Habitat Operations`Profession: Habitat Operations !!X!!
+43–44`Hacktivism`Profession: Hacktivism !!X!!
+45–46`Info Brokerage`Profession: Info Brokerage !!X!!
+47–48`Instruction`Profession: Instruction !!X!!
+49–50`Journalism`Profession: Journalism !!X!!
+51–52`Lab Technician`Profession: Lab Technician !!X!!
+53–54`Law`Profession: Law !!X!!
+55–56`Medical Care`Profession: Medical Care !!X!!
+57–58`Mesh Networking`Profession: Mesh Networking !!X!!
+59–60`Mesh Security`Profession: Mesh Security !!X!!
+61–62`Military Operations`Profession: Military Operations !!X!!
+63–64`Minifacturing`Profession: Minifacturing !!X!!
+65–66`Mining`Profession: Mining !!X!!
+67–68`Morph Brokerage`Profession: Morph Brokerage !!X!!
+69–70`Police Procedures`Profession: Police Procedures !!X!!
+71–72`Protection Rackets`Profession: Protection Rackets !!X!!
+73–74`Psychotherapy`Profession: Psychotherapy !!X!!
+75–76`Scavenging`Profession: Scavenging !!X!!
+77–78`Salvage Ops`Profession: Salvage Ops !!X!!
+79–80`Security Operations`Profession: Security Operations !!X!!
+81–82`Smuggling Tricks`Profession: Smuggling Tricks !!X!!
+83–84`Social Engineering`Profession: Social Engineering !!X!!
+85–86`Spacecraft Systems`Profession: Spacecraft Systems !!X!!
+87–88`Spaceship Crew`Profession: Spaceship Crew !!X!!
+89–90`Spin Control/Public Relations`Profession: Spin Control/Public Relations !!X!!
+91–92`Squad Tactics`Profession: Squad Tactics !!X!!
+93–94`Surveying`Profession: Surveying !!X!!
+95–96`Terraforming`Profession: Terraforming !!X!!
+97–98`Viral Marketing`Profession: Viral Marketing !!X!!
+99–00`XP Production`Profession: XP Production !!X!!
+--------------------------------------------------------------
+TABLE
+TABLE_3
+10
+1–6`Wholesome Youth. Roll once on Table 3.1: Background; take the result as a 3 PP package.`rollTable;TABLE_3_1;3
+7–9`Split Youth: Roll twice on Table 3.1: Background; take the results as two 1 PP packages.`rollTable;TABLE_3_1;1,rollTable;TABLE_3_1;1
+0`Fractured Youth: Roll three times on Table 3.1: Background; take the results as three 1 PP packages.`rollTable;TABLE_3_1;1,rollTable;TABLE_3_1;1,rollTable;TABLE_3_1;1
+--------------------------------------------------------------
+TABLE
+TABLE_3_1
+100
+01–50`Earthborn. Go to Table 3.2: Earth Childhood`background;Earthborn,rollTable;TABLE_3_2;!!X!!
+51–60`Orbital. Go to Table 3.3: Orbital Childhood`background;Orbital,rollTable;TABLE_3_3;!!X!!
+61–68`Lunar. Go to Table 3.4: Lunar Childhood`background;Lunar,rollTable;TABLE_3_4;!!X!!
+69–76`Martian Settler. Table 3.5: Martian Childhood`background;Martian Settler,rollTable;TABLE_3_5;!!X!!
+77–82`Sunward Hab. Table 3.6: Sunward Childhood`background;Sunward Hab,rollTable;TABLE_3_6;!!X!!
+83–89`Rimward Hab. Go to Table 3.7: Rimward Childhood`background;Rimward Hab,rollTable;TABLE_3_7;!!X!!
+90–95`Migrant. Go to Table 3.8: Migrant Childhood`background;Migrant,rollTable;TABLE_3_8;!!X!!
+96–00`Created not Born. Go to Table 3.9: Created Not Born`background;Created not Born,rollTable;TABLE_3_9;!!X!!
+--------------------------------------------------------------
+TABLE
+TABLE_3_2
+10
+1`Born with a silver nanoswarm in your blood`+package;HYPERELITE: SCION;!!X!!,+morph;Exalt,nextPath;TABLE_6_5
+2`Celebrity child`+package;<name>;+package;HYPERELITE: MEDIA PERSONALITY;!!X!!,+morph;Sylph,nextPath;TABLE_6_5
+3–5`Privileged: enclave born`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Splicer,nextPath;TABLE_6_6
+6–7`Precariat: poverty just a step away`+package;RE-INSTANTIATED: CIVILIAN CASUALTY;!!X!!,roll;10;1-4=+morph;Splicer/5-10=+morph;Flat,nextPath;TABLE_6_3
+8`Troubled: raised among disaster or war Fall`+package;FALL EVACUEE: UNDERCLASS;!!X!!,+morph;Flat,roll;10;1-5=nextPath;TABLE_6_4/6-9=nextPath;TABLE_6_3/10=nextPath;TABLE_6_2
+9`Raised on the street`+package;STREET RAT;!!X!!,+morph;Flat,nextPath;TABLE_6_4
+10`Raised in a collective/communal grouping`+package;RE-INSTANTIATED: CIVILIAN CASUALTY;!!X!!,roll;10;1-4=+morph;Splicer/5-10=+morph;Flat,nextPath;TABLE_6_2
+--------------------------------------------------------------
+TABLE
+TABLE_3_3
+10
+1`Orbital elite`+package;HYPERELITE: SCION;!!X!!,+morph;Exalt,nextPath;TABLE_6_5
+2`A new star born above the Earth`+package;HYPERELITE: MEDIA PERSONALITY;!!X!!,+morph;Sylph,nextPath;TABLE_6_5
+3–4`Orbital colonist; floating above the masses`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Splicer,nextPath;TABLE_6_6
+5–6`Orbital colony staff`rollTable;TABLE_3_10;!!X!!
+7–8`One of the lucky few to live above`+package;RE-INSTANTIATED: CIVILIAN CASUALTY;!!X!!,roll;10;1-4=+morph;Splicer/5-9=+morph;Flat/10=+morph;Bouncer,nextPath;TABLE_6_3
+9–10`Orbital worker family`+package;INDENTURE;!!X!!,roll;10;1-8=+morph;Flat/9-10=+morph;Bouncer,nextPath;TABLE_6_7
+--------------------------------------------------------------
+TABLE
+TABLE_3_4
+10
+1`Lunar elite`roll;10;1-7=+package;HYPERELITE: SCION;!!X!!\,+morph;Exalt/8-10=+package;HYPERELITE: MEDIA PERSONALITY;!!X!!\,+morph;Sylph,nextPath;TABLE_6_5
+2–3`Lunar colonist: privileged homesteader`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Splicer,nextPath;TABLE_6_6
+4–5`Lunar colony staff`rollTable;TABLE_3_10;!!X!!
+6–7`Raised with a view of Earth`+package;RE-INSTANTIATED: CIVILIAN CASUALTY;!!X!!,roll;10;1-4=+morph;Splicer/5-10=+morph;Flat,nextPath;TABLE_6_3
+8–10`Lunar work force`+package;INDENTURE;!!X!!,+morph;Flat,nextPath;TABLE_6_7
+--------------------------------------------------------------
+TABLE
+TABLE_3_5
+10
+1`Martian elite`+package;HYPERELITE: SCION;!!X!!,+morph;Olympian,nextPath;TABLE_6_5
+2–3`Martian colonist: privileged homesteader`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Splicer,nextPath;TABLE_6_6
+4–5`Martian colony staff`rollTable;TABLE_3_10;!!X!!
+6`Risk-taking Martian settler`+package;RE-INSTANTIATED: CIVILIAN CASUALTY;!!X!!,roll;10;1-4=+morph;Splicer/5-10=+morph;Flat,nextPath;TABLE_6_3
+7–9`Martian slave labor`+package;INDENTURE;!!X!!,+morph;Flat,nextPath;TABLE_6_7
+10`Pre-Barsoomian Martian nomad`+package;DRIFTER;!!X!!,roll;10;1-4=+morph;Splicer/5-10=+morph;Flat,nextPath;TABLE_6_2
+--------------------------------------------------------------
+TABLE
+TABLE_3_6
+10
+1`Pioneer dynasty`+package;HYPERELITE: SCION;!!X!!,+morph;Exalt,nextPath;TABLE_6_5
+2–3`Venusian colonist: privileged homesteader`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Splicer,nextPath;TABLE_6_6
+4–6`Venusian colony staff`rollTable;TABLE_3_10;!!X!!
+7–0`Mercurian slave labor`+package;INDENTURE;!!X!!,roll;10;1-7=+morph;Flat/8-10=+morph;Case,nextPath;TABLE_6_7
+--------------------------------------------------------------
+TABLE
+TABLE_3_7
+10
+1`Extropia founders`+package;FALL EVACUEE: ENCLAVER;!!X!!,+morph;Bouncer,nextPath;TABLE_6_5
+2`Jovian colonist: shelter among giants`+package;ISOLATE: SURVIVALIST;!!X!!,roll;10;1-5=+morph;Flat/6-8=+morph;Splicer/9-10=+morph;Olympian,nextPath;TABLE_6_8
+3`Titanian colonist`+package;COLONIST: SCIENCE STAFF;!!X!!,roll;10;1-8=+morph;Splicer/9-10=+morph;Menton,nextPath;TABLE_6_9
+4–5`Anarchist colonist`+package;COLONIST: TECH STAFF;!!X!!,roll;10;1-6=+morph;Splicer/7-10=+morph;Bouncer,nextPath;TABLE_6_2
+6–8`Small colony outpost`rollTable;TABLE_3_10;!!X!!
+9–0`Asteroid miner`+package;INDENTURE;!!X!!,roll;10;1-4=+morph;Flat/5-7=+morph;Case/8-10=+morph;Case,nextPath;TABLE_6_7
+--------------------------------------------------------------
+TABLE
+TABLE_3_8
+10
+1–3`Wandering the system`+package;DRIFTER;!!X!!,roll;10;1-6=+morph;Splicer/7-10=+morph;Bouncer,nextPath;TABLE_6_10
+4–5`Found freedom in orbit`+package;ORIGINAL SCUM;!!X!!,roll;10;1-6=+morph;Splicer/7-10=+morph;Bouncer,nextPath;TABLE_6_2
+6–8`Supply ship crew`+package;COLONIST: FLIGHT STAFF;!!X!!,roll;10;1-4=+morph;Splicer/5-7=+morph;Bouncer/8-10=+morph;Hibernoid,nextPath;TABLE_6_10
+9–0`Migrant worker`+package;INDENTURE;!!X!!,roll;10;1-4=+morph;Flat/5-7=+morph;Case/8-10=+morph;Bouncer,nextPath;TABLE_6_7
+--------------------------------------------------------------
+TABLE
+TABLE_3_9
+10
+1–3`Almost human`+package;INFOLIFE: HUMANITIES AGI;!!X!!,+morph;Infomorph,roll;10;1-3=nextPath;TABLE_9_5\,stepskip;STEP_9/4-10=nextPath;TABLE_6_3
+4–5`More machine than man`+package;INFOLIFE: MACHINE AGI;!!X!!,+morph;Infomorph,roll;10;1-3=nextPath;TABLE_9_13\,stepskip;STEP_9/4-10=nextPath;TABLE_6_11
+6–7`Created by and for science`+package;INFOLIFE: RESEARCH AGI;!!X!!,+morph;Infomorph,roll;10;1-3=nextPath;TABLE_9_11\,stepskip;STEP_9/4-10=nextPath;TABLE_6_9
+8`An experiment gone horribly wrong`roll;10;1-5=+package;LOST: DISTURBED CHILD;!!X!!\,stepskip;STEP_9/6-10=+package;LOST: MASKED NORMALCY;!!X!!\,stepskip;STEP_9
+9`Second-class citizenship was not for you`+package;UPLIFT: ESCAPEE;!!X!!,rollTable;UPLIFT_BIOMORPHS,nextPath;TABLE_6_3
+0`Living proof that uplift works`+package;UPLIFT: STANDARD SPECIMEN;!!X!!,rollTable;UPLIFT_BIOMORPHS,nextPath;TABLE_6_3
+--------------------------------------------------------------
+TABLE
+TABLE_3_10
+10
+1`Born to lead`+package;COLONIST: COMMAND STAFF;!!X!!,roll;10;1-7=+morph;Splicer/8-10=+morph;Exalt,nextPath;TABLE_6_6
+2–3`Space crew`+package;COLONIST: FLIGHT STAFF;!!X!!,roll;10;1-5=+morph;Splicer/6-10=+morph;Bouncer,nextPath;TABLE_6_10
+4–5`Peacekeeper`+package;COLONIST: SECURITY STAFF;!!X!!,roll;10;1-3=+morph;Flat/4-7=+morph;Splicer/8-10=+morph;Olympian,nextPath;TABLE_6_8
+6–7`Researcher`+package;COLONIST: SCIENCE STAFF;!!X!!,roll;10;1-6=+morph;Splicer/7-10=+morph;Menton,nextPath;TABLE_6_9
+8–0`You kept the habitat functioning`+package;COLONIST: TECH STAFF;!!X!!,roll;10;1-3=+morph;Flat/4-8=+morph;Splicer/9-10=+morph;Bouncer,nextPath;TABLE_6_11
+--------------------------------------------------------------
+TABLE
+TABLE_3_STREET_RAT
+10
+1–6`Wholesome Youth. Roll once on Table 3.1: Background; take the result as a 3 PP package.`+package;STREET RAT;3,nextPath;TABLE_6_4,+morph;randomRoll
+7–9`Split Youth: Roll twice on Table 3.1: Background; take the results as two 1 PP packages.`rollTable;TABLE_3_1;1,+package;STREET RAT;1,nextPath;TABLE_6_4,+morph;randomRoll
+0`Fractured Youth: Roll three times on Table 3.1: Background; take the results as three 1 PP packages.`rollTable;TABLE_3_1;1,+package;STREET RAT;1,nextPath;TABLE_6_4,+morph;randomRoll
+--------------------------------------------------------------
+TABLE
+TABLE_4
+100
+01–20 Gain +1 Moxie and roll on the Story Event table (p. 72).
+21–22 Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.
+23–24 You are not only good with your hands, you are good with both hands. Gain the Ambidexterity trait (p. 145, EP).
+25–26 The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145, EP).
+27–28 You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146, EP).
+29–30 You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.
+31–32 You are kept at home and not allowed to play sports or with other kids. Lose –5 COO.
+33–34 You grow up in a maze-like urban area or a difficult rural area. Gain the Direction Sense trait (p. 14, EP).
+35–36 You are raised in dangerous conditions where you have to adapt or die. Gain the Fast Learner trait (p. 146, EP).
+37–38 You skip too much school. –20 to one skill.
+39–40 Growing up isolated from others, you develop introvert tendencies. Lose –5 SAV.
+41–42 While your friends throw themselves into VR gaming worlds, you simply throw up. Gain the VR Vertigo trait (p. 152, EP).
+43–44 Raised in an environment of constant stimulus, you are forced to tune out. Gain the Oblivious trait (p. 151, EP).
+45–46 You grow up in a melting-pot, polyglot culture. Gain the Hyper Linguist trait (p. 146, EP).
+47–48 You party too hard. –20 to one skill.
+49–50 Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149, EP).
+51–52 A healthy amount of physical activities improves your abilities. Gain +5 COO
+53–54 One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.
+55–56 A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).
+57–58 Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.
+59–60 You experiment with drugs, but it isn’t for you. Gain the Drug Exception trait (p. 83).
+61–62 A dysfunctional home life keeps you from doing well in school. Lose –5 COG.
+63–64 Being a bully has its advantages. Gain +10 Intimidation skill.
+65–66 Your first experiments with forking prove to you that merging will not be easy. Gain the Divergent Personality trait (p. 88).
+67–68 You receive your first cortical stack at an early age—and luckily just in time. Roll randomly on the Choosing a Morph table (p. 44).
+69–70 You are raised around animals. Gain +10 Animal Handling skill.
+71–72 Your parents raise you with some unusual ideas. Gain the Faulty Education trait (p. 89).
+73–74 You cheat your way through school. –10 to one skill.
+75–76 You enjoy urban exploration and getting into off-limits areas. Gain +10 to either Climbing or Infiltration skill.
+77–78 You hone your headshot skills in VR combat simulations. Gain the Murder Simulator Addict trait (p. 85).
+79–80 Because you excel in your studies, you are placed in an advanced program. Gain +5 COG.
+81–82 Your parents are highly private and extremely strict. Gain the Poorly Socialized trait (p. 93).
+83–84 You leave home at an early age and forge your own path. Gain +1 Moxie.
+85–86 One of your personality quirks gains you some attention from peers, but then it becomes a permanent and noticeable part of your daily behavior. Gain the Identifiable Quirk trait (p. 90).
+87–88 As a free-range kid, you learn how to get around on your own. Gain +10 Navigation skill.
+89–90 One of your parental figures abandons you as a child. Gain the Trusting Heart trait (p. 94).
+91–92 A series of childhood injuries leaves you struggling to catch up physically. Lose –5 SOM.
+93–94 You lose all of your close friends in a horribly awkward teen social situation. Gain the Not a Team Player trait (p. 91).
+95–96 Tormented by bullies as a kid, you learn to stand up for yourself. Gain +10 Unarmed Combat skill.
+97–98 The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.
+99–00 Adult generations are never quite as on-top of technological changes, and you use that to your advantage. Gain +10 Infosec skill.
+--------------------------------------------------------------
+--------------------------------------------------------------
+STEP
+STEP_2_9
+STEP_3
+setVar;s4Roll;rollDice\;100,ifbetween;!getVar:s4Roll;29;30;stepSkip\;STEP_3_STREET_RAT
+--------------------------------------------------------------
+STEP
+STEP_3
+STEP_4
+rollTable;TABLE_3
+--------------------------------------------------------------
+STEP
+STEP_3_STREET_RAT
+STEP_5
+rollTable;TABLE_3_STREET_RAT
+--------------------------------------------------------------
+STEP
+STEP_4
+STEP_5
+runTable;TABLE_4;!getVar\;s4Roll
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+TABLE
+CHOOSING_A_MORPH
+100
+01-50`Biomorph`roll;BIOMORPHS
+51-55`Uplift Biomorph`roll;UPLIFT_BIOMORPHS
+56-65`Pod Biomorph`roll;POD_BIOMORPHS
+66-95`Synthmorph`roll;SYNTHMORPHS
+96-00`Infomorph/Eidolon`roll;INFOMORPHS_EIDOLONS
+--------------------------------------------------------------
+TABLE
+BIOMORPHS
+100
+01-03`Flat`+morph;Flat
+04-13`Splicer`+morph;Splicer
+14-21`Exalt`+morph;Exalt
+22-26`Menton`+morph;Menton
+27-34`Olympian`+morph;Olympian
+35-39`Sylph`+morph;Sylph
+40-46`Bouncer`+morph;Bouncer
+47-49`Fury`+morph;Fury
+50`Futura`+morph;Futura
+51-53`Ghost`+morph;Ghost
+54-56`Hibernoid`+morph;Hibernoid
+57-59`Neotenic`+morph;Neotenic
+60-62`Remade`+morph;Remade
+63-69`Ruster`+morph;Ruster
+70`Lunar Flyer `+morph;Lunar Flyer 
+71-72`Martian Alpiner`+morph;Martian Alpiner
+73`Salamander`+morph;Salamander
+74`Surya`+morph;Surya
+75`Venusian Glider`+morph;Venusian Glider
+76-77`Hazer`+morph;Hazer
+78`Hulder`+morph;Hulder
+79`Hyperbright`+morph;Hyperbright
+80`Ring Flyer`+morph;Ring Flyer
+81`Selkie`+morph;Selkie
+82`Aquanaut`+morph;Aquanaut
+83-85`Crasher`+morph;Crasher
+86`Dvergr`+morph;Dvergr
+87`Ariel`+morph;Ariel
+88-89`Bruiser`+morph;Bruiser
+90`Cloud Skate`+morph;Cloud Skate
+91`Faust`+morph;Faust
+92`Freeman`+morph;Freeman
+93`Grey`+morph;Grey
+94-95`Nomad`+morph;Nomad
+96-99`Observer`+morph;Observer
+00`Theseus`+morph;Theseus
+--------------------------------------------------------------
+TABLE
+UPLIFT_BIOMORPHS
+100
+01-30`Neo-Avian`+morph;Neo-Avian
+31-40`Neo-Chimp`+morph;Neo-Chimp
+41-44`Neo-Bonobo`+morph;Neo-Bonobo
+45-50`Neo-Orangutan`+morph;Neo-Orangutan
+51-70`Octomorph`+morph;Octomorph
+71-75`Neanderthal`+morph;Neanderthal
+76`Neo-Beluga`+morph;Neo-Beluga
+77`Neo-Dolphin`+morph;Neo-Dolphin
+78-92`Neo-Gorilla`+morph;Neo-Gorilla
+93`Neo-Orca`+morph;Neo-Orca
+94-98`Neo-Pig`+morph;Neo-Pig
+99`Neo-Porpoise`+morph;Neo-Porpoise
+00`Neo-Whale`+morph;Neo-Whale
+--------------------------------------------------------------
+TABLE
+POD_BIOMORPHS
+100
+01-15`Pleasure Pod`+morph;Pleasure Pod
+16-30`Worker Pod`+morph;Worker Pod
+31-33`Novacrab`+morph;Novacrab
+34-35`Digger`+morph;Digger
+36-38`Ripwing`+morph;Ripwing
+39`Scurrier`+morph;Scurrier
+40`Whiplash`+morph;Whiplash
+41-42`Chickcharnie`+morph;Chickcharnie
+43-44`Hypergibbon`+morph;Hypergibbon
+45-46`Shaper`+morph;Shaper
+47-53`Ayah`+morph;Ayah
+54-62`Basic Pod`+morph;Basic Pod
+63-67`Critter`+morph;Critter
+68-70`Flying Squid`+morph;Flying Squid
+71-72`Jenkin`+morph;Jenkin
+73-75`Samsa`+morph;Samsa
+76-83`Security Pod`+morph;Security Pod
+84-86`Space Marine`+morph;Space Marine
+87-95`Specialist Pod`+morph;Specialist Pod
+96-00`Vacuum Pod`+morph;Vacuum Pod
+--------------------------------------------------------------
+TABLE
+SYNTHMORPHS
+100
+01-20`Case`+morph;Case
+21-35`Synth`+morph;Synth
+36-40`Arachnoid`+morph;Arachnoid
+41-45`Dragonfly`+morph;Dragonfly
+46-49`Flexbot`+morph;Flexbot
+50`Reaper`+morph;Reaper
+51-54`Slitheroid`+morph;Slitheroid
+55-58`Swarmanoid`+morph;Swarmanoid
+59`Q Morph`+morph;Q Morph
+60-61`Steel Morph`+morph;Steel Morph
+62`Steel Morph (Masked)`+morph;Steel Morph (Masked)
+63`Steel Morph (Liquid Silver)`+morph;Steel Morph (Liquid Silver)
+64`Sundiver`+morph;Sundiver
+65`Cetus`+morph;Cetus
+66`Courier`+morph;Courier
+67`Fenrir`+morph;Fenrir
+68`Savant`+morph;Savant
+69`Kite`+morph;Kite
+70`Spare`+morph;Spare
+71-72`Xu Fu`+morph;Xu Fu
+73-74`Gargoyle`+morph;Gargoyle
+75`Skulker`+morph;Skulker
+76-77`Takko`+morph;Takko
+78`Biocore`+morph;Biocore
+79-80`Blackbird`+morph;Blackbird
+81`Cloud Skimmer`+morph;Cloud Skimmer
+82`Daitya`+morph;Daitya
+83`Fighting Kite`+morph;Fighting Kite
+84-85`Galatea`+morph;Galatea
+86`Griefer`+morph;Griefer
+87-88`Guard`+morph;Guard
+89`Guard Deluxe`+morph;Guard Deluxe
+90`Mimic`+morph;Mimic
+91`Nautiloid`+morph;Nautiloid
+92-93`Opteryx`+morph;Opteryx
+94-95`Rover`+morph;Rover
+96`Space Fighter Rover`+morph;Space Fighter Rover
+97`Smart Swarm`+morph;Smart Swarm
+98-99`Sphere`+morph;Sphere
+00`Synthtaur`+morph;Synthtaur
+--------------------------------------------------------------
+TABLE
+INFOMORPHS_EIDOLONS
+100
+01-50`Infomorph`+morph;Infomorph
+51-57`Agent`+morph;Agent
+58-70`Digimorph`+morph;Digimorph
+71-74`Elite`+morph;Elite
+75-81`Hot Shot`+morph;Hot Shot
+82-85`Sage`+morph;Sage
+86-92`Scholar`+morph;Scholar
+93`Slave`+morph;Slave
+94-00`Wirehead`+morph;Wirehead
+---------------------------------------------------------------
+TABLE
+PROCESS_START_TABLE
+10
+01-10`Start`stepskip;APTITUDE_TEMPLATES
+//
+// NOTE : You should define a PROCESS START table that is a stub that leads to the RANDOM_APTITUDE_TEMPLATE Table, that way more of this is user defined start that can be overridden
+// FURTHER NOTE : Provide a file that redefines the character process to generate characters the conventional way. It's totally doable.
