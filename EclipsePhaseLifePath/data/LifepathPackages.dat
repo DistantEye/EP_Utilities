@@ -279,7 +279,7 @@ Though you must deal with prejudice, you are proof of the success of transhumani
 +Mercurial Cause +Sapient Cause +Uplift Rights, -Uplift Slavery
 PP;1>+mox;1,Academics: ?1? 30,Climbing* 45,Interfacing 20,+trait;Social Stigma (Uplift)
 PP;3>+mox;1,Academics: ?1? 40,Climbing* 50,Fray 20,Interest: ?1? 20,Interfacing 30,Intimidation 30,Kinesics 35,Networking: ?1? 40,Profession: ?1? 30,+trait;Social Stigma (Uplift)
-PP;5>+mox;1,,addApt;COO;5,+rep;?1?;50,Academics: ?1? 40,Climbing* 50,Fray 20,Interest:?1? 40,Interfacing 30,Intimidation 30,Kinesics 40,Language: ?1? 30,Networking: ?1? 40,Persuasion 30,Profession: ?1? 40,Protocol 30,Unarmed Combat 20,+trait;Social Stigma (Uplift)
+PP;5>+mox;1,addApt;COO;5,+rep;?1?;50,Academics: ?1? 40,Climbing* 50,Fray 20,Interest:?1? 40,Interfacing 30,Intimidation 30,Kinesics 40,Language: ?1? 30,Networking: ?1? 40,Persuasion 30,Profession: ?1? 40,Protocol 30,Unarmed Combat 20,+trait;Social Stigma (Uplift)
 *Replace Climbing skill with any skill more appropriate to the uplift type (Flight for neo-avians,Swimming for neo-octopi,Freerunning for neanderthals,ect.)
 ----------------------------------------------------------------------------------------------------
 Package
@@ -1305,7 +1305,6 @@ TABLE_4
 95–96 Tormented by bullies as a kid, you learn to stand up for yourself. Gain +10 Unarmed Combat skill.
 97–98 The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.
 99–00 Adult generations are never quite as on-top of technological changes, and you use that to your advantage. Gain +10 Infosec skill.
---------------------------------------------------------------
 --------------------------------------------------------------
 STEP
 STEP_2_9

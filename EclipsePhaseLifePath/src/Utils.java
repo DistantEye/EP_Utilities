@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 
  */
@@ -35,17 +37,98 @@ public class Utils {
 	}
 	
 	/**
+	 * 
+	 * @param input string to search
+	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string
+	 */
+	public static String[] splitCommands(String input, String delimiter)
+	{
+		// Commands have parentheses, like +morph(randomRoll). We temporarily replace all the () content, then replace the delimeters with something else unique,
+		// put things back, then split everything
+		
+		// this is not the highest performance solution, but this function can easily be replaced with a more efficient solution later
+		// prototyping is important and this will get the job done
+		
+		String modInput = input;
+		HashMap<String,String> replaceValues = new HashMap<String,String>();
+		
+		String key = findUniqueDelimeter(modInput);
+		int cnt = 0;
+		
+		String output = returnStringInParen(modInput);
+		
+		do
+		{
+			modInput = modInput.replace(output, key+cnt);
+			replaceValues.put(key+cnt, output);
+			cnt++;
+		} while (output != "");
+		
+		String newDelimiter = findUniqueDelimeter(input+modInput); // if it isn't unique to both the temporary and the original, this won't work 
+		
+		modInput = modInput.replaceAll(delimiter, newDelimiter);
+		
+		for (String k : replaceValues.keySet())
+		{
+			modInput = modInput.replace(k, replaceValues.get(k));
+		}
+		
+		return modInput.split(newDelimiter);
+	}
+	
+	/**
+	 * Searches the string and returns a character or string that isn't present anywhere in the string,
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public static String findUniqueDelimeter(String input)
+	{
+		String result = "$";
+		int cnt = 0;
+		
+		while (!input.contains(result)) 
+		{
+			result = "$" + cnt++ + "$";
+		} 
+		
+		return result;
+	}
+	
+	/**
+	 * Shortcut method for returnStringInTokensStk. Returns the string inside the most outer parentheses
+	 * @param input string to search
+	 * @return Matching input string inside outer parenthesis, or "" if there is no match found
+	 */
+	public static String returnStringInParen(String input)
+	{
+		return returnStringInTokensStk("(",")",input,0);
+	}
+	
+	/**
+	 * Shortcut method for returnStringInTokensStk. Returns the string inside the most outer parentheses
+	 * @param input string to search
+	 * @param index index to start searching at
+	 * @return Matching input string inside outer parenthesis, or "" if there is no match found
+	 */
+	public static String returnStringInParen(String input, int index)
+	{
+		return returnStringInTokensStk("(",")",input,index);
+	}
+	
+	/**
 	 * Returns the inside of text enclosed by startToken and endToken, e.g returnStringInTokensStk("(",")","ab(de)fghi") => "de"
 	 * This will respect nesting, returning the outermost match
 	 * 
 	 * @param startToken Opening tag to look for
 	 * @param endToken Closing tag to look for
-	 * @param input Input stream
+	 * @param input Input string
+	 * @param startIndex non-negative integer, the index to start looking at
 	 * @return Matching input stream inside startToken and endToken, or "" if there is no match found
 	 */
-	public static String returnStringInTokensStk(String startToken, String endToken, String input) {
+	public static String returnStringInTokensStk(String startToken, String endToken, String input, int startIndex) {
 //		int inputLen = input.size();
-		int startOuter = input.indexOf(startToken);
+		int startOuter = input.indexOf(startToken,startIndex);
 		int endInner = -1;
 		int numEndsToSkip = 0;
 		int startTokenLen = startToken.length();

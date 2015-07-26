@@ -14,7 +14,7 @@ public class UnitTests {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String foo = "a(123(((4)))567)";
-		System.out.println(Utils.returnStringInTokensStk("(", ")", foo));
+		System.out.println(Utils.returnStringInTokensStk("(", ")", foo,0));
 	}
 
 }
