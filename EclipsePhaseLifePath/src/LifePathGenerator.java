@@ -47,7 +47,7 @@ public class LifePathGenerator {
 		modifiedInput = modifiedInput.replace("\\;", "!!SEMICOLON!!");
 		
 		
-		String[] effects = modifiedInput.split(",");
+		String[] effects = modifiedInput.split(";");
 		
 		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
 		
@@ -90,7 +90,7 @@ public class LifePathGenerator {
 						// we have to do some redundant preprocessing here
 						if (extraInfo == "" && effect.toLowerCase().startsWith("+package"))
 						{
-							String[] parts = effect.split(";");
+							String[] parts = effect.split(",");
 							
 							if (parts.length == 2 && DataProc.dataObjExists(parts[1]))
 							{
@@ -117,14 +117,16 @@ public class LifePathGenerator {
 				// An additional consideration is that thrown exceptions are caught and passed to the UI, so sending descriptive messages is a
 				// good idea
 				
+				String params = Utils.returnStringInParen(effect);
+				
 				if (Skill.isSkill(effect))
 				{
 					Skill temp = Skill.CreateSkillFromString(effect);
 					playerChar.addSkill(temp);
 				}
-				else if (effect.startsWith("inc;"))
+				else if (effect.startsWith("inc"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -148,9 +150,9 @@ public class LifePathGenerator {
 					}
 					
 				}
-				else if (effect.startsWith("dec;"))
+				else if (effect.startsWith("dec"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -181,9 +183,9 @@ public class LifePathGenerator {
 					}
 					
 				}
-				else if (effect.startsWith("+sklspec"))
+				else if (effect.startsWith("sklspec"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -200,9 +202,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+trait;"))
+				else if (effect.startsWith("trait"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length < 2 || subparts.length > 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -225,9 +227,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Trait " + subparts[1] + " does not exist, or other formating problem: ("+ errorInfo + ")");
 					}
 				}
-				else if (effect.startsWith("+morph;"))
+				else if (effect.startsWith("morph"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -248,7 +250,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("setapt"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -274,7 +276,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("addapt"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -318,9 +320,9 @@ public class LifePathGenerator {
 					// code moved to function since this is called again for the force roll version
 					this.handleRollTable(effect, errorInfo, true);					
 				}
-				else if (effect.startsWith("+mox;"))
+				else if (effect.startsWith("mox"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -334,9 +336,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");											
 					}
 				}
-				else if (effect.startsWith("setmox;"))
+				else if (effect.startsWith("setmox"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -351,9 +353,9 @@ public class LifePathGenerator {
 					}
 
 				}
-				else if (effect.startsWith("+gear;"))
+				else if (effect.startsWith("gear"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -367,9 +369,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("background;"))
+				else if (effect.startsWith("background"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -383,9 +385,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("nextpath;"))
+				else if (effect.startsWith("nextpath"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -399,9 +401,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("stepskip;"))
+				else if (effect.startsWith("stepskip"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -416,9 +418,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+package;"))
+				else if (effect.startsWith("package"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					
 					// checks for package being valid
 					if (subparts.length == 2 || subparts.length == 3)
@@ -471,9 +473,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+rep;"))
+				else if (effect.startsWith("rep"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -498,9 +500,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+credit;"))
+				else if (effect.startsWith("credit"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -514,9 +516,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+psichi;"))
+				else if (effect.startsWith("psichi"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -540,9 +542,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+psigamma;"))
+				else if (effect.startsWith("psigamma"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -566,9 +568,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("+psisleight;"))
+				else if (effect.startsWith("psisleight"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -587,9 +589,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("extendedChoice;"))
+				else if (effect.startsWith("extendedChoice"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -624,9 +626,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("if;"))
+				else if (effect.startsWith("if"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -658,9 +660,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("func;"))
+				else if (effect.startsWith("func"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -678,9 +680,9 @@ public class LifePathGenerator {
 						}
 					}
 				}
-				else if (effect.startsWith("msgClient;"))
+				else if (effect.startsWith("msgClient"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -694,9 +696,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("msgClient;"))
+				else if (effect.startsWith("msgClient"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -710,9 +712,9 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("setVar;"))
+				else if (effect.startsWith("setVar"))
 				{
-					String[] subparts = effect.split(";");
+					String[] subparts = params.split(",");
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -741,51 +743,53 @@ public class LifePathGenerator {
 	<skillname>[<specialization>] <number>
 	<skillname>: <subtype> [<specialization>] <number>
 
-	!RANDSKILL! => pick random valid skill character has
-	
-	$getVar(<variable>) (whenever this appears, will attempt to look up the value at run for this variable and replace the text with it 
+	!RANDSKILL! => pick random valid skill character has 
 
 	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
 	\; is often similarly used for nested commands
 
 	Rest of commands:
-	inc;<skill>;<value>
-	dec;<skill>;<value/all>
-	+SklSpec;<skill>;<specializationName>
-	+Trait;<trait>
-	+Trait;<trait>;level
-	+morph;<morphname>
-	+morph;randomRoll
-	setApt;<aptitudeName>;<value>
-	addApt;<aptitudeName>;<value>		(can also be used to subtract with a negative value)
-	+mox;<value>
-	+gear;<gearName>
-	roll;<dieNumber>;#-#=effect/#-#=effect  (list can be as long as needed)		(ex; roll;1-6=+morph;splicer,7-10=+morph;bouncer) (can only be a single effect)
-	rollTable;<tableName>		(replace ; with comma, spaces and periods in table name with underscore, ex; Table_6_5;Elite)
-		forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
-	rollTable;<tableName>;<replaceValue> (as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
-	background;<name>
-	nextPath;<name>		(replace ; with comma, spaces and periods in table name with underscore, ex; Table_6_5;Elite)
-	stepskip;<number>		(immediately skip to step of this number)
-	+package;<name>			(add package -- assume 1 PP if it needs a value)
-	+package;<name>;<value>		(add package of a certain PP value)
-	+rep;<type>;<value>
-	+credit;<value>
-	+psichi;<name>				(can use ?1?,?2?, etc)
-	+psigamma;<name>
-	+psisleight;<name>
-	+extendedChoice;Text;0=effect/1=effect/2=effect/etc   (this allows us a bit more freedom when a choice is complicated
-	+if;<condition>;<effectWhenTrue>;<effectWhenFalse>		(The latter can be blank)
-	msgClient;<message>			says something to the UI about character changes
+	inc(<skill>,<value>)
+	dec(<skill>,<value/all>)
+	SklSpec(<skill>,<specializationName>)
+	trait(<trait>)
+	trait(<trait>,level)
+	morph(<morphname>)
+	morph(randomRoll)
+	setApt(<aptitudeName>,<value>)
+	addApt(<aptitudeName>,<value>)		(can also be used to subtract with a negative value)
+	mox(<value>)
+	gear(<gearName>)
+	roll(<dieNumber>,#-#=effect/#-#=effect)  (list can be as long as needed)		(ex, roll(1-6=morph,splicer/7-10=morph(bouncer)) 
+	rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
+												forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
+	rollTable(<tableName>,<replaceValue>) 	(as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
+	background(<name>)
+	nextPath(<name>)
+	stepskip(<name>)			(immediately skip to step of this name)
+	package(<name>)				(add package -- assume 1 PP if it needs a value)
+	package(<name>,<value>)		(add package of a certain PP value)
+	rep(<type>,<value>)
+	credit(<value>)
+	psichi(<name>)				(can use ?1?,?2?, etc)
+	psigamma(<name>)
+	psisleight(<name>)
+	extendedChoice(Text,0=effect/1=effect/2=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
+	if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
+	msgClient(<message>)					(says something to the UI about character changes)
 	
-	Conditions: 
-	?hasTrait;trait
-	?hasSkill;skill
+	getVar(<name>)			(returns data stored for this var)
+	setVar(<name>,value)
+	
+	Conditions:
+	?hastrait(trait)
+	?hasSkill(skill)
 	?hasBackground
 	?hasHadBackground
-	?hasRolled;number
-	?equals;string1;string2  ($getVar:name will try and fetch the value of a character variable with that name)
-	?hasVar;varname	
+	?hasRolled(number)
+	?equals(string1,string2)
+	?hasVar(varname)
+
 	
 	|| and && are partially supported
 	
@@ -864,9 +868,11 @@ public class LifePathGenerator {
 	?hasBackground
 		 */
 		
-		String[] parts = condNoPrefix.split(";");
+		String params = Utils.returnStringInParen(condNoPrefix);
+		
+		String[] parts = params.split(";");
 			
-		if (condNoPrefix.startsWith("hasTrait;"))
+		if (condNoPrefix.startsWith("hasTrait"))
 		{
 			if (parts.length != 2)
 			{
@@ -883,7 +889,7 @@ public class LifePathGenerator {
 				throw new IllegalArgumentException("Trait : " + parts[1] + " does not exist!");
 			}
 		}
-		else if (condNoPrefix.startsWith("hasSkill;"))
+		else if (condNoPrefix.startsWith("hasSkill"))
 		{
 			if (parts.length != 2)
 			{
@@ -899,7 +905,7 @@ public class LifePathGenerator {
 				throw new IllegalArgumentException("Skill : " + parts[1] + " does not exist!");
 			}
 		}
-		else if (condNoPrefix.startsWith("hasBackground;"))
+		else if (condNoPrefix.startsWith("hasBackground"))
 		{			
 			if (parts.length != 2)
 			{
@@ -908,7 +914,7 @@ public class LifePathGenerator {
 			
 			return playerChar.getBackground().equalsIgnoreCase(parts[1]); 
 		}
-		else if (condNoPrefix.startsWith("hasHadBackground;"))
+		else if (condNoPrefix.startsWith("hasHadBackground"))
 		{			
 			if (parts.length != 2)
 			{
@@ -917,7 +923,7 @@ public class LifePathGenerator {
 			
 			return playerChar.hasHadBackground(parts[1]);			
 		}
-		else if (condNoPrefix.startsWith("hasRoll;"))
+		else if (condNoPrefix.startsWith("hasRoll"))
 		{			
 			if (parts.length != 2)
 			{
@@ -931,7 +937,7 @@ public class LifePathGenerator {
 			
 			return playerChar.rollsContain(Integer.parseInt(parts[1])); 
 		}
-		else if (condNoPrefix.startsWith("equals;"))
+		else if (condNoPrefix.startsWith("equals"))
 		{				
 			if (parts.length != 3)
 			{
@@ -940,9 +946,9 @@ public class LifePathGenerator {
 			
 			for (int i = 1; i < parts.length; i++)
 			{
-				if (parts[i].startsWith("$getVar:"))
+				if (parts[i].startsWith("getVar"))
 				{
-					String name = parts[i].split(":")[1];
+					String name = Utils.returnStringInParen(parts[i]);
 					
 					if (playerChar.hasVar(name))
 					{
@@ -954,7 +960,7 @@ public class LifePathGenerator {
 			return parts[1].equals(parts[2]);
 			
 		}
-		else if (condNoPrefix.startsWith("hasVar;"))
+		else if (condNoPrefix.startsWith("hasVar"))
 		{
 			if (parts.length != 2 || parts[1].length() == 0)
 			{
@@ -1048,10 +1054,14 @@ public class LifePathGenerator {
 		// do some escaping to handle that most commands like roll;1-6=+morph;splicer,7-10=+morph;bouncer wouldn't actually work
 		// but the reason they wouldn't work isn't understandable to most users (it can't parse the inner ; as special from the outer) 
 		
+		// TODO after changing the command system to use () this may no longer be needed
+		
 		String effectTemp = effect.replaceFirst(";", "|||");
 		effectTemp = effectTemp.replaceFirst(";", "|||");
+	
+		String params = Utils.returnStringInParen(effectTemp);	
 		
-		String[] subparts = effect.split("|||");
+		String[] subparts = params.split("|||");
 		if (subparts.length != 3)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -1123,7 +1133,9 @@ public class LifePathGenerator {
 	
 	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
 	{
-		String[] subparts = effect.split(";");
+		String params = Utils.returnStringInParen(effect);
+		
+		String[] subparts = params.split(",");
 		if (subparts.length != 2 && subparts.length != 3)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
