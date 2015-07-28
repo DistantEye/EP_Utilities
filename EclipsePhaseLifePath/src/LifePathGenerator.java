@@ -194,16 +194,11 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						if (subparts.length == 4  && Skill.isSkill(subparts[3]))
-						{
-							throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[3]);
-						}
-						else if( subparts.length == 4 )
-						{
-							if (!subparts[1].toLowerCase().startsWith(subparts[3]))
+						if (subparts.length == 4)
+						{	
+							if (!this.resolveConditional(subparts[3], subparts))
 							{
-								throw new IllegalArgumentException("Poorly formated effect, skill required(" + subparts[3] 
-																	+ "), but instead found: " + subparts[1]);
+								throw new IllegalArgumentException("Poorly formated effect, conditional is not true : " + subparts[3]);
 							}
 						}
 						
@@ -241,16 +236,11 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						if (subparts.length == 4  && Skill.isSkill(subparts[3]))
-						{
-							throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[3]);
-						}
-						else if( subparts.length == 4 )
-						{
-							if (!subparts[1].toLowerCase().startsWith(subparts[3]))
+						if (subparts.length == 4)
+						{	
+							if (!this.resolveConditional(subparts[3], subparts))
 							{
-								throw new IllegalArgumentException("Poorly formated effect, skill required(" + subparts[3] 
-																	+ "), but instead found: " + subparts[1]);
+								throw new IllegalArgumentException("Poorly formated effect, conditional is not true : " + subparts[3]);
 							}
 						}
 						
@@ -765,7 +755,7 @@ public class LifePathGenerator {
 					}
 					else if (subparts.length == 3 && subparts[1].length() > 0 && subparts[2].length() > 0)
 					{
-						boolean ifResult = this.resolveConditional(subparts[1]);
+						boolean ifResult = this.resolveConditional(subparts[1],subparts);
 						
 						if (ifResult)
 						{
@@ -774,7 +764,7 @@ public class LifePathGenerator {
 					}
 					else if (subparts.length == 4 && subparts[1].length() > 0 && subparts[2].length() > 0 && subparts[3].length() > 0)
 					{
-						boolean ifResult = this.resolveConditional(subparts[1]);
+						boolean ifResult = this.resolveConditional(subparts[1],subparts);
 						
 						if (ifResult)
 						{
@@ -881,10 +871,9 @@ public class LifePathGenerator {
 
 	Rest of commands:
 	inc(<skill>,<value>)
-	inc(<skill>,<value>,<skillname>)
+	inc(<skill>,<value>,<conditional>)
 	dec(<skill>,<value/all>)
-	dec(<skill>,<value/all>,<skillname>)	' the three parameter versions through an error if the main skillname 
-											' isn't the same between the 1st and 3rd. Although it doesn't check specialization or subtype		
+	dec(<skill>,<value/all>,<conditional>)	' the three parameter versions through an error if the conditional isn't true		
 		
 	SklSpec(<skill>,<specializationName>)
 	trait(<trait>)
@@ -928,6 +917,8 @@ public class LifePathGenerator {
 	?hasVar(varname)
 	?between(input,lower,upper)
 
+	$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
+	inc(<skill>,<number>,<conditional>) leads to $1 accessing <skill> and so on
 	
 	|| and && are partially supported
 	
@@ -960,15 +951,23 @@ public class LifePathGenerator {
 	 * and will evaluate those statements in a strict left to right order.
 	 * 
 	 * @param condition Condition string to be evaluated
+	 * @param effectParams Parameters of the command holding this conditional
 	 * @return True/False as appropriate to the condition
 	 * @throws IllegalArgumentException if condition is not a recognized condition
 	 */
-	protected boolean resolveConditional(String condition)
+	protected boolean resolveConditional(String condition, String[] effectParams)
 	{
 		if (condition.length() < 1)
 		{
 			throw new IllegalArgumentException("Condition is invalid : " + condition + " is less than 2 characters long");
 		}
+		
+		// preprocessing
+		for (int i = 0; i < effectParams.length; i++)
+		{
+			condition = condition.replaceAll("\\$"+i, effectParams[i]);
+		}
+		
 		
 		// split for ||
 		if (condition.contains("||"))
@@ -978,7 +977,7 @@ public class LifePathGenerator {
 			part1 = condition.substring(0, condition.indexOf("||"));
 			part2 = condition.substring(condition.indexOf("||")+2);
 			
-			return this.resolveConditional(part1) || this.resolveConditional(part2);
+			return this.resolveConditional(part1,effectParams) || this.resolveConditional(part2,effectParams);
 		}
 		
 		if (condition.contains("&&"))
@@ -988,7 +987,7 @@ public class LifePathGenerator {
 			part1 = condition.substring(0, condition.indexOf("||"));
 			part2 = condition.substring(condition.indexOf("||")+2);
 			
-			return this.resolveConditional(part1) && this.resolveConditional(part2);
+			return this.resolveConditional(part1,effectParams) && this.resolveConditional(part2,effectParams);
 		}
 		
 		String condNoPrefix = condition.substring(1); // the starting character can be either ? or !, so we're careful of this.
@@ -996,7 +995,7 @@ public class LifePathGenerator {
 		
 		if (firstChar == '!')
 		{
-			return !this.resolveConditional("?" + condNoPrefix);
+			return !this.resolveConditional("?" + condNoPrefix,effectParams);
 		}
 		
 		/*

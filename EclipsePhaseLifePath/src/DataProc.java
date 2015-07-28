@@ -537,7 +537,7 @@ public class DataProc {
 				
 				if (subparts.length == 4)
 				{
-					result += ", Skill must be " + subparts[3];
+					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
 			else if (effect.startsWith("dec"))
@@ -562,7 +562,7 @@ public class DataProc {
 				
 				if (subparts.length == 4)
 				{
-					result += ", Skill must be " + subparts[3];
+					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
 			else if (effect.startsWith("sklspec"))
