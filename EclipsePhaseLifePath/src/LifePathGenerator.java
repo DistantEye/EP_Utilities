@@ -51,25 +51,17 @@ public class LifePathGenerator {
 		
 		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
 		
+		if (playerChar.getLastStep() != null)
+		{
+			pendingEffects = playerChar.getLastStep().getNextStep();
+			playerChar.setLastStep(null);
+		}
+		
 		ArrayList<String> mainStuff = new ArrayList<String>();
 		
 		for (String eff : effects)
 		{
 			String tempEff = eff.replace("!!COMMA!!",",");
-			
-			if (tempEff.contains("!RANDSKILL!"))
-			{
-				if (playerChar.getNumSkills() > 0)
-				{
-					String randSkill = playerChar.getRandSkill();
-					tempEff = eff.replace("!RANDSKILL!", randSkill);
-				}
-				else
-				{
-					throw new IllegalArgumentException("Effect : " + tempEff + " calls for random skill but the character has no skills!");
-				}
-			}
-			
 			
 			mainStuff.add(tempEff);
 			
@@ -110,14 +102,78 @@ public class LifePathGenerator {
 				// big wall of cases follow.
 				String errorInfo = ": " + effect;
 
+				
+				
+				// much preprocessing can't be done until the last second because it can be effected by other calls
+				while (effect.contains("getVar("))
+				{
+					int idx = effect.indexOf("getVar(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "getVar(" + insides + ")";
+					
+					if (playerChar.hasVar(insides))
+					{
+						String newStr = playerChar.getVar(insides);
+						effect = effect.replace(oldStr, newStr);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for a variable that doesn't exist : ");
+					}
+					
+				}
+				// handle preprocessing
+				while(effect.contains("!RANDSKILL!"))
+				{
+					if (playerChar.getNumSkills() > 0)
+					{
+						String randSkill = playerChar.getRandSkill();
+						effect = effect.replace("!RANDSKILL!", randSkill);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for random skill but the character has no skills!");
+					}
+				}
+				while (effect.contains("rollDice("))
+				{
+					int idx = effect.indexOf("rollDice(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "rollDice(" + insides + ")";
+
+					String[] subParts = insides.split(",");
+					
+					if (subParts.length != 2 || Utils.isInteger(subParts[0]))
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for rollDice but lacks the correct format");
+					}
+					
+					int diceSides = Integer.parseInt(subParts[0]);
+					String message = subParts[1];
+					
+					String newStr = "" + this.rollDice(diceSides, message, false);
+					effect = effect.replace(oldStr, newStr);
+
+					
+				}
+				
+				
+				
 				// note for some of these, we sacrifice performance by making the if conditions a bit more error aware up front, and leaving
 				// the code a bit simpler. This is probably for the best since even with that the app will have reasonable performance,
 				// and the code is meant to be readable for others to look at
 				
 				// An additional consideration is that thrown exceptions are caught and passed to the UI, so sending descriptive messages is a
 				// good idea
-				
+								
 				String params = Utils.returnStringInParen(effect);
+				String commandName = effect.substring(0, effect.indexOf('(')-1);
+				// TODO : to comply with older code, we have to insert the command at the beginning of params
+				params = commandName + "," + params;
 				
 				if (Skill.isSkill(effect))
 				{
@@ -320,6 +376,43 @@ public class LifePathGenerator {
 					// code moved to function since this is called again for the force roll version
 					this.handleRollTable(effect, errorInfo, true);					
 				}
+				else if (effect.startsWith("runTable"))
+				{
+					String[] subparts = params.split(",");
+					if (subparts.length != 3 && subparts.length != 4)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Utils.isInteger(subparts[2]))
+					{
+						if (! DataProc.dataObjExists(subparts[1]))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+						}
+						
+						if (! DataProc.getDataObj(subparts[1]).getType().equals("table"))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
+						}
+						
+						Table temp = (Table)DataProc.getDataObj(subparts[1]);
+						
+						if (subparts.length == 4)
+						{
+							TableRow tempRow = temp.findMatch(Integer.parseInt(subparts[2]),subparts[3]);
+							this.runEffect(tempRow.getEffects(), extraContext);
+						}
+						else
+						{
+							TableRow tempRow = temp.findMatch(Integer.parseInt(subparts[2]));
+							this.runEffect(tempRow.getEffects(), extraContext);
+						}
+					}
+					else
+					{						
+						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");											
+					}			
+				}
 				else if (effect.startsWith("mox"))
 				{
 					String[] subparts = params.split(",");
@@ -410,8 +503,19 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0)
 					{
-						// this.runEffect("rollTable;" + subparts[1], "");
-						return "rollTable;" + subparts[1];				
+						if (! DataProc.dataObjExists(subparts[1]))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+						}
+						
+						if (! DataProc.getDataObj(subparts[1]).getType().equals("step"))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a step");
+						}
+						
+						Step temp = (Step)DataProc.getDataObj(subparts[1]);
+						playerChar.setLastStep(temp);
+						return temp.getEffects();				
 					}
 					else
 					{
@@ -715,13 +819,13 @@ public class LifePathGenerator {
 				else if (effect.startsWith("setVar"))
 				{
 					String[] subparts = params.split(",");
-					if (subparts.length != 2 )
+					if (subparts.length != 3 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
-					else if ( subparts[1].length() > 0)
+					else if ( subparts[1].length() > 0 && subparts[2].length() > 0)
 					{
-						UIObject.statusUpdate(subparts[1]);						
+						playerChar.setVar(subparts[1], subparts[2]);
 					}
 					else
 					{
@@ -744,6 +848,7 @@ public class LifePathGenerator {
 	<skillname>: <subtype> [<specialization>] <number>
 
 	!RANDSKILL! => pick random valid skill character has 
+	getVar(<name) will substitute in during preprocessing
 
 	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
 	\; is often similarly used for nested commands
@@ -764,6 +869,8 @@ public class LifePathGenerator {
 	rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
 												forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
 	rollTable(<tableName>,<replaceValue>) 	(as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
+	runTable(<tableName>,<number>)
+	runTable(<tableName>,<number>,<wildCardReplace>) (similar to rollTable Except you specify what the number is)
 	background(<name>)
 	nextPath(<name>)
 	stepskip(<name>)			(immediately skip to step of this name)
@@ -869,6 +976,9 @@ public class LifePathGenerator {
 		 */
 		
 		String params = Utils.returnStringInParen(condNoPrefix);
+		String commandName = condNoPrefix.substring(0, condNoPrefix.indexOf('(')-1);
+		// TODO : to comply with older code, we have to insert the command at the beginning of params
+		params = commandName + "," + params;
 		
 		String[] parts = params.split(";");
 			
@@ -946,6 +1056,8 @@ public class LifePathGenerator {
 			
 			for (int i = 1; i < parts.length; i++)
 			{
+				// TODO This may no longer be needed due to preprocessing
+				
 				if (parts[i].startsWith("getVar"))
 				{
 					String name = Utils.returnStringInParen(parts[i]);
@@ -1060,6 +1172,9 @@ public class LifePathGenerator {
 		effectTemp = effectTemp.replaceFirst(";", "|||");
 	
 		String params = Utils.returnStringInParen(effectTemp);	
+		String commandName = effect.substring(0, effect.indexOf('(')-1);
+		// TODO : to comply with older code, we have to insert the command at the beginning of params
+		params = commandName + "," + params;
 		
 		String[] subparts = params.split("|||");
 		if (subparts.length != 3)
@@ -1134,6 +1249,9 @@ public class LifePathGenerator {
 	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
 	{
 		String params = Utils.returnStringInParen(effect);
+		String commandName = effect.substring(0, effect.indexOf('(')-1);
+		// TODO : to comply with older code, we have to insert the command at the beginning of params
+		params = commandName + "," + params;
 		
 		String[] subparts = params.split(",");
 		if (subparts.length != 2 && subparts.length != 3)

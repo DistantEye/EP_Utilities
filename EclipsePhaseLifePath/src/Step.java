@@ -10,18 +10,18 @@
 public class Step implements UniqueNamedData {
 	private String name;
 	private String nextStep;
-	private String effect; // effects
+	private String effects; // effects
 	
 	
 	/**
 	 * @param name Name of function
 	 * @param nextStep the step after this one
-	 * @param effect Raw mechanical effect
+	 * @param effects Raw mechanical effect
 	 */
-	public Step(String name, String nextStep, String effect) {
+	public Step(String name, String nextStep, String effects) {
 		super();
 		this.name = name;
-		this.effect = effect;
+		this.effects = effects;
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class Step implements UniqueNamedData {
 
 	public String toString()
 	{
-		return DataProc.effectsToString(this.effect);
+		return DataProc.effectsToString(this.effects);
 	}
 	
 	/**
@@ -56,9 +56,9 @@ public class Step implements UniqueNamedData {
 	 * Return the effects this function contains
 	 * @return The functions effects
 	 */
-	public String getEffect()
+	public String getEffects()
 	{
-		return this.effect;
+		return this.effects;
 	}
 	
 	

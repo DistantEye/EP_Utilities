@@ -30,6 +30,7 @@ public class Character {
 	private HashMap<String, Rep> repList;
 	private int credits;
 	private HashMap<String, Sleight> sleightList;
+	private Step lastStep;
 	
 	/**
 	 * @return the currentTable the player is rolling on (if character gen)
@@ -843,5 +844,21 @@ public class Character {
 			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
 		}
 	}
+
+	/**
+	 * @return the lastStep
+	 */
+	public Step getLastStep() {
+		return lastStep;
+	}
+
+	/**
+	 * @param lastStep the lastStep to set
+	 */
+	public void setLastStep(Step lastStep) {
+		this.lastStep = lastStep;
+	}
+	
+	
 	
 }

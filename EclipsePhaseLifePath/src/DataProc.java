@@ -499,6 +499,9 @@ public class DataProc {
 			String errorInfo = "";
 			
 			String params = Utils.returnStringInParen(effect);
+			String commandName = effect.substring(0, effect.indexOf('(')-1);
+			// TODO : to comply with older code, we have to insert the command at the beginning of params
+			params = commandName + "," + params;
 			
 			// means we have no useful line info
 			if (fileLineNumber == -1)
@@ -663,12 +666,49 @@ public class DataProc {
 				}
 				else if (subparts[1].length() > 0 )
 				{
-					result += "Roll dice an effect from table : " + subparts[2];
+					result += "Roll dice an effect from table : " + subparts[1];
 				}
 				else
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
+			}
+			else if (effect.startsWith("runTable"))
+			{
+				String[] subparts = params.split(",");
+				if (subparts.length != 3 && subparts.length != 4)
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if (Utils.isInteger(subparts[2]))
+				{
+					if (! DataProc.dataObjExists(subparts[1]))
+					{
+						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+					}
+					
+					if (! DataProc.getDataObj(subparts[1]).getType().equals("table"))
+					{
+						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
+					}
+					
+					Table temp = (Table)DataProc.getDataObj(subparts[1]);
+					
+					if (subparts.length == 4)
+					{
+						result += "Get result from table : " + subparts[1] + ", matching the number/result : " 
+										+ subparts[2] + ", with the wildcard substitution" + subparts[3];
+					}
+					else
+					{
+						result += "Get result from table : " + subparts[1] + ", matching the number/result : " 
+								+ subparts[2];
+					}
+				}
+				else
+				{						
+					throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");											
+				}			
 			}
 			else if (effect.startsWith("mox"))
 			{
@@ -929,6 +969,22 @@ public class DataProc {
 				else if ( subparts[1].length() > 0)
 				{
 					result += "Send message to the client : " + subparts[1];					
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			}
+			else if (effect.startsWith("setVar"))
+			{
+				String[] subparts = params.split(",");
+				if (subparts.length != 3 )
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if ( subparts[1].length() > 0 && subparts[2].length() > 0)
+				{
+					result += "Set variable(" + subparts[1] + ") = " + subparts[2];
 				}
 				else
 				{
