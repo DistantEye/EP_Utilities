@@ -37,6 +37,19 @@ public class Utils {
 	}
 	
 	/**
+	 * Splits a string of commands, making sure to respect nesting if () exist with delimeters inside
+	 * This version assumes the delimeter is a comma
+	 * 
+	 * @param input string to search
+	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string
+	 */
+	public static String[] splitCommands(String input)
+	{
+		return Utils.splitCommands(input,",");
+	}
+		
+	/**
+	 * Splits a string of commands, making sure to respect nesting if () exist with delimeters inside
 	 * 
 	 * @param input string to search
 	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string

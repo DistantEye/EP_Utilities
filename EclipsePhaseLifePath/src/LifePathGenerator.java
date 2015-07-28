@@ -82,7 +82,7 @@ public class LifePathGenerator {
 						// we have to do some redundant preprocessing here
 						if (extraInfo == "" && effect.toLowerCase().startsWith("+package"))
 						{
-							String[] parts = effect.split(",");
+							String[] parts = Utils.splitCommands(effect);
 							
 							if (parts.length == 2 && DataProc.dataObjExists(parts[1]))
 							{
@@ -145,7 +145,7 @@ public class LifePathGenerator {
 					
 					String oldStr = "rollDice(" + insides + ")";
 
-					String[] subParts = insides.split(",");
+					String[] subParts = Utils.splitCommands(insides);
 					
 					if (subParts.length != 2 || Utils.isInteger(subParts[0]))
 					{
@@ -182,7 +182,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("inc"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -208,7 +208,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("dec"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -241,7 +241,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("sklspec"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -260,7 +260,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("trait"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length < 2 || subparts.length > 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -285,7 +285,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("morph"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -306,7 +306,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("setapt"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -332,7 +332,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("addapt"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -378,7 +378,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("runTable"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -415,7 +415,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("mox"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -431,7 +431,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("setmox"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -448,7 +448,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("gear"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -464,7 +464,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("background"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -480,7 +480,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("nextpath"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -496,7 +496,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("stepskip"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -524,7 +524,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("package"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					
 					// checks for package being valid
 					if (subparts.length == 2 || subparts.length == 3)
@@ -579,7 +579,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("rep"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -606,7 +606,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("credit"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -622,7 +622,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("psichi"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -648,7 +648,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("psigamma"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -674,7 +674,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("psisleight"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -695,7 +695,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("extendedChoice"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -732,7 +732,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("if"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -766,7 +766,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("func"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -786,7 +786,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("msgClient"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -802,7 +802,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("msgClient"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -818,7 +818,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("setVar"))
 				{
-					String[] subparts = params.split(",");
+					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -1253,7 +1253,7 @@ public class LifePathGenerator {
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
-		String[] subparts = params.split(",");
+		String[] subparts = Utils.splitCommands(params);
 		if (subparts.length != 2 && subparts.length != 3)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
