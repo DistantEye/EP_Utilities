@@ -1282,7 +1282,7 @@ TABLE_4
 47–48`You party too hard. –20 to one skill.`dec(!RANDSKILL!,20)
 49–50`Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149; EP).`trait(Illiterate)
 51–52`A healthy amount of physical activities improves your abilities. Gain +5 COO`addApt(COO,5)
-53–54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`inc(?1?,20,Language)
+53–54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`inc(?1?,20,?equals($1,Language))
 55–56`A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).`trait(Socially Graceless)
 57–58`Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.`inc(Palming,10)
 59–60`You experiment with drugs; but it isn’t for you. Gain the Drug Exception trait (p. 83).`trait(Drug Exception)
@@ -1293,19 +1293,19 @@ TABLE_4
 69–70`You are raised around animals. Gain +10 Animal Handling skill.`inc(Animal Handling,10)
 71–72`Your parents raise you with some unusual ideas. Gain the Faulty Education trait (p. 89).`trait(Faulty Education)
 73–74`You cheat your way through school. –10 to one skill.`dec(!RANDSKILL!,-10)
-75–76`You enjoy urban exploration and getting into off-limits areas. Gain +10 to either Climbing or Infiltration skill.`
-77–78`You hone your headshot skills in VR combat simulations. Gain the Murder Simulator Addict trait (p. 85).`
-79–80`Because you excel in your studies; you are placed in an advanced program. Gain +5 COG.`
-81–82`Your parents are highly private and extremely strict. Gain the Poorly Socialized trait (p. 93).`
-83–84`You leave home at an early age and forge your own path. Gain +1 Moxie.`
-85–86`One of your personality quirks gains you some attention from peers; but then it becomes a permanent and noticeable part of your daily behavior. Gain the Identifiable Quirk trait (p. 90).`
-87–88`As a free-range kid; you learn how to get around on your own. Gain +10 Navigation skill.`
-89–90`One of your parental figures abandons you as a child. Gain the Trusting Heart trait (p. 94).`
-91–92`A series of childhood injuries leaves you struggling to catch up physically. Lose –5 SOM.`
-93–94`You lose all of your close friends in a horribly awkward teen social situation. Gain the Not a Team Player trait (p. 91).`
-95–96`Tormented by bullies as a kid; you learn to stand up for yourself. Gain +10 Unarmed Combat skill.`
-97–98`The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.`
-99–00`Adult generations are never quite as on-top of technological changes; and you use that to your advantage. Gain +10 Infosec skill.`
+75–76`You enjoy urban exploration and getting into off-limits areas. Gain +10 to either Climbing or Infiltration skill.`inc(?1?,10,?equals($1,Climbing)||?equals($1,Infiltration))
+77–78`You hone your headshot skills in VR combat simulations. Gain the Murder Simulator Addict trait (p. 85).`trait(Murder Simulator Addict)
+79–80`Because you excel in your studies; you are placed in an advanced program. Gain +5 COG.`addApt(COG,5)
+81–82`Your parents are highly private and extremely strict. Gain the Poorly Socialized trait (p. 93).`trait(Poorly Socialized)
+83–84`You leave home at an early age and forge your own path. Gain +1 Moxie.`mox(1)
+85–86`One of your personality quirks gains you some attention from peers; but then it becomes a permanent and noticeable part of your daily behavior. Gain the Identifiable Quirk trait (p. 90).`trait(Identifiable Quirk)
+87–88`As a free-range kid; you learn how to get around on your own. Gain +10 Navigation skill.`inc(Navigation,10)
+89–90`One of your parental figures abandons you as a child. Gain the Trusting Heart trait (p. 94).`trait(Trusting Heart)
+91–92`A series of childhood injuries leaves you struggling to catch up physically. Lose –5 SOM.`addApt(SOM,-5)
+93–94`You lose all of your close friends in a horribly awkward teen social situation. Gain the Not a Team Player trait (p. 91).`trait(Not a Team Player)
+95–96`Tormented by bullies as a kid; you learn to stand up for yourself. Gain +10 Unarmed Combat skill.`inc(Unarmed Combat,10)
+97–98`The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.`inc(Deception,10)
+99–00`Adult generations are never quite as on-top of technological changes; and you use that to your advantage. Gain +10 Infosec skill.`inc(Infosec,10)
 --------------------------------------------------------------
 STEP
 STEP_2_9
