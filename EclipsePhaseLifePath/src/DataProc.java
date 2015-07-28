@@ -522,7 +522,7 @@ public class DataProc {
 			else if (effect.startsWith("inc"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 3)
+				if (subparts.length != 3 && subparts.length != 4)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
@@ -535,11 +535,15 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				
+				if (subparts.length == 4)
+				{
+					result += ", Skill must be " + subparts[3];
+				}
 			}
 			else if (effect.startsWith("dec"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 3)
+				if (subparts.length != 3 && subparts.length != 4)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
@@ -556,6 +560,10 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				
+				if (subparts.length == 4)
+				{
+					result += ", Skill must be " + subparts[3];
+				}
 			}
 			else if (effect.startsWith("sklspec"))
 			{

@@ -1265,34 +1265,34 @@ TABLE_3_STREET_RAT
 TABLE
 TABLE_4
 100
-01–20`Gain +1 Moxie and roll on the Story Event table (p. 72).`
-21–22`Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.`
-23–24`You are not only good with your hands; you are good with both hands. Gain the Ambidexterity trait (p. 145; EP).`
-25–26`The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145; EP).`
-27–28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`
-29–30`You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.`
-31–32`You are kept at home and not allowed to play sports or with other kids. Lose –5 COO.`
-33–34`You grow up in a maze-like urban area or a difficult rural area. Gain the Direction Sense trait (p. 14; EP).`
-35–36`You are raised in dangerous conditions where you have to adapt or die. Gain the Fast Learner trait (p. 146; EP).`
-37–38`You skip too much school. –20 to one skill.`
-39–40`Growing up isolated from others; you develop introvert tendencies. Lose –5 SAV.`
-41–42`While your friends throw themselves into VR gaming worlds; you simply throw up. Gain the VR Vertigo trait (p. 152; EP).`
-43–44`Raised in an environment of constant stimulus; you are forced to tune out. Gain the Oblivious trait (p. 151; EP).`
-45–46`You grow up in a melting-pot; polyglot culture. Gain the Hyper Linguist trait (p. 146; EP).`
-47–48`You party too hard. –20 to one skill.`
-49–50`Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149; EP).`
-51–52`A healthy amount of physical activities improves your abilities. Gain +5 COO`
-53–54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`
-55–56`A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).`
-57–58`Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.`
-59–60`You experiment with drugs; but it isn’t for you. Gain the Drug Exception trait (p. 83).`
-61–62`A dysfunctional home life keeps you from doing well in school. Lose –5 COG.`
-63–64`Being a bully has its advantages. Gain +10 Intimidation skill.`
-65–66`Your first experiments with forking prove to you that merging will not be easy. Gain the Divergent Personality trait (p. 88).`
-67–68`You receive your first cortical stack at an early age—and luckily just in time. Roll randomly on the Choosing a Morph table (p. 44).`
-69–70`You are raised around animals. Gain +10 Animal Handling skill.`
-71–72`Your parents raise you with some unusual ideas. Gain the Faulty Education trait (p. 89).`
-73–74`You cheat your way through school. –10 to one skill.`
+01–20`Gain +1 Moxie and roll on the Story Event table (p. 72).`mox(1);rollTable(TABLE_16)
+21–22`Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.`trait(Mental Disorder (PTSD))
+23–24`You are not only good with your hands; you are good with both hands. Gain the Ambidexterity trait (p. 145; EP).`trait(Ambidexterity)
+25–26`The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145; EP).`trait(Common Sense)
+27–28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`trait(Pain Tolerance (Level 1))
+29–30`You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.`msgClient(ERROR: Table 4, 29-30 should never be rollable)
+31–32`You are kept at home and not allowed to play sports or with other kids. Lose –5 COO.`addApt(COO,-5)
+33–34`You grow up in a maze-like urban area or a difficult rural area. Gain the Direction Sense trait (p. 14; EP).`trait(Direction Sense)
+35–36`You are raised in dangerous conditions where you have to adapt or die. Gain the Fast Learner trait (p. 146; EP).`trait(Fast Learner)
+37–38`You skip too much school. –20 to one skill.`dec(!RANDSKILL!,20)
+39–40`Growing up isolated from others; you develop introvert tendencies. Lose –5 SAV.`addApt(SAV,-5)
+41–42`While your friends throw themselves into VR gaming worlds; you simply throw up. Gain the VR Vertigo trait (p. 152; EP).`trait(VR Vertigo)
+43–44`Raised in an environment of constant stimulus; you are forced to tune out. Gain the Oblivious trait (p. 151; EP).`trait(Oblivious)
+45–46`You grow up in a melting-pot; polyglot culture. Gain the Hyper Linguist trait (p. 146; EP).`trait(Hyper Linguist)
+47–48`You party too hard. –20 to one skill.`dec(!RANDSKILL!,20)
+49–50`Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149; EP).`trait(Illiterate)
+51–52`A healthy amount of physical activities improves your abilities. Gain +5 COO`addApt(COO,5)
+53–54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`inc(?1?,20,Language)
+55–56`A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).`trait(Socially Graceless)
+57–58`Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.`inc(Palming,10)
+59–60`You experiment with drugs; but it isn’t for you. Gain the Drug Exception trait (p. 83).`trait(Drug Exception)
+61–62`A dysfunctional home life keeps you from doing well in school. Lose –5 COG.`addApt(COG,-5)
+63–64`Being a bully has its advantages. Gain +10 Intimidation skill.`inc(Intimidation,10)
+65–66`Your first experiments with forking prove to you that merging will not be easy. Gain the Divergent Personality trait (p. 88).`trait(Divergent Personality)
+67–68`You receive your first cortical stack at an early age—and luckily just in time. Roll randomly on the Choosing a Morph table (p. 44).`morph(randomRoll)
+69–70`You are raised around animals. Gain +10 Animal Handling skill.`inc(Animal Handling,10)
+71–72`Your parents raise you with some unusual ideas. Gain the Faulty Education trait (p. 89).`trait(Faulty Education)
+73–74`You cheat your way through school. –10 to one skill.`dec(!RANDSKILL!,-10)
 75–76`You enjoy urban exploration and getting into off-limits areas. Gain +10 to either Climbing or Infiltration skill.`
 77–78`You hone your headshot skills in VR combat simulations. Gain the Murder Simulator Addict trait (p. 85).`
 79–80`Because you excel in your studies; you are placed in an advanced program. Gain +5 COG.`
@@ -1310,7 +1310,7 @@ TABLE_4
 STEP
 STEP_2_9
 STEP_3
-setVar(s4Roll,rollDice(100));ifBetween(getVar(s4Roll),29,30,stepSkip(STEP_3_STREET_RAT))
+setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkip(STEP_3_STREET_RAT))
 --------------------------------------------------------------
 STEP
 STEP_3
@@ -1330,6 +1330,59 @@ runTable(TABLE_4,getVar(s4Roll))
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
+TABLE
+TABLE_16
+100 
+01–02`After a long stretch of bad, you hit bottom. No way left to go but up.`msgClient(After a long stretch of bad, you hit bottom. No way left to go but up.)
+03–04`You participate as a test subject in a research project. You suffer no ill effects … that you can tell.`msgClient(You participate as a test subject in a research project. You suffer no ill effects … that you can tell.)
+05–06`A prominent journalist befriends you as a source and occasional confidante.`msgClient(A prominent journalist befriends you as a source and occasional confidante.)
+07–08`You hear from an unknown source that Oversight has taken an interest in your affairs.`msgClient(You hear from an unknown source that Oversight has taken an interest in your affairs.)
+09–10`You have an unfortunate run-in with Jovian Republic troops, but manage to extricate yourself.`msgClient(You have an unfortunate run-in with Jovian Republic troops, but manage to extricate yourself.)
+11–12`After years, you finally get a chance to inflict revenge on someone. Do you take it or walk away?`msgClient(After years, you finally get a chance to inflict revenge on someone. Do you take it or walk away?)
+13–14`You witness/survive a major disaster, such as a habitat failure, ship collision, terrorist attack, or a freak but deadly accident.`msgClient(You witness/survive a major disaster, such as a habitat failure, ship collision, terrorist attack, or a freak but deadly accident.)
+15–16`Circumstances force you to move from one end of the solar system to the other.`msgClient(Circumstances force you to move from one end of the solar system to the other.)
+17–18`Your habitat goes through a regime change. Which side are you on?`msgClient(Your habitat goes through a regime change. Which side are you on?)
+19–20`You are falsely accused of a crime but then cleared.`msgClient(You are falsely accused of a crime but then cleared.)
+21–22`You develop a long-term rival. The relationship is complex and non-dangerous, but it does occasionally interfere or consume your attention.`msgClient(You develop a long-term rival. The relationship is complex and non-dangerous, but it does occasionally interfere or consume your attention.)
+23–24`You develop a long-term life-partner relationship.`msgClient(You develop a long-term life-partner relationship.)
+25–26`You suffer through the failure of a major long-term relationship.`msgClient(You suffer through the failure of a major long-term relationship.)
+27–28`You enter into a convenience-based contract-defined romantic relationship.`msgClient(You enter into a convenience-based contract-defined romantic relationship.)
+29–30`You develop an ongoing polyamorous relationship with a group of friends.`msgClient(You develop an ongoing polyamorous relationship with a group of friends.)
+31–32`You are pursued by an irritating but (mostly) harmless suitor/stalker.`msgClient(You are pursued by an irritating but (mostly) harmless suitor/stalker.)
+33–34`You are recruited to secretly help some faction. Randomly determine that faction from the Factions table (p. 41).`msgClient(You are recruited to secretly help some faction. Randomly determine that faction from the Factions table (p. 41).)
+35–36`You are re-united with a lover/relative/friend thought lost during the Fall.`msgClient(You are re-united with a lover/relative/friend thought lost during the Fall.)
+37–38`Political upheaval in your local habitat/polity throws your life into turmoil.`msgClient(Political upheaval in your local habitat/polity throws your life into turmoil.)
+39–40`You are the only survivor of a deadly accident on board a ship or small hab, which raises some suspicion … `msgClient(You are the only survivor of a deadly accident on board a ship or small hab, which raises some suspicion … )
+41–42`Your life has been blissfully serene and untroubled. Your friends may secretly hate you.`msgClient(Your life has been blissfully serene and untroubled. Your friends may secretly hate you.)
+43–44`You find out that one or both of your parents weren’t really your parents.`msgClient(You find out that one or both of your parents weren’t really your parents.)
+45–46`You pursue a period of self-isolation and introspection.`msgClient(You pursue a period of self-isolation and introspection.)
+47–48`You catch an authority figure doing something illicit, but you don’t have the means to prove it.`msgClient(You catch an authority figure doing something illicit, but you don’t have the means to prove it.)
+49–50`You take a sabbatical with the Solarians, ringers, or other space-faring clade.`msgClient(You take a sabbatical with the Solarians, ringers, or other space-faring clade.)
+51–52`You have an affair.`msgClient(You have an affair.)
+53–54`You are privileged enough to meet a Factor.`msgClient(You are privileged enough to meet a Factor.)
+55–56`You discover an unknown and intriguing or devastating secret about your family’s past.`msgClient(You discover an unknown and intriguing or devastating secret about your family’s past.)
+57–58`An unfortunate accident leaves you stuck in a healing vat for a couple of weeks.`msgClient(An unfortunate accident leaves you stuck in a healing vat for a couple of weeks.)
+59–60`While traveling by spacecraft, a malfunction takes you months off course. `msgClient(While traveling by spacecraft, a malfunction takes you months off course. )
+61–62`You use someone to get ahead.`msgClient(You use someone to get ahead.)
+63–64`Someone uses you to get ahead.`msgClient(Someone uses you to get ahead.)
+65–66`You unexpectedly make a close friend with someone from a rival or even hostile faction.`msgClient(You unexpectedly make a close friend with someone from a rival or even hostile faction.)
+67–68`You have a falling out with a formerly close friend.`msgClient(You have a falling out with a formerly close friend.)
+69–70`You are forced into a thankless position of heavy responsibility.`msgClient(You are forced into a thankless position of heavy responsibility.)
+71–72`Facing unwanted responsibilities, you pack up and move on. `msgClient(Facing unwanted responsibilities, you pack up and move on. )
+73–74`You are persecuted for your nature or beliefs.`msgClient(You are persecuted for your nature or beliefs.)
+75–76`You finalize a particularly good research paper, work of art, commercial enterprise, or similar achievement.`msgClient(You finalize a particularly good research paper, work of art, commercial enterprise, or similar achievement.)
+77–78`Someone close to you opts for a real, final death.`msgClient(Someone close to you opts for a real, final death.)
+79–80`You discover a new subculture to embed yourself in.`msgClient(You discover a new subculture to embed yourself in.)
+81–82`You befriend a brinker with some interesting ideas and unbelievable stories. Well, almost unbelievable.`msgClient(You befriend a brinker with some interesting ideas and unbelievable stories. Well, almost unbelievable.)
+83–84`You find repeat evidence that someone has you under close surveillance—but why?`msgClient(You find repeat evidence that someone has you under close surveillance—but why?)
+85–86`You are fairly certain that your new friend is secretly a singularity seeker.`msgClient(You are fairly certain that your new friend is secretly a singularity seeker.)
+87–88`You come across an interesting surveillance blind-spot in your local habitat.`msgClient(You come across an interesting surveillance blind-spot in your local habitat.)
+89–90`A string of disappearances in your habitat has everyone on edge.`msgClient(A string of disappearances in your habitat has everyone on edge.)
+91–92`Someone you know has come across some disturbing information on a powerful entity, and they are considering blowing the whistle.`msgClient(Someone you know has come across some disturbing information on a powerful entity, and they are considering blowing the whistle.)
+93–94`You don’t have what it takes, and your current job/prospect ends in a washout. `msgClient(You don’t have what it takes, and your current job/prospect ends in a washout. )
+95–96`Your inquisitive nature leads you to discover a secret that could get you into trouble.`msgClient(Your inquisitive nature leads you to discover a secret that could get you into trouble.)
+97–98`You receive a wake-up call that challenges your current priorities. `msgClient(You receive a wake-up call that challenges your current priorities. )
+99–00`Your current job/pursuits take you somewhere dangerous.`msgClient(Your current job/pursuits take you somewhere dangerous.)
 --------------------------------------------------------------
 TABLE
 CHOOSING_A_MORPH

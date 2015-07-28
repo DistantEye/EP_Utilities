@@ -183,7 +183,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("inc"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 3)
+					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -194,10 +194,23 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
+						if (subparts.length == 4  && Skill.isSkill(subparts[3]))
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[3]);
+						}
+						else if( subparts.length == 4 )
+						{
+							if (!subparts[1].toLowerCase().startsWith(subparts[3]))
+							{
+								throw new IllegalArgumentException("Poorly formated effect, skill required(" + subparts[3] 
+																	+ "), but instead found: " + subparts[1]);
+							}
+						}
+						
 						// executes the add, throwing error if the skill didn't exist
 						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2])) )
 						{
-							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + subparts[1]);
 						}
 					}
 					else
@@ -209,7 +222,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("dec"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 3)
+					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -217,7 +230,7 @@ public class LifePathGenerator {
 					{
 						if (! playerChar.removeSkill(subparts[1]) )
 						{
-							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[1]);
 						}
 						
 					}
@@ -226,6 +239,19 @@ public class LifePathGenerator {
 						if (! Utils.isInteger(subparts[2]) )
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (subparts.length == 4  && Skill.isSkill(subparts[3]))
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[3]);
+						}
+						else if( subparts.length == 4 )
+						{
+							if (!subparts[1].toLowerCase().startsWith(subparts[3]))
+							{
+								throw new IllegalArgumentException("Poorly formated effect, skill required(" + subparts[3] 
+																	+ "), but instead found: " + subparts[1]);
+							}
 						}
 						
 						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2])) )
@@ -855,7 +881,11 @@ public class LifePathGenerator {
 
 	Rest of commands:
 	inc(<skill>,<value>)
+	inc(<skill>,<value>,<skillname>)
 	dec(<skill>,<value/all>)
+	dec(<skill>,<value/all>,<skillname>)	' the three parameter versions through an error if the main skillname 
+											' isn't the same between the 1st and 3rd. Although it doesn't check specialization or subtype		
+		
 	SklSpec(<skill>,<specializationName>)
 	trait(<trait>)
 	trait(<trait>,level)
