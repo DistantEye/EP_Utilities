@@ -917,8 +917,8 @@ public class LifePathGenerator {
 	?hasVar(varname)
 	?between(input,lower,upper)
 
-	$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
-	inc(<skill>,<number>,<conditional>) leads to $1 accessing <skill> and so on
+	$0,$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
+	inc(<skill>,<number>,<conditional>) leads to $0 accessing inc, $1 accessing <skill> and so on
 	
 	|| and && are partially supported
 	
