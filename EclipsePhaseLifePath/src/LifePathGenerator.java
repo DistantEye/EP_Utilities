@@ -896,6 +896,7 @@ public class LifePathGenerator {
 	?hasRolled(number)
 	?equals(string1,string2)
 	?hasVar(varname)
+	?between(input,lower,upper)
 
 	
 	|| and && are partially supported
@@ -986,7 +987,7 @@ public class LifePathGenerator {
 		{
 			if (parts.length != 2)
 			{
-				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
 			}
 			
 			
@@ -1003,7 +1004,7 @@ public class LifePathGenerator {
 		{
 			if (parts.length != 2)
 			{
-				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
 			}
 				
 			if (Skill.isSkill(parts[1]))
@@ -1019,7 +1020,7 @@ public class LifePathGenerator {
 		{			
 			if (parts.length != 2)
 			{
-				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
 			}
 			
 			return playerChar.getBackground().equalsIgnoreCase(parts[1]); 
@@ -1028,7 +1029,7 @@ public class LifePathGenerator {
 		{			
 			if (parts.length != 2)
 			{
-				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
 			}
 			
 			return playerChar.hasHadBackground(parts[1]);			
@@ -1037,7 +1038,7 @@ public class LifePathGenerator {
 		{			
 			if (parts.length != 2)
 			{
-				throw new IllegalArgumentException("Invalidly formatted condition " + condition);
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
 			}
 			
 			if (!Utils.isInteger(parts[1]))
@@ -1051,7 +1052,7 @@ public class LifePathGenerator {
 		{				
 			if (parts.length != 3)
 			{
-				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition);
+				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition + ")");
 			}
 			
 			for (int i = 1; i < parts.length; i++)
@@ -1076,13 +1077,34 @@ public class LifePathGenerator {
 		{
 			if (parts.length != 2 || parts[1].length() == 0)
 			{
-				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition);
+				throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + condition + ")");
 			}
 			
 			return playerChar.hasVar(parts[1]);
 			
 		}
-		
+		else if (condNoPrefix.startsWith("between"))
+		{				
+			if (parts.length != 4)
+			{
+				throw new IllegalArgumentException("Invalidly formatted between condition (wrong number of parts " + condition + ")");
+			}
+			
+			// check all conditions for being valid numbers
+			for (int i = 1; i < parts.length; i++)
+			{
+				if (!Utils.isInteger(parts[i]))
+				{
+					throw new IllegalArgumentException("Invalidly formatted between condition ( " + parts[i] + ") is not an number");
+				}
+			}
+			
+			int input = Integer.parseInt(parts[1]);
+			int lower = Integer.parseInt(parts[2]);
+			int upper = Integer.parseInt(parts[3]);
+			
+			return (input >= lower && input <= upper);
+		}
 		
 		
 		return false;
