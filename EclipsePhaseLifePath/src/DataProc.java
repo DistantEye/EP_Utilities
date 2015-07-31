@@ -999,6 +999,42 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
+			else if (effect.startsWith("incVar"))
+			{
+				String[] subparts = Utils.splitCommands(params);
+				if (subparts.length != 3 )
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if (!Utils.isInteger(subparts[2]))
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo + ", " + subparts[2] + " is not a number");
+				}
+				else if ( subparts[1].length() > 0 && subparts[2].length() > 0)
+				{
+					result += "Increment variable(" + subparts[1] + ") with " + subparts[2];
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			}
+			else if (effect.startsWith("remVar"))
+			{
+				String[] subparts = Utils.splitCommands(params);
+				if (subparts.length != 2 )
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if ( subparts[1].length() > 0)
+				{
+					result += "Remove variable(" + subparts[1] + ")";
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			}
 			else
 			{
 				throw new IllegalArgumentException("Poorly formated effect " + errorInfo);

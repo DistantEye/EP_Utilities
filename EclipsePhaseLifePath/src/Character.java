@@ -800,6 +800,31 @@ public class Character {
 	}
 	
 	/**
+	 * Most generalized variable store. Increments key,value pair for storage by the character
+	 * will throw error if the variable passed or the value passed is not a number
+	 * 
+	 * @param name Name of the variable (must be numeric holding variable)
+	 * @param val Value of the variable (must be numeric value in string)
+	 */
+	public void incVar(String name, String val)
+	{
+		String var = this.getVar(name);
+		
+		if (!Utils.isInteger(var))
+		{
+			throw new IllegalArgumentException("incVar(" + name + "," + val +"): variable value " + var + " is not a number!");
+		}
+		if (!Utils.isInteger(val))
+		{
+			throw new IllegalArgumentException("incVar(" + name + "," + val +"): " + val + " is not a number!");
+		}
+		
+		// otherwise proceed with increment
+		int newVal = Integer.parseInt(var) + Integer.parseInt(val);
+		this.setVar(name, String.valueOf(newVal));
+	}
+	
+	/**
 	 * Retrieves a variable from the general store
 	 * @param name Name of variable to search for
 	 * @return The matching value for name
