@@ -577,6 +577,24 @@ public class Character {
 	}
 	
 	/**
+	 * Returns whether character has a trait of the name provided. Will do a partial (startsWith) search
+	 * @param traitStr Trait to search for
+	 * @return True/False as appropriate
+	 */
+	public boolean hasTraitPartial(String traitStr)
+	{
+		for (Trait t : traitList)
+		{
+			if (t.getName().startsWith(traitStr))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Add item to Trait list
 	 * @param t Valid trait object
 	 */

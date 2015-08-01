@@ -54,6 +54,25 @@ public class Trait {
 		
 		return false;
 	}
+	
+	/**
+	 * Checks the predefined traits to see if one exists with the given name. Will do a partial (startsWith) search
+	 * @param traitName Name of trait to search for
+	 * @return True/False as appropriate
+	 */
+	public static boolean existsPartial(String traitName)
+	{
+		// loop throught our traits and see if we find a match
+		for (Trait t : traitList)
+		{
+			if (t.getName().startsWith(traitName))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 	/**
 	 * Gets a copy of a trait from the predefined list (the level will be mutable, possibly more in the future)
