@@ -502,7 +502,7 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("nextpath"))
+				else if (effect.startsWith("nextPath"))
 				{
 					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 2)
@@ -512,6 +512,22 @@ public class LifePathGenerator {
 					else if (subparts[1].length() > 0)
 					{
 						playerChar.setVar("{path}",subparts[1]);
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+				}
+				else if (effect.startsWith("faction"))
+				{
+					String[] subparts = Utils.splitCommands(params);
+					if (subparts.length != 2)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (subparts[1].length() > 0)
+					{
+						playerChar.setVar("{faction}",subparts[1]);
 					}
 					else
 					{
@@ -939,6 +955,7 @@ public class LifePathGenerator {
 	runTable(<tableName>,<number>,<wildCardReplace>) (similar to rollTable Except you specify what the number is)
 	background(<name>)
 	nextPath(<name>)
+	faction(<name>)
 	stepskip(<name>)			(immediately skip to step of this name)
 	package(<name>)				(add package -- assume 1 PP if it needs a value)
 	package(<name>,<value>)		(add package of a certain PP value)

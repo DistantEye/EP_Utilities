@@ -787,7 +787,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("nextpath"))
+			else if (effect.startsWith("nextPath"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -797,6 +797,22 @@ public class DataProc {
 				else if (subparts[1].length() > 0)
 				{
 					result += "Set next path: " + subparts[1];
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			}
+			else if (effect.startsWith("faction"))
+			{
+				String[] subparts = Utils.splitCommands(params);
+				if (subparts.length != 2)
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if (subparts[1].length() > 0)
+				{
+					result += "Set faction: " + subparts[1];
 				}
 				else
 				{

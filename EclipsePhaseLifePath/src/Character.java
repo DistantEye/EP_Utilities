@@ -20,7 +20,7 @@ public class Character {
 	private ArrayList<String> gearList;
 	private String name;
 	private int age;
-	private String background;
+	//private String background;
 	private LinkedList<String> allBackgrounds;
 	private String currentMorph;
 	
@@ -464,7 +464,7 @@ public class Character {
 	 */
 	public String getBackground() 
 	{
-		return background;
+		return this.getVar("{background}");
 	}
 
 	/**
@@ -472,7 +472,7 @@ public class Character {
 	 */
 	public void setBackground(String background) 
 	{
-		this.background = background;
+		this.setVar("{background}", background);
 		this.allBackgrounds.addFirst(background);
 	}
 
