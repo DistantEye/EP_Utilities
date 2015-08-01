@@ -519,7 +519,7 @@ public class DataProc {
 				Skill temp = Skill.CreateSkillFromString(effect);
 				result += temp.toString();
 			}
-			else if (effect.startsWith("inc"))
+			else if (effect.startsWith("incSkl"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -540,7 +540,7 @@ public class DataProc {
 					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
-			else if (effect.startsWith("dec"))
+			else if (effect.startsWith("decSkl"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -636,13 +636,18 @@ public class DataProc {
 			else if (effect.startsWith("addapt"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 3)
+				if (subparts.length != 3 && subparts.length != 4)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				else if (subparts[1].length() > 0 && Utils.isInteger(subparts[2]))
 				{
 					result += "Add " + subparts[2] + " to " + subparts[1];
+					
+					if (subparts.length == 4)
+					{
+						result += ", Conditional must be true: " + subparts[3];
+					}
 				}
 				else
 				{

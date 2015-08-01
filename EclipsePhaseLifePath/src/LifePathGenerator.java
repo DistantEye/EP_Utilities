@@ -180,7 +180,7 @@ public class LifePathGenerator {
 					Skill temp = Skill.CreateSkillFromString(effect);
 					playerChar.addSkill(temp);
 				}
-				else if (effect.startsWith("inc"))
+				else if (effect.startsWith("incSkl"))
 				{
 					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3 && subparts.length != 4)
@@ -214,7 +214,7 @@ public class LifePathGenerator {
 					}
 					
 				}
-				else if (effect.startsWith("dec"))
+				else if (effect.startsWith("decSkl"))
 				{
 					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3 && subparts.length != 4)
@@ -349,7 +349,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("addapt"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 3)
+					if (subparts.length != 3 && subparts.length != 4 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -363,6 +363,14 @@ public class LifePathGenerator {
 						if (! playerChar.isValidAptitude(subparts[1]))
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
+						}
+						
+						if (subparts.length == 4)
+						{	
+							if (!this.resolveConditional(subparts[3], subparts))
+							{
+								throw new IllegalArgumentException("Poorly formated effect, conditional is not true : " + subparts[3]);
+							}
 						}
 						
 						playerChar.incAptitude(subparts[2], Integer.parseInt(subparts[2]));
@@ -906,10 +914,10 @@ public class LifePathGenerator {
 	\; is often similarly used for nested commands
 
 	Rest of commands:
-	inc(<skill>,<value>)
-	inc(<skill>,<value>,<conditional>)
-	dec(<skill>,<value/all>)
-	dec(<skill>,<value/all>,<conditional>)	' the three parameter versions through an error if the conditional isn't true		
+	incSkl(<skill>,<value>)
+	incSkl(<skill>,<value>,<conditional>)
+	decSkl(<skill>,<value/all>)
+	decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
 		
 	SklSpec(<skill>,<specializationName>)
 	trait(<trait>)
@@ -917,7 +925,8 @@ public class LifePathGenerator {
 	morph(<morphname>)
 	morph(randomRoll)
 	setApt(<aptitudeName>,<value>)
-	addApt(<aptitudeName>,<value>)		(can also be used to subtract with a negative value)
+	addApt(<aptitudeName>,<value>)					(can also be used to subtract with a negative value)
+	addApt(<aptitudeName>,<value>,<conditional)		(the three parameter version throw an error if the conditional isn't true)
 	mox(<value>)
 	gear(<gearName>)
 	roll(<dieNumber>,#-#=effect/#-#=effect)  (list can be as long as needed)		(ex, roll(1-6=morph,splicer/7-10=morph(bouncer)) 
