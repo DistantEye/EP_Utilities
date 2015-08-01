@@ -1329,6 +1329,44 @@ ADVANCED_AGE
 4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),3),stepskip(STEP_6),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL)),rollTable(ADVANCED_AGE))
 5–0`Proceed to Step 6.`stepskip(STEP_6)
 --------------------------------------------------------------
+TABLE
+TABLE_6
+10
+1–3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(getVar({path}))
+4–6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12)
+7–0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1)
+--------------------------------------------------------------
+TABLE
+TABLE_6_1
+10
+1`Table 6.2: Autonomist`nextPath(TABLE_6_2);rollTable(TABLE_6_2)
+2`Table 6.3: Civilian`nextPath(TABLE_6_3);rollTable(TABLE_6_3)
+3`Table 6.4: Criminal`nextPath(TABLE_6_4);rollTable(TABLE_6_4)
+4`Table 6.5: Elite`nextPath(TABLE_6_5);rollTable(TABLE_6_5)
+5`Table 6.6: Enclaver`nextPath(TABLE_6_6);rollTable(TABLE_6_6)
+6`Table 6.7: Indenture`nextPath(TABLE_6_7);rollTable(TABLE_6_7)
+7`Table 6.8: Military`nextPath(TABLE_6_8);rollTable(TABLE_6_8)
+8`Table 6.9: Scientist`nextPath(TABLE_6_9);rollTable(TABLE_6_9)
+9`Table 6.10: Spacer`nextPath(TABLE_6_10);rollTable(TABLE_6_10)
+0`Table 6.11: Techie`nextPath(TABLE_6_11);rollTable(TABLE_6_11)
+--------------------------------------------------------------
+TABLE
+TABLE_6_2
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
 STEP
 STEP_2_9
 STEP_3
@@ -1350,8 +1388,13 @@ STEP_5
 runTable(TABLE_4,getVar(s4Roll))
 --------------------------------------------------------------
 STEP
+STEP_5
 STEP_6
-remVar(diceBonus)
+rollTable(CHARACTER_AGE)
+---------------------------------------------------------------
+STEP
+STEP_6
+remVar(diceBonus);
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
