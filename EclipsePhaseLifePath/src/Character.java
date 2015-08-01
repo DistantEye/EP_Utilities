@@ -825,16 +825,33 @@ public class Character {
 	}
 	
 	/**
-	 * Retrieves a variable from the general store
-	 * @param name Name of variable to search for
-	 * @return The matching value for name
-	 * @throws IllegalArgumentException if no such variable exists
+	 * Defines certain special variables inherent to character that also are eligible for getVar
+	 * @param name Name of variable to search
+	 * @return true if exists, false otherwise
 	 */
-	public String getVar(String name)
+	protected boolean specialStoreHas(String name)
 	{
-		if (this.otherVars.containsKey(name))
+		if (name.equals("{path}") && this.getCurrentPath().length() != 0)
 		{
-			return this.otherVars.get(name);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	protected String getSpecialStoreVar(String name)
+	{
+		if (specialStoreHas(name))
+		{
+			if (name.equals("{path}"))
+			{
+				return this.getCurrentPath();
+			}
+			else
+			{
+				// this should neve trigger because of the previous checks
+				throw new RuntimeException("Unexpected result in getSpecialStoreVar: " + name);
+			}
 		}
 		else
 		{
@@ -843,7 +860,29 @@ public class Character {
 	}
 	
 	/**
-	 * Returns whether a variable exists in the store
+	 * Retrieves a variable from the general store (or from the character special store)
+	 * @param name Name of variable to search for
+	 * @return The matching value for name
+	 * @throws IllegalArgumentException if no such variable exists
+	 */
+	public String getVar(String name)
+	{
+		if (this.hasVar(name))
+		{
+			return this.otherVars.get(name);
+		}
+		else if (this.specialStoreHas(name))
+		{
+			return this.getSpecialStoreVar(name);
+		}
+		else
+		{
+			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
+		}
+	}
+	
+	/**
+	 * Returns whether a variable exists in the store (or from the character special store)
 	 * @param name Name/Key to search for
 	 * @return True if exists, false otherwise
 	 */

@@ -949,7 +949,7 @@ public class LifePathGenerator {
 	if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
 	msgClient(<message>)					(says something to the UI about character changes)
 	
-	getVar(<name>)			(returns data stored for this var)
+	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 	setVar(<name>,value)
 	
 	Conditions:
