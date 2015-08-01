@@ -511,7 +511,7 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0)
 					{
-						playerChar.setCurrentPath(subparts[1]);
+						playerChar.setVar("{path}",subparts[1]);
 					}
 					else
 					{
@@ -573,10 +573,11 @@ public class LifePathGenerator {
 					{						
 						Package temp = (Package)DataProc.getDataObj(subparts[1]); 
 						
-						String pkgEffect = temp.getEffects(1);
+						String pkgEffect = temp.getEffects(1);						
 						
 						UIObject.statusUpdate("Package added (PP1): " + temp.getName() + " : " + temp.getDescription());
 												
+						playerChar.incVar("packageVal", 1);
 						this.runEffect(pkgEffect, temp.getSpecialNotes());
 					}
 					else if (subparts.length == 3 )
@@ -594,6 +595,7 @@ public class LifePathGenerator {
 						
 						UIObject.statusUpdate("Package added (PP" + PP + "): " + temp.getName() + " : " + temp.getDescription());
 						
+						playerChar.incVar("packageVal", PP);
 						this.runEffect(pkgEffect, temp.getSpecialNotes());
 					}
 					else

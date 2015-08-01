@@ -23,12 +23,14 @@ public class Character {
 	private String background;
 	private LinkedList<String> allBackgrounds;
 	private String currentMorph;
-	private String currentFaction;
-	private String currentPath;
+	
+	// todo, fully remove commented variables
+	//private String currentFaction;
+	//private String currentPath;
 	private LinkedList<Integer> lastRolls;
 	private String currentTable;
 	private HashMap<String, Rep> repList;
-	private int credits;
+	//private int credits;
 	private HashMap<String, Sleight> sleightList;
 	private Step lastStep;
 	
@@ -130,7 +132,9 @@ public class Character {
 		
 		sleightList = new HashMap<String, Sleight>();
 		
-		credits = 0;
+		this.setVar("{credits}", "0");
+		this.setVar("{faction}", "");
+		this.setVar("{path}", "");
 		
 		currentTable = "";
 		lastRolls = new LinkedList<Integer>();
@@ -146,7 +150,7 @@ public class Character {
 	public String toString()
 	{
 		String result = this.name + "(" + this.age + ")"+ "\n";
-		result = "Morph : " + this.currentMorph + ", Faction : " + this.currentFaction  + ", Path : " + this.currentPath+ "\n";
+		result = "Morph : " + this.currentMorph + ", Faction : " + this.getVar("{faction}")  + ", Path : " + this.getVar("{path}") + "\n";
 		
 		result += "Traits : " + this.getTraitsString() + "\n";
 		result += this.getAptitudesString() + "\n";
@@ -198,7 +202,7 @@ public class Character {
 	 */
 	public int getCredits() 
 	{
-		return credits;
+		return Integer.parseInt(this.getVar("{credits}"));
 	}
 
 	/**
@@ -208,7 +212,7 @@ public class Character {
 	 */
 	public void setCredits(int credits) 
 	{
-		this.credits = credits;
+		this.setVar("{credits}",String.valueOf(credits));
 	}
 	
 	/**
@@ -218,7 +222,7 @@ public class Character {
 	 */
 	public void incCredits(int val) 
 	{
-		this.credits += val;
+		this.incVar("{credits}",val);
 	}
 	
 	public boolean isValidAptitude(String str)
@@ -499,38 +503,6 @@ public class Character {
 	}
 
 	/**
-	 * @return the currentFaction
-	 */
-	public String getCurrentFaction() 
-	{
-		return currentFaction;
-	}
-
-	/**
-	 * @param currentFaction the currentFaction to set
-	 */
-	public void setCurrentFaction(String currentFaction) 
-	{
-		this.currentFaction = currentFaction;
-	}
-
-	/**
-	 * @return the currentPath
-	 */
-	public String getCurrentPath() 
-	{
-		return currentPath;
-	}
-
-	/**
-	 * @param currentPath the currentPath to set
-	 */
-	public void setCurrentPath(String currentPath) 
-	{
-		this.currentPath = currentPath;
-	}
-
-	/**
 	 * @return the gearList
 	 */
 	public ArrayList<String> getGearList() 
@@ -800,14 +772,31 @@ public class Character {
 	}
 	
 	/**
+	 * Overload for incVar that takes an integer second parameter (for convenience)
+	 * @param name name of variable
+	 * @param val Integer value
+	 */
+	public void incVar(String name, int val)
+	{
+		this.incVar(name, String.valueOf(val));
+	}
+	
+	/**
 	 * Most generalized variable store. Increments key,value pair for storage by the character
-	 * will throw error if the variable passed or the value passed is not a number
+	 * will throw error if the variable passed or the value passed is not a number.
+	 * Will create the variable if it doesn't exist, set to 0 (before val is added)
+	 * 
 	 * 
 	 * @param name Name of the variable (must be numeric holding variable)
 	 * @param val Value of the variable (must be numeric value in string)
 	 */
 	public void incVar(String name, String val)
 	{
+		if (!this.hasVar(name))
+		{
+			this.setVar(name, String.valueOf(0));
+		}
+		
 		String var = this.getVar(name);
 		
 		if (!Utils.isInteger(var))
@@ -825,41 +814,6 @@ public class Character {
 	}
 	
 	/**
-	 * Defines certain special variables inherent to character that also are eligible for getVar
-	 * @param name Name of variable to search
-	 * @return true if exists, false otherwise
-	 */
-	protected boolean specialStoreHas(String name)
-	{
-		if (name.equals("{path}") && this.getCurrentPath().length() != 0)
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	protected String getSpecialStoreVar(String name)
-	{
-		if (specialStoreHas(name))
-		{
-			if (name.equals("{path}"))
-			{
-				return this.getCurrentPath();
-			}
-			else
-			{
-				// this should neve trigger because of the previous checks
-				throw new RuntimeException("Unexpected result in getSpecialStoreVar: " + name);
-			}
-		}
-		else
-		{
-			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
-		}
-	}
-	
-	/**
 	 * Retrieves a variable from the general store (or from the character special store)
 	 * @param name Name of variable to search for
 	 * @return The matching value for name
@@ -870,10 +824,6 @@ public class Character {
 		if (this.hasVar(name))
 		{
 			return this.otherVars.get(name);
-		}
-		else if (this.specialStoreHas(name))
-		{
-			return this.getSpecialStoreVar(name);
 		}
 		else
 		{
