@@ -1616,7 +1616,31 @@ CHOOSING_A_MORPH
 51-55`Uplift Biomorph`roll(UPLIFT_BIOMORPHS)
 56-65`Pod Biomorph`roll(POD_BIOMORPHS)
 66-95`Synthmorph`roll(SYNTHMORPHS)
-96-00`Infomorph/Eidolon`roll(INFOMORPHS_EIDOLONS)
+96-100`Infomorph/Eidolon`roll(INFOMORPHS_EIDOLONS)
+--------------------------------------------------------------
+TABLE
+CHOOSING_A_MORPH_NO_PODS
+100
+01-50`Biomorph`roll(BIOMORPHS)
+51-55`Uplift Biomorph`roll(UPLIFT_BIOMORPHS)
+56-65`Pod Biomorph`roll(CHOOSING_A_MORPH_NO_PODS)
+66-95`Synthmorph`roll(SYNTHMORPHS)
+96-100`Infomorph/Eidolon`roll(INFOMORPHS_EIDOLONS)
+--------------------------------------------------------------
+TABLE
+CHOOSING_A_MORPH_NO_PODS_UPLIFTS
+100
+01-50`Biomorph`roll(BIOMORPHS)
+51-55`Uplift Biomorph`roll(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
+56-65`Pod Biomorph`roll(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
+66-95`Synthmorph`roll(SYNTHMORPHS)
+96-100`Infomorph/Eidolon`roll(INFOMORPHS_EIDOLONS)
+--------------------------------------------------------------
+TABLE
+CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS
+15
+01-05`Uplift Biomorph`roll(UPLIFT_BIOMORPHS)
+06-15`Pod Biomorph`roll(POD_BIOMORPHS)
 --------------------------------------------------------------
 TABLE
 BIOMORPHS
@@ -1697,7 +1721,7 @@ POD_BIOMORPHS
 76-83`Security Pod`morph(Security Pod)
 84-86`Space Marine`morph(Space Marine)
 87-95`Specialist Pod`morph(Specialist Pod)
-96-00`Vacuum Pod`morph(Vacuum Pod)
+96-100`Vacuum Pod`morph(Vacuum Pod)
 --------------------------------------------------------------
 TABLE
 SYNTHMORPHS
@@ -1754,7 +1778,7 @@ INFOMORPHS_EIDOLONS
 82-85`Sage`morph(Sage)
 86-92`Scholar`morph(Scholar)
 93`Slave`morph(Slave)
-94-00`Wirehead`morph(Wirehead)
+94-100`Wirehead`morph(Wirehead)
 ---------------------------------------------------------------
 TABLE
 PROCESS_START_TABLE
