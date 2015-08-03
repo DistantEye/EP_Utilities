@@ -2,4 +2,5 @@
 2) No tracking of derived stats like LUC
 	1) this should get its own trio of rows for base, bonus, final
 3) No handling of morph bonuses (although you are allowed to key in bonuses manually)
+	1) There is plans for how to handle this in the TODO
 4) No handling when duplicate skills are assigned (should prompt you whether to replace or append)
