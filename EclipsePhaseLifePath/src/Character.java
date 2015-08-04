@@ -379,6 +379,32 @@ public class Character {
 	}
 	
 	/**
+	 * Sets a existing skill to a certain level, or creates it if it doesn't exist
+	 * 
+	 * @param skillName Name of the skill the character has
+	 * @param amount Level to set the skill to
+	 * @return True if successful, false if skill could not be found
+	 */
+	public boolean setSkill(String skillName, int amount) 
+	{
+		if (this.skillList.containsKey(skillName))
+		{
+			this.skillList.get(skillName).setValue(amount);
+			return true;
+		}
+		else if (Skill.isSkill(skillName))
+		{
+			Skill tempSkl = Skill.CreateSkill(skillName, amount);
+			this.skillList.put(tempSkl.getName(), tempSkl);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/**
 	 * Adds specialization to a skill that already exists
 	 * 
 	 * @param skillName Name of the skill the character has

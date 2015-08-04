@@ -206,6 +206,40 @@ public class LifePathGenerator {
 					Skill temp = Skill.CreateSkillFromString(effect);
 					playerChar.addSkill(temp);
 				}
+				else if (effect.startsWith("setSkl"))
+				{
+					String[] subparts = Utils.splitCommands(params);
+					if (subparts.length != 3 && subparts.length != 4)
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					else if (Skill.isSkill(subparts[1]))
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (subparts.length == 4)
+						{	
+							if (!this.resolveConditional(subparts[3], subparts))
+							{
+								throw new IllegalArgumentException("Poorly formated effect, conditional is not true : " + subparts[3]);
+							}
+						}
+						
+						// executes the add, throwing error if the skill didn't exist
+						if (! playerChar.setSkill(subparts[1], Integer.parseInt(subparts[2])) )
+						{
+							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + subparts[1]);
+						}
+					}
+					else
+					{
+						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+					}
+					
+				}
 				else if (effect.startsWith("incSkl"))
 				{
 					String[] subparts = Utils.splitCommands(params);
@@ -961,6 +995,7 @@ public class LifePathGenerator {
 	Rest of commands:
 	incSkl(<skill>,<value>)
 	incSkl(<skill>,<value>,<conditional>)
+	setSkl(<skill>,<value>,<conditional>)
 	decSkl(<skill>,<value/all>)					(decSkl all will set two variables {lastRemSkl} {lastRemSklVal}, equal to what was removed)
 	decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
 		
