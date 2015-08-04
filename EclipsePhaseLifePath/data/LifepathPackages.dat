@@ -1551,6 +1551,9 @@ TABLE_7
 97–98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`rollTable(CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS)
 99–00`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credits(20000)
 --------------------------------------------------------------
+TABLE
+TABLE_8
+100
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1608,6 +1611,10 @@ STEP_7
 STEP_8
 runTable(TABLE_7,getVar(s4Roll))
 --------------------------------------------------------------
+STEP
+STEP_8
+STEP_9
+runTable(TABLE_8)
 --------------------------------------------------------------
 TABLE
 TABLE_16
