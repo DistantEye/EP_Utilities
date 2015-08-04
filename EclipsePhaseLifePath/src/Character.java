@@ -719,6 +719,12 @@ public class Character {
 		return ((Skill)skillList.values().toArray()[idx]).getName();
 	}
 	
+	public String getRandApt()
+	{
+		int idx = LifePathGenerator.rng.nextInt(aptitudeList.size());
+		return (String)aptitudeList.keySet().toArray()[idx];
+	}
+	
 	public int getNumSkills()
 	{
 		return this.skillList.size();

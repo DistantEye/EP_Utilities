@@ -137,6 +137,10 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Effect : " + effect + " calls for random skill but the character has no skills!");
 					}
 				}
+				while(effect.contains("!RANDAPT!"))
+				{
+					effect = effect.replace("!RANDAPT!",playerChar.getRandApt());
+				}
 				while (effect.contains("rollDice("))
 				{
 					int idx = effect.indexOf("rollDice(");
@@ -947,7 +951,8 @@ public class LifePathGenerator {
 	<skillname>[<specialization>] <number>
 	<skillname>: <subtype> [<specialization>] <number>
 
-	!RANDSKILL! => pick random valid skill character has 
+	!RANDSKILL! => pick random valid skill character has
+	!RANDAPT! => pick random valid Aptitude character has  
 	getVar(<name) will substitute in during preprocessing
 
 	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
