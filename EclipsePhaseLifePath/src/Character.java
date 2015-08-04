@@ -347,7 +347,9 @@ public class Character {
 	{
 		if (this.skillList.containsKey(skillName))
 		{
-			this.skillList.remove(skillName);
+			Skill temp = this.skillList.remove(skillName);
+			this.setVar("{lastRemSkl}", temp.getName());
+			this.setVar("{lastRemSklVal}", ""+temp.getValue());
 			return true;
 		}
 		else

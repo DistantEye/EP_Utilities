@@ -961,7 +961,7 @@ public class LifePathGenerator {
 	Rest of commands:
 	incSkl(<skill>,<value>)
 	incSkl(<skill>,<value>,<conditional>)
-	decSkl(<skill>,<value/all>)
+	decSkl(<skill>,<value/all>)					(decSkl all will set two variables {lastRemSkl} {lastRemSklVal}, equal to what was removed)
 	decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
 		
 	SklSpec(<skill>,<specializationName>)
