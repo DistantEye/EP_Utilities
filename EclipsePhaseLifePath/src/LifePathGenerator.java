@@ -162,6 +162,28 @@ public class LifePathGenerator {
 				}
 				
 				
+				// for best results this should be one of the last (or the last) preprocessing effect run
+				while (effect.contains("concat("))
+				{
+					int idx = effect.indexOf("concat(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "concat(" + insides + ")";
+
+					String[] subParts = Utils.splitCommands(insides);
+					
+					if (subParts.length != 2)
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for concat but lacks the correct format");
+					}
+					
+					String newStr = subParts[0] + subParts[1];
+					effect = effect.replace(oldStr, newStr);
+
+					
+				}
+				
 				
 				// note for some of these, we sacrifice performance by making the if conditions a bit more error aware up front, and leaving
 				// the code a bit simpler. This is probably for the best since even with that the app will have reasonable performance,
@@ -969,7 +991,8 @@ public class LifePathGenerator {
 	msgClient(<message>)					(says something to the UI about character changes)
 	
 	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
-	setVar(<name>,value)
+	setVar(<name>,<value>)
+	concat(<value1>,<value2>) (appends value2 to the end of value1)
 	
 	Conditions:
 	?hastrait(trait)
