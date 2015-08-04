@@ -1276,6 +1276,13 @@ public class LifePathGenerator {
 		return (roll);
 	}
 	
+	/**
+	 * Handles the roll command : where a list of short results is picked from based on player's roll.
+	 * 
+	 * @param effect The effect to process
+	 * @param errorInfo Current run context of the command in case it needs to throw errors to console
+	 * @param forceRoll If true, this will make it always an RNG roll, even if player would normally be choosing the result
+	 */
 	protected void handleRoll(String effect, String errorInfo, boolean forceRoll)
 	{
 		// do some escaping to handle that most commands like roll;1-6=+morph;splicer,7-10=+morph;bouncer wouldn't actually work
@@ -1361,6 +1368,13 @@ public class LifePathGenerator {
 		}
 	}
 	
+	/**
+	 * Rolls a random choice from a table specified in effect
+	 * 
+	 * @param effect Effect string containing a rollTable command
+	 * @param errorInfo Current run context of the command in case it needs to throw errors to console
+	 * @param forceRoll If true, this will make it always an RNG roll, even if player would normally be choosing the result
+	 */
 	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
 	{
 		String params = Utils.returnStringInParen(effect);
@@ -1410,6 +1424,10 @@ public class LifePathGenerator {
 			}
 			
 			String tableEffects = rowReturned.getEffects();
+			
+			// give the description to the client
+			this.UIObject.statusUpdate(rowReturned.getDescription());
+			
 			this.runEffect(tableEffects, rowReturned.getDescription());
 		}
 		else

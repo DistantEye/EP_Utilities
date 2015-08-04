@@ -1784,6 +1784,3 @@ TABLE
 PROCESS_START_TABLE
 10
 01-10`Start`stepskip(APTITUDE_TEMPLATES)
-//
-// NOTE : You should define a PROCESS START table that is a stub that leads to the RANDOM_APTITUDE_TEMPLATE Table; that way more of this is user defined start that can be overridden
-// FURTHER NOTE : Provide a file that redefines the character process to generate characters the conventional way. It's totally doable.
