@@ -1311,23 +1311,23 @@ TABLE
 CHARACTER_AGE
 100
 1–20`In your 20s. Proceed directly to Step 8.`setVar(ageRange,20s);stepskip(STEP_8)
-21–50`In your 30s. Proceed to Step 6.`setVar(ageRange,30s);stepskip(STEP_6)
-51–70`In your 40s. Proceed to Step 6.`setVar(ageRange,40s);stepskip(STEP_6)
-71–80`In your 50s. Proceed to Step 6.`setVar(ageRange,50s);stepskip(STEP_6)
-81–85`In your 60s. Proceed to Step 6.`setVar(ageRange,60s);stepskip(STEP_6)
-86–90`In your 70s. Proceed to Step 6.`setVar(ageRange,70s);stepskip(STEP_6)
-91–94`In your 80s. Proceed to Step 6.`setVar(ageRange,80s);stepskip(STEP_6)
+21–50`In your 30s. Proceed to Step 6.`setVar(ageRange,30s);stepskip(STEP_6_0)
+51–70`In your 40s. Proceed to Step 6.`setVar(ageRange,40s);stepskip(STEP_6_0)
+71–80`In your 50s. Proceed to Step 6.`setVar(ageRange,50s);stepskip(STEP_6_0)
+81–85`In your 60s. Proceed to Step 6.`setVar(ageRange,60s);stepskip(STEP_6_0)
+86–90`In your 70s. Proceed to Step 6.`setVar(ageRange,70s);stepskip(STEP_6_0)
+91–94`In your 80s. Proceed to Step 6.`setVar(ageRange,80s);stepskip(STEP_6_0)
 95–98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar(ageRange,90s);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
 99–00`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar(ageRange,100+);rollTable(ADVANCED_AGE)
 --------------------------------------------------------------
 TABLE
 ADVANCED_AGE
 10
-1`Lose –10 SOM, REF, or COO (your choice). Roll again. Ignore this result if rolled more than twice; proceed to Step 6 instead.`incVar(AA_1_ROLL,1);if(?equals(getVar(AA_1_ROLL),3),stepskip(STEP_6),addApt(?1?,-10,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO)),rollTable(ADVANCED_AGE))
+1`Lose –10 SOM, REF, or COO (your choice). Roll again. Ignore this result if rolled more than twice; proceed to Step 6 instead.`incVar(AA_1_ROLL,1);if(?equals(getVar(AA_1_ROLL),3),stepskip(STEP_6_0),addApt(?1?,-10,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO)),rollTable(ADVANCED_AGE))
 2`Lose –5 SOM, REF, or COO (your choice). Roll again.`addApt(?1?,-5,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO)),rollTable(ADVANCED_AGE)
-3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Imortality Blues);stepskip(STEP_6)
-4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),3),stepskip(STEP_6),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL)),rollTable(ADVANCED_AGE))
-5–0`Proceed to Step 6.`stepskip(STEP_6)
+3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Imortality Blues);stepskip(STEP_6_0)
+4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),3),stepskip(STEP_6_0),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL)),rollTable(ADVANCED_AGE))
+5–0`Proceed to Step 6.`stepskip(STEP_6_0)
 --------------------------------------------------------------
 TABLE
 TABLE_6
@@ -1506,6 +1506,50 @@ TABLE_6_12
 90–93`Tech Training`package(Tech Training)
 94–00`Weapons Training`package(Weapons Training)
 --------------------------------------------------------------
+TABLE
+TABLE_7
+100
+01–20`Gain +1 Moxie and roll on the Story Event table (p. 72).`mox(1);rollTable(TABLE_16)
+21–22`You save an animal from danger. Gain the Animal Empathy trait (p. 145, EP).`trait(Animal Empathy)
+23–24`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming.`incSkl(?1?,10,?equals($1,Climbing)||?equals($1,Fray)||?equals($1,Free Fall)||?equals($1,Freerunning)||?equals($1,Swimming))
+25–26`Your inability to improve holds you back from an important promotion/advancement. Gain the Slow Learner trait (p. 151, EP).`trait(Slow Learner)
+27–28`You simply are not very comfortable with that whole resleeving thing. Gain the Morphing Disorder (Level 1) trait (p. 150, EP). `trait(Morphing Disorder (Level 1))
+29–30`You are not a slacker. You take on part-time jobs or additional training. +20 to one skill.`incSkl(?1?,20)
+31–32`You travel extensively. +10 to two different Language skills.`incSkl(?1?,10,?equals($1,Language);incSkl(?1?,10,?equals($1,Language)
+33–34`Regular attention to your health and exercise improves your abilities. Gain +5 SOM.`addApt(SOM,5)
+35–36`You decide you want to experiment. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods.`rollTable(CHOOSING_A_MORPH_NO_PODS)
+37–38`You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path.`msgClient(This result is ignored, reroll);rollTable(TABLE_7)
+39–40`You pick up a new hobby. +20 to one Art or Interest skill.`incSkl(?1?,20,?equals($1,Art)||?equals($1,Interest))
+41–42`An unfortunate habitat failure, traffic accident, or fire ends your life. Roll randomly on the  Choosing a Morph table (p. 44), but ignore pods and uplifts.`rollTable(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
+43–44`You travel extensively: +20 to Navigation skill.`incSkl(Navigation,20)
+45–46`Your work requires you to change your morph. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods and uplifts.`rollTable(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
+47–48`Curiosity gets the better of you. Lose –5 to one aptitude.`addApt(!RANDAPT!,-5)
+49–50`You lose a limb in a traumatic incident, but grow it back. Gain +1 Moxie.`mox(1)
+51–52`An experience with still-unrefined psychosurgery leaves you forever altered. Gain the Anomalous Mind trait (p. 87).`trait(Anomalous Mind)
+53–54`Something goes seriously glitchy with your muse, and you are nearly hurt as a result. Gain the Phobia Disorder (Muse) trait (p. 92).`trait(Phobia Disorder (Muse)))
+55–56`You are a pioneer in the practice of egocasting. Gain the Ego Plasticity (Level 1) trait (p. 83) and roll randomly on the Choosing a Morph table (p. 44).`trait(Ego Plasticity (Level 1));rollTable(CHOOSING_A_MORPH)
+57–58`You save someone from drowning. Gain +10 Swimming skill.`incSkl(Swimming,10)
+59–60`You experiment with some minor self-modification. Gain the Modified Behavior (Level 1) trait (p. 150, EP).`trait(Modified Behavior (Level 1))
+61–62`You exhibit a serious lack of willpower in coping with your adult life. Gain the Addiction (Major) trait (p. 148, EP).`trait(Addiction (Major))
+63–64`You experience a deadly vehicle accident. Lose 10,000 from your starting credit and roll randomly on the Choosing a Morph table (p. 44).`credit(-10000),rollTable(CHOOSING_A_MORPH)
+65–66`A hacker friend shows you a few things, and then you show them a few things. Gain the Intuitive Cracker (Level 1) trait (p. 84).`trait(Intuitive Cracker (Level 1))
+67–68`The poor state of affairs on Earth before the Fall impacts you heavily. Gain the Mental Disorder (Depression) trait (p. 212, EP).`trait(Mental Disorder (Depression))
+69–70`You spend some time in some of the rougher, crisis-impacted areas on Earth before the Fall. Gain +10 Fray skill.`incSkl(Fray,10)
+71–72`A period of poverty leaves you with the skills to get by. Gain +10 Scrounging skill.`incSkl(Scrounging,10)
+73–74`You are implicated in a news-making scandal. Lose –10 c-rep.`rep(c,-10)
+75–76`You pick up a new hobby. Gain +10 to one Art or Interest skill.`incSkl(?1?,10,?equals($1,Art)||?equals($1,Interest))
+77–78`You are an early adopter of psychosurgery, finding that your mind adapts well to changes. Gain the Malleable Mind (Level 1) trait (p. 85).`trait(Malleable Mind (Level 1))
+79–80`The stress of rapid technological change overwhelms you. Gain the Mental Disorder (ADHD) trait (p. 212, EP).`trait(Mental Disorder (ADHD))
+81–82`You study or train hard. Gain a free specialization (p. 173, EP) in one skill.`SklSpec(?1?,?1?)
+83–84`You take up martial arts training. Gain +10 Unarmed Combat skill.`incSkl(Unarmed Combat,10)
+85–86`You choose your own path over what others tell you to do. Replace any one skill you have gained so far with any other skill of your choosing at the same rating.`decSkl(?1?,all,?hasSkill($1));setSkl(?1?,getVar({lastRemSklVal}))
+87–88`You take care of someone in a way that makes them obligated to help you out for a long time to come. Gain the Personal Connection trait (p. 85). `trait(Personal Connection)
+89–90`You learn the hard way that ignoring money management lessons was a bad idea. Lose 10,000 from your starting credit.`credit(-10000)
+91–92`You take the fall for a crime you may or may not have been complicit in. Lose –10 c-rep but gain +1 Moxie.`rep(c,-10);mox(1)
+93–94`An accident on a space elevator leaves you fearful of space. Gain the Phobia Disorder (Microgravity) trait (p. 92).`trait(Phobia Disorder (Microgravity)
+95–96`You start up an unusual hobby. Gain +20 to one Exotic Melee Weapon or Exotic Ranged Weapon skill.`incSkl(?1?,20,?equals($1,Exotic Melee Weapon)||?equals($1,Exotic Ranged Weapon))
+97–98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`rollTable(CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS)
+99–00`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credits(20000)
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1520,17 +1564,17 @@ TABLE_6_12
 --------------------------------------------------------------
 --------------------------------------------------------------
 STEP
-STEP_2_9
-STEP_3
-setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkip(STEP_3_STREET_RAT))
+STEP_3_0
+STEP_3_1
+setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkip(STEP_3_1_STREET_RAT))
 --------------------------------------------------------------
 STEP
-STEP_3
+STEP_3_1
 STEP_4
 rollTable(TABLE_3)
 --------------------------------------------------------------
 STEP
-STEP_3_STREET_RAT
+STEP_3_1_STREET_RAT
 STEP_5
 rollTable(TABLE_3_STREET_RAT)
 --------------------------------------------------------------
@@ -1541,18 +1585,28 @@ runTable(TABLE_4,getVar(s4Roll))
 --------------------------------------------------------------
 STEP
 STEP_5
-STEP_6
+STEP_6_0
 rollTable(CHARACTER_AGE)
 ---------------------------------------------------------------
 STEP
-STEP_6
+STEP_6_0
+STEP_6_1
+remVar(diceBonus);setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkip(STEP_6_DRY))
+--------------------------------------------------------------
+STEP
+STEP_6_DRY
+STEP_8
+remVar(diceBonus);rollTable(TABLE_6_DRY);msgClient(You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path. );rollTable(TABLE_6)
+--------------------------------------------------------------
+STEP
+STEP_6_1
 STEP_7
 remVar(diceBonus);rollTable(TABLE_6)
 --------------------------------------------------------------
 STEP
 STEP_7
 STEP_8
-rollTable(TABLE_7)
+runTable(TABLE_7,getVar(s4Roll))
 --------------------------------------------------------------
 --------------------------------------------------------------
 TABLE
@@ -1784,3 +1838,180 @@ TABLE
 PROCESS_START_TABLE
 10
 01-10`Start`stepskip(APTITUDE_TEMPLATES)
+----------------------------------------------------------------
+TABLE
+TABLE_6_DRY
+10
+1–3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(concat(getVar({path}),_DRY))
+4–6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12_DRY)
+7–0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1_DRY)
+--------------------------------------------------------------
+TABLE
+TABLE_6_1_DRY
+10
+1`Table 6.2: Autonomist`nextPath(TABLE_6_2);rollTable(TABLE_6_2_DRY)
+2`Table 6.3: Civilian`nextPath(TABLE_6_3);rollTable(TABLE_6_3_DRY)
+3`Table 6.4: Criminal`nextPath(TABLE_6_4);rollTable(TABLE_6_4_DRY)
+4`Table 6.5: Elite`nextPath(TABLE_6_5);rollTable(TABLE_6_5_DRY)
+5`Table 6.6: Enclaver`nextPath(TABLE_6_6);rollTable(TABLE_6_6_DRY)
+6`Table 6.7: Indenture`nextPath(TABLE_6_7);rollTable(TABLE_6_7_DRY)
+7`Table 6.8: Military`nextPath(TABLE_6_8);rollTable(TABLE_6_8_DRY)
+8`Table 6.9: Scientist`nextPath(TABLE_6_9);rollTable(TABLE_6_9_DRY)
+9`Table 6.10: Spacer`nextPath(TABLE_6_10);rollTable(TABLE_6_10_DRY)
+10`Table 6.11: Techie`nextPath(TABLE_6_11);rollTable(TABLE_6_11_DRY)
+--------------------------------------------------------------
+TABLE
+TABLE_6_2_DRY
+10
+1`Academic (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Academic)
+2`Activist (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Activist)
+3`Bot Jammer (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bot Jammer)
+4`Covert Ops (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Covert Ops)
+5`Explorer (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Explorer)
+6`Genehacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Genehacker)
+7`Hacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Hacker)
+8`Medic (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Medic)
+9`Scientist (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scientist)
+10`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
+--------------------------------------------------------------
+TABLE
+TABLE_6_3_DRY
+10
+1`Activist (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Activist)
+2`Con Artist (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Con Artist)
+3`Dealer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Dealer)
+4`Face (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Face)
+5`Investigator (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Investigator)
+6`Journo (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Journo)
+7`Smart Animal Handler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smart Animal Handler)
+8`Soldier (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Soldier)
+9`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
+10`Thief (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Thief)
+--------------------------------------------------------------
+TABLE
+TABLE_6_4_DRY
+10
+1`Assassin (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Assassin)
+2`Con Artist (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Con Artist)
+3`Covert Ops (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Covert Ops)
+4`Dealer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Dealer)
+5`Ego Hunter (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Ego Hunter)
+6`Enforcer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Enforcer)
+7`Hacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Hacker)
+8`Pirate (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Pirate)
+9`Smuggler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smuggler)
+10`Thief (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Thief)
+--------------------------------------------------------------
+TABLE
+TABLE_6_5_DRY
+10
+1`Academic (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Academic)
+2`Dealer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Dealer)
+3–4`Face (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Face)
+5–6`Icon (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Icon)
+7`Journo (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Journo)
+8`Medic (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Medic)
+9`Psychosurgeon (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Psychosurgeon)
+10`Scientist (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scientist)
+--------------------------------------------------------------
+TABLE
+TABLE_6_6_DRY
+10
+1`Academic (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Academic)
+2`Con Artist (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Con Artist)
+3–4`Dealer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Dealer)
+5`Face (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Face)
+6`Icon (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Icon)
+7`Investigator (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Investigator)
+8`Journo (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Journo)
+9`Medic (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Medic)
+10`Psychosurgeon (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Psychosurgeon)
+--------------------------------------------------------------
+TABLE
+TABLE_6_7_DRY
+10
+1`Activist (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Activist)
+2`Bodyguard (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bodyguard)
+3`Bot Jammer (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bot Jammer)
+4`Con Artist (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Con Artist)
+5`Enforcer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Enforcer)
+6`Pirate (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Pirate)
+7`Scavenger (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scavenger)
+8`Smart Animal Handler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smart Animal Handler)
+9`Smuggler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smuggler)
+10`Thief (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Thief)
+--------------------------------------------------------------
+TABLE
+TABLE_6_8_DRY
+10
+1`Assassin (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Assassin)
+2`Bodyguard (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bodyguard)
+3`Covert Ops (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Covert Ops)
+4`Ego Hunter (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Ego Hunter)
+5`Enforcer (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Enforcer)
+6`Investigator (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Investigator)
+7–9`Soldier (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Soldier)
+10`Spy (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Spy)
+--------------------------------------------------------------
+TABLE
+TABLE_6_9_DRY
+10
+1`Academic (p. 29)`msgClient(Started to walk the Adult Pre-Fall Path of the Academic)
+2`Explorer (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Explorer)
+3`Genehacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Genehacker)
+4`Investigator (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Investigator)
+5`Medic (p. 33)`msgClient(Started to walk the Adult Pre-Fall Path of the Medic)
+6`Psychosurgeon (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Psychosurgeon)
+7–8`Scientist (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scientist)
+9`Smart Animal Handler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smart Animal Handler)
+10`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
+--------------------------------------------------------------
+TABLE
+TABLE_6_10_DRY
+10
+1`Bot Jammer (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bot Jammer)
+2`Ego Hunter (p. 31)`msgClient(Started to walk the Adult Pre-Fall Path of the Ego Hunter)
+3–4`Explorer (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Explorer)
+5`Pirate (p. 34)`msgClient(Started to walk the Adult Pre-Fall Path of the Pirate)
+6`Scavenger (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scavenger)
+7`Soldier (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Soldier)
+8–9`Smuggler (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Smuggler)
+10`Spy (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Spy)
+--------------------------------------------------------------
+TABLE
+TABLE_6_11_DRY
+10
+1`Bot Jammer (p. 30)`msgClient(Started to walk the Adult Pre-Fall Path of the Bot Jammer)
+2`Explorer (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Explorer)
+3`Genehacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Genehacker)
+4–5`Hacker (p. 32)`msgClient(Started to walk the Adult Pre-Fall Path of the Hacker)
+6`Scavenger (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scavenger)
+7`Scientist (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scientist)
+8`Spy (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Spy)
+9–0`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
+--------------------------------------------------------------
+TABLE
+TABLE_6_12_DRY
+100
+01–04`Artist`msgClient(Started to walk the Adult Pre-Fall Path of the ARTIST)
+05–08`Async`msgClient(Started to walk the Adult Pre-Fall Path of the ASYNC)
+09–12`Async Adept`msgClient(Started to walk the Adult Pre-Fall Path of the ASYNC ADEPT)
+13–16`Athletics`msgClient(Started to walk the Adult Pre-Fall Path of the Athletics)
+17–20`Computer Training`msgClient(Started to walk the Adult Pre-Fall Path of the Computer Training)
+21–24`Connected`msgClient(Started to walk the Adult Pre-Fall Path of the Connected)
+25–28`Gearhead`msgClient(Started to walk the Adult Pre-Fall Path of the Gearhead)
+29–32`Heavy Weapons Training`msgClient(Started to walk the Adult Pre-Fall Path of the Heavy Weapons Training)
+33–39`Jack-of-All-Trades`msgClient(Started to walk the Adult Pre-Fall Path of the Jack-of-All-Trades)
+40–46`Lucky`msgClient(Started to walk the Adult Pre-Fall Path of the Lucky)
+47–50`Martial Arts Training`msgClient(Started to walk the Adult Pre-Fall Path of the Martial Arts Training)
+51–54`Mentalist†`msgClient(Started to walk the Adult Pre-Fall Path of the Mentalist)
+55–61`Networker`msgClient(Started to walk the Adult Pre-Fall Path of the Networker)
+62–65`Paramedic`msgClient(Started to walk the Adult Pre-Fall Path of the Paramedic)
+66–69`Slacker`msgClient(Started to walk the Adult Pre-Fall Path of the Slacker)
+70–73`Sneaker`msgClient(Started to walk the Adult Pre-Fall Path of the Sneaker)
+74–77`Social Butterfly`msgClient(Started to walk the Adult Pre-Fall Path of the Social Butterfly)
+78–81`Spacer`msgClient(Started to walk the Adult Pre-Fall Path of the Spacer)
+82–85`Student`msgClient(Started to walk the Adult Pre-Fall Path of the Student)
+86–89`Survival Training`msgClient(Started to walk the Adult Pre-Fall Path of the Survival Training)
+90–93`Tech Training`msgClient(Started to walk the Adult Pre-Fall Path of the Tech Training)
+94–00`Weapons Training`msgClient(Started to walk the Adult Pre-Fall Path of the Weapons Training)
