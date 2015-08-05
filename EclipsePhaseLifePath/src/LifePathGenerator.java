@@ -165,6 +165,35 @@ public class LifePathGenerator {
 					
 				}
 				
+				// this version does multiple dice and is forced (player cannot choose)
+				while (effect.contains("simpRollDice("))
+				{
+					int idx = effect.indexOf("simpRollDice(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "simpRollDice(" + insides + ")";
+
+					String[] subParts = Utils.splitCommands(insides);
+					
+					if (subParts.length != 2 || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for simpRollDice but lacks the correct format");
+					}
+					
+					int result = 0;
+					int numDice = Integer.parseInt(subParts[0]);
+					int numSides = Integer.parseInt(subParts[1]);
+					
+					for (int x = 0; x < numDice; x++)
+					{
+						result += rollDice(numSides,"",true);
+					}
+					
+					String newStr = ""+result;
+					effect = effect.replace(oldStr, newStr);
+				}
+				
 				
 				// for best results this should be one of the last (or the last) preprocessing effect run
 				while (effect.contains("concat("))
@@ -183,6 +212,31 @@ public class LifePathGenerator {
 					}
 					
 					String newStr = subParts[0] + subParts[1];
+					effect = effect.replace(oldStr, newStr);
+
+					
+				}
+				
+				// same with this, this needs to go near the end
+				while (effect.contains("mult("))
+				{
+					int idx = effect.indexOf("mult(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "mult(" + insides + ")";
+
+					String[] subParts = Utils.splitCommands(insides);
+					
+					if (subParts.length != 2  || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for mult but lacks the correct format");
+					}
+					
+					int p1 = Integer.parseInt(subParts[0]);
+					int p2 = Integer.parseInt(subParts[1]);
+					
+					String newStr = ""+(p1*p2);
 					effect = effect.replace(oldStr, newStr);
 
 					
@@ -985,9 +1039,13 @@ public class LifePathGenerator {
 	<skillname>[<specialization>] <number>
 	<skillname>: <subtype> [<specialization>] <number>
 
+	Preprocessing Commands (ran before others):
 	!RANDSKILL! => pick random valid skill character has
 	!RANDAPT! => pick random valid Aptitude character has  
-	getVar(<name) will substitute in during preprocessing
+	getVar(<name>) will substitute in during preprocessing
+	rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
+	simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
+	
 
 	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
 	\; is often similarly used for nested commands
