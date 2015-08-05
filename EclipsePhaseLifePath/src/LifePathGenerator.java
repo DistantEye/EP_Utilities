@@ -699,10 +699,11 @@ public class LifePathGenerator {
 						}
 					}
 					
-					if (subparts.length == 2 )
-					{						
-						Package temp = (Package)DataProc.getDataObj(subparts[1]); 
-						
+					Package temp = (Package)DataProc.getDataObj(subparts[1]); 
+					
+					// we default to PP1 if the specified PP doesn't exist
+					if (subparts.length == 2 || !temp.getEffectsTree().containsKey(subparts[1]))
+					{												
 						String pkgEffect = temp.getEffects(1);						
 						
 						UIObject.statusUpdate("Package added (PP1): " + temp.getName() + " : " + temp.getDescription());
@@ -716,8 +717,6 @@ public class LifePathGenerator {
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
-						
-						Package temp = (Package)DataProc.getDataObj(subparts[1]); 
 						
 						int PP = Integer.parseInt(subparts[2]);
 						
