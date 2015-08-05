@@ -930,7 +930,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("func"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 2 )
+					if (subparts.length < 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -939,7 +939,16 @@ public class LifePathGenerator {
 						if (DataProc.dataObjExists(subparts[1]) && DataProc.getDataObj(subparts[1]).getType().equals("function"))
 						{
 							Function temp = (Function)DataProc.getDataObj(subparts[1]);
-							this.runEffect(temp.getEffect(), "");
+							
+							String effectStr = temp.getEffect();
+							
+							for (int x = 2; x < subparts.length; x++)
+							{
+								int idx = x-1; // we start with looking to replace &1&
+								effectStr = effectStr.replaceAll("&" + idx + "&", subparts[x]);
+							}
+							
+							this.runEffect(effectStr, "");
 						}
 						else
 						{
@@ -1049,7 +1058,8 @@ public class LifePathGenerator {
 	Preprocessing Commands (ran before others):
 	!RANDSKILL! => pick random valid skill character has
 	!RANDAPT! => pick random valid Aptitude character has  
-	getVar(<name>) will substitute in during preprocessing
+	concat(<value1>,<value2>) (appends value2 to the end of value1)
+	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 	rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
 	simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
 	
@@ -1095,10 +1105,9 @@ public class LifePathGenerator {
 	extendedChoice(Text,0=effect/1=effect/2=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
 	if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
 	msgClient(<message>)					(says something to the UI about character changes)
-	
-	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 	setVar(<name>,<value>)
-	concat(<value1>,<value2>) (appends value2 to the end of value1)
+	func(<name>)
+	func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
 	
 	Conditions:
 	?hastrait(trait)
