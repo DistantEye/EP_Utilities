@@ -736,7 +736,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("rep"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 3)
+					if (subparts.length != 3 && subparts.length != 4)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -751,6 +751,14 @@ public class LifePathGenerator {
 						if (! Utils.isInteger(subparts[2]) )
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (subparts.length == 4)
+						{	
+							if (!this.resolveConditional(subparts[3], subparts))
+							{
+								throw new IllegalArgumentException("Poorly formated effect, conditional is not true : " + subparts[3]);
+							}
 						}
 						
 						playerChar.incRepValue(subparts[1], Integer.parseInt(subparts[2]));
@@ -1080,6 +1088,7 @@ public class LifePathGenerator {
 	package(<name>)				(add package -- assume 1 PP if it needs a value)
 	package(<name>,<value>)		(add package of a certain PP value)
 	rep(<type>,<value>)
+	rep(<type>,<value>,<conditional>)	(as with others, conditional must be true for the command to work)
 	credit(<value>)
 	psichi(<name>)				(can use ?1?,?2?, etc)
 	psigamma(<name>)
