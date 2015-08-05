@@ -1334,21 +1334,21 @@ TABLE_6
 10
 1–3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(getVar({path}))
 4–6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12)
-7–0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1)
+7–0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}))
 --------------------------------------------------------------
 TABLE
 TABLE_6_1
 10
-1`Table 6.2: Autonomist`nextPath(TABLE_6_2);rollTable(TABLE_6_2)
-2`Table 6.3: Civilian`nextPath(TABLE_6_3);rollTable(TABLE_6_3)
-3`Table 6.4: Criminal`nextPath(TABLE_6_4);rollTable(TABLE_6_4)
-4`Table 6.5: Elite`nextPath(TABLE_6_5);rollTable(TABLE_6_5)
-5`Table 6.6: Enclaver`nextPath(TABLE_6_6);rollTable(TABLE_6_6)
-6`Table 6.7: Indenture`nextPath(TABLE_6_7);rollTable(TABLE_6_7)
-7`Table 6.8: Military`nextPath(TABLE_6_8);rollTable(TABLE_6_8)
-8`Table 6.9: Scientist`nextPath(TABLE_6_9);rollTable(TABLE_6_9)
-9`Table 6.10: Spacer`nextPath(TABLE_6_10);rollTable(TABLE_6_10)
-10`Table 6.11: Techie`nextPath(TABLE_6_11);rollTable(TABLE_6_11)
+1`Table 6.2: Autonomist`nextPath(TABLE_6_2)
+2`Table 6.3: Civilian`nextPath(TABLE_6_3)
+3`Table 6.4: Criminal`nextPath(TABLE_6_4)
+4`Table 6.5: Elite`nextPath(TABLE_6_5)
+5`Table 6.6: Enclaver`nextPath(TABLE_6_6)
+6`Table 6.7: Indenture`nextPath(TABLE_6_7)
+7`Table 6.8: Military`nextPath(TABLE_6_8)
+8`Table 6.9: Scientist`nextPath(TABLE_6_9)
+9`Table 6.10: Spacer`nextPath(TABLE_6_10)
+10`Table 6.11: Techie`nextPath(TABLE_6_11)
 --------------------------------------------------------------
 TABLE
 TABLE_6_2
@@ -1601,10 +1601,31 @@ TABLE_8
 97–98`You rack up an impressive kill score fighting TITAN machines. Gain the Tacnet Sniper trait (p. 86).`trait(Tacnet Sniper)
 99–100`Your willingness to make lives a priority over material things earns you respect. Gain +10 @-rep.`rep(@,10)
 --------------------------------------------------------------
+TABLE
+TABLE_9
+10
+1–2`Faction paragon`func(setTable9PP,3,1);func(setTable9FactionPkg);func(setTable9FocusPkg)
+3–5`Equally balanced`func(setTable9PP,3,3);func(setTable9FactionPkg);func(setTable9FocusPkg)
+6–7`Defined by your actions`func(setTable9PP,1,3);func(setTable9FactionPkg);func(setTable9FocusPkg)
+8–10`You get the job done`func(setTable9PP,1,5);func(setTable9FactionPkg);func(setTable9FocusPkg)
+// We use the functions below because the choices from table 8 can override these numbers, or the packages themselves
 --------------------------------------------------------------
+FUNCTION
+setTable9PP
+if(!hasVar(s9FactionPP),setVar(s9FactionPP,&1&));if(!hasVar(s9FocusPP),setVar(s9FocusPP,&2&))
 --------------------------------------------------------------
+FUNCTION
+setTable9FactionPkg
+if(!hasVar(s9FactionPkg),package(getVar(s9FactionPkg),getVar(s9FactionPP)),rollTable(TABLE_9_2))
 --------------------------------------------------------------
+FUNCTION
+setTable9FocusPkg
+if(!hasVar(s9FocusPkg),package(getVar(s9FocusPkg),getVar(s9FocusPP)),rollTable(TABLE_9_1))
 --------------------------------------------------------------
+TABLE
+TABLE_9_1
+1–6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`
+7–0`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
