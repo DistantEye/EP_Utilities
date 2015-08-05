@@ -606,6 +606,23 @@ public class Skill {
 		return deepCopy;
 	}
 
-	
+	/** 
+	 * Returns whether the passed variable is one of the Skill's categories
+	 * @param name Name of skill, will throw error if not a valid skill
+	 * @param cat Category to search for, such as "Technical"
+	 * @return
+	 */
+	public static boolean hasCategory(String name, String cat)
+	{
+		for (String str : Skill.CreateSkill(name, 1).categories)
+		{
+			if (str.equalsIgnoreCase(cat))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
 }

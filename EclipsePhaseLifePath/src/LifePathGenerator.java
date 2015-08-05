@@ -1037,6 +1037,7 @@ public class LifePathGenerator {
 	Conditions:
 	?hastrait(trait)
 	?hasSkill(skill)
+	?skillIsType(skill,type)  (skill is name of skill, type is a type you want it to be, like Technical
 	?hasBackground
 	?hasHadBackground
 	?hasRolled(number)
@@ -1166,6 +1167,22 @@ public class LifePathGenerator {
 			if (Skill.isSkill(parts[1]))
 			{
 				return playerChar.hasSkill(parts[1]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Skill : " + parts[1] + " does not exist!");
+			}
+		}
+		else if (condNoPrefix.startsWith("skillIsType"))
+		{
+			if (parts.length != 3)
+			{
+				throw new IllegalArgumentException("Invalidly formatted condition " + condition + ")");
+			}
+				
+			if (Skill.isSkill(parts[1]))
+			{
+				return Skill.hasCategory(parts[1], parts[2]);			
 			}
 			else
 			{
