@@ -1339,146 +1339,146 @@ TABLE_6
 TABLE
 TABLE_6_1
 10
-1`Table 6.2: Autonomist`nextPath(TABLE_6_2)
-2`Table 6.3: Civilian`nextPath(TABLE_6_3)
-3`Table 6.4: Criminal`nextPath(TABLE_6_4)
-4`Table 6.5: Elite`nextPath(TABLE_6_5)
-5`Table 6.6: Enclaver`nextPath(TABLE_6_6)
-6`Table 6.7: Indenture`nextPath(TABLE_6_7)
-7`Table 6.8: Military`nextPath(TABLE_6_8)
-8`Table 6.9: Scientist`nextPath(TABLE_6_9)
-9`Table 6.10: Spacer`nextPath(TABLE_6_10)
-10`Table 6.11: Techie`nextPath(TABLE_6_11)
+1`Table 6.2: Autonomist`nextPath(TABLE_6_2);faction(TABLE_9_4)
+2`Table 6.3: Civilian`nextPath(TABLE_6_3);faction(TABLE_9_5)
+3`Table 6.4: Criminal`nextPath(TABLE_6_4);faction(TABLE_9_6)
+4`Table 6.5: Elite`nextPath(TABLE_6_5);faction(TABLE_9_7)
+5`Table 6.6: Enclaver`nextPath(TABLE_6_6);faction(TABLE_9_8)
+6`Table 6.7: Indenture`nextPath(TABLE_6_7);faction(TABLE_9_9)
+7`Table 6.8: Military`nextPath(TABLE_6_8);faction(TABLE_9_10)
+8`Table 6.9: Scientist`nextPath(TABLE_6_9);faction(TABLE_9_11)
+9`Table 6.10: Spacer`nextPath(TABLE_6_10);faction(TABLE_9_12)
+10`Table 6.11: Techie`nextPath(TABLE_6_11);faction(TABLE_9_13)
 --------------------------------------------------------------
 TABLE
 TABLE_6_2
 10
-1`Academic (p. 29)`package(Academic);faction(TABLE_9_4)
-2`Activist (p. 29)`package(Activist);faction(TABLE_9_4)
-3`Bot Jammer (p. 30)`package(Bot Jammer);faction(TABLE_9_4)
-4`Covert Ops (p. 31)`package(Covert Ops);faction(TABLE_9_4)
-5`Explorer (p. 32)`package(Explorer);faction(TABLE_9_4)
-6`Genehacker (p. 32)`package(Genehacker);faction(TABLE_9_4)
-7`Hacker (p. 32)`package(Hacker);faction(TABLE_9_4)
-8`Medic (p. 33)`package(Medic);faction(TABLE_9_4)
-9`Scientist (p. 35)`package(Scientist);faction(TABLE_9_4)
-10`Techie (p. 36)`package(Techie);faction(TABLE_9_4)
+1`Academic (p. 29)`package(Academic)
+2`Activist (p. 29)`package(Activist)
+3`Bot Jammer (p. 30)`package(Bot Jammer)
+4`Covert Ops (p. 31)`package(Covert Ops)
+5`Explorer (p. 32)`package(Explorer)
+6`Genehacker (p. 32)`package(Genehacker)
+7`Hacker (p. 32)`package(Hacker)
+8`Medic (p. 33)`package(Medic)
+9`Scientist (p. 35)`package(Scientist)
+10`Techie (p. 36)`package(Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_6_3
 10
-1`Activist (p. 29)`package(Activist);faction(TABLE_9_5)
-2`Con Artist (p. 30)`package(Con Artist);faction(TABLE_9_5)
-3`Dealer (p. 31)`package(Dealer);faction(TABLE_9_5)
-4`Face (p. 32)`package(Face);faction(TABLE_9_5)
-5`Investigator (p. 33)`package(Investigator);faction(TABLE_9_5)
-6`Journo (p. 33)`package(Journo);faction(TABLE_9_5)
-7`Smart Animal Handler (p. 35)`package(Smart Animal Handler);faction(TABLE_9_5)
-8`Soldier (p. 36)`package(Soldier);faction(TABLE_9_5)
-9`Techie (p. 36)`package(Techie);faction(TABLE_9_5)
-10`Thief (p. 36)`package(Thief);faction(TABLE_9_5)
+1`Activist (p. 29)`package(Activist)
+2`Con Artist (p. 30)`package(Con Artist)
+3`Dealer (p. 31)`package(Dealer)
+4`Face (p. 32)`package(Face)
+5`Investigator (p. 33)`package(Investigator)
+6`Journo (p. 33)`package(Journo)
+7`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
+8`Soldier (p. 36)`package(Soldier)
+9`Techie (p. 36)`package(Techie)
+10`Thief (p. 36)`package(Thief)
 --------------------------------------------------------------
 TABLE
 TABLE_6_4
 10
-1`Assassin (p. 30)`package(Assassin);faction(TABLE_9_6)
-2`Con Artist (p. 30)`package(Con Artist);faction(TABLE_9_6)
-3`Covert Ops (p. 31)`package(Covert Ops);faction(TABLE_9_6)
-4`Dealer (p. 31)`package(Dealer);faction(TABLE_9_6)
-5`Ego Hunter (p. 31)`package(Ego Hunter);faction(TABLE_9_6)
-6`Enforcer (p. 31)`package(Enforcer);faction(TABLE_9_6)
-7`Hacker (p. 32)`package(Hacker);faction(TABLE_9_6)
-8`Pirate (p. 34)`package(Pirate);faction(TABLE_9_6)
-9`Smuggler (p. 35)`package(Smuggler);faction(TABLE_9_6)
-10`Thief (p. 36)`package(Thief);faction(TABLE_9_6)
+1`Assassin (p. 30)`package(Assassin)
+2`Con Artist (p. 30)`package(Con Artist)
+3`Covert Ops (p. 31)`package(Covert Ops)
+4`Dealer (p. 31)`package(Dealer)
+5`Ego Hunter (p. 31)`package(Ego Hunter)
+6`Enforcer (p. 31)`package(Enforcer)
+7`Hacker (p. 32)`package(Hacker)
+8`Pirate (p. 34)`package(Pirate)
+9`Smuggler (p. 35)`package(Smuggler)
+10`Thief (p. 36)`package(Thief)
 --------------------------------------------------------------
 TABLE
 TABLE_6_5
 10
-1`Academic (p. 29)`package(Academic);faction(TABLE_9_7)
-2`Dealer (p. 31)`package(Dealer);faction(TABLE_9_7)
-3–4`Face (p. 32)`package(Face);faction(TABLE_9_7)
-5–6`Icon (p. 33)`package(Icon);faction(TABLE_9_7)
-7`Journo (p. 33)`package(Journo);faction(TABLE_9_7)
-8`Medic (p. 33)`package(Medic);faction(TABLE_9_7)
-9`Psychosurgeon (p. 34)`package(Psychosurgeon);faction(TABLE_9_7)
-10`Scientist (p. 35)`package(Scientist);faction(TABLE_9_7)
+1`Academic (p. 29)`package(Academic)
+2`Dealer (p. 31)`package(Dealer)
+3–4`Face (p. 32)`package(Face)
+5–6`Icon (p. 33)`package(Icon)
+7`Journo (p. 33)`package(Journo)
+8`Medic (p. 33)`package(Medic)
+9`Psychosurgeon (p. 34)`package(Psychosurgeon)
+10`Scientist (p. 35)`package(Scientist)
 --------------------------------------------------------------
 TABLE
 TABLE_6_6
 10
-1`Academic (p. 29)`package(Academic);faction(TABLE_9_8)
-2`Con Artist (p. 30)`package(Con Artist);faction(TABLE_9_8)
-3–4`Dealer (p. 31)`package(Dealer);faction(TABLE_9_8)
-5`Face (p. 32)`package(Face);faction(TABLE_9_8)
-6`Icon (p. 33)`package(Icon);faction(TABLE_9_8)
-7`Investigator (p. 33)`package(Investigator);faction(TABLE_9_8)
-8`Journo (p. 33)`package(Journo);faction(TABLE_9_8)
-9`Medic (p. 33)`package(Medic);faction(TABLE_9_8)
-10`Psychosurgeon (p. 34)`package(Psychosurgeon);faction(TABLE_9_8)
+1`Academic (p. 29)`package(Academic)
+2`Con Artist (p. 30)`package(Con Artist)
+3–4`Dealer (p. 31)`package(Dealer)
+5`Face (p. 32)`package(Face)
+6`Icon (p. 33)`package(Icon)
+7`Investigator (p. 33)`package(Investigator)
+8`Journo (p. 33)`package(Journo)
+9`Medic (p. 33)`package(Medic)
+10`Psychosurgeon (p. 34)`package(Psychosurgeon)
 --------------------------------------------------------------
 TABLE
 TABLE_6_7
 10
-1`Activist (p. 29)`package(Activist);faction(TABLE_9_9)
-2`Bodyguard (p. 30)`package(Bodyguard);faction(TABLE_9_9)
-3`Bot Jammer (p. 30)`package(Bot Jammer);faction(TABLE_9_9)
-4`Con Artist (p. 30)`package(Con Artist);faction(TABLE_9_9)
-5`Enforcer (p. 31)`package(Enforcer);faction(TABLE_9_9)
-6`Pirate (p. 34)`package(Pirate);faction(TABLE_9_9)
-7`Scavenger (p. 35)`package(Scavenger);faction(TABLE_9_9)
-8`Smart Animal Handler (p. 35)`package(Smart Animal Handler);faction(TABLE_9_9)
-9`Smuggler (p. 35)`package(Smuggler);faction(TABLE_9_9)
-10`Thief (p. 36)`package(Thief);faction(TABLE_9_9)
+1`Activist (p. 29)`package(Activist)
+2`Bodyguard (p. 30)`package(Bodyguard)
+3`Bot Jammer (p. 30)`package(Bot Jammer)
+4`Con Artist (p. 30)`package(Con Artist)
+5`Enforcer (p. 31)`package(Enforcer)
+6`Pirate (p. 34)`package(Pirate)
+7`Scavenger (p. 35)`package(Scavenger)
+8`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
+9`Smuggler (p. 35)`package(Smuggler)
+10`Thief (p. 36)`package(Thief)
 --------------------------------------------------------------
 TABLE
 TABLE_6_8
 10
-1`Assassin (p. 30)`package(Assassin);faction(TABLE_9_10)
-2`Bodyguard (p. 30)`package(Bodyguard);faction(TABLE_9_10)
-3`Covert Ops (p. 31)`package(Covert Ops);faction(TABLE_9_10)
-4`Ego Hunter (p. 31)`package(Ego Hunter);faction(TABLE_9_10)
-5`Enforcer (p. 31)`package(Enforcer);faction(TABLE_9_10)
-6`Investigator (p. 33)`package(Investigator);faction(TABLE_9_10)
-7–9`Soldier (p. 36)`package(Soldier);faction(TABLE_9_10)
-10`Spy (p. 36)`package(Spy);faction(TABLE_9_10)
+1`Assassin (p. 30)`package(Assassin)
+2`Bodyguard (p. 30)`package(Bodyguard)
+3`Covert Ops (p. 31)`package(Covert Ops)
+4`Ego Hunter (p. 31)`package(Ego Hunter)
+5`Enforcer (p. 31)`package(Enforcer)
+6`Investigator (p. 33)`package(Investigator)
+7–9`Soldier (p. 36)`package(Soldier)
+10`Spy (p. 36)`package(Spy)
 --------------------------------------------------------------
 TABLE
 TABLE_6_9
 10
-1`Academic (p. 29)`package(Academic);faction(TABLE_9_11)
-2`Explorer (p. 32)`package(Explorer);faction(TABLE_9_11)
-3`Genehacker (p. 32)`package(Genehacker);faction(TABLE_9_11)
-4`Investigator (p. 33)`package(Investigator);faction(TABLE_9_11)
-5`Medic (p. 33)`package(Medic);faction(TABLE_9_11)
-6`Psychosurgeon (p. 34)`package(Psychosurgeon);faction(TABLE_9_11)
-7–8`Scientist (p. 35)`package(Scientist);faction(TABLE_9_11)
-9`Smart Animal Handler (p. 35)`package(Smart Animal Handler);faction(TABLE_9_11)
-10`Techie (p. 36)`package(Techie);faction(TABLE_9_11)
+1`Academic (p. 29)`package(Academic)
+2`Explorer (p. 32)`package(Explorer)
+3`Genehacker (p. 32)`package(Genehacker)
+4`Investigator (p. 33)`package(Investigator)
+5`Medic (p. 33)`package(Medic)
+6`Psychosurgeon (p. 34)`package(Psychosurgeon)
+7–8`Scientist (p. 35)`package(Scientist)
+9`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
+10`Techie (p. 36)`package(Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_6_10
 10
-1`Bot Jammer (p. 30)`package(Bot Jammer);faction(TABLE_9_12)
-2`Ego Hunter (p. 31)`package(Ego Hunter);faction(TABLE_9_12)
-3–4`Explorer (p. 32)`package(Explorer);faction(TABLE_9_12)
-5`Pirate (p. 34)`package(Pirate);faction(TABLE_9_12)
-6`Scavenger (p. 35)`package(Scavenger);faction(TABLE_9_12)
-7`Soldier (p. 36)`package(Soldier);faction(TABLE_9_12)
-8–9`Smuggler (p. 35)`package(Smuggler);faction(TABLE_9_12)
-10`Spy (p. 36)`package(Spy);faction(TABLE_9_12)
+1`Bot Jammer (p. 30)`package(Bot Jammer)
+2`Ego Hunter (p. 31)`package(Ego Hunter)
+3–4`Explorer (p. 32)`package(Explorer)
+5`Pirate (p. 34)`package(Pirate)
+6`Scavenger (p. 35)`package(Scavenger)
+7`Soldier (p. 36)`package(Soldier)
+8–9`Smuggler (p. 35)`package(Smuggler)
+10`Spy (p. 36)`package(Spy)
 --------------------------------------------------------------
 TABLE
 TABLE_6_11
 10
-1`Bot Jammer (p. 30)`package(Bot Jammer);faction(TABLE_9_13)
-2`Explorer (p. 32)`package(Explorer);faction(TABLE_9_13)
-3`Genehacker (p. 32)`package(Genehacker);faction(TABLE_9_13)
-4–5`Hacker (p. 32)`package(Hacker);faction(TABLE_9_13)
-6`Scavenger (p. 35)`package(Scavenger);faction(TABLE_9_13)
-7`Scientist (p. 35)`package(Scientist);faction(TABLE_9_13)
-8`Spy (p. 36)`package(Spy);faction(TABLE_9_13)
-9–0`Techie (p. 36)`package(Techie);faction(TABLE_9_13)
+1`Bot Jammer (p. 30)`package(Bot Jammer)
+2`Explorer (p. 32)`package(Explorer)
+3`Genehacker (p. 32)`package(Genehacker)
+4–5`Hacker (p. 32)`package(Hacker)
+6`Scavenger (p. 35)`package(Scavenger)
+7`Scientist (p. 35)`package(Scientist)
+8`Spy (p. 36)`package(Spy)
+9–0`Techie (p. 36)`package(Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_6_12
@@ -1624,9 +1624,15 @@ if(!hasVar(s9FocusPkg),package(getVar(s9FocusPkg),getVar(s9FocusPP)),rollTable(T
 --------------------------------------------------------------
 TABLE
 TABLE_9_1
-1–6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`
-7–0`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`
+10
+1–6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`if(!hasVar({path}),rollTable(TABLE_6_1));rollTable(getVar({path}),getVar(s9FocusPP))
+7–10`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`rollTable(getVar({path}),getVar(s9FocusPP))
 --------------------------------------------------------------
+TABLE
+TABLE_9_2
+10
+1–6`Go to the faction subtable indicated by the Faction Path entry on the subtable you just used to determine your Focus package.`rollTable(getVar({faction}),getVar(s9FactionPP))
+7–10`Mix it up. Roll on Table 9.3: New Faction Path to determine what subtable to roll on to get your Faction package.`rollTable(TABLE_9_3);rollTable(getVar({faction}),getVar(s9FactionPP))
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
