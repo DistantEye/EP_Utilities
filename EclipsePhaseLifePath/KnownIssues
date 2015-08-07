@@ -4,3 +4,5 @@
 3) No handling of morph bonuses (although you are allowed to key in bonuses manually)
 	1) There is plans for how to handle this in the TODO
 4) No handling when duplicate skills are assigned (should prompt you whether to replace or append)
+5) A lot of choices for rep should be random? But are left to choice via rep(?1? ...
+6) The events for gaining a smart animal or bot aren't limited at all to anything and instead use gear(?1?)

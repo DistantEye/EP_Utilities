@@ -1812,8 +1812,114 @@ TABLE_10
 5–6`Roll another Faction package. Go to Table 9.2: Faction Packages (p. 65).`rollTable(TABLE_9_2)
 7–10`Roll a Customization package. Go to Table 6.12: Customizations (p. 61).`rollTable(TABLE_6_12)
 --------------------------------------------------------------
+FUNCTION
+ROLL_UNTIL_FITS
+rollTable(CHOOSING_A_MORPH);msgClient(Choose 1 on the next prompt if this morph doesn't make sense);setVar(rerollPrompt,?1?);if(?equals(getVar(rerollPrompt),1),func(ROLL_UNTIL_FITS))
 --------------------------------------------------------------
+TABLE
+TABLE_11
+100
+01–03`You are hired by a wealthy private party for some exclusive exoplanet missions. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
+04`You reinvent yourself. Gain +5 to one aptitude and –5 to another aptitude.`setVar(gainingApt,?1?);addApt(getVar(gainingApt),5);addApt(?1?,-5,!equals($1,getVar(gainingApt)))
+05–06`Your employer/collective sends you on a gatecrashing op. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
+07`You score an achievement that leaves you indelibly marked in your faction’s consciousness. Gain the Untarnished Reputation trait (p. 87).`trait(Untarnished Reputation)
+08`You create a major diplomatic incident. Gain the Black Mark (Level 3) trait (p. 149, EP).`trait(Black Mark (Level 3))
+09`You fall victim to a terrorist attack or factional dispute. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+10`The merging of an overdue fork goes poorly, and coincidental inaccessible backups leave you permanently changed. Gain the Botched Merge trait (p. 87).`trait(Botched Merge)
+11–13`You are recruited to aid on a scientific mission. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
+14`In order to keep up with the stress of your responsibilities, you fall into bad habits. Gain the Addiction (Moderate) trait (p. 148, EP).`trait(Addiction (Moderate))
+15`You do the right thing but piss off someone with power in the process. Gain 10 rep in a network of your choice, but also gain the Enemy trait (p. 149, EP).`rep(?!?,10);trait(Enemy)
+16`You use the post-Fall chaos to establish a new identity. Gain a Fake Ego ID (p. 331, EP) for free.`gear(Fake Ego ID)
+17`After an unfortunate incident leads to lack (lost memories due to resleeving from an old backup), you decide security of mind is a worthy investment. Gain the Edited Memories trait (p. 149, EP) and 1 year of backup insurance (p. 330, EP)`trait(Edited Memories);gear(1 year of backup insurance)
+18`After surviving the Fall and then only barely surviving a post-Fall clash, you decide that some self-defense training may be in order. Gain +20 to one Combat skill of your choice.`incSkl(?1?,20,?skillIsType(Combat))
+19`Through a strange set of circumstances, you end up with a rare Delphinium Six petal flower (p. 322, EP).`gear(Delphinium Six petal flower)
+20`You commit a crime, get caught, and suffer the punishment. Gain the Modified Behavior (Level 3) trait (p. 150, EP).`trait(Modified Behavior (Level 3))
+21`You have died enough times that your mind really can’t take it any more. Gain the Phobia Disorder (Thanatophobia) trait (p. 92).`trait(Phobia Disorder (Thanatophobia))
+22–24`You save up and buy yourself a spot on a gatecrashing op. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
+25`An ownerless bot begins following you and never leaves your side. Gain a servitor, saucer, or gnat bot (pp. 345–346, EP) for free. `gear(?1?)
+26`An unknown party leaves you a portable QE comm unit with a high-capacity reservoir (p. 315, EP), telling you only to expect a call in the future. `gear(high-capacity QE comm)
+27`You travel extensively. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+28`You’ve gotten really good at this resleeving thing. Roll randomly on the Choosing a Morph table (p. 44), and gain the Adaptability (Level 1) trait (p. 145, EP).`rollTable(CHOOSING_A_MORPH);trait(Adaptability)
+29`You narrowly avoid death in a disastrous accident. Gain the Danger Sense trait (p. 145, EP).`trait(Danger Sense)
+30`You barely survive a murder attempt. Gain +5 INT.`addApt(INT,5)
+31`A close-call with people out to get you puts you on the defensive. Gain the Informational Control trait (p. 145, Panopticon).`trait(Informational Control)
+32`You’ve grown particular in your taste in morphs. Gain the Right At Home trait (p. 147, EP).`trait(Right at Home)
+33`You fall on hard times. Lose 10,000 credits from your starting credit.`credit(-10000)
+34`You get caught in the cross-fire of a regional conflict. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+35`Your hectic lifestyle has increased your perceptive skills. Gain the Situational Awareness trait (p. 148, EP).`trait(Situational Awareness)
+36`A long string of personal failures has you questioning your own resolve. Lose –5 WIL.`addApt(WIL,-5)
+37`No matter how often your friends warn you, you are promiscuous about your online data. Gain the Data Footprint trait (p. 145, Panopticon).`trait(Data Footprint)
+38`Nothing ever seems to go your way—your cursed luck is legendary. Gain the Bad Luck trait (p. 148, EP).`trait(Bad Luck)
+39`You complete a major project of importance to your work/faction. Gain +10 to one rep score.`rep(?1?,10)
+40`A project of importance to your work/faction fails under your direction. Lose –10 to one rep score.`rep(?1?,-10)
+41`You take up arms in a regional conflict. Gain +10 to one Combat skill.`incSkl(?1?,10,?skillIsType(Combat))
+42`Your work requires you to change your morph. Roll randomly on the Choosing a Morph table (p. 44), but ignore results that don’t fit your most recent path.`func(ROLL_UNTIL_FITS)
+43`You make an unpopular choice that burns many bridges. Gain the Blacklisted trait (p. 149, EP).`trait(Blacklisted)
+44`A friend or relative opts for true death, but bequeaths you their estate. Gain 25,000 credits.`credit(25000)
+45`You are the unfortunate butt of a widespread online meme, but it works to your advantage. Gain the You’re That Guy! trait (p. 145, Panopticon).`trait(You're That Guy!)
+46`You are the unfortunate butt of a widespread online meme, and it continues to haunt you. Gain the Wait, That Was You? trait (p. 147, Panopticon).`trait(Wait, That Was You?)
+47`As transhumanity re-organizes, you find a role in influencing others. Gain +5 SAV.`addApt(SAV,5)
+48`You have difficulty coming to grips with regular resleeving. Gain the Identity Crisis trait (p. 149, EP).`trait(Identity Crisis)
+49`One of your resleeves goes particularly poorly, and now it haunts you. Gain the Morphing Disorder (Level 2) trait (p. 150, EP).`trait(Morphing Disorder (Level 2))
+50`You work hard to establish a solid network. +20 to one Networking skill.`incSkl(?1?,20,?skillIsType(Networking))
+51`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming. `incSkl(?1?,10,?equals($1,Climbing)||?equals($1,Fray)||?equals($1,Free Fall)||?equals($1,Freerunning)||?equals($1,Swimming))
+52`You decide to experiment. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+53`Practice makes perfect, and your hard work pays off. Increase one aptitude by +5.`addApt(?1?,5)
+54`You are the victim of an unfortunate crime. Lose 10,000 credits from your starting credits.`credit(-10000)
+55`Someone steals your identity. Gain the Stolen Identity trait (p. 147, Panopticon).`trait(Stolen Identity)
+56`You play a prominent role in mediating a factional conflict. Gain +20 Protocol.`incSkl(Protocol,20)
+57`You spend a significant portion of your life in one habitat. Gain the Home Turf trait (p. 145, Panopticon).`trait(Home Turf)
+58`You take a bullet for someone you don’t even know. Roll randomly on the Choosing a Morph table (p. 44), and gain +1 Moxie.`rollTable(CHOOSING_A_MORPH);mox(1)
+59`You piss off some powerful people and are made into an example. Gain the Black Mark (Level 1) trait (p. 149, EP).`trait(Black Mark (Level 1))
+60`You make friends with a group of AGIs online. Gain the AGI Affinity trait (p. 82).`trait(AGI Affinity)
+61`Due to a sudden financial crisis, you draw an emergency loan with unfavorable terms from an unforgiving loan shark. Gain the Debt (Level 1) trait (p. 88).`trait(Debt (Level 1))
+62`You commit a serious crime, but get away—for now. Gain the On the Run trait (p. 151, EP).`trait(On the Run)
+63–65`You win the gatecrashing lottery and a free ticket to Pandora. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
+66`You go into business. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur (Level 1))
+67`You become embroiled in a messy professional dispute. Lose –5 to one rep score.`rep(?1?,-5)
+68`You lose a contractual dispute in Extropian space. Gain the Deferred Indenture (Level 1) trait (p. 88).`trait(Deferred Indenture (Level 1))
+69`You rack up some debts and are forced to downgrade your lifestyle. Roll randomly on the Choosing a Morph table (p. 44), but re-roll any morph that is not at least 10 CP cheaper than your current morph.`func(ROLL_UNTIL_FITS)
+70`You decide you need some help. Gain the Established Fork trait (p. 84).`trait(Established Fork)
+71`You run afoul of a criminal cartel agent. You walk away unscathed, but the matter is far from resolved. Gain the Enemy trait (p. 149, EP).`trait(Enemy)
+72`You get stuck with a boring, repetitive job, but at least you get really good at it. Gain one specialization (p. 173, EP) for free. `SklSpec(?1?,?1?)
+73`Doing your part to aid transhumanity’s regrowth, you have a kid. Gain the Dependent trait (p. 88).`trait(Dependent)
+74`You have an unfortunately catastrophic sleeving accident, but the insurance paid well. Start play with 10 points of stress and a random derangement (p. 121), but you may choose your starting morph.`setVar({stress},10);trait(!RAND_DER!);morph(?1?)
+75`You achieve something that the members of your faction will never forget. Gain the Gold Star trait (p. 84).`trait(Gold Star)
+76`You score an impressive win in a public competition. Gain +5 to one rep score.`rep(?1?,5)
+77`You split off an alpha fork to handle an important situation, but it decides not to come back. Gain the Errant Fork trait (p. 89).`trait(Errant Fork)
+78`You take in an abandoned animal. Gain a smart dog, smart monkey, or smart rat (p. 330, EP) for free.`gear(?1?)
+79`You are the victim of a crime, but the perpetrator is caught. Now you hold their indenture contract. Gain the Indenture Holder trait (p. 84).`trait(Indenture Holder)
+80`Everything is going great, but you still somehow manage to fuck up something major in your life. Gain +1 Moxie.`mox(1)
+81`A severe personal failure inspires you to make some radical changes. Gain the Modified Behavior (Level 2) trait (p. 150, EP). `trait(Modified Behavior (Level 2))
+82`You find your one true love. You don’t feel like your full self when you are away from them. Gain the Intense Relationship trait (p. 90).`trait(Intense Relationship)
+83`You team up with a partner to get the job done. Gain the Minion/Partner trait (p. 85).`trait(Minion/Partner)
+84`Someone you respect shows their true colors, and they aren’t pretty. Gain +1 Moxie.`mox(1)
+85`Your exceptional nature is noticed. Gain the Patron trait (p. 146, EP).`trait(Patron)
+86`You get fired/kicked out. Lose 10,000 from your starting credit or –10 rep.`
+87`An established university offers you a steady position. Gain the Tenure trait (p. 86).`
+88`A fork goes missing. It could be nothing, but it was in possession of some compromising information about yourself. Gain the Lost Fork trait (p. 91).`
+89`You fall for the smooth lies of a convincing member of another faction. You realize your error only after the damage is done. Lose 10 rep from the rep network appropriate to your faction.`
+90`A trolling hacker ruins your life but leaves you with sporting goodbye offering. Lose 10 rep in one network of your choice, but gain a kaos AI (p. 332, EP) for free. `
+91`You are forced to resleeve in less-than-favorable conditions and end up with a morph with issues. Roll randomly on the Choosing a Morph table (p. 44), and gain the Aggressive GRM trait (p. 87).`
+92`You fall in with a new crowd—one that will have your back. Gain the Allies trait (p. 145, EP).`
+93`You are part of a group that discovers a derelict ship and makes a great salvaging score. Gain 20,000 credits.`
+94`You join a cooperative project. Gain the Entrepreneur (Level 1) trait (p. 83).`
+95`You fight back against a perceived injustice, but are forced to flee the repercussions. Gain the On the Run trait (p. 151, EP).`
+96`You drop everything to re-evaluate your priorities. Lose −30 to one skill, but gain 50 CP to spend on whatever you wish. `
+97`Unknown to you, someone takes an unfriendly interest in your affairs. Gain the Subverted Mind trait (p. 93).`
+98`You manage to get yourself killed three times in one week. At least you’re getting used to resleeving. Roll randomly on the Choosing a Morph table (p. 44), and gain the Phoenix (Level 2) trait (p. 85). `
+99`Someone leaves you in charge of their spacecraft. Gain the Spacecraft trait (p. 86).`
+100`You are complicit in a faction suffering a major setback. Gain the Black Mark (Level 2) trait (p. 149, EP).`
 --------------------------------------------------------------
+TABLE
+GATECRASHING_EVENT
+100
+
+--------------------------------------------------------------
+TABLE
+FIREWALL_EVENT
+100
+
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
