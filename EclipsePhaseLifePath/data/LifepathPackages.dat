@@ -1626,7 +1626,7 @@ TABLE
 TABLE_9_1
 10
 1–6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`if(!hasVar({path}),rollTable(TABLE_6_1));rollTable(getVar({path}),getVar(s9FocusPP))
-7–10`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`rollTable(getVar({path}),getVar(s9FocusPP))
+7–10`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}),getVar(s9FocusPP))
 --------------------------------------------------------------
 TABLE
 TABLE_9_2
@@ -1801,7 +1801,16 @@ TABLE_9_14
 9`Solarian (p. 28)`package(SOLARIAN,!!X!!)
 10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
 --------------------------------------------------------------
+FUNCTION
+s10Loop
+if(?between(getVar(packageVal),0,9),)
 --------------------------------------------------------------
+TABLE
+TABLE_10
+10
+1–4`Roll another Focus package. Go to Table 9.1: Focus Packages (p. 65).`
+5–6`Roll another Faction package. Go to Table 9.2: Faction Packages (p. 65).`
+7–10`Roll a Customization package. Go to Table 6.12: Customizations (p. 61).`
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1867,6 +1876,11 @@ STEP
 STEP_9
 STEP_10
 runTable(TABLE_9)
+--------------------------------------------------------------
+STEP
+STEP_10
+STEP_11
+func(s10Loop)
 --------------------------------------------------------------
 TABLE
 TABLE_16
