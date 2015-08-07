@@ -141,6 +141,10 @@ public class LifePathGenerator {
 				{
 					effect = effect.replace("!RANDAPT!",playerChar.getRandApt());
 				}
+				while(effect.contains("!RAND_DER!"))
+				{
+					effect = effect.replace("!RAND_DER!",Trait.getRandomDerangement(rng).getName());
+				}
 				while (effect.contains("rollDice("))
 				{
 					int idx = effect.indexOf("rollDice(");
@@ -1058,6 +1062,7 @@ public class LifePathGenerator {
 	Preprocessing Commands (ran before others):
 	!RANDSKILL! => pick random valid skill character has
 	!RANDAPT! => pick random valid Aptitude character has  
+	!RAND_DER! => pick random Derangement
 	concat(<value1>,<value2>) (appends value2 to the end of value1)
 	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 	rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on

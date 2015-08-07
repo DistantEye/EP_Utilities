@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 /**
@@ -136,7 +137,6 @@ public class Trait {
 	}
 
 	/**
-	/**
 	 * Creates a new Trait that is stored statically in the class
 	 * @param input String of format 'TraitName|Description
 	 */
@@ -153,6 +153,19 @@ public class Trait {
 		Trait.traitList.add(temp);
 	}
 	
+	
+	public static Trait getRandomDerangement(SecureRandom rng)
+	{
+		ArrayList<Trait> tempList = new ArrayList<Trait>();
+		for (Trait t : traitList)
+		{
+			if (t.getName().toUpperCase().startsWith("DERANGEMENT"))
+			{
+				tempList.add(t);
+			}
+		}
 		
+		return tempList.get(rng.nextInt(tempList.size()));
+	}
 	
 }

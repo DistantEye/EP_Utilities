@@ -11,4 +11,6 @@ Some short TODO items also exist in the code
 
 Need to make statusMessages to UIObject for most commands, currently it'll just silently plow through	
 	
-Currently working on step 7
+Make Table 11,69's effect more validated rather than lazy
+
+Remember that characters store stress in {stress} variable

@@ -31,7 +31,7 @@ Kinetic Weapons;COO;true;Active,Combat
 Language;INT;true;Knowledge
 Medicine;COG;true;Active,Technical
 Navigation;INT;true;Active,Mental
-Networking;SAV;true;Active,Social
+Networking;SAV;true;Active,Social,Networking
 Palming;COO;true;Active,Physical
 Perception;INT;true;Active,Mental
 Persuasion;SAV;true;Active,Social
@@ -2532,33 +2532,17 @@ increase the test frequency from weekly to daily.
 
 
 
-Personality
-Artifact
-1d10
-roll
-
-1:The
-character experiences a boosted behavior, per Behavioral Control.
-2:The
-character experiences an encouraged behavior, per Behavioral Control.
-3:The
-character experiences an enforced behavior, per Behavioral Control.
-4:The
-character experiences a limited (6-10) behavior, per Behavioral
-Control.
-5:The
-character experiences a blocked (6-10) behavior, per Behavioral
-Control.
-6:The
-character experiences an expunged (6-10) behavior, per
-Behavioral Control.
-7-8:The
-character is affected by an enhanced or reduced personality trait
-(gamemaster choice), per Personality Editing.
-9:The
-character acquires a Positive ego trait.
-0:The
-character acquires a Negative ego trait.
+Personality Artifact
+10
+1:The character experiences a boosted behavior, per Behavioral Control.
+2:The character experiences an encouraged behavior, per Behavioral Control.
+3:The character experiences an enforced behavior, per Behavioral Control.
+4:The character experiences a limited (6-10) behavior, per Behavioral Control.
+5:The character experiences a blocked (6-10) behavior, per Behavioral Control.
+6:The character experiences an expunged (6-10) behavior, per Behavioral Control.
+7-8:The character is affected by an enhanced or reduced personality trait (gamemaster choice), per Personality Editing.
+9:The character acquires a Positive ego trait.
+0:The character acquires a Negative ego trait.
 
 TRAIT:::Phobia Disorder
 Bonus: 10 CP
@@ -3054,8 +3038,7 @@ rust hound, smart cat/dog/hawk/monkey/racoon/rat/wolf, space roach,
 squidling, swarm cat.
 
 TRAIT:::Unique Look
-The
-morph is engineered to stand out in a society with sophisticated
+The morph is engineered to stand out in a society with sophisticated
 cloning and fabrication technology. The exact nature of the unique
 look varies based on the morph. Some employ proprietary technology
 secured by DRM in order to prevent others from copying the exact look
@@ -3075,8 +3058,7 @@ this trait will become de facto representatives of that element of
 society and others will treat them accordingly.
 
 TRAIT:::Very Large Size (Morph Trait)
-The
-morph is huge in size, bigger than many vehicles. It counts as a very
+The morph is huge in size, bigger than many vehicles. It counts as a very
 large target in combat, providing opponents with a +20 modifer
 to hit. Their mass works against them; triple the damage from falling
 or collisions after armor is applied. The morph gains the reach
@@ -3099,8 +3081,7 @@ base, outsystem hover/skimmer, scorcher, siftrunner, small jet,
 SLOTV, Titanian cargo copter, utility helicopter, Venusian hauler.
 
 TRAIT:::Very Small Size (Bots/Creatures Only)
-The
-bot or creature is roughly mouse- or insect-sized. It counts as a
+The bot or creature is roughly mouse- or insect-sized. It counts as a
 very small target in combat; apply a -30 modifer to
 attacks against it. Halve the damage from falling or collisions after
 armor is applied. Small-size opponents have a reach advantage against
@@ -3116,8 +3097,8 @@ are considered to have the Very Small Size trait: bees/ wasps, recon
 fyer/hopper/snake, sky mote, speck.
 
 TRAIT:::Whole Body Apoptosis (Morph Trait)
-This
-morph has been genetically programmed to suffer a sudden and lethal
+Bonus: 0 CP
+This morph has been genetically programmed to suffer a sudden and lethal
 massive cellular failure at some point in the future, usually within
 a given 10 year period, though it is possible to target a specifc
 date, give or take a few months. This modification is favored by
@@ -3128,4 +3109,113 @@ send any fnal messages, or commit any other fnal acts.
 This trait may only be applied to biomorphs (including
 pods).
 Apoptosis may not be initiated voluntarily.
+
+TRAIT:::DERANGEMENT: ANXIETY (MINOR)
 Bonus: 0 CP
+You suffer a panic attack, exhibiting the physiological 
+conditions of fear and worry: sweatiness, racing heart, 
+trembling, shortness of breath, headaches, and so on.
+TRAIT:::DERANGEMENT: AVOIDANCE (MINOR)
+Bonus: 0 CP
+You are psychologically incapable of dealing with the 
+source of the stress or some circumstance related to it, 
+so you avoid it—even covering your ears, curling up 
+in a ball, or shutting off your sensors if you have to.
+TRAIT:::DERANGEMENT: DIZZINESS (MINOR)
+Bonus: 0 CP
+The stress makes you light-headed and disoriented.
+TRAIT:::DERANGEMENT: ECHOLALIA (MINOR)
+Bonus: 0 CP
+You involuntarily repeat words and phrases spoken 
+by others.
+TRAIT:::DERANGEMENT: FIXATION (MINOR)
+Bonus: 0 CP
+You become fixated on something that you did wrong 
+or  some  circumstance  that  led  to  your  stress. You 
+obsess over it, repeating the behavior, trying to fix it, 
+running scenarios through your head and out loud, 
+and so on.
+TRAIT:::DERANGEMENT: HUNGER (MINOR)
+Bonus: 0 CP
+You  are  suddenly  consumed  by  an  irrational  yet 
+overwhelming desire to eat something—perhaps even 
+something unusual.
+TRAIT:::DERANGEMENT: INDECISIVENESS (MINOR)
+Bonus: 0 CP
+You are flustered by the cause of your stress, finding 
+it difficult to make choices or select courses of action.LOGORRHOEA (MINOR)
+Your response to the trauma is to engage in excessive 
+talking and babbling. You don’t shut up.
+TRAIT:::DERANGEMENT: NAUSEA (MINOR)
+Bonus: 0 CP
+The  stress  sickens  you,  forcing  you  to  fight  down 
+queasiness.
+TRAIT:::DERANGEMENT: CHILLS (MODERATE)
+Bonus: 0 CP
+Your body temperature rises, making you feel cold, 
+and shivering sets in. You just can’t get warm.
+TRAIT:::DERANGEMENT: CONFUSION (MODERATE)
+Bonus: 0 CP
+The trauma scrambles your concentration, making 
+you forget what you’re doing, mix up simple tasks, 
+and falter over easy decisions.
+TRAIT:::DERANGEMENT: ECHOPRAXIA (MODERATE)
+Bonus: 0 CP
+You  involuntarily  repeat  and  mimic  the  actions  of 
+others around you.
+TRAIT:::DERANGEMENT: MOOD SWINGS (MODERATE)
+Bonus: 0 CP
+You lose control of your emotions. You switch from 
+ecstasy to tears and back to rage without warning.
+TRAIT:::DERANGEMENT: MUTE (MODERATE)
+Bonus: 0 CP
+The trauma shocks you into speechlessness and a complete inability to effectively communicate.
+TRAIT:::DERANGEMENT: NARCISSISM (MODERATE)
+Bonus: 0 CP
+In the wake of the mental shock, all you can think about 
+is yourself. You cease caring about those around you.
+TRAIT:::DERANGEMENT: PANIC (MODERATE)
+Bonus: 0 CP
+You are overwhelmed by fear or anxiety and immedi-
+ately seek to distance yourself from the cause of the 
+stress.
+TRAIT:::DERANGEMENT: TREMORS (MODERATE)
+Bonus: 0 CP
+You shake violently, making it difficult to hold things 
+or stay still.
+TRAIT:::DERANGEMENT: BLACKOUT (MAJOR)
+Bonus: 0 CP
+You operate on auto-pilot in a temporary fugue state. 
+Later, you will be incapable of recalling what hap-
+pened during this period. (Synthetic shells and info-
+morphs may call up memory records from storage.)
+TRAIT:::DERANGEMENT: FRENZY (MAJOR)
+Bonus: 0 CP
+You have a major freak out over the source of the 
+stress and attack it.
+TRAIT:::DERANGEMENT: HALLUCINATIONS (MAJOR)
+Bonus: 0 CP
+You see, hear, or otherwise sense things that aren’t 
+really there.
+TRAIT:::DERANGEMENT: HYSTERIA (MAJOR)
+Bonus: 0 CP
+You lose control, panicking over the source of the 
+stress. This typically results in an emotional outburst 
+of crying, laughing, or irrational fear.
+TRAIT:::DERANGEMENT: IRRATIONALITY (MAJOR)
+Bonus: 0 CP
+You are so jarred by the stress that your capacity for 
+logical judgment breaks down. You are angered by 
+imaginary offenses, hold unreasonable expectations, 
+or otherwise accept things with unconvincing evidence.
+TRAIT:::DERANGEMENT: PARALYSIS (MAJOR)
+Bonus: 0 CP
+You  are  so  shocked  by  the  trauma  that  you  are 
+effectively frozen, incapable of making decisions or 
+taking action.
+TRAIT:::DERANGEMENT: PSYCHOSOMATIC CRIPPLING (MAJOR)
+Bonus: 0 CP
+The trauma overwhelms you, impairing some part of 
+your physical functioning. You suffer from an inex-
+plicable blindness, deafness, or phantom pain or are 
+suddenly incapable of using a limb or other extremity.
