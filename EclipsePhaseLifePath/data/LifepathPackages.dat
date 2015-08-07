@@ -1239,12 +1239,12 @@ TABLE_3_8
 TABLE
 TABLE_3_9
 10
-1–3`Almost human`package(INFOLIFE: HUMANITIES AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_5);stepskip(STEP_9)/4-10=nextPath(TABLE_6_3))
-4–5`More machine than man`package(INFOLIFE: MACHINE AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_13);stepskip(STEP_9)/4-10=nextPath(TABLE_6_11))
-6–7`Created by and for science`package(INFOLIFE: RESEARCH AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_11);stepskip(STEP_9)/4-10=nextPath(TABLE_6_9))
+1–3`Almost human`package(INFOLIFE: HUMANITIES AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_5);stepskip(STEP_9)/4-10=nextPath(TABLE_6_3));setVar(mercurialType,INFOLIFE)
+4–5`More machine than man`package(INFOLIFE: MACHINE AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_13);stepskip(STEP_9)/4-10=nextPath(TABLE_6_11));setVar(mercurialType,INFOLIFE)
+6–7`Created by and for science`package(INFOLIFE: RESEARCH AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_11);stepskip(STEP_9)/4-10=nextPath(TABLE_6_9));setVar(mercurialType,INFOLIFE)
 8`An experiment gone horribly wrong`roll(10,1-5=package(LOST: DISTURBED CHILD,!!X!!)/6-10=package(LOST: MASKED NORMALCY,!!X!!));morph(Futura);stepskip(STEP_9)
-9`Second-class citizenship was not for you`package(UPLIFT: ESCAPEE,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3)
-10`Living proof that uplift works`package(UPLIFT: STANDARD SPECIMEN,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3)
+9`Second-class citizenship was not for you`package(UPLIFT: ESCAPEE,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar(mercurialType,UPLIFT)
+10`Living proof that uplift works`package(UPLIFT: STANDARD SPECIMEN,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar(mercurialType,UPLIFT)
 --------------------------------------------------------------
 TABLE
 TABLE_3_10
@@ -1634,6 +1634,180 @@ TABLE_9_2
 1–6`Go to the faction subtable indicated by the Faction Path entry on the subtable you just used to determine your Focus package.`rollTable(getVar({faction}),getVar(s9FactionPP))
 7–10`Mix it up. Roll on Table 9.3: New Faction Path to determine what subtable to roll on to get your Faction package.`rollTable(TABLE_9_3);rollTable(getVar({faction}),getVar(s9FactionPP))
 --------------------------------------------------------------
+TABLE
+TABLE_9_3
+10
+1`Table 9.4: Autonomist`setVar({faction},TABLE_9_4)
+2`Table 9.5: Civilian`setVar({faction},TABLE_9_5)
+3`Table 9.6: Criminal`setVar({faction},TABLE_9_6)
+4`Table 9.7: Elite`setVar({faction},TABLE_9_7)
+5`Table 9.8: Enclaver`setVar({faction},TABLE_9_8)
+6`Table 9.9: Indenture`setVar({faction},TABLE_9_9)
+7`Table 9.10: Military`setVar({faction},TABLE_9_10)
+8`Table 9.11: Scientist`setVar({faction},TABLE_9_11)
+9`Table 9.12: Spacer`setVar({faction},TABLE_9_12)
+10`Table 9.13: Techie`setVar({faction},TABLE_9_13)
+--------------------------------------------------------------
+TABLE
+TABLE_9_4
+10 
+1`Anarchist (p. 23)`package(ANARCHIST,!!X!!)
+2`Argonaut (p. 23)`package(ARGONAUT,!!X!!)
+3`Barsoomian (p. 23)`package(BARSOOMIAN,!!X!!)
+4`Brinker (p. 24)`package(BRINKER,!!X!!)
+5`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+6`Europan (p. 24)`package(EUROPAN,!!X!!)
+7`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+8`Ringer (p. 27)`package(RINGER,!!X!!)
+9`Scum (p. 27)`package(SCUM,!!X!!)
+10`Titanian (p. 28)`package(TITANIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_5
+10 
+1`Belter (p. 23)`package(BELTER,!!X!!)
+2`Bioconservative (p. 23)`package(BIOCONSERVATIVE,!!X!!)
+3`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+4`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+5`Lunar (p. 25)`package(LUNAR,!!X!!)
+6`Orbital (p. 26)`package(ORBITAL,!!X!!)
+7`Reclaimer (p. 26)`package(RECLAIMER,!!X!!)
+8`Sifter (p. 27)`package(SIFTER,!!X!!)
+9`Skimmer (p. 27)`package(SKIMMER,!!X!!)
+10`Titanian (p. 28)`package(TITANIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_6
+10 
+1`Anarchist (p. 23)`package(ANARCHIST,!!X!!)
+2`Belter (p. 23)`package(BELTER,!!X!!)
+3`Brinker (p. 24)`package(BRINKER,!!X!!)
+4`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+5`Exhuman (p. 24)`package(EXHUMAN,!!X!!)
+6`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+7`Lunar (p. 25)`package(LUNAR,!!X!!)
+8`Orbital (p. 26)`package(ORBITAL,!!X!!)
+9`Ringer (p. 27)`package(RINGER,!!X!!)
+10`Scum (p. 27)`package(SCUM,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_7
+10 
+1`Bioconservative (p. 23)`package(BIOCONSERVATIVE,!!X!!)
+2`Brinker (p. 24)`package(BRINKER,!!X!!)
+3`Exhuman (p. 24)`package(EXHUMAN,!!X!!)
+4`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+5`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+6`Orbital (p. 26)`package(ORBITAL,!!X!!)
+7`Socialite (p. 28)`package(SOCIALITE,!!X!!)
+8`Precautionist (p. 26)`package(PRECAUTIONIST,!!X!!)
+9`Ultimate (p. 28)`package(ULTIMATE,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_8
+10 
+1`Bioconservative (p. 23)`package(BIOCONSERVATIVE,!!X!!)
+2`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+3`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+4`Jovian (p. 25)`package(JOVIAN,!!X!!)
+5`Lunar (p. 25)`package(LUNAR,!!X!!)
+6`Orbital (p. 26)`package(ORBITAL,!!X!!)
+7`Socialite (p. 28)`package(SOCIALITE,!!X!!)
+8`Preservationist (p. 26)`package(PRESERVATIONIST,!!X!!)
+9`Reclaimer (p. 26)`package(RECLAIMER,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_9
+10 
+1`Anarchist (p. 23)`package(ANARCHIST,!!X!!)
+2`Barsoomian (p. 23)`package(BARSOOMIAN,!!X!!)
+3`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+4`Lunar (p. 25)`package(LUNAR,!!X!!)
+5`Scum (p. 27)`package(SCUM,!!X!!)
+6`Preservationist (p. 26)`package(PRESERVATIONIST,!!X!!)
+7`Reclaimer (p. 26)`package(RECLAIMER,!!X!!)
+8`Sifter (p. 27)`package(SIFTER,!!X!!)
+9`Skimmer (p. 27)`package(SKIMMER,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_10
+10 
+1`Bioconservative (p. 23)`package(BIOCONSERVATIVE,!!X!!)
+2`Brinker (p. 24)`package(BRINKER,!!X!!)
+3`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+4`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+5`Jovian (p. 25)`package(JOVIAN,!!X!!)
+6`Lunar (p. 25)`package(LUNAR,!!X!!)
+7`Orbital (p. 26)`package(ORBITAL,!!X!!)
+8`Reclaimer (p. 26)`package(RECLAIMER,!!X!!)
+9`Precautionist (p. 26)`package(PRECAUTIONIST,!!X!!)
+10`Ultimate (p. 28)`package(ULTIMATE,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_11
+10 
+1`Argonaut (p. 23)`package(ARGONAUT,!!X!!)
+2`Europan (p. 24)`package(EUROPAN,!!X!!)
+3`Exhuman (p. 24)`package(EXHUMAN,!!X!!)
+4`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+5`Nano-Ecologist (p. 26)`package(NANO-ECOLOGIST,!!X!!)
+6`Precautionist (p. 26)`package(PRECAUTIONIST,!!X!!)
+7`Singularity Seeker (p. 27)`package(SINGULARITY SEEKER,!!X!!)
+8`Solarian (p. 28)`package(SOLARIAN,!!X!!)
+9`Titanian (p. 28)`package(TITANIAN,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_12
+10 
+1`Belter (p. 23)`package(BELTER,!!X!!)
+2`Brinker (p. 24)`package(BRINKER,!!X!!)
+3`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+4`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+5`Out’ster (p. 26)`package(OUT`STER,!!X!!)
+6`Scum (p. 27)`package(SCUM,!!X!!)
+7`Ringer (p. 27)`package(RINGER,!!X!!)
+8`Singularity Seeker (p. 27)`package(SINGULARITY SEEKER,!!X!!)
+9`Skimmer (p. 27)`package(SKIMMER,!!X!!)
+10`Solarian (p. 28)`package(SOLARIAN,!!X!!)
+--------------------------------------------------------------
+TABLE_9_13
+10 
+1`Anarchist (p. 23)`package(ANARCHIST,!!X!!)
+2`Argonaut (p. 23)`package(ARGONAUT,!!X!!)
+3`Barsoomian (p. 23)`package(BARSOOMIAN,!!X!!)
+4`Extropian (p. 24)`package(EXTROPIAN,!!X!!)
+5`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+6`Nano-Ecologist (p. 26)`package(NANO-ECOLOGIST,!!X!!)
+7`Sifter (p. 27)`package(SIFTER,!!X!!)
+8`Singularity Seeker (p. 27)`package(SINGULARITY SEEKER,!!X!!)
+9`Titanian (p. 28)`package(TITANIAN,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+TABLE
+TABLE_9_14
+10 
+1`Anarchist (p. 23)`package(ANARCHIST,!!X!!)
+2`Argonaut (p. 23)`package(ARGONAUT,!!X!!)
+3`Brinker (p. 24)`package(BRINKER,!!X!!)
+4`Criminal (p. 24)`package(CRIMINAL,!!X!!)
+5`Europan (p. 24)`package(EUROPAN,!!X!!)
+6`Hypercorp (p. 25)`package(HYPERCORP,!!X!!)
+7`Mercurial: Infolife/Uplift (p. 25)`if(?hasVar(mercurialType),if(?equals(getVar(mercurialType),INFOLIFE),package(MERCURIAL: INFOLIFE,!!X!!),package(MERCURIAL: UPLIFT,!!X!!)),rollTable(TABLE_9_14,!!X!!))
+8`Sapient (p. 27)`package(SAPIENT,!!X!!)
+9`Solarian (p. 28)`package(SOLARIAN,!!X!!)
+10`Venusian (p. 28)`package(VENUSIAN,!!X!!)
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1688,6 +1862,11 @@ STEP
 STEP_8
 STEP_9
 runTable(TABLE_8)
+--------------------------------------------------------------
+STEP
+STEP_9
+STEP_10
+runTable(TABLE_9)
 --------------------------------------------------------------
 TABLE
 TABLE_16
