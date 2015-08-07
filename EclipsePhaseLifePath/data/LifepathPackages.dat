@@ -1803,14 +1803,14 @@ TABLE_9_14
 --------------------------------------------------------------
 FUNCTION
 s10Loop
-if(?between(getVar(packageVal),0,9),)
+if(?between(getVar(packageVal),0,9),rollTable(TABLE_10),func(s10Loop))
 --------------------------------------------------------------
 TABLE
 TABLE_10
 10
-1–4`Roll another Focus package. Go to Table 9.1: Focus Packages (p. 65).`
-5–6`Roll another Faction package. Go to Table 9.2: Faction Packages (p. 65).`
-7–10`Roll a Customization package. Go to Table 6.12: Customizations (p. 61).`
+1–4`Roll another Focus package. Go to Table 9.1: Focus Packages (p. 65).`rollTable(TABLE_9_1)
+5–6`Roll another Faction package. Go to Table 9.2: Faction Packages (p. 65).`rollTable(TABLE_9_2)
+7–10`Roll a Customization package. Go to Table 6.12: Customizations (p. 61).`rollTable(TABLE_6_12)
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1880,7 +1880,37 @@ runTable(TABLE_9)
 STEP
 STEP_10
 STEP_11
-func(s10Loop)
+setVar(s9FocusPP,1);setVar(s9FactionPP,1);func(s10Loop)
+--------------------------------------------------------------
+STEP
+STEP_11
+STEP_12
+runTable(TABLE_11)
+--------------------------------------------------------------
+STEP
+STEP_12
+STEP_13
+if(?hasVar({firewall}),rollTable(FIREWALL_EVENT));if(?hasVar({gatecrashing}),rollTable(GATECRASHING_EVENT))
+--------------------------------------------------------------
+STEP
+STEP_13
+STEP_14
+
+--------------------------------------------------------------
+STEP
+STEP_14
+STEP_15
+stepskip(STEP_15)
+--------------------------------------------------------------
+STEP
+STEP_15
+STEP_16
+stepskip(STEP_16)
+--------------------------------------------------------------
+STEP
+STEP_16
+
+rollTable(TABLE_16);stop()
 --------------------------------------------------------------
 TABLE
 TABLE_16
