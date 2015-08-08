@@ -1975,12 +1975,15 @@ FIREWALL_EVENT
 97–98`Thanks to a particular skill you have, Firewall has consulted with you for years without revealing themselves. They decide to  fill you in on the full story. Gain or increase a Firewall-relevant Knowledge skill (such as Interest: Exsurgents or Academics:  Nanotechnology) by +30.`incSkl(?1?#Firewall relevant skill, particularly Interest or Academics skills#,30)
 99–00`A package you are hired to deliver turns out to be an alien artifact. When it causes problems, you go to a friend of a friend,  who turns out to be a Firewall proxy. They solve the problem, but you fail to make the delivery. Gain the Enemy trait (p. 149, EP).`trait(Enemy)
 --------------------------------------------------------------
---------------------------------------------------------------
---------------------------------------------------------------
---------------------------------------------------------------
---------------------------------------------------------------
---------------------------------------------------------------
---------------------------------------------------------------
+TABLE
+CREDITS
+10
+1`0 credits. You are flat broke, without a penny to your name.`credits(0)
+2`5,000 credits.`credits(5000)
+3–5`10,000 + (1d10 x 1,000) credits`credits(10000);credits(mult(simpRollDice(1,10),1000))
+6–8`20,000 + (1d10 x 1,000) credits`credits(20000);credits(mult(simpRollDice(1,10),1000))
+9`40,000 credits`credits(40000)
+10`50,000 credits`credits(50000)
 --------------------------------------------------------------
 STEP
 STEP_3_0
@@ -2055,7 +2058,7 @@ if(?hasVar({firewall}),rollTable(FIREWALL_EVENT));if(?hasVar({gatecrashing}),rol
 STEP
 STEP_13
 STEP_14
-
+rollTable(CREDITS);msgClient(Pick out gear manually please)
 --------------------------------------------------------------
 STEP
 STEP_14

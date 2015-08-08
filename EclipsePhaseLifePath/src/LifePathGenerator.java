@@ -1091,6 +1091,10 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
+				else if (effect.startsWith("stop"))
+				{
+					UIObject.end();
+				}
 				else
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);

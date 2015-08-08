@@ -99,9 +99,7 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
-		mainWindow.dispose();
-		System.exit(0);
+		// Marks the character gen process as stopped, disabling the buttons that used to advance it
 	}
 	
 	/**
