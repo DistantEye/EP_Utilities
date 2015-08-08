@@ -1,5 +1,5 @@
 skill
-Academics;COG;true;Knowledge
+Academics;COG;true;Knowledge,Academic
 Animal Handling;SAV;true;Active,Social
 Art;INT;true;Knowledge
 Beam Weapons;COO;true;Active,Combat
@@ -36,7 +36,7 @@ Palming;COO;true;Active,Physical
 Perception;INT;true;Active,Mental
 Persuasion;SAV;true;Active,Social
 Pilot;REF;true;Active,Vehicle
-Profession;COG;true;Knowledge
+Profession;COG;true;Knowledge,Profession
 Programming;COG;false;Active,Technical
 Protocol;SAV;true;Active,Social
 Psi Assault;WIL;false;Active,Mental,Psi

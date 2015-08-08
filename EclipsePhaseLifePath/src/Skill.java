@@ -190,7 +190,7 @@ public class Skill {
 		String searchName = name.replaceAll("\\*", ""); // we remove any asterisks that may be there because of book notes
 		for (Skill skl : Skill.skillList)
 		{
-			if (skl.getName().equalsIgnoreCase(searchName) )
+			if (skl.getFullName().equalsIgnoreCase(searchName) )
 			{
 				return true;
 			}
@@ -216,7 +216,7 @@ public class Skill {
 		
 		for (Skill skl : Skill.skillList)
 		{
-			if (skl.getName().equalsIgnoreCase(searchName))
+			if (skl.getFullName().equalsIgnoreCase(searchName))
 			{
 				temp = skl;
 			}
@@ -462,6 +462,23 @@ public class Skill {
 		result += " : " + this.value;
 		
 		return result;
+	}
+	
+	/**
+	 * Returns the full identification for this skill. If it has no subtype, it simply returns the name.
+	 * If it has a subtype, it'll return a proper "name: subtype" string
+	 * @return Returns full skill identifier as a String
+	 */
+	public String getFullName()
+	{
+		if (this.getSubtype().length() > 0)
+		{
+			return this.getName() + ": " + this.getSubtype();
+		}
+		else
+		{
+			return this.getName();
+		}
 	}
 	
 	/**

@@ -363,13 +363,18 @@ public class Character {
 	 * 
 	 * @param skillName Name of the skill the character has
 	 * @param amount Amount to add to the skill, can be negative
-	 * @return True if successful, false if skill could not be found
+	 * @return True if successful, false if skill could not be found or created
 	 */
 	public boolean incSkill(String skillName, int amount) 
 	{
 		if (this.skillList.containsKey(skillName))
 		{
 			this.skillList.get(skillName).addValue(amount, true);
+			return true;
+		}
+		else if (amount > 0)
+		{
+			this.addSkill(Skill.CreateSkill(skillName, amount));
 			return true;
 		}
 		else
@@ -395,7 +400,7 @@ public class Character {
 		else if (Skill.isSkill(skillName))
 		{
 			Skill tempSkl = Skill.CreateSkill(skillName, amount);
-			this.skillList.put(tempSkl.getName(), tempSkl);
+			this.skillList.put(tempSkl.getFullName(), tempSkl);
 			return true;
 		}
 		else
@@ -744,7 +749,7 @@ public class Character {
 	public String getRandSkill()
 	{
 		int idx = LifePathGenerator.rng.nextInt(skillList.size());
-		return ((Skill)skillList.values().toArray()[idx]).getName();
+		return ((Skill)skillList.values().toArray()[idx]).getFullName();
 	}
 	
 	public String getRandApt()

@@ -1895,26 +1895,53 @@ TABLE_11
 83`You team up with a partner to get the job done. Gain the Minion/Partner trait (p. 85).`trait(Minion/Partner)
 84`Someone you respect shows their true colors, and they aren’t pretty. Gain +1 Moxie.`mox(1)
 85`Your exceptional nature is noticed. Gain the Patron trait (p. 146, EP).`trait(Patron)
-86`You get fired/kicked out. Lose 10,000 from your starting credit or –10 rep.`
-87`An established university offers you a steady position. Gain the Tenure trait (p. 86).`
-88`A fork goes missing. It could be nothing, but it was in possession of some compromising information about yourself. Gain the Lost Fork trait (p. 91).`
-89`You fall for the smooth lies of a convincing member of another faction. You realize your error only after the damage is done. Lose 10 rep from the rep network appropriate to your faction.`
-90`A trolling hacker ruins your life but leaves you with sporting goodbye offering. Lose 10 rep in one network of your choice, but gain a kaos AI (p. 332, EP) for free. `
-91`You are forced to resleeve in less-than-favorable conditions and end up with a morph with issues. Roll randomly on the Choosing a Morph table (p. 44), and gain the Aggressive GRM trait (p. 87).`
-92`You fall in with a new crowd—one that will have your back. Gain the Allies trait (p. 145, EP).`
-93`You are part of a group that discovers a derelict ship and makes a great salvaging score. Gain 20,000 credits.`
-94`You join a cooperative project. Gain the Entrepreneur (Level 1) trait (p. 83).`
-95`You fight back against a perceived injustice, but are forced to flee the repercussions. Gain the On the Run trait (p. 151, EP).`
-96`You drop everything to re-evaluate your priorities. Lose −30 to one skill, but gain 50 CP to spend on whatever you wish. `
-97`Unknown to you, someone takes an unfriendly interest in your affairs. Gain the Subverted Mind trait (p. 93).`
-98`You manage to get yourself killed three times in one week. At least you’re getting used to resleeving. Roll randomly on the Choosing a Morph table (p. 44), and gain the Phoenix (Level 2) trait (p. 85). `
-99`Someone leaves you in charge of their spacecraft. Gain the Spacecraft trait (p. 86).`
-100`You are complicit in a faction suffering a major setback. Gain the Black Mark (Level 2) trait (p. 149, EP).`
+86`You get fired/kicked out. Lose 10,000 from your starting credit or –10 rep.`setVar(choice86,?1?#Choose C for -10000 Credit, else will use -10 Rep);if(?equals(getVar(choice86),C),credit(-10000),rep(?1?,-10));remVar(choice86)
+87`An established university offers you a steady position. Gain the Tenure trait (p. 86).`trait(Tenure)
+88`A fork goes missing. It could be nothing, but it was in possession of some compromising information about yourself. Gain the Lost Fork trait (p. 91).`trait(Lost Fork)
+89`You fall for the smooth lies of a convincing member of another faction. You realize your error only after the damage is done. Lose 10 rep from the rep network appropriate to your faction.`rep(?1?#Rep most relevant to your current faction#,-10)
+90`A trolling hacker ruins your life but leaves you with sporting goodbye offering. Lose 10 rep in one network of your choice, but gain a kaos AI (p. 332, EP) for free. `rep(?1?,-10);gear(Kaos AI)
+91`You are forced to resleeve in less-than-favorable conditions and end up with a morph with issues. Roll randomly on the Choosing a Morph table (p. 44), and gain the Aggressive GRM trait (p. 87).`rollTable(CHOOSING_A_MORPH);trait(Aggressive GRM)
+92`You fall in with a new crowd—one that will have your back. Gain the Allies trait (p. 145, EP).`trait(Allies)
+93`You are part of a group that discovers a derelict ship and makes a great salvaging score. Gain 20,000 credits.`credit(20000)
+94`You join a cooperative project. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur (Level 1))
+95`You fight back against a perceived injustice, but are forced to flee the repercussions. Gain the On the Run trait (p. 151, EP).`trait(On the Run)
+96`You drop everything to re-evaluate your priorities. Lose −30 to one skill, but gain 50 CP to spend on whatever you wish. `decSkl(!RANDSKILL!,30);incVar({CP},50)
+97`Unknown to you, someone takes an unfriendly interest in your affairs. Gain the Subverted Mind trait (p. 93).`trait(Subverted Mind)
+98`You manage to get yourself killed three times in one week. At least you’re getting used to resleeving. Roll randomly on the Choosing a Morph table (p. 44), and gain the Phoenix (Level 2) trait (p. 85). `rollTable(CHOOSING_A_MORPH);trait(Phoenix (Level 2))
+99`Someone leaves you in charge of their spacecraft. Gain the Spacecraft trait (p. 86).`trait(Spacecraft)
+100`You are complicit in a faction suffering a major setback. Gain the Black Mark (Level 2) trait (p. 149, EP).`trait(Black Mark (Level 2))
 --------------------------------------------------------------
 TABLE
 GATECRASHING_EVENT
 100
-
+01–20`You go on 1d10 gatecrashing missions, with no major consequences. You do see some cool things, though. Gain +1 Moxie.`mox(1)
+21–48`You serve on 1d10 missions and pick up some new skills. Replace a 1 PP Focus, Faction, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP (p. 32). `msgClient( Replace a 1 PP Focus, Faction, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP)
+49–50`You make a new home on Portal (p. 122, Gatecrashing) or some other exoplanet outpost. `msgClient(You make a new home on Portal (p. 122, Gatecrashing) or some other exoplanet outpost)
+51–52`You go through a gate but never come through on the other side. Start game with 10 points of stress and roll randomly  on the Choosing a Morph table (p. 44).`incVar({stress},10);rollTable(CHOOSING_A_MORPH)
+53–54`You receive some focused training in gate operations. Gain the Infosec (Gate Hacking) specialization   (p. 142, Gatecrashing).`sklspec(Infosec,Gate Hacking)
+55–56`You acquire an alien pet. You’re not allowed to bring it back to the solar system, however. Work with the gamemaster to determine the creature’s characteristics.`gear(alien pet)
+57–58`You find an alien artifact, but they didn’t let you keep it. Gain 20,000 credits.`credit(20000)
+59–60`You discover a new xenocritter and its unique predatory capabilities. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+61–62`Your mission backers upgrade/downgrade your capabilities. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+63–64`You participate in some eye-opening research. Gain +5 COG.`addApt(COG,5)
+65–66`You discover left-behind TITAN machines. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+67–68`You go on a mission and never return. Your sponsors refuse to talk about it. Roll randomly on the Choosing a Morph  table (p. 44).`rollTable(CHOOSING_A_MORPH)
+69–70`Your mission scores a major resource find. Gain 20,000 credits.`credit(20000)
+71–72`You receive some focused training in gate operations. Gain the Interfacing (Gate Operations) specialization (p. 142, Gatecrashing).`sklspec(Interfacing,Gate Operations)
+73–74`You join a semi-successful colonization effort for a year. Gain +20 to one Profession skill of your choice.`Profession: ?1? 20
+75–76`You uncover evidence of a previously unknown but long-dead alien race. Gain +10 to one rep score.`rep(?1?,10)
+77–78`You put in several months of grueling work on a terraforming project. Gain +10 to one Academic, Profession, or Technical skill.`incSkl(?1?,10,?skillIsType(Academic)||?skillIsType(Profession)||?skillIsType(Technical))
+79–80`You severely botch a rescue operation. Lives are lost and stacks are not recovered. Lose 10 rep from the network of your choice. `rep(?1?,-10)
+81–82`You experience something while going through a gate that makes you never want to go through again. Gain the Phobia Disorder (Pandora Gates) trait (p. 92).`trait(Phobia Disorder (Pandora Gates))
+83–84`You participate in a dangerous rescue operation. Gain +10 rep in the network of your choice. `rep(?1?,10)
+85–86`You receive some focused training in gate operations. Gain +20 Academics: Gate Operations (p. 142, Gatecrashing).`incSkl(Academics: Gate Operations,20)
+87–88`You come into possession of your very own blue box (p. 157, Gatecrashing).`gear(Blue Box)
+89–90`You survive a lengthy gatehopping adventure. Gain +20 x-rep (p. 148, Gatecrashing).`rep(x,20)
+91–92`Your mission is sabotaged by an unknown party. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+93–94`You step through a gate and arrive somewhere other than you expected. Your jaunt is adventurous, but you make it back safe. Gain +10 Profession: Gatecrashing skill.`incSkl(Profession: Gatecrashing,10)
+95–96`You receive some focused training in gate operations. Gain the Programming (Gate Interface) specialization (p. 142, Gatecrashing).`sklspec(Programming, Gate Interface)
+97–98`You end up in the middle of an exoplanet property-claim dispute. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
+99–00`You participate in a rescue op that cashes in on a sizable recovery bond. Gain 10,000 credits.`credit(10000)
 --------------------------------------------------------------
 TABLE
 FIREWALL_EVENT
