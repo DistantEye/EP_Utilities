@@ -299,7 +299,7 @@ public class DataProc {
 		
 		if (!effectsList.containsKey(1))
 		{
-			throw new IllegalArgumentException("Incorrect format on package (must contain PP;1 line " + name);
+			throw new IllegalArgumentException("Incorrect format on package (must contain PP;1 package " + name);
 		}
 		
 		dataStore.put(name, new Package(name,desc,effectsList,motiv,specialNotes));
@@ -390,7 +390,7 @@ public class DataProc {
 		// second line is table name
 		String name = lines[1];
 		
-		if (lines.length < 2 || lines[2].length() > 0)
+		if (lines.length < 3 || lines[2].length() == 0)
 		{
 			throw new IllegalArgumentException("Function must have an effects row : " + name);
 		}
