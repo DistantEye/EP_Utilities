@@ -1171,6 +1171,7 @@ public class LifePathGenerator {
 	setVar(<name>,<value>)
 	func(<name>)
 	func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
+	stop()			(marks character generation as over)
 	
 	Conditions:
 	?hastrait(trait)
