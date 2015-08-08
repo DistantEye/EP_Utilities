@@ -75,7 +75,7 @@ public class LifePathGenerator {
 			try
 			{
 			
-				if (DataProc.containsChoice(effect))
+				while (DataProc.containsChoice(effect))
 				{
 						String extraInfo = extraContext;
 						// grab info from the package special notes if it exists
@@ -94,9 +94,11 @@ public class LifePathGenerator {
 							}
 						}
 					
-						// will make dangerous assumption that only one choice prompt exists in effect
+						// TODO this needs to process more than one somehow and also handle the below concern.
+						
+						// will make assumption user knows that choices are resolved left to right
 						// will also remove any asterisks that appeared after since they'll probably interfere
-						effect.replaceAll("\\?([0-9]*)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext));
+						effect.replace("\\?([0-9]+)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo));
 				}
 				
 				// big wall of cases follow.
