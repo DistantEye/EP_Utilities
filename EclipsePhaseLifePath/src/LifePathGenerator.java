@@ -1,5 +1,7 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -33,6 +35,32 @@ public class LifePathGenerator {
 		this.isRolling = isRolling;
 	}	
 	
+	protected String splitChoiceTokens(String input, ArrayList<String> buffer)
+	{
+		Pattern groups = Pattern.compile("\\?([2-9]+)\\?\\**");
+		Matcher m = groups.matcher(input);
+		int val = Integer.parseInt(m.group(1));
+		String match = m.group();
+		
+		// clone effect for every value over 1, so that ?2? leads to two effects with ?1?
+		input = input.replaceFirst(match, match.replaceFirst("\\?" + val + "\\?","?1?"));
+		for (int i = 1; i < val; i++)
+		{
+			buffer.add(input);
+		}
+		
+		ArrayList<String> buffer2 = new ArrayList<String>();
+		
+		for (String str : buffer)
+		{
+			splitChoiceTokens(str,buffer2);
+		}
+		
+		buffer.addAll(buffer2);
+		
+		return input;
+	}
+	
 	/**
 	 * Attempts to execute the effects of the passed in string. Whenever a "step changing" event would happen, returns the effects for that step 
 	 * 
@@ -62,9 +90,19 @@ public class LifePathGenerator {
 		for (String eff : effects)
 		{
 			String tempEff = eff.replace("!!COMMA!!",",");
+				
+			ArrayList<String> buffer = new ArrayList<String>();
 			
-			mainStuff.add(tempEff);
+			// this should handle all cases of choice token splitting, no matter how convulted/nested
+			// "splitting" refers to making high numbered choice tokens like ?3? into three separate effects of ?1?
+			while (tempEff.matches("\\?([2-9]+)\\?\\**"))
+			{
+				tempEff = splitChoiceTokens(tempEff,buffer);								
+			}
+						
+			buffer.add(tempEff);
 			
+			mainStuff.addAll(buffer);
 			
 		}
 		
