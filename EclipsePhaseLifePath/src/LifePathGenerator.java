@@ -132,11 +132,18 @@ public class LifePathGenerator {
 							}
 						}
 					
-						// TODO this needs to process more than one somehow and also handle the below concern.
+						// we look for a context bubble (tells user what you might be wanting them to enter)
+						if (Pattern.matches("#[^#]+#", effect))
+						{							
+							extraInfo = Pattern.compile("#[^#]+#").matcher(effect).group(1);
+							
+							// once done, we remove this from the effect
+							effect = effect.replaceFirst("#[^#]+#", "");
+						}
 						
 						// will make assumption user knows that choices are resolved left to right
 						// will also remove any asterisks that appeared after since they'll probably interfere
-						effect.replace("\\?([0-9]+)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo));
+						mainStuff.set(i, effect.replace("\\?([0-9]+)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo)));
 				}
 				
 				// big wall of cases follow.
@@ -1107,6 +1114,13 @@ public class LifePathGenerator {
 	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 	rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
 	simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
+	
+	?1? can be used to prompt the user to make a choice (will open a text prompt)
+		?2? and ?3? and etc are used as shortcuts which cause the command to split into multiple commands, each with ?1?, a single choice
+		The prompt will automatically use things like tablerow descriptions and package descriptions in the prompt
+		You can manually specify information to appear in the prompt by placing text enclosed in ## . This text will be removed after being read, so doesn't effect
+			normal processing
+		ex: incSkl(?1?#Choose Fray or Climbing#,10,?equals($1,Fray)||?equals($1,Climbing))
 	
 
 	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
