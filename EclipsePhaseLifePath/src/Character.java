@@ -22,7 +22,7 @@ public class Character {
 	private int age;
 	//private String background;
 	private LinkedList<String> allBackgrounds;
-	private String currentMorph;
+	private Morph currentMorph;
 	
 	// todo, fully remove commented variables
 	//private String currentFaction;
@@ -138,6 +138,7 @@ public class Character {
 		this.setVar("{stress}", "");
 		this.setVar("{CR}", "0");
 		this.setVar("{path}", "");
+		this.setVar("{isSynth}", "0");
 		
 		currentTable = "";
 		lastRolls = new LinkedList<Integer>();
@@ -147,7 +148,16 @@ public class Character {
 	// calculates stats like durability and insanity and such
 	public void calcStats()
 	{
-		// this isn't currently implemented
+//		nonAppStats.set("SPD", 1);
+//		nonAppStats.set("DUR", 0);
+//		nonAppStats.set("WT", 0);
+//		nonAppStats.set("DR", 0);
+//		nonAppStats.set("LUC", 0);
+//		nonAppStats.set("TT", 0);
+//		nonAppStats.set("IR", 0);
+//		nonAppStats.set("INIT", 1);
+//		nonAppStats.set("DB", 0);
+		
 	}
 	
 	public String toString()
@@ -525,7 +535,7 @@ public class Character {
 	/**
 	 * @return the currentMorph
 	 */
-	public String getCurrentMorph() 
+	public Morph getCurrentMorph() 
 	{
 		return currentMorph;
 	}
@@ -533,7 +543,7 @@ public class Character {
 	/**
 	 * @param currentMorph the currentMorph to set
 	 */
-	public void setCurrentMorph(String currentMorph) 
+	public void setCurrentMorph(Morph currentMorph) 
 	{
 		this.currentMorph = currentMorph;
 	}

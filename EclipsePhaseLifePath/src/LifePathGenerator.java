@@ -478,7 +478,15 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0)
 					{
-						playerChar.setCurrentMorph(subparts[1]);
+						if (Morph.exists(subparts[1]))
+						{
+							playerChar.setCurrentMorph(Morph.createMorph(subparts[1]));
+						}
+						else
+						{
+							throw new IllegalArgumentException("Morph does not exist : " + subparts[1]);
+						}
+						
 					}
 					else
 					{

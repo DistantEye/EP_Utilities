@@ -106,6 +106,17 @@ public class DataProc {
 			{
 				addPackage(chunk);
 			}
+			else if (chunk[0].equalsIgnoreCase("morph") && chunk.length > 1)
+			{
+				if (chunk.length >= 4)
+				{
+					
+				}
+				else
+				{
+					throw new IllegalArgumentException("Not enough lines for a valid morph at " + fileLineNumber);
+				}
+			}
 			else if (chunk[0].equalsIgnoreCase("table") && chunk.length > 1)
 			{
 				addTable(chunk);

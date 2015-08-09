@@ -560,7 +560,7 @@ public class LifePathUI implements UI {
 		currChar.setName(getTextF("Character Name").getText());
 		
 		// set morph and background
-		getTextF("Morph").setText(currChar.getCurrentMorph());
+		getTextF("Morph").setText(currChar.getCurrentMorph().getName());
 		getTextF("Background").setText(currChar.getBackground());
 		
 		int[] stats = new int[7];
