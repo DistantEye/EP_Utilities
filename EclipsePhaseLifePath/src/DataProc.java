@@ -108,14 +108,7 @@ public class DataProc {
 			}
 			else if (chunk[0].equalsIgnoreCase("morph") && chunk.length > 1)
 			{
-				if (chunk.length >= 4)
-				{
-					
-				}
-				else
-				{
-					throw new IllegalArgumentException("Not enough lines for a valid morph at " + fileLineNumber);
-				}
+				addMorph(chunk);
 			}
 			else if (chunk[0].equalsIgnoreCase("table") && chunk.length > 1)
 			{
@@ -127,59 +120,7 @@ public class DataProc {
 			}
 			else if (chunk[0].equalsIgnoreCase("trait") && chunk.length > 1)
 			{
-				String nextTrait = "";
-				int idx = 0;
-				int startIdx = 0;
-				int endIdx = 0;
-				
-				// this trait is multiline so we have to rejoin the string array
-				String chunkStr = Utils.joinStr(chunk);
-				
-				do 
-				{
-					startIdx = chunkStr.indexOf("TRAIT:::", idx); // we find the next valid Trait
-					
-					// if there wasn't anything found, we're done
-					if (startIdx == -1)
-					{
-						nextTrait = "";
-						break;
-					}
-					
-					endIdx = chunkStr.indexOf("TRAIT:::", startIdx+1); // we look a bit ahead to see the one after it to figure out the endpoint
-					
-					// if we've gotten this far, we have a valid chunk to work on
-					if (endIdx != -1)
-					{
-						// get to the end of the stream
-						nextTrait = chunkStr.substring(startIdx, endIdx);
-						idx = endIdx;
-					}
-					else
-					{
-						// get to the end of the stream
-						nextTrait = chunkStr.substring(startIdx);
-						idx = idx+1; // this will make it fail to find any more traits
-					}
-					
-					// we do some pre processing before feeding in the nextTrait we just generated
-					// this isn't explictly needed but it helps re-emulate the format used in other areas
-					// the hope is to go back later and find a nice way to do this from the start
-					
-					int endFirstLine = nextTrait.indexOf('\n');
-					
-					// we want to make sure we found a valid index and there's stuff after it
-					if (endFirstLine == -1 || nextTrait.length() == (endFirstLine+1))
-					{
-						throw new IllegalArgumentException("Unknown type of data or incorrect formating for Trait chunk : " + nextTrait);
-					}
-					
-					String processedStr = nextTrait.substring(0, endFirstLine) + "|" + nextTrait.substring(endFirstLine+1);
-					
-					Trait.CreateInternalTrait(processedStr);
-					
-				} while ( nextTrait != "");
-
+				addTrait(chunk);
 			}
 			else if (chunk[0].equalsIgnoreCase("sleight") && chunk.length > 1)
 			{
@@ -452,6 +393,96 @@ public class DataProc {
 		String description = lines[cnt++];
 		
 		Sleight.CreateInternalsleight(new String[]{sleightType,isExsurgent,sleightName,activePassive,actionType,range,duration,strainMod,skillUsed,description});
+	}
+	
+	/**
+	 * Adds Trait
+	 * Format (by line):
+	 * 
+	 * Line1	TRAIT:::<name>
+	 * Line2	Bonus: <number> CP
+     * Line3+ 	<description. will read liesuntil end of chunk>
+	 * 
+	 * @param lines List of lines comprising the Trait to be read in
+	 */
+	private static void addTrait(String[] lines)
+	{
+		String nextTrait = "";
+		int idx = 0;
+		int startIdx = 0;
+		int endIdx = 0;
+		
+		// this trait is multiline so we have to rejoin the string array
+		String chunkStr = Utils.joinStr(lines);
+		
+		do 
+		{
+			startIdx = chunkStr.indexOf("TRAIT:::", idx); // we find the next valid Trait
+			
+			// if there wasn't anything found, we're done
+			if (startIdx == -1)
+			{
+				nextTrait = "";
+				break;
+			}
+			
+			endIdx = chunkStr.indexOf("TRAIT:::", startIdx+1); // we look a bit ahead to see the one after it to figure out the endpoint
+			
+			// if we've gotten this far, we have a valid chunk to work on
+			if (endIdx != -1)
+			{
+				// get to the end of the stream
+				nextTrait = chunkStr.substring(startIdx, endIdx);
+				idx = endIdx;
+			}
+			else
+			{
+				// get to the end of the stream
+				nextTrait = chunkStr.substring(startIdx);
+				idx = idx+1; // this will make it fail to find any more traits
+			}
+			
+			// we do some pre processing before feeding in the nextTrait we just generated
+			// this isn't explictly needed but it helps re-emulate the format used in other areas
+			// the hope is to go back later and find a nice way to do this from the start
+			
+			int endFirstLine = nextTrait.indexOf('\n');
+			
+			// we want to make sure we found a valid index and there's stuff after it
+			if (endFirstLine == -1 || nextTrait.length() == (endFirstLine+1))
+			{
+				throw new IllegalArgumentException("Unknown type of data or incorrect formating for Trait chunk : " + nextTrait);
+			}
+			
+			String processedStr = nextTrait.substring(0, endFirstLine) + "|" + nextTrait.substring(endFirstLine+1);
+			
+			Trait.CreateInternalTrait(processedStr);
+			
+		} while ( nextTrait != "");
+	}
+	
+	/**
+	 * Adds Morph
+	 * Format (by line):
+	 * 
+	 * Line1 : MORPH
+	 * Line2 : MorphName
+	 * Line3 : Morph type
+	 * Line4 : More effects string
+	 * Line5+ : Morph Description (will read lines until end of chunk)
+	 * 
+	 * @param lines List of lines comprising the Trait to be read in
+	 */
+	private static void addMorph(String[] lines)
+	{
+		if (lines.length >= 4)
+		{
+			
+		}
+		else
+		{
+			throw new IllegalArgumentException("Not enough lines for a valid morph at " + fileLineNumber);
+		}
 	}
 	
 	/**
