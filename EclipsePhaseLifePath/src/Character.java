@@ -134,6 +134,9 @@ public class Character {
 		
 		this.setVar("{credits}", "0");
 		this.setVar("{faction}", "");
+		this.setVar("{background}", "");
+		this.setVar("{stress}", "");
+		this.setVar("{CR}", "0");
 		this.setVar("{path}", "");
 		
 		currentTable = "";
