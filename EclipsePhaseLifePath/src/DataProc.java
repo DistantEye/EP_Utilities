@@ -1,10 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -477,6 +479,10 @@ public class DataProc {
 	{
 		if (lines.length >= 4)
 		{
+			String mName = lines[1];
+			String mType = lines[2];
+			String mEffects = lines[3];
+			String mDesc = Utils.joinStr(Arrays.copyOfRange(lines,4,lines.length));
 			
 		}
 		else
