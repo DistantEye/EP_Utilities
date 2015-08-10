@@ -484,6 +484,7 @@ public class DataProc {
 			String mEffects = lines[3];
 			String mDesc = Utils.joinStr(Arrays.copyOfRange(lines,4,lines.length));
 			
+			Morph.CreateInternalMorph(mName + "|" + mType + "|" + mEffects + "|" + mDesc);
 		}
 		else
 		{
