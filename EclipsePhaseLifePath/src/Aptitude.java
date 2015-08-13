@@ -10,6 +10,7 @@ public class Aptitude {
 	private String name;
 	private int value;
 	public static final int APTITUDE_MAX = 40;
+	public static String[] aptitudes = {"COG","COO","INT","REF","SAV","SOM","WIL"};
 	
 	/**
 	 * @param name

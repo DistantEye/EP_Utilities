@@ -1,5 +1,10 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.rmi.CORBA.Util;
 
 /**
  * 
@@ -11,8 +16,14 @@ import java.util.ArrayList;
  */
 public class Morph {
 	private String name;
-	private String description;
 	private String morphType;
+	private String description;
+	private String implants;
+	private HashMap<String,Integer> aptitudeMaximums;
+	private int durability;
+	private int woundThreshold;
+	private int CP;
+	private String creditCost;
 	private String effects;
 	
 	
@@ -21,25 +32,217 @@ public class Morph {
 	
 	/**
 	 * @param name Name of morph
+	 * @param morphType The type of the morph Biomorph, Infomorph, Synth, Pod
 	 * @param description Human readable description of morph
-	 * @param morphType The type of the morph Biomorph, Infomorph, Synthmorph, Pod
+	 * @param implants String containing list of implants for the morph
+	 * @param aptitudeMaxStr String of aptitude maximums. Can be a single value for all or a single default value with caveats
+	 * @param durability int. Durability value of morph (this may include bonuses from implants)
+	 * @param woundThreshold int. Wound threshold for morph
+	 * @param CP int. CP cost for morph
+	 * @param creditCost String containing the cost class and/or minimum credit value for the morph
 	 * @param effects Effects string that models the effects caused by possessing the morph 
 	 */
-	private Morph(String name, String description, String morphType, String effects) {
+	private Morph(String name, String morphType, String description, String implants, String aptitudeMaxStr, int durability, int woundThreshold, int CP,
+					String creditCost, String effects) {
 		super();
 		this.name = name;
-		this.description = description;
 		this.morphType = morphType;
-		this.effects = effects;		
+		this.description = description;
+		this.implants = implants;
+		
+		this.aptitudeMaximums = new HashMap<String,Integer>();
+		
+		// TODO move this to DataProc! Parsing shouldn't be in a constructor
+		if (Utils.isInteger(aptitudeMaxStr))
+		{
+			int max = Integer.parseInt(aptitudeMaxStr);
+			for (String apt : Aptitude.aptitudes)
+			{
+				this.aptitudeMaximums.put(apt, max);
+			}
+		}
+		else
+		{
+			String[] parts = aptitudeMaxStr.split(",");
+			
+			// build a list of all stats to cross off as we go
+			ArrayList<String> aptList = new ArrayList<String>();
+			for (String apt : Aptitude.aptitudes)
+			{
+				aptList.add(apt);
+			}			
+			
+			// we loop over each part of it which will have the different values for some of the stats. Ignore segments that contain "all", but mark that for later
+			String defaultMax = "";
+			for (String str : parts)
+			{
+				if (str.toLowerCase().contains("all others") || str.toLowerCase().contains("all else"))
+				{
+					defaultMax = str;
+				}
+				else
+				{
+					int max = 0;
+					
+					Matcher match = Pattern.compile("[0-9]+").matcher(str);
+					
+					if (!match.matches())
+					{
+						throw new IllegalArgumentException("No integer value found for aptitude maximum in " + str);
+					}
+					else
+					{
+						max = Integer.parseInt(match.group());
+					}
+					
+					for (String apt : Aptitude.aptitudes)
+					{
+						if (str.toUpperCase().contains(apt))
+						{
+							this.aptitudeMaximums.put(apt, max);
+							aptList.remove(apt);
+						}
+					}
+					
+					// now we process the defaultMax part, throwing an error if it doesn't exist
+					if (defaultMax.length() == 0)
+					{
+						throw new IllegalArgumentException("No default 'all others' value found for aptitude maximum in " + aptitudeMaxStr);
+					}
+					else
+					{
+						max = 0;
+						
+						match = Pattern.compile("[0-9]+").matcher(defaultMax);
+						
+						if (!match.matches())
+						{
+							throw new IllegalArgumentException("No integer value found for aptitude maximum in " + defaultMax);
+						}
+						else
+						{
+							max = Integer.parseInt(match.group());
+							
+							for (String apt : aptList)
+							{
+								this.aptitudeMaximums.put(apt, max);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		this.durability = durability;
+		this.woundThreshold = woundThreshold;
+		this.CP = CP;
+		this.creditCost = creditCost;
+		this.effects = effects;
 	}
 	
 	private Morph(Morph t)
 	{
 		super();
 		this.name = t.name;
-		this.description = t.description;
 		this.morphType = t.morphType;
+		this.description = t.description;
+		this.implants = t.implants;
+		
+		this.aptitudeMaximums = new HashMap<String,Integer>();
+		for (String key : t.aptitudeMaximums.keySet())
+		{
+			this.aptitudeMaximums.put(key, t.aptitudeMaximums.get(key));
+		}
+		
+		this.durability = t.durability;
+		this.woundThreshold = t.woundThreshold;
+		this.CP = t.CP;
+		this.creditCost = t.creditCost;
 		this.effects = t.effects;
+	}
+	
+	/**
+	 * @return the implants
+	 */
+	public String getImplants() {
+		return implants;
+	}
+
+	/**
+	 * @param implants the implants to set
+	 */
+	public void setImplants(String implants) {
+		this.implants = implants;
+	}
+
+	/**
+	 * @return the effects
+	 */
+	public String getEffects() {
+		return effects;
+	}
+
+	/**
+	 * @param effects the effects to set
+	 */
+	public void setEffects(String effects) {
+		this.effects = effects;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the morphType
+	 */
+	public String getMorphType() {
+		return morphType;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @return the aptitudeMaximums
+	 */
+	public HashMap<String, Integer> getAptitudeMaximums() {
+		return aptitudeMaximums;
+	}
+
+	/**
+	 * @return the durability
+	 */
+	public int getDurability() {
+		return durability;
+	}
+
+	/**
+	 * @return the woundThreshold
+	 */
+	public int getWoundThreshold() {
+		return woundThreshold;
+	}
+
+	/**
+	 * @return the cP
+	 */
+	public int getCP() {
+		return CP;
+	}
+
+	/**
+	 * @return the creditCost
+	 */
+	public String getCreditCost() {
+		return creditCost;
 	}
 
 	/**
@@ -109,66 +312,23 @@ public class Morph {
 	{
 		return this.name;
 	}
-	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @return the effects
-	 */
-	public String getEffects() {
-		return effects;
-	}
-
-	/**
-	 * @param effects the effects to set
-	 */
-	public void setEffects(String effects) {
-		this.effects = effects;
-	}
-	
-	/**
-	 * @return the morphType
-	 */
-	public String getMorphType() {
-		return morphType;
-	}
-
-	/**
-	 * @param morphType the morphType to set
-	 */
-	public void setMorphType(String morphType) {
-		this.morphType = morphType;
-	}
 
 	/**
 	 * Creates a new Morph that is stored statically in the class.
 	 * 
 	 * isSynth is a true/false field
-	 * @param input String of format 'MorphName|Description|MorphType|Effects
+	 * @param input String[] {name, morphType, description, implants, aptitudeMaxStr, durability, woundThreshold, CP, creditCost, effects}
 	 */
-	public static void CreateInternalMorph(String input)
+	public static void CreateInternalMorph(String[] parts)
 	{
-		String[] parts = input.split("\\|");
-		
-		if (parts.length != 4 )
+		if (parts.length != 10 || !Utils.isInteger(parts[5]) || !Utils.isInteger(parts[6]) || !Utils.isInteger(parts[7]))
 		{
-			throw new IllegalArgumentException("Invalidly formatted Morph string : " + input);
+			throw new IllegalArgumentException("Invalidly formatted Morph string[] : " + Utils.joinStr(parts,","));
 		}
 		
 		
-		Morph temp = new Morph(parts[0],parts[1], parts[2],parts[3]);
+		Morph temp = new Morph(parts[0],parts[1], parts[2],parts[3],parts[4],
+				Integer.parseInt(parts[5]),Integer.parseInt(parts[6]),Integer.parseInt(parts[7]),parts[8],parts[9]);
 		Morph.morphList.add(temp);
 	}
 	

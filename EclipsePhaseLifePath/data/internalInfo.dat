@@ -59,6 +59,1697 @@ g;Criminals;Criminals
 i;Firewall;Firewall
 r;argonauts (also technologists, researchers, and scientists);Scientists
 ------------------------------------------------------------------------------------------
+morph
+<morph>
+<type>Biomorph</type>
+<name>Aquanauts</name>
+<Desc>Aquanauts are environmentally adapted for underwater activities. They have seen a revival on exoplanets with habitable seas and oceans. Their heart rate slows while underwater, their skin includes a layer of blubber that retains heat, they store oxygen in their muscle tissue, and they do not suffer negative health effects from pressure changes. Additionally, their eyes have nictitating membranes and their corneas adjust to counter underwater refraction. Their hands and feet are webbed and they possess a transgenic swim bladder for controlling buoyancy. They can safely descend to about 200 meters depth (roughly 6 atmospheres of pressure) without suffering narcotic effects or other diving problems.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Respiration, Gills, Sonar, Swim Bladder, Temperature Tolerance (Improved Cold), Toxin Filters</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, +10 SOM, +5 to one other aptitude of the player’s choice, +10 Swimming skill</Advantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Ariel</name>
+<Desc>The surprising number of transhumans who chose to sleeve in Titan-adapted hulder morphs encouraged designers on Profunda to develop a Titan-adapted ﬂyer. While the sturdy hulder morph is designed for nomadic herders, the ariel morph is designed by people who wish to survive by hunting. Individuals sleeved in the ariel morph can hunt and eat Titanian caribou, but they most often eat the smaller rabbit-like creatures that Profunda designers have also recently designed to live on Titan. Ariel morphs have exotic-looking heads similar to those of hulder morphs, but they also possess sleek and streamlined humanoid bodies with four limbs and a pair of bat-like wings.
+These morphs have also been used by a few daring transhumans to explore the upper cloud layers of both Saturn and Uranus.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Claws, Cortical Stack, Direction Sense, Enhanced Vision, Long-Term Life Support, Low Pressure Tolerance, Oxygen Reserve, Prehensile Feet, Radiation Sense, T-Ray Emitter, Temperature Tolerance (Cryonic), Wings</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>Flight (Movement Rate 8/40), +5 COG, +5 REF, +5 to two other aptitudes of the player’s choice</Advantages>
+<Disadvantages>Temperature Intolerance (Warm) trait</Disadvantages>
+<Notes>Non-Mammalian Biochemistry trait</Notes>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (minimum 50,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Bouncers</name>
+<Desc>Bouncers are humans genetically adapted for zero-G and microgravity environments. Their legs are more limber, and their feet can grasp as well as their hands.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Grip Pads, Oxygen Reserve, Prehensile Feet</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Limber (Level 1) trait, +5 COO, +5 SOM, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Bruiser</name>
+<Desc>This morph is specifically designed to be large, strong, and physically intimidating. Adopted early on by some sports performers, it quickly became a favorite among criminal cartels and thugs. At 2.5 meters tall, the morph may have difficulty moving comfortably in all but the most open and uncrowded of habitats. This morph’s “claws” extend from its knuckles and are more like reinforced bone brass knuckles.</Desc>
+<Implants>Adrenal Boost, Basic Biomods, Basic Mesh Inserts, Claws, Cortical Stack, Hardened Skeleton</Implants>
+<Aptitude Maximum>30 (SOM 40)</Aptitude Maximum>
+<Durability>60 (includes Hardened Skeleton bonus)</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>+10 </Advantages>Intimidation skill, +15 SOM (includes Hardened Skeleton bonus), +5 REF (+15 with Adrenal Booost), +5 to one other aptitude of the player’s choice
+<Disadvantages>Unattractive (Level 1) trait</Disadvantages>
+<Notes>Large Size trait</Notes>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Cloud Skate</name>
+<Desc>Like the surya and hulder morphs, the cloud skate is another biomorph that pushes the edge of what is possible. It is designed to be able to live in the atmospheres of gas giants, including Jupiter. This morph is shaped roughly like a tailless stingray with a pair of slender arms. The version of the swim bladder used by this morph provides neutral buoyancy in dense atmospheres, preventing it from sinking below a safe depth. Several small outer system collectives are planning to use these morphs to colonize the atmospheres of Saturn and Neptune and are also working on creating versions of animals and plants that can also live in these exotic environments.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Direction Sense, Enhanced Vision, High-G Adaptation, Hydrostatic Pressure Adaptation, Long-Term Life Support, Oxygen Reserve, Radiation Sense, Radar, Swim Bladder, T-Ray Emitter, Temperature Tolerance (Cryonic), Wings</Implants>
+<Movement Rate>Winged (8/40)</Movement Rate>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Flight, +5 COG, +5 REF, +5 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Temperature Intolerance (Warm) trait</Disadvantages>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Crashers</name>
+<Desc>An enhanced version of ruster morphs, crashers are rugged and durable designs capable of weathering a range of harsh environments. They are the ideal biomorph for gatecrashing assignments and are popular among first-in teams. Though pricey compared to other biomorph options, many gatecrashers traveling to less habitable and dangerous environments have found the investment worth it.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Circadian Regulation, Clean Metabolism, Cortical Stack, Direction Sense, Eidetic Memory, Enhanced Respiration, Enhanced Vision, Grip Pads, Hibernation, Medichines, Oxygen Reserve, Toxin Filters, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>Bioweave Armor (Light) (2/3), +5 COG, +10 SOM, +5 to three other aptitudes of the player’s choice</Advantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (Minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Dvergr</name>
+<Desc>Dvergar (plural of dvergr) are biomorphs designed for comfortable operation in high-gravity environments. They feature a reinforced skeletal structure and sturdier muscle masses. They are easily identified by their slightly squat, thick-necked, tough appearances.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, High-G Adaptation</Implants>
+<Aptitude Maximum>35 (40 SOM)</Aptitude Maximum>
+<Durability>45 (includes implant bonuses)</Durability>
+<Wound Threshold>9</Wound Threshold>
+<Advantages>+15 SOM (includes implant bonuses), +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Exalts</name>
+<Desc>Exalt morphs are genetically-enhanced humans, designed to emphasize specific traits. Their genetic code has been tweaked to make them healthier, smarter, and more attractive. Their metabolism is modified to predispose them towards staying fit and athletic for the duration of an extended lifespan.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 COG, +5 to three other aptitudes of the player’s choice</Advantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Faust</name>
+<Desc>This morph is not a publicly known model. It was developed in secret by a small group of unaffiliated async genehackers. It is only available to individuals who discover a connection to this unnamed, underground async network and then download the template from one of several secret mesh sites. The faust is a modified menton morph. Even under the most thorough scans, it appears to be nothing more than a mildly personalized version of that morph.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Cortical Stack, Eidetic Memory, Endocrine Control, Hyper-Linguist, Math Boost</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Psi Chameleon trait, Psi Defense (Level 1) trait, +10 COG, +10 WIL, +5 INT, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>85</CP Cost>
+<Credit Cost>Expensive (minimum 100,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Flats</name>
+<Desc>Flats are baseline unmodified humans, born with all of the natural defects, hereditary diseases, and other genetic mutations that evolution so lovingly applies. Flats are increasingly rare—most died off with the rest of humanity during the Fall. Most new children are splicers—screened and genefixed at the least—except in habitats where flats are treated as second-class citizens and indentured labor.</Desc>
+<Implants>None</Implants>
+<Aptitude Maximum>20</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Disadvantages>None (Genetic Defects trait common)</Disadvantages>
+<CP Cost>0</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Freeman</name>
+<Desc>Many leaders want to ensure loyalty or at least obedience from their citizens, especially recently sleeved infugees. The freeman biomorph offers rulers (some would say tyrants or dictators) a chance to offer citizens a new life without worrying about dissidence. Based on the splicer morph, the freeman is genetically modified to be more obedient, which results in lower Willpower. More insidiously, freeman morphs are genetically modified with a protein that makes their neurons sensitive to light. When combined with an optogenetics module implant, these neurons can be activated and deactivated remotely, enabling a monitoring muse or meshed overseer to control the ego’s behavior. (The specific behavior affected is chosen with each optogenetics module implant.)
+The freeman comes with a specialized monitor AGI installed in a modified ghostrider module. The monitor, usually a modified fork of the tyrant’s muse, watches and reports all suspicious actions taken by the primary ego. The purpose of this implant is often concealed. Citizens who sleeve into a freeman morph are told the implant is a security measure that helps prevent infection from TITAN technology or some similar lie. The module is designed to resist tampering and will report to headquarters the instant it detects a hacker’s intrusion. The monitor muse can manipulate the ego’s behavior or even take control of the morph via its puppet sock, but avoids doing that unless absolutely necessary. Dictators do not want to reveal that their citizens have spies implanted in their skulls, watching them.
+Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to hand responsibility and decision-making over to other parties, such as the Sendero Luminoso Benevolent Dictatorship habitat in the Neptunian Trojans.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Monitor Module, Optogenetics Module, Puppet Sock</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 SAV, +5 to one other aptitude of the player’s choice except WIL</Advantages>
+<Disadvantages>−5 WIL</Disadvantages>
+<CP Cost>10</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Furies</name>
+<Desc>Furies are combat morphs. These transgenic human upgrades feature genetics tailored for endurance, strength, and reflexes, as well as behavioral modifications for aggressiveness and cunning. To offset tendencies for unruliness and macho behavior patterns, furies feature gene sequences promoting pack mentalities and cooperation, and they tend to be biologically female.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Enhanced Vision, Neurachem (Level 1), Toxin Filters</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (neurachem)</Speed Modifier>
+<Durability>50</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>+5 COO, +5 REF, +10 SOM, +5 WIL, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>75</CP Cost>
+<Credit Cost>Expensive (minimum 40,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Futuras</name>
+<Desc>An exalt variant, futura morphs were specially crafted for the “Lost generation.” Tailor-made for accelerated growth and adjusted for confidence, self-reliance, and adaptability, futuras were intended to help transhumanity regain its foothold. These programs proved disastrous and the line was discontinued, but some models remain, viewed by some with distaste and others as collectibles or exotic oddities.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Eidetic Memory, Emotional Dampers</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 COG, +5 SAV, +10 WIL, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive (exceptionally rare; 50,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Ghosts</name>
+<Desc>Ghosts are partially designed for combat applications, but their primary focus is stealth and infiltration. Their genetic profile encourages speed, agility, and reflexes, and their minds are modified for patience and problem-solving.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Adrenal Boost, Enhanced Vision, Grip Pads</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>45</Durability>
+<Wound Threshold>9</Wound Threshold>
+<Advantages>+10 COO, +5 REF, +5 SOM, +5 WIL, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (minimum 40,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Grey</name>
+<Desc>Originally created as part of a fad based on 20th-century images of aliens, the grey morph soon became popular with eccentric scientists and engineers. This morph’s slender and weak-looking body stands only 1.5 meters tall, short compared to modern transhumans. Its distinctive large head and eyes strike many transhumans as disturbing.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Clean Metabolism, Cortical Stack, Eidetic Memory, Emotional Dampers, Enhanced Vision, Math Boost</Implants>
+<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 COG, +5 WIL, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Uncanny Valley trait</Disadvantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive (minimum 30,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Hazer</name>
+<Desc>Hazers are tall, fine-boned morphs, lightly muscled but heavily insulated against loss of body heat. Even with all of their augmentations, hazers can’t survive exposure to the frigid atmosphere of Titan—but they can handle it slightly longer than other morphs. Hazers tend to be fair and slender, with chiseled features. Some have features so angular or elfin that their beauty is alien and unsettling to other human phenotypes. Striking Looks and Uncanny Valley are both common morph traits.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Vision, Radiation Sense, Respirocytes, Temperature Tolerance (Improved Cold)</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 COO, +5 WIL, +5 to two other aptitudes of the player’s choice</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Hibernoids</name>
+<Desc>Hibernoids are transgenic-modified humans with heavily-altered sleep patterns and metabolic processes. Hibernoids have a decreased need for sleep, requiring only 1-2 hours a day on average. They also have the ability to trigger a form of voluntary hibernation, effectively stopping their metabolism and need for oxygen. Hibernoids make excellent long-duration space travelers and habtechs, but these morphs are also favored by personal aides and hypercapitalists with non-stop lifestyles.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Cortical Stack, Hibernation</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 INT, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Hulder</name>
+<Desc>Hulder are engineered for survival in the Titanian wilds. In silhouette, their bodies resemble a long-legged great auk, though viewed up close, the resemblance to a bird ends. Hulder have no feathers, but rather smooth, rubbery charcoal or black skin covering a thick layer of nano-augmented blubber. What resembles a thick bill from a distance is actually a seamless protrusion of the face, packed with sensory augmentations. Hulder stand 2 meters tall and weigh on average 135 kilograms. Their sensory organs, webbed feet, and fingers are all cybernetic.
+Hulder can only tolerate temperatures hospitable to baseline transhumans for short periods of time. In the open, they must balance their bodies’ chemical reservoirs with other hulder and caribou once per month or with a chemical reserve pack. A typical band of 2–6 hulder and 10–20 caribou can go about a year before having to visit a hab or a station like Huvudskär to replenish chemical reserves.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Digging Claws, Direction Sense, Enhanced Vision, Long-Term Life Support, Oxygen Reserve, Radiation Sense, Swim Bladder, T-Ray Emitter, Temperature Tolerance (Cryonic)</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 SOM, +10 WIL, +5 to one aptitude of player’s choice</Advantages>
+<Disadvantages>Temperature Intolerance (Warm)</Disadvantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (Minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Hyperbright</name>
+<Desc>This morph is an attempt by a research team on Bright to create a successor to the menton, making it the most intelligence-enhanced morph ever created. Work on the hyperbright morph has been plagued with difficulties, as the designers attempt to push technical limits, creating a morph that can work at peak efficiency without distraction for long periods of time. In an effort to create a morph that proves their design and earns some positive reputation for their project, the creators took short cuts that caused the morph to have several distinctive and potentially annoying quirks, including an inherent need for drugs to stabilize its exotic neurochemistry. The result is a morph that is instantly recognizable by the brightly colored bony crest along the skull that helps cool its brain. Despite its quirks, the hyperbright has gained a small following among a number of scientists and engineers, especially since it has been optimized for use in the low-g environments of the outer system. When created or used on Bright, this morph is usually also fitted with the parallel processor nanoware.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Cortical Stack, Eidetic Memory, Endocrine Control, Grip Pads, Hyper-Linguist, Math Boost, Mental Speed, Prehensile Feet</Implants>
+<Aptitude Maximum>40 (COG and INT), 30 (all others)</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+15 COG, +10 INT, +5 WIL, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantage>Addiction (minor, to comfurt), Fast Metabolism, Uncanny Valley</Disadvantage>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (Minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Lunar Fliers</name>
+<Desc>This morph is a version of the exalt morph that has been adapted to fly in Earth normal air pressure as long as the gravity is 0.2 g or less. Though this morph is available on other low-g worlds and habitats, it was developed for and is primarily found on Luna. This morph resembles a typical exalt morph, except that it is lightly built, has larger lungs, and has feathered wings with a wingspan of 3 meters. The wings come out of the back torso and leave the morph’s hands and wrists unhindered. The wings may also be folded behind the body.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Clean Metabolism, Cortical Stack, Enhanced Vision, Wings</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>Flight (Movement Rate 8/40), +5 COG, +5 COO, +5 to two other aptitudes—player’s choice</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Martian Alpiners</name>
+<Desc>Alpiners were a relatively common biomorph design on early frontier Mars, when temperatures and atmospheric pressure had not yet risen to present levels. Now they are found predominantly in the city of Olympus, where environmental conditions will always be incredibly harsh. Avid rock climbers and outdoor types also favor this morph, and in recent years it has enjoyed an unusual vogue among chic urbanites going for a rough-and-ready look without sleeving in the more de classe ruster morph.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Direction Sense, Grip Pads, Low Pressure Tolerance, Oxygen Reserve, Respirocytes, Temperature Tolerance (Improved Cold)</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 SOM, +10 Climbing skill</Advantages>
+<Disadvantages>Fast Metabolism trait, Planned Obsolescence trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Mentons</name>
+<Desc>Mentons are genetically modified to increase cognitive abilities, particularly learning ability, creativity, attentiveness, and memory. Rumors exist of super-enhanced mentons with more extreme intelligence mods, but brain-hacking is notoriously difficult, and many attempts to redesign mental faculties result in impaired functioning, instability, or insanity.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Eidetic Memory, Hyper Linguist, Math Boost</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 COG, +5 INT, +5 WIL, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neanderthals</name>
+<Desc>This morph is based on fossilized Neanderthal DNA, uplifted and enhanced to transhuman equivalence. Neanderthal morphs look like muscular humans with a heavy bone structure, distinctively long skulls, heavy brow ridges, and weak chins. Pale complexions and red hair are common features.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COG, +5 INT, +10 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Avians</name>
+<Desc>Neo-avians include ravens, crows, and gray parrots uplifted to human-level intelligence. Their physical sizes are much larger than their non-uplifted cousins (to the size of a human child), with larger heads for their increased brain size. Numerous transgenic modifications have been made to their wings, allowing them to retain limited flight capabilities at 1 g, but giving them a more bat-like physiology so they can bend and fold better, and adding primitive digits for basic tool manipulation. Their toes are also more articulated and now accompanied with an opposable thumb. Neo-avians have adapted well to microgravity environments, and are favored for their small size and reduced resource use.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>25 (20 SOM)</Aptitude Maximum>
+<Durability>20</Durability>
+<Wound Threshold>4</Wound Threshold>
+<Advantages>Beak/Claw Attack (1d10 DV, AP -1, use Unarmed Combat skill), Flight, +5 INT, +10 REF, +5 to one other aptitude of the player’s choice, Neo-avians count as a small target (-10 to hit in combat)</Advantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Beluga</name>
+<Desc>Neo-belugas are the smallest and most numerous of the surviving whale uplifts, ranging 5.5 meters in length on average. They are white-skinned with no dorsal ridge, toothed, and have the distinction of being the only whale that can swim backwards.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Oxygen Reserve</Implants>
+<Movement Rate>Swim (16/40)</Movement Rate>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +5 SOM, +5 to one other aptitude of the player’s choice, +40 Swimming skill, Ramming Attack (1d10 DV)</Advantages>
+<Disadvantages>Neo-belugas lack a sense of smell and count as a large target in combat (+10 to hit)</Disadvantages>
+<CP Cost>45</CP Cost>
+<Credit Cost>Expensive (minimum 40,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Dolphin</name>
+<Desc>The uplifted versions of various dolphin species are very similar to baseline dolphins physiologically. Thanks to the oxygen reserve implant, neo-dolphins can stay underwater for longer (Cerean dolphins have gills installed, as the subcrustal sea has no breathable atmosphere above it). Common neo-dolphin germlines lack hands or other limbs, though cybernetic arms or even bioware enhancements are not uncommon.
+Neo-dolphin morphs are very rare, since there are few habitats that can support them, and they are almost never found apart from aquatic environments.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Oxygen Reserve</Implants>
+<Movement Rate>Swim (16/48)</Movement Rate>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +5 SOM, +5 to one other aptitude of the player’s choice, +40 Swimming skill, Ramming Attack (1d10 DV, use Unarmed Combat skill)</Advantages>
+<Disadvantages>Neo-dolphins lack a sense of smell.</Disadvantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive (minimum 35,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Hominids</name>
+<Desc>Neo-hominids are uplifted chimpanzees, gorillas, and orangutans. All feature enhanced intelligence and bipedal frames.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Prehensile Feet</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +5 SOM, +5 to one other aptitude of the player’s choice, +10 Climbing skill</Advantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Hominid (Gorilla)</name>
+<Desc>To highlight the differences in neo-hominid species, apply the following stats for neo-gorillas. The neo-hominid entry above applies for neo-chimpanzees, neo-bonobos, and neo-orangutans.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Prehensile Feet</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 INT, +10 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Orca</name>
+<Desc>Though colloquially referred to as killer whales, orcas are actually members of the dolphin family. The average neo-orca length is 7 meters for males, 6 meters for females. Males also have larger and more triangular pectoral fins.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Oxygen Reserve</Implants>
+<Movement Rate>Swim (16/60)</Movement Rate>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +10 SOM, +5 to one other aptitude of the player’s choice, +40 Swimming skill, +20 Unarmed Combat skill, Bite Attack (2d10 DV, use Unarmed Combat skill)</Advantages>
+<Disadvantages>Neo-orcas lack a sense of smell and count as a large target in combat (+10 to hit)</Disadvantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 50,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Pig</name>
+<Desc>Uplifted pig morphs are bipedal and feature transgenic hands, feet, and vocal systems. They tend to be slightly shorter than the average transhuman but much stockier. Males grow tusks from their lower jaws.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>20</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Porpoise</name>
+<Desc>Neo-porpoises are smaller but very similar to neo-dolphins and similarly are much like their baseline relatives. They average 2.5 meters in length.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Oxygen Reserve</Implants>
+<Movement Rate>Swim (16/56)</Movement Rate>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>+5 INT, +5 SOM, +5 to one other aptitude of the player’s choice, +50 Swimming skill, Ramming Attack (1d10 DV),</Advantages>
+<Disadvantages>Neo-porpoises lack a sense of smell.</Disadvantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neo-Whale</name>
+<Desc>Less than several hundred neo-whale morphs exist, and the majority remain occupied by their original egos. They are primarily found in Ceres and Atlantica. They are derived from humpback, blue, and sperm whale genetic stock. Humpbacks and blues are baleen whales and require large amounts of krill to survive. Sperm whales are toothed, feeding on fish and squid.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Oxygen Reserve</Implants>
+<Movement Rate>Swim (16/40)</Movement Rate>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>100</Durability>
+<Wound Threshold>20</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +5 SOM, +5 to one other aptitude of the player’s choice, +40 Swimming skill, Ramming Attack (2d10 DV, use Unarmed Combat skill), Bite Attack (4d10 DV, sperm whales only, use Unarmed Combat skill)</Advantages>
+<Disadvantages>Neo-whales lack a sense of smell and count as a very large target in combat (+30 to hit)</Disadvantages>
+<CP Cost>75</CP Cost>
+<Credit Cost>Expensive (exceptionally rare; minimum 75,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Neotenics</name>
+<Desc>Neotenics are transhumans modified to retain a child-like form. They are smaller, more agile, inquisitive, and less resource-depleting, making them ideal for habitat living and spacecraft. Some people find neotenic sleeves distasteful, especially when employed in certain media and sex work capacities.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>20 (SOM), 30 (all else)</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 COO, +5 INT, +5 REF, +5 to one aptitude of the player’s choice; neotenics count as a small target (–10 modifier to hit in combat)</Advantages>
+<Disadvantages>Social Stigma (Neotenic) trait</Disadvantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Nomad</name>
+<Desc>While synthmorphs are the first choice for many gatecrashers, morph designers have made great headway in creating biomorphs suitable for hazardous exoplanets. The nomad biomorph is optimized for operating in desert environments and takes many of its traits from the camel, prompting some observers to mistake the nomad for a pod morph. With an elongated face designed like a camel to trap water vapor in the nostrils as the morph exhales, nomads are clearly off-putting to many bioconservatives. Some models also have camel feet for better travels in sandy dune environments. Nomads are actually quite hefty under normal circumstances, as they are designed to be able to carry large amounts of fat tissue. Their fat tissue can be moved around their body to adapt to high or low temperatures. When nomads are in the field, however, they can become quite skinny, as they survive for months on their fat tissue alone.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Efficient Digestion, Enhanced Respiration, Fat Storage, Medichines, Respirocytes, Temperature Tolerance (Improved Cold), Toxin Filters.</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>45 (includes Respirocytes bonus)</Durability>
+<Wound Threshold>9</Wound Threshold>
+<Advantages>+5 REF, +5 SOM, +5 to one other aptitude of the player’s choice (includes penalties for Efficient Digestion)</Advantages>
+<Disadvantages>Uncanny Valley trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Observer</name>
+<Desc>Observers have their minds enhanced to bolster intuitive, analytical, and investigative capabilities. They are favored by detectives and others with a mind towards details, puzzles, and thin-slicing.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 INT, +5 COG, +5 REF, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Octomorphs</name>
+<Desc>These uplifted octopi sleeves have proven quite useful in zero-gravity environments. They retain eight arms, their chameleon ability to change skin color, ink sacs, and a sharp beak. They also have increased brain mass and longevity, can breathe both air and water, and lack a skeletal structure so they can squeeze through tight spaces. Octomorphs typically crawl along in zero-gravity using their arm suckers and expelling air for propulsion and can even walk on two of their arms in low gravity. Their eyes have been enhanced with color vision, provide a 360-degree field of vision, and they rotationally adjust to keep the slit-shaped pupil aligned with “up.” A transgenic vocal system allows them to speak.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Chameleon Skin</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>8 Arms, Beak Attack (1d10 DV, -1 AP, use Unarmed Combat skill), Ink Attack (blinding, use Exotic Ranged: Ink Attack skill), Limber (Level 2) trait, 360-degree Vision, +30 Swimming skill, +10 Climbing skill, +5 COO, +5 INT, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (minimum 30,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Olympians</name>
+<Desc>Olympians are human upgrades with improved athletic capabilities like endurance, eye-hand coordination, and cardio-vascular functions. Olympians are common among athletes, dancers, freerunners, and soldiers.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, +5 REF, +10 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Remade</name>
+<Desc>The remade are completely redesigned humans: humans 2.0. Their cardiovascular systems are stronger, the digestive tract has been sanitized and restructured to eliminate flaws, and they have otherwise been optimized for good health, smarts, and longevity with numerous transgenic mods. The remade are popular with the ultimates faction. The remade look close to human, but are different in very noticeable and sometimes eerie ways: taller, lack of hair, slightly larger craniums, wider eyes, smaller noses, smaller teeth, and elongated digits.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Clean Metabolism, Cortical Stack, Eidetic Memory, Enhanced Respiration, Temperature Tolerance, Toxin Filters</Implants>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 COG, +5 SAV, +10 SOM, +5 to two other aptitudes of the player’s choice</Advantages>
+<Disadvantages>Uncanny Valley trait</Disadvantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Ring Flyer</name>
+<Desc>Designed for use in Saturn’s magnetic field, this exotic biomorph is also occasionally used around Jupiter, Uranus, and Neptune, as well as having limited use in the Jovian Trojans and Main Belt. Easily recognizable with its slender limbs and round-backed torso, this morph can survive indefinitely in space, acquiring oxygen, water, and trace organic materials from the particles of Saturn’s rings. It can also maneuver around any planet with a magnetic field, ﬂying swiftly and easily in any of these environments.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Enhanced Respiration, Enhanced Vision, Gas Jet System, Grip Pads, Hibernation, Long-Term Life Support, Medichines, Oxygen Reserve, Plasma Sail Implant, Prehensile Feet, Radiation Tolerance, Temperature Tolerance (Cryonic), Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>Bioweave Armor (Light, 2/3), Limber (Level 1) trait, +5 COG, +5 COO, +5 REF, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (Minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Rusters</name>
+<Desc>Adapted for survival with minimum gear in the not-yet-terraformed Martian environment, these transgenic morphs feature insulated skin for more effective thermoregulation and respiratory system improvements to require less oxygen and filter carbon dioxide, among other mods.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Respiration, Temperature Tolerance</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 SOM, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Salamanders</name>
+<Desc>Salamanders are a type of biomorph popular with Solarians. They share some of the physiological traits of suryas, but are unable to survive unprotected in the corona (requiring a solar survival suit, like other biomorphs), and are instead bio-engineered to survive in the protected vacuum of coronal habitats. Their skin is thick, hairless, vaguely reptilian, and mostly black in color, with gold and orange body patterning. Like suryas, salamanders communicate either via wireless transmissions or by “sunspotting”—using their chromatophores to shift light and dark patterns on their skin to form patterns easily comprehensible to other coronal morphs. Salamanders have a wiry, streamlined, swept-back sort of look, a combination of fey and monkey-like. Their heads are also somewhat reptilian, with reflective eyes, no nose, and no mouth.
+Their feet are prehensile, usable just like hands. They lack reproductive organs and capabilities and feature cyberware gas jets on their chest and back for maneuvering in zero g. Many Solarians who normally inhabit suryas will sleeve into salamanders if they need to use humanoid tools or interact with non-Solarians.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Chameleon Skin, Enhanced Vision, Gas Jet System, Medichines, Oxygen Reserve, Prehensile Feet, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>60</Durability>
+<Wound Threshold>12</Wound Threshold>
+<Advantages>Limber (Level 1) trait, Coronal Adaptation trait (solar metabolism only), +5 COO, +5 INT, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Selkie</name>
+<Desc>Selkies look like a human-seal hybrid, and in fact their genetics are aquanaut with heavy splices of seal traits. Their arms are standard human-shaped, but their legs are fused into a pair of hind ﬂippers for powerful swimming. On land, they can stand but have difficulty moving, as they must ﬂop, roll, or hop like a seal. They are adapted for the lack of air, deep cold, and crushing pressure of subcrustal seas.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Echolocation, Enhanced Hearing, Enhanced Vision, Enhanced Respiration, Gills, Hydrostatic Pressure Adaptation, Swim Bladder, Temperature Tolerance (Improved Cold), Toxin Filters</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, +10 SOM, +5 to one other aptitude of the player’s choice, +10 Swimming skill </Advantages>
+<Disadvantages>Movement Rate of 1/4 on land</Disadvantages>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Splicers</name>
+<Desc>Splicers are genefixed humans. Their genome has been cleansed of hereditary diseases and optimized for looks and health, but has not otherwise been substantially upgraded. Splicers make up the majority of transhumanity.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>10</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Surya</name>
+<Desc>Named for a Hindu sun deity, suryas swim freely in the sun’s corona. Looking roughly like whales or orcas, suryas may reach lengths of ten meters or more. They generate powerful magnetic fields that shield them from solar radiation and heat, while allowing them to surf the solar wind and extract ionized particles. Strong bones and connective tissues protect against the crushing solar gravity. Beneath their thick hides are channels of liquid water interleaved with layers of fat which serve to shield the organism from harmful radiation. Engineered medichines repair tissue damaged by radiation and convert hydrogen ions into water.
+A surya’s skin is an extraordinary organ, embedded with chromatophores that allow them to transmit alternating patterns of light and dark for communication. In addition, a lateral line runs down their sides, allowing them to detect the long-period sound waves that reflect off the sun’s lower atmosphere and resonate through the corona’s gas and plasma. Suryas traveling through the transition zone between the corona and the chromosphere use these vibrations to predict and avoid heavy solar weather.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Enhanced Hearing, Enhanced Vision, Lateral Line, Medichines, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>100</Durability>
+<Wound Threshold>20</Wound Threshold>
+<Advantages>+10 COO, +5 REF, +5 SOM, +10 Free Fall skill, Coronal Adaptation trait</Advantages>
+<Disadvantages>Large Target (+10 to hit in combat)</Disadvantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (minimum 30,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Sylphs</name>
+<Desc>Sylph morphs are tailor-made for media icons, elite socialites, XP stars, models, and narcissists. Sylph gene sequences are specifically designed for distinctive good looks. Ethereal and elfin features are common, with slim and lithe bodies. Their metabolism has also been sanitized to eliminate unpleasant bodily odors and their pheromones adjusted for universal appeal.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Clean Metabolism, Cortical Stack, Enhanced Pheromones</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Striking Looks (Level 1) trait, +5 COO, +10 SAV, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Theseus</name>
+<Desc>While there are no sanctioned explorations of Earth, a few daring or greedy transhumans defy the laws to salvage there. Some scavengers and explorers still scour the ruins of habitats that were destroyed during the Fall. Others look for wealth and secrets in the quarantined zones on Luna and Mars. Some simply seek out remaining TITAN machines to destroy, wherever they may be found. The theseus is a popular biomorph for this type of work. Its medichines and nanophages keep the morph protected from most attacks by exsurgent nanotech, and the lack of a cyberbrain makes it less vulnerable to mind hacking. An emergency farcaster allows the user to safely return from situations where both their morph and their cortical stack might be destroyed or corrupted.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Direction Sense, Emergency Farcaster, Enhanced Vision, Low Pressure Tolerance, Medichines, Nanophages, Oxygen Reserve, Radiation Sense, T-Ray Emitter, Temperature Tolerance (Cold), Toxin Filters</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 SOM, +5 WIL, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Biomorph</type>
+<name>Venusian Glider</name>
+<Desc>The glider is designed to survive for many hours in Venus’s unbreathable atmosphere. Tall and thin, with long, strong limbs and a lightweight build, this morph also features gliding membranes that allow it to soar through the upper Venusian atmosphere. It can even gain altitude by riding thermals (which it can see using its enhanced vision). Once Venusian terraforming efforts are complete, an upgraded version of this morph will be able to breathe normally.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Respiration, Enhanced Vision, Gliding Membranes, Grip Pads, Prehensile Feet, Respirocytes</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>Limber (Level 1) trait, +5 REF, +5 SOM, +5 to two other aptitudes of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Ayah</name>
+<Desc>Despite the advances in biotechnology, the hyperelite still need caretakers for their children and infirm. The ayah pod morph is designed to fulfill all nurse and caretaker functions. Rather than trust lower-class transhumans, hyperelites prefer AGI servants sleeved into ayah morphs, especially in polities where AGIs have few, if any, legal rights. Ayahs are almost always female with pleasant but not stunningly beautiful features.
+Most of the enhanced features of an ayah are built under the hood, so to speak. Their enhanced olfactory capabilities help them monitor the health and emotional state of their wards, as well as alert them to potential environmental dangers. Their ability to withstand temperature extremes and survive without air for short periods helps them protect and rescue their charges in an emergency, such as a hull breach or a fire. Ayahs are often modified with bioweave armor and implanted weapons so they can act as a last line of defense against potential attackers.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Smell, Mnemonic Augmentation, Oxygen Reserve, Puppet Sock, Temperature Tolerance, Wrist-Mounted Tools</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 SAV, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Basic Pod</name>
+<Desc>When pods were first introduced, non-specialized models were favored due to their low cost and quicker production time. Basic pods are essentially a lower-cost pod version of a splicer morph. To keep expenses down, this pod has slightly more mechanical parts than most other pods. As a result, it has more obvious cybernetic components.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Puppet Sock</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 to one aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>5</CP Cost>
+<Credit Cost>Moderate</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Chickcharnie</name>
+<Desc>Another creation by the mad geniuses of the exoplanet Fortean, this morph is a modified version of a resurrected species. The extinct </Desc>
+<em>Tyto pollens</em>was a large pre-Columbian flightless ground owl species in the Caribbean. The chickcharnie was rumored to be a supernatural variant of this bird that haunted the forests bestowing boons or curses upon travelers depending on how they treated it. The Fortean version of the chickcharnie is best described as a humanoid owl. Over one meter in height, it is bipedal but stands shorter than humans. Though winged, it is flightless except in very low grav environments and microgravity. Its wing design, however, incorporates a functional set of clawed hands. The chickcharnie is growing in popularity among neo-avians who don’t mind sacrificing flight for physical resilience, more functional hands, and a stature closely approximating transhuman standards.
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Prehensile Feet, Puppet Sock</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Beak/Claw Attack (1d10 DV, use Unarmed Combat skill), +5 COO, +5 INT, +10 REF</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Critter</name>
+<Desc>Critters are pods either genetically hacked together from various animal species or simply biosculpted to appear as such. Originally popular among hyperelites who preferred smarter and distinctive AI-operated pets, they were also sometimes deployed on a covert basis as bodyguards or spies disguised as smart animals. Naturally these morphs were also embraced by people with a furry kink or who simply wanted to test-drive a body that was more bestial. Critter pods come in almost every conceivable type of animal shape, from cats to skunks to chimerical lizard-hyena hybrids. The vast majority are quadruped and stick close to the animal type’s body plan, though anthropomorphic models are also popular and there is a great deal of bodysculpted variety. A model currently popular in the inner system is the bastet, a composite of several wild cat species that resembles a tawny panther or lion, often with intricate patterns based on Egyptian hieroglyphs in their fur. Some users prefer smaller models of this morph with the Reduced Size trait.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Claws, Cortical Stack, Cyberbrain, Enhanced Hearing, Enhanced Smell, Mnemonic Augmentation, Puppet Sock</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 REF, +5 COO</Advantages>
+<Disadvantages>Lacks Manipulators trait, quadrupeds have a difficult time in microgravity (–30 to </Disadvantages>Free Fall Tests)
+<Notes>Non-Human Biochemistry trait</Notes>
+<CP Cost>15</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Digger</name>
+<Desc>Diggers are worker pods customized for archaeological work. They are used for surface surveys, excavation, and general physical labor by xenoarchaeological teams. Their hands are modified digging claws, adapted from the genetics of hole-digging creatures like moles and aardvarks, though still flexible and useful for grasping and fine manipulation.</Desc>
+<Implants>Access Jacks, Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Digging Claws, Enhanced Vision, Mnemonic Augmentation, Puppet Sock, Wrist-Mounted Tools</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 SOM, +5 to one aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod)</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Flying Squid</name>
+<Desc>Given the popularity of octomorphs even among nonmercurials, morph designers have sought out a similar morph that is operable in zero g and also designed for speed. Its streamlined form resembles a stylized squid and this morph can move swiftly in both water and air. It can suck either water or air into a cavity in its mantle and then expel it out a siphon in a chosen direction for fast, jet-like propulsion. While popular with neo-octopi, its speed and overall utility has made it an increasingly favorite option with others seeking an aquatic-adapted morph.</Desc>
+<Implants>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Extra Limbs (8 arms, 2 tentacles), Grip Pads, Hydrostatic Pressure Adaptation, Mnemonic Augmentation, Polarization Vision, Puppet Sock</Implants>
+<Movement Rate>Submarine (4/36), Thrust Vector (4/28)</Movement Rate>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>8 Arms, 2 Tentacles, +5 COO, +5 SOM, +5 to one other aptitude of the player’s choice, +30 </Advantages>Swimming skill, Beak Attack (1d10 + 1 DV, AP –1), Limber (Level 2) trait
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<Note>Non-Mammalian Biochemistry trait</Note>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Hypergibbon</name>
+<Desc>Built from siamang genestock, the largest of the lesser apes, hypergibbons are often mistaken for uplifts, although this is not the case. The gibbon was never a candidate for uplift due to a brain anatomy considerably more primitive than great apes. With the addition of a cyberbrain, though, they make excellent pods.
+Many primate uplifts choose hypergibbons in place of other pods or when they need something small like a neotenic.
+Hypergibbons stand about 1 meter tall, weigh 15 kilograms, and typically have black fur and skin (although bodysculpting permits many variations). They have inflatable throat sacks that allow melodious calls that carry great distances. Their wrists feature a ball-and-socket joint and also naturally dislocate to enable easier swinging by the arms.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Prehensile Feet, Puppet Sock</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>+5 INT, +5 REF, +10 Climbing skill, +20 Freerunning skill, Limber (Level 2) trait, hypergibbons count as a small target in combat (–10 to hit)</Advantages>
+<Disadvantages>Social Stigma (Pod)</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Jenkin</name>
+<Desc>The handiwork of scum genehacker Neville Orsonglass, the jenkin is a byproduct of desperate measures taken during the Fall. The original model was simply the designer’s attempt to keep him and his crewmates alive on a ship with failing life support and recycling systems. From there, it has evolved into the ultimate survivor’s morph, though the definition of “survivor” has now been extended to “can take all of the drugs and still function sexually.” This seems to be a selling point with the scum. Despite the morph’s stooped posture, rat-like features, and pungent personal aroma, the implausibly sized secondary sexual characteristics make it the life of certain kinds of parties.</Desc>
+<Enhancements>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Digestive Symbiotes, Enhanced Pheromones, Enhanced Respiration, Enhanced Smell, Hibernation, Mnemonic Augmentation, Possum Cache, Prehensile Tail, Puppet Sock, Temperature Tolerance, Toxin Filters</Enhancements>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+5 INT, +5 REF, +5 SOM, Bite Attack (1d10 + 1 DV, AP –1)</Advantages>
+<Disadvantages>Social Stigma (Pod) trait, Unattractive (Level 2) trait</Disadvantages>
+<CP Cost>20</CP Cost>
+<Credit Costs>High in scum swarms, Expensive (minimum 40,000) elsewhere</Credit Costs>
+    
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Novacrab</name>
+<Desc>Novacrabs are a pod design bio-engineered from coconut crab and spider crab stock and grown to a larger (human) size. Novacrabs are ideal for hazardous work environments as well as vacworker, police, or bodyguard duties, given their ten 2-meter long legs, massive claws, and chitinous armor. They climb and handle microgravity well and can withstand a wide range of atmospheric pressure (and sudden pressure changes) from vacuum to deep sea. Novacrabs feature compound eyes (with human-equivalent image resolution), gills, dexterous manipulatory digits on their fifth set of limbs, and transgenic vocal cords.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Carapace Armor, Cortical Stack, Cyberbrain, Enhanced Respiration, Gills, Mnemonic Augmentation, Oxygen Reserve, Puppet Sock, Temperature Tolerance, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>10 legs, Carapace Armor (11/11), Claw Attack (DV 2d10), +10 SOM, +5 to two other aptitudes of the player’s choice</Advantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 30,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Pleasure Pod</name>
+<Desc>Pleasure pods are exactly what they seem—faux humans designed purely for intimate entertainment purposes. Pleasure pods have extra nerve clusters in their erogenous zones, fine motor control over certain muscle groups, enhanced pheromones, sanitized metabolisms, and the genetics for purring. Naturally, they are crafted for good looks and charisma and enhanced in other areas as well. Pleasure pods are capable of switching their sex at will to male, female, hermaphrodite, or neuter.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Clean Metabolism, Cortical Stack, Cyberbrain, Enhanced Pheromones, Mnemonic Augmentation, Puppet Sock, Sex Switch</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 INT, +5 SAV, +5 to one aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pleasure Pod) trait</Disadvantages>
+<CP Cost>20</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Ripwing</name>
+<Desc>Developed by the genehackers of Fortean, ripwings are neogenetic avians, incorporating genetics from a range of flying creatures, some of them prehistoric pterosaur genes acquired from Sky Ark researchers, along with some original genetic traits. These transgenic amalgamations are larger and sturdier than standard neo-avian morphs. They are popular among both neo-avian mercurials who want a more robust form and gatecrashers looking for a quick and stealthy flyer for recon missions. The ripwing morph makes more extensive use of the chiroptera genestocks used to give the first avian uplifts functional hands. Instead of feathers, ripwings feature tough leathery skin or even scales. The morphs are usually a uniform matte black in color, though they are able to change color at will due to their chameleon skin enhancements.</Desc>
+<Implants>Access Jacks, Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, Prehensile Feet, Puppet Sock, Wings</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Beak/Claw Attack (1d10 DV, use Unarmed Combat skill), Flight, +5 COO, +5 INT, +5 REF</Advantages>
+<Disadvantages>Social Stigma (Neogenetic), Social Stigma (Pod)</Disadvantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Samsa</name>
+<Desc>The samsa was the first attempt to create a combat pod model with a terrifying appearance. The samsa is an intimidating, two-meter-tall, four-armed, four-legged, humanoid insect. Samsas are an unsettling sight to many transhumans. They are most commonly used by mercenaries and enforcers in the rim. Their armored carapace provides protection and the extra limbs allow a character to dual wield rifles or other two-handed weapons.</Desc>
+<Implants>360-Degree Vision, Basic Biomods, Basic Mesh Inserts, Carapace Armor, Chameleon Skin, Cortical Stack, Cyberbrain, Cyberclaws, Enhanced Vision, Extra Limbs (4 Arms, 4 Legs), Grip Pads, Hardened Skeleton, Mnemonic Augmentation, Neurachem (Level 1), Puppet Sock, Temperature Tolerance</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem)<Speed Modifier>
+<Durability>50 (includes Hardened Skeleton)</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>+20 Intimidation skill, 4 arms, +10 SOM (includes Hardened Skeleton), +5 REF, +5 COO, +5 to one other aptitude of the player’s choice, Carapace Armor (11/11)</Advantages>
+<Disadvantages>Social Stigma (Pod) trait, Unattractive (Level 2) trait</Disadvantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Scurrier</name>
+<Desc>Scurriers are pods developed from the non-sapient extraterrestrials known as sciurids. In appearance, scurrier pods are similar to raccoon-sized flying squirrels with a lash-like manipulator rather than a fluffy tail, though still regarded as highly cute. They make excellent climbers and are capable of gliding due to the membrane between their limbs. Scurriers are gaining popularity for their usefulness in exploring tunnels and small areas as well as high areas reached by climbing. They have also been used for maintenance and tech works tasks due to their nimbleness and manual dexterity.</Desc>
+<Implants>Access Jacks, Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Gliding Membrane, Mnemonic Augmentation, Prehensile Tail, Puppet Sock</Implants>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 SAV, +10 COO, 6 Limbs, Limber (Level 1) Trait, +10 Climbing skill, +10 Freerunning skill, counts as a small target in combat (–10 to hit)</Advantages>
+<Disadvantages>Alien Biochemistry, Social Stigma (Alien), Social Stigma (Pod)</Disadvantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Security Pod</name>
+<Desc>Originally developed for joint-nation peace-keeping missions and border/enclave security roles, security pods were essentially mass-produced AI-operated soldiers. For obvious reasons, they fell out of favor during the Fall, but they are slowly regaining acceptance. They are a favored morph by mercenaries for infiltration and guerrilla warfare purposes.</Desc>
+<Implants>Adrenal Boost, Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Claws, Cortical Stack, Cyberbrain, Eelware, Enhanced Vision, Grip Pads, Mnemonic Augmentation, Puppet Sock, T-Ray Emitter</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Security Pod Space Marine</name>
+<Desc>Originally developed for joint-nation peace-keeping missions and border/enclave security roles, security pods were essentially mass-produced AI-operated soldiers. For obvious reasons, they fell out of favor during the Fall, but they are slowly regaining acceptance. They are a favored morph by mercenaries for infiltration and guerrilla warfare purposes. The space marine variant of the security pod was optimized for orbital skirmishes, boarding actions, suppressing asteroid miner revolts, and other space-theater operations.</Desc>
+<Implants>Adrenal Boost, Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Claws, Cortical Stack, Cyberbrain, Eelware, Enhanced Vision, Grip Pads, Mnemonic Augmentation, Puppet Sock, T-Ray Emitter, Add Oxygen Reserve, Prehensile Feet, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Shaper</name>
+<Desc>Shapers are the ultimate disguise morph. Constructed as pods, the default shaper look is intentionally generic, based on the computer-generated composite average look of the solar system’s residents. They lack the distinctive seam lines applied to most pod morph designs. The skinflex system allows the morph to quickly change its outward appearance. Additional modifications help the morph evade or fool sensor and biometric systems. Shapers are a favorite tool for spies and are excellent for infiltration or fooling surveillance. They are often remotely operated via puppet sock. Shapers are illegal in many habitats.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Clean Metabolism, Cortical Stack, Cyberbrain, Emotional Dampers, Gait Masking, Mnemonic Augmentation, Nanotat ID Flux, Puppet Sock, Sex Switch, Skinflex</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>+5 INT, +5 SAV, +5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>45</CP Cost>
+<Credit Cost>Expensive (minimum 40,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Specialist Pod</name>
+<Desc>Designed specifically to compete with popular mid-range morphs like the menton and olympian, the specialist pod is cheaper and faster to create than a biomorph. It also offers the user a high degree of customization.</Desc>
+<Implants>Access Jacks, Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Puppet Sock</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 to one aptitude of the player’s choice, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Vacuum Pod</name>
+<Desc>Optimized for vacwork, this pod is preferred in situations where novacrabs or synths don’t fare as well socially. The vacuum pod is based on the bouncer morph and looks superficially identical to one.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Cyberbrain, Enhanced Respiration, Grip Pads, Mnemonic Augmentation, Oxygen Reserve, Prehensile Feet, Puppet Sock, Vacuum Sealing</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>Limber (Level 1) trait, +5 COO, +5 SOM, +5 to one other aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Whiplash</name>
+<Desc>Designed by autonomist xenobotanists as an experiment in developing a cyberbrain/planimal interface, whiplash pods are bioengineered from planimal stock found on Sunrise, with other transgenic features. Whiplash pods are gaining some traction among gatecrashers due to their ability to blend in to arboreal environments. The primary modification made to the whiplash stock was to turn the entire organism upside down and orient the digestive portion of the organism horizontally, so that the whiplash’s trilobed orifice faces forward. The whiplash’s grasping roots were also converted into even more motile “walking tentacles” borrowed from other Sunrise planimals. Other adjustments include the addition of a pair of grasping limbs, each with four universally opposable digits; artificial sensing mods (providing transhuman-standard sensing ability); and a general toughening of the internal structure for rigidity and support. The barrel-like body remains very similar to the original planimal stock and, reorientation notwithstanding, the digestive system remains mostly unchanged. The ability to extend and retract the whiplash’s feeding tendril was heavily enhanced, so now the tendril acts more like a two-meter-long chameleon-like tongue than a hanging food-trap.</Desc>
+<Implants>Access Jacks, Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Puppet Sock</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>Tendril Attack (use Unarmed Combat skill, 1d10 + (SOM ÷ 10) DV, +10 to disarming called shot attacks), +5 COO, +10 SOM, +5 to two other aptitudes of the player’s choice</Advantages>
+<Disadvantages>Alien Biochemistry, Social Stigma (Alien), Social Stigma (Pod)</Disadvantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (rare; minimum 50,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Pod</type>
+<name>Worker Pods</name>
+<Desc>Part exalt human, part machine, these basic pods are virtually indistinguishable from humans. Worker pods are often used in menial labor jobs where interaction with humans is necessary.</Desc>
+<Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Puppet Sock</Implants>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>+10 SOM, +5 to one aptitude of the player’s choice</Advantages>
+<Disadvantages>Social Stigma (Pod) trait</Disadvantages>
+<CP Cost>20</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Arachnoids</name>
+<Desc>Arachnoid robotic shells are 1-meter in length, segmented into two parts, with a smaller head, like a spider or termite. They feature four pairs of 1.5-meter-long retractable arms/legs, capable of rotating around the axis of the body, with built-in pneumatic systems for propelling the bot with small leaps. The manipulator claws on each arm/leg can be switched out with extendable mini-wheels for high-speed skating movement. A smaller pair of manipulator arms near the head allows for closer handling and tool use. In zero-G environments, arachnoids can retract their arms/legs and maneuver with vectored air thrusters.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (10 Arms/Legs), Lidar, Mnemonic Augmentation, Pneumatic Limbs, Radar,(Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/24), Thrust Vector (8/40), Wheeled (8/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, +10 SOM, Armor 8/8</Advantages>
+<CP Cost>45</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Arachnikoma Variant</name>
+<Desc>Arachnoid robotic shells are 1-meter in length, segmented into two parts, with a smaller head, like a spider or termite. They feature four pairs of 1.5-meter-long retractable arms/legs, capable of rotating around the axis of the body, with built-in pneumatic systems for propelling the bot with small leaps. The manipulator claws on each arm/leg can be switched out with extendable mini-wheels for high-speed skating movement. A smaller pair of manipulator arms near the head allows for closer handling and tool use. In zero-G environments, arachnoids can retract their arms/legs and maneuver with vectored air thrusters. Arachnikomas are larger-sized arachnoids. Their body serves as a capsule/cockpit for one human-sized passenger/pilot (or cargo), with a hinged top. Otherwise they are similar to arachnoids in form and function.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (10 Arms/Legs), Lidar, Mnemonic Augmentation, Pneumatic Limbs, Radar, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/24), Thrust Vector (8/40), Wheeled (8/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>60</Durability>
+<Wound Threshold>12</Wound Threshold>
+<Advantages>+5 COO, +10 SOM, Armor 12/12</Advantages>
+<Notes>Large Size trait</Notes>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 55,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Biocore</name>
+<Desc>Originally designed by a scum engineer who just wanted to see if it could be done, the biocore is a synthmorph with a biological brain. The design has since spread to those who wish to enjoy the advantages of sleeving in a synthmorph without the risk of brainhacking or who simply dislike the idea of using a cyberbrain (including some asyncs). Most models feature a stylized but transparent braincase, to show off the biocore’s main feature, but others appear to be ordinary synthmorphs from the outside; only a detailed physical examination can determine that it actually contains a living brain.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Brain Box, Cortical Stack, Eidetic Memory, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 SOM, +5 to two other aptitudes of the player’s choice, Armor 6/6</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait</Disadvantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Blackbird</name>
+<Desc>When they’re seen at all, these morphs resemble a matte gray neo-corvid with many odd, sharp angles. Blackbirds are consummate stealth morphs, designed to evade visual observation and radar during recon or infiltration. In part due to aesthetics, they’re a favorite of neo-ravens.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Hearing, Enhanced Vision, Invisibility, Mnemonic Augmentation, Puppet Sock, Reduced Signature, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Hopper (4/20), Winged (8/40)</Mobility System>
+<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>Flight, +5 COO, +5 REF, +5 to one other aptitude of the player’s choice, +10 Flight skill, +10 Infiltration skill, Armor 2/2, Beak/Claw Attack (1d10 + 1 DV, AP −1)</Advantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>45</CP Cost>
+<Credit Cost>Expensive (Minimum 45,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Case</name>
+<Desc>Cases are extremely cheap, mass-produced robotic shells intended to provide an affordable remorphing option for the millions of infugees created by the Fall. Though many varieties of case bot models exist, they are uniformly regarded as shoddy and inferior. Most case morphs are vaguely anthromorphic, with a thin framework body, standing just shorter than an average human, and suffer from frequent malfunctions.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements><Mobility System (Movement Rate)>Walker (4/16)
+</Mobility System (Movement Rate)>
+<Aptitude Maximum>20</Aptitude Maximum>
+<Durability>20</Durability>
+<Wound Threshold>4</Wound Threshold>
+<Advantages>Armor (4/4)</Advantages>
+<Disadvantages>–5 to one chosen aptitude, Lemon trait, Social Stigma (Clanking Masses) trait</Disadvantages>
+<CP Cost>5</CP Cost>
+<Credit Cost>Moderate</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Cetus</name>
+<Desc>The cetus, named after a mythological sea monster, was designed for deep sea activity and is capable of operating under extreme pressure and cold. It is a favored morph for use in the undersea domains of Ceres and Europa. Capable of moving quickly underwater, the morph can also operate outside of water in the atmospheric portion of habitats. Cetus morphs are slightly smaller than arachnoids.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Direction Sense, Echolocation, Enhanced Hearing, Enhanced Vision, Extra Limbs (8), Headlights, Hydrostatic Pressure Adaptation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Submarine (4/36), Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>8 Limbs, +5 COO, +5 SOM, +5 to one other aptitude of the player’s choice, Armor 8/8</Advantages>
+<CP Cost>45</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Cloud Skimmer</name>
+<Desc>This streamlined synthmorph is designed for exploring the atmospheres of gas giants, but its internal rocket also allows it to operate in vacuum. This morph can travel to and from a ship in orbit around a gas giant into the planet’s atmosphere on its own. The morph is a ﬂattened oval that can extend up to four ﬂexible arms. The swim bladder acts much like a high pressure balloon to help keep the morph aloft in a gas giant’s dense atmosphere.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cryonic Protection, Cyberbrain, Direction Sense, Enhanced Vision, Extra Limbs (4 Arms), Hydrostatic Pressure Adaptation, Internal, (Temperature Tolerance, Vacuum Sealing)
+Rocket, Mnemonic Augmentation, Puppet Sock, Radar, Swim Bladder, Telescoping Limbs</Enhancements>
+<Mobility System>Thrust Vector (8/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>4 arms, +10 SOM, +5 REF, +5 to one other aptitude of the player’s choice, Armor 10/10</Advantages>
+<CP Cost>65</CP Cost>
+<Credit Cost>Expensive (minimum 70,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Courier</name>
+<Desc>This synthmorph was specifically designed to ﬂy between the many moons and habitats in the Saturnian system. It is used by both couriers and smugglers throughout the outer system. This morph appears to be a roughly humanoid head and torso set on a conical base, with a total height of 1.5 meters, that makes it look rather like a four-armed chess piece. This base contains both the morph’s ionic propulsion system, which doubles as a plasma sail in space, and an internal rocket. This miniature metallic hydrogen rocket is specifically designed for low thrust. It provides an acceleration of up to 0.25 g, allowing the morph to take off and land on all moons and other small bodies in the solar system.
+This engine can operate for a total of one and a half hours before it requires refueling. The morph’s four slender arms fold ﬂat against its torso when it is in ﬂight. Its extensive sensor suit is useful for both navigation and various covert purposes.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cryonic Protection, Cyberbrain, Direction Sense, Enhanced Vision, Extra Limbs (4), Grip Pads, Headlights, Hidden Compartment, Internal Rocket, Lidar, Magnetic System, Mnemonic Augmentation, Plasma Sail Implant, Radar, Retracting/Telescoping Limbs, T-ray Emitter., (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Ionic (12/40), Thrust Vector (8/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>4 Limbs, +5 COO, +5 INT, +5 REF, +5 to one other aptitude of the player’s choice, Armor 6/6</Advantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Daitya</name>
+<Desc>This huge, vaguely anthropomorphic synthmorph is designed for large construction projects and similar heavy industrial uses, such as moving large objects. At just under three-meters tall and with a mass of almost one ton, the daitya is essentially an industrial mech. Modified versions have occasionally been deployed for combat purposes.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Grip Pads, Hardened Skeleton, Industrial Armor, Mnemonic Augmentation, Pneumatic Limbs (Arms), Puppet Sock, Radar, 4 Weapon Mounts (Disassembly Tools; 2 fixed, 2 articulated), Wrist-Mounted Tools, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (8/40)</Mobility System>
+<Aptitude Maximum>30 (40 SOM)</Aptitude Maximum>
+<Durability>100 (includes Hardened Skeleton bonus)</Durability>
+<Wound Threshold>20</Wound Threshold>
+<Advantages>+15 SOM (includes Hardened Skeleton bonus), +5 to one other aptitude of the player’s choice, Armor 10/10 (20/20 with Industrial Armor)</Advantages>
+<Notes>Large Size trait, melee attacks with the large-size frame or disassembly tools inﬂict 3d10 + (SOM ÷ 10) DV at AP −5</Notes>
+<CP Cost>80</CP Cost>
+<Credit Cost>Expensive (minimum 80,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Dragonfly</name>
+<Desc>The dragonfly robotic morph takes the shape of a meter-long flexible shell with multiple wings and manipulator arms. Capable of near-silent turbofan-aided flight in Earth gravity, dragonfly bots fare even better in microgravity.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Winged (8/32)</Mobility System>
+<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>Flight, +5 REF, Armor (2/2), </Advantages><span style="line-height: 1.5;">small target (–10 modifier to hit in combat)</span>
+<CP Cost>20</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Fenrir</name>
+<Desc>Named for the monstrous wolf of Norse legend, the fenrir is one of the most imposing combat morphs ever developed. It is found only in the armed forces of the Hyoden city-state on Callisto (though black market blueprints/copies are rumored to be available elsewhere). A massive, squat quadrupedal morph designed to be operated by up to six egos simultaneously, the fenrir is more akin to a super-heavy tank than a regular morph. It is possible that a single ego could fill all six ego slots at once through the use of alpha forks, but this has never been tested. The most common weapons mounted are linked HEAP and/or plasmaburst seeker launchers, exoatmospheric plasma beam bolters, and machine railguns loaded with AP rounds.</Desc>
+<Note>This morph is unique in that it allows more than one ego to use it at the same time. Ego Sharing may be purchased for this morph an additional four times, for a total of five additional egos.</Note>
+<Enhancements>360-Degree Vision, Access Jacks, Anti-Glare, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Direction Sense, Ego Sharing (1), Enhanced Hearing, Enhanced Vision, Extra Limbs (4), Heavy Combat Armor,Lidar, Mnemonic Augmentation, Pneumatic Limbs, Radar, Structural Enhancement, T-Ray Emitter, Weapon Mount (External, Articulated, 8) Mobility System: Walker (4/20), Thrust Vector (4/12), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Aptitude Maximum>35</Aptitude Maximum>
+<Durability>70 (80 with Structural Enhancement) Wound Threshold: 14 (16 with Structural Enhancement)</Durability>
+<Advantages>4 Limbs, +5 REF, +5 COO, +10 SOM, +5 to one other aptitude of the player’s choice, Armor 16/16 (32/32 with Heavy Combat Armor)</Advantages>
+<Disadvantages>Large target (+10 to hit)</Disadvantages>
+<CP Cost>Not available at character creation</CP Cost>
+<Credit Cost>Expensive (rare and restricted; minimum 100,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Fighting Kite</name>
+<Desc>Based on the kite morph popular with gatecrashers, this morph is somewhat more durable and better armored. It also includes a built-in laser as well as anti-detection measures. Its default mode is turbofan-driven rotorcraft; its light weight allows it to ﬂy and hover, even in thin atmospheres and heavy gravities. In streamlined ionic mode, it can travel at high speeds and maneuver in hurricane-force winds. In vacuum, it can drive itself with thrust-vector nozzles. It is occasionally used for aerial reconnaissance, but is most popular with spies, thieves, and discrete bodyguards.</Desc>
+<Enhancements>Access Jacks, Anti-Glare, Basic Mesh Inserts, Chameleon Skin, Chemical Sniffer, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, Neurachem (Level 1), Radar, Radar Absorbent, Shape Adjusting, T-Ray Emitter, Weapon Mount (Internal, Articulated, Laser Pulser), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Ionic (12/40), Thrust Vector (8/40), Walker (2/8), Winged (8/32)</Mobility System>
+<Aptitude Maximum>30 (25 SOM)</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem)</Speed Modifier>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>Flight, +5 to two aptitudes of the player’s choice, Armor (4/4)</Advantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Fighting Kite Fierce Kite Variant</name>
+<Desc>Based on the kite morph popular with gatecrashers, this morph is somewhat more durable and better armored. It also includes a built-in laser as well as anti-detection measures. Its default mode is turbofan-driven rotorcraft; its light weight allows it to ﬂy and hover, even in thin atmospheres and heavy gravities. In streamlined ionic mode, it can travel at high speeds and maneuver in hurricane-force winds. In vacuum, it can drive itself with thrust-vector nozzles. It is occasionally used for aerial reconnaissance, but is most popular with spies, thieves, and discrete bodyguards.
+		
+		Fierce kites are larger, humanoid-sized fighting kites.</Desc>
+<Enhancements>Access Jacks, Anti-Glare, Basic Mesh Inserts, Chameleon Skin, Chemical Sniffer, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, Neurachem (Level 1), Radar, Radar Absorbent, Shape Adjusting, T-Ray Emitter, Weapon Mount (Internal, Articulated, Laser Pulser), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Ionic (12/40), Thrust Vector (8/40), Walker (2/8), Winged (8/32)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem)</Speed Modifier>
+<Durability>50</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>Flight, +5 to two aptitudes of the player’s choice, Armor (8/8)</Advantages>
+<Notes>Regular Size</Notes>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 55,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Flexbots</name>
+<Desc>Designed for multi-purpose functions, flexbots can transform their shells to suit a range of situations and tasks. Their core frame consists of a half-dozen interlocking and shape-adjustable modules capable of auto-transforming into a variety of shapes: multi-legged walker, tentacle, hovercraft, and many others. Each module features its own sensor units and “bush robot” fractal-branching digits (each capable of breaking into smaller digits, down to the micrometer scale, allowing for ultra-fine manipulation). The flexbot control computer is also distributed between modules. Individual flexbots are only the size of a large dog, but multiple flexbots can join together for larger mass operations, even taking on heavy-duty tasks such as demolition, excavation, manufacturing, robotics assembly, and so on.
+Flexbot Special Rules</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Fractal Digits, Mnemonic Augmentation, Modular Design, Shape Adjusting, Nanoscopic Vision, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/16), Hover (8/40)</Mobility System>
+<Aptitude Maximum>30 (SOM 25)</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>Armor 4/4, small target (-10 modifier to hit in combat)</Advantages>
+<CP Cost>20</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Galatea</name>
+<Desc>A group of Lunar morph designers created this high-end synthmorph in an attempt to increase the social acceptance of synthmorphs by showcasing how attractive and versatile they can be. This elegant morph looks expensive and is designed to allow the user to master any social situation. A few media icons and socialites have already found that this morph’s mixture of utility and novelty value has helped enhance their fame and reputation.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Hearing, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 SAV, +5 COO, +5 INT, +5 to one other aptitude of the player’s choice, Armor 6/6</Advantages>
+<CP Cost>65</CP Cost>
+<Credit Cost>Expensive (minimum 70,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Gargoyle</name>
+<Desc>Gargoyles are an anthroform synthetic morph designed as a mobile sensor unit. They are used by media, freelance journalists, forensics teams, and anyone who is regularly required to document a situation thoroughly. Though humanoid in shape, gargoyles stand taller than average transhumans for better viewing. Much of their exterior surface is covered in quantum dot camera-displays.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Anti-Glare, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Enhanced Hearing, Enhanced Smell, Enhanced Vision, Lidar, Mnemonic Augmentation, Nanoscopic Vision, Oracles, Radar, T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 INT, +5 to one aptitude of the player’s choice, Armor 6/6</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Griefer</name>
+<Desc>Based on the case synthmorph design, griefers are used by vandals, terrorists, and dedicated trolls to harass enemies and antagonize the masses. Griefers have embedded sound and holographic display systems so they can easily harass an individual or an entire crowd. They are also typically equipped with numerous hacking tools and software aids, though they do not come with these by default. Most importantly, they are built without cortical stacks, so if they are destroyed, the ego cannot be interrogated through psychosurgery. Griefers are illegal in many habitats, especially in the Planetary Consortium, but DRM-free blueprints are easy to find in many darknets, thus making them a persistent annoyance in some systems. A few habitats have passed laws mandating that killing a griefer is not considered murder, assault, or even destruction of property.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cyberbrain, Holographic Projector, Loudspeakers, Mnemonic Augmentation, Puppet Sock, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker 4/16</Mobility System>
+<Aptitude Maximum>20</Aptitude Maximum>
+<Durability>20</Durability>
+<Wound Threshold>4</Wound Threshold>
+<Advantages>Armor (4/4)</Advantages>
+<Disadvantages>–5 to two aptitudes of the player’s choice, Lemon trait, No Cortical Stack trait, Social Stigma (Griefer) trait</Disadvantages>
+<CP Cost>5</CP Cost>
+<Credit Cost>Moderate</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Guard</name>
+<Desc>Everyone knows that synthmorphs are tougher and better equipped for serious combat than biomorphs. However, many people in the inner system are not comfortable with using hulking synthmorphs as bodyguards or security personnel. Instead, some choose this subtle and extremely deadly alternative. This morph’s enhanced senses allow it to more easily detect any threats to the person the user is guarding, and the built-in weaponry and moderate armor make it highly resistant to damage. The synthetic mask disguises it quite effectively as an olympian or fury morph.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Cyberclaws, Enhanced Vision, Hand Laser, Lidar, Mnemonic Augmentation, Neurachem (Level 1), Puppet Sock, Synthetic Mask, T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem)</Speed Modifier>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 SOM, +5 COO, +5 to one other aptitude of the player’s choice, Armor 12/12</Advantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Guard Deluxe Variant</name>
+<Desc>Everyone knows that synthmorphs are tougher and better equipped for serious combat than biomorphs. However, many people in the inner system are not comfortable with using hulking synthmorphs as bodyguards or security personnel. Instead, some choose this subtle and extremely deadly alternative. This morph’s enhanced senses allow it to more easily detect any threats to the person the user is guarding, and the built-in weaponry and moderate armor make it highly resistant to damage. The synthetic mask disguises it quite effectively as an olympian or fury morph.
+		
+		This morph is used by both top-of-the-line security personnel and wealthy and powerful people who worry about kidnapping and similar threats and wish to be able to personally respond to any problems.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Cyberclaws, Enhanced Vision, Hand Laser, Lidar, Mnemonic Augmentation, Neurachem (Level 1), Puppet Sock, Synthetic Mask, T-Ray Emitter, Nanophages, Weapon Mount (Microwave Agonizer, Concealed), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem)</Speed Modifier>
+<Durability>50</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>+10 SOM, +5 REF, +5 COO, +5 to one other aptitude of the player’s choice, Armor 12/12</Advantages>
+<CP Cost>75</CP Cost>
+<Credit Cost>Expensive (minimum 80,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Kite</name>
+<Desc>This small shape-shifting synthetic shell is capable of flight no matter the atmospheric environment—or lack thereof. Its default mode is turbofan-driven rotorcraft; its light weight allows it to fly and hover even in thin atmospheres and heavy gravities. In streamlined ionic mode, it can travel at high speeds and maneuver in hurricane-force winds.
+In vacuum, it can drive itself with thrust-vector nozzles. Sometimes called “multifliers,” kites are popular among gatecrashers and gatehoppers due to their adaptability and usefulness for aerial recon and surveys.</Desc>
+<Enhancements>Access Jacks, Anti-Glare, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Direction Sense, Enhanced Hearing, Enhanced Vision, Lidar, Mnemonic Augmentation, Radar, Shape Adjusting, T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements><Mobility System (Movement Rate)>Ionic (12/40), Thrust Vector (8/40), Walker (2/8), Winged (8/32)
+</Mobility System (Movement Rate)>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>20</Durability>
+<Wound Threshold>4</Wound Threshold>
+<Advantages>Flight, +5 to one aptitude of the player’s choice, Armor (2/2), counts as a small target in combat (–10 to hit)</Advantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>30</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Kite Ultra Kite Variant</name>
+<Desc>This small shape-shifting synthetic shell is capable of flight no matter the atmospheric environment—or lack thereof. Its default mode is turbofan-driven rotorcraft; its light weight allows it to fly and hover even in thin atmospheres and heavy gravities. In streamlined ionic mode, it can travel at high speeds and maneuver in hurricane-force winds.
+In vacuum, it can drive itself with thrust-vector nozzles. Sometimes called “multifliers,” kites are popular among gatecrashers and gatehoppers due to their adaptability and usefulness for aerial recon and surveys.
+		Ultra kites are larger, humanoid-sized kites.</Desc>
+<Enhancements>Access Jacks, Anti-Glare, Basic Mesh Inserts, Chemical Sniffer, Cortical Stack, Cyberbrain, Direction Sense, Enhanced Hearing, Enhanced Vision, Lidar, Mnemonic Augmentation, Radar, Shape Adjusting, T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements><Mobility System (Movement Rate)>Ionic (12/40), Thrust Vector (8/40), Walker (2/8), Winged (8/32)
+</Mobility System (Movement Rate)>
+<Aptitude Maximum>25</Aptitude Maximum>
+<Durability>50</Durability>
+<Wound Threshold>10</Wound Threshold>
+<Advantages>Flight, +5 to one aptitude of the player’s choice, Armor (6/6), counts as a small target in combat (–10 to hit)</Advantages>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 55,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Mimic</name>
+<Desc>In its basic form, with its limbs retracted, a mimic morph resembles a spare and is only a bit larger than a human head. With its four pencil-thin telescoping legs fully extended, it can stand up to two meters tall, and its arms can also each reach up to two meters from the morph. These limbs can all be fully retracted and the user can also alter the morph’s shape and appearance, causing it to look like almost any small object such as a briefcase, cleaning robot, or household appliance. This morph can easily fit through small spaces and hide itself with great ease and is ideal for infiltration and sabotage missions.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (4 Legs, 2 Arms), Grip Pads, Mnemonic Augmentation, Puppet Sock, Shape Adjusting, Skinﬂex, Telescoping Limbs, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (5/24) (2/8 with limbs mostly retracted)</Mobility System>
+<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>+5 COO, +5 to one other aptitude of the player’s choice, Armor 4/4</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait</Disadvantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Nautiloid</name>
+<Desc>Nautiloids are a hybrid of short-range spacecraft and submersible capable of holding up to six passengers and their gear. The morph is shaped like a van-sized nautilus, with crew space in the head and shell. A cluster of tentacular limbs mounted under the observation ports in the head provide both fine and brute force manipulation. Originally created for comet and asteroid mining, the design also proved useful for oceanic exploration by gatecrashing teams and Europans.
+The morph’s interior includes a desktop cornucopia machine and a maker. It can deploy a pair of retractable pontoons for stability when ﬂoating on a liquid surface. A nautiloid’s life support system can support its occupants for up to three months before replenishing—indefinitely if it has a source of hydrogen and oxygen. Nautiloids include radiation shielding, a small airlock, and a healing vat.
+The nautiloid is also available as a bot with no cyberbrain for the same cost. The bot version has no aptitude bonuses.</Desc>
+<Enhancements>Basic Mesh Inserts, Cortical Stack, Cyberbrain, Echolocation, Extra Limbs (8 Arms, 2 Tentacles), Hydrostatic Pressure Adaptation, Industrial Armor, Internal Rocket, Mnemonic Augmentation, Pneumatic Limbs (2 of the Arms), Puppet Sock, Radar, Radiation Sense, Swim Bladder, Telescoping Limbs (2 of the Arms), T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility Systems>Internal Rocket 8/40, Submarine 8/40</Mobility Systems>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>200</Durability>
+<Wound Threshold>40</Wound Threshold>
+<Advantages>+5 SOM, +5 to two other aptitudes of the player’s choice, Armor 10/10 (20/20 with Industrial Armor)</Advantages>
+<Notes>Very Large Size trait</Notes>
+<CP Cost>155</CP Cost>
+<Credit Cost>Expensive (150,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Opteryx</name>
+<Desc>This recon morph is designed to be a fast, lightweight runner, climber, and ﬂyer. The opteryx looks like a one-meter-tall winged, synthetic dinosaur and adopts an almost horizontal body posture when running, its tail held out for balance. Its wings are fully functional arms equipped with claws. This morph is a favorite for gatecrashers and neo-avians in the dinosaur identity subculture. It comes equipped with cartography package software.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Claws, Cortical Stack, Cyberbrain, Enhanced Vision, Grip Pads, Mnemonic Augmentation, Pneumatic Limbs (Legs), Prehensile Tail, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (8/40), Winged (8/40)</Mobility System>
+<Aptitude Maximum>30 (25 SOM)</Aptitude Maximum>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>Flight, +5 COO, +5 INT, +5 REF, +10 </Advantages>Climbing skill, +10 Flight skill, Armor 2/2
+<Notes>Small Size trait</Notes>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive (Minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Q-Morph</name>
+<Desc>Quartz morphs, commonly called Q-morphs, are the primary shell design used for Venusian surface mining. Constructed from quartz and extremely durable alloys, Q-morphs look like four-legged crabs with two pairs of arms. The lower pair of arms is designed for strength, the upper pair for precision and dexterity. This morph is squat, exceptionally tough, and completely unable to function in temperatures below 250 C.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Direction Sense, Echolocation, Enhanced Vision, Extreme Heat Shielding, Extreme Pressure Adaptation, Mnemonic Augmentation, Radar, T-Ray Emitter, Wrist-Mounted Tools, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (2/4)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>120</Durability>
+<Wound Threshold>24</Wound Threshold>
+<Advantages>8 limbs, Claw Attack (DV 2d10), –5 COO, +10 SOM, +5 to one other aptitude of the player’s choice, Armor 18/18, High Temperature Operation trait.</Advantages>
+<Disadvantages>Only works on the Venusian surface or in similar hot and high pressure environments</Disadvantages>
+<CP Cost>100</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Reapers</name>
+<Desc>The reaper is a common combat bot, used in place of biomorph soldiers and typically operated via teleoperation or by autonomous AI. The reaper’s core form is an armored disc, so that it can turn and present a thin profile to an enemy. It uses vector thrust nozzles to maneuver in microgravity, and also takes advantage of an ionic drive for fast movement over distance. Four legs/manipulating arms and four weapon pods are folded inside its frame. The reaper’s shell is made of smart materials, allowing these limbs and weapon mounts to extrude in any direction desired and even to change shape and length. In gravity environments, the reaper walks or hops on two or four of these limbs. Reapers are infamous due to numerous war XPs, and bringing one into most habitats will undoubtedly raise eyebrows, if not get you arrested.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Anti-Glare, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Cyber Claws, Extra Limbs (4), Magnetic System, Pneumatic Limbs, Puppet Sock, Radar, Reflex Booster, Shape Adjusting, Structural Enhancement, T-Ray Emitter, Weapon Mount (Articulated, 4), Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20), Hopper (4/20), Ionic (12/40), Vectored Thrust (4/20)</Mobility System>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+1 (Reflex Booster)</Speed Modifier>
+<Durability>50 (60 with Structural Enhancement)</Durability>
+<Wound Threshold>10 (12 w/Structural Enhancement)</Wound Threshold>
+<Advantages>4 Limbs, +5 COO, +10 REF (+20 with Reflex Booster), +10 SOM, Armor 16/16</Advantages>
+<CP Cost>100</CP Cost>
+<Credit Cost>Expensive (minimum 50,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Rover</name>
+<Desc>Rover morphs are a smaller, defense-oriented version of the sphere morph. Each rover is 0.6 meters in diameter and, with its limbs retracted, has the ominous appearance of a reﬂective, shiny, black globe. It can extrude three arms, each with a built-in weapon: extendable claws, a small laser, and a heavy rail pistol loaded with 200 rounds of ammunition. Rovers are stealthy and highly maneuverable and so favored for bodyguard and police purposes in some areas. They are often deployed via remote control.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cyberclaws, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (3 Arms), Gas-Jet System, Hand Laser, Mnemonic Augmentation, Neurachem (Level 1), Puppet Sock, Radar Absorbent, Reduced Signature, T-Ray Emitter, Telescoping Limbs, Weapon Mount (Articulated, Heavy Rail Pistol), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Roller (8/32), Thrust Vector (12/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem Level 1)</Speed Modifier>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>+5 COO, +5 REF, + 5 INT, +5 to one other aptitude of the player’s choice, Armor 10/10</Advantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Rover Space Fighter Variant</name>
+<Desc>Rover morphs are a smaller, defense-oriented version of the sphere morph. Each rover is 0.6 meters in diameter and, with its limbs retracted, has the ominous appearance of a reﬂective, shiny, black globe. It can extrude three arms, each with a built-in weapon: extendable claws, a small laser, and a heavy rail pistol loaded with 200 rounds of ammunition. Rovers are stealthy and highly maneuverable and so favored for bodyguard and police purposes in some areas. They are often deployed via remote control.
+		
+		This version of the rover is fitted with a miniature metallic-hydrogen rocket with an acceleration up to 0.25 g, so that it is useful in short-range space battles. Several of these morphs can be launched from a spaceship to attack another ship or a habitat.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cyberclaws, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (3 Arms), Gas-Jet System, Hand Laser, Mnemonic Augmentation, Neurachem (Level 1), Puppet Sock, Radar Absorbent, Reduced Signature, T-Ray Emitter, Telescoping Limbs, Weapon Mount (Articulated, Heavy Rail Pistol), Add Internal Rocket, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Roller (8/32), Thrust Vector (12/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Neurachem Level 1)</Speed Modifier>
+<Durability>25</Durability>
+<Wound Threshold>5</Wound Threshold>
+<Advantages>+5 COO, +5 REF, + 5 INT, +5 to one other aptitude of the player’s choice, Armor 10/10</Advantages>
+<Notes>Small Size trait</Notes>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Savant</name>
+<Desc>This morph was developed on Ilmarinen as proof that synthmorphs can also be useful to scientists and engineers. This strangely elegant morph lacks the disturbing mimicry of humanity found in synth and steel morphs. Instead, the ovoid head with its elegantly minimalist face looks more like an artistic sculpture than a metal version of a real human head.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Hyper-Linguist, Math Boost, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>40 (COG and INT), 30 (all others)</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 COG, +5 INT, +5 SAV, +5 SOM, +5 to one other aptitude of the player’s choice, Armor 8/8</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait</Disadvantages>
+<CP Cost>65</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Slitheroids</name>
+<Desc>Slitheroid bots are synthetic shells taking the form of a 2-meter-long segmented metallic snake, with two retractable arms for tool use. Snake bots can coil, twist, and roll their bodies into a ball or hoop, moving either by slithering, burrowing, rolling, or pulling themselves along by their arms. The sensor suite and control computer are housed in the head.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Snake (4/16; 8/32 rolling)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>45</Durability>
+<Wound Threshold>9</Wound Threshold>
+<Advantages>+5 COO, +5 SOM, +5 to one other aptitude of the player’s choice, Armor 8/8</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Spare</name>
+<Desc>Spare morphs are small, cheap, lightweight, synthetic shells designed to be used as a replacement should someone’s original morph be killed or destroyed. A cortical stack (retrieved from the character’s previous morph) can be easily plugged into the spare morph, effectively resleeving them (they must make Integration, Alienation, and Continuity Tests as normal). Once plugged in, it takes only 3 Action Turns for the cortical stack’s data to be read and checked for integrity and the ego to run inside the spare’s cyberbrain.
+Spares are designed for portability. Packed as a flat disc 15 centimeters in diameter and with a mass of 2 kilograms, when activated they pop into a spherical shape with 6 slender and retractable 20-centimeter limbs (3 arms and 3 legs). They are a common piece of equipment for gatecrashing teams.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cyberbrain, Extra Limbs (3 Arms/3 Legs), Grip Pads, Mnemonic Augmentation, Puppet Sock, (Temperature Tolerance, Vacuum Sealing)</Enhancements><Mobility System (Movement Rate)>Walker (2/8)
+</Mobility System (Movement Rate)>
+<Aptitude Maximum>20</Aptitude Maximum>
+<Durability>15</Durability>
+<Wound Threshold>3</Wound Threshold>
+<Advantages>Armor (2/2), counts as a small target in combat (–10 to hit)</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses)</Disadvantages>
+<CP Cost>5</CP Cost>
+<Credit Cost>Moderate</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Sphere</name>
+<Desc>Popular with AGIs and synthmorph activists, this morph is a sphere approximately one meter in diameter. It can extend up to four ﬂexible limbs as required, and typically hovers at approximately human eye level. The first tests of this morph revealed that the chameleon surface was necessary because it allows the user to display the image of a face, which made most transhumans both more comfortable talking with this morph and less likely to assume that it is a robot.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (4 Arms), Gas-Jet System, Mnemonic Augmentation, Puppet Sock, Telescoping Limbs, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Roller (8/32), Thrust Vector (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>35</Durability>
+<Wound Threshold>7</Wound Threshold>
+<Advantages>4 arms, +10 COG, +5 to three other aptitudes of the player’s choice, Armor 6/6</Advantages>
+<CP Cost>65</CP Cost>
+<Credit Cost>Expensive (minimum 70,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Steel Morph</name>
+<Desc>This morph was developed by technicians and designers who are members of the Lunar synthmorph rights movement, the Steel Liberators. Middle-class Lunars who came out of poverty and continue to actively support the Steel Liberators sometimes choose this morph, despite the fact that this choice often results in them experiencing significant prejudice from biochauvinists.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 SOM, +5 COG, +5 to two other aptitudes of the player’s choice, Armor 8/8</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait, Uncanny Valley trait</Disadvantages>
+<CP Cost>50</CP Cost>
+<Credit Cost>Expensive (minimum 30,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Liquid Silver Variant</name>
+<Desc>Designed as a top-end version of the steel morph, this shell's entire outer covering is composed of active nanomachines. A number of synthmorph performers use this shell's shape- and color-altering capacities as part of their acts. However, the fact that this morph can disguise itself as any other humanoid synthmorph, including the ubiquitous case morph, means that a number of covert operatives and criminals also make use of this morph. This version of the steel morph cannot use a synthetic mask.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Mnemonic Augmentation, Shape Adjusting, Skinflex, Wrist-Mounted Tools, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 SOM, +5 COG, +5 to three other aptitudes of the player’s choice, Armor 8/8</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait, Uncanny Valley trait</Disadvantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Masked Variant</name>
+<Desc>This version of the steel morph is equipped with the synthetic mask enhancement, making the shell look like a human biomorph. This version is uncommon, as most Steel Liberators view biological masking as a form of “selling out.” It is used both by Lunars who are stuck sleeving into a synthmorph, but whom don’t want to suffer discrimination, and by Steel Liberator activists looking to infiltrate biochauvinists and other opponent groups. </Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Mnemonic Augmentation, Add Synthetic Mask (this negates the Social Stigma (Clanking Masses) and Uncanny Valley traits), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+10 SOM, +5 COG, +5 to two other aptitudes of the player’s choice, Armor 8/8</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait, Uncanny Valley trait</Disadvantages>
+<CP Cost>55</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Sundiver</name>
+<Desc>The sundiver is a synthetic morph designed for solar research and emergency rescue operations. Sundivers are sleek mechanisms, about six meters long. They look a little like ramjets, except for a pair of articulated arms that extend forward from the morph’s pointed nose, allowing it to reach for and grasp objects. Because sundivers operate in the coronal environment, they are built to survive superheated plasma and shielded against radiation. Sundivers are equipped with a powerful electromagnetic propulsion system that allows them to skate along solar magnetic lines of force much like the surya do.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Coronal Adaptation, Cortical Stack, Cyberbrain, Enhanced Vision, Heavy Combat Armor, Mnemonic Augmentation, Radar, Reflex Booster, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Thrust Vector (12/60)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Speed Modifier>+1 (Reflex Booster)</Speed Modifier>
+<Durability>120</Durability>
+<Wound Threshold>24</Wound Threshold>
+<Advantages>+5 COO, +10 REF (+20 with Reflex Booster), Armor 16/16</Advantages>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (minimum 40,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Swarmanoid</name>
+<Desc>The swarmanoid is not a single shell per se, but rather a swarm of hundreds of insect-sized robotic microdrones. Each individual “bug” is capable of crawling, rolling, hopping several meters, or using nanocopter fan blades for airlift. The controlling computer and sensor systems are distributed throughout the swarm. Though the swarm can “meld” together into a roughly child-sized shape, the swarm is incapable of tackling physical tasks like grabbing, lifting, or holding as a unit. Individual bugs are quite capable of interfacing with electronics.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Swarm Composition, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (2/8), Hopper (4/20), Rotor (4/32)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>See Swarm Composition</Advantages>
+<Disadvantages>See Swarm Composition</Disadvantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Skulker Variant</name>
+<Desc>Skulkers are a stealth swarmanoid designed to infiltrate sensitive areas and avoid detection by sensors. The swarmanoid is not a single shell per se, but rather a swarm of hundreds of insect-sized robotic microdrones. Each individual “bug” is capable of crawling, rolling, hopping several meters, or using nanocopter fan blades for airlift. The controlling computer and sensor systems are distributed throughout the swarm. Though the swarm can “meld” together into a roughly child-sized shape, the swarm is incapable of tackling physical tasks like grabbing, lifting, or holding as a unit. Individual bugs are quite capable of interfacing with electronics.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Swarm Composition, Chameleon Skin, Radar Invisibility, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (2/8), Hopper (4/20), Rotor (4/32)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>See Swarm Composition</Advantages>
+<Disadvantages>See Swarm Composition</Disadvantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Swarmanoid Smart Swarm Variant</name>
+<Desc>The swarmanoid is not a single shell per se, but rather a swarm of hundreds of insect-sized robotic microdrones. Each individual “bug” is capable of crawling, rolling, hopping several meters, or using nanocopter fan blades for airlift. The controlling computer and sensor systems are distributed throughout the swarm. Though the swarm can “meld” together into a roughly child-sized shape, the swarm is incapable of tackling physical tasks like grabbing, lifting, or holding as a unit. Individual bugs are quite capable of interfacing with electronics.
+	
+	The smart swarm is a robust attempt to get more utility out of the swarmanoid morph design. It makes use of larger modular minidrones (rather than microdrones) that can lock together into various shapes, enabling limited physical actions and tool use.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Swarm Composition, Modular Design, Smart Swarm, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Shaped Swarm 2/16</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>30</Durability>
+<Wound Threshold>6</Wound Threshold>
+<Advantages>See Swarm Composition</Advantages>
+<Disadvantages>See Swarm Composition</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>Expensive (minimum 30,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Synth</name>
+<Desc>Synths are anthromorphic robotic shells (androids and gynoids). They are typically used for menial labor jobs where pods are not as good of an option. Cheaper than many other morphs, they are commonly used for people who need a morph quickly and cheaply or simply on a transient basis. Though they look humanoid, synths are easily recognizable as non-biological unless they have the synthetic mask option.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/20)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 SOM, +5 to one other aptitude of the player’s choice, Armor 6/6</Advantages>
+<Disadvantages>Social Stigma (Clanking Masses) trait, Uncanny Valley trait</Disadvantages>
+<CP Cost>30</CP Cost>
+<Credit Cost>High</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Synthtaur</name>
+<Desc>The synthtaur resembles an elegant mechanical centaur, but is a versatile and extremely durable synthmorph. The shape adjusting enhancement allows it to switch between being a two-armed quadruped standing 1.7 meters tall or a four-armed biped standing 2.4 meters high, as well as allowing it to fit into small spaces. Its telescoping legs even allow it to reduce its height to become a 2-meter-tall bipedal humanoid. This morph is popular with gatecrashers, people exploring ruined habitats, and anyone going into dangerous and remote situations.</Desc>
+<Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Extra Limbs (6 Arms/Legs), Grip Pads, Mnemonic Augmentation, Pneumatic Limbs (2 Hind Legs), Prehensile Feet, Shape Adjusting, Telescoping Limbs (4 Lower Arms/Legs), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (6/40 quadruped, 4/20 biped)</Mobility System>
+<Aptitude Maximum>30 (40 SOM)</Aptitude Maximum>
+<Durability>60</Durability>
+<Wound Threshold>12</Wound Threshold>
+<Advantages>6 Arms/Legs, +10 SOM, +5 to two other aptitudes of the player’s choice, Armor 8/8</Advantages>
+<Notes>Large Size trait</Notes>
+<CP Cost>70</CP Cost>
+<Credit Cost>Expensive (minimum 80,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Takko</name>
+<Desc>The first synthetic octopus design from the engineers at Feral Robot is a hardy shell custom-designed to make octopi uplifts feel more at home in a synthetic body with eight functioning appendages. Though it lacks ink sacs, the takko features vectored-thrust jets for microgravity propulsion.</Desc>
+<Enhancements>360-Degree Vision, Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (8 Arms), Grip Pads, Mnemonic Augmentation, Polarization Vision, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
+<Mobility System>Walker (4/24), Thrust Vector (8/40)</Mobility System>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>Beak Attack (1d10 + 2 DV, use Unarmed Combat skill), +10 Free Fall skill, +10 Climbing skill,+5 COO, +5 INT, +5 SOM, Armor 8/8</Advantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 45,000+)</Credit Cost>
+</morph>
+
+<morph>
+<type>Synth</type>
+<name>Xu Fu</name>
+<Desc>Named after a historical Chinese explorer, many gatecrashers consider xu fus the ideal exoplanet exploration synthmorph. Its main body sits atop 6 legs (up to 2 meters long, though retractable) that end in multidirectional smart wheels for quick travel, capable of rolling in any direction and over rough terrain. For exceptionally difficult terrain, the wheels can be retracted and the xu fu can maneuver as a walker. In addition to two standard arms, it features a third 2-meter long sensor-equipped limb for reaching far distances, overseeing obstacles, etc. Xu fus have an impressive sensor package and are ideal for surface-based scouting as well as investigating tunnels, collecting samples, and so on.</Desc>
+<Enhancements>360° Vision, Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Direction Sense, Echolocation, Electrical Sense, Enhanced Hearing, Enhanced Vision, Extra Limbs (3 Arms/6 Legs), Grip Pads, Lidar, Mnemonic Augmentation, Pneumatic Limbs, Radar, Puppet Sock, Radiation Sense, Telescoping Limbs (Legs, 1 Arm), T-Ray Emitter, (Temperature Tolerance, Vacuum Sealing)</Enhancements><Mobility System (Movement Rate)>Walker (4/20), Wheeled (4/32)
+</Mobility System (Movement Rate)>
+<Aptitude Maximum>30</Aptitude Maximum>
+<Durability>40</Durability>
+<Wound Threshold>8</Wound Threshold>
+<Advantages>+5 COO, + 5 SOM, Armor (8/8)</Advantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 50,000+)</Credit Cost>
+</morph>
+
+<morph fName="Infomorph">
+<name>Infomorph</name>
+<Desc>Infomorphs are digital-only forms—they lack a physical body. Infomorphs are sometimes carried by other characters instead of (or in addition to) a muse in a ghostrider module.</Desc>
+<Enhancements>Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Disadvantages>No physical form</Disadvantages>
+<CP Cost>0</CP Cost>
+<Credit Cost>0</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Agent</name>
+<Desc>While some infomorphs who work in network security and penetration testing use this eidolon, it is most popular with hackers and criminals. Many users also purchase the digital veil plug-in.</Desc>
+<Enhancements>Eidetic Memory, Hacking Alert, Mental Speed, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Advantages>+5 COG, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 35,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Digimorph</name>
+<Desc>This budget eidolon is one of the cheapest available. While it has only modest bonuses, it is highly customizable and widely used.</Desc>
+<Enhancements>Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Advantages>+5 to one aptitude of the player’s choice</Advantages>
+<CP Cost>25</CP Cost>
+<Credit Cost>Expensive</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Elite</name>
+<Desc>Designed for performers, celebrities, and individuals who work with such people, this eidolon allows users to be more charismatic and persuasive, while also providing with them the ability to think on their feet by speeding up their thoughts in order to give themselves more time to consider their responses.</Desc>
+<Enhancements>Mental Speed, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Advantages>+5 INT, +5 SAV</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 35,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Hot Shot</name>
+<Desc>When you really want to pilot a high-speed spacecraft, you don’t want to have to worry how your squishy biomorph is going to hold up under high-g maneuvers. This eidolon is quite popular among fightercraft pilots as well as among infomorphs who specialize in controlling and directing robots.</Desc>
+<Enhancements>Increased Speed, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+3 (includes Increased Speed)</Speed Modifier>
+<Advantages>+5 REF, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 35,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Sage</name>
+<Desc>This cutting-edge eidolon is too new to have seen widespread adoption by scientists and academics, but its popularity is spreading among intellectuals, researchers, and others who can afford it.</Desc>
+<Enhancements>Eidetic Memory, Hyper Linguist, Math Boost, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Advantages>+10 COG, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>40</CP Cost>
+<Credit Cost>Expensive (minimum 40,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Scholar</name>
+<Desc>Most voluntary infomorphs value intelligence above physical prowess and so this is one of the most popular eidolons. It is a simple and relatively powerful eidolon which has no frills and is affordable by most well-off infomorphs.</Desc>
+<Enhancements>Eidetic Memory, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Advantages>+5 COG, +5 INT</Advantages>
+<CP Cost>35</CP Cost>
+<Credit Cost>Expensive (minimum 35,000)</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Slave</name>
+<Desc>No one other than a handful of bizarre eccentrics voluntarily uses this eidolon. It is specifically designed as a means to control infomorphs who are being used as slaves. One common use of this eidolon is sending an infomorph on a mission where the sender wishes to insure the infomorphs complete and total obedience.</Desc>
+<Enhancements>Copylock, Mnemonic Augmentation</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+2</Speed Modifier>
+<Disadvantages>Modified Behavior (Level 2: Blocked disobedience to a particular person or group), –10 WIL</Disadvantages>
+<CP Cost>5</CP Cost>
+<Credit Cost>Moderate</Credit Cost>
+</morph>
+
+<morph>
+<type>Infomorph</type>
+<name>Wirehead</name>
+<Desc>Regardless of whether an infomorph controls fightercraft, tiny surveillance drones, or attack robots, this high-end eidolon is one that almost all people in those professions wish they had access to.</Desc>
+<Enhancements>Increased Speed, Mental Speed, Mnemonic Augmentation, Panopticon</Enhancements>
+<Aptitude Maximum>40</Aptitude Maximum>
+<Speed Modifier>+3 (includes Increased Speed)<Speed Modifier>
+<Advantages>+10 REF, +5 to one other aptitude of the player’s choice</Advantages>
+<CP Cost>60</CP Cost>
+<Credit Cost>Expensive (minimum 60,000</Credit Cost>
+</morph>
+------------------------------------------------------------------------------------------
 SLEIGHT
 CHI
 FALSE

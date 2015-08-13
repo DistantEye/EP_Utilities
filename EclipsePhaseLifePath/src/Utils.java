@@ -19,7 +19,7 @@ public class Utils {
 	    }
 	}
 	
-	public static String joinStr(String[] arr)
+	public static String joinStr(String[] arr, String joiner)
 	{
 		if (arr.length == 0)
 		{
@@ -30,12 +30,17 @@ public class Utils {
 		
 		for (int x = 1; x < arr.length; x++)
 		{
-			result += "\n" + arr[x];
+			result += joiner + arr[x];
 		}
 		
 		return result;
 	}
 	
+	public static String joinStr(String[] arr)
+	{
+		return joinStr(arr,"\n");
+	}
+		
 	/**
 	 * Splits a string of commands, making sure to respect nesting if () exist with delimeters inside
 	 * This version assumes the delimeter is a comma

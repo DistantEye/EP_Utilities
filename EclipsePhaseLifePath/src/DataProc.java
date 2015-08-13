@@ -484,7 +484,12 @@ public class DataProc {
 			String mEffects = lines[3];
 			String mDesc = Utils.joinStr(Arrays.copyOfRange(lines,4,lines.length));
 			
-			Morph.CreateInternalMorph(mName + "|" + mType + "|" + mEffects + "|" + mDesc);
+			// TODO : In progress! Cobble together an XML reader!
+			
+			// Move the aptitudeMax parsing code from the Morph constructor to here!
+			
+			
+			// Morph.CreateInternalMorph(mName + "|" + mType + "|" + mEffects + "|" + mDesc);
 		}
 		else
 		{
