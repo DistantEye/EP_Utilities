@@ -25,6 +25,7 @@ public class Morph {
 	private int CP;
 	private String creditCost;
 	private String effects;
+	private String notes;
 	
 	
 	// stores all the below skills
@@ -41,9 +42,10 @@ public class Morph {
 	 * @param CP int. CP cost for morph
 	 * @param creditCost String containing the cost class and/or minimum credit value for the morph
 	 * @param effects Effects string that models the effects caused by possessing the morph 
+	 * @param Notes Any remaining notes about the morph
 	 */
 	private Morph(String name, String morphType, String description, String implants, String aptitudeMaxStr, int durability, int woundThreshold, int CP,
-					String creditCost, String effects) {
+					String creditCost, String effects, String notes) {
 		super();
 		this.name = name;
 		this.morphType = morphType;
@@ -52,85 +54,13 @@ public class Morph {
 		
 		this.aptitudeMaximums = new HashMap<String,Integer>();
 		
-		// TODO move this to DataProc! Parsing shouldn't be in a constructor
-		if (Utils.isInteger(aptitudeMaxStr))
+		String[] tempAptMax = aptitudeMaxStr.split(";");
+		
+		for (String pair : tempAptMax)
 		{
-			int max = Integer.parseInt(aptitudeMaxStr);
-			for (String apt : Aptitude.aptitudes)
-			{
-				this.aptitudeMaximums.put(apt, max);
-			}
-		}
-		else
-		{
-			String[] parts = aptitudeMaxStr.split(",");
-			
-			// build a list of all stats to cross off as we go
-			ArrayList<String> aptList = new ArrayList<String>();
-			for (String apt : Aptitude.aptitudes)
-			{
-				aptList.add(apt);
-			}			
-			
-			// we loop over each part of it which will have the different values for some of the stats. Ignore segments that contain "all", but mark that for later
-			String defaultMax = "";
-			for (String str : parts)
-			{
-				if (str.toLowerCase().contains("all others") || str.toLowerCase().contains("all else"))
-				{
-					defaultMax = str;
-				}
-				else
-				{
-					int max = 0;
-					
-					Matcher match = Pattern.compile("[0-9]+").matcher(str);
-					
-					if (!match.matches())
-					{
-						throw new IllegalArgumentException("No integer value found for aptitude maximum in " + str);
-					}
-					else
-					{
-						max = Integer.parseInt(match.group());
-					}
-					
-					for (String apt : Aptitude.aptitudes)
-					{
-						if (str.toUpperCase().contains(apt))
-						{
-							this.aptitudeMaximums.put(apt, max);
-							aptList.remove(apt);
-						}
-					}
-					
-					// now we process the defaultMax part, throwing an error if it doesn't exist
-					if (defaultMax.length() == 0)
-					{
-						throw new IllegalArgumentException("No default 'all others' value found for aptitude maximum in " + aptitudeMaxStr);
-					}
-					else
-					{
-						max = 0;
-						
-						match = Pattern.compile("[0-9]+").matcher(defaultMax);
-						
-						if (!match.matches())
-						{
-							throw new IllegalArgumentException("No integer value found for aptitude maximum in " + defaultMax);
-						}
-						else
-						{
-							max = Integer.parseInt(match.group());
-							
-							for (String apt : aptList)
-							{
-								this.aptitudeMaximums.put(apt, max);
-							}
-						}
-					}
-				}
-			}
+			String[] parts = pair.split(":");
+			// this should always be safe below since it comes from a controlled source
+			this.aptitudeMaximums.put(parts[0], Integer.parseInt(parts[1]));
 		}
 		
 		this.durability = durability;
@@ -138,6 +68,7 @@ public class Morph {
 		this.CP = CP;
 		this.creditCost = creditCost;
 		this.effects = effects;
+		this.notes = notes;
 	}
 	
 	private Morph(Morph t)
@@ -159,6 +90,7 @@ public class Morph {
 		this.CP = t.CP;
 		this.creditCost = t.creditCost;
 		this.effects = t.effects;
+		this.notes = t.notes;
 	}
 	
 	/**
@@ -317,18 +249,18 @@ public class Morph {
 	 * Creates a new Morph that is stored statically in the class.
 	 * 
 	 * isSynth is a true/false field
-	 * @param input String[] {name, morphType, description, implants, aptitudeMaxStr, durability, woundThreshold, CP, creditCost, effects}
+	 * @param input String[] {name, morphType, description, implants, aptitudeMaxStr, durability, woundThreshold, CP, creditCost, effects, notes}
 	 */
 	public static void CreateInternalMorph(String[] parts)
 	{
-		if (parts.length != 10 || !Utils.isInteger(parts[5]) || !Utils.isInteger(parts[6]) || !Utils.isInteger(parts[7]))
+		if (parts.length != 11 || !Utils.isInteger(parts[5]) || !Utils.isInteger(parts[6]) || !Utils.isInteger(parts[7]))
 		{
 			throw new IllegalArgumentException("Invalidly formatted Morph string[] : " + Utils.joinStr(parts,","));
 		}
 		
 		
 		Morph temp = new Morph(parts[0],parts[1], parts[2],parts[3],parts[4],
-				Integer.parseInt(parts[5]),Integer.parseInt(parts[6]),Integer.parseInt(parts[7]),parts[8],parts[9]);
+				Integer.parseInt(parts[5]),Integer.parseInt(parts[6]),Integer.parseInt(parts[7]),parts[8],parts[9], parts[10]);
 		Morph.morphList.add(temp);
 	}
 	

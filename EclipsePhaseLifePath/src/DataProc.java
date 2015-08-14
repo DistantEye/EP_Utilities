@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -464,37 +466,192 @@ public class DataProc {
 	}
 	
 	/**
-	 * Adds Morph
-	 * Format (by line):
+	 * Adds Morph Block.
+	 * Format pseudo XML : one line of morph starts the block,
+	 * then there is a stream of tags per the below (not all tags are required present)
 	 * 
-	 * Line1 : MORPH
-	 * Line2 : MorphName
-	 * Line3 : Morph type
-	 * Line4 : More effects string
-	 * Line5+ : Morph Description (will read lines until end of chunk)
+	 * <morph>
+	 * <type></type>
+	 * <name></name>
+	 * <Desc></Desc>
+	 * <Implants></Implants>
+	 * <Aptitude Maximum></Aptitude Maximum>
+	 * <Durability></Durability>
+	 * <Wound Threshold></Wound Threshold>
+	 * <Advantages></Advantages>
+	 * <CP Cost></CP Cost>
+	 * <Credit Cost></Credit Cost>
+	 * <Notes></Notes>
+	 * </morph>
 	 * 
 	 * @param lines List of lines comprising the Trait to be read in
 	 */
 	private static void addMorph(String[] lines)
 	{
-		if (lines.length >= 4)
-		{
-			String mName = lines[1];
-			String mType = lines[2];
-			String mEffects = lines[3];
-			String mDesc = Utils.joinStr(Arrays.copyOfRange(lines,4,lines.length));
+		// TODO this is a bit hackish. We may one day make this work more like true xml
+		
+		// we use no divider between lines because it will make the tag parsing actually go slightlyeasier.
+		String lineStream = Utils.joinStr(lines,"");
+		int idx = 0;
+		
+		String nextMorph = Utils.returnStringInTokensStk("<morph>", "</morph>", lineStream, idx);
+		String fullMorphBlock = "<morph>" + nextMorph + "</morph>";
+		
+		// this sets idx to next time start looking right after when the past block ended
+		idx = lineStream.indexOf(fullMorphBlock,idx) + fullMorphBlock.length();
+		
+		while (nextMorph.length() != 0)
+		{				
+			String name = Utils.returnStringInTag("name",nextMorph,0);
+			String morphType = Utils.returnStringInTag("type",nextMorph,0);
+			String description = Utils.returnStringInTag("Desc",nextMorph,0);
+			String implants = Utils.returnStringInTag("Implants",nextMorph,0);
+			String aptitudeMaxStr = Utils.returnStringInTag("Aptitude Maximum",nextMorph,0);			
+			String durStr = Utils.returnStringInTag("Durability",nextMorph,0);
+			String woundThrStr = Utils.returnStringInTag("Wound Threshold",nextMorph,0);
+			String cpStr = Utils.returnStringInTag("CP",nextMorph,0);
 			
-			// TODO : In progress! Cobble together an XML reader!
+			// while not strictly necessary, we make sure all of the following values parse into integers, because they should logically be ints.
+			// it may cause problems elsewhere otherwise.
+			int durability;
 			
-			// Move the aptitudeMax parsing code from the Morph constructor to here!
+			if (Utils.isInteger(durStr))
+			{
+				durability = Integer.parseInt(durStr);
+			}
+			// sometimes we have something like 50 (includes implants), which we want to parse just to 50
+			else if (Utils.isInteger(durStr.split(" ")[0]))
+			{
+				durability = Integer.parseInt(durStr.split(" ")[0]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Durability isn't parseable as a number for morph: " + name);
+			}
 			
+			int woundThreshold;
 			
-			// Morph.CreateInternalMorph(mName + "|" + mType + "|" + mEffects + "|" + mDesc);
-		}
-		else
-		{
-			throw new IllegalArgumentException("Not enough lines for a valid morph at " + fileLineNumber);
-		}
+			if (Utils.isInteger(woundThrStr))
+			{
+				woundThreshold = Integer.parseInt(woundThrStr);
+			}
+			// sometimes we have something like 50 (includes implants), which we want to parse just to 50
+			else
+			{
+				throw new IllegalArgumentException("Would Threshold isn't parseable as a number for morph: " + name);
+			}
+			
+			int CP;
+			
+			if (Utils.isInteger(cpStr))
+			{
+				CP = Integer.parseInt(cpStr);
+			}
+			// sometimes we have something like 50 (includes implants), which we want to parse just to 50
+			else
+			{
+				throw new IllegalArgumentException("CP isn't parseable as a number for morph: " + name);
+			}
+									
+			String creditCost = Utils.returnStringInTag("Credit Cost",nextMorph,0);
+			String notes = Utils.returnStringInTag("Notes",nextMorph,0);
+			String effects = "";
+			
+			// now we do some stuff to figure out the aptitude maximums
+			ArrayList<String> outputList = new ArrayList<String>();
+			
+			if (Utils.isInteger(aptitudeMaxStr))
+			{
+				int max = Integer.parseInt(aptitudeMaxStr);
+				for (String apt : Aptitude.aptitudes)
+				{
+					outputList.add(apt+":"+max);
+				}
+			}
+			else
+			{
+				String[] parts = aptitudeMaxStr.split(",");
+				
+				// build a list of all stats to cross off as we go
+				ArrayList<String> aptList = new ArrayList<String>();
+				for (String apt : Aptitude.aptitudes)
+				{
+					aptList.add(apt);
+				}			
+				
+				// we loop over each part of it which will have the different values for some of the stats. Ignore segments that contain "all", but mark that for later
+				String defaultMax = "";
+				for (String str : parts)
+				{
+					if (str.toLowerCase().contains("all others") || str.toLowerCase().contains("all else"))
+					{
+						defaultMax = str;
+					}
+					else
+					{
+						int max = 0;
+						
+						Matcher match = Pattern.compile("[0-9]+").matcher(str);
+						
+						if (!match.matches())
+						{
+							throw new IllegalArgumentException("No integer value found for aptitude maximum in " + str);
+						}
+						else
+						{
+							max = Integer.parseInt(match.group());
+						}
+						
+						for (String apt : Aptitude.aptitudes)
+						{
+							if (str.toUpperCase().contains(apt))
+							{
+								outputList.add(apt+":"+max);
+								aptList.remove(apt);
+							}
+						}
+						
+						// now we process the defaultMax part, throwing an error if it doesn't exist
+						if (defaultMax.length() == 0)
+						{
+							throw new IllegalArgumentException("No default 'all others' value found for aptitude maximum in " + aptitudeMaxStr);
+						}
+						else
+						{
+							max = 0;
+							
+							match = Pattern.compile("[0-9]+").matcher(defaultMax);
+							
+							if (!match.matches())
+							{
+								throw new IllegalArgumentException("No integer value found for aptitude maximum in " + defaultMax);
+							}
+							else
+							{
+								max = Integer.parseInt(match.group());
+								
+								for (String apt : aptList)
+								{
+									outputList.add(apt+":"+max);
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			String aptMaxArrStr = Utils.joinStr((String[])outputList.toArray(),";");
+			
+			String[] toAdd = {name, morphType, description, implants, aptMaxArrStr, ""+durability, ""+woundThreshold, ""+CP, creditCost, effects, notes};
+			
+			Morph.CreateInternalMorph(toAdd);
+			
+			nextMorph = Utils.returnStringInTokensStk("<morph>", "</morph>", lineStream, idx);
+			fullMorphBlock = "<morph>" + nextMorph + "</morph>";
+			
+			// this sets idx to next time start looking right after when the past block ended
+			idx = lineStream.indexOf(fullMorphBlock,idx) + fullMorphBlock.length();			
+		} 
 	}
 	
 	/**

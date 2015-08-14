@@ -184,4 +184,18 @@ public class Utils {
 		String result = input.substring(startInner,endInner);
 		return result;
 	}
+	
+	/**
+	 * Shortcut function of returnStringInTokensStk that assumes an xml type <tag></tag> for start and end tokens
+	 * @param tagName Tag to look for, without the <>
+	 * @param input Input string
+	 * @param startIndex index to start looking at
+	 * @return
+	 */
+	public static String returnStringInTag(String tagName, String input, int startIndex)
+	{
+		String open = "<" + tagName + ">";
+		String close = "</" + tagName + ">";
+		return returnStringInTokensStk(open,close,input,startIndex);
+	}
 }
