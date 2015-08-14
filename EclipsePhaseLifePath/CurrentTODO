@@ -15,7 +15,13 @@ Make Table 11,69's effect more validated rather than lazy
 
 Remember that characters store stress in {stress} variable
 Remember that character store spare CP in {CP} variable. (This should be displayed, as well as means to manually edit/spend things
+Remember that characters store a {speedBonus} variable to track any adjustments to speed
 
 Resolve skill stacking (when you get a skill awarded you already have)
 
 Make Traits and Sleights also use XML (possibly the whole internalInfo file)
+
+
+
+
+Currently working on : Secondary/Derived stats calculation in Character class
