@@ -148,7 +148,19 @@ public class Character {
 	// calculates stats like durability and insanity and such
 	public void calcStats()
 	{
-		int speedBon = Integer.parseInt(this.getVar("{speedBonus}"));
+		// don't try and calc if we don't have a morph yet
+		if (getCurrentMorph() == null)
+		{
+			return;
+		}
+		
+		int speedBon = 0;
+		
+		if (this.hasVar("{speedBonus}"))
+		{
+			Integer.parseInt(this.getVar("{speedBonus}"));
+		}
+		
 		nonAppStats.put("SPD", 1+speedBon);
 		
 		// Infomorphs don't have physical damage stats 
@@ -316,6 +328,21 @@ public class Character {
 		}
 		
 		return this.aptitudeList.get(apt).getValue();
+	}
+	
+	/**
+	 *  If a valid secondary stat name is provided, returns its value
+	 * @param stat Secondary Stat Name name
+	 * @return Integer value
+	 */
+	public int getSecStat(String stat)
+	{
+		if (!nonAppStats.containsKey(stat))
+		{
+			throw new IllegalArgumentException(stat + " is not a valid Secondary Stat");
+		}
+		
+		return nonAppStats.get(stat);
 	}
 	
 	/**

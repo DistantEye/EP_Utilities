@@ -509,13 +509,17 @@ public class DataProc {
 			String aptitudeMaxStr = Utils.returnStringInTag("Aptitude Maximum",nextMorph,0);			
 			String durStr = Utils.returnStringInTag("Durability",nextMorph,0);
 			String woundThrStr = Utils.returnStringInTag("Wound Threshold",nextMorph,0);
-			String cpStr = Utils.returnStringInTag("CP",nextMorph,0);
+			String cpStr = Utils.returnStringInTag("CP Cost",nextMorph,0);
 			
 			// while not strictly necessary, we make sure all of the following values parse into integers, because they should logically be ints.
 			// it may cause problems elsewhere otherwise.
 			int durability;
 			
-			if (Utils.isInteger(durStr))
+			if (durStr.length() == 0)
+			{
+				durability = 0;
+			}
+			else if (Utils.isInteger(durStr))
 			{
 				durability = Integer.parseInt(durStr);
 			}
@@ -523,7 +527,7 @@ public class DataProc {
 			else if (Utils.isInteger(durStr.split(" ")[0]))
 			{
 				durability = Integer.parseInt(durStr.split(" ")[0]);
-			}
+			}		
 			else
 			{
 				throw new IllegalArgumentException("Durability isn't parseable as a number for morph: " + name);
@@ -531,7 +535,11 @@ public class DataProc {
 			
 			int woundThreshold;
 			
-			if (Utils.isInteger(woundThrStr))
+			if (woundThrStr.length() == 0)
+			{
+				woundThreshold = 0;
+			}
+			else if (Utils.isInteger(woundThrStr))
 			{
 				woundThreshold = Integer.parseInt(woundThrStr);
 			}
@@ -543,14 +551,18 @@ public class DataProc {
 			
 			int CP;
 			
-			if (Utils.isInteger(cpStr))
+			if (cpStr.length() == 0)
+			{
+				CP = 0;
+			}
+			else if (Utils.isInteger(cpStr))
 			{
 				CP = Integer.parseInt(cpStr);
 			}
 			// sometimes we have something like 50 (includes implants), which we want to parse just to 50
 			else
 			{
-				throw new IllegalArgumentException("CP isn't parseable as a number for morph: " + name);
+				throw new IllegalArgumentException("CP("+cpStr+") isn't parseable as a number for morph: " + name);
 			}
 									
 			String creditCost = Utils.returnStringInTag("Credit Cost",nextMorph,0);
@@ -640,7 +652,7 @@ public class DataProc {
 				}
 			}
 			
-			String aptMaxArrStr = Utils.joinStr((String[])outputList.toArray(),";");
+			String aptMaxArrStr = Utils.joinStr(outputList.toArray(new String[outputList.size()]),";");
 			
 			String[] toAdd = {name, morphType, description, implants, aptMaxArrStr, ""+durability, ""+woundThreshold, ""+CP, creditCost, effects, notes};
 			

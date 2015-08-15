@@ -204,7 +204,7 @@ public class LifePathUI implements UI {
 		sideBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         sideBar.setLayout(secondaryLayout);
 		
-		addC(sideBar,14,0);
+		addC(sideBar,22,0);
 		
 		cons.gridheight = 1;
 		
@@ -214,7 +214,7 @@ public class LifePathUI implements UI {
         statPanel.setLayout(statLayout);
 		
 		cons.gridwidth = GridBagConstraints.RELATIVE;
-		cons.gridheight = 3;
+		cons.gridheight = 6;
 		addC(statPanel,0,1);
 		
 		cons.gridwidth = 1;
@@ -259,6 +259,52 @@ public class LifePathUI implements UI {
 		addMappedFixedTF(12,2,"Total WIL", "",5,true);
 		endRow(14,2);
 		
+		addMappedFixedTF(0,3,"DUR", ""+currChar.getSecStat("DUR"),5,true);
+		addMappedFixedTF(2,3,"WT", ""+currChar.getSecStat("WT"),5,true);
+		addMappedFixedTF(4,3,"DR", ""+currChar.getSecStat("DR"),5,true);
+		addMappedFixedTF(6,3,"LUC", ""+currChar.getSecStat("LUC"),5,true);
+		addMappedFixedTF(8,3,"TT", ""+currChar.getSecStat("TT"),5,true);
+		addMappedFixedTF(10,3,"IR", ""+currChar.getSecStat("IR"),5,true);
+		addMappedFixedTF(12,3,"INIT", ""+currChar.getSecStat("INIT"),5,true);
+		addMappedFixedTF(14,3,"SPD", ""+currChar.getSecStat("SPD"),5,true);
+		addMappedFixedTF(16,3,"DB", ""+currChar.getSecStat("DB"),5,true);
+		endRow(18,3);
+		
+		addLabel(0,4,"Bonus");
+		this.mappedComponents.put("MorphBonusDUR", addTextF(1,4,5,true));
+		addLabel(2,4,"Bonus");
+		this.mappedComponents.put("MorphBonusWT", addTextF(3,4,5,true));
+		addLabel(4,4,"Bonus");
+		this.mappedComponents.put("MorphBonusDR", addTextF(5,4,5,true));
+		addLabel(6,4,"Bonus");
+		this.mappedComponents.put("MorphBonusLUC", addTextF(7,4,5,true));
+		addLabel(8,4,"Bonus");
+		this.mappedComponents.put("MorphBonusTT", addTextF(9,4,5,true));
+		addLabel(10,4,"Bonus");
+		this.mappedComponents.put("MorphBonusIR", addTextF(11,4,5,true));
+		addLabel(12,4,"Bonus");
+		this.mappedComponents.put("MorphBonusINIT", addTextF(13,4,5,true));
+		addLabel(14,4,"Bonus");
+		this.mappedComponents.put("MorphBonusSPD", addTextF(15,4,5,true));
+		addLabel(16,4,"Bonus");
+		this.mappedComponents.put("MorphBonusDB", addTextF(17,4,5,true));
+		endRow(18,4);
+		
+		addMappedFixedTF(0,5,"Total DUR", "",5,true);
+		addMappedFixedTF(2,5,"Total WT", "",5,true);
+		addMappedFixedTF(4,5,"Total DR", "",5,true);
+		addMappedFixedTF(6,5,"Total LUC", "",5,true);
+		addMappedFixedTF(8,5,"Total TT", "",5,true);
+		addMappedFixedTF(10,5,"Total IR", "",5,true);
+		addMappedFixedTF(12,5,"Total INIT", "",5,true);
+		addMappedFixedTF(14,5,"Total SPD", "",5,true);
+		addMappedFixedTF(16,5,"Total DB", "",5,true);		
+		endRow(18,5);
+		
+		addMappedFixedTF(0,6,"Stress", "",5,true);
+		addMappedFixedTF(2,6,"MOX", "",5,true);
+		endRow(4,6);
+		
 		
 		// reset to normal dimensions and panel targets
 		currentLayout = layout;
@@ -277,7 +323,7 @@ public class LifePathUI implements UI {
 		JScrollPane tempPane = new JScrollPane(mainStatus);
 		tempPane.setMinimumSize(tempPane.getPreferredSize());
 		
-		addC(tempPane,0,4);
+		addC(tempPane,0,8);
 
 		// reset to normal dimensions
 		cons.fill = GridBagConstraints.NONE;
@@ -303,7 +349,7 @@ public class LifePathUI implements UI {
 		
 		this.update();
 		
-		mainWindow.setSize(1400, 900);
+		mainWindow.setSize(1600, 1000);
 
 		mainWindow.setVisible(true);
 	}
@@ -559,22 +605,41 @@ public class LifePathUI implements UI {
 	{
 		currChar.setName(getTextF("Character Name").getText());
 		
+		currChar.calcStats(); // updates secondaries
+		
 		// set morph and background
-		getTextF("Morph").setText(currChar.getCurrentMorph().getName());
+		String morphName = "";
+		
+		if (currChar.getCurrentMorph() != null)
+		{
+			morphName = currChar.getCurrentMorph().getName();
+		}
+		getTextF("Morph").setText(morphName);
 		getTextF("Background").setText(currChar.getBackground());
 		
-		int[] stats = new int[7];
-		int[] bonuses = new int[7];
+		int[] stats = new int[16];
+		int[] bonuses = new int[16];
 		int cnt = 0;
 		
-		stats[0] = currChar.getAptitude("COG");
-		stats[1] = currChar.getAptitude("COO");
-		stats[2] = currChar.getAptitude("INT");
-		stats[3] = currChar.getAptitude("REF");
-		stats[4] = currChar.getAptitude("SAV");
-		stats[5] = currChar.getAptitude("SOM");
-		stats[6] = currChar.getAptitude("WIL");
-				
+		stats[cnt++] = currChar.getAptitude("COG");
+		stats[cnt++] = currChar.getAptitude("COO");
+		stats[cnt++] = currChar.getAptitude("INT");
+		stats[cnt++] = currChar.getAptitude("REF");
+		stats[cnt++] = currChar.getAptitude("SAV");
+		stats[cnt++] = currChar.getAptitude("SOM");
+		stats[cnt++] = currChar.getAptitude("WIL");
+		
+		stats[cnt++] = currChar.getSecStat("DUR");
+		stats[cnt++] = currChar.getSecStat("WT");
+		stats[cnt++] = currChar.getSecStat("DR");
+		stats[cnt++] = currChar.getSecStat("LUC");
+		stats[cnt++] = currChar.getSecStat("TT");
+		stats[cnt++] = currChar.getSecStat("IR");
+		stats[cnt++] = currChar.getSecStat("INIT");
+		stats[cnt++] = currChar.getSecStat("SPD");
+		stats[cnt++] = currChar.getSecStat("DB");
+		
+		cnt = 0;
 		
 		// update base stats
 		getTextF("Base COG").setText(""+stats[cnt++]);
@@ -584,6 +649,16 @@ public class LifePathUI implements UI {
 		getTextF("Base SAV").setText(""+stats[cnt++]);
 		getTextF("Base SOM").setText(""+stats[cnt++]);
 		getTextF("Base WIL").setText(""+stats[cnt++]);
+		
+		getTextF("DUR").setText(""+stats[cnt++]);
+		getTextF("WT").setText(""+stats[cnt++]);
+		getTextF("DR").setText(""+stats[cnt++]);
+		getTextF("LUC").setText(""+stats[cnt++]);
+		getTextF("TT").setText(""+stats[cnt++]);
+		getTextF("IR").setText(""+stats[cnt++]);
+		getTextF("INIT").setText(""+stats[cnt++]);
+		getTextF("SPD").setText(""+stats[cnt++]);
+		getTextF("DB").setText(""+stats[cnt++]);
 		
 		// get bonus amounts
 		cnt = 0;
@@ -595,16 +670,38 @@ public class LifePathUI implements UI {
 		bonuses[cnt++] = getTextFVal("MorphBonusSOM");
 		bonuses[cnt++] = getTextFVal("MorphBonusWIL");
 		
+		bonuses[cnt++] = getTextFVal("MorphBonusDUR");
+		bonuses[cnt++] = getTextFVal("MorphBonusWT");
+		bonuses[cnt++] = getTextFVal("MorphBonusDR");
+		bonuses[cnt++] = getTextFVal("MorphBonusLUC");
+		bonuses[cnt++] = getTextFVal("MorphBonusTT");
+		bonuses[cnt++] = getTextFVal("MorphBonusIR");
+		bonuses[cnt++] = getTextFVal("MorphBonusINIT");
+		bonuses[cnt++] = getTextFVal("MorphBonusSPD");
+		bonuses[cnt++] = getTextFVal("MorphBonusDB");
+		
 		cnt = 0;
 		
 		// build stat totals
-		getTextF("Total COG").setText(""+(stats[0] + bonuses[0]));
-		getTextF("Total COO").setText(""+(stats[1] + bonuses[1]));
-		getTextF("Total INT").setText(""+(stats[2] + bonuses[2]));
-		getTextF("Total REF").setText(""+(stats[3] + bonuses[3]));
-		getTextF("Total SAV").setText(""+(stats[4] + bonuses[4]));
-		getTextF("Total SOM").setText(""+(stats[5] + bonuses[5]));
-		getTextF("Total WIL").setText(""+(stats[6] + bonuses[6]));
+		getTextF("Total COG").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total COO").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total INT").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total REF").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total SAV").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total SOM").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total WIL").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		
+		getTextF("Total DUR").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total WT").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total DR").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total LUC").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total TT").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total IR").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total INIT").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total SPD").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		getTextF("Total DB").setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+		
+		cnt = 0;
 		
 		// rebuild skills panel
 		sideBar.removeAll();
@@ -615,7 +712,7 @@ public class LifePathUI implements UI {
 		for(String[] pair : currChar.getSkills())
 		{
 			this.addMappedFixedTF(x,y,pair[0], pair[1], 5, false);
-			if (y <= 28)
+			if (y <= 32)
 			{
 				y+=2;
 			}
