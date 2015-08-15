@@ -148,15 +148,39 @@ public class Character {
 	// calculates stats like durability and insanity and such
 	public void calcStats()
 	{
-//		nonAppStats.set("SPD", 1);
-//		nonAppStats.set("DUR", 0);
-//		nonAppStats.set("WT", 0);
-//		nonAppStats.set("DR", 0);
-//		nonAppStats.set("LUC", 0);
-//		nonAppStats.set("TT", 0);
-//		nonAppStats.set("IR", 0);
-//		nonAppStats.set("INIT", 1);
-//		nonAppStats.set("DB", 0);
+		int speedBon = Integer.parseInt(this.getVar("{speedBonus}"));
+		nonAppStats.put("SPD", 1+speedBon);
+		
+		// Infomorphs don't have physical damage stats 
+		if (!currentMorph.getMorphType().equals("Infomorph"))
+		{
+			nonAppStats.put("DUR", currentMorph.getDurability());
+			nonAppStats.put("WT", currentMorph.getWoundThreshold());
+			int dr = currentMorph.getDurability();
+			if (currentMorph.getMorphType().equals("Synth"))
+			{
+				nonAppStats.put("DR", dr*2);
+			}
+			else
+			{
+				nonAppStats.put("DR", (int)Math.round(dr*1.5));
+			}
+			
+			nonAppStats.put("DB", (int)(getAptitude("SOM")/10));
+		}
+		else
+		{
+			nonAppStats.put("DUR", 0);
+			nonAppStats.put("WT", 0);
+			nonAppStats.put("DR", 0);
+			nonAppStats.put("DB", 0);
+		}
+		
+		nonAppStats.put("LUC", getAptitude("WIL")*2);
+		nonAppStats.put("TT", (int)Math.round(nonAppStats.get("LUC")/5));
+		nonAppStats.put("IR", nonAppStats.get("LUC")*2);
+		nonAppStats.put("INIT", (int)Math.round( ( (getAptitude("INT")+getAptitude("REF"))) * 2 ) / 5 );
+		
 		
 	}
 	

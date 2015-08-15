@@ -175,6 +175,13 @@ public class Morph {
 	 */
 	public String getCreditCost() {
 		return creditCost;
+	}	
+	
+	/**
+	 * @return the notes
+	 */
+	public String getNotes() {
+		return notes;
 	}
 
 	/**
