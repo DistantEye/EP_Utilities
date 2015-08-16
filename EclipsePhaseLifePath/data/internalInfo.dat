@@ -107,7 +107,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 <name>Bruiser</name>
 <Desc>This morph is specifically designed to be large, strong, and physically intimidating. Adopted early on by some sports performers, it quickly became a favorite among criminal cartels and thugs. At 2.5 meters tall, the morph may have difficulty moving comfortably in all but the most open and uncrowded of habitats. This morph’s “claws” extend from its knuckles and are more like reinforced bone brass knuckles.</Desc>
 <Implants>Adrenal Boost, Basic Biomods, Basic Mesh Inserts, Claws, Cortical Stack, Hardened Skeleton</Implants>
-<Aptitude Maximum>30 (SOM 40)</Aptitude Maximum>
+<Aptitude Maximum>40 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>60 (includes Hardened Skeleton bonus)</Durability>
 <Wound Threshold>10</Wound Threshold>
 <Advantages>+10 </Advantages>Intimidation skill, +15 SOM (includes Hardened Skeleton bonus), +5 REF (+15 with Adrenal Booost), +5 to one other aptitude of the player’s choice
@@ -150,7 +150,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 <name>Dvergr</name>
 <Desc>Dvergar (plural of dvergr) are biomorphs designed for comfortable operation in high-gravity environments. They feature a reinforced skeletal structure and sturdier muscle masses. They are easily identified by their slightly squat, thick-necked, tough appearances.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, High-G Adaptation</Implants>
-<Aptitude Maximum>35 (40 SOM)</Aptitude Maximum>
+<Aptitude Maximum>40 (SOM), 35 (all others)</Aptitude Maximum>
 <Durability>45 (includes implant bonuses)</Durability>
 <Wound Threshold>9</Wound Threshold>
 <Advantages>+15 SOM (includes implant bonuses), +5 to one other aptitude of the player’s choice</Advantages>
@@ -258,7 +258,7 @@ Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to 
 <name>Grey</name>
 <Desc>Originally created as part of a fad based on 20th-century images of aliens, the grey morph soon became popular with eccentric scientists and engineers. This morph’s slender and weak-looking body stands only 1.5 meters tall, short compared to modern transhumans. Its distinctive large head and eyes strike many transhumans as disturbing.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Clean Metabolism, Cortical Stack, Eidetic Memory, Emotional Dampers, Enhanced Vision, Math Boost</Implants>
-<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Aptitude Maximum>20 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>30</Durability>
 <Wound Threshold>6</Wound Threshold>
 <Advantages>+5 COG, +5 WIL, +5 to one other aptitude of the player’s choice</Advantages>
@@ -380,7 +380,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 <name>Neo-Avians</name>
 <Desc>Neo-avians include ravens, crows, and gray parrots uplifted to human-level intelligence. Their physical sizes are much larger than their non-uplifted cousins (to the size of a human child), with larger heads for their increased brain size. Numerous transgenic modifications have been made to their wings, allowing them to retain limited flight capabilities at 1 g, but giving them a more bat-like physiology so they can bend and fold better, and adding primitive digits for basic tool manipulation. Their toes are also more articulated and now accompanied with an opposable thumb. Neo-avians have adapted well to microgravity environments, and are favored for their small size and reduced resource use.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
-<Aptitude Maximum>25 (20 SOM)</Aptitude Maximum>
+<Aptitude Maximum>20 (SOM), 25 (all others)</Aptitude Maximum>
 <Durability>20</Durability>
 <Wound Threshold>4</Wound Threshold>
 <Advantages>Beak/Claw Attack (1d10 DV, AP -1, use Unarmed Combat skill), Flight, +5 INT, +10 REF, +5 to one other aptitude of the player’s choice, Neo-avians count as a small target (-10 to hit in combat)</Advantages>
@@ -1041,7 +1041,7 @@ Hypergibbons stand about 1 meter tall, weigh 15 kilograms, and typically have bl
 <Desc>When they’re seen at all, these morphs resemble a matte gray neo-corvid with many odd, sharp angles. Blackbirds are consummate stealth morphs, designed to evade visual observation and radar during recon or infiltration. In part due to aesthetics, they’re a favorite of neo-ravens.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Hearing, Enhanced Vision, Invisibility, Mnemonic Augmentation, Puppet Sock, Reduced Signature, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Hopper (4/20), Winged (8/40)</Mobility System>
-<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Aptitude Maximum>20 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>25</Durability>
 <Wound Threshold>5</Wound Threshold>
 <Advantages>Flight, +5 COO, +5 REF, +5 to one other aptitude of the player’s choice, +10 Flight skill, +10 Infiltration skill, Armor 2/2, Beak/Claw Attack (1d10 + 1 DV, AP −1)</Advantages>
@@ -1115,7 +1115,7 @@ This engine can operate for a total of one and a half hours before it requires r
 <Desc>This huge, vaguely anthropomorphic synthmorph is designed for large construction projects and similar heavy industrial uses, such as moving large objects. At just under three-meters tall and with a mass of almost one ton, the daitya is essentially an industrial mech. Modified versions have occasionally been deployed for combat purposes.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Grip Pads, Hardened Skeleton, Industrial Armor, Mnemonic Augmentation, Pneumatic Limbs (Arms), Puppet Sock, Radar, 4 Weapon Mounts (Disassembly Tools; 2 fixed, 2 articulated), Wrist-Mounted Tools, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (8/40)</Mobility System>
-<Aptitude Maximum>30 (40 SOM)</Aptitude Maximum>
+<Aptitude Maximum>40 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>100 (includes Hardened Skeleton bonus)</Durability>
 <Wound Threshold>20</Wound Threshold>
 <Advantages>+15 SOM (includes Hardened Skeleton bonus), +5 to one other aptitude of the player’s choice, Armor 10/10 (20/20 with Industrial Armor)</Advantages>
@@ -1130,7 +1130,7 @@ This engine can operate for a total of one and a half hours before it requires r
 <Desc>The dragonfly robotic morph takes the shape of a meter-long flexible shell with multiple wings and manipulator arms. Capable of near-silent turbofan-aided flight in Earth gravity, dragonfly bots fare even better in microgravity.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Winged (8/32)</Mobility System>
-<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Aptitude Maximum>20 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>25</Durability>
 <Wound Threshold>5</Wound Threshold>
 <Advantages>Flight, +5 REF, Armor (2/2), </Advantages><span style="line-height: 1.5;">small target (–10 modifier to hit in combat)</span>
@@ -1158,7 +1158,7 @@ This engine can operate for a total of one and a half hours before it requires r
 <Desc>Based on the kite morph popular with gatecrashers, this morph is somewhat more durable and better armored. It also includes a built-in laser as well as anti-detection measures. Its default mode is turbofan-driven rotorcraft; its light weight allows it to ﬂy and hover, even in thin atmospheres and heavy gravities. In streamlined ionic mode, it can travel at high speeds and maneuver in hurricane-force winds. In vacuum, it can drive itself with thrust-vector nozzles. It is occasionally used for aerial reconnaissance, but is most popular with spies, thieves, and discrete bodyguards.</Desc>
 <Enhancements>Access Jacks, Anti-Glare, Basic Mesh Inserts, Chameleon Skin, Chemical Sniffer, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, Neurachem (Level 1), Radar, Radar Absorbent, Shape Adjusting, T-Ray Emitter, Weapon Mount (Internal, Articulated, Laser Pulser), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Ionic (12/40), Thrust Vector (8/40), Walker (2/8), Winged (8/32)</Mobility System>
-<Aptitude Maximum>30 (25 SOM)</Aptitude Maximum>
+<Aptitude Maximum>25 (SOM), 30 (all others)</Aptitude Maximum>
 <Speed Modifier>+1 (Neurachem)</Speed Modifier>
 <Durability>30</Durability>
 <Wound Threshold>6</Wound Threshold>
@@ -1193,7 +1193,7 @@ This engine can operate for a total of one and a half hours before it requires r
 Flexbot Special Rules</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Fractal Digits, Mnemonic Augmentation, Modular Design, Shape Adjusting, Nanoscopic Vision, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (4/16), Hover (8/40)</Mobility System>
-<Aptitude Maximum>30 (SOM 25)</Aptitude Maximum>
+<Aptitude Maximum>25 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>25</Durability>
 <Wound Threshold>5</Wound Threshold>
 <Advantages>Armor 4/4, small target (-10 modifier to hit in combat)</Advantages>
@@ -1313,7 +1313,7 @@ In vacuum, it can drive itself with thrust-vector nozzles. Sometimes called “m
 <Desc>In its basic form, with its limbs retracted, a mimic morph resembles a spare and is only a bit larger than a human head. With its four pencil-thin telescoping legs fully extended, it can stand up to two meters tall, and its arms can also each reach up to two meters from the morph. These limbs can all be fully retracted and the user can also alter the morph’s shape and appearance, causing it to look like almost any small object such as a briefcase, cleaning robot, or household appliance. This morph can easily fit through small spaces and hide itself with great ease and is ideal for infiltration and sabotage missions.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (4 Legs, 2 Arms), Grip Pads, Mnemonic Augmentation, Puppet Sock, Shape Adjusting, Skinﬂex, Telescoping Limbs, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (5/24) (2/8 with limbs mostly retracted)</Mobility System>
-<Aptitude Maximum>30 (20 SOM)</Aptitude Maximum>
+<Aptitude Maximum>20 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>25</Durability>
 <Wound Threshold>5</Wound Threshold>
 <Advantages>+5 COO, +5 to one other aptitude of the player’s choice, Armor 4/4</Advantages>
@@ -1346,7 +1346,7 @@ The nautiloid is also available as a bot with no cyberbrain for the same cost. T
 <Desc>This recon morph is designed to be a fast, lightweight runner, climber, and ﬂyer. The opteryx looks like a one-meter-tall winged, synthetic dinosaur and adopts an almost horizontal body posture when running, its tail held out for balance. Its wings are fully functional arms equipped with claws. This morph is a favorite for gatecrashers and neo-avians in the dinosaur identity subculture. It comes equipped with cartography package software.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Claws, Cortical Stack, Cyberbrain, Enhanced Vision, Grip Pads, Mnemonic Augmentation, Pneumatic Limbs (Legs), Prehensile Tail, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (8/40), Winged (8/40)</Mobility System>
-<Aptitude Maximum>30 (25 SOM)</Aptitude Maximum>
+<Aptitude Maximum>25 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>25</Durability>
 <Wound Threshold>5</Wound Threshold>
 <Advantages>Flight, +5 COO, +5 INT, +5 REF, +10 </Advantages>Climbing skill, +10 Flight skill, Armor 2/2
@@ -1372,14 +1372,14 @@ The nautiloid is also available as a bot with no cyberbrain for the same cost. T
 
 <morph>
 <type>Synth</type>
-<name>Reapers</name>
+<name>Reaper</name>
 <Desc>The reaper is a common combat bot, used in place of biomorph soldiers and typically operated via teleoperation or by autonomous AI. The reaper’s core form is an armored disc, so that it can turn and present a thin profile to an enemy. It uses vector thrust nozzles to maneuver in microgravity, and also takes advantage of an ionic drive for fast movement over distance. Four legs/manipulating arms and four weapon pods are folded inside its frame. The reaper’s shell is made of smart materials, allowing these limbs and weapon mounts to extrude in any direction desired and even to change shape and length. In gravity environments, the reaper walks or hops on two or four of these limbs. Reapers are infamous due to numerous war XPs, and bringing one into most habitats will undoubtedly raise eyebrows, if not get you arrested.</Desc>
 <Enhancements>360-Degree Vision, Access Jacks, Anti-Glare, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Cyber Claws, Extra Limbs (4), Magnetic System, Pneumatic Limbs, Puppet Sock, Radar, Reflex Booster, Shape Adjusting, Structural Enhancement, T-Ray Emitter, Weapon Mount (Articulated, 4), Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (4/20), Hopper (4/20), Ionic (12/40), Vectored Thrust (4/20)</Mobility System>
 <Aptitude Maximum>40</Aptitude Maximum>
 <Speed Modifier>+1 (Reflex Booster)</Speed Modifier>
-<Durability>50 (60 with Structural Enhancement)</Durability>
-<Wound Threshold>10 (12 w/Structural Enhancement)</Wound Threshold>
+<Durability>60</Durability>
+<Wound Threshold>12</Wound Threshold>
 <Advantages>4 Limbs, +5 COO, +10 REF (+20 with Reflex Booster), +10 SOM, Armor 16/16</Advantages>
 <CP Cost>100</CP Cost>
 <Credit Cost>Expensive (minimum 50,000+)</Credit Cost>
@@ -1606,7 +1606,7 @@ Spares are designed for portability. Packed as a flat disc 15 centimeters in dia
 <Desc>The synthtaur resembles an elegant mechanical centaur, but is a versatile and extremely durable synthmorph. The shape adjusting enhancement allows it to switch between being a two-armed quadruped standing 1.7 meters tall or a four-armed biped standing 2.4 meters high, as well as allowing it to fit into small spaces. Its telescoping legs even allow it to reduce its height to become a 2-meter-tall bipedal humanoid. This morph is popular with gatecrashers, people exploring ruined habitats, and anyone going into dangerous and remote situations.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Extra Limbs (6 Arms/Legs), Grip Pads, Mnemonic Augmentation, Pneumatic Limbs (2 Hind Legs), Prehensile Feet, Shape Adjusting, Telescoping Limbs (4 Lower Arms/Legs), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (6/40 quadruped, 4/20 biped)</Mobility System>
-<Aptitude Maximum>30 (40 SOM)</Aptitude Maximum>
+<Aptitude Maximum>40 (SOM), 30 (all others)</Aptitude Maximum>
 <Durability>60</Durability>
 <Wound Threshold>12</Wound Threshold>
 <Advantages>6 Arms/Legs, +10 SOM, +5 to two other aptitudes of the player’s choice, Armor 8/8</Advantages>

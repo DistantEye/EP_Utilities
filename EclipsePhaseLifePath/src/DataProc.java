@@ -556,6 +556,10 @@ public class DataProc {
 			{
 				CP = 0;
 			}
+			else if (cpStr.toLowerCase().contains("not available"))
+			{
+				CP = -1;
+			}
 			else if (Utils.isInteger(cpStr))
 			{
 				CP = Integer.parseInt(cpStr);
@@ -606,7 +610,7 @@ public class DataProc {
 						
 						Matcher match = Pattern.compile("[0-9]+").matcher(str);
 						
-						if (!match.matches())
+						if (!match.find())
 						{
 							throw new IllegalArgumentException("No integer value found for aptitude maximum in " + str);
 						}
@@ -623,34 +627,35 @@ public class DataProc {
 								aptList.remove(apt);
 							}
 						}
+					}
+				}	
 						
-						// now we process the defaultMax part, throwing an error if it doesn't exist
-						if (defaultMax.length() == 0)
+				// now we process the defaultMax part, throwing an error if it doesn't exist
+				if (defaultMax.length() == 0)
+				{
+					throw new IllegalArgumentException("No default 'all others' value found for aptitude maximum in " + aptitudeMaxStr);
+				}
+				else
+				{
+					int max = 0;
+
+					Matcher match = Pattern.compile("[0-9]+").matcher(defaultMax);
+
+					if (!match.find())
+					{
+						throw new IllegalArgumentException("No integer value found for aptitude maximum in " + defaultMax);
+					}
+					else
+					{
+						max = Integer.parseInt(match.group());
+
+						for (String apt : aptList)
 						{
-							throw new IllegalArgumentException("No default 'all others' value found for aptitude maximum in " + aptitudeMaxStr);
-						}
-						else
-						{
-							max = 0;
-							
-							match = Pattern.compile("[0-9]+").matcher(defaultMax);
-							
-							if (!match.matches())
-							{
-								throw new IllegalArgumentException("No integer value found for aptitude maximum in " + defaultMax);
-							}
-							else
-							{
-								max = Integer.parseInt(match.group());
-								
-								for (String apt : aptList)
-								{
-									outputList.add(apt+":"+max);
-								}
-							}
+							outputList.add(apt+":"+max);
 						}
 					}
 				}
+				
 			}
 			
 			String aptMaxArrStr = Utils.joinStr(outputList.toArray(new String[outputList.size()]),";");
@@ -712,7 +717,7 @@ public class DataProc {
 		if (dataStore == null)
 		{
 			throw new IllegalStateException("Datastore not built yet!");
-		}
+		}		 
 		
 		String result = "";
 		
@@ -750,8 +755,9 @@ public class DataProc {
 			
 			if (Skill.isSkill(effect))
 			{
+				effect = effect.replace("!!X!!", "36");
 				Skill temp = Skill.CreateSkillFromString(effect);
-				result += temp.toString();
+				result += temp.toString().replace("36", "Wildcard");
 			}
 			else if (effect.startsWith("incSkl"))
 			{
@@ -1076,7 +1082,7 @@ public class DataProc {
 				{
 					result += "Add package : " + subparts[1];
 				}
-				else if (subparts.length == 3 && subparts[1].length() > 0 && Utils.isInteger(subparts[2]))
+				else if (subparts.length == 3 && subparts[1].length() > 0 && (Utils.isInteger(subparts[2]) || subparts[2].contains(Table.wildCard)))
 				{
 					result += "Add package (" + subparts[2] + "PP) : " + subparts[1];
 				}

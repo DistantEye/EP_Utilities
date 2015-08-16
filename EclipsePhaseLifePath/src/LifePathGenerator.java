@@ -231,7 +231,7 @@ public class LifePathGenerator {
 
 					String[] subParts = Utils.splitCommands(insides);
 					
-					if (subParts.length != 2 || Utils.isInteger(subParts[0]))
+					if (subParts.length != 2 || !Utils.isInteger(subParts[0]))
 					{
 						throw new IllegalArgumentException("Effect : " + effect + " calls for rollDice but lacks the correct format");
 					}
@@ -1328,7 +1328,7 @@ public class LifePathGenerator {
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
-		String[] parts = Utils.splitCommands(params, ";");
+		String[] parts = Utils.splitCommands(params, ",");
 			
 		if (condNoPrefix.startsWith("hasTrait"))
 		{
