@@ -164,6 +164,7 @@ public class Utils {
 			else if (input.substring(i,i+endTokenLen).equals(endToken) ) {
 				if (numEndsToSkip == 0) {
 					endInner = i;
+					break;
 				}
 				else {
 					numEndsToSkip--;
