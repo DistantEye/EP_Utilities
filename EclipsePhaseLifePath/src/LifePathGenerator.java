@@ -1488,6 +1488,7 @@ public class LifePathGenerator {
 		{
 			hasStarted = true;
 			Step start = (Step)DataProc.getDataObj("STEP_1");
+			playerChar.setLastStep(start);
 			nextEffects = this.runEffect(start.getEffects(), "");
 		}
 		else
@@ -1715,23 +1716,6 @@ public class LifePathGenerator {
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 		}
-	}
-	
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		// sample dice roll
-		//System.out.println(rng.nextInt(numSides+1));
-		String foo = "?1? ; ?2? ; ?3?";
-
-		DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		
-		int i = 0;
-		
 	}
 
 }
