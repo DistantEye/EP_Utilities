@@ -331,7 +331,15 @@ public class LifePathGenerator {
 				// good idea
 								
 				String params = Utils.returnStringInParen(effect);
-				String commandName = effect.substring(0, effect.indexOf('('));
+				String commandName = "";
+				if (effect.indexOf('(') > 0 )
+				{
+					commandName = effect.substring(0, effect.indexOf('('));
+				}
+				else
+				{
+					commandName = effect;
+				}
 				// TODO : to comply with older code, we have to insert the command at the beginning of params
 				params = commandName + "," + params;
 				
@@ -1490,7 +1498,6 @@ public class LifePathGenerator {
 			Step start = (Step)DataProc.getDataObj("STEP_1");
 			playerChar.setLastStep(start);
 			nextEffects = this.runEffect(start.getEffects(), "");
-			int i = 0;
 		}
 		else
 		{
@@ -1577,7 +1584,15 @@ public class LifePathGenerator {
 		effectTemp = effectTemp.replaceFirst(";", "|||");
 	
 		String params = Utils.returnStringInParen(effectTemp);	
-		String commandName = effect.substring(0, effect.indexOf('('));
+		String commandName = "";
+		if (effect.indexOf('(') > 0 )
+		{
+			commandName = effect.substring(0, effect.indexOf('('));
+		}
+		else
+		{
+			commandName = effect;
+		}
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
@@ -1661,7 +1676,15 @@ public class LifePathGenerator {
 	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
 	{
 		String params = Utils.returnStringInParen(effect);
-		String commandName = effect.substring(0, effect.indexOf('('));
+		String commandName = "";
+		if (effect.indexOf('(') > 0 )
+		{
+			commandName = effect.substring(0, effect.indexOf('('));
+		}
+		else
+		{
+			commandName = effect;
+		}
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		

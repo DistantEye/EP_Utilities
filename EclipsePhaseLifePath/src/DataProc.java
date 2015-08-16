@@ -723,7 +723,17 @@ public class DataProc {
 			String errorInfo = "";
 			
 			String params = Utils.returnStringInParen(effect);
-			String commandName = effect.substring(0, effect.indexOf('('));
+			
+			String commandName = "";
+			if (effect.indexOf('(') > 0 )
+			{
+				commandName = effect.substring(0, effect.indexOf('('));
+			}
+			else
+			{
+				commandName = effect;
+			}
+			
 			// TODO : to comply with older code, we have to insert the command at the beginning of params
 			params = commandName + "," + params;
 			
