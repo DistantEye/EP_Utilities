@@ -962,13 +962,13 @@ public class LifePathGenerator {
 							
 							String[] choiceEffects = subparts[2].split("/");
 							
-							if (choice < 0 || choice >= choiceEffects.length)
+							if (choice <= 0 || choice > choiceEffects.length)
 							{
-								throw new RuntimeException("Response : " + choice + " is less than zero or greater than number of choices");
+								throw new RuntimeException("Response : " + choice + " is less than one or greater than number of choices");
 							}
 							else
 							{
-								this.runEffect(choiceEffects[choice-1], subparts[1]);
+								this.runEffect(choiceEffects[choice-1].split("=")[1], subparts[1]);
 							}
 						}
 						else
@@ -1473,7 +1473,7 @@ public class LifePathGenerator {
 	 */
 	public void step()
 	{
-		if (hasStarted && nextEffects.length() == 0)
+		if (hasStarted && nextEffects != null && nextEffects.length() == 0)
 		{
 			hasFinished = true; // don't attempt to run steps that aren't there
 		}
@@ -1490,6 +1490,7 @@ public class LifePathGenerator {
 			Step start = (Step)DataProc.getDataObj("STEP_1");
 			playerChar.setLastStep(start);
 			nextEffects = this.runEffect(start.getEffects(), "");
+			int i = 0;
 		}
 		else
 		{
