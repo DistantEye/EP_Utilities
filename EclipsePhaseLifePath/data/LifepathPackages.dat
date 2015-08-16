@@ -1998,7 +1998,7 @@ rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
 STEP
 STEP_3_0
 STEP_3_1
-setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkipNoStop(STEP_3_1_STREET_RAT),stepSkipNoStop(STEP_3_1)
+setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkipNoStop(STEP_3_1_STREET_RAT),stepskipNoStop(STEP_3_1))
 --------------------------------------------------------------
 STEP
 STEP_3_1

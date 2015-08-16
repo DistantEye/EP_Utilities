@@ -62,7 +62,7 @@ r;argonauts (also technologists, researchers, and scientists);Scientists
 morph
 <morph>
 <type>Biomorph</type>
-<name>Aquanauts</name>
+<name>Aquanaut</name>
 <Desc>Aquanauts are environmentally adapted for underwater activities. They have seen a revival on exoplanets with habitable seas and oceans. Their heart rate slows while underwater, their skin includes a layer of blubber that retains heat, they store oxygen in their muscle tissue, and they do not suffer negative health effects from pressure changes. Additionally, their eyes have nictitating membranes and their corneas adjust to counter underwater refraction. Their hands and feet are webbed and they possess a transgenic swim bladder for controlling buoyancy. They can safely descend to about 200 meters depth (roughly 6 atmospheres of pressure) without suffering narcotic effects or other diving problems.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Respiration, Gills, Sonar, Swim Bladder, Temperature Tolerance (Improved Cold), Toxin Filters</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -91,7 +91,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 
 <morph>
 <type>Biomorph</type>
-<name>Bouncers</name>
+<name>Bouncer</name>
 <Desc>Bouncers are humans genetically adapted for zero-G and microgravity environments. Their legs are more limber, and their feet can grasp as well as their hands.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Grip Pads, Oxygen Reserve, Prehensile Feet</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -134,7 +134,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 
 <morph>
 <type>Biomorph</type>
-<name>Crashers</name>
+<name>Crasher</name>
 <Desc>An enhanced version of ruster morphs, crashers are rugged and durable designs capable of weathering a range of harsh environments. They are the ideal biomorph for gatecrashing assignments and are popular among first-in teams. Though pricey compared to other biomorph options, many gatecrashers traveling to less habitable and dangerous environments have found the investment worth it.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Circadian Regulation, Clean Metabolism, Cortical Stack, Direction Sense, Eidetic Memory, Enhanced Respiration, Enhanced Vision, Grip Pads, Hibernation, Medichines, Oxygen Reserve, Toxin Filters, Vacuum Sealing</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -160,7 +160,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 
 <morph>
 <type>Biomorph</type>
-<name>Exalts</name>
+<name>Exalt</name>
 <Desc>Exalt morphs are genetically-enhanced humans, designed to emphasize specific traits. Their genetic code has been tweaked to make them healthier, smarter, and more attractive. Their metabolism is modified to predispose them towards staying fit and athletic for the duration of an extended lifespan.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -186,7 +186,7 @@ These morphs have also been used by a few daring transhumans to explore the uppe
 
 <morph>
 <type>Biomorph</type>
-<name>Flats</name>
+<name>Flat</name>
 <Desc>Flats are baseline unmodified humans, born with all of the natural defects, hereditary diseases, and other genetic mutations that evolution so lovingly applies. Flats are increasingly rare—most died off with the rest of humanity during the Fall. Most new children are splicers—screened and genefixed at the least—except in habitats where flats are treated as second-class citizens and indentured labor.</Desc>
 <Implants>None</Implants>
 <Aptitude Maximum>20</Aptitude Maximum>
@@ -215,7 +215,7 @@ Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to 
 
 <morph>
 <type>Biomorph</type>
-<name>Furies</name>
+<name>Fury</name>
 <Desc>Furies are combat morphs. These transgenic human upgrades feature genetics tailored for endurance, strength, and reflexes, as well as behavioral modifications for aggressiveness and cunning. To offset tendencies for unruliness and macho behavior patterns, furies feature gene sequences promoting pack mentalities and cooperation, and they tend to be biologically female.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Bioweave Armor (Light), Cortical Stack, Enhanced Vision, Neurachem (Level 1), Toxin Filters</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -229,7 +229,7 @@ Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to 
 
 <morph>
 <type>Biomorph</type>
-<name>Futuras</name>
+<name>Futura</name>
 <Desc>An exalt variant, futura morphs were specially crafted for the “Lost generation.” Tailor-made for accelerated growth and adjusted for confidence, self-reliance, and adaptability, futuras were intended to help transhumanity regain its foothold. These programs proved disastrous and the line was discontinued, but some models remain, viewed by some with distaste and others as collectibles or exotic oddities.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Eidetic Memory, Emotional Dampers</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -242,7 +242,7 @@ Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to 
 
 <morph>
 <type>Biomorph</type>
-<name>Ghosts</name>
+<name>Ghost</name>
 <Desc>Ghosts are partially designed for combat applications, but their primary focus is stealth and infiltration. Their genetic profile encourages speed, agility, and reflexes, and their minds are modified for patience and problem-solving.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Chameleon Skin, Cortical Stack, Adrenal Boost, Enhanced Vision, Grip Pads</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -282,7 +282,7 @@ Surprisingly, some people voluntarily sleeve into freeman morphs, preferring to 
 
 <morph>
 <type>Biomorph</type>
-<name>Hibernoids</name>
+<name>Hibernoid</name>
 <Desc>Hibernoids are transgenic-modified humans with heavily-altered sleep patterns and metabolic processes. Hibernoids have a decreased need for sleep, requiring only 1-2 hours a day on average. They also have the ability to trigger a form of voluntary hibernation, effectively stopping their metabolism and need for oxygen. Hibernoids make excellent long-duration space travelers and habtechs, but these morphs are also favored by personal aides and hypercapitalists with non-stop lifestyles.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Circadian Regulation, Cortical Stack, Hibernation</Implants>
 <Aptitude Maximum>25</Aptitude Maximum>
@@ -324,7 +324,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 
 <morph>
 <type>Biomorph</type>
-<name>Lunar Fliers</name>
+<name>Lunar Flier</name>
 <Desc>This morph is a version of the exalt morph that has been adapted to fly in Earth normal air pressure as long as the gravity is 0.2 g or less. Though this morph is available on other low-g worlds and habitats, it was developed for and is primarily found on Luna. This morph resembles a typical exalt morph, except that it is lightly built, has larger lungs, and has feathered wings with a wingspan of 3 meters. The wings come out of the back torso and leave the morph’s hands and wrists unhindered. The wings may also be folded behind the body.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Clean Metabolism, Cortical Stack, Enhanced Vision, Wings</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -337,7 +337,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 
 <morph>
 <type>Biomorph</type>
-<name>Martian Alpiners</name>
+<name>Martian Alpiner</name>
 <Desc>Alpiners were a relatively common biomorph design on early frontier Mars, when temperatures and atmospheric pressure had not yet risen to present levels. Now they are found predominantly in the city of Olympus, where environmental conditions will always be incredibly harsh. Avid rock climbers and outdoor types also favor this morph, and in recent years it has enjoyed an unusual vogue among chic urbanites going for a rough-and-ready look without sleeving in the more de classe ruster morph.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Direction Sense, Grip Pads, Low Pressure Tolerance, Oxygen Reserve, Respirocytes, Temperature Tolerance (Improved Cold)</Implants>
 <Aptitude Maximum>25</Aptitude Maximum>
@@ -351,7 +351,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 
 <morph>
 <type>Biomorph</type>
-<name>Mentons</name>
+<name>Menton</name>
 <Desc>Mentons are genetically modified to increase cognitive abilities, particularly learning ability, creativity, attentiveness, and memory. Rumors exist of super-enhanced mentons with more extreme intelligence mods, but brain-hacking is notoriously difficult, and many attempts to redesign mental faculties result in impaired functioning, instability, or insanity.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Eidetic Memory, Hyper Linguist, Math Boost</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -364,7 +364,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 
 <morph>
 <type>Biomorph</type>
-<name>Neanderthals</name>
+<name>Neanderthal</name>
 <Desc>This morph is based on fossilized Neanderthal DNA, uplifted and enhanced to transhuman equivalence. Neanderthal morphs look like muscular humans with a heavy bone structure, distinctively long skulls, heavy brow ridges, and weak chins. Pale complexions and red hair are common features.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -377,7 +377,7 @@ Hulder can only tolerate temperatures hospitable to baseline transhumans for sho
 
 <morph>
 <type>Biomorph</type>
-<name>Neo-Avians</name>
+<name>Neo-Avian</name>
 <Desc>Neo-avians include ravens, crows, and gray parrots uplifted to human-level intelligence. Their physical sizes are much larger than their non-uplifted cousins (to the size of a human child), with larger heads for their increased brain size. Numerous transgenic modifications have been made to their wings, allowing them to retain limited flight capabilities at 1 g, but giving them a more bat-like physiology so they can bend and fold better, and adding primitive digits for basic tool manipulation. Their toes are also more articulated and now accompanied with an opposable thumb. Neo-avians have adapted well to microgravity environments, and are favored for their small size and reduced resource use.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>20 (SOM), 25 (all others)</Aptitude Maximum>
@@ -421,7 +421,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Neo-Hominids</name>
+<name>Neo-Hominid</name>
 <Desc>Neo-hominids are uplifted chimpanzees, gorillas, and orangutans. All feature enhanced intelligence and bipedal frames.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Prehensile Feet</Implants>
 <Aptitude Maximum>25</Aptitude Maximum>
@@ -505,7 +505,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Neotenics</name>
+<name>Neotenic</name>
 <Desc>Neotenics are transhumans modified to retain a child-like form. They are smaller, more agile, inquisitive, and less resource-depleting, making them ideal for habitat living and spacecraft. Some people find neotenic sleeves distasteful, especially when employed in certain media and sex work capacities.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>20 (SOM), 30 (all else)</Aptitude Maximum>
@@ -546,7 +546,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Octomorphs</name>
+<name>Octomorph</name>
 <Desc>These uplifted octopi sleeves have proven quite useful in zero-gravity environments. They retain eight arms, their chameleon ability to change skin color, ink sacs, and a sharp beak. They also have increased brain mass and longevity, can breathe both air and water, and lack a skeletal structure so they can squeeze through tight spaces. Octomorphs typically crawl along in zero-gravity using their arm suckers and expelling air for propulsion and can even walk on two of their arms in low gravity. Their eyes have been enhanced with color vision, provide a 360-degree field of vision, and they rotationally adjust to keep the slit-shaped pupil aligned with “up.” A transgenic vocal system allows them to speak.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Chameleon Skin</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -559,7 +559,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Olympians</name>
+<name>Olympian</name>
 <Desc>Olympians are human upgrades with improved athletic capabilities like endurance, eye-hand coordination, and cardio-vascular functions. Olympians are common among athletes, dancers, freerunners, and soldiers.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -599,7 +599,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Rusters</name>
+<name>Ruster</name>
 <Desc>Adapted for survival with minimum gear in the not-yet-terraformed Martian environment, these transgenic morphs feature insulated skin for more effective thermoregulation and respiratory system improvements to require less oxygen and filter carbon dioxide, among other mods.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Enhanced Respiration, Temperature Tolerance</Implants>
 <Aptitude Maximum>25</Aptitude Maximum>
@@ -612,7 +612,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Salamanders</name>
+<name>Salamander</name>
 <Desc>Salamanders are a type of biomorph popular with Solarians. They share some of the physiological traits of suryas, but are unable to survive unprotected in the corona (requiring a solar survival suit, like other biomorphs), and are instead bio-engineered to survive in the protected vacuum of coronal habitats. Their skin is thick, hairless, vaguely reptilian, and mostly black in color, with gold and orange body patterning. Like suryas, salamanders communicate either via wireless transmissions or by “sunspotting”—using their chromatophores to shift light and dark patterns on their skin to form patterns easily comprehensible to other coronal morphs. Salamanders have a wiry, streamlined, swept-back sort of look, a combination of fey and monkey-like. Their heads are also somewhat reptilian, with reflective eyes, no nose, and no mouth.
 Their feet are prehensile, usable just like hands. They lack reproductive organs and capabilities and feature cyberware gas jets on their chest and back for maneuvering in zero g. Many Solarians who normally inhabit suryas will sleeve into salamanders if they need to use humanoid tools or interact with non-Solarians.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Chameleon Skin, Enhanced Vision, Gas Jet System, Medichines, Oxygen Reserve, Prehensile Feet, Vacuum Sealing</Implants>
@@ -640,7 +640,7 @@ Their feet are prehensile, usable just like hands. They lack reproductive organs
 
 <morph>
 <type>Biomorph</type>
-<name>Splicers</name>
+<name>Splicer</name>
 <Desc>Splicers are genefixed humans. Their genome has been cleansed of hereditary diseases and optimized for looks and health, but has not otherwise been substantially upgraded. Splicers make up the majority of transhumanity.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack</Implants>
 <Aptitude Maximum>25</Aptitude Maximum>
@@ -668,7 +668,7 @@ A surya’s skin is an extraordinary organ, embedded with chromatophores that al
 
 <morph>
 <type>Biomorph</type>
-<name>Sylphs</name>
+<name>Sylph</name>
 <Desc>Sylph morphs are tailor-made for media icons, elite socialites, XP stars, models, and narcissists. Sylph gene sequences are specifically designed for distinctive good looks. Ethereal and elfin features are common, with slim and lithe bodies. Their metabolism has also been sanitized to eliminate unpleasant bodily odors and their pheromones adjusted for universal appeal.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Clean Metabolism, Cortical Stack, Enhanced Pheromones</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -979,7 +979,7 @@ Hypergibbons stand about 1 meter tall, weigh 15 kilograms, and typically have bl
 
 <morph>
 <type>Pod</type>
-<name>Worker Pods</name>
+<name>Worker Pod</name>
 <Desc>Part exalt human, part machine, these basic pods are virtually indistinguishable from humans. Worker pods are often used in menial labor jobs where interaction with humans is necessary.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Mnemonic Augmentation, Puppet Sock</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>
@@ -993,7 +993,7 @@ Hypergibbons stand about 1 meter tall, weigh 15 kilograms, and typically have bl
 
 <morph>
 <type>Synth</type>
-<name>Arachnoids</name>
+<name>Arachnoid</name>
 <Desc>Arachnoid robotic shells are 1-meter in length, segmented into two parts, with a smaller head, like a spider or termite. They feature four pairs of 1.5-meter-long retractable arms/legs, capable of rotating around the axis of the body, with built-in pneumatic systems for propelling the bot with small leaps. The manipulator claws on each arm/leg can be switched out with extendable mini-wheels for high-speed skating movement. A smaller pair of manipulator arms near the head allows for closer handling and tool use. In zero-G environments, arachnoids can retract their arms/legs and maneuver with vectored air thrusters.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Vision, Extra Limbs (10 Arms/Legs), Lidar, Mnemonic Augmentation, Pneumatic Limbs, Radar,(Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (4/24), Thrust Vector (8/40), Wheeled (8/40)</Mobility System>
@@ -1188,7 +1188,7 @@ This engine can operate for a total of one and a half hours before it requires r
 
 <morph>
 <type>Synth</type>
-<name>Flexbots</name>
+<name>Flexbot</name>
 <Desc>Designed for multi-purpose functions, flexbots can transform their shells to suit a range of situations and tasks. Their core frame consists of a half-dozen interlocking and shape-adjustable modules capable of auto-transforming into a variety of shapes: multi-legged walker, tentacle, hovercraft, and many others. Each module features its own sensor units and “bush robot” fractal-branching digits (each capable of breaking into smaller digits, down to the micrometer scale, allowing for ultra-fine manipulation). The flexbot control computer is also distributed between modules. Individual flexbots are only the size of a large dog, but multiple flexbots can join together for larger mass operations, even taking on heavy-duty tasks such as demolition, excavation, manufacturing, robotics assembly, and so on.
 Flexbot Special Rules</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Fractal Digits, Mnemonic Augmentation, Modular Design, Shape Adjusting, Nanoscopic Vision, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
@@ -1436,7 +1436,7 @@ The nautiloid is also available as a bot with no cyberbrain for the same cost. T
 
 <morph>
 <type>Synth</type>
-<name>Slitheroids</name>
+<name>Slitheroid</name>
 <Desc>Slitheroid bots are synthetic shells taking the form of a 2-meter-long segmented metallic snake, with two retractable arms for tool use. Snake bots can coil, twist, and roll their bodies into a ball or hoop, moving either by slithering, burrowing, rolling, or pulling themselves along by their arms. The sensor suite and control computer are housed in the head.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Enhanced Vision, Mnemonic Augmentation, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Snake (4/16; 8/32 rolling)</Mobility System>
