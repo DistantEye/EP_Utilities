@@ -22,6 +22,7 @@ public class Step implements UniqueNamedData {
 		super();
 		this.name = name;
 		this.effects = effects;
+		this.nextStep = nextStep;
 	}
 	
 	/**
