@@ -1508,10 +1508,12 @@ public class LifePathGenerator {
 			Step start = (Step)DataProc.getDataObj("STEP_1");
 			playerChar.setLastStep(start);
 			nextEffects = this.runEffect(start.getEffects(), "");
+			System.out.println("Next effects : " + nextEffects);
 		}
 		else
 		{
 			nextEffects = this.runEffect(nextEffects, "");
+			System.out.println("Next effects : " + nextEffects);
 		}
 	}
 	
@@ -1585,15 +1587,7 @@ public class LifePathGenerator {
 	 */
 	protected void handleRoll(String effect, String errorInfo, boolean forceRoll)
 	{
-		// do some escaping to handle that most commands like roll;1-6=+morph;splicer,7-10=+morph;bouncer wouldn't actually work
-		// but the reason they wouldn't work isn't understandable to most users (it can't parse the inner ; as special from the outer) 
-		
-		// TODO after changing the command system to use () this may no longer be needed
-		
-		String effectTemp = effect.replaceFirst(";", "|||");
-		effectTemp = effectTemp.replaceFirst(";", "|||");
-	
-		String params = Utils.returnStringInParen(effectTemp);	
+		String params = Utils.returnStringInParen(effect);	
 		String commandName = "";
 		if (effect.indexOf('(') > 0 )
 		{
@@ -1606,7 +1600,7 @@ public class LifePathGenerator {
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
-		String[] subparts = params.split("\\|\\|\\|");
+		String[] subparts = Utils.splitCommands(params);
 		if (subparts.length != 3)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);

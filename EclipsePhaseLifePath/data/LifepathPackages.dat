@@ -77,8 +77,8 @@ Package
 COLONIST: SCIENCE STAFF
 You conducted scientific research off-world, whether that was studying the sun’s solar cycles, evaluating lichen growth on Mars, or creating new zero-g manufacturing processes.
 +Hard Work, +Personal Career, +Science!
-PP;1>mox(1);Academics: ?!? 40;Free Fall 15*;Investigation 30
-PP;3>mox(1);Academics: ?!? 50;Free Fall 30*;Interest: ?1? 15; Interfacing 40; Investigation 40; Networking: Scientists 40; Profession: Lab Technician 30; Research 40
+PP;1>mox(1);Academics: ?1? 40;Free Fall 15*;Investigation 30
+PP;3>mox(1);Academics: ?1? 50;Free Fall 30*;Interest: ?1? 15; Interfacing 40; Investigation 40; Networking: Scientists 40; Profession: Lab Technician 30; Research 40
 PP;5>mox(1);addApt(COG,5);rep(?1?,50);Academics: ?1? 50;Academics: ?1? 40;Fray 25;Free Fall* 30;Hardware: ?1? 20;Interest: ?1? 30;Interfacing 40;Investigation 50;Networking: Scientists 40;Profession: Lab Technician 30;Programming 35;Research 40
 *Lunar; Martian; and other grounded colonists can replace Free Fall with Freerunning skill.
 ----------------------------------------------------------------------------------------------
@@ -901,7 +901,7 @@ APTITUDE_TEMPLATES
 6`Survivor`package(Survivor)
 7`Techie`package(Techie)
 8`Thrill Seeker`package(Thrill Seeker)
-9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(Brawler)/2=package(Dilettante)/3=package(Extrovert)/4=package(Inquisitive)/5=package(Researcher)/6=package(Survivor)/7=package(Techie)/8=package(Thrill Seeker)/9=roll(APTITUDE_TEMPLATES))
+9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(Brawler)/2=package(Dilettante)/3=package(Extrovert)/4=package(Inquisitive)/5=package(Researcher)/6=package(Survivor)/7=package(Techie)/8=package(Thrill Seeker)/9=rollTable(APTITUDE_TEMPLATES))
 --------------------------------------------------------------
 TABLE
 LANGUAGE_FIELDS
@@ -1828,7 +1828,7 @@ TABLE_11
 10`The merging of an overdue fork goes poorly, and coincidental inaccessible backups leave you permanently changed. Gain the Botched Merge trait (p. 87).`trait(Botched Merge)
 11-13`You are recruited to aid on a scientific mission. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
 14`In order to keep up with the stress of your responsibilities, you fall into bad habits. Gain the Addiction (Moderate) trait (p. 148, EP).`trait(Addiction (Moderate))
-15`You do the right thing but piss off someone with power in the process. Gain 10 rep in a network of your choice, but also gain the Enemy trait (p. 149, EP).`rep(?!?,10);trait(Enemy)
+15`You do the right thing but piss off someone with power in the process. Gain 10 rep in a network of your choice, but also gain the Enemy trait (p. 149, EP).`rep(?1?,10);trait(Enemy)
 16`You use the post-Fall chaos to establish a new identity. Gain a Fake Ego ID (p. 331, EP) for free.`gear(Fake Ego ID)
 17`After an unfortunate incident leads to lack (lost memories due to resleeving from an old backup), you decide security of mind is a worthy investment. Gain the Edited Memories trait (p. 149, EP) and 1 year of backup insurance (p. 330, EP)`trait(Edited Memories);gear(1 year of backup insurance)
 18`After surviving the Fall and then only barely surviving a post-Fall clash, you decide that some self-defense training may be in order. Gain +20 to one Combat skill of your choice.`incSkl(?1?,20,?skillIsType(Combat))
