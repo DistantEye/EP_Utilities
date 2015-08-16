@@ -932,7 +932,7 @@ LANGUAGE_FIELDS
 90-92`Urdu`Language: Urdu !!X!!
 93-94`Vietnwamese`Language: Vietnwamese !!X!!
 95-98`Wu`Language: Wu !!X!!
-99-00`Other`Language: Other !!X!!
+99-100`Other`Language: Other !!X!!
 --------------------------------------------------------------
 TABLE
 ACADEMICS_FIELDS
@@ -966,7 +966,7 @@ ACADEMICS_FIELDS
 89-91`Political`Academics: Political !!X!! Science
 92-95`Psychology`Academics: Psychology !!X!!
 96-97`(Astro)Sociology`Academics: (Astro)Sociology !!X!!
-98-00`(Xeno)Zoology`Academics: (Xeno)Zoology !!X!!
+98-100`(Xeno)Zoology`Academics: (Xeno)Zoology !!X!!
 --------------------------------------------------------------
 TABLE
 ART_FIELDS
@@ -990,7 +990,7 @@ ART_FIELDS
 81-85`Simulspace`Art: Simulspace !!X!! Design
 86-90`Singing`Art: Singing !!X!!
 91-95`Speech`Art: Speech !!X!!
-96-00`Writing`Art: Writing !!X!!
+96-100`Writing`Art: Writing !!X!!
 --------------------------------------------------------------
 TABLE
 HARDWARE_FIELDS
@@ -1002,7 +1002,7 @@ HARDWARE_FIELDS
 54-61`Implants`Hardware: Implants !!X!!
 62-74`Industrial`Hardware: Industrial !!X!!
 75-82`Nautical`Hardware: Nautical !!X!!
-83-00`Robotics`Hardware: Robotics !!X!!
+83-100`Robotics`Hardware: Robotics !!X!!
 --------------------------------------------------------------
 TABLE
 INTEREST_FIELDS
@@ -1056,7 +1056,7 @@ INTEREST_FIELDS
 93-94`Vehicle Models`Interest: Vehicle Models !!X!!
 95-96`Weapons`Interest: Weapons !!X!!
 97-98`X`Interest: X !!X!!-Casters
-99-00`XP`Interest: XP !!X!!
+99-100`XP`Interest: XP !!X!!
 --------------------------------------------------------------
 TABLE
 MEDICINE_FIELDS
@@ -1073,7 +1073,7 @@ MEDICINE_FIELDS
 76-80`Remote Surgery`Medicine: Remote Surgery !!X!!
 81-90`Trauma Surgery`Medicine: Trauma Surgery !!X!!
 91-95`Uplifts (by type)`Medicine: Uplifts (by type) !!X!!
-96-00`Veterinary`Medicine: Veterinary !!X!!
+96-100`Veterinary`Medicine: Veterinary !!X!!
 --------------------------------------------------------------
 TABLE
 NETWORKING_FIELDS
@@ -1084,7 +1084,7 @@ NETWORKING_FIELDS
 45-54`Firewall`Networking: Firewall !!X!!
 55-72`Hypercorps`Networking: Hypercorps !!X!!
 73-86`Media`Networking: Media !!X!!
-87-00`Scientists`Networking: Scientists !!X!!
+87-100`Scientists`Networking: Scientists !!X!!
 --------------------------------------------------------------
 TABLE
 PILOT_FIELDS
@@ -1094,7 +1094,7 @@ PILOT_FIELDS
 41-45`Exotic Vehicle`Pilot: Exotic Vehicle !!X!!
 46-70`Groundcraft`Pilot: Groundcraft !!X!!
 71-95`Spacecraft`Pilot: Spacecraft !!X!!
-96-00`Watercraft`Pilot: Watercraft !!X!!
+96-100`Watercraft`Pilot: Watercraft !!X!!
 --------------------------------------------------------------
 TABLE
 PROFESSION_FIELDS
@@ -1148,7 +1148,7 @@ PROFESSION_FIELDS
 93-94`Surveying`Profession: Surveying !!X!!
 95-96`Terraforming`Profession: Terraforming !!X!!
 97-98`Viral Marketing`Profession: Viral Marketing !!X!!
-99-00`XP Production`Profession: XP Production !!X!!
+99-100`XP Production`Profession: XP Production !!X!!
 --------------------------------------------------------------
 TABLE
 TABLE_3
@@ -1167,7 +1167,7 @@ TABLE_3_1
 77-82`Sunward Hab. Table 3.6: Sunward Childhood`background(Sunward Hab);rollTable(TABLE_3_6,!!X!!)
 83-89`Rimward Hab. Go to Table 3.7: Rimward Childhood`background(Rimward Hab);rollTable(TABLE_3_7,!!X!!)
 90-95`Migrant. Go to Table 3.8: Migrant Childhood`background(Migrant);rollTable(TABLE_3_8,!!X!!)
-96-00`Created not Born. Go to Table 3.9: Created Not Born`background(Created not Born);rollTable(TABLE_3_9,!!X!!)
+96-100`Created not Born. Go to Table 3.9: Created Not Born`background(Created not Born);rollTable(TABLE_3_9,!!X!!)
 --------------------------------------------------------------
 TABLE
 TABLE_3_2
@@ -1215,7 +1215,7 @@ TABLE_3_6
 1`Pioneer dynasty`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5)
 2-3`Venusian colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
 4-6`Venusian colony staff`rollTable(TABLE_3_10,!!X!!)
-7-0`Mercurian slave labor`package(INDENTURE,!!X!!);roll(10,1-7=morph(Flat)/8-10=morph(Case));nextPath(TABLE_6_7)
+7-10`Mercurian slave labor`package(INDENTURE,!!X!!);roll(10,1-7=morph(Flat)/8-10=morph(Case));nextPath(TABLE_6_7)
 --------------------------------------------------------------
 TABLE
 TABLE_3_7
@@ -1225,7 +1225,7 @@ TABLE_3_7
 3`Titanian colonist`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-8=morph(Splicer)/9-10=morph(Menton));nextPath(TABLE_6_9)
 4-5`Anarchist colonist`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2)
 6-8`Small colony outpost`rollTable(TABLE_3_10,!!X!!)
-9-0`Asteroid miner`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Case));nextPath(TABLE_6_7)
+9-10`Asteroid miner`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Case));nextPath(TABLE_6_7)
 --------------------------------------------------------------
 TABLE
 TABLE_3_8
@@ -1233,7 +1233,7 @@ TABLE_3_8
 1-3`Wandering the system`package(DRIFTER,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_10)
 4-5`Found freedom in orbit`package(ORIGINAL SCUM,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2)
 6-8`Supply ship crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-4=morph(Splicer)/5-7=morph(Bouncer)/8-10=morph(Hibernoid));nextPath(TABLE_6_10)
-9-0`Migrant worker`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Bouncer));nextPath(TABLE_6_7)
+9-10`Migrant worker`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Bouncer));nextPath(TABLE_6_7)
 --------------------------------------------------------------
 TABLE
 TABLE_3_9
@@ -1252,7 +1252,7 @@ TABLE_3_10
 2-3`Space crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-5=morph(Splicer)/6-10=morph(Bouncer));nextPath(TABLE_6_10)
 4-5`Peacekeeper`package(COLONIST: SECURITY STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-7=morph(Splicer)/8-10=morph(Olympian));nextPath(TABLE_6_8)
 6-7`Researcher`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Menton));nextPath(TABLE_6_9)
-8-0`You kept the habitat functioning`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-8=morph(Splicer)/9-10=morph(Bouncer));nextPath(TABLE_6_11)
+8-10`You kept the habitat functioning`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-8=morph(Splicer)/9-10=morph(Bouncer));nextPath(TABLE_6_11)
 --------------------------------------------------------------
 TABLE
 TABLE_3_STREET_RAT
@@ -1304,7 +1304,7 @@ TABLE_4
 93-94`You lose all of your close friends in a horribly awkward teen social situation. Gain the Not a Team Player trait (p. 91).`trait(Not a Team Player)
 95-96`Tormented by bullies as a kid; you learn to stand up for yourself. Gain +10 Unarmed Combat skill.`incSkl(Unarmed Combat,10)
 97-98`The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.`incSkl(Deception,10)
-99-00`Adult generations are never quite as on-top of technological changes; and you use that to your advantage. Gain +10 Infosec skill.`incSkl(Infosec,10)
+99-100`Adult generations are never quite as on-top of technological changes; and you use that to your advantage. Gain +10 Infosec skill.`incSkl(Infosec,10)
 --------------------------------------------------------------
 TABLE
 CHARACTER_AGE
@@ -1317,7 +1317,7 @@ CHARACTER_AGE
 86-90`In your 70s. Proceed to Step 6.`setVar(ageRange,70s);stepskip(STEP_6_0)
 91-94`In your 80s. Proceed to Step 6.`setVar(ageRange,80s);stepskip(STEP_6_0)
 95-98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar(ageRange,90s);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
-99-00`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar(ageRange,100+);rollTable(ADVANCED_AGE)
+99-100`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar(ageRange,100+);rollTable(ADVANCED_AGE)
 --------------------------------------------------------------
 TABLE
 ADVANCED_AGE
@@ -1326,14 +1326,14 @@ ADVANCED_AGE
 2`Lose -5 SOM, REF, or COO (your choice). Roll again.`addApt(?1?,-5,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO)),rollTable(ADVANCED_AGE)
 3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Imortality Blues);stepskip(STEP_6_0)
 4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),3),stepskip(STEP_6_0),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL)),rollTable(ADVANCED_AGE))
-5-0`Proceed to Step 6.`stepskip(STEP_6_0)
+5-10`Proceed to Step 6.`stepskip(STEP_6_0)
 --------------------------------------------------------------
 TABLE
 TABLE_6
 10
 1-3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(getVar({path}))
 4-6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12)
-7-0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}))
+7-10`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}))
 --------------------------------------------------------------
 TABLE
 TABLE_6_1
@@ -1477,7 +1477,7 @@ TABLE_6_11
 6`Scavenger (p. 35)`package(Scavenger)
 7`Scientist (p. 35)`package(Scientist)
 8`Spy (p. 36)`package(Spy)
-9-0`Techie (p. 36)`package(Techie)
+9-10`Techie (p. 36)`package(Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_6_12
@@ -1503,7 +1503,7 @@ TABLE_6_12
 82-85`Student`package(Student)
 86-89`Survival Training`package(Survival Training)
 90-93`Tech Training`package(Tech Training)
-94-00`Weapons Training`package(Weapons Training)
+94-100`Weapons Training`package(Weapons Training)
 --------------------------------------------------------------
 TABLE
 TABLE_7
@@ -1548,7 +1548,7 @@ TABLE_7
 93-94`An accident on a space elevator leaves you fearful of space. Gain the Phobia Disorder (Microgravity) trait (p. 92).`trait(Phobia Disorder (Microgravity)
 95-96`You start up an unusual hobby. Gain +20 to one Exotic Melee Weapon or Exotic Ranged Weapon skill.`incSkl(?1?,20,?equals($1,Exotic Melee Weapon)||?equals($1,Exotic Ranged Weapon))
 97-98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`rollTable(CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS)
-99-00`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credits(20000)
+99-100`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credits(20000)
 --------------------------------------------------------------
 TABLE
 TABLE_8
@@ -1941,7 +1941,7 @@ GATECRASHING_EVENT
 93-94`You step through a gate and arrive somewhere other than you expected. Your jaunt is adventurous, but you make it back safe. Gain +10 Profession: Gatecrashing skill.`incSkl(Profession: Gatecrashing,10)
 95-96`You receive some focused training in gate operations. Gain the Programming (Gate Interface) specialization (p. 142, Gatecrashing).`sklspec(Programming, Gate Interface)
 97-98`You end up in the middle of an exoplanet property-claim dispute. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
-99-00`You participate in a rescue op that cashes in on a sizable recovery bond. Gain 10,000 credits.`credit(10000)
+99-100`You participate in a rescue op that cashes in on a sizable recovery bond. Gain 10,000 credits.`credit(10000)
 --------------------------------------------------------------
 TABLE
 FIREWALL_EVENT
@@ -1973,7 +1973,7 @@ FIREWALL_EVENT
 93-94`You are a bit too good at ferreting out certain secrets online. Firewall brings you in to the fold to keep your mouth shut.  Gain +10 Infosec skill.`incSkl(Infosec,10)
 95-96`Someone you are close to is a Firewall proxy; they brought you in to help them out. Gain +1 Moxie.`mox(1)
 97-98`Thanks to a particular skill you have, Firewall has consulted with you for years without revealing themselves. They decide to  fill you in on the full story. Gain or increase a Firewall-relevant Knowledge skill (such as Interest: Exsurgents or Academics:  Nanotechnology) by +30.`incSkl(?1?#Firewall relevant skill, particularly Interest or Academics skills#,30)
-99-00`A package you are hired to deliver turns out to be an alien artifact. When it causes problems, you go to a friend of a friend,  who turns out to be a Firewall proxy. They solve the problem, but you fail to make the delivery. Gain the Enemy trait (p. 149, EP).`trait(Enemy)
+99-100`A package you are hired to deliver turns out to be an alien artifact. When it causes problems, you go to a friend of a friend,  who turns out to be a Firewall proxy. They solve the problem, but you fail to make the delivery. Gain the Enemy trait (p. 149, EP).`trait(Enemy)
 --------------------------------------------------------------
 TABLE
 CREDITS
@@ -2137,7 +2137,7 @@ TABLE_16
 93-94`You don’t have what it takes, and your current job/prospect ends in a washout. `msgClient(You don’t have what it takes, and your current job/prospect ends in a washout. )
 95-96`Your inquisitive nature leads you to discover a secret that could get you into trouble.`msgClient(Your inquisitive nature leads you to discover a secret that could get you into trouble.)
 97-98`You receive a wake-up call that challenges your current priorities. `msgClient(You receive a wake-up call that challenges your current priorities. )
-99-00`Your current job/pursuits take you somewhere dangerous.`msgClient(Your current job/pursuits take you somewhere dangerous.)
+99-100`Your current job/pursuits take you somewhere dangerous.`msgClient(Your current job/pursuits take you somewhere dangerous.)
 --------------------------------------------------------------
 TABLE
 CHOOSING_A_MORPH
@@ -2320,7 +2320,7 @@ TABLE_6_DRY
 10
 1-3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(concat(getVar({path}),_DRY))
 4-6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12_DRY)
-7-0`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1_DRY)
+7-10`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1_DRY)
 --------------------------------------------------------------
 TABLE
 TABLE_6_1_DRY
@@ -2464,7 +2464,7 @@ TABLE_6_11_DRY
 6`Scavenger (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scavenger)
 7`Scientist (p. 35)`msgClient(Started to walk the Adult Pre-Fall Path of the Scientist)
 8`Spy (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Spy)
-9-0`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
+9-10`Techie (p. 36)`msgClient(Started to walk the Adult Pre-Fall Path of the Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_6_12_DRY
@@ -2490,4 +2490,4 @@ TABLE_6_12_DRY
 82-85`Student`msgClient(Started to walk the Adult Pre-Fall Path of the Student)
 86-89`Survival Training`msgClient(Started to walk the Adult Pre-Fall Path of the Survival Training)
 90-93`Tech Training`msgClient(Started to walk the Adult Pre-Fall Path of the Tech Training)
-94-00`Weapons Training`msgClient(Started to walk the Adult Pre-Fall Path of the Weapons Training)
+94-100`Weapons Training`msgClient(Started to walk the Adult Pre-Fall Path of the Weapons Training)

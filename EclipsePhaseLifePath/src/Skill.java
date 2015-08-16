@@ -188,6 +188,14 @@ public class Skill {
 	public static boolean isSkill(String name)
 	{
 		String searchName = name.replaceAll("\\*", ""); // we remove any asterisks that may be there because of book notes
+		
+		// special handling for wildcard skill adding
+		if (searchName.matches("\\?[0-9]+\\? [0-9]+")) 
+		{
+			return true;
+		}
+					
+		
 		for (Skill skl : Skill.skillList)
 		{
 			if (searchName.toLowerCase().startsWith(skl.getName().toLowerCase()) )

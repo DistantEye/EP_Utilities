@@ -755,7 +755,7 @@ public class DataProc {
 			
 			if (Skill.isSkill(effect))
 			{
-				result += "Create skill : " + effect;
+				result += ("Add skill : " + effect).replace("?1?", "(Choose One Skl)");;
 			}
 			else if (effect.startsWith("incSkl"))
 			{
@@ -1303,14 +1303,14 @@ public class DataProc {
 		}
 		
 		// we give nice words for up to Choose 5, because these are the most common
-		result = result.replaceAll("\\?1\\?", "Choose");
-		result = result.replaceAll("\\?2\\?", "Choose Two");
-		result = result.replaceAll("\\?3\\?", "Choose Three");
-		result = result.replaceAll("\\?4\\?", "Choose Four");
-		result = result.replaceAll("\\?5\\?", "Choose Five");
+		result = result.replaceAll("\\?1\\?", "(Choose One)");
+		result = result.replaceAll("\\?2\\?", "(Choose Two");
+		result = result.replaceAll("\\?3\\?", "(Choose Three)");
+		result = result.replaceAll("\\?4\\?", "(Choose Four)");
+		result = result.replaceAll("\\?5\\?", "(Choose Five)");
 		
 		//remaining ones get ugly number based notation
-		result = result.replaceAll("\\?([0-9]*)\\?", "Choose $1");
+		result = result.replaceAll("\\?([0-9]*)\\?", "(Choose $1)");
 		
 		return result;
 	}

@@ -172,7 +172,8 @@ public class LifePathGenerator {
 						
 						// will make assumption user knows that choices are resolved left to right
 						// will also remove any asterisks that appeared after since they'll probably interfere
-						mainStuff.set(i, effect.replace("\\?([0-9]+)\\?\\**", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo)));
+						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo)));
+						effect = mainStuff.get(i);
 				}
 				
 				// big wall of cases follow.
@@ -1605,7 +1606,7 @@ public class LifePathGenerator {
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
-		String[] subparts = params.split("|||");
+		String[] subparts = params.split("\\|\\|\\|");
 		if (subparts.length != 3)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
@@ -1736,6 +1737,11 @@ public class LifePathGenerator {
 			else
 			{
 				rowReturned = temp.findMatch(result);
+			}
+			
+			if (rowReturned == null)
+			{
+				throw new IllegalStateException("Was unable to procure a TableRow for rollTable("+result+") : " + temp.getName());
 			}
 			
 			String tableEffects = rowReturned.getEffects();
