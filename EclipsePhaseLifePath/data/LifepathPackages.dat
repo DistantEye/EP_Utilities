@@ -1998,7 +1998,7 @@ rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
 STEP
 STEP_3_0
 STEP_3_1
-setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkip(STEP_3_1_STREET_RAT))
+setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkipNoStop(STEP_3_1_STREET_RAT))
 --------------------------------------------------------------
 STEP
 STEP_3_1
@@ -2023,7 +2023,7 @@ rollTable(CHARACTER_AGE)
 STEP
 STEP_6_0
 STEP_6_1
-remVar(diceBonus);setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkip(STEP_6_DRY))
+remVar(diceBonus);setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkipNoStop(STEP_6_DRY),stepSkipNoStop(STEP_6_1))
 --------------------------------------------------------------
 STEP
 STEP_6_DRY

@@ -765,7 +765,15 @@ public class LifePathGenerator {
 						
 						Step temp = (Step)DataProc.getDataObj(subparts[1]);
 						playerChar.setLastStep(temp);
-						return temp.getEffects();				
+						
+						// special version allows for a clean jump that doesn't interrupt the UI
+						if (effect.toLowerCase().startsWith("stepskipnostop"))
+						{
+							return this.runEffect(temp.getEffects(), extraContext);
+						}
+						{
+							return temp.getEffects();
+						}
 					}
 					else
 					{
@@ -1203,6 +1211,7 @@ public class LifePathGenerator {
 	nextPath(<name>)
 	faction(<name>)
 	stepskip(<name>)			(immediately skip to step of this name)
+	stepskipNoStop(<name>)			(immediately skip to step of this name, doesn't interrupt the UI)
 	package(<name>)				(add package -- assume 1 PP if it needs a value)
 	package(<name>,<value>)		(add package of a certain PP value)
 	rep(<type>,<value>)
