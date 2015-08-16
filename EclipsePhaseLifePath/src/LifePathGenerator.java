@@ -93,19 +93,25 @@ public class LifePathGenerator {
 	 */
 	private String runEffect(String effectInput, String extraContext)
 	{
+		// translate steps to actions, as we'll just get a step name sometimes
+		if (DataProc.dataObjExists(effectInput) && DataProc.getDataObj(effectInput).getType().equals("step"))
+		{
+			Step temp = ((Step)DataProc.getDataObj(effectInput));
+			effectInput = temp.getEffects();
+			playerChar.setLastStep(temp);
+		}
+		
 		// we let users define \, so that commas can be escaped until after the splitting of a comma delimited effects chain
 		String modifiedInput = effectInput.replace("\\,", "!!COMMA!!");
-		modifiedInput = modifiedInput.replace("\\;", "!!SEMICOLON!!");
+		modifiedInput = modifiedInput.replace("\\;", "!!SEMICOLON!!");		
 		
-		
-		String[] effects = modifiedInput.split(";");
+		String[] effects = Utils.splitCommands(modifiedInput, ";");
 		
 		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
 		
 		if (playerChar.getLastStep() != null)
 		{
 			pendingEffects = playerChar.getLastStep().getNextStep();
-			playerChar.setLastStep(null);
 		}
 		
 		ArrayList<String> mainStuff = new ArrayList<String>();
@@ -516,7 +522,7 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("setapt"))
+				else if (effect.startsWith("setApt"))
 				{
 					String[] subparts = Utils.splitCommands(params);
 					if (subparts.length != 3)
@@ -535,7 +541,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 						}
 						
-						playerChar.setAptitude(subparts[2], Integer.parseInt(subparts[2]));
+						playerChar.setAptitude(subparts[1], Integer.parseInt(subparts[2]));
 					}
 					else
 					{
@@ -941,7 +947,7 @@ public class LifePathGenerator {
 				else if (effect.startsWith("extendedChoice"))
 				{
 					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 2)
+					if (subparts.length != 3)
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
@@ -1232,10 +1238,15 @@ public class LifePathGenerator {
 				// do something to prompt the user to fix their error
 				boolean response = UIObject.handleError(e.getMessage());
 				System.out.println(e.getMessage());
+				e.printStackTrace();
 				if (response)  // replace with seeing if response says to rollback last effect 
 				{
 					i--;
 					continue;
+				}
+				else
+				{
+					return effectInput; // we spit back out what was put in, so it can be retried later
 				}
 			}
 		}
@@ -1305,11 +1316,11 @@ public class LifePathGenerator {
 		 */
 		
 		String params = Utils.returnStringInParen(condNoPrefix);
-		String commandName = condNoPrefix.substring(0, condNoPrefix.indexOf('(')-1);
+		String commandName = condNoPrefix.substring(0, condNoPrefix.indexOf('('));
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
-		String[] parts = params.split(";");
+		String[] parts = Utils.splitCommands(params, ";");
 			
 		if (condNoPrefix.startsWith("hasTrait"))
 		{
@@ -1462,6 +1473,11 @@ public class LifePathGenerator {
 	 */
 	public void step()
 	{
+		if (hasStarted && nextEffects.length() == 0)
+		{
+			hasFinished = true; // don't attempt to run steps that aren't there
+		}
+		
 		if (hasFinished)
 		{
 			// do nothing
@@ -1559,7 +1575,7 @@ public class LifePathGenerator {
 		effectTemp = effectTemp.replaceFirst(";", "|||");
 	
 		String params = Utils.returnStringInParen(effectTemp);	
-		String commandName = effect.substring(0, effect.indexOf('(')-1);
+		String commandName = effect.substring(0, effect.indexOf('('));
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		
@@ -1643,7 +1659,7 @@ public class LifePathGenerator {
 	protected void handleRollTable(String effect, String errorInfo, boolean forceRoll)
 	{
 		String params = Utils.returnStringInParen(effect);
-		String commandName = effect.substring(0, effect.indexOf('(')-1);
+		String commandName = effect.substring(0, effect.indexOf('('));
 		// TODO : to comply with older code, we have to insert the command at the beginning of params
 		params = commandName + "," + params;
 		

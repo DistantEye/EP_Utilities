@@ -340,6 +340,7 @@ public class LifePathUI implements UI {
             public void actionPerformed(ActionEvent e)
             {
                 gen.step();
+                update();
             }	
 		});
 		

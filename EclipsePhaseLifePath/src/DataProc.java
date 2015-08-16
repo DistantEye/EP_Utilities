@@ -41,6 +41,7 @@ public class DataProc {
 		dataStore = new HashMap<String, UniqueNamedData>();
 		readIntData(internalDatFile);
 		readLPData(lpFileName);
+		fileLineNumber = -1; // reset when we're done
 	}
 
 	
@@ -715,14 +716,14 @@ public class DataProc {
 		
 		String result = "";
 		
-		String[] effectsArr = effects.toLowerCase().split(";");
+		String[] effectsArr = Utils.splitCommands(effects, ";"); 
 		
 		for (String effect : effectsArr)
 		{
 			String errorInfo = "";
 			
 			String params = Utils.returnStringInParen(effect);
-			String commandName = effect.substring(0, effect.indexOf('(')-1);
+			String commandName = effect.substring(0, effect.indexOf('('));
 			// TODO : to comply with older code, we have to insert the command at the beginning of params
 			params = commandName + "," + params;
 			
@@ -840,7 +841,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("setapt"))
+			else if (effect.startsWith("setApt"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -856,7 +857,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("addapt"))
+			else if (effect.startsWith("addApt"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -877,22 +878,6 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("roll") || effect.startsWith("forceRoll"))
-			{
-				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 3)
-				{
-					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
-				}
-				else if (subparts[1].length() > 0 && Utils.isInteger(subparts[1]) && subparts[2].substring(0,subparts[2].indexOf('=')).matches("[0-9]+-[0-9]+"))
-				{
-					result += "Roll " + subparts[1] + " sided dice, with effects for each range : " + subparts[2];
-				}
-				else
-				{
-					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
-				}
-			}
 			else if (effect.startsWith("rollTable")  || effect.startsWith("forceRollTable"))
 			{
 				String[] subparts = Utils.splitCommands(params);
@@ -903,6 +888,22 @@ public class DataProc {
 				else if (subparts[1].length() > 0 )
 				{
 					result += "Roll dice an effect from table : " + subparts[1];
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+			}
+			else if (effect.startsWith("roll") || effect.startsWith("forceRoll"))
+			{
+				String[] subparts = Utils.splitCommands(params);
+				if (subparts.length != 3)
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if (subparts[1].length() > 0 && Utils.isInteger(subparts[1]) && subparts[2].substring(0,subparts[2].indexOf('=')).matches("[0-9]+-[0-9]+"))
+				{
+					result += "Roll " + subparts[1] + " sided dice, with effects for each range : " + subparts[2];
 				}
 				else
 				{

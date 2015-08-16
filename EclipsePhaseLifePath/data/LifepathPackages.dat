@@ -901,7 +901,7 @@ APTITUDE_TEMPLATES
 6`Survivor`package(Survivor)
 7`Techie`package(Techie)
 8`Thrill Seeker`package(Thrill Seeker)
-9-10`Choose or reroll`extendedChoice(Choose from (Brawler);Dilettante;Extrovert;Inquisitive;Researcher;Survivor;Techie;Thrill Seeker) or Reroll(1=package(Brawler)/2=package(Dilettante)/3=package(Extrovert)/4=package(Inquisitive)/5=package(Researcher)/6=package(Survivor)/7=package(Techie)/8=package(Thrill Seeker)/9=roll(APTITUDE_TEMPLATES))
+9-10`Choose or reroll`extendedChoice(Choose from Brawler;Dilettante;Extrovert;Inquisitive;Researcher;Survivor;Techie;Thrill Seeker) or Reroll,1=package(Brawler)/2=package(Dilettante)/3=package(Extrovert)/4=package(Inquisitive)/5=package(Researcher)/6=package(Survivor)/7=package(Techie)/8=package(Thrill Seeker)/9=roll(APTITUDE_TEMPLATES))
 --------------------------------------------------------------
 TABLE
 LANGUAGE_FIELDS
