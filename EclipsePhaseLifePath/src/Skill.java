@@ -26,7 +26,7 @@ public class Skill {
 	// we define constants to make the regexes more readable
 	
 	// Skill,subtype,specialization name
-	private static final String nameReg = "([a-zA-Z/ ]*[a-zA-Z/\\*]|\\?[0-9]*\\?)"; // we allow for parsing of choice notation like ?1? and /
+	private static final String nameReg = "([a-zA-Z/ ]*[a-zA-Z/\\*\\(\\)]|\\?[0-9]*\\?)"; // we allow for parsing of choice notation like ?1? and /
 	// Skill value
 	private static final String skillValueReg = "([0-9]{1,2})";
 	// optional space
@@ -190,7 +190,7 @@ public class Skill {
 		String searchName = name.replaceAll("\\*", ""); // we remove any asterisks that may be there because of book notes
 		for (Skill skl : Skill.skillList)
 		{
-			if (skl.getFullName().equalsIgnoreCase(searchName) )
+			if (searchName.toLowerCase().startsWith(skl.getName().toLowerCase()) )
 			{
 				return true;
 			}
@@ -392,9 +392,9 @@ public class Skill {
 	 */ 
 	public static Skill CreateSkillFromString(String input)
 	{	
-		if (input.contains("/") || input.contains("?"))
+		if (input.contains("?"))
 		{
-			throw new IllegalArgumentException("Choice notation (a/b or ?1?) is not supported by this method");
+			throw new IllegalArgumentException("Choice notation (?1?) is not supported by this method");
 		}
 		
 		// the various patterns we can understand
@@ -412,26 +412,26 @@ public class Skill {
 		}
 		else if (subtypeMatch.matches())
 		{
-			String name = basicMatch.group(1);
-			String subtypeName = basicMatch.group(2);
-			int value = Integer.parseInt(basicMatch.group(3));
+			String name = subtypeMatch.group(1);
+			String subtypeName = subtypeMatch.group(2);
+			int value = Integer.parseInt(subtypeMatch.group(3));
 			
 			return Skill.CreateSkill(name, subtypeName, "",value);
 		}
 		else if (specializationMatch.matches())
 		{
-			String name = basicMatch.group(1);
-			String specializationName = basicMatch.group(2);
-			int value = Integer.parseInt(basicMatch.group(3));
+			String name = specializationMatch.group(1);
+			String specializationName = specializationMatch.group(2);
+			int value = Integer.parseInt(specializationMatch.group(3));
 			
 			return Skill.CreateSkill(name, "", specializationName,value);
 		}
 		else if (fullFormMatch.matches())
 		{
-			String name = basicMatch.group(1);
-			String subtypeName = basicMatch.group(2);
-			String specializationName = basicMatch.group(3);
-			int value = Integer.parseInt(basicMatch.group(4));
+			String name = fullFormMatch.group(1);
+			String subtypeName = fullFormMatch.group(2);
+			String specializationName = fullFormMatch.group(3);
+			int value = Integer.parseInt(fullFormMatch.group(4));
 			
 			return Skill.CreateSkill(name, subtypeName, specializationName,value);
 		}
