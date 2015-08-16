@@ -21,7 +21,7 @@ Resolve skill stacking (when you get a skill awarded you already have)
 
 Make Traits and Sleights also use XML (possibly the whole internalInfo file)
 
-
+Skils should display in the end with their aptitudes taken into effect
 
 
 Currently working on : Secondary/Derived stats calculation in Character class

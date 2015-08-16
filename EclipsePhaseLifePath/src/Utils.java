@@ -101,13 +101,13 @@ public class Utils {
 	 * @return
 	 */
 	public static String findUniqueDelimeter(String input)
-	{
-		String result = "$";
+	{		
 		int cnt = 0;
+		String result = "~0~";
 		
-		while (!input.contains(result)) 
+		while (input.contains(result)) 
 		{
-			result = "$" + cnt++ + "$";
+			result = "~" + cnt++ + "~";
 		} 
 		
 		return result;

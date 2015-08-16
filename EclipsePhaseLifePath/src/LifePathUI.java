@@ -34,7 +34,7 @@ public class LifePathUI implements UI {
 	 private JPanel mainPanel;
 	 private JTextArea mainStatus;
 	 private JPanel sideBar;
-	 private Character currChar;
+	 private LifePathGenerator gen;
 	 
 	 private GridBagLayout currentLayout;
 	 private JComponent currentComponent;
@@ -45,6 +45,8 @@ public class LifePathUI implements UI {
 	 * @throws HeadlessException
 	 */
 	public LifePathUI() throws HeadlessException {
+		gen = new LifePathGenerator("",this,true);
+		
 		this.dataInit();
 		cons = new GridBagConstraints();
 		windowLayout = new BorderLayout();
@@ -73,7 +75,7 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public boolean handleError(String message) {
-		int resp = JOptionPane.showConfirmDialog(null,"Error Resulted, redo step?", "Error", JOptionPane.YES_NO_OPTION);
+		int resp = JOptionPane.showConfirmDialog(null,"Error Resulted, redo step?\n"+message, "Error", JOptionPane.YES_NO_OPTION);
 		
 		if (resp == JOptionPane.YES_OPTION)
 		{
@@ -161,7 +163,7 @@ public class LifePathUI implements UI {
 		aChar.addSkill(Skill.CreateSkill("Throwing Weapons", 10));
 		aChar.addSkill(Skill.CreateSkill("Unarmed Combat", 10));
 		
-		this.currChar = aChar;
+		gen.setPC(aChar);
 	}
 	
 	public void init()
@@ -195,7 +197,8 @@ public class LifePathUI implements UI {
 		addMappedTF(0,0,"Character Name",30,true);
 		addMappedFixedTF(2,0,"Morph","",10,true);
 		addMappedFixedTF(4,0,"Background","",10,true);
-		endRow(6,0);
+		addMappedFixedTF(6,0,"Natural Language", "",15,true);
+		endRow(8,0);
 		
 		cons.gridheight = GridBagConstraints.REMAINDER;
 		
@@ -225,13 +228,13 @@ public class LifePathUI implements UI {
 		
 		// these will need their own panel, using the new currentLayout, currentComponent system
 		
-		addMappedFixedTF(0,0,"Base COG", ""+currChar.getAptitude("COG"),5,true);
-		addMappedFixedTF(2,0,"Base COO", ""+currChar.getAptitude("COO"),5,true);
-		addMappedFixedTF(4,0,"Base INT", ""+currChar.getAptitude("INT"),5,true);
-		addMappedFixedTF(6,0,"Base REF", ""+currChar.getAptitude("REF"),5,true);
-		addMappedFixedTF(8,0,"Base SAV", ""+currChar.getAptitude("SAV"),5,true);
-		addMappedFixedTF(10,0,"Base SOM", ""+currChar.getAptitude("SOM"),5,true);
-		addMappedFixedTF(12,0,"Base WIL", ""+currChar.getAptitude("WIL"),5,true);
+		addMappedFixedTF(0,0,"Base COG", ""+gen.getPC().getAptitude("COG"),5,true);
+		addMappedFixedTF(2,0,"Base COO", ""+gen.getPC().getAptitude("COO"),5,true);
+		addMappedFixedTF(4,0,"Base INT", ""+gen.getPC().getAptitude("INT"),5,true);
+		addMappedFixedTF(6,0,"Base REF", ""+gen.getPC().getAptitude("REF"),5,true);
+		addMappedFixedTF(8,0,"Base SAV", ""+gen.getPC().getAptitude("SAV"),5,true);
+		addMappedFixedTF(10,0,"Base SOM", ""+gen.getPC().getAptitude("SOM"),5,true);
+		addMappedFixedTF(12,0,"Base WIL", ""+gen.getPC().getAptitude("WIL"),5,true);
 		endRow(14,0);
 		
 		addLabel(0,1,"Bonus");
@@ -259,15 +262,15 @@ public class LifePathUI implements UI {
 		addMappedFixedTF(12,2,"Total WIL", "",5,true);
 		endRow(14,2);
 		
-		addMappedFixedTF(0,3,"DUR", ""+currChar.getSecStat("DUR"),5,true);
-		addMappedFixedTF(2,3,"WT", ""+currChar.getSecStat("WT"),5,true);
-		addMappedFixedTF(4,3,"DR", ""+currChar.getSecStat("DR"),5,true);
-		addMappedFixedTF(6,3,"LUC", ""+currChar.getSecStat("LUC"),5,true);
-		addMappedFixedTF(8,3,"TT", ""+currChar.getSecStat("TT"),5,true);
-		addMappedFixedTF(10,3,"IR", ""+currChar.getSecStat("IR"),5,true);
-		addMappedFixedTF(12,3,"INIT", ""+currChar.getSecStat("INIT"),5,true);
-		addMappedFixedTF(14,3,"SPD", ""+currChar.getSecStat("SPD"),5,true);
-		addMappedFixedTF(16,3,"DB", ""+currChar.getSecStat("DB"),5,true);
+		addMappedFixedTF(0,3,"DUR", ""+gen.getPC().getSecStat("DUR"),5,true);
+		addMappedFixedTF(2,3,"WT", ""+gen.getPC().getSecStat("WT"),5,true);
+		addMappedFixedTF(4,3,"DR", ""+gen.getPC().getSecStat("DR"),5,true);
+		addMappedFixedTF(6,3,"LUC", ""+gen.getPC().getSecStat("LUC"),5,true);
+		addMappedFixedTF(8,3,"TT", ""+gen.getPC().getSecStat("TT"),5,true);
+		addMappedFixedTF(10,3,"IR", ""+gen.getPC().getSecStat("IR"),5,true);
+		addMappedFixedTF(12,3,"INIT", ""+gen.getPC().getSecStat("INIT"),5,true);
+		addMappedFixedTF(14,3,"SPD", ""+gen.getPC().getSecStat("SPD"),5,true);
+		addMappedFixedTF(16,3,"DB", ""+gen.getPC().getSecStat("DB"),5,true);
 		endRow(18,3);
 		
 		addLabel(0,4,"Bonus");
@@ -303,8 +306,9 @@ public class LifePathUI implements UI {
 		
 		addMappedFixedTF(0,6,"Stress", "",5,true);
 		addMappedFixedTF(2,6,"MOX", "",5,true);
-		endRow(4,6);
-		
+		addMappedFixedTF(4,6,"Credits", "",5,true);
+		addMappedFixedTF(6,6,"Free CP", "",5,true);
+		endRow(8,6);
 		
 		// reset to normal dimensions and panel targets
 		currentLayout = layout;
@@ -331,13 +335,21 @@ public class LifePathUI implements UI {
 		cons.gridheight = 1;
 		
 		// gives a quick export of the character
+		addButton(3,25,"Step").addActionListener(new ActionListener() {
+			
+            public void actionPerformed(ActionEvent e)
+            {
+                gen.step();
+            }	
+		});
+		
 		addButton(4,25,"Export to Txt").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
                 update();             
                 
-                JTextArea updateArea= new JTextArea(currChar.toString() + DIVIDER_STRING + mainStatus.getText(),10,120);              
+                JTextArea updateArea= new JTextArea(gen.getPC().toString() + DIVIDER_STRING + mainStatus.getText(),10,120);              
                 updateArea.setEditable(true);
                 updateArea.setLineWrap(true);
                 JOptionPane.showMessageDialog(null, updateArea,"Exported Character", JOptionPane.PLAIN_MESSAGE);
@@ -603,41 +615,46 @@ public class LifePathUI implements UI {
 	 */
 	private void update()
 	{
-		currChar.setName(getTextF("Character Name").getText());
+		gen.getPC().setName(getTextF("Character Name").getText());
 		
-		currChar.calcStats(); // updates secondaries
-		
+		gen.getPC().calcStats(); // updates secondaries
+				
 		// set morph and background
 		String morphName = "";
 		
-		if (currChar.getCurrentMorph() != null)
+		if (gen.getPC().getCurrentMorph() != null)
 		{
-			morphName = currChar.getCurrentMorph().getName();
+			morphName = gen.getPC().getCurrentMorph().getName();
 		}
 		getTextF("Morph").setText(morphName);
-		getTextF("Background").setText(currChar.getBackground());
+		getTextF("Background").setText(gen.getPC().getBackground());
+		
+		if (gen.getPC().hasVar("NatLang"))
+		{
+			getTextF("Natural Language").setText(gen.getPC().getVar("NatLang"));
+		}
 		
 		int[] stats = new int[16];
 		int[] bonuses = new int[16];
 		int cnt = 0;
 		
-		stats[cnt++] = currChar.getAptitude("COG");
-		stats[cnt++] = currChar.getAptitude("COO");
-		stats[cnt++] = currChar.getAptitude("INT");
-		stats[cnt++] = currChar.getAptitude("REF");
-		stats[cnt++] = currChar.getAptitude("SAV");
-		stats[cnt++] = currChar.getAptitude("SOM");
-		stats[cnt++] = currChar.getAptitude("WIL");
+		stats[cnt++] = gen.getPC().getAptitude("COG");
+		stats[cnt++] = gen.getPC().getAptitude("COO");
+		stats[cnt++] = gen.getPC().getAptitude("INT");
+		stats[cnt++] = gen.getPC().getAptitude("REF");
+		stats[cnt++] = gen.getPC().getAptitude("SAV");
+		stats[cnt++] = gen.getPC().getAptitude("SOM");
+		stats[cnt++] = gen.getPC().getAptitude("WIL");
 		
-		stats[cnt++] = currChar.getSecStat("DUR");
-		stats[cnt++] = currChar.getSecStat("WT");
-		stats[cnt++] = currChar.getSecStat("DR");
-		stats[cnt++] = currChar.getSecStat("LUC");
-		stats[cnt++] = currChar.getSecStat("TT");
-		stats[cnt++] = currChar.getSecStat("IR");
-		stats[cnt++] = currChar.getSecStat("INIT");
-		stats[cnt++] = currChar.getSecStat("SPD");
-		stats[cnt++] = currChar.getSecStat("DB");
+		stats[cnt++] = gen.getPC().getSecStat("DUR");
+		stats[cnt++] = gen.getPC().getSecStat("WT");
+		stats[cnt++] = gen.getPC().getSecStat("DR");
+		stats[cnt++] = gen.getPC().getSecStat("LUC");
+		stats[cnt++] = gen.getPC().getSecStat("TT");
+		stats[cnt++] = gen.getPC().getSecStat("IR");
+		stats[cnt++] = gen.getPC().getSecStat("INIT");
+		stats[cnt++] = gen.getPC().getSecStat("SPD");
+		stats[cnt++] = gen.getPC().getSecStat("DB");
 		
 		cnt = 0;
 		
@@ -703,13 +720,21 @@ public class LifePathUI implements UI {
 		
 		cnt = 0;
 		
+		// update a few more display fields
+		getTextF("Stress").setText(""+gen.getPC().getVarInt("{stress}"));
+		getTextF("MOX").setText(""+gen.getPC().getSecStat("MOX"));
+		getTextF("Credits").setText(""+gen.getPC().getVarInt("{credits}"));
+		getTextF("Free CP").setText(""+gen.getPC().getVarInt("{CP}"));
+		
+		
+		
 		// rebuild skills panel
 		sideBar.removeAll();
 		
 		currentLayout = secondaryLayout;
 		currentComponent = sideBar;
 		int x = 0, y = 0;
-		for(String[] pair : currChar.getSkills())
+		for(String[] pair : gen.getPC().getSkills())
 		{
 			this.addMappedFixedTF(x,y,pair[0], pair[1], 5, false);
 			if (y <= 32)

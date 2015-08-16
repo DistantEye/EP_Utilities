@@ -135,7 +135,7 @@ public class Character {
 		this.setVar("{credits}", "0");
 		this.setVar("{faction}", "");
 		this.setVar("{background}", "");
-		this.setVar("{stress}", "");
+		this.setVar("{stress}", "0");
 		this.setVar("{CR}", "0");
 		this.setVar("{path}", "");
 		this.setVar("{isSynth}", "0");
@@ -391,13 +391,14 @@ public class Character {
 	 */
 	public void addSkill(Skill skill)
 	{
-		if (this.skillList.containsKey(skill.getName()) )
+		if (this.skillList.containsKey(skill.getFullName()) )
 		{
-			this.skillList.get(skill.getName()).addValue(skill.getValue(), true);
+			this.skillList.get(skill.getFullName()).addValue(skill.getValue(), true);						
 		}
 		else
 		{
-			this.skillList.put(skill.getName(), skill);
+			this.skillList.put(skill.getFullName(), skill);
+			this.setVar("{newestSkill}", skill.getFullName());
 		}
 	}
 	
@@ -412,7 +413,7 @@ public class Character {
 		if (this.skillList.containsKey(skillName))
 		{
 			Skill temp = this.skillList.remove(skillName);
-			this.setVar("{lastRemSkl}", temp.getName());
+			this.setVar("{lastRemSkl}", temp.getFullName());
 			this.setVar("{lastRemSklVal}", ""+temp.getValue());
 			return true;
 		}
@@ -935,7 +936,32 @@ public class Character {
 	}
 	
 	/**
-	 * Retrieves a variable from the general store (or from the character special store)
+	 * Retrieves a variable from the general store. Does not throw error if it doesn't exist, returns 0 instead
+	 * Will still throw error if the variable exists but is not a number
+	 * @param name Name of variable to search for
+	 * @return The matching value for name, or 0 if it doesn't exist. 
+	 */
+	public int getVarInt(String name)
+	{
+		if (this.hasVar(name))
+		{
+			if (Utils.isInteger(this.getVar(name)))
+			{
+				return Integer.parseInt(this.otherVars.get(name));
+			}
+			else
+			{
+				throw new IllegalArgumentException(name + " is a non-integer variable and can't be returned by getVarInt");
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	/**
+	 * Retrieves a variable from the general store
 	 * @param name Name of variable to search for
 	 * @return The matching value for name
 	 * @throws IllegalArgumentException if no such variable exists

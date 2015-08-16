@@ -20,6 +20,9 @@ public class LifePathGenerator {
 	private Character playerChar;
 	private UI UIObject;
 	private boolean isRolling;
+	private String nextEffects; // used to store things between steps
+	private boolean hasStarted;
+	private boolean hasFinished;
 	
 	/**
 	 * Creates the LifePathGenerator
@@ -33,8 +36,28 @@ public class LifePathGenerator {
 		playerChar = new Character(characterName);
 		UIObject = UIObject_;
 		this.isRolling = isRolling;
+		this.nextEffects = "";
+		this.hasStarted = false;
+		this.hasFinished = false;
 	}	
 	
+	
+	/**
+	 * @return the playerChar
+	 */
+	public Character getPC() {
+		return playerChar;
+	}
+
+	/**
+	 * @param playerChar the playerChar to set
+	 */
+	public void setPC(Character playerChar) {
+		this.playerChar = playerChar;
+	}
+
+
+
 	protected String splitChoiceTokens(String input, ArrayList<String> buffer)
 	{
 		Pattern groups = Pattern.compile("\\?([2-9]+)\\?\\**");
@@ -302,7 +325,7 @@ public class LifePathGenerator {
 				// good idea
 								
 				String params = Utils.returnStringInParen(effect);
-				String commandName = effect.substring(0, effect.indexOf('(')-1);
+				String commandName = effect.substring(0, effect.indexOf('('));
 				// TODO : to comply with older code, we have to insert the command at the beginning of params
 				params = commandName + "," + params;
 				
@@ -553,25 +576,25 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (effect.startsWith("roll"))
-				{
-					// code moved to function since this is called again for the force roll version
-					this.handleRoll(effect, errorInfo, false);					
-				}
 				else if (effect.startsWith("rollTable"))
 				{
 					// code moved to function since this is called again for the force roll version
 					this.handleRollTable(effect, errorInfo, false);					
 				}
-				else if (effect.startsWith("forceRoll"))
+				else if (effect.startsWith("roll"))
 				{
 					// code moved to function since this is called again for the force roll version
-					this.handleRoll(effect, errorInfo, true);					
+					this.handleRoll(effect, errorInfo, false);					
 				}
 				else if (effect.startsWith("forceRollTable"))
 				{
 					// code moved to function since this is called again for the force roll version
 					this.handleRollTable(effect, errorInfo, true);					
+				}
+				else if (effect.startsWith("forceRoll"))
+				{
+					// code moved to function since this is called again for the force roll version
+					this.handleRoll(effect, errorInfo, true);					
 				}
 				else if (effect.startsWith("runTable"))
 				{
@@ -1101,6 +1124,7 @@ public class LifePathGenerator {
 				}
 				else if (effect.startsWith("stop"))
 				{
+					this.hasFinished = true;
 					UIObject.end();
 				}
 				else
@@ -1207,7 +1231,7 @@ public class LifePathGenerator {
 			{
 				// do something to prompt the user to fix their error
 				boolean response = UIObject.handleError(e.getMessage());
-				
+				System.out.println(e.getMessage());
 				if (response)  // replace with seeing if response says to rollback last effect 
 				{
 					i--;
@@ -1431,15 +1455,29 @@ public class LifePathGenerator {
 	}
 	
 	/**
-	 * Starts the LifePath process by calling up the first table RANDOM_APTITUDE_TEMPLATE
+	 * Runs the next logical effect in the process, storing the effect after it into nextEffects
+	 * 
+	 * Will default to STEP_1 if hasStarted is false
+	 * Will do nothing if hasFinished is true
 	 */
-	public void run()
+	public void step()
 	{
-		// PROCESS_START_TABLE is a placeholder that should, regardless of roll, always go to the real first table
-		Table temp = ((Table)DataProc.getDataObj("PROCESS_START_TABLE"));
-		TableRow match = temp.findMatch(rollDice(temp.getDiceRolled(), temp.toString(),false));
-		this.runEffect(match.getEffects(),"");
+		if (hasFinished)
+		{
+			// do nothing
+			return;
+		}
 		
+		if (!hasStarted)
+		{
+			hasStarted = true;
+			Step start = (Step)DataProc.getDataObj("STEP_1");
+			nextEffects = this.runEffect(start.getEffects(), "");
+		}
+		else
+		{
+			nextEffects = this.runEffect(nextEffects, "");
+		}
 	}
 	
 	/**

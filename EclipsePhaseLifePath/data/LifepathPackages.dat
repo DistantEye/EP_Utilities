@@ -1986,6 +1986,16 @@ CREDITS
 10`50,000 credits`credits(50000)
 --------------------------------------------------------------
 STEP
+STEP_1
+STEP_2
+rollTable(APTITUDE_TEMPLATES)
+--------------------------------------------------------------
+STEP
+STEP_2
+STEP_3_0
+rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
+--------------------------------------------------------------
+STEP
 STEP_3_0
 STEP_3_1
 setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepSkip(STEP_3_1_STREET_RAT))
