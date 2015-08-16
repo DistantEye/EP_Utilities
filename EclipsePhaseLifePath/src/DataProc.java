@@ -1326,7 +1326,7 @@ public class DataProc {
 	 */
 	public static boolean containsChoice(String input)
 	{
-		return input.matches("\\?([0-9]*)\\?");
+		return Pattern.compile("\\?([0-9]*)\\?").matcher(input).find();
 	}
 
 	/**
