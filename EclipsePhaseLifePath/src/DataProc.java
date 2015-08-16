@@ -755,9 +755,7 @@ public class DataProc {
 			
 			if (Skill.isSkill(effect))
 			{
-				effect = effect.replace("!!X!!", "36");
-				Skill temp = Skill.CreateSkillFromString(effect);
-				result += temp.toString().replace("36", "Wildcard");
+				result += "Create skill : " + effect;
 			}
 			else if (effect.startsWith("incSkl"))
 			{
