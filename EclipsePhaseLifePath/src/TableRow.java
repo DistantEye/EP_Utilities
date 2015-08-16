@@ -49,7 +49,7 @@ public class TableRow {
 	 */
 	public TableRow getCopy(String search, String replace)
 	{
-		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects);
+		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects.replace(search, replace));
 		return temp;
 	}
 	
