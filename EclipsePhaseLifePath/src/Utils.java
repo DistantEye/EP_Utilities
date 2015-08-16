@@ -60,7 +60,7 @@ public class Utils {
 	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string
 	 */
 	public static String[] splitCommands(String input, String delimiter)
-	{
+	{		
 		// Commands have parentheses, like +morph(randomRoll). We temporarily replace all the () content, then replace the delimeters with something else unique,
 		// put things back, then split everything
 		
@@ -73,14 +73,14 @@ public class Utils {
 		String key = findUniqueDelimeter(modInput);
 		int cnt = 0;
 		
-		String output = returnStringInParen(modInput);
+		String output = "(" + returnStringInParen(modInput) + ")";
 		
-		do
-		{
-			modInput = modInput.replace(output, key+cnt);
-			replaceValues.put(key+cnt, output);
+		while (!output.equals("()")) {
+			modInput = modInput.replace(output, key+cnt+"~"); // adding the extra ~ prevents match collisons between ~0~1 and ~0~10 and stuff like that 
+			replaceValues.put(key+cnt+"~", output);
 			cnt++;
-		} while (output != "");
+			output = "(" + returnStringInParen(modInput) + ")";
+		} 
 		
 		String newDelimiter = findUniqueDelimeter(input+modInput); // if it isn't unique to both the temporary and the original, this won't work 
 		
