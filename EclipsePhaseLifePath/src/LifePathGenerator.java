@@ -968,7 +968,7 @@ public class LifePathGenerator {
 							}
 							else
 							{
-								this.runEffect(choiceEffects[choice], subparts[1]);
+								this.runEffect(choiceEffects[choice-1], subparts[1]);
 							}
 						}
 						else
