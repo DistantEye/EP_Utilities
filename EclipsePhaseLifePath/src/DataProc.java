@@ -752,12 +752,13 @@ public class DataProc {
 				errorInfo = "at line : " + fileLineNumber;
 			}
 			
+			String lcEffect = effect.toLowerCase();
 			
 			if (Skill.isSkill(effect))
 			{
 				result += ("Add skill : " + effect).replace("?1?", "(Choose One Skl)");;
 			}
-			else if (effect.startsWith("incSkl"))
+			else if (lcEffect.startsWith("incskl"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -778,7 +779,7 @@ public class DataProc {
 					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
-			else if (effect.startsWith("decSkl"))
+			else if (lcEffect.startsWith("decskl"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -803,7 +804,7 @@ public class DataProc {
 					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
-			else if (effect.startsWith("sklspec"))
+			else if (lcEffect.startsWith("sklspec"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -819,7 +820,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("trait"))
+			else if (lcEffect.startsWith("trait"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -835,7 +836,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("morph"))
+			else if (lcEffect.startsWith("morph"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -855,7 +856,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("setApt"))
+			else if (lcEffect.startsWith("setapt"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -871,7 +872,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("addApt"))
+			else if (lcEffect.startsWith("addapt"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -892,7 +893,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("rollTable")  || effect.startsWith("forceRollTable"))
+			else if (lcEffect.startsWith("rolltable")  || lcEffect.startsWith("forcerolltable"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2 && subparts.length != 3)
@@ -908,7 +909,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("roll") || effect.startsWith("forceRoll"))
+			else if (lcEffect.startsWith("roll") || lcEffect.startsWith("forceroll"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -924,7 +925,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("runTable"))
+			else if (lcEffect.startsWith("runtable"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 && subparts.length != 4)
@@ -961,7 +962,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");											
 				}			
 			}
-			else if (effect.startsWith("mox"))
+			else if (lcEffect.startsWith("mox"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -977,7 +978,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("setmox"))
+			else if (lcEffect.startsWith("setmox"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -993,7 +994,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("gear"))
+			else if (lcEffect.startsWith("gear"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1009,7 +1010,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("background"))
+			else if (lcEffect.startsWith("background"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1025,7 +1026,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("nextPath"))
+			else if (lcEffect.startsWith("nextpath"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1041,7 +1042,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("faction"))
+			else if (lcEffect.startsWith("faction"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1057,7 +1058,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("stepskip"))
+			else if (lcEffect.startsWith("stepskip"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1073,7 +1074,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("package"))
+			else if (lcEffect.startsWith("package"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length == 2 && subparts[1].length() > 0)
@@ -1089,7 +1090,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("rep"))
+			else if (lcEffect.startsWith("rep"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -1105,7 +1106,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("credit"))
+			else if (lcEffect.startsWith("credit"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1121,7 +1122,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("psichi"))
+			else if (lcEffect.startsWith("psichi"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1137,7 +1138,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("psigamma"))
+			else if (lcEffect.startsWith("psigamma"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1153,7 +1154,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("psisleight"))
+			else if (lcEffect.startsWith("psisleight"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2)
@@ -1170,7 +1171,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("extendedChoice"))
+			else if (lcEffect.startsWith("extendedchoice"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3)
@@ -1186,7 +1187,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("if"))
+			else if (lcEffect.startsWith("if"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length < 2 || subparts.length > 3)
@@ -1206,7 +1207,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("func"))
+			else if (lcEffect.startsWith("func"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2 )
@@ -1226,7 +1227,7 @@ public class DataProc {
 					}
 				}
 			}
-			else if (effect.startsWith("msgClient"))
+			else if (lcEffect.startsWith("msgclient"))
 			{			
 				String[] subparts = Utils.splitOnce(params,",");
 				if (subparts.length != 2 )
@@ -1242,7 +1243,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("setVar"))
+			else if (lcEffect.startsWith("setvar"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 )
@@ -1258,7 +1259,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("incVar"))
+			else if (lcEffect.startsWith("incvar"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 3 )
@@ -1278,7 +1279,7 @@ public class DataProc {
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 			}
-			else if (effect.startsWith("remVar"))
+			else if (lcEffect.startsWith("remvar"))
 			{
 				String[] subparts = Utils.splitCommands(params);
 				if (subparts.length != 2 )
