@@ -2088,7 +2088,7 @@ rollTable(TABLE_16);stop()
 TABLE
 TABLE_16
 100
-01-02`After a long stretch of bad, you hit bottom. No way left to go but up.`msgClient(After a long stretch of bad, you hit bottom. No way left to go but up.)
+01-02`After a long stretch of bad luck, you hit bottom. No way left to go but up.`msgClient(After a long stretch of bad luck, you hit bottom. No way left to go but up.)
 03-04`You participate as a test subject in a research project. You suffer no ill effects … that you can tell.`msgClient(You participate as a test subject in a research project. You suffer no ill effects … that you can tell.)
 05-06`A prominent journalist befriends you as a source and occasional confidante.`msgClient(A prominent journalist befriends you as a source and occasional confidante.)
 07-08`You hear from an unknown source that Oversight has taken an interest in your affairs.`msgClient(You hear from an unknown source that Oversight has taken an interest in your affairs.)
