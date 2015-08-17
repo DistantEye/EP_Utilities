@@ -110,60 +110,6 @@ public class LifePathUI implements UI {
 	private void dataInit()
 	{
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		Character aChar = new Character("");
-		
-		aChar.addSkill(Skill.CreateSkill("Academics", 10));
-		aChar.addSkill(Skill.CreateSkill("Animal Handling", 10));
-		aChar.addSkill(Skill.CreateSkill("Art", 10));
-		aChar.addSkill(Skill.CreateSkill("Beam Weapons", 10));
-		aChar.addSkill(Skill.CreateSkill("Blades", 10));
-		aChar.addSkill(Skill.CreateSkill("Climbing", 10));
-		aChar.addSkill(Skill.CreateSkill("Clubs", 10));
-		aChar.addSkill(Skill.CreateSkill("Control", 10));
-		aChar.addSkill(Skill.CreateSkill("Deception", 10));
-		aChar.addSkill(Skill.CreateSkill("Demolitions", 10));
-		aChar.addSkill(Skill.CreateSkill("Disguise", 10));
-		aChar.addSkill(Skill.CreateSkill("Exotic Language", 10));
-		aChar.addSkill(Skill.CreateSkill("Exotic Melee Weapon", 10));
-		aChar.addSkill(Skill.CreateSkill("Exotic Ranged Weapon", 10));
-		aChar.addSkill(Skill.CreateSkill("Flight", 10));
-		aChar.addSkill(Skill.CreateSkill("Fray", 10));
-		aChar.addSkill(Skill.CreateSkill("Free Fall", 10));
-		aChar.addSkill(Skill.CreateSkill("Freerunning", 10));
-		aChar.addSkill(Skill.CreateSkill("Gunnery", 10));
-		aChar.addSkill(Skill.CreateSkill("Hardware", 10));
-		aChar.addSkill(Skill.CreateSkill("Impersonation", 10));
-		aChar.addSkill(Skill.CreateSkill("Infiltration", 10));
-		aChar.addSkill(Skill.CreateSkill("Infosec", 10));
-		aChar.addSkill(Skill.CreateSkill("Interest", 10));
-		aChar.addSkill(Skill.CreateSkill("Interfacing", 10));
-		aChar.addSkill(Skill.CreateSkill("Intimidation", 10));
-		aChar.addSkill(Skill.CreateSkill("Investigation", 10));
-		aChar.addSkill(Skill.CreateSkill("Kinesics", 10));
-		aChar.addSkill(Skill.CreateSkill("Kinetic Weapons", 10));
-		aChar.addSkill(Skill.CreateSkill("Language", 10));
-		aChar.addSkill(Skill.CreateSkill("Medicine", 10));
-		aChar.addSkill(Skill.CreateSkill("Navigation", 10));
-		aChar.addSkill(Skill.CreateSkill("Networking", 10));
-		aChar.addSkill(Skill.CreateSkill("Palming", 10));
-		aChar.addSkill(Skill.CreateSkill("Perception", 10));
-		aChar.addSkill(Skill.CreateSkill("Persuasion", 10));
-		aChar.addSkill(Skill.CreateSkill("Pilot", 10));
-		aChar.addSkill(Skill.CreateSkill("Profession", 10));
-		aChar.addSkill(Skill.CreateSkill("Programming", 10));
-		aChar.addSkill(Skill.CreateSkill("Protocol", 10));
-		aChar.addSkill(Skill.CreateSkill("Psi Assault", 10));
-		aChar.addSkill(Skill.CreateSkill("Psychosurgery", 10));
-		aChar.addSkill(Skill.CreateSkill("Research", 10));
-		aChar.addSkill(Skill.CreateSkill("Scrounging", 10));
-		aChar.addSkill(Skill.CreateSkill("Seeker Weapons", 10));
-		aChar.addSkill(Skill.CreateSkill("Sense", 10));
-		aChar.addSkill(Skill.CreateSkill("Spray Weapons", 10));
-		aChar.addSkill(Skill.CreateSkill("Swimming", 10));
-		aChar.addSkill(Skill.CreateSkill("Throwing Weapons", 10));
-		aChar.addSkill(Skill.CreateSkill("Unarmed Combat", 10));
-		
-		gen.setPC(aChar);
 	}
 	
 	public void init()
@@ -324,7 +270,9 @@ public class LifePathUI implements UI {
 		
 		mainStatus = new JTextArea(40,0);
 		mainStatus.setMinimumSize(mainStatus.getPreferredSize());
+		mainStatus.setWrapStyleWord(true);
 		JScrollPane tempPane = new JScrollPane(mainStatus);
+		tempPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		tempPane.setMinimumSize(tempPane.getPreferredSize());
 		
 		addC(tempPane,0,8);
@@ -751,6 +699,8 @@ public class LifePathUI implements UI {
 		
 		currentComponent = mainPanel;
 	    currentLayout = layout;
+	    
+	    mainPanel.revalidate();
 	}
 	
 	/**

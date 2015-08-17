@@ -128,9 +128,9 @@ Package
 HYPERELITE: MEDIA PERSONALITY
 People know you. In fact, there's a good chance that they see you on a regular basis. You're an X-caster, a blogger, a famous MARG gamer, a pundit, a performer, the spokesperson for a brand, an athlete, or some other form of celebrity.
 +Artistic Expression, +Fame, +Personal Career
-PP;1>mox(1);Art: ?1? 40;Networking: (Media) 40;credit(5000)
-PP;3>mox(1);Art: ?1? 40;Disguise: 25;Interest: ?1? 30;Interfacing 30;Networking: (Media) 50;Persuasion 30;Profession: ?1? 20;Protocol 30 ;credit(30000 )
-PP;5>mox(1);addApt(SAV,5);rep(?1?,50);Art: ?1? 40;Disguise: 25;Fray 15;Interest: ?1? 40;Interfacing 30;Language: ?1? 30;Networking: (Media) 50;Networking: ?1? 20;Persuasion 30;Profession: ?1? 40;Protocol 50;credit(60000 )
+PP;1>mox(1);Art: ?1? 40;Networking: Media 40;credit(5000)
+PP;3>mox(1);Art: ?1? 40;Disguise: 25;Interest: ?1? 30;Interfacing 30;Networking: Media 50;Persuasion 30;Profession: ?1? 20;Protocol 30 ;credit(30000 )
+PP;5>mox(1);addApt(SAV,5);rep(?1?,50);Art: ?1? 40;Disguise: 25;Fray 15;Interest: ?1? 40;Interfacing 30;Language: ?1? 30;Networking: Media 50;Networking: ?1? 20;Persuasion 30;Profession: ?1? 40;Protocol 50;credit(60000 )
 -----------------------------------------------------------------------------------------------
 Package
 HYPERELITE: SCION
@@ -307,8 +307,8 @@ Package
 BELTER
 You hail from the lawless frontier of the Main Belt, home to miners, pirates, exiles, and outcasts of every stripe.
 +Extropianism, +Hypercapitalism, Morphological Freedom
-PP;1>Free Fall 40;Navigation 30;Profession: (Asteroid Mining) 30
-PP;3>mox(1);rep(?1?,50);Free Fall 50;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking: ?1? 30;Profession: (Asteroid Mining) 50;Persuasion 20;Pilot: Spacecraft 30
+PP;1>Free Fall 40;Navigation 30;Profession: Asteroid Mining 30
+PP;3>mox(1);rep(?1?,50);Free Fall 50;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking: ?1? 30;Profession: Asteroid Mining 50;Persuasion 20;Pilot: Spacecraft 30
 ------------------------------------------------------------------
 Package
 BIOCONSERVATIVE
@@ -321,8 +321,8 @@ Package
 BRINKER
 Some folk just aren't all that fond of too many other folk. Being in space and having to live cheek-to-jowl with others makes it kinda hard. Your fellow brinkers understand you need a little "me space" to go along with "me time."
 +Bioconservatism, +Exhumanism, +Privacy, +Religion, +Solitude, +Self Reliance
-PP;1>Pilot: (Spacecraft) 40;Profession: ?1? 30;Scrounging 30
-PP;3>rep(?1?,50);Free Fall 30;Gunnery 20;Hardware: Industrial 40;Interest: ?1? 40;Networking: ?1? 25;Pilot: (Spacecraft) 50;Profession: ?1? 50;Scrounging 40
+PP;1>Pilot: Spacecraft 40;Profession: ?1? 30;Scrounging 30
+PP;3>rep(?1?,50);Free Fall 30;Gunnery 20;Hardware: Industrial 40;Interest: ?1? 40;Networking: ?1? 25;Pilot: Spacecraft 50;Profession: ?1? 50;Scrounging 40
 ------------------------------------------------------------------------------------------
 Package
 CRIMINAL
@@ -364,7 +364,7 @@ JOVIAN
 You are one of the last remnants of true humanity in the galaxy. The rest of these so-called transhumans have allowed themselves to become corrupted by the machines that brought about the fall of humanity and forced the evacuation of Earth. It is up to you and your fellows to make sure humanity survives.
 +Bioconservatism, +Jovian Republic, -AGI Rights, -Transhumanism, -Uplift Rights
 PP;1>Pilot: ?1? 30;Profession:Military Ops 30;Seeker Weapons 40
-PP;3>mox(1);rep(c,50);Academics: Military Science 30;Intimidation 25;Kinetic Weapons 40;Language: (English or Spanish) 40;Networking: Hypercorps 40;Profession: Military Ops 30;Seeker Weapons 40;Unarmed Combat 35
+PP;3>mox(1);rep(c,50);Academics: Military Science 30;Intimidation 25;Kinetic Weapons 40;Language: English or Spanish 40;Networking: Hypercorps 40;Profession: Military Ops 30;Seeker Weapons 40;Unarmed Combat 35
 --------------------------------------------------------------------------------------------------------------------------------------------
 Package
 LUNAR
@@ -392,7 +392,7 @@ NANO-ECOLOGIST
 You support the use of nanotechnology as a less-invasive means of terraforming and transforming alien worlds. 
 +Exploration, +Nano-ecology, +Research, +Technoprogressivism
 PP;1>Academics: Ecology/Nanotechnology 30;Freerunning 30;Programming 40
-PP;3>rep(e,50);Academics: Ecology 40;Academics: Nanotechnology 50;Freerunning 30;Interfacing 25;Investigation 30;Medicine:Nanomedicine 30;Networking: (Ecologists) 40;Programming 50
+PP;3>rep(e,50);Academics: Ecology 40;Academics: Nanotechnology 50;Freerunning 30;Interfacing 25;Investigation 30;Medicine: Nanomedicine 30;Networking: Ecologists 40;Programming 50
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 ORBITAL
@@ -412,8 +412,8 @@ Package
 PRESERVATIONIST
 You believe that alien worlds must be protected from contamination and that transhumanity is recklessly despoiling thousands of exoplanets as it expands through the gates.
 +Environmentalism, +Preservationism, +Research, -Gatecrashing, -Nano-ecology
-PP;1>Academics: (Ecology) 40;Freerunning 30;Investigation 30
-PP;3>rep(?1?,50);Academics: (Ecology) 50;Art: ?1? 30;Freerunning 40;Interest: ?1? 30;Investigation 40;Medicine: ?1? 30;Navigation 35;Networking: Ecologists 40
+PP;1>Academics: Ecology 40;Freerunning 30;Investigation 30
+PP;3>rep(?1?,50);Academics: Ecology 50;Art: ?1? 30;Freerunning 40;Interest: ?1? 30;Investigation 40;Medicine: ?1? 30;Navigation 35;Networking: Ecologists 40
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 RECLAIMER
@@ -455,7 +455,7 @@ SINGULARITY SEEKER
 You seek the means to ascend your ego to god-like levels of intelligence, by any means necessary.
 +Exploration, +Morphological Freedom, +Personal Development, +Research
 PP;1>Infosec 30;Interest: TITAN Tech 40;Interfacing 30
-PP;3>Academics: ?1? 40;Hardware: ?1? 40;Infosec 40;Interest: (TITAN Tech) 50;Interfacing 30;Medicine: Nanomedicine 30;Programming 40;Psychosurgery 30
+PP;3>Academics: ?1? 40;Hardware: ?1? 40;Infosec 40;Interest: TITAN Tech 50;Interfacing 30;Medicine: Nanomedicine 30;Programming 40;Psychosurgery 30
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SKIMMER
@@ -600,17 +600,17 @@ Package
 GENEHACKER
 You're a biohacker. You meddle with genetics and biotechnology to see what you can create, to improve life and help overcome biological flaws, or simply to keep your biological future in your own hands.
 +Artistic Expression, Morphological Freedom, +Research, +Science!, +Uplift Rights
-PP;1>Academics: (Genetics) 30;Medicine: ?1? 40;Medicine: ?1? 30
-PP;3>mox(1);rep(?1?,50);Academics: (Genetics) 50;Academics: ?1? 40;Animal Handling 20;Medicine: ?1? 50;Medicine: ?1? 40;Networking: Scientists 20;Perception 20;Profession: Lab Tech 40
-PP;5>mox(1);rep(r,50);addApt(COG,5);Academics: (Genetics) 50;Academics: ?1? 40;Animal Handling 40;Interest: ?1? 30;Interfacing 20;Investigation 30;Medicine: ?1? 50;Medicine: ?2? 40;Networking: Scientists 20;Perception 30;Profession: Lab Tech 40
+PP;1>Academics: Genetics 30;Medicine: ?1? 40;Medicine: ?1? 30
+PP;3>mox(1);rep(?1?,50);Academics: Genetics 50;Academics: ?1? 40;Animal Handling 20;Medicine: ?1? 50;Medicine: ?1? 40;Networking: Scientists 20;Perception 20;Profession: Lab Tech 40
+PP;5>mox(1);rep(r,50);addApt(COG,5);Academics: Genetics 50;Academics: ?1? 40;Animal Handling 40;Interest: ?1? 30;Interfacing 20;Investigation 30;Medicine: ?1? 50;Medicine: ?2? 40;Networking: Scientists 20;Perception 30;Profession: Lab Tech 40
 -----------------------------------------------------------------------------------
 Package
 HACKER
 Processes on the mesh heed your beck and call, whether you seek to penetrate systems or protect them. 
 +Fame, +Open Source, +Owning Systems, +Thrill Seeking, -Hackers
 PP;1>Infosec 40;Profession: Mesh Security Ops 30;Programming 30
-PP;3>rep(?1?,50);Academics: (Computer Science or Cryptography) 40;Hardware: Electronics 15;Infosec 50;Interfacing 30;Networking: Criminal 20;Perception 20;Profession: Mesh Security Ops 50;Programming 40;Research 30
-PP;5>mox(1);rep(g,50);addApt(COG,5);Academics: (Computer Science) 40;Academics (Cryptography) 40;Fray 10;Hardware: Electronics 25;Infiltration 20;Infosec 50;Interfacing 50;Networking: Criminal 30;Perception 20;Profession: Mesh Security Ops 40;Profession: Social Engineering 30;Programming 50;Research 40
+PP;3>rep(?1?,50);Academics: Computer Science or Cryptography 40;Hardware: Electronics 15;Infosec 50;Interfacing 30;Networking: Criminal 20;Perception 20;Profession: Mesh Security Ops 50;Programming 40;Research 30
+PP;5>mox(1);rep(g,50);addApt(COG,5);Academics: Computer Science 40;Academics (Cryptography) 40;Fray 10;Hardware: Electronics 25;Infiltration 20;Infosec 50;Interfacing 50;Networking: Criminal 30;Perception 20;Profession: Mesh Security Ops 40;Profession: Social Engineering 30;Programming 50;Research 40
 -----------------------------------------------------------------
 Package
 ICON
@@ -640,9 +640,9 @@ Package
 MEDIC
 You are a biotech specialist. 
 +Helping Others, -Violence
-PP;1> Medicine: (Paramedic) 40;Medicine: ?1? 30;Profession: Medical Care 30
-PP;3>mox(1);rep(?1?,50);Academics: ?1? 40;Hardware: Implants 25;Medicine: (Paramedic) 50;Medicine: ?1? 40;Networking: ?1? 20;Perception 35;Persuasion 20;Profession: Medical Care 50
-PP;5>mox(1);rep(r,50);addApt(COG,5);Academics: ?1? 40;Academics: ?1? 30;Fray 30;Hardware: Implants 20;Interest: ?1? 30;Interfacing 15;Medicine: (Paramedic) 50;Medicine: ?2? 40;Networking: ?1? 20;Perception 30;Persuasion 20;Profession: Medical Care 50
+PP;1> Medicine: Paramedic 40;Medicine: ?1? 30;Profession: Medical Care 30
+PP;3>mox(1);rep(?1?,50);Academics: ?1? 40;Hardware: Implants 25;Medicine: Paramedic 50;Medicine: ?1? 40;Networking: ?1? 20;Perception 35;Persuasion 20;Profession: Medical Care 50
+PP;5>mox(1);rep(r,50);addApt(COG,5);Academics: ?1? 40;Academics: ?1? 30;Fray 30;Hardware: Implants 20;Interest: ?1? 30;Interfacing 15;Medicine: Paramedic 50;Medicine: ?2? 40;Networking: ?1? 20;Perception 30;Persuasion 20;Profession: Medical Care 50
 -----------------------------------------------------------------
 Package
 PIRATE
@@ -657,9 +657,9 @@ Package
 PSYCHOSURGEON
 You help people stay sane and/or be whatever they want to be in their mind.
 +Helping Others, +Neurodiversity, -Madness
-PP;1>Academics: Psychology 30;Medicine: (Psychiatry) 30;Psychosurgery 40
-PP;3>rep(?1?,50);Academics: Psychology 50;Kinesics 30;Medicine: (Psychiatry) 40;Networking: ?1? 35;Perception 30;Persuasion 20;Profession: Psychotherapy 40;Psychosurgery 50
-PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: Psychology 50;Academics: ?1? 30;Deception 20;Interest: ?1? 30;Investigation 25;Kinesics 40;Medicine: (Psychiatry) 40;Networking: ?1? 35;Perception 30;Persuasion 30;Profession: Psychotherapy 50;Psychosurgery 50
+PP;1>Academics: Psychology 30;Medicine: Psychiatry 30;Psychosurgery 40
+PP;3>rep(?1?,50);Academics: Psychology 50;Kinesics 30;Medicine: Psychiatry 40;Networking: ?1? 35;Perception 30;Persuasion 20;Profession: Psychotherapy 40;Psychosurgery 50
+PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: Psychology 50;Academics: ?1? 30;Deception 20;Interest: ?1? 30;Investigation 25;Kinesics 40;Medicine: Psychiatry 40;Networking: ?1? 35;Perception 30;Persuasion 30;Profession: Psychotherapy 50;Psychosurgery 50
 --------------------------------------------------------------------
 Package
 SAVANT ASYNC
@@ -698,16 +698,16 @@ SMART ANIMAL HANDLER
 You raise and care for the smart animals that are a vital part of many transhuman settlements.
 +Nano-ecology, +Research, +Uplift Rights
 PP;1>Animal Handling 40;Medicine: Veterinary 30;Profession: Smart Animal Training 30
-PP;3>mox(1);rep(?1?,50);Academics: (Zoology) 40;Animal Handling 50;Fray 20;Intimidation 20;Kinesics 40;Medicine: Veterinary 40;Perception 20;Profession: Smart Animal Training 50
-PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: (Zoology) 40;Academics: ?1? 30;Animal Handling 50;Fray 30;Intimidation 30;Kinesics 30;Medicine: Veterinary 50;Networking: ?1? 30;Perception 30;Profession: Smart Animal Training 50;Profession: ?1? 30;Scrounging 30
+PP;3>mox(1);rep(?1?,50);Academics: Zoology 40;Animal Handling 50;Fray 20;Intimidation 20;Kinesics 40;Medicine: Veterinary 40;Perception 20;Profession: Smart Animal Training 50
+PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: Zoology 40;Academics: ?1? 30;Animal Handling 50;Fray 30;Intimidation 30;Kinesics 30;Medicine: Veterinary 50;Networking: ?1? 30;Perception 30;Profession: Smart Animal Training 50;Profession: ?1? 30;Scrounging 30
 ------------------------------------------------------------------
 Package
 SMUGGLER
 There is an art to getting unapproved merchandise into and out of high security habitats,and you are a virtuoso. Even inner system habs hold restrictive views on unfettered capitalism. You don't consider yourself a criminal so much as a subtle expediter of market forces,an angel of supply come to make a bargain with the devil of demand.
 +Personal Career, +Survival, +Wealth, -Authority
-PP;1>Networking: ?1? 30;Persuasion 40;Profession: (Smuggling) 30
-PP;3>rep(?1?1,50);Deception 40;Interest: Black Markets 40;Kinesics 25;Networking: ?1? 40;Networking: ?1? 20;Perception 30;Persuasion 50;Profession: (Smuggling) 50
-PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 30;Deception 40;Fray 30;Interest: Black Markets 40;Interest: ?1? 30;Kinesics 25;Networking: ?2? 40;Perception 30;Persuasion 50;Profession: (Smuggling) 50;Protocol 25
+PP;1>Networking: ?1? 30;Persuasion 40;Profession: Smuggling 30
+PP;3>rep(?1?1,50);Deception 40;Interest: Black Markets 40;Kinesics 25;Networking: ?1? 40;Networking: ?1? 20;Perception 30;Persuasion 50;Profession: Smuggling 50
+PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 30;Deception 40;Fray 30;Interest: Black Markets 40;Interest: ?1? 30;Kinesics 25;Networking: ?2? 40;Perception 30;Persuasion 50;Profession: Smuggling 50;Protocol 25
 ----------------------------------------------------------------
 Package
 SOLDIER
@@ -746,8 +746,8 @@ WRECKER
 You are optimized for killing machines. You either excelled at fighting TITAN constructs during the Fall or you continue to hunt them down in the aftermath.
 +Explosions, +Survival, -TITANs
 PP;1>Demolitions 30;Interest: TITAN Tech 30;Seeker Weapons 40
-PP;3>rep(?1?,50);Demolitions 40;Fray 25;Infiltration 30;Interest: (TITAN Tech) 50;Kinetic Weapons 30;Perception 30;Profession: Squad Tactics 40;Seeker Weapons 50
-PP;5>mox(1);rep(g,50);addApt(COO,5);Demolitions 40;Fray 40;Infiltration 30;Infosec 20;Interest: (TITAN Tech) 50;Interest: ?1? 30;Kinetic Weapons 40;Perception 30;Profession: Wrecking Machines 30;Profession: Squad Tactics 40;Seeker Weapons 50;Throwing Weapons 30
+PP;3>rep(?1?,50);Demolitions 40;Fray 25;Infiltration 30;Interest: TITAN Tech 50;Kinetic Weapons 30;Perception 30;Profession: Squad Tactics 40;Seeker Weapons 50
+PP;5>mox(1);rep(g,50);addApt(COO,5);Demolitions 40;Fray 40;Infiltration 30;Infosec 20;Interest: TITAN Tech 50;Interest: ?1? 30;Kinetic Weapons 40;Perception 30;Profession: Wrecking Machines 30;Profession: Squad Tactics 40;Seeker Weapons 50;Throwing Weapons 30
 --------------------------------------------------
 Package
 ARTIST

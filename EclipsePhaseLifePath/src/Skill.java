@@ -405,6 +405,8 @@ public class Skill {
 			throw new IllegalArgumentException("Choice notation (?1?) is not supported by this method");
 		}
 		
+		input = input.replace("*", "");
+		
 		// the various patterns we can understand
 		Matcher basicMatch = Skill.basicSkill.matcher(input);
 		Matcher subtypeMatch = Skill.skillSubtype.matcher(input);
@@ -457,12 +459,12 @@ public class Skill {
 		
 		if (this.subtype.length() > 0)
 		{
-			result += "[" + subtype + "] ";
+			result += ": " + subtype + " ";
 		}
 		
 		if (this.specialization.length() > 0)
 		{
-			result += "(" + specialization + ") ";
+			result += "[" + specialization + "] ";
 		}
 		
 		result = result.trim();

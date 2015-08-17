@@ -459,7 +459,7 @@ public class DataProc {
 				throw new IllegalArgumentException("Unknown type of data or incorrect formating for Trait chunk : " + nextTrait);
 			}
 			
-			String processedStr = nextTrait.substring(0, endFirstLine) + "|" + nextTrait.substring(endFirstLine+1);
+			String processedStr = nextTrait.substring(0, endFirstLine).split(":::")[1] + "|" + nextTrait.substring(endFirstLine+1);
 			
 			Trait.CreateInternalTrait(processedStr);
 			
@@ -1227,15 +1227,15 @@ public class DataProc {
 				}
 			}
 			else if (effect.startsWith("msgClient"))
-			{
-				String[] subparts = Utils.splitCommands(params);
+			{			
+				String[] subparts = Utils.splitOnce(params,",");
 				if (subparts.length != 2 )
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				else if ( subparts[1].length() > 0)
 				{
-					result += "Send message to the client : " + subparts[1];					
+					result += "Send message to the client : " + subparts[1].replace("\\,", ",");					
 				}
 				else
 				{

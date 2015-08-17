@@ -42,6 +42,25 @@ public class Utils {
 	}
 		
 	/**
+	 * Like split, but will only split around the first deliminter found, so splitOnce("a,b,c,d",",") = {"a","b,c,d"}
+	 * @param input Input string to split on
+	 * @param delimiter delimiter to search for
+	 * @return String[] of the split Strings. May be a length 0 array if the delimeter does not exist at all
+	 */
+	public static String[] splitOnce(String input, String delimiter)
+	{
+		if (input.contains(delimiter))
+		{
+			int idx = input.indexOf(delimiter);
+			return new String[] {input.substring(0, idx), input.substring(idx+delimiter.length())};
+		}
+		else
+		{
+			return new String[] {input};
+		}
+	}
+	
+	/**
 	 * Splits a string of commands, making sure to respect nesting if () exist with delimeters inside
 	 * This version assumes the delimeter is a comma
 	 * 
@@ -57,6 +76,7 @@ public class Utils {
 	 * Splits a string of commands, making sure to respect nesting if () exist with delimeters inside
 	 * 
 	 * @param input string to search
+	 * @param delimiter delimiter to search for
 	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string
 	 */
 	public static String[] splitCommands(String input, String delimiter)
