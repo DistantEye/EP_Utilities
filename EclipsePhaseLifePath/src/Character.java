@@ -516,9 +516,7 @@ public class Character {
 		
 		for (Skill skill : skillList.values())
 		{
-			String[] temp = skill.toString().split(":");
-			temp[0] = temp[0].trim();
-			temp[1] = temp[1].trim();
+			String[] temp = {skill.getFullName(), ""+skill.getValue()};
 			result.add(temp);
 		}
 		

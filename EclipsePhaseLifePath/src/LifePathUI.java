@@ -268,8 +268,10 @@ public class LifePathUI implements UI {
 		cons.fill = GridBagConstraints.BOTH;
 		
 		
-		mainStatus = new JTextArea(40,0);
+		mainStatus = new JTextArea(40,160);
 		mainStatus.setMinimumSize(mainStatus.getPreferredSize());
+		mainStatus.setMaximumSize(mainStatus.getPreferredSize());
+		mainStatus.setLineWrap(true);
 		mainStatus.setWrapStyleWord(true);
 		JScrollPane tempPane = new JScrollPane(mainStatus);
 		tempPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -682,7 +684,9 @@ public class LifePathUI implements UI {
 		
 		currentLayout = secondaryLayout;
 		currentComponent = sideBar;
-		int x = 0, y = 0;
+		addC(new JLabel("Skills            "),0,0);
+		addC(new JLabel("                  "),1,0);
+		int x = 0, y = 1;
 		for(String[] pair : gen.getPC().getSkills())
 		{
 			this.addMappedFixedTF(x,y,pair[0], pair[1], 5, false);
