@@ -23,6 +23,7 @@ public class LifePathGenerator {
 	private String nextEffects; // used to store things between steps
 	private boolean hasStarted;
 	private boolean hasFinished;
+	private String pendingEffects; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
 	
 	/**
 	 * Creates the LifePathGenerator
@@ -39,6 +40,7 @@ public class LifePathGenerator {
 		this.nextEffects = "";
 		this.hasStarted = false;
 		this.hasFinished = false;
+		pendingEffects = "";
 	}	
 	
 	
@@ -107,7 +109,8 @@ public class LifePathGenerator {
 		
 		String[] effects = Utils.splitCommands(modifiedInput, ";");
 		
-		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
+		pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
+							 // pendingEffects is global so that recurisve calls to runEffect can change what the next set of effects is
 		
 		if (playerChar.getLastStep() != null)
 		{
@@ -488,6 +491,12 @@ public class LifePathGenerator {
 					{
 						playerChar.addTrait(Trait.getTrait(subparts[1], 1));
 					}
+					else if (subparts[1].length() == 2 && Trait.existsPartial(subparts[1]) )
+					{
+						Trait t = Trait.getTraitFromPartial(subparts[1], 1);
+						
+						playerChar.addTrait(t);
+					}
 					else if (subparts[1].length() == 3 && Trait.exists(subparts[1]) )
 					{
 						if (! Utils.isInteger(subparts[2]) )
@@ -496,6 +505,17 @@ public class LifePathGenerator {
 						}
 						
 						playerChar.addTrait(Trait.getTrait(subparts[1], Integer.parseInt(subparts[2])));
+					}
+					else if (subparts[1].length() == 3 && Trait.existsPartial(subparts[1]) )
+					{
+						if (! Utils.isInteger(subparts[2]) )
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						Trait t = Trait.getTraitFromPartial(subparts[1], Integer.parseInt(subparts[2]));
+						
+						playerChar.addTrait(t);
 					}
 					else
 					{

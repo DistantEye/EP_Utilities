@@ -66,7 +66,9 @@ public class Trait {
 		// loop throught our traits and see if we find a match
 		for (Trait t : traitList)
 		{
-			if (t.getName().startsWith(traitName))
+			String partialT = t.getName().replaceAll("[ ]*\\([^\\)]+\\)", "").trim();
+			
+			if (traitName.startsWith(t.getName()))
 			{
 				return true;
 			}
@@ -80,7 +82,7 @@ public class Trait {
 	 * 
 	 * @param traitName Name of trait to search for
 	 * @param level Level to set the returned trait (if found) to
-	 * @return
+	 * @return Trait found, or null
 	 */
 	public static Trait getTrait(String traitName, int level)
 	{
@@ -95,6 +97,27 @@ public class Trait {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Version of getTrait that attempts to retrieve off a partial match, but sets the result to the traitName specified
+	 * @param traitName Name of trait to search for
+	 * @param level Level to set the returned trait (if found) to
+	 * @return @return Trait found, or null
+	 */
+	public static Trait getTraitFromPartial(String traitName, int level)
+	{
+		if (existsPartial(traitName))
+		{
+			String partialTraitName = traitName.replaceAll("[ ]*\\([^\\)]+\\)", "").trim();
+			Trait t = getTrait(partialTraitName,level);
+			t.name = traitName;
+			return t;
+		}
+		else
+		{
+			return null;
+		}		
 	}
 	
 	public String toString()
