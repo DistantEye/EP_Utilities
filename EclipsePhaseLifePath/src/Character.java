@@ -379,7 +379,7 @@ public class Character {
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.nonAppStats.put("MOX", val);
+		this.nonAppStats.put("MOX", this.nonAppStats.get("MOX") + val);
 	}
 	
 	

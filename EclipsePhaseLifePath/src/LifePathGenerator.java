@@ -829,7 +829,7 @@ public class LifePathGenerator {
 					Package temp = (Package)DataProc.getDataObj(subparts[1]); 
 					
 					// we default to PP1 if the specified PP doesn't exist
-					if (subparts.length == 2 || !temp.getEffectsTree().containsKey(subparts[1]))
+					if (subparts.length == 2)
 					{												
 						String pkgEffect = temp.getEffects(1);						
 						
@@ -843,6 +843,11 @@ public class LifePathGenerator {
 						if (! Utils.isInteger(subparts[2]) )
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+						}
+						
+						if (!temp.getEffectsTree().containsKey(Integer.parseInt(subparts[2])))
+						{
+							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is a listed PP for package " + subparts[1]);
 						}
 						
 						int PP = Integer.parseInt(subparts[2]);

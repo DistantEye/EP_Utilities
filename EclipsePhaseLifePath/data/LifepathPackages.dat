@@ -224,9 +224,9 @@ Package
 RE-INSTANTIATED: CIVILIAN CASUALTY
 You died during the Fall. Either the TITAN machines overwhelmed your area or you fell victim to transhumanity's own use of WMDs or savage infighting. You might not even know how you died; as you were recovered from a backup transmitted off-world. However it went down; it wasn't an experience you'd care to repeat. Luckily; you were resleeved quickly.
 +Reclaiming Earth, +Survival, -TITAN Tech
-PP;1>?1?* 40;Interfacing 15;Profession: ?1? 30
-PP;3>?1?* 50;Academics: ?1? 20;Interest: ?1? 30;Interfacing 45;Networking: ?1? 40;Pilot: Groundcraft 30;Profession: ?1? 40;Research 30
-PP;5>mox(1);addApt(INT,5);rep(?1?,50);?1?* 50;Academics: ?1? 40;Fray 20;Freerunning 20;Interest: ?1? 40;Interest: ?1? 20;Interfacing 45;Kinesics 20;Language: ?1? 30;Networking: ?1? 40;Pilot: Groundcraft 30;Profession: ?1? 40;Research 30;trait(Edited Memories)
+PP;1>mox(1);?1?* 40;Interfacing 15;Profession: ?1? 30
+PP;3>mox(1);?1?* 50;Academics: ?1? 20;Interest: ?1? 30;Interfacing 45;Networking: ?1? 40;Pilot: Groundcraft 30;Profession: ?1? 40;Research 30
+PP;5>mox(2);addApt(INT,5);rep(?1?,50);?1?* 50;Academics: ?1? 40;Fray 20;Freerunning 20;Interest: ?1? 40;Interest: ?1? 20;Interfacing 45;Kinesics 20;Language: ?1? 30;Networking: ?1? 40;Pilot: Groundcraft 30;Profession: ?1? 40;Research 30;trait(Edited Memories)
 *Choose Any Non Psi-Skill
 ------------------------------------------------------------------------------------------------------
 Package
@@ -244,7 +244,7 @@ You were killed during the Fall. You may have fallen during a sneak attack; died
 +Reclaiming Earth, +Survival, -TITANs
 PP;1>mox(1);?1?* 40;Freerunning 15;Profession: ?1? 30
 PP;3>mox(1);?1?* 50;Academics: ?1? 20;Fray 20;Freerunning 35;Gunnery 30;Interest: ?1? 30;Pilot: Groundcraft 30;Profession: ?1? 40;Unarmed Combat 30
-PP;5>mox(#2);addApt(INT,5);rep(?1?,50);?2?* 50;Academics: ?1? 30;Climbing 30;Fray 25;Freerunning 35;Gunnery 30;Interest: ?1? 50;Language: ?1? 30;Pilot: Groundcraft 15;Profession: ?1? 40;Unarmed Combat 40 ;trait(Edited Memories)
+PP;5>mox(1);addApt(INT,5);rep(?1?,50);?2?* 50;Academics: ?1? 30;Climbing 30;Fray 25;Freerunning 35;Gunnery 30;Interest: ?1? 50;Language: ?1? 30;Pilot: Groundcraft 15;Profession: ?1? 40;Unarmed Combat 40 ;trait(Edited Memories)
 *Any Combat Skill
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
@@ -253,7 +253,7 @@ You were raised in a gang, syndicate family, or cartel workforce. You are used t
 +Black Markets, +Cartel/Gang/Family, +Survival, +Wealth, -Law and Order, -Police
 PP;1>mox(1);Networking: Criminals 15;Profession: ?1? 30;Unarmed Combat 40
 PP;3>mox(1);Clubs 30;Fray 20;Infiltration 15;Interest: ?1? 20;Intimidation 30;Language: ?1? 40;Networking: Criminals 30;Pilot: Groundcraft 30;Profession: ?1? 30;Unarmed Combat 40
-PP;5>mox(#2);addApt(SOM,5);rep(?1?,50);Clubs 30;Deception 25;Fray 30;Infiltration 25;Interest:?1? 40;Interest: ?1? 30;Intimidation 40;Language: ?1? 40;Networking: Criminals 40;Palming 20;Pilot: Groundcraft 30;Profession: ?1? 40;Unarmed Combat 40
+PP;5>mox(1);addApt(SOM,5);rep(?1?,50);Clubs 30;Deception 25;Fray 30;Infiltration 25;Interest:?1? 40;Interest: ?1? 30;Intimidation 40;Language: ?1? 40;Networking: Criminals 40;Palming 20;Pilot: Groundcraft 30;Profession: ?1? 40;Unarmed Combat 40
 ------------------------------------------------------------------------------
 Package
 UPLIFT: ESCAPEE
@@ -261,7 +261,7 @@ Though you are as intelligent as a human, you were born and raised as a second-c
 +Privacy, +Survival, +Uplift Rights, -Hypercorps, -Uplift Slavery
 PP;1>mox(1);Climbing* 40;Interest:?1? 30;Infiltration 25;trait( Social Stigma (Uplift))
 PP;3>mox(1);Climbing* 45;Deception 40;Infiltration 50;Impersonation 40;Interest: ?1? 40;Language: ?1? 20;Networking: ?1? 40;Profession: ?1? 30;trait(On the Run);trait(Social Stigma (Uplift))
-PP;5>mox(#2);addApt(SAV,5);rep(?1?,50);Academics: ?1? 40;Climbing* 50;Deception 40;Fray 25;Infiltration 50;Impersonation 40;Interest: ?1? 40;Language: ?1? 40;Networking: ?1? 40;Palming 25;Profession: ?1? 30;Unarmed Combat 30;trait(On the Run);trait(Social Stigma (Uplift))
+PP;5>mox(1);addApt(SAV,5);rep(?1?,50);Academics: ?1? 40;Climbing* 50;Deception 40;Fray 25;Infiltration 50;Impersonation 40;Interest: ?1? 40;Language: ?1? 40;Networking: ?1? 40;Palming 25;Profession: ?1? 30;Unarmed Combat 30;trait(On the Run);trait(Social Stigma (Uplift))
 *Replace Climbing skill with any skill more appropriate to the uplift type (Flight for neo-avians;Swimming for neo-octopi;Freerunning for neanderthals;ect.)
 ----------------------------------------------------------------------------------
 Package
