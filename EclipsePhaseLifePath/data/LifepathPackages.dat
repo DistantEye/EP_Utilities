@@ -1988,12 +1988,12 @@ CREDITS
 STEP
 STEP_1
 STEP_2
-rollTable(APTITUDE_TEMPLATES)
+msgClient(START STEP 1);rollTable(APTITUDE_TEMPLATES)
 --------------------------------------------------------------
 STEP
 STEP_2
 STEP_3_0
-rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
+msgClient(START STEP 2);rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
 --------------------------------------------------------------
 STEP
 STEP_3_0
@@ -2003,22 +2003,22 @@ setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));i
 STEP
 STEP_3_1
 STEP_4
-rollTable(TABLE_3)
+msgClient(START STEP 3);rollTable(TABLE_3)
 --------------------------------------------------------------
 STEP
 STEP_3_1_STREET_RAT
 STEP_5
-rollTable(TABLE_3_STREET_RAT)
+msgClient(START STEP 3);rollTable(TABLE_3_STREET_RAT)
 --------------------------------------------------------------
 STEP
 STEP_4
 STEP_5
-runTable(TABLE_4,getVar(s4Roll))
+msgClient(START STEP 4);runTable(TABLE_4,getVar(s4Roll))
 --------------------------------------------------------------
 STEP
 STEP_5
 STEP_6_0
-rollTable(CHARACTER_AGE)
+msgClient(START STEP 5);rollTable(CHARACTER_AGE)
 ---------------------------------------------------------------
 STEP
 STEP_6_0
@@ -2028,62 +2028,62 @@ remVar(diceBonus);setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rol
 STEP
 STEP_6_DRY
 STEP_8
-remVar(diceBonus);rollTable(TABLE_6_DRY);msgClient(You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path. );rollTable(TABLE_6)
+msgClient(START STEP 6);if(?hasVar(diceBonus),remVar(diceBonus));rollTable(TABLE_6_DRY);msgClient(You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path. );rollTable(TABLE_6)
 --------------------------------------------------------------
 STEP
 STEP_6_1
 STEP_7
-remVar(diceBonus);rollTable(TABLE_6)
+msgClient(START STEP 6);if(?hasVar(diceBonus),remVar(diceBonus));rollTable(TABLE_6)
 --------------------------------------------------------------
 STEP
 STEP_7
 STEP_8
-runTable(TABLE_7,getVar(s4Roll))
+msgClient(START STEP 7);runTable(TABLE_7,getVar(s4Roll))
 --------------------------------------------------------------
 STEP
 STEP_8
 STEP_9
-runTable(TABLE_8)
+msgClient(START STEP 8);runTable(TABLE_8)
 --------------------------------------------------------------
 STEP
 STEP_9
 STEP_10
-runTable(TABLE_9)
+msgClient(START STEP 9);runTable(TABLE_9)
 --------------------------------------------------------------
 STEP
 STEP_10
 STEP_11
-setVar(s9FocusPP,1);setVar(s9FactionPP,1);func(s10Loop)
+msgClient(START STEP 10);setVar(s9FocusPP,1);setVar(s9FactionPP,1);func(s10Loop)
 --------------------------------------------------------------
 STEP
 STEP_11
 STEP_12
-runTable(TABLE_11)
+msgClient(START STEP 11);runTable(TABLE_11)
 --------------------------------------------------------------
 STEP
 STEP_12
 STEP_13
-if(?hasVar({firewall}),rollTable(FIREWALL_EVENT));if(?hasVar({gatecrashing}),rollTable(GATECRASHING_EVENT))
+msgClient(START STEP 12);if(?hasVar({firewall}),rollTable(FIREWALL_EVENT));if(?hasVar({gatecrashing}),rollTable(GATECRASHING_EVENT))
 --------------------------------------------------------------
 STEP
 STEP_13
 STEP_14
-rollTable(CREDITS);msgClient(Pick out gear manually please)
+msgClient(START STEP 13);rollTable(CREDITS);msgClient(Pick out gear manually please)
 --------------------------------------------------------------
 STEP
 STEP_14
 STEP_15
-stepskip(STEP_15)
+msgClient(START STEP 14);stepskip(STEP_15)
 --------------------------------------------------------------
 STEP
 STEP_15
 STEP_16
-stepskip(STEP_16)
+msgClient(START STEP 15);stepskip(STEP_16)
 --------------------------------------------------------------
 STEP
 STEP_16
 
-rollTable(TABLE_16);stop()
+msgClient(START STEP 16);rollTable(TABLE_16);stop()
 --------------------------------------------------------------
 TABLE
 TABLE_16

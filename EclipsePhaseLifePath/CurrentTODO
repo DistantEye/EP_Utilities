@@ -25,3 +25,10 @@ Skils should display in the end with their aptitudes taken into effect
 
 
 Currently working on : Secondary/Derived stats calculation in Character class
+
+Strong possibly is to redesign runEffect as not immediately doing the changes, but instead having a "recursion stack" that is built, then evaluated at the end of the turn,
+allowing for some options to quit the stack altogether. Am not entirely sure this would be a stack, it might be a queue, or some more advanced structure. 
+
+A list, with some statements being broken around recursion points, would probably be best. A1 A2 B1 B2 C1 A3 A4 A5.
+
+	The point of this is to allow something to early exit the loop if it needs to
