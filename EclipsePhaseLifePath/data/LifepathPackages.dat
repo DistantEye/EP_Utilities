@@ -35,7 +35,7 @@ SURVIVOR
 PP;1>setApt(COG,10);setApt(COO,15);setApt(INT,15);setApt(REF,15);setApt(SAV,10);setApt(SOM,20);setApt(WIL,20)
 --------------------------------------------------------------
 Package
-TECHIE
+TECHIE_APT
 
 
 PP;1>setApt(COG,20);setApt(COO,15);setApt(INT,10);setApt(REF,15);setApt(SAV,15);setApt(SOM,15);setApt(WIL,15)
@@ -907,9 +907,9 @@ APTITUDE_TEMPLATES
 4`Inquisitive`package(INQUISITIVE)
 5`Researcher`package(RESEARCHER)
 6`Survivor`package(SURVIVOR)
-7`Techie`package(TECHIE)
+7`Techie`package(TECHIE_APT)
 8`Thrill Seeker`package(THRILL SEEKER)
-9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(BRAWLER)/2=package(DILETTANTE)/3=package(EXTROVERT)/4=package(INQUISITIVE)/5=package(RESEARCHER)/6=package(SURVIVOR)/7=package(TECHIE)/8=package(THRILL SEEKER)/9=rollTable(APTITUDE_TEMPLATES))
+9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(BRAWLER)/2=package(DILETTANTE)/3=package(EXTROVERT)/4=package(INQUISITIVE)/5=package(RESEARCHER)/6=package(SURVIVOR)/7=package(TECHIE_APT)/8=package(THRILL SEEKER)/9=rollTable(APTITUDE_TEMPLATES))
 --------------------------------------------------------------
 TABLE
 LANGUAGE_FIELDS
