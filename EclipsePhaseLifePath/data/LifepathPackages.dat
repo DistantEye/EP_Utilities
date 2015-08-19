@@ -200,17 +200,17 @@ Package
 LOST: DISTURBED CHILD
 The Lost project unwittingly created a generation of monsters. You are among the odd, deranged, twisted, psychotic, and powerful examples that escaped.
 +Neurodiversity, +Sadism, +Vengeance, -Research
-PP;1>mox(1);Academics: ?1? 30;Control 35;Free Fall 15;trait(Psi (Level 2));trait(Mental Disorder?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?)
-PP;3>mox(1);Academics: ?1? 40;Blades 15;Control 50;Deception 40;Fray 15;Free Fall 30;Infiltration 30;Language: ?1? 30;Profession: ?1? 20;trait( Psi (Level 2));trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?1?);psigamma(?3?)
-PP;5>mox(1);addApt(WIL,5);rep(?1?,50);Academics: ?1? 40;Blades 20;Control 50;Deception 40;Fray 20;Free Fall 30;Infiltration 30;Interest: ?1? 30;Language: ?1? 30;Profession: ?1? 40;Psi Assault 40; Unarmed Combat 20;trait( Psi (Level 2));trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?);psigamma(?5?)
+PP;1>mox(1);Academics: ?1? 30;Control 35;Free Fall 15;trait(Psi,2);trait(Mental Disorder?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?)
+PP;3>mox(1);Academics: ?1? 40;Blades 15;Control 50;Deception 40;Fray 15;Free Fall 30;Infiltration 30;Language: ?1? 30;Profession: ?1? 20;trait(Psi,2);trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?1?);psigamma(?3?)
+PP;5>mox(1);addApt(WIL,5);rep(?1?,50);Academics: ?1? 40;Blades 20;Control 50;Deception 40;Fray 20;Free Fall 30;Infiltration 30;Interest: ?1? 30;Language: ?1? 30;Profession: ?1? 40;Psi Assault 40; Unarmed Combat 20;trait(Psi,2);trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?);psigamma(?5?)
 ------------------------------------------------------------------------------------------------------------------------
 Package
 LOST: MASKED NORMALCY
 You survived the Lost project damaged but intact—or at least able to mask your inner demons from others. You are not as gifted—or as explosive—an async as some of the others, but you are also better at keeping yourself under control.
 +Acceptance +Privacy +Self Control
-PP;1>mox(1);Academics: ?1? 30;Persuasion 35;trait(Psi (Level 1));trait(Mental Disorder: ?2?);psichi(?2?)
-PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20 trait( Psi (Level 1));trait(Mental Disorder ?2?);psichi(?4?)
-PP;5>mox(1);rep(?1?,50);Academics: ?1? 40;Fray 20;Free Fall 30;Impersonation 40;Interest: ?1? 40;Interfacing 30;Kinesics 45;Language: ?1? 40;Persuasion 50;Profession: ?1? 30;Protocol 30;Sense: 50;trait(Psi (Level 2));trait(Mental Disorder ?3?);trait(On The Run);psichi(?4?);psigamma(?2?)
+PP;1>mox(1);Academics: ?1? 30;Persuasion 35;trait(Psi,1);trait(Mental Disorder: ?2?);psichi(?2?)
+PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20 trait(Psi,1);trait(Mental Disorder ?2?);psichi(?4?)
+PP;5>mox(1);rep(?1?,50);Academics: ?1? 40;Fray 20;Free Fall 30;Impersonation 40;Interest: ?1? 40;Interfacing 30;Kinesics 45;Language: ?1? 40;Persuasion 50;Profession: ?1? 30;Protocol 30;Sense: 50;trait(Psi,2);trait(Mental Disorder ?3?);trait(On The Run);psichi(?4?);psigamma(?2?)
 ------------------------------------------------------------------------------------------------------------------------
 Package
 ORIGINAL SCUM
@@ -536,7 +536,7 @@ Package
 COMBAT ASYNC
 Your psi abilities have been honed to a killing edge.
 +Neurodiversity, +Self Control, +Survival, -Bloodlust
-PP;1>Profession: Squad Tactics 30;Psi Assault 30;trait(Psi (Level 2));Mental Disorder ?2?;psisleight(?3?)
+PP;1>Profession: Squad Tactics 30;Psi Assault 30;trait(Psi,2);Mental Disorder ?2?;psisleight(?3?)
 PP;3>rep(?1?,50);Fray 20;Infiltration 30;Interest: ?1? 40;Perception 20;Profession: Squad Tactics 50;Psi Assault 50;Spray Weapons 20;Unarmed Combat 20;trait: Psi (Level 2);trait(Mental Disorder ?2?);psisleight(?4?)
 PP;5>rep(?1?,50);Academics: ?1? 30;Control 30;Fray 30;Infiltration 40;Interest: ?1? 40;Language: ?1? 30;Perception 30;Profession: Squad Tactics 50;Psi Assault 50;Sense 30;Spray Weapons 40;Unarmed Combat 30;trait: Psi (Level 2);trait(Mental Disorder ?2?);psisleight(?8?)
 -------------------------------------------------------------------------------------------------------------
@@ -552,9 +552,9 @@ Package
 CONTROLLER ASYNC
 Your infection enables you to invade and influence the minds of others.
 +Exploration, +Neurodiversity, +Self Control
-PP;1>Academics: Psychology 30;Control 30;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?3?)
-PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?4?)
-PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?6?)
+PP;1>Academics: Psychology 30;Control 30;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?3?)
+PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?4?)
+PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?6?)
 --------------------------------------------------------------------------------------------------------------------------
 Package
 COVERT OPS
@@ -673,17 +673,17 @@ Package
 SAVANT ASYNC
 Your infection gives you mental abilities beyond the reach of other transhumans.
 +Introspection, +Neurodiversity, +Personal Development, +Self Control
-PP;1>Academics: ?1? 30;Investigation 30;trait(Psi (Level 1));trait(Mental Disorder ?1?);psisleight(?4?)
-PP;3>mox(1);rep?1?1,50;Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi (Level 1));trait(Mental Disorder ?1?);psisleight(?5?)
-PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: ?1? 40;Art: ?1? 40;Deception 30;Hardware: ?1? 25;Interest: ?1? 30;Investigation 50;Kinesics 30;Language: ?1? 30;Networking: ?1? 25;Perception 50;Profession: ?1? 30 ;trait(Psi (Level 1));trait(Mental Disorder ?1?);psisleight(?6?)
+PP;1>Academics: ?1? 30;Investigation 30;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?4?)
+PP;3>mox(1);rep?1?1,50;Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?5?)
+PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: ?1? 40;Art: ?1? 40;Deception 30;Hardware: ?1? 25;Interest: ?1? 30;Investigation 50;Kinesics 30;Language: ?1? 30;Networking: ?1? 25;Perception 50;Profession: ?1? 30 ;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?6?)
 ---------------------------------------------------------------------------------------------
 Package
 SCANNER ASYNC
 Your mind is altered in a way that provides you with preternatural senses.
 +Exploration, +Neurodiversity, +Personal Development, +Self Control
-PP;1>Academics: ?1? 30;Sense 30;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?3?)
-PP;3>rep(?1?,50.Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?4? )
-PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 40;Impersonation 35;Interest: ?1? 40;Investigation 30;Kinesics 35;Language: ?1? 40;Perception 50;Persuasion 25;Profession: ?1? 30;Sense 50;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?6? )
+PP;1>Academics: ?1? 30;Sense 30;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?3?)
+PP;3>rep(?1?,50.Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?4? )
+PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 40;Impersonation 35;Interest: ?1? 40;Investigation 30;Kinesics 35;Language: ?1? 40;Perception 50;Persuasion 25;Profession: ?1? 30;Sense 50;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?6? )
 ---------------------------------------------------------------------------------------
 Package
 SCAVENGER
@@ -786,7 +786,7 @@ Package
 ASYNC
 
 
-PP;1>Interest: ?1? 45;trait(Psi (Level 1));trait(Mental Disorder ?1?);trait(Psi Chameleon (Level 1)/Psi Defense (Level 1));psichi(?5?);setVar(hasASYNC,1)
+PP;1>Interest: ?1? 45;trait(Psi,1);trait(Mental Disorder ?1?);trait(Psi Chameleon (Level 1)/Psi Defense (Level 1));psichi(?5?);setVar(hasASYNC,1)
 ------------------------------------------------------
 Package
 GEARHEAD
@@ -810,7 +810,7 @@ Package
 ASYNC ADEPT
 
 
-PP;1>?1?* 40;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?7?);setVar(hasASYNC_ADEPT,1)
+PP;1>?1?* 40;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?7?);setVar(hasASYNC_ADEPT,1)
 *Choose One Psi Skill
 ----------------------------------------------------
 Package
@@ -1276,7 +1276,7 @@ TABLE_4
 21-22`Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.`trait(Mental Disorder (PTSD))
 23-24`You are not only good with your hands; you are good with both hands. Gain the Ambidexterity trait (p. 145; EP).`trait(Ambidexterity)
 25-26`The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145; EP).`trait(Common Sense)
-27-28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`trait(Pain Tolerance (Level 1))
+27-28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`trait(Pain Tolerance,1)
 29-30`You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.`msgClient(ERROR: Table 4, 29-30 should never be rollable)
 31-32`You are kept at home and not allowed to play sports or with other kids. Lose -5 COO.`addApt(COO,-5)
 33-34`You grow up in a maze-like urban area or a difficult rural area. Gain the Direction Sense trait (p. 14; EP).`trait(Direction Sense)
@@ -1520,7 +1520,7 @@ TABLE_7
 21-22`You save an animal from danger. Gain the Animal Empathy trait (p. 145, EP).`trait(Animal Empathy)
 23-24`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming.`incSkl(?1?,10,?equals($1,Climbing)||?equals($1,Fray)||?equals($1,Free Fall)||?equals($1,Freerunning)||?equals($1,Swimming))
 25-26`Your inability to improve holds you back from an important promotion/advancement. Gain the Slow Learner trait (p. 151, EP).`trait(Slow Learner)
-27-28`You simply are not very comfortable with that whole resleeving thing. Gain the Morphing Disorder (Level 1) trait (p. 150, EP). `trait(Morphing Disorder (Level 1))
+27-28`You simply are not very comfortable with that whole resleeving thing. Gain the Morphing Disorder (Level 1) trait (p. 150, EP). `trait(Morphing Disorder,1)
 29-30`You are not a slacker. You take on part-time jobs or additional training. +20 to one skill.`incSkl(?1?,20)
 31-32`You travel extensively. +10 to two different Language skills.`incSkl(?1?,10,?equals($1,Language);incSkl(?1?,10,?equals($1,Language)
 33-34`Regular attention to your health and exercise improves your abilities. Gain +5 SOM.`addApt(SOM,5)
@@ -1534,18 +1534,18 @@ TABLE_7
 49-50`You lose a limb in a traumatic incident, but grow it back. Gain +1 Moxie.`mox(1)
 51-52`An experience with still-unrefined psychosurgery leaves you forever altered. Gain the Anomalous Mind trait (p. 87).`trait(Anomalous Mind)
 53-54`Something goes seriously glitchy with your muse, and you are nearly hurt as a result. Gain the Phobia Disorder (Muse) trait (p. 92).`trait(Phobia Disorder (Muse)))
-55-56`You are a pioneer in the practice of egocasting. Gain the Ego Plasticity (Level 1) trait (p. 83) and roll randomly on the Choosing a Morph table (p. 44).`trait(Ego Plasticity (Level 1));rollTable(CHOOSING_A_MORPH)
+55-56`You are a pioneer in the practice of egocasting. Gain the Ego Plasticity (Level 1) trait (p. 83) and roll randomly on the Choosing a Morph table (p. 44).`trait(Ego Plasticity,1);rollTable(CHOOSING_A_MORPH)
 57-58`You save someone from drowning. Gain +10 Swimming skill.`incSkl(Swimming,10)
-59-60`You experiment with some minor self-modification. Gain the Modified Behavior (Level 1) trait (p. 150, EP).`trait(Modified Behavior (Level 1))
+59-60`You experiment with some minor self-modification. Gain the Modified Behavior (Level 1) trait (p. 150, EP).`trait(Modified Behavior,1)
 61-62`You exhibit a serious lack of willpower in coping with your adult life. Gain the Addiction (Major) trait (p. 148, EP).`trait(Addiction (Major))
 63-64`You experience a deadly vehicle accident. Lose 10,000 from your starting credit and roll randomly on the Choosing a Morph table (p. 44).`credit(-10000),rollTable(CHOOSING_A_MORPH)
-65-66`A hacker friend shows you a few things, and then you show them a few things. Gain the Intuitive Cracker (Level 1) trait (p. 84).`trait(Intuitive Cracker (Level 1))
+65-66`A hacker friend shows you a few things, and then you show them a few things. Gain the Intuitive Cracker (Level 1) trait (p. 84).`trait(Intuitive Cracker,1)
 67-68`The poor state of affairs on Earth before the Fall impacts you heavily. Gain the Mental Disorder (Depression) trait (p. 212, EP).`trait(Mental Disorder (Depression))
 69-70`You spend some time in some of the rougher, crisis-impacted areas on Earth before the Fall. Gain +10 Fray skill.`incSkl(Fray,10)
 71-72`A period of poverty leaves you with the skills to get by. Gain +10 Scrounging skill.`incSkl(Scrounging,10)
 73-74`You are implicated in a news-making scandal. Lose -10 c-rep.`rep(c,-10)
 75-76`You pick up a new hobby. Gain +10 to one Art or Interest skill.`incSkl(?1?,10,?equals($1,Art)||?equals($1,Interest))
-77-78`You are an early adopter of psychosurgery, finding that your mind adapts well to changes. Gain the Malleable Mind (Level 1) trait (p. 85).`trait(Malleable Mind (Level 1))
+77-78`You are an early adopter of psychosurgery, finding that your mind adapts well to changes. Gain the Malleable Mind (Level 1) trait (p. 85).`trait(Malleable Mind,1)
 79-80`The stress of rapid technological change overwhelms you. Gain the Mental Disorder (ADHD) trait (p. 212, EP).`trait(Mental Disorder (ADHD))
 81-82`You study or train hard. Gain a free specialization (p. 173, EP) in one skill.`SklSpec(?1?,?1?)
 83-84`You take up martial arts training. Gain +10 Unarmed Combat skill.`incSkl(Unarmed Combat,10)
@@ -1569,7 +1569,7 @@ TABLE_8
 19-20`Infected with the Watts-MacLeod exsurgent virus, you learn to use your new powers forcefully. Take the Controller Async package (p. 31) as your Focus package in Step 9.`setVar(s9FocusPkg,CONTROLLER ASYNC)
 21-22`After you are infected, you are trained to use your psi to kill. Take the Combat Async package (p. 30) as your Focus package in Step 9.`setVar(s9FocusPkg,COMBAT ASYNC)
 23-24`Infection permanently changes your perceptions. Take the Scanner Async package (p. 34) as your Focus package in Step 9.`setVar(s9FocusPkg,SCANNERS ASYNC)
-25-26`You rack up a major debt to pay a bribe to get yourself off-world. Gain the Debt (Level 3) trait (p. 88)`trait(Debt (Level 3))
+25-26`You rack up a major debt to pay a bribe to get yourself off-world. Gain the Debt (Level 3) trait (p. 88)`trait(Debt,3)
 27-28`You assume that you died on Earth, but you don’t know for sure. Roll randomly on the Choosing a Morph table (p. 44) and gain the Edited Memories trait (p. 149, EP).`rollTable(CHOOSING_A_MORPH);trait(Edited Memories)
 29-30`You know that the TITANs killed or uploaded you, according to reports. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 31-32`You fall victim to the TITANs in Earth orbit, on Luna, or on Mars. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
@@ -1588,7 +1588,7 @@ TABLE_8
 57-58`You hide and survive an encounter with exsurgents where others die. Gain the Psi Chameleon trait (p. 147, EP).`trait(Psi Chameleon)
 59-60`You end up in possession of a rare Earth artifact worth 1d10 x 10,000 credits.`credit(mult(simpRollDice(1,10),10000))
 61-62`You make a bad call that gets people killed. Now you question your gut feelings. Lose -5 INT. `addApt(INT,-5)
-63-64`You were horrified at the idea of resleeving, but the alternative seemed worse—or so you thought. Roll randomly on the Choosing a Morph table (p. 44), and gain the Morphing Disorder (Level 3) trait (p. 150, EP).`rollTable(CHOOSING_A_MORPH);trait(Morphing Disorder (Level 3))
+63-64`You were horrified at the idea of resleeving, but the alternative seemed worse—or so you thought. Roll randomly on the Choosing a Morph table (p. 44), and gain the Morphing Disorder (Level 3) trait (p. 150, EP).`rollTable(CHOOSING_A_MORPH);trait(Morphing Disorder,3)
 65-66`A nanoviral infection leaves you permanently damaged. Gain the Neural Damage trait (p. 150, EP).`trait(Neural Damage)
 67-68`You have unfortunate memories of some … thing … eating your face off. Roll randomly on the Choosing a Morph table (p. 44), and gain the Timid trait (p. 151, EP).`rollTable(CHOOSING_A_MORPH);trait(Timid)
 69-70`You witness unspeakable horrors during the Fall, standing idly by while others die. Gain the Combat Paralysis trait (p. 149, EP).`trait(Combat Paralysis)
@@ -1597,14 +1597,14 @@ TABLE_8
 75-76`You will never get the image of headhunter drones at work out of your mind. Gain the Mental Disorder (PTSD) trait.`trait(Mental Disorder (PTSD))
 77-78`You exhibit natural leadership in a time of crisis. Gain +10 to Persuasion or Intimidation.`incSkl(?1?,10,?equals($1,Persuasion)||?equals($1,Intimidation))
 79-80`The only way you can cope with the loss of your former life is through drugs. Gain the Drug Fiend trait (p. 88).`trait(Drug Fiend)
-81-82`You cope with the horrors you experience in the midst of evacuation the only way you could—by postponing the trauma until you are safe. Gain the Trauma Tolerance (Level 1) trait (p. 86).`trait(Trauma Tolerance (Level 1))
+81-82`You cope with the horrors you experience in the midst of evacuation the only way you could—by postponing the trauma until you are safe. Gain the Trauma Tolerance (Level 1) trait (p. 86).`trait(Trauma Tolerance,1)
 83-84`Your willingness to profit from others’ misery gains you respect in some circles. Lose 5 rep in one network of your choice, but gain 10 g-rep.`rep(?1?,-5,!equals($1,g));rep(g,5)
 85-86`You experience things during the Fall that would leave others a shattered mess. Gain the Hardening trait (p. 84).`trait(Hardening)
 87-88`You lose everything—and nearly lose your mind as well. It will never recover its former strength. Gain the Frail Sanity trait (p. 90).`trait(Frail Sanity)
 89-90`Not only do you die during the Fall, your backups are lost as well. You live on as a beta fork of your original self. Gain the Beta trait (p. 87) and roll randomly on the Choosing a Morph table (p. 44).`trait(Beta);rollTable(CHOOSING_A_MORPH)
 91-92`You lose a fortune during the Fall. Lose 10,000 credits from your starting credits.`credit(-10000)
-93-94`You die during the Fall, but that doesn’t stop you from going to die again, and then again, and then again some more. Gain the Phoenix (Level 1) trait (p. 85) and roll randomly on the Choosing a Morph table (p. 44).`trait(Phoenix (Level 1));rollTable(CHOOSING_A_MORPH)
-95-96`After committing a crime, you are sentenced to indentured service, but the Fall lets you skip out. Gain the Deferred Indenture (Level 2) trait (p. 88).`trait(Deferred Indenture (Level 2))
+93-94`You die during the Fall, but that doesn’t stop you from going to die again, and then again, and then again some more. Gain the Phoenix (Level 1) trait (p. 85) and roll randomly on the Choosing a Morph table (p. 44).`trait(Phoenix,1);rollTable(CHOOSING_A_MORPH)
+95-96`After committing a crime, you are sentenced to indentured service, but the Fall lets you skip out. Gain the Deferred Indenture (Level 2) trait (p. 88).`trait(Deferred Indenture,2)
 97-98`You rack up an impressive kill score fighting TITAN machines. Gain the Tacnet Sniper trait (p. 86).`trait(Tacnet Sniper)
 99-100`Your willingness to make lives a priority over material things earns you respect. Gain +10 @-rep.`rep(@,10)
 --------------------------------------------------------------
@@ -1831,7 +1831,7 @@ TABLE_11
 04`You reinvent yourself. Gain +5 to one aptitude and -5 to another aptitude.`setVar(gainingApt,?1?);addApt(getVar(gainingApt),5);addApt(?1?,-5,!equals($1,getVar(gainingApt)))
 05-06`Your employer/collective sends you on a gatecrashing op. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
 07`You score an achievement that leaves you indelibly marked in your faction’s consciousness. Gain the Untarnished Reputation trait (p. 87).`trait(Untarnished Reputation)
-08`You create a major diplomatic incident. Gain the Black Mark (Level 3) trait (p. 149, EP).`trait(Black Mark (Level 3))
+08`You create a major diplomatic incident. Gain the Black Mark (Level 3) trait (p. 149, EP).`trait(Black Mark,3)
 09`You fall victim to a terrorist attack or factional dispute. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 10`The merging of an overdue fork goes poorly, and coincidental inaccessible backups leave you permanently changed. Gain the Botched Merge trait (p. 87).`trait(Botched Merge)
 11-13`You are recruited to aid on a scientific mission. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
@@ -1841,7 +1841,7 @@ TABLE_11
 17`After an unfortunate incident leads to lack (lost memories due to resleeving from an old backup), you decide security of mind is a worthy investment. Gain the Edited Memories trait (p. 149, EP) and 1 year of backup insurance (p. 330, EP)`trait(Edited Memories);gear(1 year of backup insurance)
 18`After surviving the Fall and then only barely surviving a post-Fall clash, you decide that some self-defense training may be in order. Gain +20 to one Combat skill of your choice.`incSkl(?1?,20,?skillIsType(Combat))
 19`Through a strange set of circumstances, you end up with a rare Delphinium Six petal flower (p. 322, EP).`gear(Delphinium Six petal flower)
-20`You commit a crime, get caught, and suffer the punishment. Gain the Modified Behavior (Level 3) trait (p. 150, EP).`trait(Modified Behavior (Level 3))
+20`You commit a crime, get caught, and suffer the punishment. Gain the Modified Behavior (Level 3) trait (p. 150, EP).`trait(Modified Behavior,3)
 21`You have died enough times that your mind really can’t take it any more. Gain the Phobia Disorder (Thanatophobia) trait (p. 92).`trait(Phobia Disorder (Thanatophobia))
 22-24`You save up and buy yourself a spot on a gatecrashing op. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
 25`An ownerless bot begins following you and never leaves your side. Gain a servitor, saucer, or gnat bot (pp. 345-346, EP) for free. `gear(?1?)
@@ -1868,7 +1868,7 @@ TABLE_11
 46`You are the unfortunate butt of a widespread online meme, and it continues to haunt you. Gain the Wait, That Was You? trait (p. 147, Panopticon).`trait(Wait, That Was You?)
 47`As transhumanity re-organizes, you find a role in influencing others. Gain +5 SAV.`addApt(SAV,5)
 48`You have difficulty coming to grips with regular resleeving. Gain the Identity Crisis trait (p. 149, EP).`trait(Identity Crisis)
-49`One of your resleeves goes particularly poorly, and now it haunts you. Gain the Morphing Disorder (Level 2) trait (p. 150, EP).`trait(Morphing Disorder (Level 2))
+49`One of your resleeves goes particularly poorly, and now it haunts you. Gain the Morphing Disorder (Level 2) trait (p. 150, EP).`trait(Morphing Disorder,2)
 50`You work hard to establish a solid network. +20 to one Networking skill.`incSkl(?1?,20,?skillIsType(Networking))
 51`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming. `incSkl(?1?,10,?equals($1,Climbing)||?equals($1,Fray)||?equals($1,Free Fall)||?equals($1,Freerunning)||?equals($1,Swimming))
 52`You decide to experiment. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
@@ -1878,14 +1878,14 @@ TABLE_11
 56`You play a prominent role in mediating a factional conflict. Gain +20 Protocol.`incSkl(Protocol,20)
 57`You spend a significant portion of your life in one habitat. Gain the Home Turf trait (p. 145, Panopticon).`trait(Home Turf)
 58`You take a bullet for someone you don’t even know. Roll randomly on the Choosing a Morph table (p. 44), and gain +1 Moxie.`rollTable(CHOOSING_A_MORPH);mox(1)
-59`You piss off some powerful people and are made into an example. Gain the Black Mark (Level 1) trait (p. 149, EP).`trait(Black Mark (Level 1))
+59`You piss off some powerful people and are made into an example. Gain the Black Mark (Level 1) trait (p. 149, EP).`trait(Black Mark,1)
 60`You make friends with a group of AGIs online. Gain the AGI Affinity trait (p. 82).`trait(AGI Affinity)
-61`Due to a sudden financial crisis, you draw an emergency loan with unfavorable terms from an unforgiving loan shark. Gain the Debt (Level 1) trait (p. 88).`trait(Debt (Level 1))
+61`Due to a sudden financial crisis, you draw an emergency loan with unfavorable terms from an unforgiving loan shark. Gain the Debt (Level 1) trait (p. 88).`trait(Debt,1)
 62`You commit a serious crime, but get away—for now. Gain the On the Run trait (p. 151, EP).`trait(On the Run)
 63-65`You win the gatecrashing lottery and a free ticket to Pandora. Roll on the Gatecrashing Event table (p. 70).`rollTable(GATECRASHING_EVENT)
-66`You go into business. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur (Level 1))
+66`You go into business. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur,1)
 67`You become embroiled in a messy professional dispute. Lose -5 to one rep score.`rep(?1?,-5)
-68`You lose a contractual dispute in Extropian space. Gain the Deferred Indenture (Level 1) trait (p. 88).`trait(Deferred Indenture (Level 1))
+68`You lose a contractual dispute in Extropian space. Gain the Deferred Indenture (Level 1) trait (p. 88).`trait(Deferred Indenture,1)
 69`You rack up some debts and are forced to downgrade your lifestyle. Roll randomly on the Choosing a Morph table (p. 44), but re-roll any morph that is not at least 10 CP cheaper than your current morph.`func(ROLL_UNTIL_FITS)
 70`You decide you need some help. Gain the Established Fork trait (p. 84).`trait(Established Fork)
 71`You run afoul of a criminal cartel agent. You walk away unscathed, but the matter is far from resolved. Gain the Enemy trait (p. 149, EP).`trait(Enemy)
@@ -1898,7 +1898,7 @@ TABLE_11
 78`You take in an abandoned animal. Gain a smart dog, smart monkey, or smart rat (p. 330, EP) for free.`gear(?1?)
 79`You are the victim of a crime, but the perpetrator is caught. Now you hold their indenture contract. Gain the Indenture Holder trait (p. 84).`trait(Indenture Holder)
 80`Everything is going great, but you still somehow manage to fuck up something major in your life. Gain +1 Moxie.`mox(1)
-81`A severe personal failure inspires you to make some radical changes. Gain the Modified Behavior (Level 2) trait (p. 150, EP). `trait(Modified Behavior (Level 2))
+81`A severe personal failure inspires you to make some radical changes. Gain the Modified Behavior (Level 2) trait (p. 150, EP). `trait(Modified Behavior,2)
 82`You find your one true love. You don’t feel like your full self when you are away from them. Gain the Intense Relationship trait (p. 90).`trait(Intense Relationship)
 83`You team up with a partner to get the job done. Gain the Minion/Partner trait (p. 85).`trait(Minion/Partner)
 84`Someone you respect shows their true colors, and they aren’t pretty. Gain +1 Moxie.`mox(1)
@@ -1911,13 +1911,13 @@ TABLE_11
 91`You are forced to resleeve in less-than-favorable conditions and end up with a morph with issues. Roll randomly on the Choosing a Morph table (p. 44), and gain the Aggressive GRM trait (p. 87).`rollTable(CHOOSING_A_MORPH);trait(Aggressive GRM)
 92`You fall in with a new crowd—one that will have your back. Gain the Allies trait (p. 145, EP).`trait(Allies)
 93`You are part of a group that discovers a derelict ship and makes a great salvaging score. Gain 20,000 credits.`credit(20000)
-94`You join a cooperative project. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur (Level 1))
+94`You join a cooperative project. Gain the Entrepreneur (Level 1) trait (p. 83).`trait(Entrepreneur,1)
 95`You fight back against a perceived injustice, but are forced to flee the repercussions. Gain the On the Run trait (p. 151, EP).`trait(On the Run)
 96`You drop everything to re-evaluate your priorities. Lose −30 to one skill, but gain 50 CP to spend on whatever you wish. `decSkl(!RANDSKILL!,30);incVar({CP},50)
 97`Unknown to you, someone takes an unfriendly interest in your affairs. Gain the Subverted Mind trait (p. 93).`trait(Subverted Mind)
-98`You manage to get yourself killed three times in one week. At least you’re getting used to resleeving. Roll randomly on the Choosing a Morph table (p. 44), and gain the Phoenix (Level 2) trait (p. 85). `rollTable(CHOOSING_A_MORPH);trait(Phoenix (Level 2))
+98`You manage to get yourself killed three times in one week. At least you’re getting used to resleeving. Roll randomly on the Choosing a Morph table (p. 44), and gain the Phoenix (Level 2) trait (p. 85). `rollTable(CHOOSING_A_MORPH);trait(Phoenix,2)
 99`Someone leaves you in charge of their spacecraft. Gain the Spacecraft trait (p. 86).`trait(Spacecraft)
-100`You are complicit in a faction suffering a major setback. Gain the Black Mark (Level 2) trait (p. 149, EP).`trait(Black Mark (Level 2))
+100`You are complicit in a faction suffering a major setback. Gain the Black Mark (Level 2) trait (p. 149, EP).`trait(Black Mark,2)
 --------------------------------------------------------------
 TABLE
 GATECRASHING_EVENT
@@ -2051,12 +2051,12 @@ msgClient(START STEP 7);runTable(TABLE_7,getVar(s4Roll))
 STEP
 STEP_8
 STEP_9
-msgClient(START STEP 8);runTable(TABLE_8)
+msgClient(START STEP 8);rollTable(TABLE_8)
 --------------------------------------------------------------
 STEP
 STEP_9
 STEP_10
-msgClient(START STEP 9);runTable(TABLE_9)
+msgClient(START STEP 9);rollTable(TABLE_9)
 --------------------------------------------------------------
 STEP
 STEP_10
