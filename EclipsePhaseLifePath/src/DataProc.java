@@ -765,7 +765,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if (Skill.isSkill(subparts[1]) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Add " + subparts[2] + " to " + subparts[1];
 				}

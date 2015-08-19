@@ -658,11 +658,15 @@ public class LifePathGenerator {
 						if (subparts.length == 4)
 						{
 							TableRow tempRow = temp.findMatch(Integer.parseInt(subparts[2]),subparts[3]);
+							// give the description to the client
+							this.UIObject.statusUpdate(tempRow.getDescription());
+							
 							this.runEffect(tempRow.getEffects(), extraContext);
 						}
 						else
 						{
 							TableRow tempRow = temp.findMatch(Integer.parseInt(subparts[2]));
+							this.UIObject.statusUpdate(tempRow.getDescription());
 							this.runEffect(tempRow.getEffects(), extraContext);
 						}
 					}

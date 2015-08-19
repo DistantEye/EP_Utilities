@@ -161,7 +161,7 @@ INFOLIFE: HUMANITIES AGI
 You were designed to understand and interact with humans. Your programming is optimized for tasks such as per-sonal assistance, marketing, caretaking, and psychology.
 +AGI Rights, +Personal Development, +Philanthropy
 PP;1>mox(1);Academics: Psychology/Sociology 30;Interfacing 40;Kinesics 35;trait(Real World Naivete);trait(Social Stigma (AGI))
-PP;3>mox(1);Academics: Psychology/Sociology 40;Art: Digital Art 20;Impersonation 25;Interfacing 50;Kinesics 40;Networking: ?1? 30;Persuasion 40;Profession: Psychotherapy 30;Research 30trait(Real World Naivete);trait(Social Stigma (AGI))
+PP;3>mox(1);Academics: Psychology/Sociology 40;Art: Digital Art 20;Impersonation 25;Interfacing 50;Kinesics 40;Networking: ?1? 30;Persuasion 40;Profession: Psychotherapy 30;Research 30;trait(Real World Naivete);trait(Social Stigma (AGI))
 PP;5>mox(1);addApt(SAV,5);rep(?1?,50);Academics: Psychology/Sociology 40;Art: Digital Art 40;Impersonation 30;Infosec 30;Interest: ?1? 40;Interfacing 50;Kinesics 50;Networking: ?1? 40;Persuasion 40;Profession: Psychotherapy 30;Protocol 30;Research 30;trait(Real World Naivete);trait(Social Stigma (AGI))
 -------------------------------------------------------------------------------------
 Package
