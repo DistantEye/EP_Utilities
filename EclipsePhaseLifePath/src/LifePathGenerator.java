@@ -176,7 +176,26 @@ public class LifePathGenerator {
 						
 						// will make assumption user knows that choices are resolved left to right
 						// will also remove any asterisks that appeared after since they'll probably interfere
-						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", UIObject.promptUser(DataProc.effectsToString(effect),extraContext+"\n"+extraInfo)));
+						String promptMsg = DataProc.effectsToString(effect);
+						String promptRes = UIObject.promptUser(promptMsg,extraContext+"\n"+extraInfo);
+						
+						// we provide some automatic fills if someone enters !
+						Matcher m = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(promptMsg);
+						if (promptRes.equals("!") && m.find())
+						{
+							String sklName = m.group(1);
+							String sklTable = sklName.toUpperCase()+"_FIELDS";
+							if (DataProc.dataObjExists(sklTable) && DataProc.getDataObj(sklTable).getType().equals("table"))
+							{
+								Table temp = (Table)DataProc.getDataObj(sklTable);
+								String res = temp.findMatch(rng.nextInt(temp.getDiceRolled())+1, "").getEffects();  // by replacing with "" we blank the Skill level, we don't want that
+								res = res.replace(sklName + ": ", "").trim(); // remove parent skill name, any spaces, etc							
+								
+								promptRes = res;
+							}
+						}
+
+						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes));
 						effect = mainStuff.get(i);
 				}
 				

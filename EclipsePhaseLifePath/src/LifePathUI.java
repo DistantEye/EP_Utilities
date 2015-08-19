@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -66,7 +68,16 @@ public class LifePathUI implements UI {
 	@Override
 	public String promptUser(String message, String extraContext) {
 		// TODO Auto-generated method stub
-		String inputValue = JOptionPane.showInputDialog(message + "\n" + extraContext); 
+		
+		String prompt = message + "\n" + extraContext;
+		
+		Matcher m = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(message);
+		if (m.find())
+		{
+			prompt += "\n Entering ! will attempt to choose a random value for Field Skills";
+		}
+		
+		String inputValue = JOptionPane.showInputDialog(prompt); 
 		return inputValue;
 	}
 
