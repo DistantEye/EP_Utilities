@@ -553,6 +553,14 @@ CONTROLLER ASYNC
 Your infection enables you to invade and influence the minds of others.
 +Exploration, +Neurodiversity, +Self Control
 PP;1>Academics: Psychology 30;Control 30;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?3?)
+PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?4?)
+PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi (Level 2));trait(Mental Disorder ?2?);psisleight(?6?)
+--------------------------------------------------------------------------------------------------------------------------
+Package
+COVERT OPS
+You are skilled at sneaking into places you don’t belong for high-threat missions.
++Explosions, +Survival, –TITAN Tech
+PP;1>Blades 30;Infiltration 40;Profession: Squad Tactics 30
 PP;3>rep(?1?,50);Blades 20;Demolitions 25;Fray 20;Infiltration 50;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 30
 PP;5>rep(?1?,50);addApt(COO,5);Blades 30;Climbing 30;Demolitions 30;Fray 30;Infiltration 50;Infosec 25;Interest: ?2? 30;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 40
 --------------------------------------------------------------------------------------------------------------------------
@@ -2023,7 +2031,7 @@ msgClient(START STEP 5);rollTable(CHARACTER_AGE)
 STEP
 STEP_6_0
 STEP_6_1
-remVar(diceBonus);setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkipNoStop(STEP_6_DRY),stepSkipNoStop(STEP_6_1))
+if(?hasVar(diceBonus),remVar(diceBonus));setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkipNoStop(STEP_6_DRY),stepSkipNoStop(STEP_6_1))
 --------------------------------------------------------------
 STEP
 STEP_6_DRY

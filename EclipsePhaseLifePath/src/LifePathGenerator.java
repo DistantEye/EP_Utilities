@@ -23,7 +23,8 @@ public class LifePathGenerator {
 	private String nextEffects; // used to store things between steps
 	private boolean hasStarted;
 	private boolean hasFinished;
-	private String pendingEffects; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
+	private String stepSkipTo; // keeps track of if a stepskip was triggered and to what the item to jump to is.
+	private boolean noStop;
 	
 	/**
 	 * Creates the LifePathGenerator
@@ -40,7 +41,8 @@ public class LifePathGenerator {
 		this.nextEffects = "";
 		this.hasStarted = false;
 		this.hasFinished = false;
-		pendingEffects = "";
+		stepSkipTo = "";
+		noStop = false;
 	}	
 	
 	
@@ -109,8 +111,7 @@ public class LifePathGenerator {
 		
 		String[] effects = Utils.splitCommands(modifiedInput, ";");
 		
-		pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts
-							 // pendingEffects is global so that recurisve calls to runEffect can change what the next set of effects is
+		String pendingEffects = ""; // usually set during the process of rolling a table, sets the logical next step if there's no interrupts							
 		
 		if (playerChar.getLastStep() != null)
 		{
@@ -489,17 +490,17 @@ public class LifePathGenerator {
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
-					else if (subparts[1].length() == 2 && Trait.exists(subparts[1]))
+					else if (subparts.length == 2 && Trait.exists(subparts[1]))
 					{
 						playerChar.addTrait(Trait.getTrait(subparts[1], 1));
 					}
-					else if (subparts[1].length() == 2 && Trait.existsPartial(subparts[1]) )
+					else if (subparts.length == 2 && Trait.existsPartial(subparts[1]) )
 					{
 						Trait t = Trait.getTraitFromPartial(subparts[1], 1);
 						
 						playerChar.addTrait(t);
 					}
-					else if (subparts[1].length() == 3 && Trait.exists(subparts[1]) )
+					else if (subparts.length == 3 && Trait.exists(subparts[1]) )
 					{
 						if (! Utils.isInteger(subparts[2]) )
 						{
@@ -508,7 +509,7 @@ public class LifePathGenerator {
 						
 						playerChar.addTrait(Trait.getTrait(subparts[1], Integer.parseInt(subparts[2])));
 					}
-					else if (subparts[1].length() == 3 && Trait.existsPartial(subparts[1]) )
+					else if (subparts.length == 3 && Trait.existsPartial(subparts[1]) )
 					{
 						if (! Utils.isInteger(subparts[2]) )
 						{
@@ -792,11 +793,12 @@ public class LifePathGenerator {
 						// special version allows for a clean jump that doesn't interrupt the UI
 						if (lcEffect.startsWith("stepskipnostop"))
 						{
-							return this.runEffect(temp.getEffects(), extraContext);
+							noStop = true;
 						}
-						{
-							return temp.getEffects();
-						}
+						
+						stepSkipTo = temp.getEffects();
+						return temp.getEffects();
+						
 					}
 					else
 					{
@@ -1296,6 +1298,12 @@ public class LifePathGenerator {
 			}
 		}
 		
+		// this overrides any pendingEffects
+		if (stepSkipTo.length() > 0)
+		{
+			pendingEffects = stepSkipTo;
+		}
+		
 		return pendingEffects;
 	}
 	
@@ -1529,6 +1537,10 @@ public class LifePathGenerator {
 			return;
 		}
 		
+		// 
+		noStop = false;
+		stepSkipTo = "";
+		
 		if (!hasStarted)
 		{
 			hasStarted = true;
@@ -1541,6 +1553,12 @@ public class LifePathGenerator {
 		{
 			nextEffects = this.runEffect(nextEffects, "");
 			System.out.println("Next effects : " + nextEffects);
+		}
+		
+		// keep going if directed to
+		if (noStop)
+		{
+			step();
 		}
 	}
 	

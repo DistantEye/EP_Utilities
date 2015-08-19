@@ -32,3 +32,5 @@ allowing for some options to quit the stack altogether. Am not entirely sure thi
 A list, with some statements being broken around recursion points, would probably be best. A1 A2 B1 B2 C1 A3 A4 A5.
 
 	The point of this is to allow something to early exit the loop if it needs to
+	
+	This may no longer be necesary, for now at least. new changes accomplished same goal simplier
