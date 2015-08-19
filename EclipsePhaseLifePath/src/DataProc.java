@@ -1190,17 +1190,17 @@ public class DataProc {
 			else if (lcEffect.startsWith("if"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length < 2 || subparts.length > 3)
+				if (subparts.length < 3 || subparts.length > 4)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if (subparts.length == 2 && subparts[0].length() > 0 && subparts[1].length() > 1)
+				else if (subparts.length == 3 && subparts[1].length() > 0 && subparts[2].length() > 0)
 				{
-					result += "If (" + subparts[0] + ") then " + effectsToString(subparts[1]);
+					result += "If (" + subparts[1] + ") then " + effectsToString(subparts[2]);
 				}
-				else if (subparts.length == 3 && subparts[0].length() > 0 && subparts[1].length() > 1 && subparts[1].length() > 2)
+				else if (subparts.length == 4 && subparts[1].length() > 0 && subparts[2].length() > 0 && subparts[3].length() > 0)
 				{
-					result += "If (" + subparts[0] + ") then " + effectsToString(subparts[1]) + " : ELSE : " + effectsToString(subparts[2]);
+					result += "If (" + subparts[1] + ") then " + effectsToString(subparts[2]) + " : ELSE : " + effectsToString(subparts[3]);
 				}
 				else
 				{

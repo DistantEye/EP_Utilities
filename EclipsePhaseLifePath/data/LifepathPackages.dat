@@ -648,7 +648,7 @@ Package
 MEDIC
 You are a biotech specialist. 
 +Helping Others, -Violence
-PP;1> Medicine: Paramedic 40;Medicine: ?1? 30;Profession: Medical Care 30
+PP;1>Medicine: Paramedic 40;Medicine: ?1? 30;Profession: Medical Care 30
 PP;3>mox(1);rep(?1?,50);Academics: ?1? 40;Hardware: Implants 25;Medicine: Paramedic 50;Medicine: ?1? 40;Networking: ?1? 20;Perception 35;Persuasion 20;Profession: Medical Care 50
 PP;5>mox(1);rep(r,50);addApt(COG,5);Academics: ?1? 40;Academics: ?1? 30;Fray 30;Hardware: Implants 20;Interest: ?1? 30;Interfacing 15;Medicine: Paramedic 50;Medicine: ?2? 40;Networking: ?1? 20;Perception 30;Persuasion 20;Profession: Medical Care 50
 -----------------------------------------------------------------

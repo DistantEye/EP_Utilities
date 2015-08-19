@@ -141,7 +141,7 @@ public class LifePathGenerator {
 		
 		for (int i = 0; i < mainStuff.size(); i++)
 		{
-			String effect = mainStuff.get(i);
+			String effect = mainStuff.get(i).trim(); // we trim whitespace to make our lives a little more typo-free
 			
 			try
 			{
