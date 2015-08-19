@@ -1,47 +1,47 @@
 Package
-Brawler
+BRAWLER
 
 
 PP;1>setApt(COG,10);setApt(COO,20);setApt(INT,15);setApt(REF,20);setApt(SAV,10);setApt(SOM,20);setApt(WIL,10)
 --------------------------------------------------------------
 Package
-Dilettante
+DILETTANTE
 
 
 PP;1>setApt(COG,15);setApt(COO,15);setApt(INT,15);setApt(REF,15);setApt(SAV,15);setApt(SOM,15);setApt(WIL,15)
 --------------------------------------------------------------
 Package
-Extrovert
+EXTROVERT
 
 
 PP;1>setApt(COG,15);setApt(COO,15);setApt(INT,15);setApt(REF,15);setApt(SAV,20);setApt(SOM,10);setApt(WIL,15)
 --------------------------------------------------------------
 Package
-Inquisitive
+INQUISITIVE
 
 
 PP;1>setApt(COG,20);setApt(COO,10);setApt(INT,20);setApt(REF,10);setApt(SAV,20);setApt(SOM,10);setApt(WIL,15)
 --------------------------------------------------------------
 Package
-Researcher
+RESEARCHER
 
 
 PP;1>setApt(COG,20);setApt(COO,15);setApt(INT,20);setApt(REF,15);setApt(SAV,10);setApt(SOM,10);setApt(WIL,15)
 --------------------------------------------------------------
 Package
-Survivor
+SURVIVOR
 
 
 PP;1>setApt(COG,10);setApt(COO,15);setApt(INT,15);setApt(REF,15);setApt(SAV,10);setApt(SOM,20);setApt(WIL,20)
 --------------------------------------------------------------
 Package
-Techie
+TECHIE
 
 
 PP;1>setApt(COG,20);setApt(COO,15);setApt(INT,10);setApt(REF,15);setApt(SAV,15);setApt(SOM,15);setApt(WIL,15)
 --------------------------------------------------------------
 Package
-Thrill Seeker
+THRILL SEEKER
 
 
 PP;1>setApt(COG,10);setApt(COO,20);setApt(INT,15);setApt(REF,20);setApt(SAV,15);setApt(SOM,15);setApt(WIL,10)
@@ -901,15 +901,15 @@ PP;1>Deception 30;Persuasion 40;Protocol 30
 TABLE
 APTITUDE_TEMPLATES
 10
-1`Brawler`package(Brawler)
-2`Dilettante`package(Dilettante)
-3`Extrovert`package(Extrovert)
-4`Inquisitive`package(Inquisitive)
-5`Researcher`package(Researcher)
-6`Survivor`package(Survivor)
-7`Techie`package(Techie)
-8`Thrill Seeker`package(Thrill Seeker)
-9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(Brawler)/2=package(Dilettante)/3=package(Extrovert)/4=package(Inquisitive)/5=package(Researcher)/6=package(Survivor)/7=package(Techie)/8=package(Thrill Seeker)/9=rollTable(APTITUDE_TEMPLATES))
+1`Brawler`package(BRAWLER)
+2`Dilettante`package(DILETTANTE)
+3`Extrovert`package(EXTROVERT)
+4`Inquisitive`package(INQUISITIVE)
+5`Researcher`package(RESEARCHER)
+6`Survivor`package(SURVIVOR)
+7`Techie`package(TECHIE)
+8`Thrill Seeker`package(THRILL SEEKER)
+9-10`Choose or reroll`extendedChoice(Choose from Brawler=1;Dilettante=2;Extrovert=3;Inquisitive=4;Researcher=5;Survivor=6;Techie=7;Thrill Seeker=8 or Reroll=9,1=package(BRAWLER)/2=package(DILETTANTE)/3=package(EXTROVERT)/4=package(INQUISITIVE)/5=package(RESEARCHER)/6=package(SURVIVOR)/7=package(TECHIE)/8=package(THRILL SEEKER)/9=rollTable(APTITUDE_TEMPLATES))
 --------------------------------------------------------------
 TABLE
 LANGUAGE_FIELDS
@@ -1360,132 +1360,132 @@ TABLE_6_1
 TABLE
 TABLE_6_2
 10
-1`Academic (p. 29)`package(Academic)
-2`Activist (p. 29)`package(Activist)
-3`Bot Jammer (p. 30)`package(Bot Jammer)
-4`Covert Ops (p. 31)`package(Covert Ops)
-5`Explorer (p. 32)`package(Explorer)
-6`Genehacker (p. 32)`package(Genehacker)
-7`Hacker (p. 32)`package(Hacker)
-8`Medic (p. 33)`package(Medic)
-9`Scientist (p. 35)`package(Scientist)
-10`Techie (p. 36)`package(Techie)
+1`Academic (p. 29)`package(ACADEMIC)
+2`Activist (p. 29)`package(ACTIVIST)
+3`Bot Jammer (p. 30)`package(BOT JAMMER)
+4`Covert Ops (p. 31)`package(COVERT OPS)
+5`Explorer (p. 32)`package(EXPLORER)
+6`Genehacker (p. 32)`package(GENEHACKER)
+7`Hacker (p. 32)`package(HACKER)
+8`Medic (p. 33)`package(MEDIC)
+9`Scientist (p. 35)`package(SCIENTIST)
+10`Techie (p. 36)`package(TECHIE)
 --------------------------------------------------------------
 TABLE
 TABLE_6_3
 10
-1`Activist (p. 29)`package(Activist)
-2`Con Artist (p. 30)`package(Con Artist)
-3`Dealer (p. 31)`package(Dealer)
-4`Face (p. 32)`package(Face)
-5`Investigator (p. 33)`package(Investigator)
-6`Journo (p. 33)`package(Journo)
-7`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
-8`Soldier (p. 36)`package(Soldier)
-9`Techie (p. 36)`package(Techie)
-10`Thief (p. 36)`package(Thief)
+1`Activist (p. 29)`package(ACTIVIST)
+2`Con Artist (p. 30)`package(CON ARTIST)
+3`Dealer (p. 31)`package(DEALER)
+4`Face (p. 32)`package(FACE)
+5`Investigator (p. 33)`package(INVESTIGATOR)
+6`Journo (p. 33)`package(JOURNO)
+7`Smart Animal Handler (p. 35)`package(SMART ANIMAL HANDLER)
+8`Soldier (p. 36)`package(SOLDIER)
+9`Techie (p. 36)`package(TECHIE)
+10`Thief (p. 36)`package(THIEF)
 --------------------------------------------------------------
 TABLE
 TABLE_6_4
 10
-1`Assassin (p. 30)`package(Assassin)
-2`Con Artist (p. 30)`package(Con Artist)
-3`Covert Ops (p. 31)`package(Covert Ops)
-4`Dealer (p. 31)`package(Dealer)
-5`Ego Hunter (p. 31)`package(Ego Hunter)
-6`Enforcer (p. 31)`package(Enforcer)
-7`Hacker (p. 32)`package(Hacker)
-8`Pirate (p. 34)`package(Pirate)
-9`Smuggler (p. 35)`package(Smuggler)
-10`Thief (p. 36)`package(Thief)
+1`Assassin (p. 30)`package(ASSASSIN)
+2`Con Artist (p. 30)`package(CON ARTIST)
+3`Covert Ops (p. 31)`package(COVERT OPS)
+4`Dealer (p. 31)`package(DEALER)
+5`Ego Hunter (p. 31)`package(EGO HUNTER)
+6`Enforcer (p. 31)`package(ENFORCER)
+7`Hacker (p. 32)`package(HACKER)
+8`Pirate (p. 34)`package(PIRATE)
+9`Smuggler (p. 35)`package(SMUGGLER)
+10`Thief (p. 36)`package(THIEF)
 --------------------------------------------------------------
 TABLE
 TABLE_6_5
 10
-1`Academic (p. 29)`package(Academic)
-2`Dealer (p. 31)`package(Dealer)
-3-4`Face (p. 32)`package(Face)
-5-6`Icon (p. 33)`package(Icon)
-7`Journo (p. 33)`package(Journo)
-8`Medic (p. 33)`package(Medic)
-9`Psychosurgeon (p. 34)`package(Psychosurgeon)
-10`Scientist (p. 35)`package(Scientist)
+1`Academic (p. 29)`package(ACADEMIC)
+2`Dealer (p. 31)`package(DEALER)
+3-4`Face (p. 32)`package(FACE)
+5-6`Icon (p. 33)`package(ICON)
+7`Journo (p. 33)`package(JOURNO)
+8`Medic (p. 33)`package(MEDIC)
+9`Psychosurgeon (p. 34)`package(PSYCHOSURGEON)
+10`Scientist (p. 35)`package(SCIENTIST)
 --------------------------------------------------------------
 TABLE
 TABLE_6_6
 10
-1`Academic (p. 29)`package(Academic)
-2`Con Artist (p. 30)`package(Con Artist)
-3-4`Dealer (p. 31)`package(Dealer)
-5`Face (p. 32)`package(Face)
-6`Icon (p. 33)`package(Icon)
-7`Investigator (p. 33)`package(Investigator)
-8`Journo (p. 33)`package(Journo)
-9`Medic (p. 33)`package(Medic)
-10`Psychosurgeon (p. 34)`package(Psychosurgeon)
+1`Academic (p. 29)`package(ACADEMIC)
+2`Con Artist (p. 30)`package(CON ARTIST)
+3-4`Dealer (p. 31)`package(DEALER)
+5`Face (p. 32)`package(FACE)
+6`Icon (p. 33)`package(ICON)
+7`Investigator (p. 33)`package(INVESTIGATOR)
+8`Journo (p. 33)`package(JOURNO)
+9`Medic (p. 33)`package(MEDIC)
+10`Psychosurgeon (p. 34)`package(PSYCHOSURGEON)
 --------------------------------------------------------------
 TABLE
 TABLE_6_7
 10
-1`Activist (p. 29)`package(Activist)
-2`Bodyguard (p. 30)`package(Bodyguard)
-3`Bot Jammer (p. 30)`package(Bot Jammer)
-4`Con Artist (p. 30)`package(Con Artist)
-5`Enforcer (p. 31)`package(Enforcer)
-6`Pirate (p. 34)`package(Pirate)
-7`Scavenger (p. 35)`package(Scavenger)
-8`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
-9`Smuggler (p. 35)`package(Smuggler)
-10`Thief (p. 36)`package(Thief)
+1`Activist (p. 29)`package(ACTIVIST)
+2`Bodyguard (p. 30)`package(BODYGUARD)
+3`Bot Jammer (p. 30)`package(BOT JAMMER)
+4`Con Artist (p. 30)`package(CON ARTIST)
+5`Enforcer (p. 31)`package(ENFORCER)
+6`Pirate (p. 34)`package(PIRATE)
+7`Scavenger (p. 35)`package(SCAVENGER)
+8`Smart Animal Handler (p. 35)`package(SMART ANIMAL HANDLER)
+9`Smuggler (p. 35)`package(SMUGGLER)
+10`Thief (p. 36)`package(THIEF)
 --------------------------------------------------------------
 TABLE
 TABLE_6_8
 10
-1`Assassin (p. 30)`package(Assassin)
-2`Bodyguard (p. 30)`package(Bodyguard)
-3`Covert Ops (p. 31)`package(Covert Ops)
-4`Ego Hunter (p. 31)`package(Ego Hunter)
-5`Enforcer (p. 31)`package(Enforcer)
-6`Investigator (p. 33)`package(Investigator)
-7-9`Soldier (p. 36)`package(Soldier)
-10`Spy (p. 36)`package(Spy)
+1`Assassin (p. 30)`package(ASSASSIN)
+2`Bodyguard (p. 30)`package(BODYGUARD)
+3`Covert Ops (p. 31)`package(COVERT OPS)
+4`Ego Hunter (p. 31)`package(EGO HUNTER)
+5`Enforcer (p. 31)`package(ENFORCER)
+6`Investigator (p. 33)`package(INVESTIGATOR)
+7-9`Soldier (p. 36)`package(SOLDIER)
+10`Spy (p. 36)`package(SPY)
 --------------------------------------------------------------
 TABLE
 TABLE_6_9
 10
-1`Academic (p. 29)`package(Academic)
-2`Explorer (p. 32)`package(Explorer)
-3`Genehacker (p. 32)`package(Genehacker)
-4`Investigator (p. 33)`package(Investigator)
-5`Medic (p. 33)`package(Medic)
-6`Psychosurgeon (p. 34)`package(Psychosurgeon)
-7-8`Scientist (p. 35)`package(Scientist)
-9`Smart Animal Handler (p. 35)`package(Smart Animal Handler)
-10`Techie (p. 36)`package(Techie)
+1`Academic (p. 29)`package(ACADEMIC)
+2`Explorer (p. 32)`package(EXPLORER)
+3`Genehacker (p. 32)`package(GENEHACKER)
+4`Investigator (p. 33)`package(INVESTIGATOR)
+5`Medic (p. 33)`package(MEDIC)
+6`Psychosurgeon (p. 34)`package(PSYCHOSURGEON)
+7-8`Scientist (p. 35)`package(SCIENTIST)
+9`Smart Animal Handler (p. 35)`package(SMART ANIMAL HANDLER)
+10`Techie (p. 36)`package(TECHIE)
 --------------------------------------------------------------
 TABLE
 TABLE_6_10
 10
-1`Bot Jammer (p. 30)`package(Bot Jammer)
-2`Ego Hunter (p. 31)`package(Ego Hunter)
-3-4`Explorer (p. 32)`package(Explorer)
-5`Pirate (p. 34)`package(Pirate)
-6`Scavenger (p. 35)`package(Scavenger)
-7`Soldier (p. 36)`package(Soldier)
-8-9`Smuggler (p. 35)`package(Smuggler)
-10`Spy (p. 36)`package(Spy)
+1`Bot Jammer (p. 30)`package(BOT JAMMER)
+2`Ego Hunter (p. 31)`package(EGO HUNTER)
+3-4`Explorer (p. 32)`package(EXPLORER)
+5`Pirate (p. 34)`package(PIRATE)
+6`Scavenger (p. 35)`package(SCAVENGER)
+7`Soldier (p. 36)`package(SOLDIER)
+8-9`Smuggler (p. 35)`package(SMUGGLER)
+10`Spy (p. 36)`package(SPY)
 --------------------------------------------------------------
 TABLE
 TABLE_6_11
 10
-1`Bot Jammer (p. 30)`package(Bot Jammer)
-2`Explorer (p. 32)`package(Explorer)
-3`Genehacker (p. 32)`package(Genehacker)
-4-5`Hacker (p. 32)`package(Hacker)
-6`Scavenger (p. 35)`package(Scavenger)
-7`Scientist (p. 35)`package(Scientist)
-8`Spy (p. 36)`package(Spy)
-9-10`Techie (p. 36)`package(Techie)
+1`Bot Jammer (p. 30)`package(BOT JAMMER)
+2`Explorer (p. 32)`package(EXPLORER)
+3`Genehacker (p. 32)`package(GENEHACKER)
+4-5`Hacker (p. 32)`package(HACKER)
+6`Scavenger (p. 35)`package(SCAVENGER)
+7`Scientist (p. 35)`package(SCIENTIST)
+8`Spy (p. 36)`package(SPY)
+9-10`Techie (p. 36)`package(TECHIE)
 --------------------------------------------------------------
 TABLE
 TABLE_6_12
@@ -1493,25 +1493,25 @@ TABLE_6_12
 01-04`Artist`package(ARTIST)
 05-08`Async`if(!hasVar(hasASYNC),package(ASYNC),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
 09-12`Async Adept`if(!hasVar(hasASYNC_ADEPT),package(ASYNC ADEPT),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
-13-16`Athletics`package(Athletics)
-17-20`Computer Training`package(Computer Training)
-21-24`Connected`package(Connected)
-25-28`Gearhead`package(Gearhead)
-29-32`Heavy Weapons Training`package(Heavy Weapons Training)
-33-39`Jack-of-All-Trades`package(Jack-of-All-Trades)
-40-46`Lucky`package(Lucky)
-47-50`Martial Arts Training`package(Martial Arts Training)
-51-54`Mentalist†`if(?hasTrait(Psi )),package(Mentalist),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
-55-61`Networker`package(Networker)
-62-65`Paramedic`package(Paramedic)
-66-69`Slacker`package(Slacker)
-70-73`Sneaker`package(Sneaker)
-74-77`Social Butterfly`package(Social Butterfly)
-78-81`Spacer`package(Spacer)
-82-85`Student`package(Student)
-86-89`Survival Training`package(Survival Training)
-90-93`Tech Training`package(Tech Training)
-94-100`Weapons Training`package(Weapons Training)
+13-16`Athletics`package(ATHLETICS)
+17-20`Computer Training`package(COMPUTER TRAINING)
+21-24`Connected`package(CONNECTED)
+25-28`Gearhead`package(GEARHEAD)
+29-32`Heavy Weapons Training`package(HEAVY WEAPONS TRAINING)
+33-39`Jack-of-All-Trades`package(JACK-OF-ALL-TRADES)
+40-46`Lucky`package(LUCKY)
+47-50`Martial Arts Training`package(MARTIAL ARTS TRAINING)
+51-54`Mentalist†`if(?hasTrait(Psi )),package(MENTALIST),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
+55-61`Networker`package(NETWORKER)
+62-65`Paramedic`package(PARAMEDIC)
+66-69`Slacker`package(SLACKER)
+70-73`Sneaker`package(SNEAKER)
+74-77`Social Butterfly`package(SOCIAL BUTTERFLY)
+78-81`Spacer`package(SPACER)
+82-85`Student`package(STUDENT)
+86-89`Survival Training`package(SURVIVAL TRAINING)
+90-93`Tech Training`package(TECH TRAINING)
+94-100`Weapons Training`package(WEAPONS TRAINING)
 --------------------------------------------------------------
 TABLE
 TABLE_7
@@ -1623,11 +1623,11 @@ if(!hasVar(s9FactionPP),setVar(s9FactionPP,&1&));if(!hasVar(s9FocusPP),setVar(s9
 --------------------------------------------------------------
 FUNCTION
 setTable9FactionPkg
-if(!hasVar(s9FactionPkg),package(getVar(s9FactionPkg),getVar(s9FactionPP)),rollTable(TABLE_9_2))
+if(!hasVar(s9FactionPkg),package(GETVAR(S9FACTIONPKG),getVar(s9FactionPP)),rollTable(TABLE_9_2))
 --------------------------------------------------------------
 FUNCTION
 setTable9FocusPkg
-if(!hasVar(s9FocusPkg),package(getVar(s9FocusPkg),getVar(s9FocusPP)),rollTable(TABLE_9_1))
+if(!hasVar(s9FocusPkg),package(GETVAR(S9FOCUSPKG),getVar(s9FocusPP)),rollTable(TABLE_9_1))
 --------------------------------------------------------------
 TABLE
 TABLE_9_1
