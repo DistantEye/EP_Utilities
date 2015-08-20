@@ -1428,10 +1428,6 @@ public class DataProc {
 		{
 			return new String[]{"skill","\n Entering nothing will attempt to choose a random valid skill"};
 		}
-		else if (message.contains("Choose from Brawler=1;Dilettante=2;Extrovert=3"))
-		{
-			return new String[]{"apt","\n Entering nothing will roll a random aptitude"};
-		}
 		
 		return null;
 	}

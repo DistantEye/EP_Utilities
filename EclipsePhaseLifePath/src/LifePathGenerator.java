@@ -202,10 +202,6 @@ public class LifePathGenerator {
 								
 								promptRes = temp.getFullName();
 							}
-							else if (result != null && result[0].equals("apt"))
-							{
-								promptRes = ""+(rng.nextInt(8)+1);
-							}
 						}
 
 						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes));
