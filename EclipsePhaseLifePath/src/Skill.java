@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -166,6 +167,19 @@ public class Skill {
 		
 		Skill temp = new Skill(parts[0],parts[1],"","",-1,Boolean.valueOf(parts[2]), cats);
 		Skill.skillList.add(temp);
+	}
+	
+	/**
+	 * Returns a copy of a random skill from the master list. Will not have specializations or subtypes
+	 * @param rng Initialized SecureRandom object
+	 * @param value Value to set the skill at
+	 * @return
+	 */
+	public static Skill getRandomSkill(SecureRandom rng, int value)
+	{
+		Skill temp = skillList.get(rng.nextInt(skillList.size()));
+		
+		return new Skill(temp.getName(),temp.getLinkedApt(),"","", value,temp.getCanDefault(),temp.getCategories());
 	}
 	
 	/**

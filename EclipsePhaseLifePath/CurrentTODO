@@ -23,14 +23,7 @@ Make Traits and Sleights also use XML (possibly the whole internalInfo file)
 
 Skils should display in the end with their aptitudes taken into effect
 
+may need to do something special with if conditionals : right now getVar will try and resolve for both branches, which can break things
 
-Currently working on : Secondary/Derived stats calculation in Character class
 
-Strong possibly is to redesign runEffect as not immediately doing the changes, but instead having a "recursion stack" that is built, then evaluated at the end of the turn,
-allowing for some options to quit the stack altogether. Am not entirely sure this would be a stack, it might be a queue, or some more advanced structure. 
-
-A list, with some statements being broken around recursion points, would probably be best. A1 A2 B1 B2 C1 A3 A4 A5.
-
-	The point of this is to allow something to early exit the loop if it needs to
-	
-	This may no longer be necesary, for now at least. new changes accomplished same goal simplier
+Redo last step type error resolution doesn't work because it doesn't typically let you undo choices, try and find a way to fix that

@@ -71,10 +71,11 @@ public class LifePathUI implements UI {
 		
 		String prompt = message + "\n" + extraContext;
 		
-		Matcher m = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(message);
-		if (m.find())
+		// check for a few things that lets us provide extra info
+		String[] result = DataProc.getExtraPromptOptions(message);
+		if (result != null )
 		{
-			prompt += "\n Entering ! will attempt to choose a random value for Field Skills";
+			prompt += result[1];
 		}
 		
 		String inputValue = JOptionPane.showInputDialog(prompt); 

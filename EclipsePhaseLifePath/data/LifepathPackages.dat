@@ -406,6 +406,13 @@ OUT'STER
 You are a denizen of the dark depths of space in the outer Kuiper Belt, delving into your own virtual worlds. 
 +AGI Rights, +Exploration, Morphological Freedom, +Research
 PP;1>Free Fall 30;Interest: Simulspace 30;Interfacing 40
+PP;3>mox(1);rep(?1?,50);Free Fall 30;Infosec 20;Interest: Simulspace 50;Interest: ?1? 40;Interfacing 50;Pilot: Spacecraft 25;Programming 40;Psychosurgery 25
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Package
+PRECAUTIONIST
+You adhere to the Precautionary Principle, believing that the only technology to be adopted should be that which is first proven safe.
++Precautionism, +Reclaiming Earth, –Bioconservatism, –Technoprogressivism
+PP;1>Academics: ?1? 30;Infosec 30;Research 40
 PP;3>mox(1);rep(?1?,50);Academics: ?1? 50;Academics: ?1? 40;Hardware: ?1? 20;Infosec 20;Interfacing 30;Investigation 40;Networking: ?1? 30;Research 50
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
@@ -489,8 +496,8 @@ Package
 VENUSIAN
 You call the aerostats of the Venusian clouds your home.
 +Hypercapitalism, +Personal Development, +Uplift Rights
-PP;1>Academic: ?1? 30;Networking: Hypercorps 30;Pilot: Aircraft 40
-PP;3>mox(1);rep(c,50);Academic: ?1? 50;Beam Weapons 25;Kinesics 30;Navigation 25;Networking: Hypercorps 40;Pilot:Aircraft 40;Profession: ?1? 40;Protocol 30
+PP;1>Academics: ?1? 30;Networking: Hypercorps 30;Pilot: Aircraft 40
+PP;3>mox(1);rep(c,50);Academics: ?1? 50;Beam Weapons 25;Kinesics 30;Navigation 25;Networking: Hypercorps 40;Pilot:Aircraft 40;Profession: ?1? 40;Protocol 30
 -------------------------------------------------------------------------------------------
 Package
 ACADEMIC
@@ -1289,7 +1296,7 @@ TABLE_4
 47-48`You party too hard. -20 to one skill.`decSkl(!RANDSKILL!,20)
 49-50`Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149; EP).`trait(Illiterate)
 51-52`A healthy amount of physical activities improves your abilities. Gain +5 COO`addApt(COO,5)
-53-54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`incSkl(?1?,20,?equals($1,Language))
+53-54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`incSkl(?1?,20,?skillIsType($1,Language))
 55-56`A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).`trait(Socially Graceless)
 57-58`Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.`incSkl(Palming,10)
 59-60`You experiment with drugs; but it isn’t for you. Gain the Drug Exception trait (p. 83).`trait(Drug Exception)
@@ -1522,7 +1529,7 @@ TABLE_7
 25-26`Your inability to improve holds you back from an important promotion/advancement. Gain the Slow Learner trait (p. 151, EP).`trait(Slow Learner)
 27-28`You simply are not very comfortable with that whole resleeving thing. Gain the Morphing Disorder (Level 1) trait (p. 150, EP). `trait(Morphing Disorder,1)
 29-30`You are not a slacker. You take on part-time jobs or additional training. +20 to one skill.`incSkl(?1?,20)
-31-32`You travel extensively. +10 to two different Language skills.`incSkl(?1?,10,?equals($1,Language);incSkl(?1?,10,?equals($1,Language)
+31-32`You travel extensively. +10 to two different Language skills.`incSkl(?1?,10,?skillIsType($1,Language));incSkl(?1?,10,?skillIsType($1,Language))
 33-34`Regular attention to your health and exercise improves your abilities. Gain +5 SOM.`addApt(SOM,5)
 35-36`You decide you want to experiment. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods.`rollTable(CHOOSING_A_MORPH_NO_PODS)
 37-38`You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path.`msgClient(This result is ignored, reroll);rollTable(TABLE_7)
@@ -1623,12 +1630,22 @@ if(!hasVar(s9FactionPP),setVar(s9FactionPP,&1&));if(!hasVar(s9FocusPP),setVar(s9
 --------------------------------------------------------------
 FUNCTION
 setTable9FactionPkg
-if(?hasVar(s9FactionPkg),package(getVar(s9FactionPkg),getVar(s9FactionPP)),rollTable(TABLE_9_2))
+if(?hasVar(s9FactionPkg),func(assignFactionPkgFromVar),rollTable(TABLE_9_2))
 --------------------------------------------------------------
 FUNCTION
 setTable9FocusPkg
 // note if we manually pick Focus package we have to make sure user has a faction package. they may not always
-if(?hasVar(s9FocusPkg),package(getVar(s9FocusPkg),getVar(s9FocusPP));if(!hasVar({faction}),rollTable_9_3),rollTable(TABLE_9_1))
+if(?hasVar(s9FocusPkg),func(assignFocusPkgFromVar);if(!hasVar({faction}),rollTable_9_3),rollTable(TABLE_9_1))
+--------------------------------------------------------------
+// the below two packages are to hide s9FocusPkg/FactionPkg variables from getVar trying to resolve them if they don't exist
+// right now conditionals don't short-circuit, they try and resolve both options, which can break things
+FUNCTION
+assignFocusPkgFromVar
+package(getVar(s9FocusPkg),getVar(s9FocusPP))
+--------------------------------------------------------------
+FUNCTION
+assignFactionPkgFromVar
+package(getVar(s9FactionPkg),getVar(s9FactionPP))
 --------------------------------------------------------------
 TABLE
 TABLE_9_1
@@ -1939,7 +1956,7 @@ GATECRASHING_EVENT
 71-72`You receive some focused training in gate operations. Gain the Interfacing (Gate Operations) specialization (p. 142, Gatecrashing).`sklspec(Interfacing,Gate Operations)
 73-74`You join a semi-successful colonization effort for a year. Gain +20 to one Profession skill of your choice.`Profession: ?1? 20
 75-76`You uncover evidence of a previously unknown but long-dead alien race. Gain +10 to one rep score.`rep(?1?,10)
-77-78`You put in several months of grueling work on a terraforming project. Gain +10 to one Academic, Profession, or Technical skill.`incSkl(?1?,10,?skillIsType(Academic)||?skillIsType(Profession)||?skillIsType(Technical))
+77-78`You put in several months of grueling work on a terraforming project. Gain +10 to one Academics, Profession, or Technical skill.`incSkl(?1?,10,?skillIsType(Academics)||?skillIsType(Profession)||?skillIsType(Technical))
 79-80`You severely botch a rescue operation. Lives are lost and stacks are not recovered. Lose 10 rep from the network of your choice. `rep(?1?,-10)
 81-82`You experience something while going through a gate that makes you never want to go through again. Gain the Phobia Disorder (Pandora Gates) trait (p. 92).`trait(Phobia Disorder (Pandora Gates))
 83-84`You participate in a dangerous rescue operation. Gain +10 rep in the network of your choice. `rep(?1?,10)
@@ -2067,7 +2084,7 @@ msgClient(START STEP 10);setVar(s9FocusPP,1);setVar(s9FactionPP,1);func(s10Loop)
 STEP
 STEP_11
 STEP_12
-msgClient(START STEP 11);runTable(TABLE_11)
+msgClient(START STEP 11);rollTable(TABLE_11)
 --------------------------------------------------------------
 STEP
 STEP_12

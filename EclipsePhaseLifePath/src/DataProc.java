@@ -1259,8 +1259,14 @@ public class DataProc {
 							effectsFunc = effectsFunc.replace("&" + idx + "&", subparts[x]);
 						}
 						
+						String addendum = "";
+						if (effectsFunc.contains("func("+subparts[1]+")"))
+						{
+							effectsFunc.replace("func("+subparts[1]+")", "");
+							addendum = " ; Run function again";
+						}
 						
-						return effectsToString(effectsFunc);
+						return effectsToString(effectsFunc) + addendum;
 					}
 					else
 					{
@@ -1402,5 +1408,32 @@ public class DataProc {
 		return dataStore.get(name);
 	}
 	
+	/**
+	 * Multifunction means of parsing an effect string into messages and information about what kind of prompt it is, when the user has a choice Prompt
+	 * For instance, it can determine a message is prompt is for choosing a field skill, and give the information related to that, which can be used to provide a list
+	 * of valid answers to default to.
+	 * 
+	 * @param message String[] of format {TypePrompt,UIMessage,any other params, etc}
+	 * @return
+	 */
+	public static String[] getExtraPromptOptions(String message)
+	{
+		Matcher fieldSkill = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(message);
+		Matcher fullSkill = Pattern.compile("Add skill : \\(Choose One Skl\\) [0-9]+").matcher(message);
+		if (fieldSkill.find())
+		{
+			return new String[]{"field","\n Entering nothing will attempt to choose a random value for Field Skills",fieldSkill.group(1)};
+		}
+		else if (fullSkill.find())
+		{
+			return new String[]{"skill","\n Entering nothing will attempt to choose a random valid skill"};
+		}
+		else if (message.contains("Choose from Brawler=1;Dilettante=2;Extrovert=3"))
+		{
+			return new String[]{"apt","\n Entering nothing will roll a random aptitude"};
+		}
+		
+		return null;
+	}
 	
 }

@@ -68,7 +68,7 @@ public class Trait {
 		{
 			String partialT = t.getName().replaceAll("[ ]*\\([^\\)]+\\)", "").trim();
 			
-			if (traitName.startsWith(t.getName()))
+			if (traitName.startsWith(partialT))
 			{
 				return true;
 			}
@@ -110,9 +110,19 @@ public class Trait {
 		if (existsPartial(traitName))
 		{
 			String partialTraitName = traitName.replaceAll("[ ]*\\([^\\)]+\\)", "").trim();
-			Trait t = getTrait(partialTraitName,level);
-			t.name = traitName;
-			return t;
+			
+			for (Trait t : traitList)
+			{
+				if (t.getName().startsWith(partialTraitName))
+				{
+					Trait result = new Trait(t);
+					result.setLevel(level);
+					result.name = traitName;
+					return result;
+				}
+			}
+			
+			return null;
 		}
 		else
 		{

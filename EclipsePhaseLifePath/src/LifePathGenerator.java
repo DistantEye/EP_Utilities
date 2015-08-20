@@ -180,19 +180,31 @@ public class LifePathGenerator {
 						String promptMsg = DataProc.effectsToString(effect);
 						String promptRes = UIObject.promptUser(promptMsg,extraContext+"\n"+extraInfo);
 						
-						// we provide some automatic fills if someone enters !
-						Matcher m = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(promptMsg);
-						if (promptRes.equals("!") && m.find())
+						// if they entered blank, we attempt to pick a random (but valid answer)
+						if (promptRes.equals(""))
 						{
-							String sklName = m.group(1);
-							String sklTable = sklName.toUpperCase()+"_FIELDS";
-							if (DataProc.dataObjExists(sklTable) && DataProc.getDataObj(sklTable).getType().equals("table"))
+							// if the right stuff are in the prompt, we can do some extra actions
+							// check for a few things that lets us provide extra info
+							String[] result = DataProc.getExtraPromptOptions(promptMsg);
+							if (result != null && result[0].equals("field"))
 							{
-								Table temp = (Table)DataProc.getDataObj(sklTable);
-								String res = temp.findMatch(rng.nextInt(temp.getDiceRolled())+1, "").getEffects();  // by replacing with "" we blank the Skill level, we don't want that
-								res = res.replace(sklName + ": ", "").trim(); // remove parent skill name, any spaces, etc							
+								String sklName = result[2];
+								promptRes = getSkillField(sklName);
+							}
+							else if (result != null && result[0].equals("skill"))
+							{
+								Skill temp = Skill.getRandomSkill(rng, 0);
 								
-								promptRes = res;
+								if (Skill.hasCategory(temp.getName(), "Field"))
+								{
+									temp.setSubtype(getSkillField(temp.getName()));
+								}
+								
+								promptRes = temp.getFullName();
+							}
+							else if (result != null && result[0].equals("apt"))
+							{
+								promptRes = ""+(rng.nextInt(8)+1);
 							}
 						}
 
@@ -555,7 +567,7 @@ public class LifePathGenerator {
 					else if (subparts[1].equalsIgnoreCase("randomroll"))
 					{
 						// no need to return anything, this is just to get a new morph
-						this.runEffect("roll;CHOOSING_A_MORPH","");
+						this.runEffect("rollTable;CHOOSING_A_MORPH","");
 					}
 					else if (subparts[1].length() > 0)
 					{
@@ -1820,4 +1832,26 @@ public class LifePathGenerator {
 		}
 	}
 
+	/**
+	 * Tries to match skillName against a Fields table and return a valid Field name for the skill
+	 * @param skillName Skill to search for
+	 * @return String Valid FieldName : only the fieldname, not the full 'skill: Field'
+	 */
+	protected String getSkillField(String skillName)
+	{
+		String sklName = skillName;
+		String sklTable = sklName.toUpperCase()+"_FIELDS";
+		if (DataProc.dataObjExists(sklTable) && DataProc.getDataObj(sklTable).getType().equals("table"))
+		{
+			Table temp = (Table)DataProc.getDataObj(sklTable);
+			String res = temp.findMatch(rng.nextInt(temp.getDiceRolled())+1, "").getEffects();  // by replacing with "" we blank the Skill level, we don't want that
+			res = res.replace(sklName + ": ", "").trim(); // remove parent skill name, any spaces, etc							
+			
+			return res;
+		}
+		else
+		{
+			throw new IllegalArgumentException("No _FIELDS table defined for " + skillName);
+		}
+	}
 }

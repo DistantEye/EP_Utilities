@@ -1,7 +1,7 @@
 skill
-Academics;COG;true;Knowledge,Academic
+Academics;COG;true;Knowledge,Academic,Field
 Animal Handling;SAV;true;Active,Social
-Art;INT;true;Knowledge
+Art;INT;true;Knowledge,Field
 Beam Weapons;COO;true;Active,Combat
 Blades;SOM;true;Active,Combat
 Climbing;SOM;true;Active,Physical
@@ -11,32 +11,32 @@ Deception;SAV;true;Active,Social
 Demolitions;COG;false;Active,Technical
 Disguise;INT;true;Active,Physical
 Exotic Language;INT;true;Knowledge,Field
-Exotic Melee Weapon;SOM;true;Active,Combat
-Exotic Ranged Weapon;COO;true;Active,Combat
+Exotic Melee Weapon;SOM;true;Active,Combat,Field
+Exotic Ranged Weapon;COO;true;Active,Combat,Field
 Flight;SOM;true;Active,Physical
 Fray;REF;true;Active,Combat
 Free Fall;REF;true;Active,Physical
 Freerunning;SOM;true;Active,Physical
 Gunnery;INT;true;Active,Combat
-Hardware;COG;true;Active,Technical
+Hardware;COG;true;Active,Technical,Field
 Impersonation;SAV;true;Active,Social
 Infiltration;COO;true;Active,Physical
 Infosec;COG;false;Active,Technical
-Interest;COG;true;Knowledge
+Interest;COG;true;Knowledge,Field
 Interfacing;COG;true;Active,Technical
 Intimidation;SAV;true;Active,Technical
 Investigation;INT;true;Active,Mental
 Kinesics;SAV;true;Active,Social
 Kinetic Weapons;COO;true;Active,Combat
-Language;INT;true;Knowledge
-Medicine;COG;true;Active,Technical
+Language;INT;true;Knowledge,Field
+Medicine;COG;true;Active,Technical,Field
 Navigation;INT;true;Active,Mental
-Networking;SAV;true;Active,Social,Networking
+Networking;SAV;true;Active,Social,Networking,Field
 Palming;COO;true;Active,Physical
 Perception;INT;true;Active,Mental
 Persuasion;SAV;true;Active,Social
-Pilot;REF;true;Active,Vehicle
-Profession;COG;true;Knowledge,Profession
+Pilot;REF;true;Active,Vehicle,Field
+Profession;COG;true;Knowledge,Profession,Field
 Programming;COG;false;Active,Technical
 Protocol;SAV;true;Active,Social
 Psi Assault;WIL;false;Active,Mental,Psi
