@@ -202,6 +202,23 @@ public class LifePathGenerator {
 								
 								promptRes = temp.getFullName();
 							}
+							
+							else if (result != null && result[0].equals("skillNoPsi"))
+							{
+								Skill temp = Skill.getRandomSkill(rng, 0);
+								
+								while (Skill.hasCategory(temp.getName(), "Psi"))
+								{
+									temp = Skill.getRandomSkill(rng, 0);
+								}
+								
+								if (Skill.hasCategory(temp.getName(), "Field"))
+								{
+									temp.setSubtype(getSkillField(temp.getName()));
+								}
+								
+								promptRes = temp.getFullName();
+							}
 						}
 
 						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes));

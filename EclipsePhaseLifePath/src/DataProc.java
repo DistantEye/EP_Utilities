@@ -1420,6 +1420,7 @@ public class DataProc {
 	{
 		Matcher fieldSkill = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(message);
 		Matcher fullSkill = Pattern.compile("Add skill : \\(Choose One Skl\\) [0-9]+").matcher(message);
+		Matcher fullSkillNonPsi = Pattern.compile("Add skill : \\(Choose One Skl\\)\\*? [0-9]+").matcher(message);
 		if (fieldSkill.find())
 		{
 			return new String[]{"field","\n Entering nothing will attempt to choose a random value for Field Skills",fieldSkill.group(1)};
@@ -1427,6 +1428,11 @@ public class DataProc {
 		else if (fullSkill.find())
 		{
 			return new String[]{"skill","\n Entering nothing will attempt to choose a random valid skill"};
+		}
+		// TODO for right now * for choose skill only means Psi, this will have to be made more precise in the future 
+		else if (fullSkillNonPsi.find())
+		{
+			return new String[]{"skillNoPsi","\n Entering nothing will attempt to choose a random valid skill"};
 		}
 		
 		return null;

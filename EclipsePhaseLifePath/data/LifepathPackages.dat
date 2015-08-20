@@ -129,7 +129,7 @@ HYPERELITE: MEDIA PERSONALITY
 People know you. In fact, there's a good chance that they see you on a regular basis. You're an X-caster, a blogger, a famous MARG gamer, a pundit, a performer, the spokesperson for a brand, an athlete, or some other form of celebrity.
 +Artistic Expression, +Fame, +Personal Career
 PP;1>mox(1);Art: ?1? 40;Networking: Media 40;credit(5000)
-PP;3>mox(1);Art: ?1? 40;Disguise: 25;Interest: ?1? 30;Interfacing 30;Networking: Media 50;Persuasion 30;Profession: ?1? 20;Protocol 30 ;credit(30000 )
+PP;3>mox(1);Art: ?1? 40;Disguise 25;Interest: ?1? 30;Interfacing 30;Networking: Media 50;Persuasion 30;Profession: ?1? 20;Protocol 30 ;credit(30000)
 PP;5>mox(1);addApt(SAV,5);rep(?1?,50);Art: ?1? 40;Disguise: 25;Fray 15;Interest: ?1? 40;Interfacing 30;Language: ?1? 30;Networking: Media 50;Networking: ?1? 20;Persuasion 30;Profession: ?1? 40;Protocol 50;credit(60000 )
 -----------------------------------------------------------------------------------------------
 Package
