@@ -26,7 +26,7 @@ public class Skill {
 	// we define constants to make the regexes more readable
 	
 	// Skill,subtype,specialization name
-	private static final String nameReg = "([a-zA-Z/ ][a-zA-Z/\\*\\(\\) ]*|\\?[0-9]*\\?)"; // we allow for parsing of choice notation like ?1? and /
+	private static final String nameReg = "([a-zA-Z/ ][a-zA-Z\\-/\\*\\(\\) ]*|\\?[0-9]*\\?)"; // we allow for parsing of choice notation like ?1? and /
 	// Skill value
 	private static final String skillValueReg = "([0-9]{1,2})";
 	// optional space

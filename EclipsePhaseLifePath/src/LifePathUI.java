@@ -47,9 +47,9 @@ public class LifePathUI implements UI {
 	 * @throws HeadlessException
 	 */
 	public LifePathUI() throws HeadlessException {
+		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 		gen = new LifePathGenerator("",this,true);
 		
-		this.dataInit();
 		cons = new GridBagConstraints();
 		windowLayout = new BorderLayout();
         layout = new GridBagLayout();
@@ -113,14 +113,6 @@ public class LifePathUI implements UI {
 	@Override
 	public void end() {
 		// Marks the character gen process as stopped, disabling the buttons that used to advance it
-	}
-	
-	/**
-	 * Creates the backend code, the character class
-	 */
-	private void dataInit()
-	{
-		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 	}
 	
 	public void init()

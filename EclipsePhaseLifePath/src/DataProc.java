@@ -779,6 +779,27 @@ public class DataProc {
 					result += ", Conditional must be true: " + subparts[3];
 				}
 			}
+			else if (lcEffect.startsWith("setskl"))
+			{
+				String[] subparts = Utils.splitCommands(params);
+				if (subparts.length != 3 && subparts.length != 4)
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
+				{
+					result += "Set skl " + subparts[2] + " to " + subparts[1];
+				}
+				else
+				{
+					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
+				}
+				
+				if (subparts.length == 4)
+				{
+					result += ", Conditional must be true: " + subparts[3];
+				}
+			}
 			else if (lcEffect.startsWith("decskl"))
 			{
 				String[] subparts = Utils.splitCommands(params);

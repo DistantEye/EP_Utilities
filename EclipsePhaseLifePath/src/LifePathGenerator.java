@@ -97,6 +97,7 @@ public class LifePathGenerator {
 	 */
 	private String runEffect(String effectInput, String extraContext)
 	{
+		System.out.println("Running effect: " + effectInput);
 		// translate steps to actions, as we'll just get a step name sometimes
 		if (DataProc.dataObjExists(effectInput) && DataProc.getDataObj(effectInput).getType().equals("step"))
 		{

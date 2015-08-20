@@ -241,7 +241,8 @@ public class Character {
 			throw new IllegalArgumentException(repName + " is not a valid Rep category!");
 		}
 		
-		this.repList.get(repName).incValue(val);
+		Rep charRep = this.repList.get(repName);
+		charRep.incValue(val);
 	}
 	
 	
