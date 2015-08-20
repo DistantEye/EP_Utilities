@@ -823,13 +823,18 @@ public class DataProc {
 			else if (lcEffect.startsWith("trait"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 2)
+				if (subparts.length != 2 && subparts.length != 3)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				else if (subparts[1].length() > 0)
 				{
 					result += "Add trait: " + subparts[1];
+					
+					if (subparts.length == 3)
+					{
+						result += " at level("+subparts[2]+")";
+					}
 				}
 				else
 				{

@@ -589,7 +589,7 @@ PP;3>rep(?1?,50);Clubs 30;Fray 20;Freerunning 30;Intimidation 50;Language: ?1? 4
 PP;5>rep(?1?,50);addApt(SOM,5);Clubs 30;Fray 20;Freerunning 30;Interest: ?2? 40;Intimidation 50;Language: ?1? 40;Networking?1? 30;Palming 20;Perception 20;Profession Enforcement 50;Spray Weapons 30;Unarmed Combat 45;
 --------------------------------------------------------------------------------------------------
 Package
-EXPLORER 
+EXPLORER
 While others have to wait for months or years to get even a whiff of a Pandora Gate or one of the rare artifacts retrieved by gatecrashers, you've walked on alien worlds and maybe even held alien technology in your own hands.
 +Alien Contact, +Education, +Exploration, +Survival
 PP;1>Freerunning 40;Investigation 30;Profession: Gatecrashing 30
@@ -1274,7 +1274,7 @@ TABLE_4
 100
 01-20`Gain +1 Moxie and roll on the Story Event table (p. 72).`mox(1);rollTable(TABLE_16)
 21-22`Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.`trait(Mental Disorder (PTSD))
-23-24`You are not only good with your hands; you are good with both hands. Gain the Ambidexterity trait (p. 145; EP).`trait(Ambidexterity)
+23-24`You are not only good with your hands; you are good with both hands. Gain the Ambidextrous trait (p. 145; EP).`trait(Ambidextrous)
 25-26`The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145; EP).`trait(Common Sense)
 27-28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`trait(Pain Tolerance,1)
 29-30`You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.`msgClient(ERROR: Table 4, 29-30 should never be rollable)
@@ -1577,7 +1577,7 @@ TABLE_8
 35-36`You hide your body away in cold storage on Earth before farcasting off to safety. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 37-38`Your ego escapes the devastation of Earth, only to be locked away in cold storage for years. You are only recently resleeved. Roll randomly on the Choosing a Morph table (p. 44) and gain the Real World Naiveté trait (p. 151, EP).`rollTable(CHOOSING_A_MORPH);trait(Real World Naiveté)
 39-40`Your ego survives the Fall but is locked in simulspace for years before you are resleeved. Roll randomly on the Choosing a Morph table (p. 44) and gain +20 Interfacing skill.`rollTable(CHOOSING_A_MORPH);incSkl(Interfacing,20)
-41-42`After escaping the Fall, you are forced into indentured service before you are resleeved. Roll randomly on the Choosing a Morph table (p. 44) but ignore all non-synthmorph results. Gain +20 to one Technical skill.`rollTable(SYNTHMORPHS);incSkl(?1?,20;?skillIsType($1,Technical))
+41-42`After escaping the Fall, you are forced into indentured service before you are resleeved. Roll randomly on the Choosing a Morph table (p. 44) but ignore all non-synthmorph results. Gain +20 to one Technical skill.`rollTable(SYNTHMORPHS);incSkl(?1?,20,?skillIsType($1,Technical))
 43-44`You do what you can to help, but you still lose almost everyone in your life. Gain +1 Moxie.`mox(1)
 45-46`You heroically sacrifice yourself so that others can escape. Gain +10 to one rep score and roll randomly on the Choosing a Morph table (p. 44).`rep(?1?,10);rollTable(CHOOSING_A_MORPH)
 47-48`You risk your life in a desperate holding action. Gain the Brave trait (p. 145, EP).`trait(Brave)
