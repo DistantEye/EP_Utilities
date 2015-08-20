@@ -472,7 +472,7 @@ public class LifePathGenerator {
 							}
 						}
 						
-						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2])) )
+						if (! playerChar.incSkill(subparts[1], Integer.parseInt(subparts[2]) * -1) )
 						{
 							throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + errorInfo);
 						}
@@ -626,7 +626,7 @@ public class LifePathGenerator {
 							}
 						}
 						
-						playerChar.incAptitude(subparts[2], Integer.parseInt(subparts[2]));
+						playerChar.incAptitude(subparts[1], Integer.parseInt(subparts[2]));
 					}
 					else
 					{
@@ -1115,7 +1115,7 @@ public class LifePathGenerator {
 				}
 				else if (lcEffect.startsWith("msgclient"))
 				{
-					String[] subparts = Utils.splitCommands(params);
+					String[] subparts = Utils.splitOnce(params, ",");
 					if (subparts.length != 2 )
 					{
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);

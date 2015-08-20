@@ -786,11 +786,11 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if (Skill.isSkill(subparts[1]) && subparts[2].equalsIgnoreCase("all"))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && subparts[2].equalsIgnoreCase("all"))
 				{
 					result += "Remove skill: " + subparts[1];
 				}
-				else if (Skill.isSkill(subparts[1]) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Subtract " + subparts[2] + " to " + subparts[1];
 				}
@@ -1098,13 +1098,18 @@ public class DataProc {
 			else if (lcEffect.startsWith("rep"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 3)
+				if (subparts.length != 3 && subparts.length != 4)
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
 				else if (subparts[1].length() > 0 && Utils.isInteger(subparts[2]))
 				{
 					result += "Add " + subparts[2] + " to " + subparts[1] + "-rep";
+					
+					if (subparts.length == 4)
+					{
+						result += " where condition is true : " + subparts[3];
+					}
 				}
 				else
 				{
@@ -1215,7 +1220,7 @@ public class DataProc {
 			else if (lcEffect.startsWith("func"))
 			{
 				String[] subparts = Utils.splitCommands(params);
-				if (subparts.length != 2 )
+				if (subparts.length < 2 )
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
@@ -1224,7 +1229,17 @@ public class DataProc {
 					if (dataStore.containsKey(subparts[1]) && dataStore.get(subparts[1]).getType().equals("function"))
 					{
 						Function temp = (Function)dataStore.get(subparts[1]);
-						return effectsToString(temp.getEffect());
+						String effectsFunc = temp.getEffect();
+						
+						// replace any effect parameters for this function with the passed effects
+						for (int x = 2; x < subparts.length; x++)
+						{
+							int idx = x-1; // we start with looking to replace &1&
+							effectsFunc = effectsFunc.replace("&" + idx + "&", subparts[x]);
+						}
+						
+						
+						return effectsToString(effectsFunc);
 					}
 					else
 					{
