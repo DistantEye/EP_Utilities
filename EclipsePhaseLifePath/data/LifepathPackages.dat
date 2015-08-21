@@ -200,17 +200,17 @@ Package
 LOST: DISTURBED CHILD
 The Lost project unwittingly created a generation of monsters. You are among the odd, deranged, twisted, psychotic, and powerful examples that escaped.
 +Neurodiversity, +Sadism, +Vengeance, -Research
-PP;1>mox(1);Academics: ?1? 30;Control 35;Free Fall 15;trait(Psi,2);trait(Mental Disorder?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?)
-PP;3>mox(1);Academics: ?1? 40;Blades 15;Control 50;Deception 40;Fray 15;Free Fall 30;Infiltration 30;Language: ?1? 30;Profession: ?1? 20;trait(Psi,2);trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?1?);psigamma(?3?)
-PP;5>mox(1);addApt(WIL,5);rep(?1?,50);Academics: ?1? 40;Blades 20;Control 50;Deception 40;Fray 20;Free Fall 30;Infiltration 30;Interest: ?1? 30;Language: ?1? 30;Profession: ?1? 40;Psi Assault 40; Unarmed Combat 20;trait(Psi,2);trait(Mental Disorder ?3?);trait(On the Run);trait(Real World Naivete);psichi(?2?);psigamma(?5?)
+PP;1>mox(1);Academics: ?1? 30;Control 35;Free Fall 15;trait(Psi,2);trait(Mental Disorder (?3?));trait(On the Run);trait(Real World Naivete);psichi(?2?)
+PP;3>mox(1);Academics: ?1? 40;Blades 15;Control 50;Deception 40;Fray 15;Free Fall 30;Infiltration 30;Language: ?1? 30;Profession: ?1? 20;trait(Psi,2);trait(Mental Disorder (?3?));trait(On the Run);trait(Real World Naivete);psichi(?1?);psigamma(?3?)
+PP;5>mox(1);addApt(WIL,5);rep(?1?,50);Academics: ?1? 40;Blades 20;Control 50;Deception 40;Fray 20;Free Fall 30;Infiltration 30;Interest: ?1? 30;Language: ?1? 30;Profession: ?1? 40;Psi Assault 40; Unarmed Combat 20;trait(Psi,2);trait(Mental Disorder (?3?));trait(On the Run);trait(Real World Naivete);psichi(?2?);psigamma(?5?)
 ------------------------------------------------------------------------------------------------------------------------
 Package
 LOST: MASKED NORMALCY
 You survived the Lost project damaged but intact—or at least able to mask your inner demons from others. You are not as gifted—or as explosive—an async as some of the others, but you are also better at keeping yourself under control.
 +Acceptance +Privacy +Self Control
-PP;1>mox(1);Academics: ?1? 30;Persuasion 35;trait(Psi,1);trait(Mental Disorder: ?2?);psichi(?2?)
-PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20 trait(Psi,1);trait(Mental Disorder ?2?);psichi(?4?)
-PP;5>mox(1);rep(?1?,50);Academics: ?1? 40;Fray 20;Free Fall 30;Impersonation 40;Interest: ?1? 40;Interfacing 30;Kinesics 45;Language: ?1? 40;Persuasion 50;Profession: ?1? 30;Protocol 30;Sense: 50;trait(Psi,2);trait(Mental Disorder ?3?);trait(On The Run);psichi(?4?);psigamma(?2?)
+PP;1>mox(1);Academics: ?1? 30;Persuasion 35;trait(Psi,1);trait(Mental Disorder (?2?));psichi(?2?)
+PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20 trait(Psi,1);trait(Mental Disorder (?2?));psichi(?4?)
+PP;5>mox(1);rep(?1?,50);Academics: ?1? 40;Fray 20;Free Fall 30;Impersonation 40;Interest: ?1? 40;Interfacing 30;Kinesics 45;Language: ?1? 40;Persuasion 50;Profession: ?1? 30;Protocol 30;Sense: 50;trait(Psi,2);trait(Mental Disorder (?3?));trait(On The Run);psichi(?4?);psigamma(?2?)
 ------------------------------------------------------------------------------------------------------------------------
 Package
 ORIGINAL SCUM
@@ -543,9 +543,9 @@ Package
 COMBAT ASYNC
 Your psi abilities have been honed to a killing edge.
 +Neurodiversity, +Self Control, +Survival, -Bloodlust
-PP;1>Profession: Squad Tactics 30;Psi Assault 30;trait(Psi,2);Mental Disorder ?2?;psisleight(?3?)
-PP;3>rep(?1?,50);Fray 20;Infiltration 30;Interest: ?1? 40;Perception 20;Profession: Squad Tactics 50;Psi Assault 50;Spray Weapons 20;Unarmed Combat 20;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?4?)
-PP;5>rep(?1?,50);Academics: ?1? 30;Control 30;Fray 30;Infiltration 40;Interest: ?1? 40;Language: ?1? 30;Perception 30;Profession: Squad Tactics 50;Psi Assault 50;Sense 30;Spray Weapons 40;Unarmed Combat 30;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?8?)
+PP;1>Profession: Squad Tactics 30;Psi Assault 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?3?)
+PP;3>rep(?1?,50);Fray 20;Infiltration 30;Interest: ?1? 40;Perception 20;Profession: Squad Tactics 50;Psi Assault 50;Spray Weapons 20;Unarmed Combat 20;trait(Psi,2);trait(Mental Disorder  (?2?));psisleight(?4?)
+PP;5>rep(?1?,50);Academics: ?1? 30;Control 30;Fray 30;Infiltration 40;Interest: ?1? 40;Language: ?1? 30;Perception 30;Profession: Squad Tactics 50;Psi Assault 50;Sense 30;Spray Weapons 40;Unarmed Combat 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?8?)
 -------------------------------------------------------------------------------------------------------------
 Package
 CON ARTIST
@@ -559,9 +559,9 @@ Package
 CONTROLLER ASYNC
 Your infection enables you to invade and influence the minds of others.
 +Exploration, +Neurodiversity, +Self Control
-PP;1>Academics: Psychology 30;Control 30;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?3?)
-PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?4?)
-PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?6?)
+PP;1>Academics: Psychology 30;Control 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?3?)
+PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?4?)
+PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?6?)
 --------------------------------------------------------------------------------------------------------------------------
 Package
 COVERT OPS
@@ -680,17 +680,17 @@ Package
 SAVANT ASYNC
 Your infection gives you mental abilities beyond the reach of other transhumans.
 +Introspection, +Neurodiversity, +Personal Development, +Self Control
-PP;1>Academics: ?1? 30;Investigation 30;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?4?)
-PP;3>mox(1);rep?1?1,50;Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?5?)
-PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: ?1? 40;Art: ?1? 40;Deception 30;Hardware: ?1? 25;Interest: ?1? 30;Investigation 50;Kinesics 30;Language: ?1? 30;Networking: ?1? 25;Perception 50;Profession: ?1? 30 ;trait(Psi,1);trait(Mental Disorder ?1?);psisleight(?6?)
+PP;1>Academics: ?1? 30;Investigation 30;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?4?)
+PP;3>mox(1);rep?1?1,50;Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?5?)
+PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: ?1? 40;Art: ?1? 40;Deception 30;Hardware: ?1? 25;Interest: ?1? 30;Investigation 50;Kinesics 30;Language: ?1? 30;Networking: ?1? 25;Perception 50;Profession: ?1? 30 ;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?6?)
 ---------------------------------------------------------------------------------------------
 Package
 SCANNER ASYNC
 Your mind is altered in a way that provides you with preternatural senses.
 +Exploration, +Neurodiversity, +Personal Development, +Self Control
-PP;1>Academics: ?1? 30;Sense 30;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?3?)
-PP;3>rep(?1?,50.Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?4? )
-PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 40;Impersonation 35;Interest: ?1? 40;Investigation 30;Kinesics 35;Language: ?1? 40;Perception 50;Persuasion 25;Profession: ?1? 30;Sense 50;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?6? )
+PP;1>Academics: ?1? 30;Sense 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?3?)
+PP;3>rep(?1?,50.Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?4? )
+PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 40;Impersonation 35;Interest: ?1? 40;Investigation 30;Kinesics 35;Language: ?1? 40;Perception 50;Persuasion 25;Profession: ?1? 30;Sense 50;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?6? )
 ---------------------------------------------------------------------------------------
 Package
 SCAVENGER
@@ -793,7 +793,7 @@ Package
 ASYNC
 
 
-PP;1>Interest: ?1? 45;trait(Psi,1);trait(Mental Disorder ?1?);trait(Psi Chameleon (Level 1)/Psi Defense (Level 1));psichi(?5?);setVar(hasASYNC,1)
+PP;1>Interest: ?1? 45;trait(Psi,1);trait(Mental Disorder (?1?));trait(Psi Chameleon (Level 1)/Psi Defense (Level 1));psichi(?5?);setVar(hasASYNC,1)
 ------------------------------------------------------
 Package
 GEARHEAD
@@ -817,7 +817,7 @@ Package
 ASYNC ADEPT
 
 
-PP;1>?1?* 40;trait(Psi,2);trait(Mental Disorder ?2?);psisleight(?7?);setVar(hasASYNC_ADEPT,1)
+PP;1>?1?* 40;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?7?);setVar(hasASYNC_ADEPT,1)
 *Choose One Psi Skill
 ----------------------------------------------------
 Package
@@ -2242,9 +2242,9 @@ TABLE
 UPLIFT_BIOMORPHS
 100
 01-30`Neo-Avian`morph(Neo-Avian)
-31-40`Neo-Chimp`morph(Neo-Chimp)
-41-44`Neo-Bonobo`morph(Neo-Bonobo)
-45-50`Neo-Orangutan`morph(Neo-Orangutan)
+31-40`Neo-Chimp`morph(Neo-Hominid)
+41-44`Neo-Bonobo`morph(Neo-Hominid)
+45-50`Neo-Orangutan`morph(Neo-Hominid)
 51-70`Octomorph`morph(Octomorph)
 71-75`Neanderthal`morph(Neanderthal)
 76`Neo-Beluga`morph(Neo-Beluga)

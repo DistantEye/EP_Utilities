@@ -979,12 +979,14 @@ public class Character {
 	
 	/**
 	 * Returns whether a variable exists in the store (or from the character special store)
+	 * 
+	 * Will return false if the variable exists but has no value (length 0 string)
 	 * @param name Name/Key to search for
-	 * @return True if exists, false otherwise
+	 * @return True if exists with a non "" value, false otherwise
 	 */
 	public boolean hasVar(String name)
 	{
-		return this.otherVars.containsKey(name);
+		return this.otherVars.containsKey(name) && this.otherVars.get(name).length() != 0;
 	}
 	
 	/**

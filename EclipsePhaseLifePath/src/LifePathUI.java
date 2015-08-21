@@ -72,7 +72,7 @@ public class LifePathUI implements UI {
 		String prompt = message + "\n" + extraContext;
 		
 		// check for a few things that lets us provide extra info
-		String[] result = DataProc.getExtraPromptOptions(message);
+		String[] result = DataProc.getExtraPromptOptions(message,extraContext);
 		if (result != null )
 		{
 			prompt += result[1];

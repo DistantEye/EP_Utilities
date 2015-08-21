@@ -434,7 +434,7 @@ Neo-dolphin morphs are very rare, since there are few habitats that can support 
 
 <morph>
 <type>Biomorph</type>
-<name>Neo-Hominid (Gorilla)</name>
+<name>Neo-Gorilla</name>
 <Desc>To highlight the differences in neo-hominid species, apply the following stats for neo-gorillas. The neo-hominid entry above applies for neo-chimpanzees, neo-bonobos, and neo-orangutans.</Desc>
 <Implants>Basic Biomods, Basic Mesh Inserts, Cortical Stack, Prehensile Feet</Implants>
 <Aptitude Maximum>30</Aptitude Maximum>

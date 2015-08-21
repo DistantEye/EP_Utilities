@@ -1413,26 +1413,37 @@ public class DataProc {
 	 * For instance, it can determine a message is prompt is for choosing a field skill, and give the information related to that, which can be used to provide a list
 	 * of valid answers to default to.
 	 * 
-	 * @param message String[] of format {TypePrompt,UIMessage,any other params, etc}
-	 * @return
+	 * @param message The message the user recieves (usually a translated effect string)
+	 * @param extra Extra contextual info read from if * is detected in String Message
+	 * @return String[] of format {TypePrompt,UIMessage,any other params, etc}
 	 */
-	public static String[] getExtraPromptOptions(String message)
+	public static String[] getExtraPromptOptions(String message,String extra)
 	{
+		if (message.contains("*"))
+		{
+			message = message + "\n" + extra;
+		}
+		
 		Matcher fieldSkill = Pattern.compile("Add skill : ([a-zA-Z]+):[ ]*\\(Choose One Skl\\) [0-9]+").matcher(message);
 		Matcher fullSkill = Pattern.compile("Add skill : \\(Choose One Skl\\) [0-9]+").matcher(message);
-		Matcher fullSkillNonPsi = Pattern.compile("Add skill : \\(Choose One Skl\\)\\*? [0-9]+").matcher(message);
+		Matcher fullSkillNonPsi = Pattern.compile("(Choose )?(Any|One|Two|Three|Four|Five|Six|Seven|Eight) Non Psi(-| )Skill").matcher(message);
+		Matcher fullSkillPsi = Pattern.compile("(Choose )?(Any|One|Two|Three|Four|Five|Six|Seven|Eight) Psi(-| )Skill").matcher(message);
+		
 		if (fieldSkill.find())
 		{
 			return new String[]{"field","\n Entering nothing will attempt to choose a random value for Field Skills",fieldSkill.group(1)};
 		}
+		else if (fullSkillNonPsi.find())
+		{
+			return new String[]{"skillNoPsi","\n Entering nothing will attempt to choose a random valid Non-Psi skill"};
+		}
+		else if (fullSkillPsi.find())
+		{
+			return new String[]{"skillPsi","\n Entering nothing will attempt to choose a random valid Psi skill"};
+		}
 		else if (fullSkill.find())
 		{
 			return new String[]{"skill","\n Entering nothing will attempt to choose a random valid skill"};
-		}
-		// TODO for right now * for choose skill only means Psi, this will have to be made more precise in the future 
-		else if (fullSkillNonPsi.find())
-		{
-			return new String[]{"skillNoPsi","\n Entering nothing will attempt to choose a random valid skill"};
 		}
 		
 		return null;

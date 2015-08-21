@@ -185,7 +185,7 @@ public class LifePathGenerator {
 						{
 							// if the right stuff are in the prompt, we can do some extra actions
 							// check for a few things that lets us provide extra info
-							String[] result = DataProc.getExtraPromptOptions(promptMsg);
+							String[] result = DataProc.getExtraPromptOptions(promptMsg,extraContext+"\n"+extraInfo);
 							if (result != null && result[0].equals("field"))
 							{
 								String sklName = result[2];
@@ -208,6 +208,23 @@ public class LifePathGenerator {
 								Skill temp = Skill.getRandomSkill(rng, 0);
 								
 								while (Skill.hasCategory(temp.getName(), "Psi"))
+								{
+									temp = Skill.getRandomSkill(rng, 0);
+								}
+								
+								if (Skill.hasCategory(temp.getName(), "Field"))
+								{
+									temp.setSubtype(getSkillField(temp.getName()));
+								}
+								
+								promptRes = temp.getFullName();
+							}
+							else if (result != null && result[0].equals("skillPsi"))
+							{
+								Skill temp = Skill.getRandomSkill(rng, 0);
+								
+								// TODO probably should make a function that only returns possibilities with a particular category
+								while (!Skill.hasCategory(temp.getName(), "Psi"))
 								{
 									temp = Skill.getRandomSkill(rng, 0);
 								}
