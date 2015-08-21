@@ -11,8 +11,8 @@ Deception;SAV;true;Active,Social
 Demolitions;COG;false;Active,Technical
 Disguise;INT;true;Active,Physical
 Exotic Language;INT;true;Knowledge,Field
-Exotic Melee Weapon;SOM;true;Active,Combat,Field
-Exotic Ranged Weapon;COO;true;Active,Combat,Field
+Exotic Melee Weapon;SOM;true;Active,Combat
+Exotic Ranged Weapon;COO;true;Active,Combat
 Flight;SOM;true;Active,Physical
 Fray;REF;true;Active,Combat
 Free Fall;REF;true;Active,Physical
@@ -1643,7 +1643,8 @@ Spares are designed for portability. Packed as a flat disc 15 centimeters in dia
 <Credit Cost>Expensive (minimum 50,000+)</Credit Cost>
 </morph>
 
-<morph fName="Infomorph">
+<morph>
+<type>Infomorph</type>
 <name>Infomorph</name>
 <Desc>Infomorphs are digital-only forms—they lack a physical body. Infomorphs are sometimes carried by other characters instead of (or in addition to) a muse in a ghostrider module.</Desc>
 <Enhancements>Mnemonic Augmentation</Enhancements>
@@ -4066,7 +4067,7 @@ when exposed to it (eye irritation, sneezing, difficult breathing).
 Apply a -10 modifier to all tests while the character remains
 exposed. This trait is only available for biomorphs.
 
-TRAIT:::Modified Behaviour
+TRAIT:::Modified Behavior
 Bonus: 5 (Level 1), 10 (Level 2), or 20 (Level 3) CP
 
 The character has

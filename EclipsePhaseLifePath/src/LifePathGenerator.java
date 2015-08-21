@@ -597,7 +597,7 @@ public class LifePathGenerator {
 					else if (subparts[1].equalsIgnoreCase("randomroll"))
 					{
 						// no need to return anything, this is just to get a new morph
-						this.runEffect("rollTable;CHOOSING_A_MORPH","");
+						this.runEffect("rollTable(CHOOSING_A_MORPH)","");
 					}
 					else if (subparts[1].length() > 0)
 					{

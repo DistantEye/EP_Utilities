@@ -1331,7 +1331,7 @@ CHARACTER_AGE
 81-85`In your 60s. Proceed to Step 6.`setVar(ageRange,60s);stepskip(STEP_6_0)
 86-90`In your 70s. Proceed to Step 6.`setVar(ageRange,70s);stepskip(STEP_6_0)
 91-94`In your 80s. Proceed to Step 6.`setVar(ageRange,80s);stepskip(STEP_6_0)
-95-98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar(ageRange,90s);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
+95-98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar(ageRange,90s);setVar(diceBonus,1);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
 99-100`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar(ageRange,100+);rollTable(ADVANCED_AGE)
 --------------------------------------------------------------
 TABLE

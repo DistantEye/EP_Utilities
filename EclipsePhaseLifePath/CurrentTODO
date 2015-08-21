@@ -25,5 +25,6 @@ Skils should display in the end with their aptitudes taken into effect
 
 may need to do something special with if conditionals : right now getVar will try and resolve for both branches, which can break things
 
+Step 3 can sometimes roll insane results such as a fragmented childhood including created not made when other choices have been made. Should preclude this?
 
 Redo last step type error resolution doesn't work because it doesn't typically let you undo choices, try and find a way to fix that

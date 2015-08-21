@@ -581,8 +581,13 @@ public class LifePathUI implements UI {
 		{
 			morphName = gen.getPC().getCurrentMorph().getName();
 		}
+		
 		getTextF("Morph").setText(morphName);
-		getTextF("Background").setText(gen.getPC().getBackground());
+		
+		if (gen.getPC().hasVar("{background}"))
+		{
+			getTextF("Background").setText(gen.getPC().getBackground());
+		}
 		
 		if (gen.getPC().hasVar("NatLang"))
 		{
