@@ -61,17 +61,26 @@ public class LifePathGenerator {
 	}
 
 
-
+	/**
+	 * Recursive function that splits effects with a high numbered choice parameter like ?3? into single choice parameter effects
+	 * trait(Mental Disorder (?3?)) would become trait(Mental Disorder (?1?));trait(Mental Disorder (?1?));trait(Mental Disorder (?1?)) 
+	 * @param input
+	 * @param buffer Initiall blank list used to store 
+	 * @return The split effect String, or "" if nothing could be split
+	 */
 	protected String splitChoiceTokens(String input, ArrayList<String> buffer)
 	{
-		Pattern groups = Pattern.compile("\\?([2-9]+)\\?\\**");
+		Pattern groups = Pattern.compile("\\?([2-9]+)\\?\\**");		
 		Matcher m = groups.matcher(input);
+		if(!m.find())
+		{
+			return "";
+		}
 		int val = Integer.parseInt(m.group(1));
-		String match = m.group();
 		
 		// clone effect for every value over 1, so that ?2? leads to two effects with ?1?
-		input = input.replaceFirst(match, match.replaceFirst("\\?" + val + "\\?","?1?"));
-		for (int i = 1; i < val; i++)
+		input = input.replaceFirst("\\?" + val + "\\?","?1?");
+		for (int i = 0; i < val; i++)
 		{
 			buffer.add(input);
 		}
@@ -85,7 +94,23 @@ public class LifePathGenerator {
 		
 		buffer.addAll(buffer2);
 		
-		return input;
+		String result = "";
+		
+		if (buffer.size() == 0)
+		{
+			return "";
+		}
+		else
+		{
+			result = buffer.get(0);
+			
+			for (int i = 1; i < buffer.size(); i++)
+			{
+				result += ";" + buffer.get(i);
+			}
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -129,7 +154,8 @@ public class LifePathGenerator {
 			
 			// this should handle all cases of choice token splitting, no matter how convulted/nested
 			// "splitting" refers to making high numbered choice tokens like ?3? into three separate effects of ?1?
-			while (tempEff.matches("\\?([2-9]+)\\?\\**"))
+			// TODO will this work properly in terms of the while conditional running each time? Make sure.
+			while (Pattern.compile("\\?([2-9]+)\\?\\**").matcher(tempEff).find())
 			{
 				tempEff = splitChoiceTokens(tempEff,buffer);								
 			}
@@ -1603,7 +1629,7 @@ public class LifePathGenerator {
 			return;
 		}
 		
-		// 
+		// Reset both of these each step
 		noStop = false;
 		stepSkipTo = "";
 		
@@ -1883,5 +1909,5 @@ public class LifePathGenerator {
 		{
 			throw new IllegalArgumentException("No _FIELDS table defined for " + skillName);
 		}
-	}
+	}	
 }

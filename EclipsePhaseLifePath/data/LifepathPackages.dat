@@ -665,8 +665,7 @@ Traveling wasn't something you did because you wanted to see new places and peop
 +Survival, +Thrill Seeking, +Wealth, -Authority
 PP;1>mox(1);Infiltration 15;Interest: ?1? 30;Pilot: Spacecraft 40
 PP;3>mox(1);rep(g,50);Fray 20;Gunnery 20;Infiltration 30;Interest: ?1? 30;Kinetic Weapons 20;Networking: Criminals 20;Perception 20;Pilot: Spacecraft 40;Profession: Piracy 50;Scrounging 30
-PP;5>mox(1);rep(g,50);addApt(COO,5);Art: ?1? 30;Fray 20;Gunnery 30;Infiltration 30;
-Interest: ?1? 40; Intimidation 20; Language ?1? 30; Kinetic Weapons 30; Networking: Criminals 30; Perception 20; Pilot: Spacecraft 50; Profession: Piracy 50; Scrounging 30; Unarmed Combat 20
+PP;5>mox(1);rep(g,50);addApt(COO,5);Art: ?1? 30;Fray 20;Gunnery 30;Infiltration 30;Interest: ?1? 40; Intimidation 20; Language ?1? 30; Kinetic Weapons 30; Networking: Criminals 30; Perception 20; Pilot: Spacecraft 50; Profession: Piracy 50; Scrounging 30; Unarmed Combat 20
 --------------------------------------------------------------------
 Package
 PSYCHOSURGEON
