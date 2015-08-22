@@ -567,7 +567,7 @@ Package
 COVERT OPS
 You are skilled at sneaking into places you don’t belong for high-threat missions.
 +Explosions, +Survival, –TITAN Tech
-PP;1>Blades 30;Infiltration 40;Profession: Squad Tactics 30
+PP;1>Blades 30;Infiltration 40;Profession: Squad Tactics 30
 PP;3>rep(?1?,50);Blades 20;Demolitions 25;Fray 20;Infiltration 50;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 30
 PP;5>rep(?1?,50);addApt(COO,5);Blades 30;Climbing 30;Demolitions 30;Fray 30;Infiltration 50;Infosec 25;Interest: ?2? 30;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 40
 --------------------------------------------------------------------------------------------------------------------------
@@ -1174,14 +1174,14 @@ TABLE_3
 TABLE
 TABLE_3_1
 100
-01-50`Earthborn. Go to Table 3.2: Earth Childhood`background(Earthborn);rollTable(TABLE_3_2,!!X!!)
-51-60`Orbital. Go to Table 3.3: Orbital Childhood`background(Orbital);rollTable(TABLE_3_3,!!X!!)
-61-68`Lunar. Go to Table 3.4: Lunar Childhood`background(Lunar);rollTable(TABLE_3_4,!!X!!)
-69-76`Martian Settler. Table 3.5: Martian Childhood`background(Martian Settler);rollTable(TABLE_3_5,!!X!!)
-77-82`Sunward Hab. Table 3.6: Sunward Childhood`background(Sunward Hab);rollTable(TABLE_3_6,!!X!!)
-83-89`Rimward Hab. Go to Table 3.7: Rimward Childhood`background(Rimward Hab);rollTable(TABLE_3_7,!!X!!)
-90-95`Migrant. Go to Table 3.8: Migrant Childhood`background(Migrant);rollTable(TABLE_3_8,!!X!!)
-96-100`Created not Born. Go to Table 3.9: Created Not Born`background(Created not Born);rollTable(TABLE_3_9,!!X!!)
+01-50`Earthborn. Go to Table 3.2: Earth Childhood`background(Earthborn);setVar(NOT_CREATED,1);rollTable(TABLE_3_2,!!X!!)
+51-60`Orbital. Go to Table 3.3: Orbital Childhood`background(Orbital);setVar(NOT_CREATED,1);rollTable(TABLE_3_3,!!X!!)
+61-68`Lunar. Go to Table 3.4: Lunar Childhood`background(Lunar);setVar(NOT_CREATED,1);rollTable(TABLE_3_4,!!X!!)
+69-76`Martian Settler. Table 3.5: Martian Childhood`background(Martian Settler);setVar(NOT_CREATED,1);rollTable(TABLE_3_5,!!X!!)
+77-82`Sunward Hab. Table 3.6: Sunward Childhood`background(Sunward Hab);setVar(NOT_CREATED,1);rollTable(TABLE_3_6,!!X!!)
+83-89`Rimward Hab. Go to Table 3.7: Rimward Childhood`background(Rimward Hab);setVar(NOT_CREATED,1);rollTable(TABLE_3_7,!!X!!)
+90-95`Migrant. Go to Table 3.8: Migrant Childhood`background(Migrant);setVar(NOT_CREATED,1);rollTable(TABLE_3_8,!!X!!)
+96-100`Created not Born. Go to Table 3.9: Created Not Born`if(!hasVar(NOT_CREATED),background(Created not Born);rollTable(TABLE_3_9,!!X!!),msgClient(Rerolling Table: Can't be partially 'Created Not Born');rollTable(TABLE_3_1,!!X!!))
 --------------------------------------------------------------
 TABLE
 TABLE_3_2
@@ -1345,9 +1345,14 @@ ADVANCED_AGE
 TABLE
 TABLE_6
 10
-1-3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(getVar({path}))
-4-6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12)
+1-3`Stay on the path. Roll on the table below as indicated by the Next Path entry from your most recent Background path (from Step 3).`rollTable(getVar({path}));func(SET_FACTION_FROM_PATH)
+4-6`Specialize. Roll on Table 6.12: Customizations instead.`rollTable(TABLE_6_12);func(SET_FACTION_FROM_PATH)
 7-10`Switch gears. Roll on Table 6.1: New Path instead and proceed to the table indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}))
+--------------------------------------------------------------
+FUNCTION
+SET_FACTION_FROM_PATH
+// converts {path} values (uses TABLE_6_*) into matching faction values (uses TABLE_9_*)
+if(?equals(getVar({path}),TABLE_6_2),faction(TABLE_9_4));if(?equals(getVar({path}),TABLE_6_3),faction(TABLE_9_5));if(?equals(getVar({path}),TABLE_6_4),faction(TABLE_9_6));if(?equals(getVar({path}),TABLE_6_5),faction(TABLE_9_7));if(?equals(getVar({path}),TABLE_6_6),faction(TABLE_9_8));if(?equals(getVar({path}),TABLE_6_7),faction(TABLE_9_9));if(?equals(getVar({path}),TABLE_6_8),faction(TABLE_9_10));if(?equals(getVar({path}),TABLE_6_9),faction(TABLE_9_11));if(?equals(getVar({path}),TABLE_6_10),faction(TABLE_9_12));if(?equals(getVar({path}),TABLE_6_12),faction(TABLE_9_13));
 --------------------------------------------------------------
 TABLE
 TABLE_6_1
@@ -1497,8 +1502,8 @@ TABLE
 TABLE_6_12
 100
 01-04`Artist`package(ARTIST)
-05-08`Async`if(!hasVar(hasASYNC),package(ASYNC),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
-09-12`Async Adept`if(!hasVar(hasASYNC_ADEPT),package(ASYNC ADEPT),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
+05-08`Async`if(!hasVar(hasASYNC)&&?hasVar(NOT_STEP_6),package(ASYNC),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
+09-12`Async Adept`if(!hasVar(hasASYNC_ADEPT)&&?hasVar(NOT_STEP_6),package(ASYNC ADEPT),msgClient(Re-rolling Table);rollTable(TABLE_6_12))
 13-16`Athletics`package(ATHLETICS)
 17-20`Computer Training`package(COMPUTER TRAINING)
 21-24`Connected`package(CONNECTED)
@@ -1532,7 +1537,7 @@ TABLE_7
 33-34`Regular attention to your health and exercise improves your abilities. Gain +5 SOM.`addApt(SOM,5)
 35-36`You decide you want to experiment. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods.`rollTable(CHOOSING_A_MORPH_NO_PODS)
 37-38`You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path.`msgClient(This result is ignored, reroll);rollTable(TABLE_7)
-39-40`You pick up a new hobby. +20 to one Art or Interest skill.`incSkl(?1?,20,?equals($1,Art)||?equals($1,Interest))
+39-40`You pick up a new hobby. +20 to one Art or Interest skill.`incSkl(?1?,20,?skillIsType($1,Art)||?skillIsType($1,Interest))
 41-42`An unfortunate habitat failure, traffic accident, or fire ends your life. Roll randomly on the  Choosing a Morph table (p. 44), but ignore pods and uplifts.`rollTable(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
 43-44`You travel extensively: +20 to Navigation skill.`incSkl(Navigation,20)
 45-46`Your work requires you to change your morph. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods and uplifts.`rollTable(CHOOSING_A_MORPH_NO_PODS_UPLIFTS)
@@ -2058,7 +2063,7 @@ msgClient(START STEP 6);if(?hasVar(diceBonus),remVar(diceBonus));rollTable(TABLE
 STEP
 STEP_6_1
 STEP_7
-msgClient(START STEP 6);if(?hasVar(diceBonus),remVar(diceBonus));rollTable(TABLE_6)
+msgClient(START STEP 6);setVar(NOT_STEP_6,1);if(?hasVar(diceBonus),remVar(diceBonus));rollTable(TABLE_6)
 --------------------------------------------------------------
 STEP
 STEP_7

@@ -163,7 +163,8 @@ public class Skill {
 			throw new IllegalArgumentException("Invalidly formatted Skill string : " + input);
 		}
 		
-		String[] cats = parts[3].split(",");
+		// every skill has it's parent name as a category (done for sake of grouping Field skills)
+		String[] cats = (parts[3]+","+parts[0]).split(",");
 		
 		Skill temp = new Skill(parts[0],parts[1],"","",-1,Boolean.valueOf(parts[2]), cats);
 		Skill.skillList.add(temp);
@@ -238,7 +239,7 @@ public class Skill {
 		
 		for (Skill skl : Skill.skillList)
 		{
-			if (skl.getFullName().equalsIgnoreCase(searchName))
+			if (skl.getName().equalsIgnoreCase(searchName))
 			{
 				temp = skl;
 			}
@@ -654,8 +655,8 @@ public class Skill {
 	 * @return
 	 */
 	public static boolean hasCategory(String name, String cat)
-	{
-		for (String str : Skill.CreateSkill(name, 1).categories)
+	{		
+		for (String str : CreateSkillFromString(name + " 1").categories)
 		{
 			if (str.equalsIgnoreCase(cat))
 			{

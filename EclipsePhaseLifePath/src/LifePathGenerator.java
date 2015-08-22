@@ -1916,8 +1916,6 @@ public class LifePathGenerator {
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 		LifePathGenerator gen = new LifePathGenerator("",null,true);
 		
-		Table temp = (Table)DataProc.getDataObj("TABLE_11");
-		
-		System.out.println(temp.toString());
+		System.out.println(Skill.hasCategory("Art: Arting", "Art"));
 	}
 }
