@@ -404,6 +404,18 @@ public class Skill {
 
 	public String toString()
 	{
+		String result = this.getFullName() + " : " + this.value;
+		
+		return result;
+	}
+	
+	/**
+	 * Returns the full identification for this skill. If it has no subtype, it simply returns the name.
+	 * If it has a subtype, it'll return a proper "name: subtype" string
+	 * @return Returns full skill identifier as a String
+	 */
+	public String getFullName()
+	{
 		String result = "";
 		
 		result += name;
@@ -420,26 +432,7 @@ public class Skill {
 		
 		result = result.trim();
 		
-		result += " : " + this.value;
-		
 		return result;
-	}
-	
-	/**
-	 * Returns the full identification for this skill. If it has no subtype, it simply returns the name.
-	 * If it has a subtype, it'll return a proper "name: subtype" string
-	 * @return Returns full skill identifier as a String
-	 */
-	public String getFullName()
-	{
-		if (this.getSubtype().length() > 0)
-		{
-			return this.getName() + ": " + this.getSubtype();
-		}
-		else
-		{
-			return this.getName();
-		}
 	}
 	
 	/**
@@ -528,17 +521,28 @@ public class Skill {
 		}
 		else
 		{
-			// calculate how much it goes over 60 and save that value
-			int leftover = this.value+value - 60;
-			
-			// bring value up to 60
-			this.value = 60;
-			
-			// add the rest with calculations factored in
-			this.value += leftover/2;
-			
+			this.setValue(over60Adjust(this.value+value));
 		}
 		
+	}
+	
+	protected static int over60Adjust(int val)
+	{
+		if (val <= 60)
+		{
+			return val;
+		}
+		else
+		{
+			// calculate how much it goes over 60 and save that value
+			int leftover = val - 60;
+						
+			int result = 60;
+						
+			// add the rest with calculations factored in
+			result += leftover/2;
+			return result;
+		}
 	}
 	
 	/**

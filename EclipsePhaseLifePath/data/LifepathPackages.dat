@@ -897,7 +897,7 @@ Package
 CONNECTED
 
 
-PP;1>Networking ?1? 40;trait(Allies);trait(Patron);credit(30000)
+PP;1>Networking: ?1? 40;trait(Allies);trait(Patron);credit(30000)
 ------------------------------------------------------
 Package
 MARTIAL ARTS

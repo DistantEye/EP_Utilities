@@ -33,6 +33,8 @@ public class Character {
 	//private int credits;
 	private HashMap<String, Sleight> sleightList;
 	private Step lastStep;
+	private ArrayList<String[]> packages; // stores pkgs added to character
+	private boolean autoApplyMastery;
 	
 	/**
 	 * @return the currentTable the player is rolling on (if character gen)
@@ -86,10 +88,10 @@ public class Character {
 	/**
 	 * @param name
 	 */
-	public Character(String name) 
+	public Character(String name, boolean autoApplyMastery) 
 	{
 		this.name = name;
-		
+		this.autoApplyMastery = autoApplyMastery;
 		skillList = new HashMap<String,Skill>();
 		aptitudeList = new HashMap<String,Aptitude>();
 		traitList = new ArrayList<Trait>();
@@ -143,6 +145,7 @@ public class Character {
 		currentTable = "";
 		lastRolls = new LinkedList<Integer>();
 		allBackgrounds = new LinkedList<String>();
+		packages = new ArrayList<String[]>();
 	}
 	
 	// calculates stats like durability and insanity and such
@@ -553,8 +556,22 @@ public class Character {
 	}
 	
 	/**
+	 * Returns final adjusted value for a skill, factoring in base aptitude bonus and mastery adjustments
+	 * @param skl
+	 * @return Adjusted value for skill
+	 */
+	public int getFinalSklVal(Skill skl)
+	{
+		String linkedApt = skl.getLinkedApt();
+		int aptValue = this.getAptitude(linkedApt);
+		
+		return Skill.over60Adjust(skl.getValue()+aptValue);
+	}
+	
+	/**
 	 * Takes all the character's skills and returns a list of String[]
 	 * in the form of {skillName,value} . skillName will include the specialization if applicable
+	 * Character's base aptitude values will be factored into the calculation
 	 * 
 	 * @return ArrayList of strings representing character skill values
 	 */
@@ -564,7 +581,7 @@ public class Character {
 		
 		for (Skill skill : skillList.values())
 		{
-			String[] temp = {skill.getFullName(), ""+skill.getValue()};
+			String[] temp = {skill.getFullName(), ""+getFinalSklVal(skill)};
 			result.add(temp);
 		}
 		
@@ -888,7 +905,7 @@ public class Character {
 		boolean first = true;
 		
 		
-		for (Skill skl : skillList.values())
+		for (String[] skl : this.getSkills())
 		{
 			String separator = ",  ";
 			
@@ -904,7 +921,7 @@ public class Character {
 				cnt = 0;
 			}
 			
-			result += separator + skl.toString();
+			result += separator + skl[0] + " " + skl[1];
 			cnt++;
 		}
 		
@@ -1075,6 +1092,41 @@ public class Character {
 		this.lastStep = lastStep;
 	}
 	
+	public boolean hasPackage(String name)
+	{
+		for (String[] info : this.packages)
+		{
+			if (info[0].equalsIgnoreCase(name))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Adds package info to a character's list of added packages. This is mainly a log for purposes of keeping aware of duplications
+	 * @param info Length 2 String[] of form {PackageName,PP}
+	 */
+	public void addPackage(String[] info)
+	{
+		this.packages.add(info);
+	}
+
+	/**
+	 * @return the autoApplyMastery
+	 */
+	public boolean isAutoApplyMastery() {
+		return autoApplyMastery;
+	}
+
+	/**
+	 * @param autoApplyMastery the autoApplyMastery to set
+	 */
+	public void setAutoApplyMastery(boolean autoApplyMastery) {
+		this.autoApplyMastery = autoApplyMastery;
+	}
 	
 	
 }

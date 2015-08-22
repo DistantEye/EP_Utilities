@@ -36,7 +36,7 @@ public class LifePathGenerator {
 	 */
 	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling)
 	{
-		playerChar = new Character(characterName);
+		playerChar = new Character(characterName,false);
 		UIObject = UIObject_;
 		this.isRolling = isRolling;
 		this.nextEffects = "";
@@ -933,6 +933,7 @@ public class LifePathGenerator {
 						UIObject.statusUpdate("Package added (PP1): " + temp.getName() + " : " + temp.getDescription());
 												
 						playerChar.incVar("packageVal", 1);
+						playerChar.addPackage(new String[]{temp.getName(),"1"});
 						this.runEffect(pkgEffect, temp.getSpecialNotes());
 					}
 					else if (subparts.length == 3 )
@@ -954,6 +955,7 @@ public class LifePathGenerator {
 						UIObject.statusUpdate("Package added (PP" + PP + "): " + temp.getName() + " : " + temp.getDescription());
 						
 						playerChar.incVar("packageVal", PP);
+						playerChar.addPackage(new String[]{temp.getName(),""+PP});
 						this.runEffect(pkgEffect, temp.getSpecialNotes());
 					}
 					else
@@ -1437,8 +1439,8 @@ public class LifePathGenerator {
 		{
 			String part1, part2;
 			
-			part1 = condition.substring(0, condition.indexOf("||"));
-			part2 = condition.substring(condition.indexOf("||")+2);
+			part1 = condition.substring(0, condition.indexOf("&&"));
+			part2 = condition.substring(condition.indexOf("&&")+2);
 			
 			return this.resolveConditional(part1,effectParams) || this.resolveConditional(part2,effectParams);
 		}
@@ -1885,6 +1887,14 @@ public class LifePathGenerator {
 			
 			String tableEffects = rowReturned.getEffects();
 			
+			// we wannt to reroll instead  if this would add a package already present
+			if (containsDuplicatePackage(tableEffects))
+			{
+				this.UIObject.statusUpdate("Roll would add an already present package: rerolling!");
+				this.handleRollTable(effect, errorInfo, forceRoll);				
+				return;
+			}
+			
 			// give the description to the client
 			this.UIObject.statusUpdate(rowReturned.getDescription());
 			
@@ -1896,6 +1906,32 @@ public class LifePathGenerator {
 		}
 	}
 
+	/**
+	 * Does a "quick parse" to see whether the effects would seem to add a package the character already has 
+	 * @param effects Valid effects String to search
+	 * @return true/false as appropriate
+	 */
+	protected boolean containsDuplicatePackage(String effects)
+	{
+		String[] effectsArr = Utils.splitCommands(effects, ";");
+		
+		for (String eff : effectsArr)
+		{
+			String effLC = eff.toLowerCase();
+			
+			if (effLC.startsWith("package"))
+			{
+				String params = Utils.returnStringInParen(eff);
+				
+				String[] subparts = Utils.splitCommands(params);
+				
+				return getPC().hasPackage(subparts[0]);
+			}
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * Tries to match skillName against a Fields table and return a valid Field name for the skill
 	 * @param skillName Skill to search for
