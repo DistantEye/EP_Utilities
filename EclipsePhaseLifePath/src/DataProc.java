@@ -714,6 +714,8 @@ public class DataProc {
 	 */
 	public static String effectsToString(String effects)
 	{
+		effects = effects.replaceAll("#[^#]+#", ""); // this tags are mostly unparseable, ignore them
+		
 		if (dataStore == null)
 		{
 			throw new IllegalStateException("Datastore not built yet!");
@@ -765,7 +767,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Add " + subparts[2] + " to " + subparts[1];
 				}
@@ -786,7 +788,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Set skl " + subparts[2] + " to " + subparts[1];
 				}
@@ -807,11 +809,11 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && subparts[2].equalsIgnoreCase("all"))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && subparts[2].equalsIgnoreCase("all"))
 				{
 					result += "Remove skill: " + subparts[1];
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsChoice(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Subtract " + subparts[2] + " to " + subparts[1];
 				}
@@ -832,7 +834,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if (Skill.isSkill(subparts[1]) && subparts[2].length() > 0)
+				else if ( (Skill.isSkill(subparts[1])|| DataProc.containsUncertainty(subparts[1])) && subparts[2].length() > 0)
 				{
 					result += "Add specialization: " + subparts[2] + " to " + subparts[1];
 				}
@@ -1259,20 +1261,22 @@ public class DataProc {
 							effectsFunc = effectsFunc.replace("&" + idx + "&", subparts[x]);
 						}
 						
-						String addendum = "";
 						if (effectsFunc.contains("func("+subparts[1]+")"))
 						{
-							effectsFunc.replace("func("+subparts[1]+")", "");
-							addendum = " ; Run function again";
+							effectsFunc = effectsFunc.replace("func("+subparts[1]+")", "dummyFunc("+subparts[1]+")");
 						}
 						
-						return effectsToString(effectsFunc) + addendum;
+						return effectsToString(effectsFunc);
 					}
 					else
 					{
 						throw new IllegalArgumentException("Poorly formated effect, " + subparts[1] + " does not exist or is not a function" + errorInfo);
 					}
 				}
+			}
+			else if (lcEffect.startsWith("dummyfunc"))
+			{	
+				result += "call function: " + effect;
 			}
 			else if (lcEffect.startsWith("msgclient"))
 			{			
@@ -1373,6 +1377,33 @@ public class DataProc {
 	public static boolean containsChoice(String input)
 	{
 		return Pattern.compile("\\?([0-9]+)\\?").matcher(input).find();
+	}
+	
+	/**
+	 * Like containsChoice, but returns true if input contains a choice wildcard, as well as any other wildcard or special symbol like !RANDSKILL!
+	 * @param input
+	 * @return
+	 */
+	public static boolean containsUncertainty(String input)
+	{
+		if (containsChoice(input))
+		{
+			return true;
+		}
+		else
+		{
+			String[] specialStrs = {"!RANDSKILL!","!RANDAPT!","!RAND_DER!"};
+			
+			for (String str : specialStrs)
+			{
+				if (input.contains(str))
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
 	}
 
 	/**

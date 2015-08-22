@@ -447,7 +447,7 @@ Package
 SCUM
 You proudly call the exotic, edgy, and lawless ships of a scum swarm your home.
 +Anarchism, +Hedonism, +Individualism, +Morphological Freedom
-PP;1>Art: ?1? 30;Free Fall 30;Networking Autonomists 40
+PP;1>Art: ?1? 30;Free Fall 30;Networking: Autonomists 40
 PP;3>mox(1);rep(@,50);Art: ?1? 50;Free Fall 40;Interest: ?1? 40;Kinesics 40;Medicine: Biosculpting 30;Networking Autonomists 50;Persuasion 30
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
@@ -1920,7 +1920,7 @@ TABLE_11
 83`You team up with a partner to get the job done. Gain the Minion/Partner trait (p. 85).`trait(Minion/Partner)
 84`Someone you respect shows their true colors, and they aren’t pretty. Gain +1 Moxie.`mox(1)
 85`Your exceptional nature is noticed. Gain the Patron trait (p. 146, EP).`trait(Patron)
-86`You get fired/kicked out. Lose 10,000 from your starting credit or -10 rep.`setVar(choice86,?1?#Choose C for -10000 Credit, else will use -10 Rep);if(?equals(getVar(choice86),C),credit(-10000),rep(?1?,-10));remVar(choice86)
+86`You get fired/kicked out. Lose 10,000 from your starting credit or -10 rep.`setVar(choice86,?1?#Choose C for -10000 Credit, else will use -10 Rep#);if(?equals(getVar(choice86),C),credit(-10000),rep(?1?,-10));remVar(choice86)
 87`An established university offers you a steady position. Gain the Tenure trait (p. 86).`trait(Tenure)
 88`A fork goes missing. It could be nothing, but it was in possession of some compromising information about yourself. Gain the Lost Fork trait (p. 91).`trait(Lost Fork)
 89`You fall for the smooth lies of a convincing member of another faction. You realize your error only after the damage is done. Lose 10 rep from the rep network appropriate to your faction.`rep(?1?#Rep most relevant to your current faction#,-10)

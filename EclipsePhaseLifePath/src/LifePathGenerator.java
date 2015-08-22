@@ -1910,4 +1910,14 @@ public class LifePathGenerator {
 			throw new IllegalArgumentException("No _FIELDS table defined for " + skillName);
 		}
 	}	
+	
+	public static void main(String[] args)
+	{
+		DataProc.init("LifepathPackages.dat","internalInfo.dat");
+		LifePathGenerator gen = new LifePathGenerator("",null,true);
+		
+		Table temp = (Table)DataProc.getDataObj("TABLE_11");
+		
+		System.out.println(temp.toString());
+	}
 }
