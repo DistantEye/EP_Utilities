@@ -199,8 +199,8 @@ public class Character {
 	public String toString()
 	{
 		String result = this.name + "(" + this.age + ")"+ "\n";
-		result = "Morph : " + this.currentMorph.getName() + ", Faction : " + this.getVar("{factionName}")  + ", Path : " + this.getVar("{pathName}") 
-					+ ", Background : " + this.getVar("{background}") +"\n";
+		result = "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
+					+ ", Background : " + this.getBackground() +"\n";
 		
 		result += "Traits : " + this.getTraitsString() + "\n";
 		result += this.getAptitudesString() + "\n";
@@ -244,6 +244,22 @@ public class Character {
 		
 		Rep charRep = this.repList.get(repName);
 		charRep.incValue(val);
+	}
+	
+	/**
+	 * Returns any availible Morph Name, or "" if none exist
+	 * @return String either equal to the character's Morph's Name or ""
+	 */
+	public String getMorphName()
+	{
+		if (getCurrentMorph() != null)
+		{
+			return getCurrentMorph().getName();
+		}
+		else
+		{
+			return "";
+		}
 	}
 	
 	/**
@@ -592,7 +608,14 @@ public class Character {
 	 */
 	public String getBackground() 
 	{
-		return this.getVar("{background}");
+		if (hasVar("{background}"))
+		{
+			return this.getVar("{background}");
+		}
+		else
+		{
+			return "";
+		}
 	}
 
 	/**

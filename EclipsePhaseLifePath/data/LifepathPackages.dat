@@ -475,8 +475,15 @@ Package
 SOCIALITE
 Whether you are an undying oligarch, a young wealthy heir destined never to climb the ladder, or a self-made entrepreneur or celebrity, you love the social life and glitterati spotlight.
 +Artistic Expression, +Fame, +Hypercapitalism, +Wealth, -Anarchism
-PP;1>setVar({factionName},Socialite);Flight 40;Interest: ?1? 30;Medicine, Nanomedicine 30
-PP;3>setVar({factionName},Socialite);mox(1);rep(?1?,50);Flight 50;Interest: ?1? 50;Interest: ?1? 40;Medicine: Nanomedicine 40;Navigation 30;Networking: ?1? 30;Pilot: Spacecraft 25
+PP;1>setVar({factionName},Socialite);Art: ?1? 30;Networking: Media 40;Kinesics 30
+PP;3>setVar({factionName},Socialite);rep(f,50);Art: ?1? 40;Deception 25;Interest: ?1? 50;Intimidation 30;Kinesics 40;Networking: Media 40;Persuasion 30;Protocol 40
+-----------------------------------------------------------------------------------
+Package
+Solarian
+You have skated the magnetic fields in the sun’s corona with your pack of surya.
++Exploration, +Morphological Freedom, +Personal Development, +Research
+PP;1>setVar({factionName},Solarian);Flight 40;Interest: ?1? 30;Medicine: Nanomedicine 30
+PP;3>setVar({factionName},Solarian);mox(1);rep(?1?,50);Flight 50;Interest: ?1? 50;Interest: ?1? 40;Medicine: Nanomedicine 40;Navigation 30;Networking: ?1? 30;Pilot: Spacecraft 25
 -----------------------------------------------------------------------------------
 Package
 TITANIAN
@@ -561,13 +568,13 @@ Your infection enables you to invade and influence the minds of others.
 +Exploration, +Neurodiversity, +Self Control
 PP;1>Academics: Psychology 30;Control 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?3?)
 PP;3>rep(?1?,50);Academics: Psychology 40;Control 50;Deception 25;Perception 30;Persuasion 35;Profession: Psychotherapy 50; Psychosurgery 20;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?4?)
-PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?6?)
+PP;5>addApt(WIL,5);rep(?1?,50);Academics: Psychology 40;Control 50;Deception 40;Intimidation 25;Interest: ?1? 30;Language: ?1? 30;Perception 30;Persuasion 45;Profession: Psychotherapy 50;Psychosurgery 25;Sense 25;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?6?)
 --------------------------------------------------------------------------------------------------------------------------
 Package
 COVERT OPS
 You are skilled at sneaking into places you don’t belong for high-threat missions.
 +Explosions, +Survival, –TITAN Tech
-PP;1>Blades 30;Infiltration 40;Profession: Squad Tactics 30
+PP;1>Blades 30;Infiltration 40;Profession: Squad Tactics 30
 PP;3>rep(?1?,50);Blades 20;Demolitions 25;Fray 20;Infiltration 50;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 30
 PP;5>rep(?1?,50);addApt(COO,5);Blades 30;Climbing 30;Demolitions 30;Fray 30;Infiltration 50;Infosec 25;Interest: ?2? 30;Kinetic Weapons 40;Languages: ?1? 40;Perception 20;Profession: Squad Tactics 50;Unarmed Combat 40
 --------------------------------------------------------------------------------------------------------------------------
@@ -1586,7 +1593,7 @@ TABLE_8
 31-32`You fall victim to the TITANs in Earth orbit, on Luna, or on Mars. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 33-34`You are slain, not by the TITANs, but by hostile action from a rival government, faction, or hypercorp. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 35-36`You hide your body away in cold storage on Earth before farcasting off to safety. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
-37-38`Your ego escapes the devastation of Earth, only to be locked away in cold storage for years. You are only recently resleeved. Roll randomly on the Choosing a Morph table (p. 44) and gain the Real World Naiveté trait (p. 151, EP).`rollTable(CHOOSING_A_MORPH);trait(Real World Naiveté)
+37-38`Your ego escapes the devastation of Earth, only to be locked away in cold storage for years. You are only recently resleeved. Roll randomly on the Choosing a Morph table (p. 44) and gain the Real World Naivete trait (p. 151, EP).`rollTable(CHOOSING_A_MORPH);trait(Real World Naivete)
 39-40`Your ego survives the Fall but is locked in simulspace for years before you are resleeved. Roll randomly on the Choosing a Morph table (p. 44) and gain +20 Interfacing skill.`rollTable(CHOOSING_A_MORPH);incSkl(Interfacing,20)
 41-42`After escaping the Fall, you are forced into indentured service before you are resleeved. Roll randomly on the Choosing a Morph table (p. 44) but ignore all non-synthmorph results. Gain +20 to one Technical skill.`rollTable(SYNTHMORPHS);incSkl(?1?,20,?skillIsType($1,Technical))
 43-44`You do what you can to help, but you still lose almost everyone in your life. Gain +1 Moxie.`mox(1)
@@ -2023,7 +2030,7 @@ msgClient(START STEP 1);rollTable(APTITUDE_TEMPLATES)
 STEP
 STEP_2
 STEP_3_0
-msgClient(START STEP 2);rollTable(LANGUAGE_FIELDS,70);setVar("NatLang",getVar({newestSkill}))
+msgClient(START STEP 2);rollTable(LANGUAGE_FIELDS,70);setVar(NatLang,getVar({newestSkill}))
 --------------------------------------------------------------
 STEP
 STEP_3_0

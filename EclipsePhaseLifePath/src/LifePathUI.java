@@ -307,7 +307,8 @@ public class LifePathUI implements UI {
                 JTextArea updateArea= new JTextArea(gen.getPC().toString() + DIVIDER_STRING + mainStatus.getText(),10,120);              
                 updateArea.setEditable(true);
                 updateArea.setLineWrap(true);
-                JOptionPane.showMessageDialog(null, updateArea,"Exported Character", JOptionPane.PLAIN_MESSAGE);
+                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
                 
             }	
 		});

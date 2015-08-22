@@ -35,78 +35,14 @@ public class Skill {
 	
 	private static final Pattern basicSkill = Pattern.compile(nameReg + " " + skillValueReg, Pattern.CASE_INSENSITIVE);
 	private static final Pattern skillSubtype = Pattern.compile(nameReg + ":" + optSpace + nameReg + " " + skillValueReg, Pattern.CASE_INSENSITIVE);
-	private static final Pattern skillSpecialization = Pattern.compile(nameReg + optSpace + "\\[" + nameReg +"\\]" + optSpace + nameReg, Pattern.CASE_INSENSITIVE);
-	private static final Pattern skillFullForm =  Pattern.compile(nameReg + ":" + optSpace + nameReg + optSpace + "\\[" + nameReg +"\\]" + optSpace + nameReg, Pattern.CASE_INSENSITIVE);
+	private static final Pattern skillSpecialization = Pattern.compile(nameReg + optSpace + "\\[" + nameReg +"\\]" + optSpace + nameReg + " " + skillValueReg, Pattern.CASE_INSENSITIVE);
+	private static final Pattern skillFullForm =  Pattern.compile(nameReg + ":" + optSpace + nameReg + optSpace + "\\[" + nameReg +"\\]" + optSpace + nameReg + " " + skillValueReg, Pattern.CASE_INSENSITIVE);
 	
 	public static final Pattern[] formats = {basicSkill,skillSubtype,skillSpecialization,skillFullForm};
 	public static final String[] formatTypes = {"basic","subtype","specialization","full"};
 	
-	// commonly used categories
-	private static final String[] CAT_KF = {"Knowledge","Field"};
-	private static final String[] CAT_K = {"Knowledge"};
-	private static final String[] CAT_AS = {"Active", "Social"};
-	private static final String[] CAT_AC = {"Active", "Combat"};
-	private static final String[] CAT_AM = {"Active", "Mental"};
-	private static final String[] CAT_AMPs = {"Active", "Mental","Psi"};
-	private static final String[] CAT_AT = {"Active", "Technical"};
-	private static final String[] CAT_APh = {"Active", "Physical"};
-	private static final String[] CAT_AV = {"Active", "Vehicle"};
-	
 	// stores all the below skills
 	public static ArrayList<Skill> skillList = new ArrayList<Skill>();
-	
-	/* We now add these based on file IO
-	public static final Skill Academics = new Skill("Academics","COG","","",-1,true,CAT_K);
-	public static final Skill AnimalHandling = new Skill("Animal Handling","SAV","","",-1,true,CAT_AS);
-	public static final Skill Art = new Skill("Art","INT","","",-1,true,CAT_K);
-	public static final Skill BeamWeapons = new Skill("Beam Weapons","COO","","",-1,true,CAT_AC);
-	public static final Skill Blades = new Skill("Blades","SOM","","",-1,true,CAT_AC);
-	public static final Skill Climbing = new Skill("Climbing","SOM","","",-1,true,CAT_APh);
-	public static final Skill Clubs = new Skill("Clubs","SOM","","",-1,true,CAT_AC);
-	public static final Skill Control = new Skill("Control","WIL","","",-1,false,CAT_AMPs);
-	public static final Skill Deception = new Skill("Deception","SAV","","",-1,true,CAT_AS);
-	public static final Skill Demolitions = new Skill("Demolitions","COG","","",-1,false,CAT_AT);
-	public static final Skill Disguise = new Skill("Disguise","INT","","",-1,true,CAT_APh);
-	public static final Skill ExoticLanguage = new Skill("Exotic Language","INT","","",-1,true,CAT_KF);
-	public static final Skill ExoticMeleeWeapon = new Skill("Exotic Melee Weapon","SOM","","",-1,true,CAT_AC);
-	public static final Skill ExoticRangedWeapon = new Skill("Exotic Ranged Weapon","COO","","",-1,true,CAT_AC);
-	public static final Skill Flight = new Skill("Flight","SOM","","",-1,true,CAT_APh);
-	public static final Skill Fray = new Skill("Fray","REF","","",-1,true,CAT_AC);
-	public static final Skill FreeFall = new Skill("Free Fall","REF","","",-1,true,CAT_APh);
-	public static final Skill FreeRunning = new Skill("Freerunning","SOM","","",-1,true,CAT_APh);
-	public static final Skill Gunnery = new Skill("Gunnery","INT","","",-1,true,CAT_AC);
-	public static final Skill Hardware = new Skill("Hardware","COG","","",-1,true,CAT_AT);
-	public static final Skill Impersonation = new Skill("Impersonation","SAV","","",-1,true,CAT_AS);
-	public static final Skill Infiltration = new Skill("Infiltration","COO","","",-1,true,CAT_APh);
-	public static final Skill Infosec = new Skill("Infosec","COG","","",-1,false,CAT_AT);
-	public static final Skill Interest = new Skill("Interest","COG","","",-1,true,CAT_K);
-	public static final Skill Interfacing = new Skill("Infacing","COG","","",-1,true,CAT_AT);
-	public static final Skill Intimidation = new Skill("Intimidation","SAV","","",-1,true,CAT_AT);
-	public static final Skill Investigation = new Skill("Investigation","INT","","",-1,true,CAT_AM);
-	public static final Skill Kinesics = new Skill("Kinesics","SAV","","",-1,true,CAT_AS);
-	public static final Skill KineticWeapons = new Skill("KineticWeapons","COO","","",-1,true,CAT_AC);
-	public static final Skill Language = new Skill("Language","INT","","",-1,true,CAT_K);
-	public static final Skill Medicine = new Skill("Medicine","COG","","",-1,true,CAT_AT);
-	public static final Skill Navigation = new Skill("Navigation","INT","","",-1,true,CAT_AM);
-	public static final Skill Networking = new Skill("Networking","SAV","","",-1,true,CAT_AS);
-	public static final Skill Palming = new Skill("Palming","COO","","",-1,true,CAT_APh);
-	public static final Skill Perception = new Skill("Perception","INT","","",-1,true,CAT_AM);
-	public static final Skill Persuasion = new Skill("Persuasion","SAV","","",-1,true,CAT_AS);
-	public static final Skill Pilot = new Skill("Pilot","REF","","",-1,true,CAT_AV);
-	public static final Skill Profession = new Skill("Profession","COG","","",-1,true,CAT_K);
-	public static final Skill Programming = new Skill("Programming","COG","","",-1,false,CAT_AT);
-	public static final Skill Protocol = new Skill("Protocol","SAV","","",-1,true,CAT_AS);
-	public static final Skill PsiAssault = new Skill("Psi Assualt","WIL","","",-1,false,CAT_AMPs);
-	public static final Skill Psychosurgery = new Skill("Psychosurgery","INT","","",-1,true,CAT_AT);
-	public static final Skill Research = new Skill("Research","COG","","",-1,true,CAT_AT);
-	public static final Skill Scrounging = new Skill("Scrounging","INT","","",-1,true,CAT_AM);
-	public static final Skill SeekerWeapons = new Skill("Seeker Weapons","COO","","",-1,true,CAT_AC);
-	public static final Skill Sense = new Skill("Sense","INT","","",-1,false,CAT_AMPs);
-	public static final Skill SprayWeapons = new Skill("Spray Weapons","COO","","",-1,true,CAT_AC);
-	public static final Skill Swimming = new Skill("Swimming","SOM","","",-1,true,CAT_APh);
-	public static final Skill ThrowingWeapons = new Skill("Throwing Weapons","COO","","",-1,true,CAT_AC);
-	public static final Skill UnarmedCombat = new Skill("Unarmed Combat","SOM","","",-1,true,CAT_AC);
-	*/
 	
 	/**
 	 * @param name

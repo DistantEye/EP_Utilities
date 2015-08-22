@@ -1096,7 +1096,7 @@ public class LifePathGenerator {
 					{
 						String response = UIObject.promptUser(subparts[1], ""); // response should be an integer
 						
-						int choice = -1;
+						int choice = Integer.parseInt(response);
 						
 						String[] choiceEffects = subparts[2].split("/");
 						
