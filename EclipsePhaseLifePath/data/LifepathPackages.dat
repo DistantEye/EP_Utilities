@@ -286,218 +286,218 @@ Package
 ANARCHIST
 You've allied yourself with one of the many anarchist collectives working towards greater freedoms and independence.
 +Anarchism, +Community,+Liberty, Morphological Freedom, -Authority, -Hypercapitalism
-PP;1>mox(1);Academics: Political Science 30;Kinetic Weapons 30;Networking: Autonomists 40
-PP;3>mox(1);rep(@,50);Academics: Political Science 50;Free Fall 30;Infosec 30;Interest: ?1? 40;Kinetic Weapons 20;Networking: Autonomists 50;Persuasion 30;Scrounging 30
+PP;1>setVar({factionName},Anarchist);mox(1);Academics: Political Science 30;Kinetic Weapons 30;Networking: Autonomists 40
+PP;3>setVar({factionName},Anarchist);mox(1);rep(@,50);Academics: Political Science 50;Free Fall 30;Infosec 30;Interest: ?1? 40;Kinetic Weapons 20;Networking: Autonomists 50;Persuasion 30;Scrounging 30
 -----------------------------------------------------------------------------------------------------------------------
 Package
 ARGONAUT
 Scientific progress can be a two-edged sword. The fact that the argonauts embrace both the wonder and the dangers of new technologies and work towards their responsible use is one of the reasons you joined up.
 +Open Source, +Research, +Technoprogressivism
-PP;1>mox(1);Academics: ?1? 40;Investigation 30;Research 30
-PP;3>mox(1);rep(r,50);Academics: ?1? 50;Interest: ?1? 30;Investigation 40;Profession: ?1? 40;Networking: Scientists 40;Programming 40;Research 40
+PP;1>setVar({factionName},Argonaut);mox(1);Academics: ?1? 40;Investigation 30;Research 30
+PP;3>setVar({factionName},Argonaut);mox(1);rep(r,50);Academics: ?1? 50;Interest: ?1? 30;Investigation 40;Profession: ?1? 40;Networking: Scientists 40;Programming 40;Research 40
 ----------------------------------------------------------------------------------
 Package
 BARSOOMIAN
 Your times among the rural folk and nomads of Mars convinced you that Mars needs to be liberated from the hypercorps.
 +Anarchism, +Barsoomian Movement, +Community, +Technoprogressivism, -Hypercorps
-PP;1>Navigation 30;Pilot: ?1? 40;Profession: ?1? 30
-PP;3>rep(@,50);Hardware: ?1? 35;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking:Autonomists 40;Pilot: ?1? 40;Profession: ?1? 50;Scrounging 30
+PP;1>setVar({factionName},Barsoomian);Navigation 30;Pilot: ?1? 40;Profession: ?1? 30
+PP;3>setVar({factionName},Barsoomian);rep(@,50);Hardware: ?1? 35;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking:Autonomists 40;Pilot: ?1? 40;Profession: ?1? 50;Scrounging 30
 ---------------------------------------------------
 Package
 BELTER
 You hail from the lawless frontier of the Main Belt, home to miners, pirates, exiles, and outcasts of every stripe.
 +Extropianism, +Hypercapitalism, Morphological Freedom
-PP;1>Free Fall 40;Navigation 30;Profession: Asteroid Mining 30
-PP;3>mox(1);rep(?1?,50);Free Fall 50;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking: ?1? 30;Profession: Asteroid Mining 50;Persuasion 20;Pilot: Spacecraft 30
+PP;1>setVar({factionName},Belter);Free Fall 40;Navigation 30;Profession: Asteroid Mining 30
+PP;3>setVar({factionName},Belter);mox(1);rep(?1?,50);Free Fall 50;Interest: ?1? 40;Kinetic Weapons 30;Navigation 30;Networking: ?1? 30;Profession: Asteroid Mining 50;Persuasion 20;Pilot: Spacecraft 30
 ------------------------------------------------------------------
 Package
 BIOCONSERVATIVE
 You think the ideology of transhumanism is dubious and suspect at best, and may in fact pose an extinction threat to the human species.
 +Bioconservatism, +Religion, -AGI Rights, -Uplift Rights, -X-Risks
-PP;1>Freerunning 30;Interest: ?1? 40;Pilot: ?1? 30
-PP;3>Demolitions 30;Freerunning 40;Interest: ?1? 50;Kinetic Weapons 40;Medicine: Paramedic 30;Pilot: ?1? 40;Profession: ?1? 40;Scrounging 30
+PP;1>setVar({factionName},Bioconservative);Freerunning 30;Interest: ?1? 40;Pilot: ?1? 30
+PP;3>setVar({factionName},Bioconservative);Demolitions 30;Freerunning 40;Interest: ?1? 50;Kinetic Weapons 40;Medicine: Paramedic 30;Pilot: ?1? 40;Profession: ?1? 40;Scrounging 30
 ---------------------------------------------------------------------------------------------------------------------------
 Package
 BRINKER
 Some folk just aren't all that fond of too many other folk. Being in space and having to live cheek-to-jowl with others makes it kinda hard. Your fellow brinkers understand you need a little "me space" to go along with "me time."
 +Bioconservatism, +Exhumanism, +Privacy, +Religion, +Solitude, +Self Reliance
-PP;1>Pilot: Spacecraft 40;Profession: ?1? 30;Scrounging 30
-PP;3>rep(?1?,50);Free Fall 30;Gunnery 20;Hardware: Industrial 40;Interest: ?1? 40;Networking: ?1? 25;Pilot: Spacecraft 50;Profession: ?1? 50;Scrounging 40
+PP;1>setVar({factionName},Brinker);Pilot: Spacecraft 40;Profession: ?1? 30;Scrounging 30
+PP;3>setVar({factionName},Brinker);rep(?1?,50);Free Fall 30;Gunnery 20;Hardware: Industrial 40;Interest: ?1? 40;Networking: ?1? 25;Pilot: Spacecraft 50;Profession: ?1? 50;Scrounging 40
 ------------------------------------------------------------------------------------------
 Package
 CRIMINAL
 As long as there are people there will always be rules, and where there are rules there are opportunities to make a tidy profit providing the sorts of things those rules prohibit. You prefer to think of yourself as a facilitatorr those who want to get around these restrictions.
 +Survival, +Thrill Seeking, +Wealth, -Law and Order
-PP;1>Interest: Criminal Groups 30;Palming 30;Intimidation 40
-PP;3>rep(g,50);Deception 30;Infiltration 30;Interest: Criminal Groups 50;Intimidation 40;Networking: Criminals 40;Palming 30;Profession: ?1? 40;Unarmed Combat 35
+PP;1>setVar({factionName},Criminal);Interest: Criminal Groups 30;Palming 30;Intimidation 40
+PP;3>setVar({factionName},Criminal);rep(g,50);Deception 30;Infiltration 30;Interest: Criminal Groups 50;Intimidation 40;Networking: Criminals 40;Palming 30;Profession: ?1? 40;Unarmed Combat 35
 -------------------------------------------------------------------------------------------------------
 Package
 EUROPAN
 You hail from the aquatic depths and under-ice habitats of Europa. 
 +Exploration, +Morphological Freedom, +Uplift Rights, -Bioconservatism
-PP;1>Academics: ?1? 30;Pilot: Submarine 30;Swimming 40
-PP;3>mox(1);rep(?1?,50);Academics: ?1? 40;Academics: ?1? 20;Interfacing 30;Navigation 35;Networking: ?1? 30;Pilot: Submarine 40;Profession: ?1? 35;Swimming 50
+PP;1>setVar({factionName},Europan);Academics: ?1? 30;Pilot: Submarine 30;Swimming 40
+PP;3>setVar({factionName},Europan);mox(1);rep(?1?,50);Academics: ?1? 40;Academics: ?1? 20;Interfacing 30;Navigation 35;Networking: ?1? 30;Pilot: Submarine 40;Profession: ?1? 35;Swimming 50
 -----------------------------------------------------------------------------------------------------------------
 Package
 EXHUMAN
 You are a supporter of discarding humanity's genetic shackles and elevating yourself to a newer,improved physical form.
 +Exhumanism, +Morphological Freedom, +Personal Development, +Research
-PP;1>Interest: Exhumans 30;Medicine: Biosculpting 40;Psychosurgery 30
-PP;3>mox(1);Academics: Genetics 40;Disguise 15;Interest: Exhumans 50;Intimidation 30;Medicine: Biosculpting 50;Medicine: ?1? 30;Psychosurgery 30;Unarmed Combat 40
+PP;1>setVar({factionName},Exhuman);Interest: Exhumans 30;Medicine: Biosculpting 40;Psychosurgery 30
+PP;3>setVar({factionName},Exhuman);mox(1);Academics: Genetics 40;Disguise 15;Interest: Exhumans 50;Intimidation 30;Medicine: Biosculpting 50;Medicine: ?1? 30;Psychosurgery 30;Unarmed Combat 40
 -------------------------------------------------------------------------------------------------------------------
 Package
 EXTROPIAN
 You are an Extropian because you believe in the unfettered potential of transhumanity. Too many saw the Fall as a cautionary tale to slow down or even stop entirely, but you believe that the only way for transhumanity to survive is forwards and upwards to greater things.
 +Extropianism, +Morphological Freedom, +Personal Development, -Bioconservativism
-PP;1>Interest: Cutting-Edge Technology 30;Networking: Autonomists 30;Persuasion 40
-PP;3>rep(@,50);rep(c,50);Free Fall 20;Interest: Cutting-Edge Technology 40;Interfacing 20;Kinesics 30;Networking: Autonomists 40;Networking: Hypercorps 40;Persuasion 50;Profession: ?1? 50
+PP;1>setVar({factionName},Extropian);Interest: Cutting-Edge Technology 30;Networking: Autonomists 30;Persuasion 40
+PP;3>setVar({factionName},Extropian);rep(@,50);rep(c,50);Free Fall 20;Interest: Cutting-Edge Technology 40;Interfacing 20;Kinesics 30;Networking: Autonomists 40;Networking: Hypercorps 40;Persuasion 50;Profession: ?1? 50
 -------------------------------------------------------------------------------------------------------------------
 Package
 HYPERCORP
 The Fall upset the natural ebb and flow of trade and innovation in such a way that transhumanity is just starting to recover. Some fools believe that the Fall was a sign that old systems and practices needed to be changed, but people like a sense of continuity. They like having their consumer goods and regular mesh programming, and that's what the hypercorps give them, a link to a shared human experience.
 +Hypercapitalism, +Stability, +Wealth, -Anarchism, -AGI Rights, -Uplift Rights
-PP;1>Academics: Economics 30;Persuasion 30;Protocol 40
-PP;3>mox(1);rep(c,50);Academics: Economics 50;Interfacing 40;Networking: Hypercorps 40;Networking: Media 20;Persuasion 40;Profession: ?1? 40;Protocol 50
+PP;1>setVar({factionName},Hypercorp);Academics: Economics 30;Persuasion 30;Protocol 40
+PP;3>setVar({factionName},Hypercorp);mox(1);rep(c,50);Academics: Economics 50;Interfacing 40;Networking: Hypercorps 40;Networking: Media 20;Persuasion 40;Profession: ?1? 40;Protocol 50
 ----------------------------------------------------------------------------------------------------------------------------------
 Package
 JOVIAN
 You are one of the last remnants of true humanity in the galaxy. The rest of these so-called transhumans have allowed themselves to become corrupted by the machines that brought about the fall of humanity and forced the evacuation of Earth. It is up to you and your fellows to make sure humanity survives.
 +Bioconservatism, +Jovian Republic, -AGI Rights, -Transhumanism, -Uplift Rights
-PP;1>Pilot: ?1? 30;Profession:Military Ops 30;Seeker Weapons 40
-PP;3>mox(1);rep(c,50);Academics: Military Science 30;Intimidation 25;Kinetic Weapons 40;Language: English or Spanish 40;Networking: Hypercorps 40;Profession: Military Ops 30;Seeker Weapons 40;Unarmed Combat 35
+PP;1>setVar({factionName},Jovian);Pilot: ?1? 30;Profession:Military Ops 30;Seeker Weapons 40
+PP;3>setVar({factionName},Jovian);mox(1);rep(c,50);Academics: Military Science 30;Intimidation 25;Kinetic Weapons 40;extendedChoice(Take 1=Language: English 40 or 2=Language: Spanish 40,1=Language: English 40/2=Language: Spanish 40);Networking: Hypercorps 40;Profession: Military Ops 30;Seeker Weapons 40;Unarmed Combat 35
 --------------------------------------------------------------------------------------------------------------------------------------------
 Package
 LUNAR
 Earth's moon is one of the last bastions of Earth culture, where old traditions are still respected. The rest of the system looks to Luna for the latest in trends and fashions, and you are proud to be on the cutting edge of style.
 +Bioconservatism, +Hypercapitalism,+Preserving Traditions, +Reclaiming Earth
-PP;1>Art ?1? 40;Language: ?1? 30;Protocol 30
-PP;3>mox(1);rep(c,50);Academics: Pre-Fall History 50;Art ?1? 40;Interfacing 30;Kinesics 40;Language: ?1? 40;Networking: Hypercorps 40;Protocol 40
+PP;1>setVar({factionName},Lunar);Art ?1? 40;Language: ?1? 30;Protocol 30
+PP;3>setVar({factionName},Lunar);mox(1);rep(c,50);Academics: Pre-Fall History 50;Art ?1? 40;Interfacing 30;Kinesics 40;Language: ?1? 40;Networking: Hypercorps 40;Protocol 40
 ----------------------------------------------------------------------------------------------------------------------------------
 Package
 MERCURIAL: INFOLIFE
 You oppose the assimilation of AGIs into transhumanity,believing that each intelligence should forge their own path and culture.
 +AGI Rights, +Mercurial Cause, -Assimilation, -Bioconservatism, -Sapient Cause
-PP;1>?1? 40;Interest: Infolife Clades 30;Interfacing 30
-PP;3>mox(1);rep(?1?,50);?1? 50;Interest: Infolife Clades 50;Interest: ?1? 40;Interfacing 30;Intimidation 20;Networking: ?1? 30;Persuasion 30;Programming 30
+PP;1>setVar({factionName},Mercurial: Infolife);?1? 40;Interest: Infolife Clades 30;Interfacing 30
+PP;3>setVar({factionName},Mercurial: Infolife);mox(1);rep(?1?,50);?1? 50;Interest: Infolife Clades 50;Interest: ?1? 40;Interfacing 30;Intimidation 20;Networking: ?1? 30;Persuasion 30;Programming 30
 ------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 MERCURIAL: UPLIFT
 You oppose the assimilation of uplifts into transhumanity,believing that each intelligence should forge their own path and culture.
 +Mercurial Cause, +Uplift Rights, -Assimilation, -Bioconservatism, -Sapient Cause
-PP;1> ?1? 40;Interest: ?1? 30;Interest: Uplift Clades 30
-PP;3>mox(1);rep(?1?,50);?1? 50;Interest: Uplift Clades 50;Interest: ?1? 40;Intimidation 20;Medicine: Uplifts 30;Networking: ?1? 30;Persuasion 30;Unarmed Combat 30
+PP;1>setVar({factionName},Mercurial: Uplift);?1? 40;Interest: ?1? 30;Interest: Uplift Clades 30
+PP;3>setVar({factionName},Mercurial: Uplift);mox(1);rep(?1?,50);?1? 50;Interest: Uplift Clades 50;Interest: ?1? 40;Intimidation 20;Medicine: Uplifts 30;Networking: ?1? 30;Persuasion 30;Unarmed Combat 30
 -------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 NANO-ECOLOGIST
 You support the use of nanotechnology as a less-invasive means of terraforming and transforming alien worlds. 
 +Exploration, +Nano-ecology, +Research, +Technoprogressivism
-PP;1>Academics: Ecology/Nanotechnology 30;Freerunning 30;Programming 40
-PP;3>rep(e,50);Academics: Ecology 40;Academics: Nanotechnology 50;Freerunning 30;Interfacing 25;Investigation 30;Medicine: Nanomedicine 30;Networking: Ecologists 40;Programming 50
+PP;1>setVar({factionName},Nano-Ecologist);Academics: Ecology/Nanotechnology 30;Freerunning 30;Programming 40
+PP;3>setVar({factionName},Nano-Ecologist);rep(e,50);Academics: Ecology 40;Academics: Nanotechnology 50;Freerunning 30;Interfacing 25;Investigation 30;Medicine: Nanomedicine 30;Networking: Ecologists 40;Programming 50
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 ORBITAL
 Living in orbit above Earth, among a melting pot of transhumanity's displaced cultures, you look down upon a daily reminder of our species' failures.
 +Bioconservatism, +Precautionism, +Reclaiming Earth, -AGI Rights
-PP;1>Free Fall 30;Language: ?1? 30;Pilot: ?1? 40
-PP;3>mox(1);rep(?1?,50);Clubs 20;Free Fall 35;Interest: ?1? 40;Interfacing 25;Intimidation 20;Language: ?1? 50;Networking: ?1? 40;Pilot: ?1? 50
+PP;1>setVar({factionName},Orbital);Free Fall 30;Language: ?1? 30;Pilot: ?1? 40
+PP;3>setVar({factionName},Orbital);mox(1);rep(?1?,50);Clubs 20;Free Fall 35;Interest: ?1? 40;Interfacing 25;Intimidation 20;Language: ?1? 50;Networking: ?1? 40;Pilot: ?1? 50
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 OUT'STER
 You are a denizen of the dark depths of space in the outer Kuiper Belt, delving into your own virtual worlds. 
 +AGI Rights, +Exploration, Morphological Freedom, +Research
-PP;1>Free Fall 30;Interest: Simulspace 30;Interfacing 40
-PP;3>mox(1);rep(?1?,50);Free Fall 30;Infosec 20;Interest: Simulspace 50;Interest: ?1? 40;Interfacing 50;Pilot: Spacecraft 25;Programming 40;Psychosurgery 25
+PP;1>setVar({factionName},Out'ster);Free Fall 30;Interest: Simulspace 30;Interfacing 40
+PP;3>setVar({factionName},Out'ster);mox(1);rep(?1?,50);Free Fall 30;Infosec 20;Interest: Simulspace 50;Interest: ?1? 40;Interfacing 50;Pilot: Spacecraft 25;Programming 40;Psychosurgery 25
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 PRECAUTIONIST
 You adhere to the Precautionary Principle, believing that the only technology to be adopted should be that which is first proven safe.
 +Precautionism, +Reclaiming Earth, –Bioconservatism, –Technoprogressivism
-PP;1>Academics: ?1? 30;Infosec 30;Research 40
-PP;3>mox(1);rep(?1?,50);Academics: ?1? 50;Academics: ?1? 40;Hardware: ?1? 20;Infosec 20;Interfacing 30;Investigation 40;Networking: ?1? 30;Research 50
+PP;1>setVar({factionName},Precautionist);Academics: ?1? 30;Infosec 30;Research 40
+PP;3>setVar({factionName},Precautionist);mox(1);rep(?1?,50);Academics: ?1? 50;Academics: ?1? 40;Hardware: ?1? 20;Infosec 20;Interfacing 30;Investigation 40;Networking: ?1? 30;Research 50
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 PRESERVATIONIST
 You believe that alien worlds must be protected from contamination and that transhumanity is recklessly despoiling thousands of exoplanets as it expands through the gates.
 +Environmentalism, +Preservationism, +Research, -Gatecrashing, -Nano-ecology
-PP;1>Academics: Ecology 40;Freerunning 30;Investigation 30
-PP;3>rep(?1?,50);Academics: Ecology 50;Art: ?1? 30;Freerunning 40;Interest: ?1? 30;Investigation 40;Medicine: ?1? 30;Navigation 35;Networking: Ecologists 40
+PP;1>setVar({factionName},Preservationist);Academics: Ecology 40;Freerunning 30;Investigation 30
+PP;3>setVar({factionName},Preservationist);rep(?1?,50);Academics: Ecology 50;Art: ?1? 30;Freerunning 40;Interest: ?1? 30;Investigation 40;Medicine: ?1? 30;Navigation 35;Networking: Ecologists 40
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 RECLAIMER
 You are dedicated to rescuing your species' homeworld from the ruin engulfing it.
 +Bioconservatism, +Reclaiming Earth, -AGI Rights
-PP;1>Freerunning 30;Hardware: ?1? 40;Language: ?1? 30
-PP;3>rep(?1?,50);Demolitions 20;Freerunning 30;Hardware: ?1? 50;Infosec 30;Language: ?1? 50;Language: ?1? 40;Networking: ?1? 20;Pilot: ?1? 25;Seeker Weapons 30
+PP;1>setVar({factionName},Reclaimer);Freerunning 30;Hardware: ?1? 40;Language: ?1? 30
+PP;3>setVar({factionName},Reclaimer);rep(?1?,50);Demolitions 20;Freerunning 30;Hardware: ?1? 50;Infosec 30;Language: ?1? 50;Language: ?1? 40;Networking: ?1? 20;Pilot: ?1? 25;Seeker Weapons 30
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 RINGER
 You have soared on the solar wind through Saturn's rings and called its many moons your home.
 +Exploration, +Morphological Freedom, +Personal Development, +Research
-PP;1>Flight 40;Interest: ?1? 30;Scrounging 30
-PP;3>rep(?1?,50);Academics: ?1? 50;Beam Weapons 25;Flight 50;Free Fall 40;Interest: ?1? 40;Networking:?1? 30;Pilot: Spacecraft 30;Scrounging 30
+PP;1>setVar({factionName},Ringer);Flight 40;Interest: ?1? 30;Scrounging 30
+PP;3>setVar({factionName},Ringer);rep(?1?,50);Academics: ?1? 50;Beam Weapons 25;Flight 50;Free Fall 40;Interest: ?1? 40;Networking:?1? 30;Pilot: Spacecraft 30;Scrounging 30
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SAPIENT
 You support the full assimilation of uplifts and AGIs into transhumanity.
 +AGI Rights, +Sapient Cause, +Uplift Rights, -Bioconservatism
-PP;1>Interest: ?1? 30;Kinesics 30;Protocol 40
-PP;3>rep(?1?50);Interest: ?1? 50;Interest: ?1? 40;Kinesics 40;Medicine: Uplifts 20;Networking: ?1? 30;Persuasion 40;Protocol 50;Psychosurgery 25
+PP;1>setVar({factionName},Sapient);Interest: ?1? 30;Kinesics 30;Protocol 40
+PP;3>setVar({factionName},Sapient);rep(?1?50);Interest: ?1? 50;Interest: ?1? 40;Kinesics 40;Medicine: Uplifts 20;Networking: ?1? 30;Persuasion 40;Protocol 50;Psychosurgery 25
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SCUM
 You proudly call the exotic, edgy, and lawless ships of a scum swarm your home.
 +Anarchism, +Hedonism, +Individualism, +Morphological Freedom
-PP;1>Art: ?1? 30;Free Fall 30;Networking: Autonomists 40
-PP;3>mox(1);rep(@,50);Art: ?1? 50;Free Fall 40;Interest: ?1? 40;Kinesics 40;Medicine: Biosculpting 30;Networking Autonomists 50;Persuasion 30
+PP;1>setVar({factionName},Scum);Art: ?1? 30;Free Fall 30;Networking: Autonomists 40
+PP;3>setVar({factionName},Scum);mox(1);rep(@,50);Art: ?1? 50;Free Fall 40;Interest: ?1? 40;Kinesics 40;Medicine: Biosculpting 30;Networking Autonomists 50;Persuasion 30
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SIFTER
 You worked the mobile mining operations on Mercury's scorched surface.
 +Hard Work, +Mercurian Independence, -Hypercapitalism
-PP;1>Navigation 30;Pilot: Groundcraft 40;Profession: Mining 30
-PP;3>mox(1);rep(?1?,50);Climbing 25;Interest: ?1? 40;Navigation 40;Networking: ?1? 30;Palming 25;Pilot: Groundcraft 50;Profession: Mining 50;Unarmed Combat 20
+PP;1>setVar({factionName},Sifter);Navigation 30;Pilot: Groundcraft 40;Profession: Mining 30
+PP;3>setVar({factionName},Sifter);mox(1);rep(?1?,50);Climbing 25;Interest: ?1? 40;Navigation 40;Networking: ?1? 30;Palming 25;Pilot: Groundcraft 50;Profession: Mining 50;Unarmed Combat 20
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SINGULARITY SEEKER
 You seek the means to ascend your ego to god-like levels of intelligence, by any means necessary.
 +Exploration, +Morphological Freedom, +Personal Development, +Research
-PP;1>Infosec 30;Interest: TITAN Tech 40;Interfacing 30
-PP;3>Academics: ?1? 40;Hardware: ?1? 40;Infosec 40;Interest: TITAN Tech 50;Interfacing 30;Medicine: Nanomedicine 30;Programming 40;Psychosurgery 30
+PP;1>setVar({factionName},Singularity Seeker);Infosec 30;Interest: TITAN Tech 40;Interfacing 30
+PP;3>setVar({factionName},Singularity Seeker);Academics: ?1? 40;Hardware: ?1? 40;Infosec 40;Interest: TITAN Tech 50;Interfacing 30;Medicine: Nanomedicine 30;Programming 40;Psychosurgery 30
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SKIMMER
 You have raced the winds in the upper clouds of the ice giants.
 +Hard Work, +Independence, +Thrill Seeking
-PP;1>Flight 30;Interest: ?1? 30;Pilot: Aircraft 40
-PP;3>rep(?1?,50);Flight 40;Gunnery 30;Interest: ?1? 40;Navigation 35;Networking: ?1? 30;Pilot: Aircraft 40;Pilot: Spacecraft 30;Profession: Gas Mining 50
+PP;1>setVar({factionName},Skimmer);Flight 30;Interest: ?1? 30;Pilot: Aircraft 40
+PP;3>setVar({factionName},Skimmer);rep(?1?,50);Flight 40;Gunnery 30;Interest: ?1? 40;Navigation 35;Networking: ?1? 30;Pilot: Aircraft 40;Pilot: Spacecraft 30;Profession: Gas Mining 50
 ----------------------------------------------------------------------------------
 Package
 SOCIALITE
 Whether you are an undying oligarch, a young wealthy heir destined never to climb the ladder, or a self-made entrepreneur or celebrity, you love the social life and glitterati spotlight.
 +Artistic Expression, +Fame, +Hypercapitalism, +Wealth, -Anarchism
-PP;1>Flight 40;Interest: ?1? 30;Medicine, Nanomedicine 30
-PP;3>mox(1);rep(?1?,50);Flight 50;Interest: ?1? 50;Interest: ?1? 40;Medicine: Nanomedicine 40;Navigation 30;Networking: ?1? 30;Pilot: Spacecraft 25
+PP;1>setVar({factionName},Socialite);Flight 40;Interest: ?1? 30;Medicine, Nanomedicine 30
+PP;3>setVar({factionName},Socialite);mox(1);rep(?1?,50);Flight 50;Interest: ?1? 50;Interest: ?1? 40;Medicine: Nanomedicine 40;Navigation 30;Networking: ?1? 30;Pilot: Spacecraft 25
 -----------------------------------------------------------------------------------
 Package
 TITANIAN
 You consider Titan's technosocialist cyberdemocracy the best path forward for transhumanity's future. 
 +Research, +Technosocialism, -Bioconservatism, -Hypercapitalism
-PP;1>Academics: ?1? 30;Networking: Autonomists 40;Programming 30
-PP;3>rep(@,50);Academics: ?1? 50;Academics: ?1? 40;Interfacing 25;Networking: Autonomists 50;Persuasion 30;Pilot: Aircraft 30;Programming 40;Research 30
+PP;1>setVar({factionName},Titanian);Academics: ?1? 30;Networking: Autonomists 40;Programming 30
+PP;3>setVar({factionName},Titanian);rep(@,50);Academics: ?1? 50;Academics: ?1? 40;Interfacing 25;Networking: Autonomists 50;Persuasion 30;Pilot: Aircraft 30;Programming 40;Research 30
 ----------------------------------------------------------------------------------
 Package
 ULTIMATE
 You pursue the pinnacles of transhuman achievement, physically, mentally, and spiritually.
 +Hypercapitalism, +Personal Development, +Ultimates, -Bioconservatism
-PP;1>Academics: ?1? 30;Freerunning 30;Unarmed Combat 40
-PP;3>rep(c,50);Academics: ?1? 50;Academics: ?1? 40;Blades 25;Climbing 30;Freerunning 40;Intimidation 30;Kinetic Weapons 30;Unarmed Combat 50
+PP;1>setVar({factionName},Ultimate);Academics: ?1? 30;Freerunning 30;Unarmed Combat 40
+PP;3>setVar({factionName},Ultimate);rep(c,50);Academics: ?1? 50;Academics: ?1? 40;Blades 25;Climbing 30;Freerunning 40;Intimidation 30;Kinetic Weapons 30;Unarmed Combat 50
 ---------------------------------------------------------------------------------------------
 Package
 VENUSIAN
 You call the aerostats of the Venusian clouds your home.
 +Hypercapitalism, +Personal Development, +Uplift Rights
-PP;1>Academics: ?1? 30;Networking: Hypercorps 30;Pilot: Aircraft 40
-PP;3>mox(1);rep(c,50);Academics: ?1? 50;Beam Weapons 25;Kinesics 30;Navigation 25;Networking: Hypercorps 40;Pilot:Aircraft 40;Profession: ?1? 40;Protocol 30
+PP;1>setVar({factionName},Venusian);Academics: ?1? 30;Networking: Hypercorps 30;Pilot: Aircraft 40
+PP;3>setVar({factionName},Venusian);mox(1);rep(c,50);Academics: ?1? 50;Beam Weapons 25;Kinesics 30;Navigation 25;Networking: Hypercorps 40;Pilot:Aircraft 40;Profession: ?1? 40;Protocol 30
 -------------------------------------------------------------------------------------------
 Package
 ACADEMIC
@@ -804,7 +804,7 @@ Package
 NETWORKER
 
 
-PP;1>rep(?3?,100);Networking ?3? 30
+PP;1>rep(?1?,100);Networking ?3? 30
 ------------------------------------------------------------------------------------------
 Package
 STUDENT
@@ -1186,68 +1186,68 @@ TABLE_3_1
 TABLE
 TABLE_3_2
 10
-1`Born with a silver nanoswarm in your blood`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5)
-2`Celebrity child`package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph);nextPath(TABLE_6_5)
-3-5`Privileged: enclave born`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
-6-7`Precariat: poverty just a step away`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3)
+1`Born with a silver nanoswarm in your blood`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5);setVar({pathName},Elite)
+2`Celebrity child`package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph);nextPath(TABLE_6_5);setVar({pathName},Elite)
+3-5`Privileged: enclave born`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6);setVar({pathName},Enclaver)
+6-7`Precariat: poverty just a step away`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3);setVar({pathName},Civilian)
 8`Troubled: raised among disaster or war Fall`package(FALL EVACUEE: UNDERCLASS,!!X!!);morph(Flat);roll(10,1-5=nextPath(TABLE_6_4)/6-9=nextPath(TABLE_6_3)/10=nextPath(TABLE_6_2))
 9`Raised on the street`package(STREET RAT,!!X!!);morph(Flat);nextPath(TABLE_6_4)
-10`Raised in a collective/communal grouping`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_2)
+10`Raised in a collective/communal grouping`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_2);setVar({pathName},Autonomist)
 --------------------------------------------------------------
 TABLE
 TABLE_3_3
 10
-1`Orbital elite`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5)
-2`A new star born above the Earth`package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph);nextPath(TABLE_6_5)
-3-4`Orbital colonist, floating above the masses`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
+1`Orbital elite`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5);setVar({pathName},Elite)
+2`A new star born above the Earth`package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph);nextPath(TABLE_6_5);setVar({pathName},Elite)
+3-4`Orbital colonist, floating above the masses`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6);setVar({pathName},Enclaver)
 5-6`Orbital colony staff`rollTable(TABLE_3_10,!!X!!)
-7-8`One of the lucky few to live above`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-9=morph(Flat)/10=morph(Bouncer));nextPath(TABLE_6_3)
-9-10`Orbital worker family`package(INDENTURE,!!X!!);roll(10,1-8=morph(Flat)/9-10=morph(Bouncer));nextPath(TABLE_6_7)
+7-8`One of the lucky few to live above`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-9=morph(Flat)/10=morph(Bouncer));nextPath(TABLE_6_3);setVar({pathName},Civilian)
+9-10`Orbital worker family`package(INDENTURE,!!X!!);roll(10,1-8=morph(Flat)/9-10=morph(Bouncer));nextPath(TABLE_6_7);setVar({pathName},Indenture)
 --------------------------------------------------------------
 TABLE
 TABLE_3_4
 10
-1`Lunar elite`roll(10,1-7=package(HYPERELITE: SCION,!!X!!);morph(Exalt)/8-10=package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph));nextPath(TABLE_6_5)
-2-3`Lunar colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
+1`Lunar elite`roll(10,1-7=package(HYPERELITE: SCION,!!X!!);morph(Exalt)/8-10=package(HYPERELITE: MEDIA PERSONALITY,!!X!!);morph(Sylph));nextPath(TABLE_6_5);setVar({pathName},Elite)
+2-3`Lunar colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6);setVar({pathName},Enclaver)
 4-5`Lunar colony staff`rollTable(TABLE_3_10,!!X!!)
-6-7`Raised with a view of Earth`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3)
-8-10`Lunar work force`package(INDENTURE,!!X!!);morph(Flat);nextPath(TABLE_6_7)
+6-7`Raised with a view of Earth`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3);setVar({pathName},Civilian)
+8-10`Lunar work force`package(INDENTURE,!!X!!);morph(Flat);nextPath(TABLE_6_7);setVar({pathName},Indenture)
 --------------------------------------------------------------
 TABLE
 TABLE_3_5
 10
-1`Martian elite`package(HYPERELITE: SCION,!!X!!);morph(Olympian);nextPath(TABLE_6_5)
-2-3`Martian colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
+1`Martian elite`package(HYPERELITE: SCION,!!X!!);morph(Olympian);nextPath(TABLE_6_5);setVar({pathName},Elite)
+2-3`Martian colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6);setVar({pathName},Enclaver)
 4-5`Martian colony staff`rollTable(TABLE_3_10,!!X!!)
-6`Risk-taking Martian settler`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3)
-7-9`Martian slave labor`package(INDENTURE,!!X!!);morph(Flat);nextPath(TABLE_6_7)
-10`Pre-Barsoomian Martian nomad`package(DRIFTER,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_2)
+6`Risk-taking Martian settler`package(RE-INSTANTIATED: CIVILIAN CASUALTY,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_3);setVar({pathName},Civilian)
+7-9`Martian slave labor`package(INDENTURE,!!X!!);morph(Flat);nextPath(TABLE_6_7);setVar({pathName},Indenture)
+10`Pre-Barsoomian Martian nomad`package(DRIFTER,!!X!!);roll(10,1-4=morph(Splicer)/5-10=morph(Flat));nextPath(TABLE_6_2);setVar({pathName},Autonomist)
 --------------------------------------------------------------
 TABLE
 TABLE_3_6
 10
-1`Pioneer dynasty`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5)
-2-3`Venusian colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6)
+1`Pioneer dynasty`package(HYPERELITE: SCION,!!X!!);morph(Exalt);nextPath(TABLE_6_5);setVar({pathName},Elite)
+2-3`Venusian colonist: privileged homesteader`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Splicer);nextPath(TABLE_6_6);setVar({pathName},Enclaver)
 4-6`Venusian colony staff`rollTable(TABLE_3_10,!!X!!)
-7-10`Mercurian slave labor`package(INDENTURE,!!X!!);roll(10,1-7=morph(Flat)/8-10=morph(Case));nextPath(TABLE_6_7)
+7-10`Mercurian slave labor`package(INDENTURE,!!X!!);roll(10,1-7=morph(Flat)/8-10=morph(Case));nextPath(TABLE_6_7);setVar({pathName},Indenture)
 --------------------------------------------------------------
 TABLE
 TABLE_3_7
 10
-1`Extropia founders`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Bouncer);nextPath(TABLE_6_5)
-2`Jovian colonist: shelter among giants`package(ISOLATE: SURVIVALIST,!!X!!);roll(10,1-5=morph(Flat)/6-8=morph(Splicer)/9-10=morph(Olympian));nextPath(TABLE_6_8)
-3`Titanian colonist`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-8=morph(Splicer)/9-10=morph(Menton));nextPath(TABLE_6_9)
-4-5`Anarchist colonist`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2)
+1`Extropia founders`package(FALL EVACUEE: ENCLAVER,!!X!!);morph(Bouncer);nextPath(TABLE_6_5);setVar({pathName},Elite)
+2`Jovian colonist: shelter among giants`package(ISOLATE: SURVIVALIST,!!X!!);roll(10,1-5=morph(Flat)/6-8=morph(Splicer)/9-10=morph(Olympian));nextPath(TABLE_6_8);setVar({pathName},Military)
+3`Titanian colonist`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-8=morph(Splicer)/9-10=morph(Menton));nextPath(TABLE_6_9);setVar({pathName},Scientist)
+4-5`Anarchist colonist`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2);setVar({pathName},Autonomist)
 6-8`Small colony outpost`rollTable(TABLE_3_10,!!X!!)
-9-10`Asteroid miner`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Case));nextPath(TABLE_6_7)
+9-10`Asteroid miner`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Case));nextPath(TABLE_6_7);setVar({pathName},Indenture)
 --------------------------------------------------------------
 TABLE
 TABLE_3_8
 10
-1-3`Wandering the system`package(DRIFTER,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_10)
-4-5`Found freedom in orbit`package(ORIGINAL SCUM,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2)
-6-8`Supply ship crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-4=morph(Splicer)/5-7=morph(Bouncer)/8-10=morph(Hibernoid));nextPath(TABLE_6_10)
-9-10`Migrant worker`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Bouncer));nextPath(TABLE_6_7)
+1-3`Wandering the system`package(DRIFTER,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_10);setVar({pathName},Spacer)
+4-5`Found freedom in orbit`package(ORIGINAL SCUM,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Bouncer));nextPath(TABLE_6_2);setVar({pathName},Autonomist)
+6-8`Supply ship crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-4=morph(Splicer)/5-7=morph(Bouncer)/8-10=morph(Hibernoid));nextPath(TABLE_6_10);setVar({pathName},Spacer)
+9-10`Migrant worker`package(INDENTURE,!!X!!);roll(10,1-4=morph(Flat)/5-7=morph(Case)/8-10=morph(Bouncer));nextPath(TABLE_6_7);setVar({pathName},Indenture)
 --------------------------------------------------------------
 TABLE
 TABLE_3_9
@@ -1256,17 +1256,17 @@ TABLE_3_9
 4-5`More machine than man`package(INFOLIFE: MACHINE AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_13);stepskip(STEP_9)/4-10=nextPath(TABLE_6_11));setVar(mercurialType,INFOLIFE)
 6-7`Created by and for science`package(INFOLIFE: RESEARCH AGI,!!X!!);morph(Infomorph);roll(10,1-3=nextPath(TABLE_9_11);stepskip(STEP_9)/4-10=nextPath(TABLE_6_9));setVar(mercurialType,INFOLIFE)
 8`An experiment gone horribly wrong`roll(10,1-5=package(LOST: DISTURBED CHILD,!!X!!)/6-10=package(LOST: MASKED NORMALCY,!!X!!));morph(Futura);stepskip(STEP_9)
-9`Second-class citizenship was not for you`package(UPLIFT: ESCAPEE,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar(mercurialType,UPLIFT)
-10`Living proof that uplift works`package(UPLIFT: STANDARD SPECIMEN,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar(mercurialType,UPLIFT)
+9`Second-class citizenship was not for you`package(UPLIFT: ESCAPEE,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar({pathName},Civilian);setVar(mercurialType,UPLIFT)
+10`Living proof that uplift works`package(UPLIFT: STANDARD SPECIMEN,!!X!!);rollTable(UPLIFT_BIOMORPHS);nextPath(TABLE_6_3);setVar({pathName},Civilian);setVar(mercurialType,UPLIFT)
 --------------------------------------------------------------
 TABLE
 TABLE_3_10
 10
-1`Born to lead`package(COLONIST: COMMAND STAFF,!!X!!);roll(10,1-7=morph(Splicer)/8-10=morph(Exalt));nextPath(TABLE_6_6)
-2-3`Space crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-5=morph(Splicer)/6-10=morph(Bouncer));nextPath(TABLE_6_10)
-4-5`Peacekeeper`package(COLONIST: SECURITY STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-7=morph(Splicer)/8-10=morph(Olympian));nextPath(TABLE_6_8)
-6-7`Researcher`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Menton));nextPath(TABLE_6_9)
-8-10`You kept the habitat functioning`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-8=morph(Splicer)/9-10=morph(Bouncer));nextPath(TABLE_6_11)
+1`Born to lead`package(COLONIST: COMMAND STAFF,!!X!!);roll(10,1-7=morph(Splicer)/8-10=morph(Exalt));nextPath(TABLE_6_6);setVar({pathName},Enclaver)
+2-3`Space crew`package(COLONIST: FLIGHT STAFF,!!X!!);roll(10,1-5=morph(Splicer)/6-10=morph(Bouncer));nextPath(TABLE_6_10);setVar({pathName},Spacer)
+4-5`Peacekeeper`package(COLONIST: SECURITY STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-7=morph(Splicer)/8-10=morph(Olympian));nextPath(TABLE_6_8);setVar({pathName},Military)
+6-7`Researcher`package(COLONIST: SCIENCE STAFF,!!X!!);roll(10,1-6=morph(Splicer)/7-10=morph(Menton));nextPath(TABLE_6_9);setVar({pathName},Scientist)
+8-10`You kept the habitat functioning`package(COLONIST: TECH STAFF,!!X!!);roll(10,1-3=morph(Flat)/4-8=morph(Splicer)/9-10=morph(Bouncer));nextPath(TABLE_6_11);setVar({pathName},Techie)
 --------------------------------------------------------------
 TABLE
 TABLE_3_STREET_RAT
@@ -1654,7 +1654,7 @@ package(getVar(s9FactionPkg),getVar(s9FactionPP))
 TABLE
 TABLE_9_1
 10
-1-6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`if(!hasVar({path}),rollTable(TABLE_6_1));rollTable(getVar({path}),getVar(s9FocusPP))
+1-6`Stay on the path. Roll again on the same subtable you last rolled on previously in Step 6 (if you last rolled on Table 6.12, or if you skipped Step 6,  roll on Table 6.1 to pick a new Focus path). If you roll a package you already have, re-roll.`if(!hasVar({path}),rollTable(TABLE_6_1));rollTable(getVar({path}),getVar(s9FocusPP));if(!hasVar({faction}),func(SET_FACTION_FROM_PATH))
 7-10`Switch gears. Roll on Table 6.1: New Path and proceed to the subtable indicated there.`rollTable(TABLE_6_1);rollTable(getVar({path}),getVar(s9FocusPP))
 --------------------------------------------------------------
 TABLE
@@ -2219,7 +2219,7 @@ BIOMORPHS
 57-59`Neotenic`morph(Neotenic)
 60-62`Remade`morph(Remade)
 63-69`Ruster`morph(Ruster)
-70`Lunar Flyer `morph(Lunar Flyer )
+70`Lunar Flyer `morph(Lunar Flyer)
 71-72`Martian Alpiner`morph(Martian Alpiner)
 73`Salamander`morph(Salamander)
 74`Surya`morph(Surya)

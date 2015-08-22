@@ -25,6 +25,7 @@ public class LifePathGenerator {
 	private boolean hasFinished;
 	private String stepSkipTo; // keeps track of if a stepskip was triggered and to what the item to jump to is.
 	private boolean noStop;
+	private ArrayList<String> choiceEffects; // keeps track of the original state of input choices the player had made incase we need to back stuff out because error
 	
 	/**
 	 * Creates the LifePathGenerator
@@ -43,6 +44,7 @@ public class LifePathGenerator {
 		this.hasFinished = false;
 		stepSkipTo = "";
 		noStop = false;
+		choiceEffects = new ArrayList<String>();
 	}	
 	
 	
@@ -175,6 +177,7 @@ public class LifePathGenerator {
 			
 				while (DataProc.containsChoice(effect))
 				{
+					choiceEffects.add(effect);
 						String extraInfo = extraContext;
 						// grab info from the package special notes if it exists
 						// we have to do some redundant preprocessing here
@@ -1093,26 +1096,27 @@ public class LifePathGenerator {
 					{
 						String response = UIObject.promptUser(subparts[1], ""); // response should be an integer
 						
+						int choice = -1;
 						
-						if (Utils.isInteger(response))
+						String[] choiceEffects = subparts[2].split("/");
+						
+						while (!Utils.isInteger(response) || Integer.parseInt(response) <= 0 || Integer.parseInt(response) > choiceEffects.length)
 						{
-							int choice = Integer.parseInt(response);
+							response = UIObject.promptUser(subparts[1], ""); 
 							
-							String[] choiceEffects = subparts[2].split("/");
+							// response should be an integer
+							if (Utils.isInteger(response))
+							{
+								// only do these when we at least get a number
+								choice = Integer.parseInt(response);
+								choiceEffects = subparts[2].split("/");
+							}																					
+						}
 							
-							if (choice <= 0 || choice > choiceEffects.length)
-							{
-								throw new RuntimeException("Response : " + choice + " is less than one or greater than number of choices");
-							}
-							else
-							{
-								this.runEffect(choiceEffects[choice-1].split("=")[1], subparts[1]);
-							}
-						}
-						else
-						{
-							throw new RuntimeException("Unexpected non-integer response from UI");
-						}
+							this.runEffect(choiceEffects[choice-1].split("=")[1], subparts[1]);
+							
+						
+
 					}
 					else
 					{
@@ -1342,7 +1346,7 @@ public class LifePathGenerator {
 	psichi(<name>)				(can use ?1?,?2?, etc)
 	psigamma(<name>)
 	psisleight(<name>)
-	extendedChoice(Text,0=effect/1=effect/2=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
+	extendedChoice(Text,1=effect/2=effect/3=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
 	if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
 	msgClient(<message>)					(says something to the UI about character changes)
 	setVar(<name>,<value>)
@@ -1380,7 +1384,11 @@ public class LifePathGenerator {
 				e.printStackTrace();
 				if (response)  // replace with seeing if response says to rollback last effect 
 				{
+					mainStuff.set(i, choiceEffects.get(choiceEffects.size()-1)); // Reset the last choice to it's pre-user input value
+																				 // it should always be the last choice that broke things. If not, we tried our best.
+																				 // if it's a problem, can make this more robust later
 					i--;
+					
 					continue;
 				}
 				else

@@ -199,7 +199,8 @@ public class Character {
 	public String toString()
 	{
 		String result = this.name + "(" + this.age + ")"+ "\n";
-		result = "Morph : " + this.currentMorph + ", Faction : " + this.getVar("{faction}")  + ", Path : " + this.getVar("{path}") + "\n";
+		result = "Morph : " + this.currentMorph.getName() + ", Faction : " + this.getVar("{factionName}")  + ", Path : " + this.getVar("{pathName}") 
+					+ ", Background : " + this.getVar("{background}") +"\n";
 		
 		result += "Traits : " + this.getTraitsString() + "\n";
 		result += this.getAptitudesString() + "\n";
@@ -245,7 +246,37 @@ public class Character {
 		charRep.incValue(val);
 	}
 	
+	/**
+	 * Returns any availible {factionName}, or "" if none exist
+	 * @return String either equal to {factionName} or ""
+	 */
+	public String getFaction()
+	{
+		if (hasVar("{factionName}"))
+		{
+			return getVar("{factionName}");
+		}
+		else
+		{
+			return "";
+		}
+	}
 	
+	/**
+	 * Returns any availible {pathName}, or "" if none exist
+	 * @return String either equal to {pathName} or ""
+	 */
+	public String getPath()
+	{
+		if (hasVar("{pathName}"))
+		{
+			return getVar("{pathName}");
+		}
+		else
+		{
+			return "";
+		}
+	}
 	
 	/**
 	 * @return the credits
@@ -778,7 +809,7 @@ public class Character {
 		
 		for (int x = 1; x < this.traitList.size(); x++)
 		{
-			result += ", " + this.traitList.get(x);
+			result += ", " + this.traitList.get(x).toStringShort();
 		}
 		
 		return result;
