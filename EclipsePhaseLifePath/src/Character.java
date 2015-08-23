@@ -947,6 +947,14 @@ public class Character {
 		return result.trim();
 	}
 	
+	public ArrayList<Rep> getAllRep()
+	{
+		ArrayList<Rep> result = new ArrayList<Rep>();
+		result.addAll(repList.values());
+		
+		return result;
+	}
+	
 	public String getRepString()
 	{
 		String result = "";

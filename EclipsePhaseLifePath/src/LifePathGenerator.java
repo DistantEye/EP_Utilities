@@ -185,22 +185,7 @@ public class LifePathGenerator {
 				while (DataProc.containsChoice(effect))
 				{
 					choiceEffects.add(effect);
-						String extraInfo = extraContext;
-						// grab info from the package special notes if it exists
-						// we have to do some redundant preprocessing here
-						if (extraInfo == "" && effect.toLowerCase().startsWith("+package"))
-						{
-							String[] parts = Utils.splitCommands(effect);
-							
-							if (parts.length == 2 && DataProc.dataObjExists(parts[1]))
-							{
-								UniqueNamedData dataObject = DataProc.getDataObj(parts[1]);
-								if (dataObject.getType().equals("package") && ((Package)dataObject).getSpecialNotes().length() != 0)
-								{
-									extraInfo = ((Package)dataObject).getSpecialNotes();
-								}
-							}
-						}
+						String extraInfo = extraContext;											
 					
 						// we look for a context bubble (tells user what you might be wanting them to enter)
 						if (Pattern.matches("#[^#]+#", effect))
@@ -214,14 +199,21 @@ public class LifePathGenerator {
 						// will make assumption user knows that choices are resolved left to right
 						// will also remove any asterisks that appeared after since they'll probably interfere
 						String promptMsg = DataProc.effectsToString(effect);
-						String promptRes = UIObject.promptUser(promptMsg,extraContext+"\n"+extraInfo);
+						
+						// don't use extra info for * type notes if * is not in the String
+						if (extraInfo.startsWith("*") && !effect.contains("*")) 
+						{
+							extraInfo = "";
+						}
+						
+						String promptRes = UIObject.promptUser(promptMsg,extraInfo);
 						
 						// if they entered blank, we attempt to pick a random (but valid answer)
 						if (promptRes.equals(""))
 						{
 							// if the right stuff are in the prompt, we can do some extra actions
 							// check for a few things that lets us provide extra info
-							String[] result = DataProc.getExtraPromptOptions(promptMsg,extraContext+"\n"+extraInfo);
+							String[] result = DataProc.getExtraPromptOptions(promptMsg,extraInfo);
 							if (result != null && result[0].equals("field"))
 							{
 								String sklName = result[2];
@@ -271,6 +263,67 @@ public class LifePathGenerator {
 								}
 								
 								promptRes = temp.getFullName();
+							}
+							else if (result != null && result[0].equals("sleight"))
+							{
+								ArrayList<Sleight> options = new ArrayList<Sleight>();
+								options.addAll(Sleight.sleightList.values());
+								
+								Sleight temp = options.get(rng.nextInt(options.size()));
+								promptRes = temp.getName();
+							}
+							else if (result != null && result[0].equals("sleightChi"))
+							{
+								ArrayList<Sleight> options = new ArrayList<Sleight>();
+								options.addAll(Sleight.sleightList.values());
+								
+								// remove all not chi sleights
+								for (Sleight s : options)
+								{
+									if (!s.getSleightType().equalsIgnoreCase("chi"))
+									{
+										options.remove(s);
+									}
+								}
+								
+								Sleight temp = options.get(rng.nextInt(options.size()));
+								promptRes = temp.getName();
+							}
+							else if (result != null && result[0].equals("sleightGamma"))
+							{
+								ArrayList<Sleight> options = new ArrayList<Sleight>();
+								options.addAll(Sleight.sleightList.values());
+								
+								// remove all not gamma sleights
+								for (Sleight s : options)
+								{
+									if (!s.getSleightType().equalsIgnoreCase("gamma"))
+									{
+										options.remove(s);
+									}
+								}
+								
+								Sleight temp = options.get(rng.nextInt(options.size()));
+								promptRes = temp.getName();
+							}
+							else if (result != null && result[0].equals("rep"))
+							{
+								ArrayList<Rep> options = new ArrayList<Rep>();
+								options.addAll(Rep.repTypes.values());
+								
+								Rep temp = options.get(rng.nextInt(options.size()));
+								promptRes = temp.getName();
+							}
+							else if (result != null && result[0].equals("mentDisorder"))
+							{
+								Trait t = Trait.getTrait("Mental Disorder", 1);
+								
+								// we grab the text right after the part in the description where "*Possibilities:" appears
+								int len = "*Possibilities: ".length();
+								String possibilities = t.getDescription().substring(t.getDescription().indexOf("*Possibilities:")+len).trim();
+								String[] options = possibilities.split(",");
+								
+								promptRes = options[rng.nextInt(options.length)];
 							}
 						}
 
@@ -1446,8 +1499,8 @@ public class LifePathGenerator {
 		{
 			String part1, part2;
 			
-			part1 = condition.substring(0, condition.indexOf("&&"));
-			part2 = condition.substring(condition.indexOf("&&")+2);
+			part1 = condition.substring(0, condition.indexOf("||"));
+			part2 = condition.substring(condition.indexOf("||")+2);
 			
 			return this.resolveConditional(part1,effectParams) || this.resolveConditional(part2,effectParams);
 		}
@@ -1456,8 +1509,8 @@ public class LifePathGenerator {
 		{
 			String part1, part2;
 			
-			part1 = condition.substring(0, condition.indexOf("||"));
-			part2 = condition.substring(condition.indexOf("||")+2);
+			part1 = condition.substring(0, condition.indexOf("&&"));
+			part2 = condition.substring(condition.indexOf("&&")+2);
 			
 			return this.resolveConditional(part1,effectParams) && this.resolveConditional(part2,effectParams);
 		}

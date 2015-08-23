@@ -1459,6 +1459,7 @@ public class DataProc {
 		Matcher fullSkill = Pattern.compile("Add skill : \\(Choose One Skl\\) [0-9]+").matcher(message);
 		Matcher fullSkillNonPsi = Pattern.compile("(Choose )?(Any|One|Two|Three|Four|Five|Six|Seven|Eight) Non Psi(-| )Skill").matcher(message);
 		Matcher fullSkillPsi = Pattern.compile("(Choose )?(Any|One|Two|Three|Four|Five|Six|Seven|Eight) Psi(-| )Skill").matcher(message);
+		Matcher repChoice = Pattern.compile("Add [\\-]?[0-9]+ to \\(Choose One\\)-rep").matcher(message);
 		
 		if (fieldSkill.find())
 		{
@@ -1475,6 +1476,26 @@ public class DataProc {
 		else if (fullSkill.find())
 		{
 			return new String[]{"skill","\n Entering nothing will attempt to choose a random valid skill"};
+		}
+		else if (message.contains("Add psi sleight:"))
+		{
+			return new String[]{"sleight","\n Entering nothing will attempt to choose a random valid sleight"};
+		}
+		else if (message.contains("Add psi-chi sleight:"))
+		{
+			return new String[]{"sleightChi","\n Entering nothing will attempt to choose a random valid psi-chi sleight"};
+		}
+		else if (message.contains("Add psi-gamma sleight:"))
+		{
+			return new String[]{"sleightGamma","\n Entering nothing will attempt to choose a random valid psi-gamma sleight"};
+		}
+		else if (repChoice.find())
+		{
+			return new String[]{"rep","\n Entering nothing will attempt to choose a random valid rep category"};
+		}
+		else if (message.contains("Add trait: Mental Disorder ((Choose One))"))
+		{
+			return new String[]{"mentDisorder","\n  Entering nothing will attempt to choose a random valid mental disorder"};
 		}
 		
 		return null;

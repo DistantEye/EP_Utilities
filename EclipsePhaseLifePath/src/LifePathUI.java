@@ -261,6 +261,15 @@ public class LifePathUI implements UI {
 		addMappedFixedTF(6,6,"Free CP", "",5,true);
 		endRow(8,6);
 		
+		int xIdx = 0;
+		
+		for (Rep r : gen.getPC().getAllRep())
+		{
+			addMappedFixedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,true);
+			xIdx += 2;
+		}
+		endRow(xIdx,7);
+		
 		// reset to normal dimensions and panel targets
 		currentLayout = layout;
 		currentComponent = mainPanel;
@@ -282,14 +291,14 @@ public class LifePathUI implements UI {
 		tempPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		tempPane.setMinimumSize(tempPane.getPreferredSize());
 		
-		addC(tempPane,0,8);
+		addC(tempPane,0,9);
 
 		// reset to normal dimensions
 		cons.fill = GridBagConstraints.NONE;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		
-		addMappedButton(1,25,"Firewall Events").addActionListener(new ActionListener() {
+		addMappedButton(0,26,"Firewall Events").addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e)
 		    {
@@ -310,7 +319,7 @@ public class LifePathUI implements UI {
 		((JButton)mappedComponents.get("Firewall Events")).setText("Firewall Events (Off)");
 		
 
-		addMappedButton(2,25,"Gatecrashing Events").addActionListener(new ActionListener() {
+		addMappedButton(1,26,"Gatecrashing Events").addActionListener(new ActionListener() {
 			
 		    public void actionPerformed(ActionEvent e)
 		    {
@@ -330,7 +339,7 @@ public class LifePathUI implements UI {
 		// set this afterwards so it doesn't change the mapping name
 		((JButton)mappedComponents.get("Gatecrashing Events")).setText("Gatecrashing Events (Off)");
 		
-		addMappedButton(3,25,"Run Next Step").addActionListener(new ActionListener() {
+		addMappedButton(3,26,"Run Next Step").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -340,7 +349,7 @@ public class LifePathUI implements UI {
 		});
 		
 		// gives a quick export of the character
-		addButton(4,25,"Export to Txt").addActionListener(new ActionListener() {
+		addButton(7,26,"Export to Txt").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -355,7 +364,7 @@ public class LifePathUI implements UI {
             }	
 		});
 		
-		endVertical(0,26);
+		endVertical(0,27);
 		
 		this.update();
 		
@@ -749,7 +758,11 @@ public class LifePathUI implements UI {
 		getTextF("Credits").setText(""+gen.getPC().getVarInt("{credits}"));
 		getTextF("Free CP").setText(""+gen.getPC().getVarInt("{CP}"));
 		
-		
+		// update rep
+		for (Rep r : gen.getPC().getAllRep())
+		{
+			getTextF(r.getName()+"-rep").setText(""+r.getValue());
+		}
 		
 		// rebuild skills panel
 		sideBar.removeAll();
