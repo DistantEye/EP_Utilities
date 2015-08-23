@@ -836,7 +836,7 @@ public class DataProc {
 				}
 				else if ( (Skill.isSkill(subparts[1])|| DataProc.containsUncertainty(subparts[1])) && subparts[2].length() > 0)
 				{
-					result += "Add specialization: " + subparts[2] + " to " + subparts[1];
+					result += "Add specialization(" + subparts[2] + ") to skill " + subparts[1];
 				}
 				else
 				{

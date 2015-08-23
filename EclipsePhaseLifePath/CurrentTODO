@@ -17,3 +17,13 @@ Resolve skill stacking (when you get a skill awarded you already have)
 Make Traits and Sleights also use XML (possibly the whole internalInfo file)
 
 may need to do something special with if conditionals : right now getVar will try and resolve for both branches, which can break things
+
+
+Two choices in same effect still breaks things. This is an issue for the sklSpec() command
+
+
+Need autohandler for add psi sleight and choose rep
+	Text to use :
+	Add psi sleight:
+	
+	Add [0-9]+ to (Choose One)-rep

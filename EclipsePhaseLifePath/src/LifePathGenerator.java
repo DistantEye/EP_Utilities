@@ -154,15 +154,22 @@ public class LifePathGenerator {
 				
 			ArrayList<String> buffer = new ArrayList<String>();
 			
+			boolean didSplit = false;
+			
 			// this should handle all cases of choice token splitting, no matter how convulted/nested
 			// "splitting" refers to making high numbered choice tokens like ?3? into three separate effects of ?1?
 			// TODO will this work properly in terms of the while conditional running each time? Make sure.
 			while (Pattern.compile("\\?([2-9]+)\\?\\**").matcher(tempEff).find())
 			{
+				didSplit = true;
 				tempEff = splitChoiceTokens(tempEff,buffer);								
 			}
-						
-			buffer.add(tempEff);
+				
+			// if there were no choices split, we have to add the normal effect to the buffer
+			if (!didSplit)
+			{
+				buffer.add(tempEff);
+			}
 			
 			mainStuff.addAll(buffer);
 			
@@ -1960,6 +1967,6 @@ public class LifePathGenerator {
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 		LifePathGenerator gen = new LifePathGenerator("",null,true);
 		
-		System.out.println(Skill.hasCategory("Art: Arting", "Art"));
+		//gen.runEffect("trait(Mental Disorder (?3?));incSkl(?1?,10)", "");
 	}
 }
