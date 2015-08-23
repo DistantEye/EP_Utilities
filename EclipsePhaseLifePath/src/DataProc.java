@@ -355,49 +355,59 @@ public class DataProc {
 		dataStore.put(name, new Function(name, lines[2]));
 	}	
 	/**
-	 * Adds sleight to the system
-	 * Format (by line):
+	 * Adds sleights to the system
+	 * Format (XML):
 	 * 
-	 * SLEIGHT
-	 * TYPE // CHI, GAMMA, ETC
-	 * TRUE/FALSE  // is exsurgent only?
-	 * SLEIGHT_NAME
-	 * Active/Passive?
-	 * ActionType
-	 * Range
-	 * Duration
-	 * Strain Mod
-	 * Skill Used
-	 * Description
+	 * <sleight>
+		<sleightType></sleightType>
+		<exsurgentOnly></exsurgentOnly>
+		<name></name>
+		<activePassive></activePassive>
+		<actionType></actionType>
+		<range></range>
+		<duration></duration>
+		<strainMod></strainMod>
+		<skillUsed></skillUsed>
+		<desc></desc>
+		</sleight>
 	 * 
 	 * @param lines List of lines comprising the Sleight to be read in
 	 */
 	private static void addSleight(String[] lines)
 	{
-		if (lines.length != 11)
+		int startIdx = 0;
+		
+		// we rejoin into a single string for XML parsing
+		String chunkStr = Utils.joinStr(lines);
+		
+		while ( true )
 		{
-			throw new IllegalArgumentException("Sleight chunk must be 11 lines long! (before line:" + fileLineNumber + ")");
-		}
+			startIdx = chunkStr.indexOf("<sleight>", startIdx); // we find the next valid Trait
+			
+			if (startIdx == -1)
+			{
+				break; // no more matches exist
+			}
+			
+			String nextSleight = Utils.returnStringInTag("sleight", chunkStr, startIdx);
+			
+			String sleightType = Utils.returnStringInTag("sleightType", nextSleight, 0);
+			String isExsurgent = Utils.returnStringInTag("exsurgentOnly", nextSleight, 0);
+			String sleightName = Utils.returnStringInTag("name", nextSleight, 0);
+			String activePassive = Utils.returnStringInTag("activePassive", nextSleight, 0);
+			String actionType = Utils.returnStringInTag("actionType", nextSleight, 0);
+			String range = Utils.returnStringInTag("range", nextSleight, 0);
+			String duration = Utils.returnStringInTag("duration", nextSleight, 0);
+			String strainMod = Utils.returnStringInTag("strainMod", nextSleight, 0);
+			String skillUsed = Utils.returnStringInTag("skillUsed", nextSleight, 0);
+			String description = Utils.returnStringInTag("desc", nextSleight, 0);
+			
+			Sleight.CreateInternalsleight(new String[]{sleightType,isExsurgent,sleightName,activePassive,actionType,range,duration,strainMod,skillUsed,description});
+			
+			startIdx++;
+		} 
 		
-		int cnt = 1; // so lines can be rearranged easily
-		String sleightType = lines[cnt++];
-		String isExsurgent = lines[cnt++];
 		
-		if (!(isExsurgent.equalsIgnoreCase("true") || isExsurgent.equalsIgnoreCase("false")))
-		{
-			throw new IllegalArgumentException("field isExsurgent for Sleight must be either true or false (before line:" + fileLineNumber + ")");
-		}
-		
-		String sleightName = lines[cnt++];
-		String activePassive = lines[cnt++];
-		String actionType = lines[cnt++];
-		String range = lines[cnt++];
-		String duration = lines[cnt++];
-		String strainMod = lines[cnt++];
-		String skillUsed = lines[cnt++];
-		String description = lines[cnt++];
-		
-		Sleight.CreateInternalsleight(new String[]{sleightType,isExsurgent,sleightName,activePassive,actionType,range,duration,strainMod,skillUsed,description});
 	}
 	
 	/**

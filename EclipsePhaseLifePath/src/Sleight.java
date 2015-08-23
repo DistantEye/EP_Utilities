@@ -20,7 +20,7 @@ public class Sleight {
 	private String skillUsed;
 	private String description;
 	
-	// stores all the below skills
+	// stores all the below sleights
 	public static HashMap<String,Sleight> sleightList = new HashMap<String,Sleight>();
 	 
 	/**
