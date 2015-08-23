@@ -402,68 +402,43 @@ public class DataProc {
 	
 	/**
 	 * Adds Trait
-	 * Format (by line):
+	 * Format (XML)
 	 * 
-	 * Line1	TRAIT:::<name>
-	 * Line2	Bonus: <number> CP
-     * Line3+ 	<description. will read liesuntil end of chunk>
+	 * <trait>
+	 * <name></name>
+	 * <cost></cost>
+	 * <bonus></bonus>
+	 * <description></description>
+	 * </trait>
 	 * 
 	 * @param lines List of lines comprising the Trait to be read in
 	 */
 	private static void addTrait(String[] lines)
 	{
-		String nextTrait = "";
-		int idx = 0;
 		int startIdx = 0;
-		int endIdx = 0;
 		
-		// this trait is multiline so we have to rejoin the string array
+		// we rejoin into a single string for XML parsing
 		String chunkStr = Utils.joinStr(lines);
 		
-		do 
+		while ( true )
 		{
-			startIdx = chunkStr.indexOf("TRAIT:::", idx); // we find the next valid Trait
+			startIdx = chunkStr.indexOf("<trait>", startIdx); // we find the next valid Trait
 			
-			// if there wasn't anything found, we're done
 			if (startIdx == -1)
 			{
-				nextTrait = "";
-				break;
+				break; // no more matches exist
 			}
 			
-			endIdx = chunkStr.indexOf("TRAIT:::", startIdx+1); // we look a bit ahead to see the one after it to figure out the endpoint
+			String nextTrait = Utils.returnStringInTag("trait", chunkStr, startIdx);
 			
-			// if we've gotten this far, we have a valid chunk to work on
-			if (endIdx != -1)
-			{
-				// get to the end of the stream
-				nextTrait = chunkStr.substring(startIdx, endIdx);
-				idx = endIdx;
-			}
-			else
-			{
-				// get to the end of the stream
-				nextTrait = chunkStr.substring(startIdx);
-				idx = idx+1; // this will make it fail to find any more traits
-			}
-			
-			// we do some pre processing before feeding in the nextTrait we just generated
-			// this isn't explictly needed but it helps re-emulate the format used in other areas
-			// the hope is to go back later and find a nice way to do this from the start
-			
-			int endFirstLine = nextTrait.indexOf('\n');
-			
-			// we want to make sure we found a valid index and there's stuff after it
-			if (endFirstLine == -1 || nextTrait.length() == (endFirstLine+1))
-			{
-				throw new IllegalArgumentException("Unknown type of data or incorrect formating for Trait chunk : " + nextTrait);
-			}
-			
-			String processedStr = nextTrait.substring(0, endFirstLine).split(":::")[1] + "|" + nextTrait.substring(endFirstLine+1);
-			
-			Trait.CreateInternalTrait(processedStr);
-			
-		} while ( nextTrait != "");
+			String name = Utils.returnStringInTag("name", nextTrait, 0);
+			String cost = Utils.returnStringInTag("cost", nextTrait, 0);
+			String bonus = Utils.returnStringInTag("cost", nextTrait, 0);
+			String desc = Utils.returnStringInTag("description", nextTrait, 0);
+
+			Trait.CreateInternalTrait(name,desc,cost,bonus,1);
+			startIdx++;
+		} 
 	}
 	
 	/**
@@ -489,9 +464,7 @@ public class DataProc {
 	 */
 	private static void addMorph(String[] lines)
 	{
-		// TODO this is a bit hackish. We may one day make this work more like true xml
-		
-		// we use no divider between lines because it will make the tag parsing actually go slightlyeasier.
+		// we use no divider between lines because it will make the tag parsing actually go slightly easier.
 		String lineStream = Utils.joinStr(lines,"");
 		int idx = 0;
 		
@@ -742,6 +715,7 @@ public class DataProc {
 			}
 			
 			// TODO : to comply with older code, we have to insert the command at the beginning of params
+			// can probably redo this at some point
 			params = commandName + "," + params;
 			
 			// means we have no useful line info

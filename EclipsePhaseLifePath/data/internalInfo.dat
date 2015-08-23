@@ -2328,30 +2328,37 @@ Psi Assault
 Strip allows the exsurgent to suppress certain memories in the target’s mind. This can be used to block memories of certain events or even the victim’s identity. The process is not exact, however, and so the memories may not be fully suppressed and/or related memories may also be blocked; the gamemaster decides on the effect as determined by the MoS. Strip can also be used to temporarily erase a specific skill from the target’s mind, preventing them from using or even defaulting to that ability while so affected.
 ------------------------------------------------------------------------------------------
 trait
-TRAIT:::Adaptability
-Cost: 10 (Level 1) or 20 (Level 2) CP
-Resleeving is a breeze for this
+<trait>
+<name>Adaptability</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>Resleeving is a breeze for this
 character. They adjust to new morphs much more quickly than most
 other people. Apply a +10 modifier per level for Integration
 Tests and Alienation Tests.
-
-TRAIT:::AGI Affinity
-Cost: 5 CP
-The character has spent a significant amount of time around
+</description>
+</trait>
+<trait>
+<name>AGI Affinity</name>
+<cost>Cost: 5 CP</cost>
+<description>The character has spent a significant amount of time around
 AGIs, to the point where socializing with an AGI is far easier. The
 character gains a +10 modifier on Social Skill Tests against AGIs as
 well as characters with the Real World Naivete trait.
-
-TRAIT:::AGI Socialization
-Cost: 10 CP
-Only AGI characters may take this trait and only during
+</description>
+</trait>
+<trait>
+<name>AGI Socialization</name>
+<cost>Cost: 10 CP</cost>
+<description>Only AGI characters may take this trait and only during
 character generation. The character is more adept at interpreting
 social cues than the average infolife. The character gains a +10
 bonus on all Kinesics Tests made against transhumans. This bonus does
 not apply to other AGIs, uplifts, aliens, or exsurgents.
-
-TRAIT:::Alien Biochemistry
-It is an impressive feat that creatures that evolved on separate worlds
+</description>
+</trait>
+<trait>
+<name>Alien Biochemistry</name>
+<description>It is an impressive feat that creatures that evolved on separate worlds
 with different biochemistries are now being transformed into pods by
 transhuman geneticists. In fact, the biochemistries of these
 creatures are far less understood than that of transhumans. What this
@@ -2381,10 +2388,12 @@ Morphs with alien
 biochemistry count as exotic and inflict -30 modifiers to
 Alienation and Integrity Tests. This trait is only available to pods
 created from alien life.
-
-TRAIT:::Allies
-Cost: 30 CP
-The character is part of or has a relationship with some
+</description>
+</trait>
+<trait>
+<name>Allies</name>
+<cost>Cost: 30 CP</cost>
+<description>The character is part of or has a relationship with some
 influential group that they can occasionally call on for support. For
 example, this could be their old gatecrashing crew, former research
 lab co-workers, a criminal cartel they are part of, or an elite
@@ -2396,27 +2405,33 @@ than once per game session. The character's ties to this group
 are also a two-way street+they will be expected to perform
 duties for the group on occasion as well (a potential plot seed for
 scenarios).
-
-TRAIT:::Ambidextrous
-Cost: 10 CP
-The character can use and manipulate objects equally well
+</description>
+</trait>
+<trait>
+<name>Ambidextrous</name>
+<cost>Cost: 10 CP</cost>
+<description>The character can use and manipulate objects equally well
 with both hands (they do not suffer the off-hand modifier). If the
 character has other prehensile limbs (feet, tail, tentacles, etc),
 this trait may be applied to a limb other than the hand. This trait
 may be taken multiple times for multiple limbs.
-
-TRAIT:::Animal Empathy
-Cost: 5 CP
-The character has an instinctive feel for handling and
+</description>
+</trait>
+<trait>
+<name>Animal Empathy</name>
+<cost>Cost: 5 CP</cost>
+<description>The character has an instinctive feel for handling and
 working with non-sapient animals of all kinds. Apply a +10 modifier
 to Animal
 Handling
 skill tests or whenever the character makes a test to influence or
 interact with an animal.
-
-TRAIT:::Async Familiarity
-Cost: 5 CP
-This character has a keen sense for the subtle behavioral
+</description>
+</trait>
+<trait>
+<name>Async Familiarity</name>
+<cost>Cost: 5 CP</cost>
+<description>This character has a keen sense for the subtle behavioral
 clues and micro-expressions that many asyncs unconsciously adopt
 after their infection. As a result, they may make a Kinesics
 Test to identify an async as such on their behavior alone.
@@ -2425,19 +2440,23 @@ best, given that there is usually no outward sign of Watts-MacLeod
 infection or the use of psi sleights. This trait is most common among
 asyncs, but it may be allowed for characters that have studied asyncs
 or spent significant time in their presence.
-
-TRAIT:::Brave
-Cost: 10 CP
-This character does not scare easily, and will face threats,
+</description>
+</trait>
+<trait>
+<name>Brave</name>
+<cost>Cost: 10 CP</cost>
+<description>This character does not scare easily, and will face threats,
 intimidation, and certain bodily harm without flinching. As a side
 effect, the character is not always the best at gauging risks,
 especially when it comes to factoring in danger to others. The
 character receives a +10 modifier on all tests to resist fear or
 intimidation.
-
-TRAIT:::Civilian Analyst
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-The character is a civilian
+</description>
+</trait>
+<trait>
+<name>Civilian Analyst</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>The character is a civilian
 analyst in a large intelligence agency such as the Titanian Ministry
 of State's Civilian Intelligence Directorate or the Planetary
 Consortium's Oversight. At Level 2, the character is a manager
@@ -2452,10 +2471,12 @@ choice for Jovian characters, as most Jovian intel analysts are
 confined to the Castle, with very limited freedom of movement. Also
 note that characters making frequent requests for secret information
 not related to their job functions will draw scrutiny.
-
-TRAIT:::Common Sense
-Cost: 10 CP
-The character has an innate sense of judgment that cuts
+</description>
+</trait>
+<trait>
+<name>Common Sense</name>
+<cost>Cost: 10 CP</cost>
+<description>The character has an innate sense of judgment that cuts
 through other distractions and factors that might cloud a decision.
 Once per game session, the player may ask the gamemaster what choice
 they should make or what course of action they should take, and the
@@ -2463,10 +2484,12 @@ gamemaster should give them solid advice based on what the character
 knows. Alternately, if the character is about to make a disastrous
 decision, the gamemaster can use the character's free hint and
 warn the player they are making a mistake.
-
-TRAIT:::Coronal Adaptation (Morph Trait)
-Cost: 30 CP
-For biomorphs, this radical alteration enables the subject's
+</description>
+</trait>
+<trait>
+<name>Coronal Adaptation (Morph Trait)</name>
+<cost>Cost: 30 CP</cost>
+<description>For biomorphs, this radical alteration enables the subject's
 metabolism to live off solar energy, using medichines to repair
 radiation damage. This same metabolism also generates powerful
 electromagnetic fields that protect the character from the intense
@@ -2494,30 +2517,38 @@ skill tests in the presence of strong electromagnetic fields. It also
 provides 10 points of Energy armor against heat and
 electromagnetic-based attacks (such as lasers, microwaves, and plasma
 weapons, but not explosions).
-
-TRAIT:::Danger Sense
-Cost: 10 CP
-The character has an intuitive sixth sense that warns them
+</description>
+</trait>
+<trait>
+<name>Danger Sense</name>
+<cost>Cost: 10 CP</cost>
+<description>The character has an intuitive sixth sense that warns them
 of imminent threats. They receive a +10 modifier on Surprise Tests.
-
-TRAIT:::Direction Sense
-Cost: 5 CP
-Somehow the character always knows which way is up, north,
+</description>
+</trait>
+<trait>
+<name>Direction Sense</name>
+<cost>Cost: 5 CP</cost>
+<description>Somehow the character always knows which way is up, north,
 etc., even when blinded. The character receives a +10 modifier for
 figuring out complex directions, reading maps, and remembering or
 retracing a path they have taken.
-
-TRAIT:::Digital Ghost
-Cost: 10 CP
-The character has an intuitive knack for keeping their
+</description>
+</trait>
+<trait>
+<name>Digital Ghost</name>
+<cost>Cost: 10 CP</cost>
+<description>The character has an intuitive knack for keeping their
 computer intrusions out of the spotlight. Once per game session, the
 hacker may prevent a Severe Failure or Critical Failure from
 downgrading their status on a hacked system (see Failing
 Tests).
-
-TRAIT:::Dominant Strain
-Cost: 10 CP
-(Asyncs only)
+</description>
+</trait>
+<trait>
+<name>Dominant Strain</name>
+<cost>Cost: 10 CP</cost>
+<description>(Asyncs only)
 This trait is only available to asyncs. The Watts-MacLeod
 virus has a special hold on the async and aggressively resists
 attempts by other strains of the exsurgent virus to gain a foothold
@@ -2529,34 +2560,42 @@ derangement for 1d10 hours after the test is resolved as the
 Watts-MacLeod strain asserts itself. They incur no stress along with
 this derangement, but multiple tests to resist infection may, at the
 gamemaster's discretion, incur additional derangements.
-
-TRAIT:::Drug Exception (Ego or Morph Trait)
-Cost: 10 CP
-The character or morph has an unusual resistance to
+</description>
+</trait>
+<trait>
+<name>Drug Exception (Ego or Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>The character or morph has an unusual resistance to
 addiction for one particular biological or chemical drug (but not
 nanodrugs or narcoalgorithms). Addiction Tests for using that drug or
 resisting an addiction craving are made with a +20 modifier.
 Furthermore, the character halves the penalty for minor and moderate
 addiction to that drug, but still suffers full penalties from major
 addiction.
-
-TRAIT:::Ego Plasticity
-Cost: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)
-Merging forks
+</description>
+</trait>
+<trait>
+<name>Ego Plasticity</name>
+<cost>Cost: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)</cost>
+<description>Merging forks
 can be stressful under the best of circumstances, but some people
 handle the process better than others. Per level, the character gains
 a +10 modifier on all Merging Tests and suffers -1 SV when
 merging forks.
-
-TRAIT:::Eidetic Memory (Ego or Morph Trait)
-Cost: 10 CP
-Much like a computer, the character has perfect memory
+</description>
+</trait>
+<trait>
+<name>Eidetic Memory (Ego or Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>Much like a computer, the character has perfect memory
 recall. They can remember anything they have sensed, often even from
 a single glance. This works the same as the eidetic memory implant.
-
-TRAIT:::Enlarged Size (Morph Trait)
-Cost: 10 CP
-This trait increases the size of an existing morph model
+</description>
+</trait>
+<trait>
+<name>Enlarged Size (Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait increases the size of an existing morph model
 from either small to medium or medium to large (morphs may only be
 enlarged once). Morphs enlarged to a medium size lose the effects of
 the Small Size trait and gain 5 points of Durability. Morphs enlarged
@@ -2566,10 +2605,12 @@ Threshold and Death Rating as normal. Enlarging a morph may affect
 other changes at the gamemaster's discretion. For example,
 morphs that relied on their small size for fight may lose that
 capability or suffer modifiers.
-
-TRAIT:::Entrepreneur
-Cost: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)
-This
+</description>
+</trait>
+<trait>
+<name>Entrepreneur</name>
+<cost>Cost: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)</cost>
+<description>This
 character is the owner or co-owner of their own small hypercorp,
 microcorp, or business franchise+or an active participant in an
 autonomist cooperative, collective, or work syndicate. This entity
@@ -2597,10 +2638,12 @@ fuctuate during game play, much like a player character's.
 This may be in part due to the character's actions, but could
 also result from economic or political factors outside the
 character's control.
-
-TRAIT:::Established Fork
-Cost: 5 CP
-The character begins the game with a fully instanced fork of
+</description>
+</trait>
+<trait>
+<name>Established Fork</name>
+<cost>Cost: 5 CP</cost>
+<description>The character begins the game with a fully instanced fork of
 themselves, and the player can specify if it is an alpha, beta, or
 delta fork; beta and delta forks will have their stats adjusted
 according to the rules outlined in Forking
@@ -2620,10 +2663,12 @@ current once the game is underway. This trait can be taken more than
 once. Players should carefully coordinate with their gamemaster to
 ensure a common understanding of the fork's place in the game
 and how they can be utilized.
-
-TRAIT:::Exceptional Aptitude (Ego or Morph Trait)
-Cost: 20 CP
-As an ego trait, the character may raise the maximum for a
+</description>
+</trait>
+<trait>
+<name>Exceptional Aptitude (Ego or Morph Trait)</name>
+<cost>Cost: 20 CP</cost>
+<description>As an ego trait, the character may raise the maximum for a
 particular chosen aptitude to 40 rather than 30. As a morph trait, it
 raises the morph aptitude maximum for a particular chosen aptitude by
 10 (30 for flats, 35 for splicers, 40 for all others). Note that this
@@ -2631,42 +2676,52 @@ trait just raises the maximum, it does not give the character 10 more
 aptitude points.
 This trait may only be taken by a morph or ego
 once.
-
-TRAIT:::Expert
-Cost: 10 CP
-The character is a legend in the use of one particular
+</description>
+</trait>
+<trait>
+<name>Expert</name>
+<cost>Cost: 10 CP</cost>
+<description>The character is a legend in the use of one particular
 skill. The character may raise one learned skill over 80, to a
 maximum of 90, during character creation. This trait does not
 actually increase the skill, it just raises the maximum. This trait
 may only be taken once.
-
-TRAIT:::Fast Learner
-Cost: 10 CP
-The character improves skills and learns new ones in half
+</description>
+</trait>
+<trait>
+<name>Fast Learner</name>
+<cost>Cost: 10 CP</cost>
+<description>The character improves skills and learns new ones in half
 the time it normally takes.
-
-TRAIT:::First Impression
-Cost: 10 CP
-The character has a way of charming or otherwise making a
+</description>
+</trait>
+<trait>
+<name>First Impression</name>
+<cost>Cost: 10 CP</cost>
+<description>The character has a way of charming or otherwise making a
 good impression the first time they interact with someone. This
 innate social lubricant allows them to more readily deal with new
 contacts and slip right into new social environments. Apply a +10
 modifier on social skill tests when the character is interacting with
 another character for the first time only.
-
-TRAIT:::Gold Star
-Cost: 10 CP
-At some point in their past, this character did something
+</description>
+</trait>
+<trait>
+<name>Gold Star</name>
+<cost>Cost: 10 CP</cost>
+<description>At some point in their past, this character did something
 that permanently earned them a place in the historical annals of a
 particular faction. Choose one faction. Each time the character
 interacts with that faction (such as with Networking
 Tests) or with an NPC from this faction who knows the character, they
 gain a +10 modifier. This trait is incompatible with the Black Mark
 trait for the same faction.
-
-TRAIT:::Hardening
-Cost: 10 CP
-Either through repeated exposure or simply due to a willful
+</description>
+</trait>
+<trait>
+<name>Hardening</name>
+<cost>Cost: 10 CP</cost>
+<description>Either through repeated exposure or simply due to a willful
 aspect of the character's personality, the character is
 desensitized to one particular type of stressful experience. The
 player may choose one entry from the Stressful
@@ -2681,10 +2736,12 @@ for hardening to different experiences. Each time it is taken, the
 character's maximum Moxie score is reduced by 1. Characters may
 not become hardened to the merging of forks. Characters that become
 hardened through repeat exposure gain this trait for free.
-
-TRAIT:::Heightened Instinct
-Cost: 10 CP
-This trait is only available to uplifts. Though the
+</description>
+</trait>
+<trait>
+<name>Heightened Instinct</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait is only available to uplifts. Though the
 character is fully sapient and normally socialized, the uplift
 process left much of their unconscious instinct intact, and they are
 able to synthesize a great deal of contextual information
@@ -2694,10 +2751,12 @@ drives their actions and responses faster than conscious
 decision-making. The character receives a +1 bonus to Initiative and
 ignores up to -10 of any modifiers for distraction when making
 skill tests.
-
-TRAIT:::High Temperature Operation (Morph Trait)
-Cost: 10 CP
-This morph has been designed to operate only in
+</description>
+</trait>
+<trait>
+<name>High Temperature Operation (Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>This morph has been designed to operate only in
 high-temperature environments, enabling them to withstand
 temperatures up to 1,000 C. This morph loses 1 point of COO for every
 5 minutes it spends at temperatures lower than 250 C, and 1 point of
@@ -2712,38 +2771,46 @@ has been serviced.
 This trait may only be applied to synthmorphs.
 It provides 5 points of Energy armor against heat-based attacks (such
 as lasers, microwaves, and plasma weapons, but not explosions).
-
-TRAIT:::Home Turf
-Cost: 10 CP
-This character knows a particular habitat like the back of
+</description>
+</trait>
+<trait>
+<name>Home Turf</name>
+<cost>Cost: 10 CP</cost>
+<description>This character knows a particular habitat like the back of
 their hand, paw, or tentacle, having grown up there or spent years
 familiarizing themselves. They receive an extra point of Moxie that
 may only be used for tests that apply to that habitat, such as
 navigating the best route, bypassing airlock controls, or hacking its
 infrastructure.
-
-TRAIT:::Hyper Linguist
-Cost: 10 CP
-The character has an intuitive understanding of linguistic
+</description>
+</trait>
+<trait>
+<name>Hyper Linguist</name>
+<cost>Cost: 10 CP</cost>
+<description>The character has an intuitive understanding of linguistic
 structures that facilitates learning new languages easily. The
 character requires one-third the normal amount of time and experience
 to learn any language. The character can also learn any human
 language in one day simply by constant immersive exposure to it.
 Additionally, the character receives a +10 modifier when attempting
 to interpret languages they don't know.
-
-TRAIT:::Improved Immune System (Morph Trait)
-Cost: 10 (Level 1) or 20 (Level 2) CP
-The morph's immune system is
+</description>
+</trait>
+<trait>
+<name>Improved Immune System (Morph Trait)</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>The morph's immune system is
 robust and more resistant to diseases, drugs, and toxins+even
 more than basic bio-mods. At Level 1, apply a +10 modifier whenever
 making a test to resist infection or the effects of a toxin or drug.
 At Level 2, increase this modifier to +20. This trait is only
 available to biomorphs.
-
-TRAIT:::Indenture Holder
-Cost: 30 CP
-The character currently owns the indenture contract of
+</description>
+</trait>
+<trait>
+<name>Indenture Holder</name>
+<cost>Cost: 30 CP</cost>
+<description>The character currently owns the indenture contract of
 another ego. The person subject to indenture could be anyone from a
 Fall infugee to a criminal working off the damages of an assault
 charge. The indenture itself could have been voluntarily arranged
@@ -2763,10 +2830,12 @@ illegal activities could negate the terms of indenture and may have
 serious repercussions for the character. Should the character treat
 their indenture well, they could become a trusted ally, but ill
 treatment could make them into an enemy.
-
-TRAIT:::Information Control
-Cost: 10 CP
-This character has a knack for diligence and caution in
+</description>
+</trait>
+<trait>
+<name>Information Control</name>
+<cost>Cost: 10 CP</cost>
+<description>This character has a knack for diligence and caution in
 their daily living, online, and social networking interactions,
 reducing the amount of extraneous or sensitive information about
 themselves that leaks out in the public eye. Apply a -10
@@ -2774,10 +2843,12 @@ modifier to any Research Tests to gather information on the character
 or track them online (see Scanning, Tracking, and Monitoring) and any
 Networking Tests to ascertain the character's networking
 interactions (see Keeping It Quiet).
-
-TRAIT:::Innocuous (Morph Trait)
-Cost: 10 CP
-In an age when exotic appearances and good looks are
+</description>
+</trait>
+<trait>
+<name>Innocuous (Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>In an age when exotic appearances and good looks are
 commonplace, the morph's look is surprisingly bland and
 undistinguished, in that cookie cutter sort of way. The character's
 physical looks are so mundane that others have a hard time picking
@@ -2785,10 +2856,12 @@ them out of a crowd, describing their appearance, or otherwise
 remembering physical details. Apply a -10 modifier to all tests
 made to spot, describe, or remember the character. This modifier does
 not apply to psi or mesh searches.
-
-TRAIT:::Intuitive Cracker
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-When it comes to brute-force
+</description>
+</trait>
+<trait>
+<name>Intuitive Cracker</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>When it comes to brute-force
 hacking, this character has an intuitive sense for finding and
 deploying the right exploit tool for the job. Reduce the base
 timeframe for brute-force hacking by 20% per level. Since
@@ -2798,10 +2871,12 @@ Turns and at Level 2 it is reduced to 12 Action Turns. As usual,
 every 10 points of MoS on the Infosec Test may reduce this another
 10%; these and other reductions (such as from Speed and extra
 actions) are added together before they are applied to the timeframe.
-
-TRAIT:::Killer Instinct (Uplifts Only)
-Cost: 15 CP
-This trait is only available to uplifts, and is most common
+</description>
+</trait>
+<trait>
+<name>Killer Instinct (Uplifts Only)</name>
+<cost>Cost: 15 CP</cost>
+<description>This trait is only available to uplifts, and is most common
 in those from octopus or orca genestock. During uplift the most
 predatory aspect of the character's psyche was left largely
 intact, and this has left them comfortable with bloodletting. The
@@ -2809,10 +2884,12 @@ character does not take stress from committing extreme violence in
 situations they feel are justified and necessary, and they receive a
 +30 modifier on Stress Tests when witnessing extreme violence
 committed by others.
-
-TRAIT:::Limber (Morph Trait)
-Cost: 10 (Level 1) or 20 (Level 2) CP
-The morph is especially flexible
+</description>
+</trait>
+<trait>
+<name>Limber (Morph Trait)</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>The morph is especially flexible
 and supple, capable of graceful contortions and interesting
 positions. At Level 1, the character can smoke with their toes, do
 the splits, and squeeze into small, cramped spaces. At Level 2, they
@@ -2820,39 +2897,47 @@ are double-jointed escape artists. Each level provides a +10 modifier
 to escaping from bonds, fitting into narrow confines, and other acts
 relying on contortion or flexibility. This trait is only available to
 biomorphs.
-
-TRAIT:::Machine Intuition (AGIs only)
-Cost: 10 CP
-This trait is only available to AGIs. The AGI is so attuned
+</description>
+</trait>
+<trait>
+<name>Machine Intuition (AGIs only)</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait is only available to AGIs. The AGI is so attuned
 to dealing with machines that it has an intuitive knack for
 discovering the actual source of electronic or programming problems.
 Apply a +10 modifier to Interfacing,
 Hardware,
 or Programming
 Tests that involve diagnosing a technical problem or repairing it.
-
-TRAIT:::Malleable Mind
-Cost: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)
-Either through a
+</description>
+</trait>
+<trait>
+<name>Malleable Mind</name>
+<cost>Cost: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)</cost>
+<description>Either through a
 natural quirk or psychosurgical conditioning, the character's
 neural architecture is especially malleable and more readily accepts
 psychosurgical changes. Apply a -10 modifier per level to the
 character's WIL x 3 Test when receiving voluntary psychosurgery
 (including neural pruning of forks). This modifier does not apply to
 involuntary psychosurgery.
-
-TRAIT:::Math Wiz
-Cost: 10 CP
-The character can perform any feat of calculation, including
+</description>
+</trait>
+<trait>
+<name>Math Wiz</name>
+<cost>Cost: 10 CP</cost>
+<description>The character can perform any feat of calculation, including
 the most complex and advanced mathematics, instantly and with great
 precision, with the same ease an unmodified human can add 2 + 3. The
 character can calculate odds with great precision, find correlations
 in numerical data, and perform similar tasks with great ease. Apply a
 +30 modifier on tests involving math calculations.
-
-TRAIT:::Military Intelligence
-Cost: 10 CP
-This trait may only be taken by characters with the Military
+</description>
+</trait>
+<trait>
+<name>Military Intelligence</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait may only be taken by characters with the Military
 Rank trait (below). Since all members of JSFI are commissioned
 officers, Jovian characters must have Military Rank of at least Level
 2.
@@ -2864,11 +2949,12 @@ limiting their movements and greatly complicating their collaboration
 with Firewall. Players taking this trait should consult with the
 gamemaster as to how their character is able to operate as part of
 Firewall at all with other spies looking over their shoulder.
-
-TRAIT:::Military Rank
-Cost: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)
-
-Jovian:
+</description>
+</trait>
+<trait>
+<name>Military Rank</name>
+<cost>Cost: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)</cost>
+<description>Jovian:
 
 The character is an officer in the Jovian Space Force or Jovian Space
 Force Marines. Level 1 makes the character an NCO: a warrant officer,
@@ -2901,10 +2987,12 @@ manipulating the military command and logistics systems, and will
 have serious consequences if the character's superiors judge
 them to be abusing their position. Rank-and-file grunts don't
 need to take this trait.
-
-TRAIT:::Minion/Partner
-Cost: 30 CP
-The character has a personal employee, assistant, intern, or
+</description>
+</trait>
+<trait>
+<name>Minion/Partner</name>
+<cost>Cost: 30 CP</cost>
+<description>The character has a personal employee, assistant, intern, or
 other form of retainer on hand to help them out. This could range
 from a hired bodyguard to a personal secretary to a solo socialite
 entourage. The relationship also does not need to be hierarchical;
@@ -2923,44 +3011,54 @@ The relationship must be maintained, else the minion/partner will
 part ways with the character. The character should occasionally have
 to address the minion's or partner's own needs, which can
 be exploited for roleplaying and plot purposes.
-
-TRAIT:::Morph Fever Resistance (Asyncs Only)
-Cost: 10 CP
-This trait is only available to asyncs. The async does not
+</description>
+</trait>
+<trait>
+<name>Morph Fever Resistance (Asyncs Only)</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait is only available to asyncs. The async does not
 suffer stress effects from extended periods sleeved in a pod, synth,
 or infomorph.
-
-TRAIT:::Murder Simulator Addict
-Cost: 10 CP
-Thousands of hours spent in various simulspace combat games
+</description>
+</trait>
+<trait>
+<name>Murder Simulator Addict</name>
+<cost>Cost: 10 CP</cost>
+<description>Thousands of hours spent in various simulspace combat games
 have sharpened the character's aim and reflexes+or
 they've simply spent an inordinate amount of time at the range
 practicing headshots. When making called shots in ranged combat to
 target an opponent's head, this character does not suffer the
 usual -10 called shot modifier. They still suffer the -10
 modifier for other called shots, however.
-
-TRAIT:::Natural Immunity (Morph Trait)
-Cost: 10 CP
-The morph has a natural immunity to a specific drug,
+</description>
+</trait>
+<trait>
+<name>Natural Immunity (Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>The morph has a natural immunity to a specific drug,
 disease, or toxin. When afflicted with that specific chemical,
 poison, or pathogen, the character remains unaffected. At the
 gamemaster's discretion, this immunity may not apply to certain
 agents. It may not be applied to nanodrugs or nanotoxins. This trait
 is only available to biomorphs.
-
-TRAIT:::Pain Tolerance (Ego or Morph Trait)
-Cost: 10 (Level 1) or 20 (Level 2) CP
-The character has a high threshold
+</description>
+</trait>
+<trait>
+<name>Pain Tolerance (Ego or Morph Trait)</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>The character has a high threshold
 for pain tolerance and is better at ignoring the effects of pain on
 their abilities and concentration. Level 1 allows them to ignore the
 -10 modifier from 1 wound. Level 2 allows them to ignore the
 -10 modifiers from 2 wounds. This trait is only available for
 biomorphs.
-
-TRAIT:::Patron
-Cost: 30 CP
-The character has an influential person in their life who
+</description>
+</trait>
+<trait>
+<name>Patron</name>
+<cost>Cost: 30 CP</cost>
+<description>The character has an influential person in their life who
 can be relied on for occasional support. This could be a wealthy
 hyperelite family member, a high-ranking triad boss, or an anarchist
 networker with an unbeatable reputation. When called upon, this
@@ -2980,10 +3078,12 @@ character may need to take action to maintain the relationship, such
 as undertaking a mission on the patron's behalf. In fact, the
 character may only have their patronage because they are on-call or
 of use to the NPC in some way.
-
-TRAIT:::Personal Connection
-Cost: 15 CP
-The character has some sort of personal connection that
+</description>
+</trait>
+<trait>
+<name>Personal Connection</name>
+<cost>Cost: 15 CP</cost>
+<description>The character has some sort of personal connection that
 often allows them to get one particular category of goods or services
 at a discount in most major habitats. Perhaps an old friend owns a
 body bank corp, their family is in the shipping business, they won a
@@ -3003,18 +3103,22 @@ temporarily unable to use this trait or may even lose it for good.
 This trait does not reduce the cost of goods and services acquired
 during character creation, nor may it be taken in conjunction with
 the Tenure trait.
-
-TRAIT:::Phoenix
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-Transhumans who die and
+</description>
+</trait>
+<trait>
+<name>Phoenix</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>Transhumans who die and
 resleeve frequently are nicknamed "phoenixes." Death
 holds little sway over these daring characters, so the trauma of lost
 continuity has lost much of its sting. The character gains a +20
 bonus on Continuity Tests at Level 1, and a +30 bonus at Level 2.
-
-TRAIT:::Police Officer
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-The character is a mid-ranking
+</description>
+</trait>
+<trait>
+<name>Police Officer</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>The character is a mid-ranking
 cop+a sergeant or detective+in the Martian Rangers,
 Titanian Science Police, or other police department. At Level 2, the
 character is a high-ranking officer: chief inspector, chief of single
@@ -3027,26 +3131,32 @@ Jovian, Venusian, Lunar, or Martian). Rank-and-file officers don't
 need to take this trait. Characters using favors to deploy other
 officers or use department resources may have to explain their
 actions to superiors.
-
-TRAIT:::Potent Mind (Asyncs Only)
-Cost: 5 CP
-This trait is only available to characters that also have the
+</description>
+</trait>
+<trait>
+<name>Potent Mind (Asyncs Only)</name>
+<cost>Cost: 5 CP</cost>
+<description>This trait is only available to characters that also have the
 Psi trait and the Psychic Stab sleight. The character's mind is
 especially invasive and damaging when used against others. Inflict an
 extra 1d10 DV when using the Psychic Stab sleight.
-
-TRAIT:::Predator (Uplifts Only)
-Cost: 10 CP
-This trait is only available to uplifts, and is most common
+</description>
+</trait>
+<trait>
+<name>Predator (Uplifts Only)</name>
+<cost>Cost: 10 CP</cost>
+<description>This trait is only available to uplifts, and is most common
 in those from octopus or orca genestock. The uplift retains the
 thrill of the hunt from its predatory ancestry. The character
 receives a +10 modifier on Infiltration
 Tests when stalking a target and a +10 bonus on the first attack
 against a surprised opponent.
-
-TRAIT:::Professional Courtesy
-Cost: 5 CP
-Although higher-ups in your organization probably aren't
+</description>
+</trait>
+<trait>
+<name>Professional Courtesy</name>
+<cost>Cost: 5 CP</cost>
+<description>Although higher-ups in your organization probably aren't
 thrilled about it, you've run into the operatives and field
 agents of another faction or conspiracy often enough that you've
 earned some leeway with them. Choose a group engaged in covert ops,
@@ -3063,10 +3173,12 @@ consideration between professionals. Depending on the particulars of
 an encounter, it may provide some shared information, a moment of
 detente to face a common foe, or the chance to determine how
 to stay out of each others' way.
-
-TRAIT:::Psi
-Cost: 20 CP (Level 1), 25 CP (Level 2)
-The character has been infected
+</description>
+</trait>
+<trait>
+<name>Psi</name>
+<cost>Cost: 20 CP (Level 1), 25 CP (Level 2)</cost>
+<description>The character has been infected
 with the Watts-MacLeod strain of the Exsurgent virus, which altered
 their brain structure and opened the potential for their mind to
 enhance their cognitive abilities and read and manipulate the
@@ -3079,52 +3191,66 @@ very expensive, gamemasters should not allow it to be abused. There
 are a number of negative side effects to Watts-MacLeod infection,
 noted under Psi
 Drawbacks.
-
-TRAIT:::Psi Chameleon (Ego or Morph Trait)
-Cost: 10 CP
-The character's mental state is naturally resistant to
+</description>
+</trait>
+<trait>
+<name>Psi Chameleon (Ego or Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>The character's mental state is naturally resistant to
 psi sensing. Apply a -10 modifier to any attempts to locate or
 detect the character via psi sleights.
-
-TRAIT:::Psi Defense (Ego or Morph Trait)
-Cost: 10 (Level 1) or 20 (Level 2) CP
-The character's mind is
+</description>
+</trait>
+<trait>
+<name>Psi Defense (Ego or Morph Trait)</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>The character's mind is
 inherently resistant to mental attacks. At Level 1, apply a +10
 modifier to all defense tests made against psi attacks. At Level 2,
 apply a +20 modifier.
-
-TRAIT:::Rapid Healer (Morph Trait)
-Cost: 10 CP
-The morph recovers from damage more quickly. Reduce the
+</description>
+</trait>
+<trait>
+<name>Rapid Healer (Morph Trait)</name>
+<cost>Cost: 10 CP</cost>
+<description>The morph recovers from damage more quickly. Reduce the
 timeframes for healing by half, as noted on the Healing
 table. This trait is only available to biomorphs.
-
-TRAIT:::Right at Home
-Cost: 10 CP
-The character chooses one type of morph (splicer,
+</description>
+</trait>
+<trait>
+<name>Right at Home</name>
+<cost>Cost: 10 CP</cost>
+<description>The character chooses one type of morph (splicer,
 neo-hominid, case, etc.). The character always feels right at home in
 morphs of this type. When resleeving into this type of morph, the
 character automatically adjusts to the new body, no Integration or
 Alienation Test needed, suffering no penalties and no mental stress.
-
-TRAIT:::Second Skin
-Cost: 15 CP
-If your character background or faction enforces a
+</description>
+</trait>
+<trait>
+<name>Second Skin</name>
+<cost>Cost: 15 CP</cost>
+<description>If your character background or faction enforces a
 restriction on your starting morph (for example, uplifts must start
 with an uplift morph), this trait allows you to ignore that
 restriction and purchase a starting morph of your choice.
-
-TRAIT:::Situational Awareness
-Cost: 10 CP
-The character is very good at maintaining continuous partial
+</description>
+</trait>
+<trait>
+<name>Situational Awareness</name>
+<cost>Cost: 10 CP</cost>
+<description>The character is very good at maintaining continuous partial
 awareness of the goings-on in their immediate environment. In game
 terms, they do not suffer the Distracted modifier on Perception
 Tests to notice things even when their attention is focused
 elsewhere, or when making Quick Perception Tests during combat.
-
-TRAIT:::Skill Artifact (Morph Trait)
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-The morph has latent skills
+</description>
+</trait>
+<trait>
+<name>Skill Artifact (Morph Trait)</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>The morph has latent skills
 stored in muscle memory or as higher-level data that refuses to be
 erased. This is especially common for exotic or alien morphs. At
 level 1, the morph has a single Active skill at a rating of 30 (plus
@@ -3135,27 +3261,33 @@ These skills cannot be changed or turned off as long as the ego is
 sleeved in that morph. This does not reduce the number of skills that
 can be used as part of a skillware system. This trait may not be
 bought more than once.
-
-TRAIT:::Social Animal (Hominid/Cetacean Uplifts Only)
-Cost: 15 CP
-This trait is only available to hominid and cetacean
+</description>
+</trait>
+<trait>
+<name>Social Animal (Hominid/Cetacean Uplifts Only)</name>
+<cost>Cost: 15 CP</cost>
+<description>This trait is only available to hominid and cetacean
 uplifts. The species of origin for these uplifts naturally forms
 tightly bonded social groups, and that characteristic has been
 enhanced along with their intelligence. Whenever characters with this
 background are around family or close associates, they feel a strong
 sense of security and purpose that grants a +10 bonus on all Stress
 Tests.
-
-TRAIT:::Social Butterfly
-Cost: 15 CP
-This character is a promiscuous abuser of online social
+</description>
+</trait>
+<trait>
+<name>Social Butterfly</name>
+<cost>Cost: 15 CP</cost>
+<description>This character is a promiscuous abuser of online social
 networks. Because they go out of their way to make new connections
 and interact with people, they find it slightly easier to get what
 they need. Apply a +10 modifier to Networking Tests.
-
-TRAIT:::Spacecraft
-Cost: 30 CP
-Buying a personal spacecraft is far beyond the means of most
+</description>
+</trait>
+<trait>
+<name>Spacecraft</name>
+<cost>Cost: 30 CP</cost>
+<description>Buying a personal spacecraft is far beyond the means of most
 characters. This trait, however, puts a spacecraft in the character's
 hands, with certain conditions. This trait may only be taken with
 gamemaster approval and it is best only considered for campaigns
@@ -3180,10 +3312,12 @@ comes with a host of logistical issues, from acquiring reaction mass
 to making deals for passengers and cargo to somehow funding an
 inexhaustible list of critical repairs. Keeping the ship operational
 could become a campaign unto itself.
-
-TRAIT:::Special Agent
-Cost: 10 CP (Level 1), 20 CP (Level 2)
-The character is a field agent of
+</description>
+</trait>
+<trait>
+<name>Special Agent</name>
+<cost>Cost: 10 CP (Level 1), 20 CP (Level 2)</cost>
+<description>The character is a field agent of
 the Titanian Security Police, the secret police of one of the Martian
 city-states, the Jovian CDC, or a similar organization. At Level 2,
 the character is a supervising agent coordinating the work of 5-10
@@ -3200,10 +3334,12 @@ or are deployed more widely depends on their agency role. Characters
 using favors to deploy other agents or access secret information not
 related to their jobs will eventually have to explain their actions
 to superiors.
-
-TRAIT:::Striking Looks (Morph Trait)
-Cost: 10 (Level 1) or 20 (Level 2) CP
-In an age where biosculpting is
+</description>
+</trait>
+<trait>
+<name>Striking Looks (Morph Trait)</name>
+<cost>Cost: 10 (Level 1) or 20 (Level 2) CP</cost>
+<description>In an age where biosculpting is
 easy, good looks are both cheap and commonplace. This morph, however,
 possesses a physical look that can only be described as striking and
 unusual, but also somehow alluring and fascinating+even the
@@ -3219,17 +3355,21 @@ that specific uplift background (i.e., neo-avians, neo-hominids,
 etc.).
 The one drawback to this trait is that the character is
 more easily noticed and remembered.
-
-TRAIT:::Tacnet Sniper
-Cost: 10 CP
-If they have eyes on the target through an ally's
+</description>
+</trait>
+<trait>
+<name>Tacnet Sniper</name>
+<cost>Cost: 10 CP</cost>
+<description>If they have eyes on the target through an ally's
 tacnet link, the character can make indirect fire attacks with only a
 -10 modifier rather than the usual -30. This only applies
 if the character uses tacnet, not through any other means.
-
-TRAIT:::Tenure
-Cost: 10 CP
-The character holds a tenured professorship at a university
+</description>
+</trait>
+<trait>
+<name>Tenure</name>
+<cost>Cost: 10 CP</cost>
+<description>The character holds a tenured professorship at a university
 such as Titan Autonomous University or the University of Mars. This
 position gives them privileged access to the university's
 resources, funds, and grad assistants. The character receives a +20
@@ -3241,18 +3381,22 @@ bonuses do not extend outside the university's influence. The
 tenured character will, of course, be expected to occasionally
 produce research results or other findings or pieces of work to
 validate their exploitation of university resources.
-
-TRAIT:::Tough (Morph Trait)
-Cost: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP
-This morph is
+</description>
+</trait>
+<trait>
+<name>Tough (Morph Trait)</name>
+<cost>Cost: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP</cost>
+<description>This morph is
 resilient than others of its type and can take more physical abuse.
 Increase their Durability by +5 per level (+5 at Level 1, +10 at
 Level 2, and +15 at Level 3). This also increases Wound Threshold by
 +1, +2, and +3 respectively.
-
-TRAIT:::Trauma Tolerance
-Cost: 10 CP (Level 1) or 20 CP (Level 2)
-This character has a higher
+</description>
+</trait>
+<trait>
+<name>Trauma Tolerance</name>
+<cost>Cost: 10 CP (Level 1) or 20 CP (Level 2)</cost>
+<description>This character has a higher
 threshold for handling traumatic experiences and is better at
 ignoring the effects of stress on their abilities and concentration.
 Level 1 allows them to ignore the -10 modifier from 1 trauma.
@@ -3271,10 +3415,12 @@ trauma modifier(s) and derangement(s) will kick in at one level
 higher. A character who ignored a trauma that would have inflicted a
 minor derangement, for example, will a few hours later be struck by a
 moderate derangement.
-
-TRAIT:::Unique Contact
-Cost: 10 CP
-You have a personal tie to an individual with unique skills
+</description>
+</trait>
+<trait>
+<name>Unique Contact</name>
+<cost>Cost: 10 CP</cost>
+<description>You have a personal tie to an individual with unique skills
 or resources of particular value to your clandestine activities. This
 connection may be be based on blood or family ties, shared history,
 or some other situation that permanently linked you together. Though
@@ -3285,20 +3431,24 @@ government official, a major hypercorp exec, a scientist at the top
 of their field, a media icon, a deep-cover mole, a police lieutenant,
 or even a field agent from a rival group. Apply a +10 modifier on
 Networking and Social Skill Tests with this specific NPC.
-
-TRAIT:::Untarnished Reputation
-Cost: 15 CP
-Through fame, a lifetime of achievement, or some lucky
+</description>
+</trait>
+<trait>
+<name>Untarnished Reputation</name>
+<cost>Cost: 15 CP</cost>
+<description>Through fame, a lifetime of achievement, or some lucky
 quirk, the character's reputation in one particular social
 network is very difficult to assail. Choose one reputation network.
 Any test to attack the character's reputation in that network
 suffers a -30 modifier, and any rep losses in that network are
 automatically halved. This does not apply if the character burns
 their own rep.
-
-TRAIT:::You're That Guy!
-Cost: 10 CP
-Sometime in the past, this character got their 5 minutes of
+</description>
+</trait>
+<trait>
+<name>You're That Guy!</name>
+<cost>Cost: 10 CP</cost>
+<description>Sometime in the past, this character got their 5 minutes of
 mesh fame in a funny viral meme that swept the solar system. To this
 day, strangers who access the character's social profile are
 likely to connect them to that meme. Though tedious for the
@@ -3313,17 +3463,20 @@ Rule Zero:
 
 In games played via IRC, the frequency (Once per game session) may be
 changed to Twice per adventure
-
-TRAIT:::Zoosemiotics
-Cost: 5
-A character with this trait and the Psi trait does not suffer a
+</description>
+</trait>
+<trait>
+<name>Zoosemiotics</name>
+<cost>Cost: 5</cost>
+<description>A character with this trait and the Psi trait does not suffer a
 modifier when using psi sleights on non-sentient or partly-sentient
 animal species.
-
-TRAIT:::Addiction (Ego or Morph Trait)
-Bonus: 5 CP (Minor), 10 CP (Moderate), or 20 CP (Major)
-
-Addiction comes
+</description>
+</trait>
+<trait>
+<name>Addiction (Ego or Morph Trait)</name>
+<bonus>Bonus: 5 CP (Minor), 10 CP (Moderate), or 20 CP (Major)</bonus>
+<description>Addiction comes
 in two forms: mental (affecting the ego) and physical (affecting the
 biomorph). The character or morph is addicted to a drug, stimulus
 (XP), or activity (mesh use) to a degree that impacts the character's
@@ -3363,21 +3516,23 @@ face cravings every 6 hours, and suffer a penalty of -10 DUR
 addiction). If they fail to get their regular dosage, they suffer a
 -30 modifier on all actions until they do. If their life hasn't
 already been ruined by their obsession, it soon will be.
-
-TRAIT:::Aged (Morph Trait)
-Bonus: 10 CP
-
-The morph is physically aged, and has not been rejuvenated.
+</description>
+</trait>
+<trait>
+<name>Aged (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The morph is physically aged, and has not been rejuvenated.
 Old morphs are increasingly uncommon, though some people adopt them
 hoping to gain an air of seniority and respectability. Reduce the
 character's aptitude maximums by 5, and apply a -10
 modifier on all physical actions. This trait may only be applied to
 flat and splicer morphs.
-
-TRAIT:::Aggressive GRM
-Bonus: 10 CP
-
-This trait is generally only found on uplift biomorphs, but
+</description>
+</trait>
+<trait>
+<name>Aggressive GRM</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is generally only found on uplift biomorphs, but
 might be included on any unusual high-end or custom biomorphs. A much
 more aggressive version of the genetic rights management used in
 rusters and other morphs that require maintenance through GSPs, the
@@ -3393,11 +3548,12 @@ has an average life expectancy of only 30-40 years. At the
 gamemaster's discretion, Medicine
 Tests to modify or even heal this morph may suffer modifiers ranging
 from -10 to -30.
-
-TRAIT:::Anomalous Mind
-Bonus: 20 CP
-
-Found almost exclusively in AGIs, uplifts, and the subjects
+</description>
+</trait>
+<trait>
+<name>Anomalous Mind</name>
+<bonus>Bonus: 20 CP</bonus>
+<description>Found almost exclusively in AGIs, uplifts, and the subjects
 of highly experimental pyschosurgical procedures, your mental
 patterns are dramatically outside the norm of transhumanity. The
 uniqueness of their mental map makes psychosurgery, routine backup,
@@ -3409,11 +3565,12 @@ and resleeving are not automatic and require active management of the
 process. Any technician operating the ego bridge during such
 procedures must succeed on a Psychosurgery
 Test or the backup/sleeving attempt will fail.
-
-TRAIT:::Bad Luck
-Bonus: 30 CP
-
-Due to some inexplicable cosmic coincidence, things seem to
+</description>
+</trait>
+<trait>
+<name>Bad Luck</name>
+<bonus>Bonus: 30 CP</bonus>
+<description>Due to some inexplicable cosmic coincidence, things seem to
 go wrong around the character. The gamemaster is given a pool of
 Moxie points equal to the character's Moxie stat, which also
 refreshes at the same rate as the character's Moxie. Only the
@@ -3427,11 +3584,12 @@ with or related to the character, though this should be used
 sparingly. Gamemasters who might be reluctant to sabotage the
 character should remember that the player asked for it by purchasing
 this trait.
-
-TRAIT:::Blacklisted
-Bonus: 5 or 20 CP
-
-The character has managed to get themselves blacklisted
+</description>
+</trait>
+<trait>
+<name>Blacklisted</name>
+<bonus>Bonus: 5 or 20 CP</bonus>
+<description>The character has managed to get themselves blacklisted
 in certain circles, whether they actually did something to deserve it
 or not. In game terms, the character is barred from having a Rep
 score higher than 0 in one particular reputation network. People
@@ -3439,11 +3597,12 @@ within that network will refuse to help the character out of fear of
 reprisals and ruining their own reputation. The bonus for this trait
 is 20 CP if chosen for the rep network pertaining to the character's
 own starting faction, and 5 CP if chosen for any other.
-
-TRAIT:::Beta
-Bonus: 20 CP
-
-This character is a beta fork of their original self, which
+</description>
+</trait>
+<trait>
+<name>Beta</name>
+<bonus>Bonus: 20 CP</bonus>
+<description>This character is a beta fork of their original self, which
 for some reason is no longer alive (most likely lost during the
 Fall). They were created some time ago, so they have grown and
 overcome most of their original aptitude deficiencies. This character
@@ -3455,11 +3614,12 @@ Edited Memories trait, without gaining the bonus CP. Beta forks are,
 of course, illegal in many jurisdictions, and some consider them less
 than human (the gamemaster may apply a Social Stigma: Beta trait in
 appropriate circumstances; again no bonus CP are gained).
-
-TRAIT:::Black Mark
-Bonus: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP
-
-At some point in
+</description>
+</trait>
+<trait>
+<name>Black Mark</name>
+<bonus>Bonus: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP</bonus>
+<description>At some point in
 the character's past, they managed to do something that earned
 a black mark on their reputation. For some reason, no matter what
 they do, this black mark cannot be shaken off and continues to haunt
@@ -3467,11 +3627,12 @@ their interactions. In game terms, the character picks one faction.
 Every time they interact with this faction (such as a Networking
 Test) or with an NPC from this faction (Social Skill Tests) who knows
 who the character is, they suffer a -10 modifier per level.
-
-TRAIT:::Botched Merge
-Bonus: 15 CP
-
-In the past, the character suffered a serious complication
+</description>
+</trait>
+<trait>
+<name>Botched Merge</name>
+<bonus>Bonus: 15 CP</bonus>
+<description>In the past, the character suffered a serious complication
 during an attempt to merge a fork that caused irreparable damage to
 their ego map, leaving them with a weaker grip on their memories and
 own identity. For some reason+perhaps due to irreproducible
@@ -3486,11 +3647,12 @@ the events around them, and/or forget certain information, memories,
 or skills. In this state they suffer a -10 penalty on all
 tests. The dissociative state persists for one minute or for the
 duration of a derangement if one is acquired due to trauma.
-
-TRAIT:::Botched Uplift (Uplifts Only)
-Bonus: 30 CP
-
-This trait is only available to uplifts. Although possessed
+</description>
+</trait>
+<trait>
+<name>Botched Uplift (Uplifts Only)</name>
+<bonus>Bonus: 30 CP</bonus>
+<description>This trait is only available to uplifts. Although possessed
 of a rough self-awareness and the trappings of sapience, your mental
 development is flawed. Despite the best efforts of your creators and
 teachers, you cannot ever fully overcome your mental limitations and
@@ -3502,40 +3664,44 @@ coach you through your daily affairs. Whoever does interact with you
 likely treats you with either contempt or pity, as your difficulties
 are apparent to anyone who has more than the briefest exchanges with
 you.
-
-TRAIT:::Combat Paralysis
-Bonus: 20 CP
-
-The character has an unfortunate habit of freezing in combat
+</description>
+</trait>
+<trait>
+<name>Combat Paralysis</name>
+<bonus>Bonus: 20 CP</bonus>
+<description>The character has an unfortunate habit of freezing in combat
 or stressful situations, like a deer caught in headlights. Anytime
 violence breaks out around the character, or they are surprised, the
 character must make a Willpower Test in order to act or respond in
 any way. If they fail the test, they lose their action and simply
 stand there, remaining incapable of reacting to the situation.
-
-TRAIT:::Curbed Intelligence (AGIs Only)
-Bonus: 10 CP
-
-Fearful of AGIs that might develop into seed AIs like the
+</description>
+</trait>
+<trait>
+<name>Curbed Intelligence (AGIs Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Fearful of AGIs that might develop into seed AIs like the
 TITANs, some developers have programmed extra safeguards and
 precautions into AGI mindstates to limit their intelligence. The
 aptitude maximum for COG for this AGI character is 15.
-
-TRAIT:::Data Footprint
-Bonus: 10 CP
-
-The character is particularly sloppy about keeping a lid on
+</description>
+</trait>
+<trait>
+<name>Data Footprint</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character is particularly sloppy about keeping a lid on
 their daily living, online, and social networking interactions,
 leaving a larger data footprint than usual in the public eye. Apply a
 +10 modifier to any Research Tests to gather information on the
 character or track them online (see Scanning, Tracking, and
 Monitoring) and any Networking Tests to ascertain the character's
 networking interactions (see Keeping It Quiet).
-
-TRAIT:::Debt
-Bonus: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)
-
-The character is
+</description>
+</trait>
+<trait>
+<name>Debt</name>
+<bonus>Bonus: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)</bonus>
+<description>The character is
 in debt to a loan shark or powerful organization that demands regular
 payments. The debt may be the result of a legitimate loan or the
 character may be a victim of extortion. Either way, the character is
@@ -3568,10 +3734,12 @@ personnel, such as retrieval of data from an exsurgent-infested
 abandoned habitat or assassinating the head of a Martian crime
 syndicate. The higher the debt is, the more dangerous or difficult
 the mission will be.
-
-TRAIT:::Deferred Indenture
-Bonus: 5 CP (Level 1), 15 CP (Level 2), or 20 CP (Level 3)
-Due to a prior
+</description>
+</trait>
+<trait>
+<name>Deferred Indenture</name>
+<bonus>Bonus: 5 CP (Level 1), 15 CP (Level 2), or 20 CP (Level 3)</bonus>
+<description>Due to a prior
 contract or sentence, this character has a pending indenture that has
 yet to be redeemed. The character is legally obligated to perform
 whatever work is asked of them to repay their debt. At Level 1, the
@@ -3583,11 +3751,12 @@ subject to the legal consequences, up to and including pursuit by law
 enforcement and additional criminal penalties from the originating
 jurisdiction. Gamemasters and players should outline the
 circumstances that led to the establishment of the indenture.
-
-TRAIT:::Dependent
-Bonus: 5 CP
-
-This character has a dependent+a child, a disabled
+</description>
+</trait>
+<trait>
+<name>Dependent</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>This character has a dependent+a child, a disabled
 family member, or even a much-loved but needy smart animal pet.
 Though the character can leave their ward's care in the hands
 of a fork or others, they must occasionally attend to the dependent's
@@ -3596,11 +3765,12 @@ The player and gamemaster should work out the specifics of the
 dependent NPC together; this NPC should have no skills or abilities
 of value to the player character. The dependent should be a potential
 vulnerability for the character that enemies or rivals could exploit.
-
-TRAIT:::Divergent Personality
-Bonus: 10 CP
-
-Something about this character makes their forks diverge
+</description>
+</trait>
+<trait>
+<name>Divergent Personality</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Something about this character makes their forks diverge
 from their core personality more quickly than usual. When attempting
 a merge, treat the fork's time apart as if it were one step
 lower on the Merging
@@ -3609,11 +3779,12 @@ if it were away for 1-4 hours.
 Characters with this trait
 may not take the multitasking implant; the continual forking and
 merging is too stressful on their mind.
-
-TRAIT:::Domineering (Uplifts Only)
-Bonus: 10 CP
-
-This trait is only available to uplifts and is most common
+</description>
+</trait>
+<trait>
+<name>Domineering (Uplifts Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to uplifts and is most common
 among neo-hominids. The character retains pre-sapient neurological
 urges to gain social status via dominance. The character must make a
 WIL x 2 Test to use th Persuasion
@@ -3631,18 +3802,20 @@ Such
 domineering characters often suffer poor reputations in modern
 transhuman reputation networks. They may not start with a rep score
 higher than 40 in any rep network other than Guanxi.
-
-TRAIT:::Drug Fiend (Ego or Morph Trait)
-Bonus: 10 CP
-
-The character or morph has a weak resistance to addiction.
+</description>
+</trait>
+<trait>
+<name>Drug Fiend (Ego or Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character or morph has a weak resistance to addiction.
 Addiction Tests (including attempts to resist addiction cravings) are
 made with a -20 modifier.
-
-TRAIT:::Edited Memories
-Bonus: 10 CP
-
-At some point in the character's past, the character
+</description>
+</trait>
+<trait>
+<name>Edited Memories</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>At some point in the character's past, the character
 had certain memories strategically removed or otherwise lost to them.
 This may have been done to intentionally forget an unpleasant or
 shameful experience or to make a break with the past. The memory may
@@ -3652,28 +3825,31 @@ Whatever the case, the memory should bear some importance, and there
 should exist either evidence of what happened or NPCs who know the
 full story. This is a tool the gamemaster can use to haunt the
 character at some future point with ghosts from their past.
-
-TRAIT:::Emotive Blindness (AGIs and Uplifts Only)
-Bonus: 10 CP
-
-This trait is only available to AGIs and uplifts. This
+</description>
+</trait>
+<trait>
+<name>Emotive Blindness (AGIs and Uplifts Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to AGIs and uplifts. This
 character has difficulty reading the finer points of social cues,
 body language, expressions, emoting, and so forth for any transhuman
 outside of its own species. Apply a -10 modifier to Kinesics
 Tests used against anyone not of the same species as the character.
-
-TRAIT:::Enemy
-Bonus: 10 CP
-
-At some point in their past, the character made an enemy for
+</description>
+</trait>
+<trait>
+<name>Enemy</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>At some point in their past, the character made an enemy for
 life who continues to haunt them. The gamemaster and player should
 work out the details on this enmity, and the gamemaster should use
 the enemy as an occasional threat, surprise, and hindrance.
-
-TRAIT:::Errant Fork
-Bonus: 10 CP
-
-Whether through conscious action or a freak occurrence, you
+</description>
+</trait>
+<trait>
+<name>Errant Fork</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Whether through conscious action or a freak occurrence, you
 are not the only you out there. An alpha fork of yourself exists and
 has decided to pursue its own path. Though this fork is not
 necessarily an enemy, it does have its own agenda and interests that
@@ -3690,11 +3866,12 @@ alphas should exist, enough that the other alpha should serve as an
 occasional hindrance or surprise. The alphas may, for example, have a
 strong rivalry going over their shared field of expertise or may
 simply feel a need to prove themselves better than the other.
-
-TRAIT:::Fast Metabolism (Morph Trait)
-Bonus: 5 CP
-
-The morph's metabolism runs hot, requiring the
+</description>
+</trait>
+<trait>
+<name>Fast Metabolism (Morph Trait)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>The morph's metabolism runs hot, requiring the
 character to eat two to three times as much food as a normal
 character with similar body mass. Food tends to be plentiful and
 cheap in most transhuman settlements, but this trait can pose a
@@ -3706,11 +3883,12 @@ require. If the character is unable to obtain enough food, they lose
 SOM at the rate of one point per day until they resume their usual
 caloric intake. This trait is only available for biomorphs (including
 uplifts and pods).
-
-TRAIT:::Faulty Education
-Bonus: 10 CP
-
-Not everyone receives the same quality of education and many
+</description>
+</trait>
+<trait>
+<name>Faulty Education</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Not everyone receives the same quality of education and many
 are taught incorrect things. Some children, for example, are raised
 with an ideologically driven system that prizes obedience over truth
 and accuracy+something still common in certain Jovian, brinker,
@@ -3725,33 +3903,37 @@ background. This misinformation represents the character's
 faulty understanding of the topic at hand and should be roleplayed
 appropriately, even if the player knows that their character is
 mistaken.
-
-TRAIT:::Feeble
-Bonus: 20 CP
-
-The character is particularly weak with one aptitude. That
+</description>
+</trait>
+<trait>
+<name>Feeble</name>
+<bonus>Bonus: 20 CP</bonus>
+<description>The character is particularly weak with one aptitude. That
 aptitude must be purchased at a rating lower than 5, and may never be
 upgraded during character advancement. The aptitude maximum is 10, no
 matter what morph the character is wearing.
-
-TRAIT:::Frail (Morph Trait)
-Bonus: 10 (Level 1) or 20 (Level 2) CP
-
-This morph is not as resilient as
+</description>
+</trait>
+<trait>
+<name>Frail (Morph Trait)</name>
+<bonus>Bonus: 10 (Level 1) or 20 (Level 2) CP</bonus>
+<description>This morph is not as resilient as
 others of its type. Its Durability is reduced by 5 per level. This
 also reduces Wound Threshold by 1 or 2, respectively.
-
-TRAIT:::Frail Sanity
-Bonus: 10 CP (Level 1) or 20 CP (Level 20)
-
-This ego's mind is not
+</description>
+</trait>
+<trait>
+<name>Frail Sanity</name>
+<bonus>Bonus: 10 CP (Level 1) or 20 CP (Level 20)</bonus>
+<description>This ego's mind is not
 as resilient as others. Its Lucidity is reduced by 5 per level. This
 also reduces Trauma Threshold by 1 or 2, respectively.
-
-TRAIT:::Genetic Defect (Morph Trait)
-Bonus: 10 CP or 20 CP
-
-The morph is not genefixed, and in fact suffers
+</description>
+</trait>
+<trait>
+<name>Genetic Defect (Morph Trait)</name>
+<bonus>Bonus: 10 CP or 20 CP</bonus>
+<description>The morph is not genefixed, and in fact suffers
 from a genetic disorder or other impairing mutation. The player and
 gamemaster should agree on a defect appropriate to their game. Some
 possibilities include: heart disease, diabetes, cystic fibrosis,
@@ -3763,11 +3945,12 @@ chronic health problems is worth 20 CP. The gamemaster must determine
 the exact effects of the disorder on gameplay, as appropriate.
 This
 trait is only available for flats.
-
-TRAIT:::Hoarder
-Bonus: 10 CP
-
-With the limitations on living space and need for resource
+</description>
+</trait>
+<trait>
+<name>Hoarder</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>With the limitations on living space and need for resource
 management in all but the wealthiest habs, most transhumans are used
 to living with a minimal number of personal possessions. The
 flexibility and multi-purpose nature of most objects and availability
@@ -3789,11 +3972,12 @@ point of stress damage. If they ever attempt to clean out their hoard
 voluntarily, or if the hoard is significantly reduced (by catastrophe
 or by hab maintenance workers forcibly removing it), the character
 takes (1d10 / 2) + 2 SV.
-
-TRAIT:::Identity Crisis
-Bonus: 10 CP
-
-The character's ego has trouble adapting itself to the
+</description>
+</trait>
+<trait>
+<name>Identity Crisis</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character's ego has trouble adapting itself to the
 changed look of a new morph+they are stuck with the mental
 image of their original body, and simply do not grow accustomed to
 their new face(s). As a result, the character has difficulty
@@ -3804,11 +3988,12 @@ original body, forgetting to duck when walking through doorways, etc.
 This is primarily a roleplaying trait, but the gamemaster may apply
 appropriate modifiers (usually -10) to tests affected by this
 inability to adapt.
-
-TRAIT:::Identifiable Quirk
-Bonus: 10 CP
-
-Transhumans may be able to switch bodies and travel the
+</description>
+</trait>
+<trait>
+<name>Identifiable Quirk</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Transhumans may be able to switch bodies and travel the
 entire solar system to start a new life, but some things can't
 be left behind. The character has a unique behavioral quirk that
 makes identification easy, no matter the morph in which they are
@@ -3817,20 +4002,22 @@ or similar skills gain a +10 bonus. This quirk could be a nervous
 twitch of the lips, distinct accent, noticeable laugh, or unusual
 gait. The character suffers a -30 modifier to all Impersonation
 Tests against targets aware of the character's quirk.
-
-TRAIT:::Illiterate
-Bonus: 10 CP
-
-The character knows how to speak, but has difficulty reading
+</description>
+</trait>
+<trait>
+<name>Illiterate</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character knows how to speak, but has difficulty reading
 or writing. Due to the entoptic-saturated and icon-driven nature of
 transhuman society, they are able to get by quite comfortably with
 this handicap. Reduce the character's Language skills by half
 (round down) whenever reading or writing.
-
-TRAIT:::Immortality Blues
-Bonus: 10 CP
-
-The character has lived so long+over 100 years+
+</description>
+</trait>
+<trait>
+<name>Immortality Blues</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character has lived so long+over 100 years+
 they're bored with life and now have difficulty motivating
 themselves. They were old when longevity treatments first became
 available, survived the Fall, and continue to soldier onward+though
@@ -3839,21 +4026,23 @@ around them, or fear final death. The character only receives half
 the Moxie and Rez Points award for completing motivational goals.
 This trait may not be purchased by characters with the infolife,
 uplift, or Lost backgrounds.
-
-TRAIT:::Impaired Balance
-Bonus: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)
-
-This trait is
+</description>
+</trait>
+<trait>
+<name>Impaired Balance</name>
+<bonus>Bonus: 10 CP (Level 1), 20 CP (Level 2), or 30 CP (Level 3)</bonus>
+<description>This trait is
 only available to neo-pigs. This uplift's brain has not been
 fully adapted to the neo-pig's bipedal stance and still suffers
 occasional difficulties with balance. The character suffers a -10
 modifier per level to any Climbing, Freerunning, or similar test
 involving balance or upright movement.
-
-TRAIT:::Impaired Hearing (Morph Trait)
-Bonus: 5 CP
-
-This trait is only available to octomorphs. This morph lacks
+</description>
+</trait>
+<trait>
+<name>Impaired Hearing (Morph Trait)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>This trait is only available to octomorphs. This morph lacks
 the transgenic hearing modifications of modern octomorph designs. The
 morph can only hear low sounds in the 400-1,000 Hertz range (as
 opposed to the 20-20,000 Hertz range enjoyed by most
@@ -3865,11 +4054,12 @@ as they are outside the morph's range.
 This lack of hearing
 may be compensated for with audio implants or microphones and mesh
 inserts.
-
-TRAIT:::Impaired Linguistics
-Bonus: 10 CP (Level 1) or 20 CP (Level 2)
-
-This trait is only available to
+</description>
+</trait>
+<trait>
+<name>Impaired Linguistics</name>
+<bonus>Bonus: 10 CP (Level 1) or 20 CP (Level 2)</bonus>
+<description>This trait is only available to
 uplifts. This uplift's particular brain structure has
 difficulty processing language. At Level 1, the uplift loses some of
 their ability to speak, read, and comprehend things spoken by others
@@ -3892,11 +4082,12 @@ information or sentences at a -10 modifier. At the gamemaster's
 discretion, this may also impair other skill tests, particularly
 Knowledge skills when dealing with detailed data or specialist
 terminology. Level 2 does not incorporate Level 1 effects.
-
-TRAIT:::Impaired Proprioception (Morph Trait) (Octomorphs and Flying Squid only)
-Bonus: 10 CP
-
-This trait is only available to octomorphs and flying squid
+</description>
+</trait>
+<trait>
+<name>Impaired Proprioception (Morph Trait) (Octomorphs and Flying Squid only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to octomorphs and flying squid
 morphs. Baseline cephalopods lack a sense of proprioception in their
 arms and tentacles, meaning they only know where their limbs are by
 looking at them. Though a standard proprioceptive sense was added to
@@ -3905,31 +4096,34 @@ the proper neural structure. A morph with this trait suffers a -10
 modifier on Fray
 Tests to avoid attacks or get out of the way and gains no benefits
 from the Ambidextrous trait.
-
-TRAIT:::Implant Rejection (Morph Trait
-Bonus: 5 (Level 1) or 15 (Level 2) CP
-
-This morph does not accept implants
+</description>
+</trait>
+<trait>
+<name>Implant Rejection (Morph Trait</name>
+<bonus>Bonus: 5 (Level 1) or 15 (Level 2) CP</bonus>
+<description>This morph does not accept implants
 well. At Level 1, any implants acquired are more expensive as they
 required specialized anti-rejection treatments. Increase the Cost
 category of the implant by one. At Level 2, the morph cannot accept
 implants of any kind.
-
-TRAIT:::Incompetent
-Bonus: 10 CP
-
-The character is completely incapable of performing a
+</description>
+</trait>
+<trait>
+<name>Incompetent</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character is completely incapable of performing a
 particular chosen active skill, no matter any training they may
 receive. They may not buy this skill during character creation or
 later advancement, and the modifier for defaulting to the linked
 aptitude of this particular skill is -10. This may not be used
 for exotic weapon skills, and should be used for a skill that could
 be of use to the character.
-
-TRAIT:::Intense Relationship
-Bonus: 10 CP
-
-Many characters retain close relationships with family,
+</description>
+</trait>
+<trait>
+<name>Intense Relationship</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Many characters retain close relationships with family,
 friends, and lovers. Sometimes, however, the interpersonal connection
 in these relationships becomes so intense as to be a detriment. The
 character is emotionally dependent on their relationship with a
@@ -3946,11 +4140,12 @@ can they communicate with the NPC during a firewall mission.
 Characters breaking these rules put the lives of their friends and
 family at risk. Gamemasters should have enemies of firewall use
 friends and family against characters who break these rules.
-
-TRAIT:::Lacks Manipulators (Morph Trait)
-Bonus: 10 CP
-
-This morph lacks hands or other limbs with a fine
+</description>
+</trait>
+<trait>
+<name>Lacks Manipulators (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This morph lacks hands or other limbs with a fine
 manipulation capability. It is a common trait with quadrupeds (as
 well as certain smart animals). A morph with this trait may not be
 able to manipulate objects at all or may only be able to do so with a
@@ -3965,11 +4160,12 @@ used normally. Some morphs with this trait+particularly
 quadrupeds+may be unable to hold an object between their paws
 and move at the same time or may require a SOM x 3 Test to retain
 their balance while standing upright to hold something.
-
-TRAIT:::Lemon (Morph Trait)
-Bonus: 10 CP
-
-This trait is only available for synthetic morphs. This
+</description>
+</trait>
+<trait>
+<name>Lemon (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available for synthetic morphs. This
 particular morph has some unfixable flaws. Once per game session
 (preferably at a time that will maximize drama or hilarity), the
 gamemaster can call for the character to make a MOX x 10 Test (using
@@ -3977,11 +4173,12 @@ their current Moxie score). If the character fails, the morph
 immediately suffers 1 wound resulting from some mechanical failure,
 electrical glitch, or other breakdown. This wound may be repaired as
 normal.
-
-TRAIT:::Lost Fork
-Bonus: 5 CP
-
-A fork of the character has gone missing without a trace. The
+</description>
+</trait>
+<trait>
+<name>Lost Fork</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>A fork of the character has gone missing without a trace. The
 fork was legal and in compliance with all relevant laws and
 standards+then it vanished. The version that disappeared was an
 alpha fork, a complete recent copy of the character's ego that
@@ -3993,11 +4190,12 @@ doing just before the disappearance? What leads, if any, does the
 player possess at the start of the game? This trait is often taken in
 combination with the Edited Memories, Enemy, and/or On the Run
 traits.
-
-TRAIT:::Low-Gravity Adaptation (Morph Trait)
-Bonus: 10 CP
-
-The morph is adapted to live in low gravity (0.15 g or less)
+</description>
+</trait>
+<trait>
+<name>Low-Gravity Adaptation (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The morph is adapted to live in low gravity (0.15 g or less)
 and struggles in higher-gravity environments. Treat the character as
 suffering the effects of high gravity for every full 0.2 g over 0.15.
 For example, while the character would operate fine on Luna
@@ -4014,11 +4212,12 @@ gravity (over 1 g) for temporary periods, the gamemaster may rule
 that long-term exposure to higher gravity may result in the
 accumulation of actual wounds, not just wound effects. This trait may
 not be applied to morphs with the High-G Adaptation trait.
-
-TRAIT:::Low Pain Tolerance (Ego or Morph Trait)
-Bonus: 20 CP
-
-Pain is the character's enemy. The character has a
+</description>
+</trait>
+<trait>
+<name>Low Pain Tolerance (Ego or Morph Trait)</name>
+<bonus>Bonus: 20 CP</bonus>
+<description>Pain is the character's enemy. The character has a
 very low threshold for pain tolerance and is more severely impaired
 when suffering. Increase the modifier for each wound take by an
 additional -10 (so the character suffers -20 with one
@@ -4026,11 +4225,12 @@ wound, -40 with another, and -60 with a third).
 Additionally, the character suffers a -30 modifier on any test
 involving pain resistance. This morph version of this trait is only
 available for biomorphs.
-
-TRAIT:::Memory Artifact (Morph Trait)
-Bonus: 5 CP
-
-This particular morph has an anomalous neural structure. As a
+</description>
+</trait>
+<trait>
+<name>Memory Artifact (Morph Trait)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>This particular morph has an anomalous neural structure. As a
 result, sometimes not all aspects of an ego are properly erased after
 it has been uploaded and the mind is customarily wiped. This morph
 has memories from a previous ego that continue to resurface. Once per
@@ -4051,28 +4251,31 @@ sensitive data, secrets hidden from the public, or information the
 previous ego does not want spread. Gamemasters should not allow this
 trait for morphs that will be sleeved for less than a week unless
 they increase the test frequency from weekly to daily.
-
-TRAIT:::Mental Disorder
-Bonus: 10 CP
-
-You have a psychological disorder from a previous traumatic
+</description>
+</trait>
+<trait>
+<name>Mental Disorder</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>You have a psychological disorder from a previous traumatic
 experience in your life. Choose one of the disorders.
 
 *Possibilities: Addiction,Atavism,ADHD,Autophagy,Bipolar Disorder,Body Dysmorphia,Borderline Personality Disorder,Depression,Fugue,GAD,Hypochondria,Impulse Control Disorder,Insomnia,Megalomania,Multiple Personality Disorder,OCD,PTSD,Schizophrenia
-
-TRAIT:::Mild Allergy (Morph Trait)
-Bonus: 5 CP
-
-The morph is allergic to a specific chosen allergen (dust,
+</description>
+</trait>
+<trait>
+<name>Mild Allergy (Morph Trait)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>The morph is allergic to a specific chosen allergen (dust,
 dander, plant pollen, certain chemicals) and suffers mild discomfort
 when exposed to it (eye irritation, sneezing, difficult breathing).
 Apply a -10 modifier to all tests while the character remains
 exposed. This trait is only available for biomorphs.
-
-TRAIT:::Modified Behavior
-Bonus: 5 (Level 1), 10 (Level 2), or 20 (Level 3) CP
-
-The character has
+</description>
+</trait>
+<trait>
+<name>Modified Behavior</name>
+<bonus>Bonus: 5 (Level 1), 10 (Level 2), or 20 (Level 3) CP</bonus>
+<description>The character has
 been conditioned via time-accelerated behavioral control
 psychosurgery. This is common among ex-felons, who have been
 conditioned to respond to a specific idea or activity with vehement
@@ -4082,19 +4285,21 @@ limited or boosted, at Level 2 it is either blocked or encouraged,
 and at Level 3 it is expunged or enforced. This trait should only be
 allowed for behaviors that are either limited or, if encouraged,
 impact the character in a negative way.
-
-TRAIT:::Morphing Disorder
-Bonus: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP
-
-Adapting to new
+</description>
+</trait>
+<trait>
+<name>Morphing Disorder</name>
+<bonus>Bonus: 10 (Level 1), 20 (Level 2), or 30 (Level 3) CP</bonus>
+<description>Adapting to new
 morphs is particularly challenging for this character. The character
 suffers a -10 modifier per level on Integration
 Tests and Alienation Tests.
-
-TRAIT:::Neural Damage
-Bonus: 10 CP
-
-The character has suffered some type of neurological damage
+</description>
+</trait>
+<trait>
+<name>Neural Damage</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character has suffered some type of neurological damage
 that simply cannot be cured. The affliction is now part of the
 character's ego and remains with them even when remorphing.
 This damage may have been inherited, it may have resulted from a
@@ -4124,11 +4329,12 @@ appropriate to their game. Some possibilities are:
 * The inability to shift attention quickly
 (The gamemaster may decide to inflict modifiers resulting from this
 affliction as appropriate.)
-
-TRAIT:::Neurochemical Imbalance (Morph Trait)
-Bonus: 5 CP
-
-Something about this morph's neurochemistry (or its
+</description>
+</trait>
+<trait>
+<name>Neurochemical Imbalance (Morph Trait)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>Something about this morph's neurochemistry (or its
 neurochemical simulators, in the case of pods and synthmorphs) is
 unbalanced. Egos that sleeve into this morph struggle with a strong,
 almost overwhelming emotion: sadness, despair, frustration,
@@ -4144,49 +4350,54 @@ Test (for biomorphs) or Hardware:
 Robotics Test (for synthmorphs). Specific drugs may also reduce the
 effect, based on the particular aptitude affected. Despite these
 efforts, the emotion will return in 1d10 days.
-
-TRAIT:::No Cortical Stack (Morph Trait)
-Bonus: 10 CP
-
-The morph lacks the cortical stack that is common to morphs
+</description>
+</trait>
+<trait>
+<name>No Cortical Stack (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The morph lacks the cortical stack that is common to morphs
 of its type. This means the character cannot be resleeved from the
 cortical stack if the character dies, they can only be resleeved from
 a standard backup. This trait is not available for flats.
-
-TRAIT:::Not a Team Player
-Bonus: 10 CP
-
-This character is socially awkward, self-centered, or has
+</description>
+</trait>
+<trait>
+<name>Not a Team Player</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This character is socially awkward, self-centered, or has
 such low self esteem that they simply do not work well others. The
 character does not benefit from teamwork bonuses when others try to
 aid them, and if they attempt to aid someone else (whether
 voluntarily or forced), they will apply a -10 modifier to the
 test rather than aiding with a +10.
-
-TRAIT:::Oblivious
-Bonus: 10 CP
-
-The character is particularly oblivious to events around
+</description>
+</trait>
+<trait>
+<name>Oblivious</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character is particularly oblivious to events around
 them or anything other than what their attention is focused on. They
 suffer a -10 modifier to Surprise Tests and their modifier for
 being Distracted is -30 rather than the usual -20 (see
 Basic
 Perception).
-
-TRAIT:::On The Run
-Bonus: 10 CP
-
-The character is wanted by the authorities of a particular
+</description>
+</trait>
+<trait>
+<name>On The Run</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character is wanted by the authorities of a particular
 habitat/station or faction, who continue to actively search for the
 character. They either committed a crime or somehow displeased
 someone in power. The character deals with that faction in question
 at their own risk, and may occasionally be forced to deal with bounty
 hunters.
-
-TRAIT:::Overwhelmed by Emotions (AGIs Only)
-Bonus: 10 CP
-
-This trait is only available to AGIs. The character has a
+</description>
+</trait>
+<trait>
+<name>Overwhelmed by Emotions (AGIs Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to AGIs. The character has a
 particularly difficult time adjusting to hormonal urges and emotions
 when sleeved in biomorphs. The character suffers a -10 modifier
 when resisting any form of emotional manipulation, including
@@ -4202,11 +4413,12 @@ unlikely to ever sleeve into biomorphs+or should at least
 occasionally put them in situations that force them into one.
 Endocrine control does not completely mitigate these effects, though
 some of the modifiers may cancel out.
-
-TRAIT:::Personality Artifact (Morph Trait)
-Bonus: 10 CP
-
-Minor but occasionally intrusive echoes of previous egos
+</description>
+</trait>
+<trait>
+<name>Personality Artifact (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Minor but occasionally intrusive echoes of previous egos
 that have inhabited the morph still remain as mental artifacts. Once
 per week, the ego sleeved in the morph must make a MOX x 10 Test. If
 it fails, certain character traits manifest in the current occupant's
@@ -4237,11 +4449,12 @@ Personality Artifact
 7-8:The character is affected by an enhanced or reduced personality trait (gamemaster choice), per Personality Editing.
 9:The character acquires a Positive ego trait.
 0:The character acquires a Negative ego trait.
-
-TRAIT:::Phobia Disorder
-Bonus: 10 CP
-
-Phobias are a minor type of mental anxiety disorder based on
+</description>
+</trait>
+<trait>
+<name>Phobia Disorder</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Phobias are a minor type of mental anxiety disorder based on
 an irrational fear of a particular situation or thing. Phobic
 characters will go to great lengths to avoid their particular
 fear+they must make a WIL x 3 Test to even stay within
@@ -4263,11 +4476,12 @@ phobia should be linked to the particular source of trauma. For
 example, a character who suffers a trauma from remembering their
 death after vacuum exposure might pick up a derangement phobia of
 vacuum environments.
-
-TRAIT:::Planned Obsolescence
-Bonus: 5 CP
-
-The morph is a hypercorp model that requires periodic GSP
+</description>
+</trait>
+<trait>
+<name>Planned Obsolescence</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>The morph is a hypercorp model that requires periodic GSP
 (Genetic Service Pack) therapy. For every three months of game time,
 the character must spend credits equal to 10% the cost of the morph
 on GSP "upgrades." If they fail to do so, the morph's
@@ -4285,11 +4499,12 @@ to the early death of the morph, in game terms the morph stops
 accruing penalties when its SOM is reduced to 5. The character
 regains their normal SOM score if they resleeve. This trait is only
 available to biomorphs (including uplifts and pods).
-
-TRAIT:::Poorly Socialized
-Bonus: 10 CP
-
-This trait is most common among AGIs and uplifts, but can be
+</description>
+</trait>
+<trait>
+<name>Poorly Socialized</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is most common among AGIs and uplifts, but can be
 taken by anyone. The character's early life experience left
 them poorly prepared for interacting with the general public, and
 they come off as boorish, distant, or strange until they get to know
@@ -4297,11 +4512,12 @@ someone well. Due to the difficult nature of the character's
 behavior, they suffer a -10 modifier on all Social Skill Tests
 whenever the character is interacting with another character for the
 first time only.
-
-TRAIT:::Proprietary Tech (Morph Trait) (Synthmorphs Only)
-Bonus: 10 CP
-
-This trait is only available to synthmorphs. This morph was
+</description>
+</trait>
+<trait>
+<name>Proprietary Tech (Morph Trait) (Synthmorphs Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to synthmorphs. This morph was
 built to non-standard specifications, so that normal tools and
 software do not properly work on this morph. This is a conscious
 design decision by the manufacturer of the morph and is often used as
@@ -4312,19 +4528,21 @@ Standard repair and diagnostic tools like repair spray and fixer
 nanoswarms do not work on this morph, except for
 manufacturer-approved brands. Characters with Hardware: Robotics can
 repair or modify the morph but at a -20 modifier.
-
-TRAIT:::Psi Vulnerability (Ego or Morph Trait)
-Bonus: 10 CP
-
-Something about the character's mind makes them
+</description>
+</trait>
+<trait>
+<name>Psi Vulnerability (Ego or Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Something about the character's mind makes them
 particularly vulnerable to psi attack. They suffer a -10
 modifier when resisting such attacks. The morph version of this trait
 may only be taken by biomorphs.
-
-TRAIT:::Real World Naivete
-Bonus: 10 CP
-
-Due to their background, the character has very limited
+</description>
+</trait>
+<trait>
+<name>Real World Naivete</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Due to their background, the character has very limited
 personal experience with the real (physical) world+or they have
 spent so much time in simulspace that their functioning in real life
 is impaired. They lack an understanding of many physical properties,
@@ -4343,11 +4561,12 @@ available to characters with the infolife or re-instantiated
 backgrounds,
 though the gamemaster may allow it for characters who have extensive
 virtual reality/XP use in their personal histories.
-
-TRAIT:::Reduced Size (Morph Trait)
-Bonus: 10 CP
-
-This trait reduces the size of an existing morph model from
+</description>
+</trait>
+<trait>
+<name>Reduced Size (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait reduces the size of an existing morph model from
 either large to medium or medium to small (morphs may only be reduced
 once). Morphs shrunk to a medium size lose the effects of the Large
 Size trait and 10 points of Durability. Morphs reduced to a small
@@ -4355,11 +4574,12 @@ size gain the effects of the Small Size trait and lose 5 points of
 Durability. Durability reductions also effect Wound Threshold and
 Death Rating per normal. Reducing a morph may affect other changes at
 the gamemaster's discretion.
-
-TRAIT:::Severe Allergy (Morph Trait)
-Bonus: 10 (uncommon) or 20 (common) CP
-
-The morph's biochemistry
+</description>
+</trait>
+<trait>
+<name>Severe Allergy (Morph Trait)</name>
+<bonus>Bonus: 10 (uncommon) or 20 (common) CP</bonus>
+<description>The morph's biochemistry
 suffers a severe allergic reaction (anaphylaxis) when it comes into
 contact (touched, inhaled, or ingested) with a specific allergen. The
 allergen may be common (dust, dander, plant pollen, certain foods,
@@ -4371,27 +4591,30 @@ Test or go into anaphylactic shock (dying of respiratory failure in
 2d10 minutes unless medical care is applied).
 This trait is only
 available to biomorphs.
-
-TRAIT:::Shut-In
-Bonus: 15 CP
-
-This character is a social hermit or went through a period
+</description>
+</trait>
+<trait>
+<name>Shut-In</name>
+<bonus>Bonus: 15 CP</bonus>
+<description>This character is a social hermit or went through a period
 of self-imposed isolation, limiting the amount of interactions they
 have via online social networks. Because the character is out of
 touch, their ability to network with others is impaired. Apply a -10
 modifier to Networking Tests.
-
-TRAIT:::Slow Learner
-Bonus: 10 CP
-
-New skills are not easy for this character to pick up. The
+</description>
+</trait>
+<trait>
+<name>Slow Learner</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>New skills are not easy for this character to pick up. The
 character takes twice as long as normal to improve skills or learn
 new ones.
-
-TRAIT:::Social Stigma (Ego or Morph Trait)
-Bonus: 10 CP
-
-An unfortunate aspect of the character's background
+</description>
+</trait>
+<trait>
+<name>Social Stigma (Ego or Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>An unfortunate aspect of the character's background
 means that they suffer from a stigma in certain social situations.
 They may be sleeved in a morph viewed with repugnance, be a survivor
 of the infamous Lost generation, or may be an AGI in a post-Fall
@@ -4400,11 +4623,12 @@ situations where the character's nature is known to someone who
 view that nature with distaste, fear, or repugnance, they suffer a
 -10 to -30 modifier (gamemaster's discretion) to
 social skill tests.
-
-TRAIT:::Socially Graceless
-Bonus: 10 CP
-
-Something about the character makes them a walking social
+</description>
+</trait>
+<trait>
+<name>Socially Graceless</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Something about the character makes them a walking social
 disaster. While the character can be charming and confident, they
 forget basic social etiquette, overlook customs and rules, miss
 social cues, and overstep their bounds. Once per game session, the
@@ -4414,11 +4638,12 @@ failure. Usually this results in someone being offended, becoming
 hostile, or refusing to work with the character. Protocol
 may not be used to wipe away this social gaffe, nor may Moxie negate
 it.
-
-TRAIT:::Solitary (Neo-Octopi Only)
-Bonus: 10 CP
-
-This trait is only available to neo-octopi uplifts. Like its
+</description>
+</trait>
+<trait>
+<name>Solitary (Neo-Octopi Only)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to neo-octopi uplifts. Like its
 pre-sapient kin, this uplift prefers solitude and has not been fully
 socialized. As a result, they can only tolerate 2 hours of direct
 interaction (physical or virtual) with others before they need a
@@ -4430,11 +4655,12 @@ of -30. After 6 hours, they must a WIL x 3 Test to keep their
 composure and not react towards those around them with aggression,
 hostility, or even violence. This trait is usually taken in
 conjunction with the Hardening (Isolation) trait.
-
-TRAIT:::Stalker
-Bonus: 10 CP
-
-A voyeur obsessively stalks this character's actions
+</description>
+</trait>
+<trait>
+<name>Stalker</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>A voyeur obsessively stalks this character's actions
 online. The gamemaster and player should work out details of the
 stalker together, and the gamemaster should use the stalker as a plot
 element to create occasional nuisances and challenges. The stalker
@@ -4442,11 +4668,12 @@ could, for example, be a fan who over-appreciates the character's
 work and pesters them or a unknown entity that follows the
 character's actions religiously and posts the details to an
 online log.
-
-TRAIT:::Stolen Identity
-Bonus: 10 CP
-
-Someone stole this character's identity and took
+</description>
+</trait>
+<trait>
+<name>Stolen Identity</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>Someone stole this character's identity and took
 advantage of their name, reputation, background+the works.
 Though this happened in the past, the situation was never fully
 resolved and the character is plagued with collateral difficulties
@@ -4456,20 +4683,22 @@ occasionally hinder the character or create complications. For
 example, the character may have to deal with criminal charges against
 them in one habitat, angry thugs looking for payback on another, and
 so on.
-
-TRAIT:::Submissive (Uplifts Only)
-Bonus: 5 CP
-
-This trait is only available to uplifts. This character
+</description>
+</trait>
+<trait>
+<name>Submissive (Uplifts Only)</name>
+<bonus>Bonus: 5 CP</bonus>
+<description>This trait is only available to uplifts. This character
 retains a tendency to submit to displays of dominance, inherited from
 their pre-sapient forebears. The character suffers a -20
 modifier in Opposed Tests against Intimidation from NPCs with
 perceived social status.
-
-TRAIT:::Subverted Mind
-Bonus: 30 CP
-
-Similar to the Modified Behavior trait, the character has
+</description>
+</trait>
+<trait>
+<name>Subverted Mind</name>
+<bonus>Bonus: 30 CP</bonus>
+<description>Similar to the Modified Behavior trait, the character has
 been conditioned by behavioral control psychosurgery+in this
 case, an expunged or enforced behavior. The character is unaware of
 this mind editing, however, as the procedure also included an
@@ -4482,9 +4711,11 @@ block, even when the character's hidden programming becomes
 apparent to others, they will be cognitively incapable of recognizing
 it themselves, which is certain to be an incredibly stressful
 experience all around.
-
-TRAIT:::Temperature Intolerance (Warm) (Morph Trait)
-The
+</description>
+</trait>
+<trait>
+<name>Temperature Intolerance (Warm) (Morph Trait)</name>
+<description>The
 morph is adapted for extreme cold and has difficulty dissipating body
 heat in temperatures tolerated by normal transhumans. When exposed to
 vacuum or temperatures above 5 C for more than 10 minutes, the
@@ -4496,27 +4727,30 @@ by wearing a vacsuit, the application of some sort of cooling system,
 or returning to a suitably cold environment.
 Bonus: 10 CP
 
-
-TRAIT:::Timid
-Bonus: 10 CP
-
-This character frightens easily. They suffer a -10
+</description>
+</trait>
+<trait>
+<name>Timid</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This character frightens easily. They suffer a -10
 modifier when resisting fear or intimidation.
-
-TRAIT:::Trusting Heart
-Bonus: 10 CP
-
-The character has a tendency to trust others far too quickly
+</description>
+</trait>
+<trait>
+<name>Trusting Heart</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character has a tendency to trust others far too quickly
 and is devastated when betrayed. Stress loss from betrayal is doubled
 and the character suffers a -10 modifier when using Kinesics
 in Opposed Tests against Deception
 or Impersonation
 skills.
-
-TRAIT:::Unattractive (Morph Trait)
-Bonus: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)
-
-In a time when
+</description>
+</trait>
+<trait>
+<name>Unattractive (Morph Trait)</name>
+<bonus>Bonus: 10 CP (Level 1), 20 CP (Level 2), 30 CP (Level 3)</bonus>
+<description>In a time when
 good looks are easily purchased, this morph is conspicuously ugly. As
 unattractiveness is increasingly associated with being poor,
 backward, or genetically defective, responses to a lack of good looks
@@ -4529,11 +4763,12 @@ infolife or uplift backgrounds. This modifier may be purchased for
 uplift morphs, but at half the bonus, and it is only effective
 against characters with that specific uplift background (i.e.,
 neo-avians, neo-hominids, etc.).
-
-TRAIT:::Uncanny Valley (Morph Trait)
-Bonus: 10 CP
-
-There is a point where synthetic human looks become
+</description>
+</trait>
+<trait>
+<name>Uncanny Valley (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>There is a point where synthetic human looks become
 uncannily realistic and human-seeming, but they remain just different
 enough that their looks seem creepy or even repulsive+a
 phenomenon called the "uncanny valley." Morphs whose
@@ -4541,11 +4776,12 @@ looks fall into this range suffer a -10 modifier on social
 skill tests when dealing with humans. This modifier does not apply to
 interactions with xenomorphs or those with the infolife or uplift
 backgrounds.
-
-TRAIT:::Uncontrollable Urge (Ego or Morph Trait)
-Bonus: 10 CP
-
-The ego or morph has an overwhelming primal drive that is
+</description>
+</trait>
+<trait>
+<name>Uncontrollable Urge (Ego or Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The ego or morph has an overwhelming primal drive that is
 not properly filtered by the brain, such as the urge for hunting,
 hiding food, mating, marking territory, driving off competitors (or,
 for the rare synthmorph, cleaning, serving, or shutting down when not
@@ -4554,28 +4790,31 @@ character must pass a WIL x 3 Test to resist acting out the
 compulsion immediately. While resisting the compulsion, the character
 suffers a -10 to all actions. Uncontrollable drives are poorly
 received in most circles. This trait is most common among uplifts.
-
-TRAIT:::Unfit (Morph Trait)
-Bonus: 10 CP (Level 1), 20 CP (Level 2)
-
-The morph is either not optimized
+</description>
+</trait>
+<trait>
+<name>Unfit (Morph Trait)</name>
+<bonus>Bonus: 10 CP (Level 1), 20 CP (Level 2)</bonus>
+<description>The morph is either not optimized
 for health and/or just in bad shape. Reduce the aptitude maximums for
 Coordination, Reflexes, and Somatics by 5 (Level 1) or 10 (Level 2).
-
-TRAIT:::VR Vertigo
-Bonus: 10 CP
-
-The character experiences intense vertigo and nausea when
+</description>
+</trait>
+<trait>
+<name>VR Vertigo</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>The character experiences intense vertigo and nausea when
 interfacing with any type of virtual reality, XP, or simulspace.
 Augmented reality has no effect, but VR inflicts a -30 modifier
 to all of the character's actions. Prolonged use of VR
 (gamemaster's discretion) may actually incapacitate the
 character should they fail a WIL x 2 Test.
-
-TRAIT:::Wait, That Was You?
-Bonus: 10 CP
-
-This character was the unfortunate star of a viral meme that
+</description>
+</trait>
+<trait>
+<name>Wait, That Was You?</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This character was the unfortunate star of a viral meme that
 swept through the solar system's mesh networks+provoking
 anger, disgust, or mockery towards them. To this day, strangers who
 access the character's social profile are likely to connect
@@ -4585,50 +4824,59 @@ the character is interacting and who has access to the character's
 online public profile makes the connection. The character suffers a
 one-time -20 modifier to any social skill or Networking Test
 with that stranger. 
-
-TRAIT:::Rule Zero:
-In games played IRC, the frequency (Once per game session) may be
+</description>
+</trait>
+<trait>
+<name>Rule Zero:</name>
+<description>In games played IRC, the frequency (Once per game session) may be
 changed to Twice per adventure
-
-TRAIT:::Weak Grip (Morph Trait)
-Bonus: 10 CP
-
-This trait is only available to neo-avian and neo-pig
+</description>
+</trait>
+<trait>
+<name>Weak Grip (Morph Trait)</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This trait is only available to neo-avian and neo-pig
 morphs. The physiology of this particular morph is flawed in that the
 opposable digits on the hands are not fully formed or operational. A
 character in this morph loses their damage bonus in melee attacks and
 suffers a -10 modifier on subdual tests and any other tests
 involving their grip, hand strength, or ability to hold on.
-
-TRAIT:::Weak Immune System (Morph Trait)
-Bonus: 10 (Level 1) or 20 (Level 2) CP
-
-The morph's immune system is
+</description>
+</trait>
+<trait>
+<name>Weak Immune System (Morph Trait)</name>
+<bonus>Bonus: 10 (Level 1) or 20 (Level 2) CP</bonus>
+<description>The morph's immune system is
 susceptible to diseases, drugs, and toxins. At Level 1, apply a -10
 modifier whenever making a test to resist infection or the effects of
 a toxin or drug. At Level 2, increase this modifier to -20.
 This trait is only available to biomorphs.
-
-TRAIT:::Zero-G Nausea
-Bonus: 10 CP
-
-This morph suffers from space sickness and does not fair
+</description>
+</trait>
+<trait>
+<name>Zero-G Nausea</name>
+<bonus>Bonus: 10 CP</bonus>
+<description>This morph suffers from space sickness and does not fair
 well in zero-gravity. The character suffers a -10 modifier in
 any microgravity climate. Additionally, whenever the character is
 first getting acclimated or anytime they must endure excessive
 movement in microgravity, they must make a WIL Test or spend 1 hour
 incapacitated by nausea per 10 points of MoF.
-
-TRAIT:::Emotive (Morph Trait, Synthmorphs Only)
-The
+</description>
+</trait>
+<trait>
+<name>Emotive (Morph Trait, Synthmorphs Only)</name>
+<description>The
 emotive circuits for this morph are exceptional. Kinesics
 Tests made against the morph suffer only a -10 modifer,
 rather than the usual -30 for synthmorphs. This is useful when
 non-vocally emoting to friends, and not so great when trying to hide
 your intentions from others.
-
-TRAIT:::Large Size (Morph Trait)
-The
+</description>
+</trait>
+<trait>
+<name>Large Size (Morph Trait)</name>
+<description>The
 morph is signifcantly larger than a normal transhuman, which
 has its advantages and disadvantages. The character counts as a large
 target in combat, granting all enemies a +10 bonus on attack rolls
@@ -4652,9 +4900,11 @@ The
 following existing bots and vehicles are also considered large:
 dwarf, fux car, fying car, ground car, hyperdense
 exoskeleton, Mars buggy, portable plane, rocket buggy, skimmer.
-
-TRAIT:::Non-Human Biochemistry (Morph Trait)
-Biomorphs
+</description>
+</trait>
+<trait>
+<name>Non-Human Biochemistry (Morph Trait)</name>
+<description>Biomorphs
 (including pods) with this trait are developed from non-human (but
 still mammalian) species or have been genetically modifed
 enough that they are substantially different from humans. Though they
@@ -4678,9 +4928,11 @@ following existing morphs are considered to have the Non-Human
 Biochemistry trait: aquanaut, hypergibbon, neanderthal, neo-beluga,
 neo-dolphin, neo-hominid (bonobo, chimp, orangutan, and gorilla),
 neo-orca, neo-pig, neo-porpoise, neo-whale, selkie, surya.
-
-TRAIT:::Non-Mamamalian Biochemistry (Morph Trait)
-Biomorphs
+</description>
+</trait>
+<trait>
+<name>Non-Mamamalian Biochemistry (Morph Trait)</name>
+<description>Biomorphs
 (including pods) with this trait are developed from non-mammalian
 biologies. The state of medicine for these morphs is often not quite
 as advanced as it is for humans, and certain common drugs and medical
@@ -4701,9 +4953,11 @@ trait is only available to morphs created from non-mammalian
 biochemistries. The following existing morphs are considered to have
 the Non-Mammalian Biochemistry trait: chickcharnie, hulder, neoavian,
 novacrab, octomorph, ripwing, salamander.
-
-TRAIT:::Small Size (Morph Trait)
-The
+</description>
+</trait>
+<trait>
+<name>Small Size (Morph Trait)</name>
+<description>The
 morph is signifcantly smaller than a normal transhuman,
 roughly child-sized. The character counts as a small target in
 combat; apply a -10 modifer to attacks against the
@@ -4730,9 +4984,11 @@ The following existing smart animals are considered to
 have the Small Size trait: aquarium pet, guard dog, police baboon,
 rust hound, smart cat/dog/hawk/monkey/racoon/rat/wolf, space roach,
 squidling, swarm cat.
-
-TRAIT:::Unique Look
-The morph is engineered to stand out in a society with sophisticated
+</description>
+</trait>
+<trait>
+<name>Unique Look</name>
+<description>The morph is engineered to stand out in a society with sophisticated
 cloning and fabrication technology. The exact nature of the unique
 look varies based on the morph. Some employ proprietary technology
 secured by DRM in order to prevent others from copying the exact look
@@ -4750,9 +5006,11 @@ general, morphs with the Unique Look trait are strongly associated
 with a particular element of transhuman society, so characters with
 this trait will become de facto representatives of that element of
 society and others will treat them accordingly.
-
-TRAIT:::Very Large Size (Morph Trait)
-The morph is huge in size, bigger than many vehicles. It counts as a very
+</description>
+</trait>
+<trait>
+<name>Very Large Size (Morph Trait)</name>
+<description>The morph is huge in size, bigger than many vehicles. It counts as a very
 large target in combat, providing opponents with a +20 modifer
 to hit. Their mass works against them; triple the damage from falling
 or collisions after armor is applied. The morph gains the reach
@@ -4773,9 +5031,11 @@ submarine, defense platform, fghter, GEV, interceptor, large
 jet, lifeboat, maglev train, Martian rover, methane skiff, mobile
 base, outsystem hover/skimmer, scorcher, siftrunner, small jet,
 SLOTV, Titanian cargo copter, utility helicopter, Venusian hauler.
-
-TRAIT:::Very Small Size (Bots/Creatures Only)
-The bot or creature is roughly mouse- or insect-sized. It counts as a
+</description>
+</trait>
+<trait>
+<name>Very Small Size (Bots/Creatures Only)</name>
+<description>The bot or creature is roughly mouse- or insect-sized. It counts as a
 very small target in combat; apply a -30 modifer to
 attacks against it. Halve the damage from falling or collisions after
 armor is applied. Small-size opponents have a reach advantage against
@@ -4789,10 +5049,12 @@ inherently very small.
 The following existing bots and creatures
 are considered to have the Very Small Size trait: bees/ wasps, recon
 fyer/hopper/snake, sky mote, speck.
-
-TRAIT:::Whole Body Apoptosis (Morph Trait)
-Bonus: 0 CP
-This morph has been genetically programmed to suffer a sudden and lethal
+</description>
+</trait>
+<trait>
+<name>Whole Body Apoptosis (Morph Trait)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>This morph has been genetically programmed to suffer a sudden and lethal
 massive cellular failure at some point in the future, usually within
 a given 10 year period, though it is possible to target a specifc
 date, give or take a few months. This modification is favored by
@@ -4803,113 +5065,160 @@ send any fnal messages, or commit any other fnal acts.
 This trait may only be applied to biomorphs (including
 pods).
 Apoptosis may not be initiated voluntarily.
-
-TRAIT:::DERANGEMENT: ANXIETY (MINOR)
-Bonus: 0 CP
-You suffer a panic attack, exhibiting the physiological 
+</description>
+</trait>
+<trait>
+<name>DERANGEMENT: ANXIETY (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You suffer a panic attack, exhibiting the physiological 
 conditions of fear and worry: sweatiness, racing heart, 
-trembling, shortness of breath, headaches, and so on.
-TRAIT:::DERANGEMENT: AVOIDANCE (MINOR)
-Bonus: 0 CP
-You are psychologically incapable of dealing with the 
+trembling, shortness of breath, headaches, and so on.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: AVOIDANCE (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You are psychologically incapable of dealing with the 
 source of the stress or some circumstance related to it, 
 so you avoid it—even covering your ears, curling up 
-in a ball, or shutting off your sensors if you have to.
-TRAIT:::DERANGEMENT: DIZZINESS (MINOR)
-Bonus: 0 CP
-The stress makes you light-headed and disoriented.
-TRAIT:::DERANGEMENT: ECHOLALIA (MINOR)
-Bonus: 0 CP
-You involuntarily repeat words and phrases spoken 
-by others.
-TRAIT:::DERANGEMENT: FIXATION (MINOR)
-Bonus: 0 CP
-You become fixated on something that you did wrong 
+in a ball, or shutting off your sensors if you have to.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: DIZZINESS (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>The stress makes you light-headed and disoriented.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: ECHOLALIA (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You involuntarily repeat words and phrases spoken 
+by others.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: FIXATION (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You become fixated on something that you did wrong 
 or  some  circumstance  that  led  to  your  stress. You 
 obsess over it, repeating the behavior, trying to fix it, 
 running scenarios through your head and out loud, 
-and so on.
-TRAIT:::DERANGEMENT: HUNGER (MINOR)
-Bonus: 0 CP
-You  are  suddenly  consumed  by  an  irrational  yet 
+and so on.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: HUNGER (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You  are  suddenly  consumed  by  an  irrational  yet 
 overwhelming desire to eat something—perhaps even 
-something unusual.
-TRAIT:::DERANGEMENT: INDECISIVENESS (MINOR)
-Bonus: 0 CP
-You are flustered by the cause of your stress, finding 
+something unusual.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: INDECISIVENESS (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You are flustered by the cause of your stress, finding 
 it difficult to make choices or select courses of action.LOGORRHOEA (MINOR)
 Your response to the trauma is to engage in excessive 
-talking and babbling. You don’t shut up.
-TRAIT:::DERANGEMENT: NAUSEA (MINOR)
-Bonus: 0 CP
-The  stress  sickens  you,  forcing  you  to  fight  down 
-queasiness.
-TRAIT:::DERANGEMENT: CHILLS (MODERATE)
-Bonus: 0 CP
-Your body temperature rises, making you feel cold, 
-and shivering sets in. You just can’t get warm.
-TRAIT:::DERANGEMENT: CONFUSION (MODERATE)
-Bonus: 0 CP
-The trauma scrambles your concentration, making 
+talking and babbling. You don’t shut up.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: NAUSEA (MINOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>The  stress  sickens  you,  forcing  you  to  fight  down 
+queasiness.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: CHILLS (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>Your body temperature rises, making you feel cold, 
+and shivering sets in. You just can’t get warm.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: CONFUSION (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>The trauma scrambles your concentration, making 
 you forget what you’re doing, mix up simple tasks, 
-and falter over easy decisions.
-TRAIT:::DERANGEMENT: ECHOPRAXIA (MODERATE)
-Bonus: 0 CP
-You  involuntarily  repeat  and  mimic  the  actions  of 
-others around you.
-TRAIT:::DERANGEMENT: MOOD SWINGS (MODERATE)
-Bonus: 0 CP
-You lose control of your emotions. You switch from 
-ecstasy to tears and back to rage without warning.
-TRAIT:::DERANGEMENT: MUTE (MODERATE)
-Bonus: 0 CP
-The trauma shocks you into speechlessness and a complete inability to effectively communicate.
-TRAIT:::DERANGEMENT: NARCISSISM (MODERATE)
-Bonus: 0 CP
-In the wake of the mental shock, all you can think about 
-is yourself. You cease caring about those around you.
-TRAIT:::DERANGEMENT: PANIC (MODERATE)
-Bonus: 0 CP
-You are overwhelmed by fear or anxiety and immedi-
+and falter over easy decisions.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: ECHOPRAXIA (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You  involuntarily  repeat  and  mimic  the  actions  of 
+others around you.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: MOOD SWINGS (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You lose control of your emotions. You switch from 
+ecstasy to tears and back to rage without warning.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: MUTE (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>The trauma shocks you into speechlessness and a complete inability to effectively communicate.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: NARCISSISM (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>In the wake of the mental shock, all you can think about 
+is yourself. You cease caring about those around you.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: PANIC (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You are overwhelmed by fear or anxiety and immedi-
 ately seek to distance yourself from the cause of the 
-stress.
-TRAIT:::DERANGEMENT: TREMORS (MODERATE)
-Bonus: 0 CP
-You shake violently, making it difficult to hold things 
-or stay still.
-TRAIT:::DERANGEMENT: BLACKOUT (MAJOR)
-Bonus: 0 CP
-You operate on auto-pilot in a temporary fugue state. 
+stress.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: TREMORS (MODERATE)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You shake violently, making it difficult to hold things 
+or stay still.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: BLACKOUT (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You operate on auto-pilot in a temporary fugue state. 
 Later, you will be incapable of recalling what hap-
 pened during this period. (Synthetic shells and info-
-morphs may call up memory records from storage.)
-TRAIT:::DERANGEMENT: FRENZY (MAJOR)
-Bonus: 0 CP
-You have a major freak out over the source of the 
-stress and attack it.
-TRAIT:::DERANGEMENT: HALLUCINATIONS (MAJOR)
-Bonus: 0 CP
-You see, hear, or otherwise sense things that aren’t 
-really there.
-TRAIT:::DERANGEMENT: HYSTERIA (MAJOR)
-Bonus: 0 CP
-You lose control, panicking over the source of the 
+morphs may call up memory records from storage.)</description>
+</trait>
+<trait>
+<name>DERANGEMENT: FRENZY (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You have a major freak out over the source of the 
+stress and attack it.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: HALLUCINATIONS (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You see, hear, or otherwise sense things that aren’t 
+really there.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: HYSTERIA (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You lose control, panicking over the source of the 
 stress. This typically results in an emotional outburst 
-of crying, laughing, or irrational fear.
-TRAIT:::DERANGEMENT: IRRATIONALITY (MAJOR)
-Bonus: 0 CP
-You are so jarred by the stress that your capacity for 
+of crying, laughing, or irrational fear.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: IRRATIONALITY (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You are so jarred by the stress that your capacity for 
 logical judgment breaks down. You are angered by 
 imaginary offenses, hold unreasonable expectations, 
-or otherwise accept things with unconvincing evidence.
-TRAIT:::DERANGEMENT: PARALYSIS (MAJOR)
-Bonus: 0 CP
-You  are  so  shocked  by  the  trauma  that  you  are 
+or otherwise accept things with unconvincing evidence.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: PARALYSIS (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>You  are  so  shocked  by  the  trauma  that  you  are 
 effectively frozen, incapable of making decisions or 
-taking action.
-TRAIT:::DERANGEMENT: PSYCHOSOMATIC CRIPPLING (MAJOR)
-Bonus: 0 CP
-The trauma overwhelms you, impairing some part of 
+taking action.</description>
+</trait>
+<trait>
+<name>DERANGEMENT: PSYCHOSOMATIC CRIPPLING (MAJOR)</name>
+<bonus>Bonus: 0 CP</bonus>
+<description>The trauma overwhelms you, impairing some part of 
 your physical functioning. You suffer from an inex-
 plicable blindness, deafness, or phantom pain or are 
-suddenly incapable of using a limb or other extremity.
+suddenly incapable of using a limb or other extremity.</description>
+</trait>

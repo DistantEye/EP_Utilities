@@ -12,7 +12,7 @@ Make Table 11,69's effect more validated rather than lazy
 
 Remember that characters store a {speedBonus} variable to track any adjustments to speed
 
-Make Traits and Sleights also use XML (possibly the whole internalInfo file)
+Make Sleights also use XML (possibly the whole internalInfo file)
 
 may need to do something special with if conditionals : right now getVar will try and resolve for both branches, which can break things
 

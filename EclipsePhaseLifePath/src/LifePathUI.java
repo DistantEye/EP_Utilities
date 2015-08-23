@@ -67,7 +67,6 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public String promptUser(String message, String extraContext) {
-		// TODO Auto-generated method stub
 		
 		String prompt = message + "\n" + extraContext;
 		
@@ -104,7 +103,6 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public void statusUpdate(String message) {
-		// TODO Auto-generated method stub
 		this.appendStatusText(message);
 	}
 

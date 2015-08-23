@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class Trait {
 	private String name;
 	private String description;
+	private String cost;
+	private String bonus;
 	private int level; // default to 1
 	
 	// stores all the below skills
@@ -19,10 +21,12 @@ public class Trait {
 	
 	/**
 	 * @param name Name of trait
-	 * @param description Human readable description of trait
+	 * @param description Human readable description of trait 
+	 * @param cost String containing various CP costs for the trait (not always used)
+	 * @param bonus String containing various CP bonuses for the trait (not always used)
 	 * @param level Level of trait : default is 1
 	 */
-	private Trait(String name, String description, int level) {
+	private Trait(String name, String description, String cost, String bonus, int level) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -35,6 +39,8 @@ public class Trait {
 		this.name = t.name;
 		this.description = t.description;
 		this.level = t.level;
+		this.cost = t.cost;
+		this.bonus = t.bonus;
 	}
 
 	/**
@@ -171,18 +177,15 @@ public class Trait {
 
 	/**
 	 * Creates a new Trait that is stored statically in the class
-	 * @param input String of format 'TraitName|Description
+	 * @param name Name of trait
+	 * @param description Human readable description of trait 
+	 * @param cost String containing various CP costs for the trait (not always used)
+	 * @param bonus String containing various CP bonuses for the trait (not always used)
+	 * @param level Level of trait : default is 1
 	 */
-	public static void CreateInternalTrait(String input)
-	{
-		String[] parts = input.split("\\|");
-		
-		if (parts.length != 2 )
-		{
-			throw new IllegalArgumentException("Invalidly formatted Trait string : " + input);
-		}
-		
-		Trait temp = new Trait(parts[0],parts[1], 1);
+	public static void CreateInternalTrait(String name, String desc, String cost, String bonus, int level)
+	{		
+		Trait temp = new Trait(name,desc,cost,bonus,level);
 		Trait.traitList.add(temp);
 	}
 	

@@ -20,17 +20,12 @@ public class Character {
 	private ArrayList<String> gearList;
 	private String name;
 	private int age;
-	//private String background;
 	private LinkedList<String> allBackgrounds;
 	private Morph currentMorph;
 	
-	// todo, fully remove commented variables
-	//private String currentFaction;
-	//private String currentPath;
 	private LinkedList<Integer> lastRolls;
 	private String currentTable;
 	private HashMap<String, Rep> repList;
-	//private int credits;
 	private HashMap<String, Sleight> sleightList;
 	private Step lastStep;
 	private ArrayList<String[]> packages; // stores pkgs added to character

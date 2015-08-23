@@ -124,7 +124,100 @@ public class LifePathGenerator {
 	 */
 	private String runEffect(String effectInput, String extraContext)
 	{
-		System.out.println("Running effect: " + effectInput);
+		/**
+		 * Effect/Command manual
+		 * 
+		 * Any of the below will add a skill if it doesn't exist, or add to it if it's already there
+		<skillname> <number>
+		<skillname>: <subtype> <number> 
+		<skillname>[<specialization>] <number>
+		<skillname>: <subtype> [<specialization>] <number>
+		
+		Preprocessing Commands (ran before others):
+		!RANDSKILL! => pick random valid skill character has
+		!RANDAPT! => pick random valid Aptitude character has  
+		!RAND_DER! => pick random Derangement
+		concat(<value1>,<value2>) (appends value2 to the end of value1)
+		getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
+		rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
+		simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
+		
+		?1? can be used to prompt the user to make a choice (will open a text prompt)
+		?2? and ?3? and etc are used as shortcuts which cause the command to split into multiple commands, each with ?1?, a single choice
+		The prompt will automatically use things like tablerow descriptions and package descriptions in the prompt
+		You can manually specify information to appear in the prompt by placing text enclosed in ## . This text will be removed after being read, so doesn't effect
+			normal processing
+		ex: incSkl(?1?#Choose Fray or Climbing#,10,?equals($1,Fray)||?equals($1,Climbing))
+		
+		
+		\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
+		\; is often similarly used for nested commands
+		
+		Rest of commands:
+		incSkl(<skill>,<value>)
+		incSkl(<skill>,<value>,<conditional>)
+		setSkl(<skill>,<value>,<conditional>)
+		decSkl(<skill>,<value/all>)					(decSkl all will set two variables {lastRemSkl} {lastRemSklVal}, equal to what was removed)
+		decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
+		
+		SklSpec(<skill>,<specializationName>)
+		trait(<trait>)
+		trait(<trait>,level)
+		morph(<morphname>)
+		morph(randomRoll)
+		setApt(<aptitudeName>,<value>)
+		addApt(<aptitudeName>,<value>)					(can also be used to subtract with a negative value)
+		addApt(<aptitudeName>,<value>,<conditional)		(the three parameter version throw an error if the conditional isn't true)
+		mox(<value>)
+		gear(<gearName>)
+		roll(<dieNumber>,#-#=effect/#-#=effect)  (list can be as long as needed)		(ex, roll(1-6=morph,splicer/7-10=morph(bouncer)) 
+		rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
+												forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
+		rollTable(<tableName>,<replaceValue>) 	(as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
+		runTable(<tableName>,<number>)
+		runTable(<tableName>,<number>,<wildCardReplace>) (similar to rollTable Except you specify what the number is)
+		background(<name>)
+		nextPath(<name>)
+		faction(<name>)
+		stepskip(<name>)			(immediately skip to step of this name)
+		stepskipNoStop(<name>)			(immediately skip to step of this name, doesn't interrupt the UI)
+		package(<name>)				(add package -- assume 1 PP if it needs a value)
+		package(<name>,<value>)		(add package of a certain PP value)
+		rep(<type>,<value>)
+		rep(<type>,<value>,<conditional>)	(as with others, conditional must be true for the command to work)
+		credit(<value>)
+		psichi(<name>)				(can use ?1?,?2?, etc)
+		psigamma(<name>)
+		psisleight(<name>)
+		extendedChoice(Text,1=effect/2=effect/3=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
+		if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
+		msgClient(<message>)					(says something to the UI about character changes)
+		setVar(<name>,<value>)
+		func(<name>)
+		func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
+		stop()			(marks character generation as over)
+		
+		Conditions:
+		?hastrait(trait)
+		?hasSkill(skill)
+		?skillIsType(skill,type)  (skill is name of skill, type is a type you want it to be, like Technical
+		?hasBackground
+		?hasHadBackground
+		?hasRolled(number)
+		?equals(string1,string2)
+		?hasVar(varname)
+		?between(input,lower,upper)
+		
+		$0,$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
+		inc(<skill>,<number>,<conditional>) leads to $0 accessing inc, $1 accessing <skill> and so on
+		
+		|| and && are partially supported
+		
+		replacing ? with ! is for boolean not. so !hasTrait;trait => not having that trait
+		 * 
+		 */
+		
+		
 		// translate steps to actions, as we'll just get a step name sometimes
 		if (DataProc.dataObjExists(effectInput) && DataProc.getDataObj(effectInput).getType().equals("step"))
 		{
@@ -1340,110 +1433,13 @@ public class LifePathGenerator {
 				else
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
-				}
-			
-				// still finishing up adding effects
-				
-				/**
-				 * 
-				 * Any of the below will add a skill if it doesn't exist, or add to it if it's already there
-	<skillname> <number>
-	<skillname>: <subtype> <number> 
-	<skillname>[<specialization>] <number>
-	<skillname>: <subtype> [<specialization>] <number>
-
-	Preprocessing Commands (ran before others):
-	!RANDSKILL! => pick random valid skill character has
-	!RANDAPT! => pick random valid Aptitude character has  
-	!RAND_DER! => pick random Derangement
-	concat(<value1>,<value2>) (appends value2 to the end of value1)
-	getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
-	rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
-	simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
-	
-	?1? can be used to prompt the user to make a choice (will open a text prompt)
-		?2? and ?3? and etc are used as shortcuts which cause the command to split into multiple commands, each with ?1?, a single choice
-		The prompt will automatically use things like tablerow descriptions and package descriptions in the prompt
-		You can manually specify information to appear in the prompt by placing text enclosed in ## . This text will be removed after being read, so doesn't effect
-			normal processing
-		ex: incSkl(?1?#Choose Fray or Climbing#,10,?equals($1,Fray)||?equals($1,Climbing))
-	
-
-	\, can be used to escape commas so they're not counted until after the initial split of a command chain, and can be chained as many times as needed
-	\; is often similarly used for nested commands
-
-	Rest of commands:
-	incSkl(<skill>,<value>)
-	incSkl(<skill>,<value>,<conditional>)
-	setSkl(<skill>,<value>,<conditional>)
-	decSkl(<skill>,<value/all>)					(decSkl all will set two variables {lastRemSkl} {lastRemSklVal}, equal to what was removed)
-	decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
-		
-	SklSpec(<skill>,<specializationName>)
-	trait(<trait>)
-	trait(<trait>,level)
-	morph(<morphname>)
-	morph(randomRoll)
-	setApt(<aptitudeName>,<value>)
-	addApt(<aptitudeName>,<value>)					(can also be used to subtract with a negative value)
-	addApt(<aptitudeName>,<value>,<conditional)		(the three parameter version throw an error if the conditional isn't true)
-	mox(<value>)
-	gear(<gearName>)
-	roll(<dieNumber>,#-#=effect/#-#=effect)  (list can be as long as needed)		(ex, roll(1-6=morph,splicer/7-10=morph(bouncer)) 
-	rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
-												forceRoll and forceRollTable can be used to make sure a user in interactive mode still rolls these 
-	rollTable(<tableName>,<replaceValue>) 	(as before, but <replaceValue will sub in for any wildcards in the table) (wildcard is !!X!!)
-	runTable(<tableName>,<number>)
-	runTable(<tableName>,<number>,<wildCardReplace>) (similar to rollTable Except you specify what the number is)
-	background(<name>)
-	nextPath(<name>)
-	faction(<name>)
-	stepskip(<name>)			(immediately skip to step of this name)
-	stepskipNoStop(<name>)			(immediately skip to step of this name, doesn't interrupt the UI)
-	package(<name>)				(add package -- assume 1 PP if it needs a value)
-	package(<name>,<value>)		(add package of a certain PP value)
-	rep(<type>,<value>)
-	rep(<type>,<value>,<conditional>)	(as with others, conditional must be true for the command to work)
-	credit(<value>)
-	psichi(<name>)				(can use ?1?,?2?, etc)
-	psigamma(<name>)
-	psisleight(<name>)
-	extendedChoice(Text,1=effect/2=effect/3=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
-	if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
-	msgClient(<message>)					(says something to the UI about character changes)
-	setVar(<name>,<value>)
-	func(<name>)
-	func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
-	stop()			(marks character generation as over)
-	
-	Conditions:
-	?hastrait(trait)
-	?hasSkill(skill)
-	?skillIsType(skill,type)  (skill is name of skill, type is a type you want it to be, like Technical
-	?hasBackground
-	?hasHadBackground
-	?hasRolled(number)
-	?equals(string1,string2)
-	?hasVar(varname)
-	?between(input,lower,upper)
-
-	$0,$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
-	inc(<skill>,<number>,<conditional>) leads to $0 accessing inc, $1 accessing <skill> and so on
-	
-	|| and && are partially supported
-	
-	replacing ? with ! is for boolean not. so !hasTrait;trait => not having that trait
-	
-				 * 
-				 */
+				}	
 
 			}
 			catch( Exception e) 
 			{
 				// do something to prompt the user to fix their error
 				boolean response = UIObject.handleError(e.getMessage());
-				System.out.println(e.getMessage());
-				e.printStackTrace();
 				if (response)  // replace with seeing if response says to rollback last effect 
 				{
 					mainStuff.set(i, choiceEffects.get(choiceEffects.size()-1)); // Reset the last choice to it's pre-user input value
@@ -1709,12 +1705,10 @@ public class LifePathGenerator {
 			Step start = (Step)DataProc.getDataObj("STEP_1");
 			playerChar.setLastStep(start);
 			nextEffects = this.runEffect(start.getEffects(), "");
-			System.out.println("Next effects : " + nextEffects);
 		}
 		else
 		{
 			nextEffects = this.runEffect(nextEffects, "");
-			System.out.println("Next effects : " + nextEffects);
 		}
 		
 		// keep going if directed to
