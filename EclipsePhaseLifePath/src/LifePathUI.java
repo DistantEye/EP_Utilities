@@ -144,11 +144,12 @@ public class LifePathUI implements UI {
 		
 		int x = 0, y = 0;
 		
-		addMappedTF(0,0,"Character Name",30,true);
+		addMappedTF(0,0,"Character Name",20,true);
 		addMappedFixedTF(2,0,"Morph","",10,true);
 		addMappedFixedTF(4,0,"Background","",10,true);
 		addMappedFixedTF(6,0,"Natural Language", "",15,true);
-		endRow(8,0);
+		addMappedFixedTF(8,0,"Faction","",10,true);
+		endRow(10,0);
 		
 		cons.gridheight = GridBagConstraints.REMAINDER;
 		
@@ -288,8 +289,48 @@ public class LifePathUI implements UI {
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		
-		// gives a quick export of the character
-		addButton(3,25,"Step").addActionListener(new ActionListener() {
+		addMappedButton(1,25,"Firewall Events").addActionListener(new ActionListener() {
+					
+			public void actionPerformed(ActionEvent e)
+		    {
+		    	if (gen.getPC().hasVar("{firewall}"))
+		    	{
+		    		gen.getPC().removeVar("{firewall}");
+		    		((JButton)mappedComponents.get("Firewall Events")).setText("Firewall Events (Off)");
+		    	}
+		    	else
+		    	{
+		    		gen.getPC().setVar("{firewall}", "1");
+		    		((JButton)mappedComponents.get("Firewall Events")).setText("Firewall Events (On)");
+		    	}
+		    }	
+		});
+		
+		// set this afterwards so it doesn't change the mapping name
+		((JButton)mappedComponents.get("Firewall Events")).setText("Firewall Events (Off)");
+		
+
+		addMappedButton(2,25,"Gatecrashing Events").addActionListener(new ActionListener() {
+			
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	if (gen.getPC().hasVar("{gatecrashing}"))
+		    	{
+		    		gen.getPC().removeVar("{gatecrashing}");
+		    		((JButton)mappedComponents.get("Gatecrashing Events")).setText("Gatecrashing Events (Off)");
+		    	}
+		    	else
+		    	{
+		    		gen.getPC().setVar("{gatecrashing}", "1");
+		    		((JButton)mappedComponents.get("Gatecrashing Events")).setText("Gatecrashing Events (On)");
+		    	}
+		    }	
+		});
+		
+		// set this afterwards so it doesn't change the mapping name
+		((JButton)mappedComponents.get("Gatecrashing Events")).setText("Gatecrashing Events (Off)");
+		
+		addMappedButton(3,25,"Run Next Step").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -298,6 +339,7 @@ public class LifePathUI implements UI {
             }	
 		});
 		
+		// gives a quick export of the character
 		addButton(4,25,"Export to Txt").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
@@ -317,7 +359,7 @@ public class LifePathUI implements UI {
 		
 		this.update();
 		
-		mainWindow.setSize(1600, 1000);
+		mainWindow.setSize(1700, 1000);
 
 		mainWindow.setVisible(true);
 	}
@@ -422,6 +464,21 @@ public class LifePathUI implements UI {
 		cons.gridy = y;
 		JButton temp = new JButton(text);
 		addC(temp);
+		return temp;
+	}
+	
+	/**
+	 * Shorthand command to add Button at coordinates with text add adds it to the mapped components list
+	 * with key = text
+	 * @param x non-negative integer
+	 * @param y non-negative integer
+	 * @param text Display Text for Button
+	 * @return The component created
+	 */
+	private JButton addMappedButton(int x, int y, String text)
+	{
+		JButton temp = addButton(x,y,text);
+		this.mappedComponents.put(text, temp);
 		return temp;
 	}
 	
@@ -593,6 +650,11 @@ public class LifePathUI implements UI {
 		if (gen.getPC().hasVar("NatLang"))
 		{
 			getTextF("Natural Language").setText(gen.getPC().getVar("NatLang"));
+		}
+		
+		if (gen.getPC().hasVar("{factionName}"))
+		{
+			getTextF("Faction").setText(gen.getPC().getVar("{factionName}"));
 		}
 		
 		int[] stats = new int[16];

@@ -370,8 +370,8 @@ Package
 LUNAR
 Earth's moon is one of the last bastions of Earth culture, where old traditions are still respected. The rest of the system looks to Luna for the latest in trends and fashions, and you are proud to be on the cutting edge of style.
 +Bioconservatism, +Hypercapitalism,+Preserving Traditions, +Reclaiming Earth
-PP;1>setVar({factionName},Lunar);Art ?1? 40;Language: ?1? 30;Protocol 30
-PP;3>setVar({factionName},Lunar);mox(1);rep(c,50);Academics: Pre-Fall History 50;Art ?1? 40;Interfacing 30;Kinesics 40;Language: ?1? 40;Networking: Hypercorps 40;Protocol 40
+PP;1>setVar({factionName},Lunar);Art: ?1? 40;Language: ?1? 30;Protocol 30
+PP;3>setVar({factionName},Lunar);mox(1);rep(c,50);Academics: Pre-Fall History 50;Art: ?1? 40;Interfacing 30;Kinesics 40;Language: ?1? 40;Networking: Hypercorps 40;Protocol 40
 ----------------------------------------------------------------------------------------------------------------------------------
 Package
 MERCURIAL: INFOLIFE
@@ -448,7 +448,7 @@ SCUM
 You proudly call the exotic, edgy, and lawless ships of a scum swarm your home.
 +Anarchism, +Hedonism, +Individualism, +Morphological Freedom
 PP;1>setVar({factionName},Scum);Art: ?1? 30;Free Fall 30;Networking: Autonomists 40
-PP;3>setVar({factionName},Scum);mox(1);rep(@,50);Art: ?1? 50;Free Fall 40;Interest: ?1? 40;Kinesics 40;Medicine: Biosculpting 30;Networking Autonomists 50;Persuasion 30
+PP;3>setVar({factionName},Scum);mox(1);rep(@,50);Art: ?1? 50;Free Fall 40;Interest: ?1? 40;Kinesics 40;Medicine: Biosculpting 30;Networking: Autonomists 50;Persuasion 30
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 Package
 SIFTER
@@ -600,7 +600,7 @@ In basic terms, you're a thug, no matter if you work for a hypercorp, cartel hea
 +Cartel Growth, +Fascism, +Self Reliance, +Stability
 PP;1>Intimidation 40;Profession: Enforcement 30;Unarmed Combat 30
 PP;3>rep(?1?,50);Clubs 30;Fray 20;Freerunning 30;Intimidation 50;Language: ?1? 40;Perception 20;Profession: Enforcement 50;Spray Weapons 25;Unarmed Combat 30
-PP;5>rep(?1?,50);addApt(SOM,5);Clubs 30;Fray 20;Freerunning 30;Interest: ?2? 40;Intimidation 50;Language: ?1? 40;Networking?1? 30;Palming 20;Perception 20;Profession Enforcement 50;Spray Weapons 30;Unarmed Combat 45;
+PP;5>rep(?1?,50);addApt(SOM,5);Clubs 30;Fray 20;Freerunning 30;Interest: ?2? 40;Intimidation 50;Language: ?1? 40;Networking: ?1? 30;Palming 20;Perception 20;Profession Enforcement 50;Spray Weapons 30;Unarmed Combat 45;
 --------------------------------------------------------------------------------------------------
 Package
 EXPLORER
@@ -648,7 +648,7 @@ Your sleuthing skills include old-school detective work and modern data retrieva
 +Self Reliance, +The Hunt
 PP;1>Investigation 40;Profession: Forensics 30;Research 30
 PP;3>rep(?1?,50);Infosec 40;Investigation 50;Kinesics 30;Kinetic Weapons 20;Perception 25;Profession: Forensics 50;Profession: Police Procedures 40;Research 40
-PP;5>rep(f,50);rep(?1?,50);addApt(INT,5);Fray 20;Infosec 30;Interest, ?1? 30;Intimidation 30;Investigation 50;Kinesics 30;Kinetic Weapons 30;Language: ?1? 30;Networking: ?1? 20;Perception 20;Profession: Forensics 50;Profession: Police Procedures 40;Research 40;Unarmed Combat 25
+PP;5>rep(f,50);rep(?1?,50);addApt(INT,5);Fray 20;Infosec 30;Interest: ?1? 30;Intimidation 30;Investigation 50;Kinesics 30;Kinetic Weapons 30;Language: ?1? 30;Networking: ?1? 20;Perception 20;Profession: Forensics 50;Profession: Police Procedures 40;Research 40;Unarmed Combat 25
 -----------------------------------------------------------------
 Package
 JOURNO
@@ -811,13 +811,13 @@ Package
 NETWORKER
 
 
-PP;1>rep(?1?,100);Networking ?3? 30
+PP;1>rep(?1?,100);Networking: ?3? 30
 ------------------------------------------------------------------------------------------
 Package
 STUDENT
 
 
-PP;1>Academics ?1? 40;Interests ?1? 30;Research 30
+PP;1>Academics ?1? 40;Interest: ?1? 30;Research 30
 -----------------------------------------------------------------------
 Package
 ASYNC ADEPT
@@ -1574,7 +1574,7 @@ TABLE_7
 93-94`An accident on a space elevator leaves you fearful of space. Gain the Phobia Disorder (Microgravity) trait (p. 92).`trait(Phobia Disorder (Microgravity))
 95-96`You start up an unusual hobby. Gain +20 to one Exotic Melee Weapon or Exotic Ranged Weapon skill.`incSkl(?1?,20,?equals($1,Exotic Melee Weapon)||?equals($1,Exotic Ranged Weapon))
 97-98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`rollTable(CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS)
-99-100`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credits(20000)
+99-100`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credit(20000)
 --------------------------------------------------------------
 TABLE
 TABLE_8
@@ -1998,7 +1998,7 @@ FIREWALL_EVENT
 69-70`You single-handedly foil an impending outbreak, but the local authorities blame you for the carnage.   Firewall helps you escape. Gain the On the Run trait (p. 151, EP).`trait(On the Run)
 71-72`A previously dormant TITAN nanoplague rampages through your habitat. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 73-74`Your ship stops to investigate/help a derelict ship and is never heard from again. Roll randomly on the   Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
-75-76`You discover a lost cache on an isolated asteroid. Firewall actually lets you keep some of the find. Gain 1d10 x 5,000 credits.`credits(mult(simpRollDice(1,10),5000)
+75-76`You discover a lost cache on an isolated asteroid. Firewall actually lets you keep some of the find. Gain 1d10 x 5,000 credits.`credit(mult(simpRollDice(1,10),5000))
 77-78`You step into an unknown fray and are lucky enough to pick the right side. Gain +10 i-rep.`rep(i,10)
 79-80`You uncover a conspiracy within your faction and Firewall steps in to help you deal with it. Gain +10 to one rep score.`rep(?1?,10)
 81-82`You are recruited to help Firewall cover up a secret or outbreak. Lose -10 to one rep score but gain +10 i-rep.`rep(?1?,-10,!equals($1,i));rep(i,10)

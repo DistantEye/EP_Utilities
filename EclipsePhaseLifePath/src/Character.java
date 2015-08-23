@@ -36,6 +36,8 @@ public class Character {
 	private ArrayList<String[]> packages; // stores pkgs added to character
 	private boolean autoApplyMastery;
 	
+	private static final int LEVEL_CAP = 99;
+	
 	/**
 	 * @return the currentTable the player is rolling on (if character gen)
 	 */
@@ -556,7 +558,7 @@ public class Character {
 	}
 	
 	/**
-	 * Returns final adjusted value for a skill, factoring in base aptitude bonus and mastery adjustments
+	 * Returns final adjusted value for a skill, factoring in base aptitude bonus and mastery adjustments, and skill cap
 	 * @param skl
 	 * @return Adjusted value for skill
 	 */
@@ -565,7 +567,24 @@ public class Character {
 		String linkedApt = skl.getLinkedApt();
 		int aptValue = this.getAptitude(linkedApt);
 		
-		return Skill.over60Adjust(skl.getValue()+aptValue);
+		int result = 0;
+
+		// The character's Natural Language doesn't play by same rules in regards to advancement over 60
+		if (hasVar("NatLang") && skl.getFullName().equalsIgnoreCase(getVar("NatLang")))
+		{
+			result = skl.getValue()+aptValue;
+		}
+		else
+		{
+			result = Skill.over60Adjust(skl.getValue()+aptValue);
+		}
+		
+		if (result > LEVEL_CAP)
+		{
+			result = LEVEL_CAP;
+		}
+		
+		return result;
 	}
 	
 	/**

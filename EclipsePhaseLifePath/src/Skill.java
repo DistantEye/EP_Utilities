@@ -1,5 +1,6 @@
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +22,7 @@ public class Skill {
 	private boolean isActive;
 	private boolean isKnowledge;
 	private boolean canDefault = true;
-	private String[] categories;
+	private ArrayList<String> categories;
 	
 	// stuff related to regexes
 	// we define constants to make the regexes more readable
@@ -62,7 +63,9 @@ public class Skill {
 		this.specialization = specialization;
 		this.value = value;
 		this.canDefault = canDefault;
-		this.categories = categories;
+		this.categories = new ArrayList<String>();
+		this.categories.addAll(Arrays.asList(categories));
+		this.categories.add(this.name); // the name of a skill is always one of it's categories
 		
 		if (categories.length < 1)
 		{
@@ -100,7 +103,7 @@ public class Skill {
 		}
 		
 		// every skill has it's parent name as a category (done for sake of grouping Field skills)
-		String[] cats = (parts[3]+","+parts[0]).split(",");
+		String[] cats = (parts[3]).split(",");
 		
 		Skill temp = new Skill(parts[0],parts[1],"","",-1,Boolean.valueOf(parts[2]), cats);
 		Skill.skillList.add(temp);
@@ -578,11 +581,11 @@ public class Skill {
 	 * @return the categories
 	 */
 	public String[] getCategories() {
-		String[] deepCopy = new String[categories.length];
+		String[] deepCopy = new String[categories.size()];
 		
-		for (int x = 0; x < categories.length; x++)
+		for (int x = 0; x < categories.size(); x++)
 		{
-			deepCopy[x] = categories[x];
+			deepCopy[x] = categories.get(x);
 		}
 		
 		return deepCopy;
