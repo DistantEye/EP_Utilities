@@ -1,6 +1,5 @@
 1) No handling of morph bonuses (although you are allowed to key in bonuses manually)
 	1) There is plans for how to handle this in the TODO
-2) A lot of choices for rep should be random? But are left to choice via rep(?1? ...
-3) The events for gaining a smart animal or bot aren't limited at all to anything and instead use gear(?1?)
-4) GATECRASHING_EVENT 21–48 cannot be done by code under the current system because it's too broad to anticipate and there's no means for replacing/removing a package
+2) The events for gaining a smart animal or bot aren't limited at all to anything and instead use gear(?1?)
+3) GATECRASHING_EVENT 21–48 cannot be done by code under the current system because it's too broad to anticipate and there's no means for replacing/removing a package
 	1) Either leave it this way or eventually recode things so you can do fancy prompts for package replacement and recalculation

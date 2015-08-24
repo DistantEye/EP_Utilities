@@ -1,8 +1,7 @@
 Maybe make a morphs list, with notes about what step/location they came from, and which one is active. It DOES look like you can have multiple morphs
+-on hold
 
 Implement an effects list for all the morphs so it simply knows the mechanical effects of each baseline morph 
-
-You know, you could make this even more interesting and use "define command", using all the tools structured so far, and by expanding the idea of $0,$1,$2, etc equals params of calling function to all functions. Basically allow structures that break complex commands into simpler ones. This. In turn, could lead to the generalization of all character attributes to variables, although honestly some structural stuff is good.
 
 Some short TODO items also exist in the code
 

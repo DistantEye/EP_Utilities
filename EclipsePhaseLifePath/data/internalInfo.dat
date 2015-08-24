@@ -1495,7 +1495,7 @@ Spares are designed for portability. Packed as a flat disc 15 centimeters in dia
 
 <morph>
 <type>Synth</type>
-<name>Liquid Silver Variant</name>
+<name>Steel Morph (Liquid Silver)</name>
 <Desc>Designed as a top-end version of the steel morph, this shell's entire outer covering is composed of active nanomachines. A number of synthmorph performers use this shell's shape- and color-altering capacities as part of their acts. However, the fact that this morph can disguise itself as any other humanoid synthmorph, including the ubiquitous case morph, means that a number of covert operatives and criminals also make use of this morph. This version of the steel morph cannot use a synthetic mask.</Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Mnemonic Augmentation, Shape Adjusting, Skinflex, Wrist-Mounted Tools, (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (4/20)</Mobility System>
@@ -1510,7 +1510,7 @@ Spares are designed for portability. Packed as a flat disc 15 centimeters in dia
 
 <morph>
 <type>Synth</type>
-<name>Masked Variant</name>
+<name>Steel Morph (Masked)</name>
 <Desc>This version of the steel morph is equipped with the synthetic mask enhancement, making the shell look like a human biomorph. This version is uncommon, as most Steel Liberators view biological masking as a form of “selling out.” It is used both by Lunars who are stuck sleeving into a synthmorph, but whom don’t want to suffer discrimination, and by Steel Liberator activists looking to infiltrate biochauvinists and other opponent groups. </Desc>
 <Enhancements>Access Jacks, Basic Mesh Inserts, Cortical Stack, Cyberbrain, Eidetic Memory, Mnemonic Augmentation, Add Synthetic Mask (this negates the Social Stigma (Clanking Masses) and Uncanny Valley traits), (Temperature Tolerance, Vacuum Sealing)</Enhancements>
 <Mobility System>Walker (4/20)</Mobility System>

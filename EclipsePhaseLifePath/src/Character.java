@@ -203,10 +203,11 @@ public class Character {
 					+ ", Background : " + this.getBackground() +"\n";
 		
 		result += "Traits : " + this.getTraitsString() + "\n";
+		result += "Sleights : " + this.getSleightsString() + "\n";
 		result += this.getAptitudesString() + "\n";
 		result += this.getNonAptitudesString() + "\n";
 		result += this.getSkillsString() + "\n";
-		result += this.getRepString() + "\n";
+		result += this.getRepString() + "\n";		
 		result += "Gear : " + this.getGearString();
 		
 		return result;
@@ -864,6 +865,23 @@ public class Character {
 		for (int x = 1; x < this.traitList.size(); x++)
 		{
 			result += ", " + this.traitList.get(x).toStringShort();
+		}
+		
+		return result;
+	}
+	
+	public String getSleightsString()
+	{
+		if (this.sleightList.size() == 0)
+		{
+			return "";
+		}
+		
+		String result = this.sleightList.get(0).toString();
+		
+		for (int x = 1; x < this.sleightList.size(); x++)
+		{
+			result += ", " + this.sleightList.get(x).toString();
 		}
 		
 		return result;
