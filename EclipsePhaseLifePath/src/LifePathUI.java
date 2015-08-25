@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -139,8 +137,6 @@ public class LifePathUI implements UI {
 		
 		currentComponent = mainPanel;
 	    currentLayout = layout;
-		
-		int x = 0, y = 0;
 		
 		addMappedTF(0,0,"Character Name",20,true);
 		addMappedFixedTF(2,0,"Morph","",10,true);
@@ -601,14 +597,7 @@ public class LifePathUI implements UI {
 	
 	private int getTextFVal(String name)
 	{
-		JTextField temp = getTextF(name);
-		
-		String text = "";
-		
-		if (temp != null && temp.getText().length() > 0)
-		{
-			text = temp.getText();
-		}
+		JTextField temp = getTextF(name);		
 		
 		// does it exist and is it a number
 		if (temp == null || !Utils.isInteger(temp.getText()))

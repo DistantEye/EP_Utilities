@@ -1920,6 +1920,6 @@ public class LifePathGenerator {
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 		LifePathGenerator gen = new LifePathGenerator("",null,true);
 		
-		//gen.runEffect("trait(Mental Disorder (?3?));incSkl(?1?,10)", "");
+		gen.runEffect("trait(Mental Disorder (?3?));incSkl(?1?,10)", "");
 	}
 }

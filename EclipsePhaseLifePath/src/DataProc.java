@@ -1,12 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,8 +24,6 @@ import java.util.regex.Pattern;
 public class DataProc {
 	
 	// we keep these incase later versions need to write to datafiles
-	private static String lpFileName = ""; // holds packages/tables/etc needed for the lifepath and/or package system
-	private static String internalDatFile = ""; // holds things like skills, rep, gear, etc, each setup so that getNextChunk can parse from it
 	private static HashMap<String, UniqueNamedData> dataStore; // local copy of any data built by this app
 	private static int fileLineNumber;
 	
@@ -955,8 +951,6 @@ public class DataProc {
 					{
 						throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
 					}
-					
-					Table temp = (Table)DataProc.getDataObj(subparts[1]);
 					
 					if (subparts.length == 4)
 					{
