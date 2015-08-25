@@ -209,7 +209,7 @@ LOST: MASKED NORMALCY
 You survived the Lost project damaged but intact—or at least able to mask your inner demons from others. You are not as gifted—or as explosive—an async as some of the others, but you are also better at keeping yourself under control.
 +Acceptance +Privacy +Self Control
 PP;1>mox(1);Academics: ?1? 30;Persuasion 35;trait(Psi,1);trait(Mental Disorder (?2?));psichi(?2?)
-PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20 trait(Psi,1);trait(Mental Disorder (?2?));psichi(?4?)
+PP;3>mox(1);Academics: ?1? 40;Free Fall 30;Impersonation 40;Kinesics 45;Language: ?1? 30;Persuasion 50;Profession: ?1? 20;trait(Psi,1);trait(Mental Disorder (?2?));psichi(?4?)
 PP;5>mox(1);rep(?1?,50);Academics: ?1? 40;Fray 20;Free Fall 30;Impersonation 40;Interest: ?1? 40;Interfacing 30;Kinesics 45;Language: ?1? 40;Persuasion 50;Profession: ?1? 30;Protocol 30;Sense: 50;trait(Psi,2);trait(Mental Disorder (?3?));trait(On The Run);psichi(?4?);psigamma(?2?)
 ------------------------------------------------------------------------------------------------------------------------
 Package
