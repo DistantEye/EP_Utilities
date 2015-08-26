@@ -1764,7 +1764,7 @@ public class LifePathGenerator {
 				rows.add(new TableRow(low,high,"",currEffect.substring(currEffect.indexOf('=')+1))); 							
 			}
 			
-			Table temp = new Table("temp",numDie,rows);
+			Table temp = new Table("temp",numDie,rows, false);
 			
 			int result = this.rollDice(numDie, temp.toString(), forceRoll);
 			TableRow rowReturned = temp.findMatch(result);
@@ -1855,8 +1855,12 @@ public class LifePathGenerator {
 				return;
 			}
 			
-			// give the description to the client
-			this.UIObject.statusUpdate(rowReturned.getDescription());
+			// give the description to the client, unless the suppress flag is true		
+			if (!temp.isSuppressDescriptions())
+			{
+				this.UIObject.statusUpdate(rowReturned.getDescription());
+			}
+			
 			
 			this.runEffect(tableEffects, rowReturned.getDescription());
 		}

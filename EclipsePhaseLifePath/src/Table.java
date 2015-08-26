@@ -14,17 +14,21 @@ public class Table implements UniqueNamedData {
 	private String name;
 	protected int diceRolled;
 	protected ArrayList<TableRow> rows;
+	private boolean suppressDescriptions;
 	
 	/**
 	 * @param name The name of the table
 	 * @param diceRolled The number of sides on the dice to roll for this table
 	 * @param rows The list of rows this table has and their effects
+	 * @param suppressDescriptions boolean flag. If false, this table will generally not automatically echo to the UI the description field
+	 * 			for rows when rolled/ran
 	 */
-	public Table(String name, int diceRolled, ArrayList<TableRow> rows) {
+	public Table(String name, int diceRolled, ArrayList<TableRow> rows, boolean suppressDescriptions) {
 		super();
 		this.name = name;
 		this.diceRolled = diceRolled;
 		this.rows = rows;
+		this.suppressDescriptions = suppressDescriptions;
 	}
 	
 	public String toString()
@@ -147,6 +151,20 @@ public class Table implements UniqueNamedData {
 	 */
 	public void setDiceRolled(int diceRolled) {
 		this.diceRolled = diceRolled;
+	}
+
+	/**
+	 * @return the suppressDescriptions
+	 */
+	public boolean isSuppressDescriptions() {
+		return suppressDescriptions;
+	}
+
+	/**
+	 * @param suppressDescriptions the suppressDescriptions to set
+	 */
+	public void setSuppressDescriptions(boolean suppressDescriptions) {
+		this.suppressDescriptions = suppressDescriptions;
 	}
 	
 	

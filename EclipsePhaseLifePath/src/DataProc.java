@@ -265,7 +265,9 @@ public class DataProc {
 	 * Line 1 : TABLE
 	 * Line 2 : The table's name
 	 * Line 3 : Integer value, the size of the dice to roll for the table
-	 * Line 4 : Rest lines follow format range`description`effects
+	 * Line 4 : Suppress printing description <true/false> . When table is run, the default behavior for some UI is to always print description text
+	 * 			but this is not always desirable.
+	 * Line 5 : Rest lines follow format range`description`effects
 	 * 
 	 * @param lines List of lines comprising the table to be read in
 	 */
@@ -275,6 +277,7 @@ public class DataProc {
 		
 		// second line is table name
 		String name = lines[1];
+		boolean suppressDescriptions = false; 
 		
 		// third line is the size dice to roll for the table (integer)
 		if (!Utils.isInteger(lines[2]))
@@ -283,9 +286,25 @@ public class DataProc {
 		}
 		int diceSides = Integer.parseInt(lines[2]);
 		
+		// prefer case insensitive where-ever possible because users often don't match case
+		// check the suppressDescriptions flag for true or false
+		if (lines[3].equalsIgnoreCase("true"))
+		{
+			suppressDescriptions = true;
+		}
+		else if (lines[3].equalsIgnoreCase("false"))
+		{
+			suppressDescriptions = false;
+		}
+		else
+		{
+			throw new IllegalArgumentException("4th line of table must be either true or false : " + lines[2] );
+		}
+		
+		
 		ArrayList<TableRow> rows = new ArrayList<TableRow>();
 		
-		for (int x = 3; x < lines.length; x++)
+		for (int x = 4; x < lines.length; x++)
 		{
 			String line = lines[x];
 			// range`description`effects
@@ -323,7 +342,7 @@ public class DataProc {
 			throw new IllegalArgumentException("Table must have at least one row : " + name);
 		}
 		
-		dataStore.put(name, new Table(name, diceSides, rows));
+		dataStore.put(name, new Table(name, diceSides, rows,suppressDescriptions));
 	}
 	
 	
