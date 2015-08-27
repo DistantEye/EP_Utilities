@@ -31,13 +31,31 @@ public class Table implements UniqueNamedData {
 		this.suppressDescriptions = suppressDescriptions;
 	}
 	
+	/**
+	 * Returns a String with the Table name, and all the toString of the rows, containing the lowRange, highRange, and Row effects converted to String
+	 */
 	public String toString()
+	{
+		String result = this.getName() + "\n";
+		
+		for (TableRow row : rows)
+		{
+			result += row.toString() + "\n";
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Returns a String with the Table name, and all the toString of the rows, containing the lowRange, highRange, and Row description
+	 */
+	public String toStringDescription()
 	{
 		String result = "name\n";
 		
 		for (TableRow row : rows)
 		{
-			result += row.toString() + "\n";
+			result += row.toStringDescription() + "\n";
 		}
 		
 		return result;

@@ -110,8 +110,13 @@ public class LifePathUI implements UI {
 	@Override
 	public void end() {
 		// Marks the character gen process as stopped, disabling the buttons that used to advance it
+		mainPanel.remove(mappedComponents.get("Run Next Step"));
+		mainWindow.revalidate();
 	}
 	
+	/**
+	 * Main setup method for the UI, creates most UI components and initializes their default state
+	 */
 	public void init()
 	{
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -343,7 +348,7 @@ public class LifePathUI implements UI {
 		});
 		
 		// gives a quick export of the character
-		addButton(7,26,"Export to Txt").addActionListener(new ActionListener() {
+		addButton(5,26,"Export to Txt").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -356,6 +361,24 @@ public class LifePathUI implements UI {
                 JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
                 
             }	
+		});
+		
+		// gives a quick export of the character
+		addMappedButton(7,26,"Rolling").addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				if (gen.isRolling())
+		    	{
+		    		gen.setRolling(false);
+		    		((JButton)mappedComponents.get("Rolling")).setText("Choosing Rolls");
+		    	}
+		    	else
+		    	{
+		    		gen.setRolling(true);
+		    		((JButton)mappedComponents.get("Rolling")).setText("Rolling");		    		
+		    	}
+			}	
 		});
 		
 		endVertical(0,27);

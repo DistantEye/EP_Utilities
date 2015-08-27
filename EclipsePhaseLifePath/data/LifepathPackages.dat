@@ -1305,6 +1305,52 @@ false
 10`Fractured Youth: Roll three times on Table 3.1: Background, take the results as three 1 PP packages.`rollTable(TABLE_3_1,1);package(STREET RAT,1);nextPath(TABLE_6_4);morph(randomRoll)
 --------------------------------------------------------------
 TABLE
+TABLE_4_PREROLL
+100
+true
+01-20`Gain +1 Moxie and roll on the Story Event table (p. 72).`setVar(s4Roll,5)
+21-22`Traumatic childhood accident. Gain the Mental Disorder (PTSD) trait.`setVar(s4Roll,21)
+23-24`You are not only good with your hands; you are good with both hands. Gain the Ambidextrous trait (p. 145; EP).`setVar(s4Roll,23)
+25-26`The people that raise you do not tolerate foolishness. Gain the Common Sense trait (p. 145; EP).`setVar(s4Roll,25)
+27-28`You are raised in an abusive environment. Gain the Pain Tolerance (Level 1) trait (p. 146; EP).`setVar(s4Roll,27)
+29-30`You fall in with the wrong crowd. Ignore your last roll on the Youth Path table and take the Street Rat package (p. 21) for the same amount of PP as you rolled. Proceed to Step 5.`setVar(s4Roll,29)
+31-32`You are kept at home and not allowed to play sports or with other kids. Lose -5 COO.`setVar(s4Roll,31)
+33-34`You grow up in a maze-like urban area or a difficult rural area. Gain the Direction Sense trait (p. 14; EP).`setVar(s4Roll,33)
+35-36`You are raised in dangerous conditions where you have to adapt or die. Gain the Fast Learner trait (p. 146; EP).`setVar(s4Roll,35)
+37-38`You skip too much school. -20 to one skill.`setVar(s4Roll,37)
+39-40`Growing up isolated from others; you develop introvert tendencies. Lose -5 SAV.`setVar(s4Roll,39)
+41-42`While your friends throw themselves into VR gaming worlds; you simply throw up. Gain the VR Vertigo trait (p. 152; EP).`setVar(s4Roll,41)
+43-44`Raised in an environment of constant stimulus; you are forced to tune out. Gain the Oblivious trait (p. 151; EP).`setVar(s4Roll,43)
+45-46`You grow up in a melting-pot; polyglot culture. Gain the Hyper Linguist trait (p. 146; EP).`setVar(s4Roll,45)
+47-48`You party too hard. -20 to one skill.`setVar(s4Roll,47)
+49-50`Your childhood education is poor to non-existent. Gain the Illiterate trait (p. 149; EP).`setVar(s4Roll,49)
+51-52`A healthy amount of physical activities improves your abilities. Gain +5 COO`setVar(s4Roll,51)
+53-54`One (or both) of your parents is bilingual. Gain +20 to a Language skill of your choice.`setVar(s4Roll,53)
+55-56`A misunderstood situation makes you the laughing stock of your peer group. Gain the Socially Graceless trait (p. 93).`setVar(s4Roll,55)
+57-58`Shoplifting and stealing are either hobbies or a necessity. Gain +10 Palming skill.`setVar(s4Roll,57)
+59-60`You experiment with drugs; but it isn’t for you. Gain the Drug Exception trait (p. 83).`setVar(s4Roll,59)
+61-62`A dysfunctional home life keeps you from doing well in school. Lose -5 COG.`setVar(s4Roll,61)
+63-64`Being a bully has its advantages. Gain +10 Intimidation skill.`setVar(s4Roll,63)
+65-66`Your first experiments with forking prove to you that merging will not be easy. Gain the Divergent Personality trait (p. 88).`setVar(s4Roll,65)
+67-68`You receive your first cortical stack at an early age—and luckily just in time. Roll randomly on the Choosing a Morph table (p. 44).`setVar(s4Roll,67)
+69-70`You are raised around animals. Gain +10 Animal Handling skill.`setVar(s4Roll,69)
+71-72`Your parents raise you with some unusual ideas. Gain the Faulty Education trait (p. 89).`setVar(s4Roll,71)
+73-74`You cheat your way through school. -10 to one skill.`setVar(s4Roll,73)
+75-76`You enjoy urban exploration and getting into off-limits areas. Gain +10 to either Climbing or Infiltration skill.`setVar(s4Roll,75)
+77-78`You hone your headshot skills in VR combat simulations. Gain the Murder Simulator Addict trait (p. 85).`setVar(s4Roll,77)
+79-80`Because you excel in your studies; you are placed in an advanced program. Gain +5 COG.`setVar(s4Roll,79)
+81-82`Your parents are highly private and extremely strict. Gain the Poorly Socialized trait (p. 93).`setVar(s4Roll,81)
+83-84`You leave home at an early age and forge your own path. Gain +1 Moxie.`setVar(s4Roll,83)
+85-86`One of your personality quirks gains you some attention from peers; but then it becomes a permanent and noticeable part of your daily behavior. Gain the Identifiable Quirk trait (p. 90).`setVar(s4Roll,85)
+87-88`As a free-range kid; you learn how to get around on your own. Gain +10 Navigation skill.`setVar(s4Roll,87)
+89-90`One of your parental figures abandons you as a child. Gain the Trusting Heart trait (p. 94).`setVar(s4Roll,89)
+91-92`A series of childhood injuries leaves you struggling to catch up physically. Lose -5 SOM.`setVar(s4Roll,91)
+93-94`You lose all of your close friends in a horribly awkward teen social situation. Gain the Not a Team Player trait (p. 91).`setVar(s4Roll,93)
+95-96`Tormented by bullies as a kid; you learn to stand up for yourself. Gain +10 Unarmed Combat skill.`setVar(s4Roll,95)
+97-98`The strictness of your parents leaves you only one choice: to excel at lying. Gain +10 Deception skill.`setVar(s4Roll,97)
+99-100`Adult generations are never quite as on-top of technological changes; and you use that to your advantage. Gain +10 Infosec skill.`setVar(s4Roll,99)
+--------------------------------------------------------------
+TABLE
 TABLE_4
 100
 false
@@ -1371,7 +1417,7 @@ false
 1`Lose -10 SOM, REF, or COO (your choice). Roll again. Ignore this result if rolled more than twice; proceed to Step 6 instead.`incVar(AA_1_ROLL,1);if(?equals(getVar(AA_1_ROLL),3),stepskip(STEP_6_0),addApt(?1?,-10,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO));rollTable(ADVANCED_AGE))
 2`Lose -5 SOM, REF, or COO (your choice). Roll again.`addApt(?1?,-5,?equals($1,SOM)||?equals($1,REF)||?equals($1,COO));rollTable(ADVANCED_AGE)
 3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Imortality Blues);stepskip(STEP_6_0)
-4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),3),stepskip(STEP_6_0),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL));rollTable(ADVANCED_AGE))
+4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),4),stepskip(STEP_6_0),addApt(?1?,5,?equals($1,COG)||?equals($1,INT)||?equals($1,SAV)||?equals($1,WIL));rollTable(ADVANCED_AGE))
 5-10`Proceed to Step 6.`stepskip(STEP_6_0)
 --------------------------------------------------------------
 TABLE
@@ -1614,6 +1660,52 @@ false
 95-96`You start up an unusual hobby. Gain +20 to one Exotic Melee Weapon or Exotic Ranged Weapon skill.`incSkl(?1?,20,?equals($1,Exotic Melee Weapon)||?equals($1,Exotic Ranged Weapon))
 97-98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`rollTable(CHOOSING_A_MORPH_ONLY_PODS_UPLIFTS)
 99-100`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`credit(20000)
+--------------------------------------------------------------
+TABLE
+TABLE_7_PREROLL
+100
+true
+01-20`Gain +1 Moxie and roll on the Story Event table (p. 72).`setVar(s7Roll,-20)
+21-22`You save an animal from danger. Gain the Animal Empathy trait (p. 145, EP).`setVar(s7Roll,-22)
+23-24`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming.`setVar(s7Roll,-24)
+25-26`Your inability to improve holds you back from an important promotion/advancement. Gain the Slow Learner trait (p. 151, EP).`setVar(s7Roll,-26)
+27-28`You simply are not very comfortable with that whole resleeving thing. Gain the Morphing Disorder (Level 1) trait (p. 150, EP). `setVar(s7Roll,-28)
+29-30`You are not a slacker. You take on part-time jobs or additional training. +20 to one skill.`setVar(s7Roll,-30)
+31-32`You travel extensively. +10 to two different Language skills.`setVar(s7Roll,-32)
+33-34`Regular attention to your health and exercise improves your abilities. Gain +5 SOM.`setVar(s7Roll,-34)
+35-36`You decide you want to experiment. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods.`setVar(s7Roll,-36)
+37-38`You are fired and your new career hopes are now dashed. Re-roll your Adult Pre-Fall Path.`setVar(s7Roll,-38)
+39-40`You pick up a new hobby. +20 to one Art or Interest skill.`setVar(s7Roll,-40)
+41-42`An unfortunate habitat failure, traffic accident, or fire ends your life. Roll randomly on the  Choosing a Morph table (p. 44), but ignore pods and uplifts.`setVar(s7Roll,-42)
+43-44`You travel extensively: +20 to Navigation skill.`setVar(s7Roll,-44)
+45-46`Your work requires you to change your morph. Roll randomly on the Choosing a Morph table (p. 44), but ignore pods and uplifts.`setVar(s7Roll,-46)
+47-48`Curiosity gets the better of you. Lose -5 to one aptitude.`setVar(s7Roll,-48)
+49-50`You lose a limb in a traumatic incident, but grow it back. Gain +1 Moxie.`setVar(s7Roll,-50)
+51-52`An experience with still-unrefined psychosurgery leaves you forever altered. Gain the Anomalous Mind trait (p. 87).`setVar(s7Roll,-52)
+53-54`Something goes seriously glitchy with your muse, and you are nearly hurt as a result. Gain the Phobia Disorder (Muse) trait (p. 92).`setVar(s7Roll,-54)
+55-56`You are a pioneer in the practice of egocasting. Gain the Ego Plasticity (Level 1) trait (p. 83) and roll randomly on the Choosing a Morph table (p. 44).`setVar(s7Roll,-56)
+57-58`You save someone from drowning. Gain +10 Swimming skill.`setVar(s7Roll,-58)
+59-60`You experiment with some minor self-modification. Gain the Modified Behavior (Level 1) trait (p. 150, EP).`setVar(s7Roll,-60)
+61-62`You exhibit a serious lack of willpower in coping with your adult life. Gain the Addiction (Major) trait (p. 148, EP).`setVar(s7Roll,-62)
+63-64`You experience a deadly vehicle accident. Lose 10,000 from your starting credit and roll randomly on the Choosing a Morph table (p. 44).`setVar(s7Roll,-64)
+65-66`A hacker friend shows you a few things, and then you show them a few things. Gain the Intuitive Cracker (Level 1) trait (p. 84).`setVar(s7Roll,-66)
+67-68`The poor state of affairs on Earth before the Fall impacts you heavily. Gain the Mental Disorder (Depression) trait (p. 212, EP).`setVar(s7Roll,-68)
+69-70`You spend some time in some of the rougher, crisis-impacted areas on Earth before the Fall. Gain +10 Fray skill.`setVar(s7Roll,-70)
+71-72`A period of poverty leaves you with the skills to get by. Gain +10 Scrounging skill.`setVar(s7Roll,-72)
+73-74`You are implicated in a news-making scandal. Lose -10 c-rep.`setVar(s7Roll,-74)
+75-76`You pick up a new hobby. Gain +10 to one Art or Interest skill.`setVar(s7Roll,-76)
+77-78`You are an early adopter of psychosurgery, finding that your mind adapts well to changes. Gain the Malleable Mind (Level 1) trait (p. 85).`setVar(s7Roll,-78)
+79-80`The stress of rapid technological change overwhelms you. Gain the Mental Disorder (ADHD) trait (p. 212, EP).`setVar(s7Roll,-80)
+81-82`You study or train hard. Gain a free specialization (p. 173, EP) in one skill.`setVar(s7Roll,-82)
+83-84`You take up martial arts training. Gain +10 Unarmed Combat skill.`setVar(s7Roll,-84)
+85-86`You choose your own path over what others tell you to do. Replace any one skill you have gained so far with any other skill of your choosing at the same rating.`setVar(s7Roll,-86)
+87-88`You take care of someone in a way that makes them obligated to help you out for a long time to come. Gain the Personal Connection trait (p. 85). `setVar(s7Roll,-88)
+89-90`You learn the hard way that ignoring money management lessons was a bad idea. Lose 10,000 from your starting credit.`setVar(s7Roll,-90)
+91-92`You take the fall for a crime you may or may not have been complicit in. Lose -10 c-rep but gain +1 Moxie.`setVar(s7Roll,-92)
+93-94`An accident on a space elevator leaves you fearful of space. Gain the Phobia Disorder (Microgravity) trait (p. 92).`setVar(s7Roll,-94)
+95-96`You start up an unusual hobby. Gain +20 to one Exotic Melee Weapon or Exotic Ranged Weapon skill.`setVar(s7Roll,-96)
+97-98`You lose a bet and spend a month sleeved in a pod or uplift morph before it was cool. Roll randomly on the Choosing a Morph table (p. 44), ignoring any result that is not an uplift or pod.`setVar(s7Roll,-98)
+99-100`You make some life decisions that prove prescient after the Fall. Gain 20,000 credits.`setVar(s7Roll,-100)
 --------------------------------------------------------------
 TABLE
 TABLE_8
@@ -2095,7 +2187,7 @@ msgClient(START STEP 2);rollTable(LANGUAGE_FIELDS,70);setVar(NatLang,getVar({new
 STEP
 STEP_3_0
 STEP_3_1
-setVar(s4Roll,rollDice(100,Step 4 Event Choice Needs to be rolled in advance));if(?between(getVar(s4Roll),29,30),stepskipNoStop(STEP_3_1_STREET_RAT),stepskipNoStop(STEP_3_1))
+msgClient(Step 4 Event Choice Needs to be rolled in advance));rollTable(TABLE_4_PREROLL);if(?between(getVar(s4Roll),29,30),stepskipNoStop(STEP_3_1_STREET_RAT),stepskipNoStop(STEP_3_1))
 --------------------------------------------------------------
 STEP
 STEP_3_1
@@ -2120,7 +2212,7 @@ msgClient(START STEP 5);rollTable(CHARACTER_AGE)
 STEP
 STEP_6_0
 STEP_6_1
-if(?hasVar(diceBonus),remVar(diceBonus));setVar(s7Roll,rollDice(100,Step 7 Event Choice Needs to be rolled in advance));if(?between(getVar(s7Roll),37,38),stepSkipNoStop(STEP_6_DRY),stepSkipNoStop(STEP_6_1))
+if(?hasVar(diceBonus),remVar(diceBonus));msgClient(Step 7 Event Choice Needs to be rolled in advance);rollTable(TABLE_7_PREROLL);if(?between(getVar(s7Roll),37,38),stepSkipNoStop(STEP_6_DRY),stepSkipNoStop(STEP_6_1))
 --------------------------------------------------------------
 STEP
 STEP_6_DRY
@@ -2135,7 +2227,7 @@ msgClient(START STEP 6);setVar(NOT_STEP_6,1);if(?hasVar(diceBonus),remVar(diceBo
 STEP
 STEP_7
 STEP_8
-msgClient(START STEP 7);runTable(TABLE_7,getVar(s4Roll))
+msgClient(START STEP 7);runTable(TABLE_7,getVar(s7Roll))
 --------------------------------------------------------------
 STEP
 STEP_8

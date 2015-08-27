@@ -274,35 +274,38 @@ public class LifePathGenerator {
 							else if (result != null && result[0].equals("sleightChi"))
 							{
 								ArrayList<Sleight> options = new ArrayList<Sleight>();
+								ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
 								options.addAll(Sleight.sleightList.values());
+								
 								
 								// remove all not chi sleights
 								for (Sleight s : options)
 								{
-									if (!s.getSleightType().equalsIgnoreCase("chi"))
+									if (s.getSleightType().equalsIgnoreCase("chi"))
 									{
-										options.remove(s);
+										optionsFinal.add(s);
 									}
 								}
 								
-								Sleight temp = options.get(rng.nextInt(options.size()));
+								Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
 								promptRes = temp.getName();
 							}
 							else if (result != null && result[0].equals("sleightGamma"))
 							{
 								ArrayList<Sleight> options = new ArrayList<Sleight>();
 								options.addAll(Sleight.sleightList.values());
+								ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
 								
 								// remove all not gamma sleights
 								for (Sleight s : options)
 								{
-									if (!s.getSleightType().equalsIgnoreCase("gamma"))
+									if (s.getSleightType().equalsIgnoreCase("gamma"))
 									{
-										options.remove(s);
+										optionsFinal.add(s);
 									}
 								}
 								
-								Sleight temp = options.get(rng.nextInt(options.size()));
+								Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
 								promptRes = temp.getName();
 							}
 							else if (result != null && result[0].equals("rep"))
@@ -1641,9 +1644,14 @@ public class LifePathGenerator {
 			String result = "start";
 			
 			// this won't check for out of range, but we'll implement that later
-			while ( !Utils.isInteger(result) && (Integer.parseInt(result) < 0 || Integer.parseInt(result) > numSides) ) 
+			while ( !Utils.isInteger(result) || (Integer.parseInt(result) < 0 || Integer.parseInt(result) > numSides) ) 
 			{
-				result = UIObject.promptUser("Choose a result (valid number for 1d"+numSides+"):", rollMessage);
+				result = UIObject.promptUser("Choose a result (valid number for 1d"+numSides+", blank for random):", rollMessage);
+				
+				if (result.length() == 0)
+				{
+					result = "" + (rng.nextInt(numSides)+1);
+				}
 			}
 			
 			roll = Integer.parseInt(result);
@@ -1827,7 +1835,7 @@ public class LifePathGenerator {
 			}
 			
 			int numDie = temp.getDiceRolled();
-			int result = this.rollDice(numDie, temp.toString(),forceRoll);
+			int result = this.rollDice(numDie, temp.toStringDescription(),forceRoll);
 			TableRow rowReturned = null;
 			
 			// handle wildcards if one was specified
@@ -1919,6 +1927,24 @@ public class LifePathGenerator {
 		}
 	}	
 	
+	
+	
+	/**
+	 * @return the isRolling
+	 */
+	public boolean isRolling() {
+		return isRolling;
+	}
+
+
+	/**
+	 * @param isRolling the isRolling to set
+	 */
+	public void setRolling(boolean isRolling) {
+		this.isRolling = isRolling;
+	}
+
+
 	public static void main(String[] args)
 	{
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");

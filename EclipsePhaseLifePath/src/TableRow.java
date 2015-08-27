@@ -69,12 +69,26 @@ public class TableRow {
 		return this.hash;
 	}
 	
+	/**
+	 * Returns a String containing the lowRange, highRange, and Row effects converted to String
+	 */
 	public String toString()
 	{
 		String lowRange = String.valueOf(this.lowRange);
 		String highRange = String.valueOf(this.highRange);
 		
 		return "" + padLeft(lowRange,2) + "-" + padLeft(highRange,2) + " " + DataProc.effectsToString(this.effects);
+	}
+	
+	/**
+	 * Returns a String containing the lowRange, highRange, and Row description
+	 */
+	public String toStringDescription()
+	{
+		String lowRange = String.valueOf(this.lowRange);
+		String highRange = String.valueOf(this.highRange);
+		
+		return "" + padLeft(lowRange,2) + "-" + padLeft(highRange,2) + " " + this.description;
 	}
 	
 	public boolean isMatch(int roll)
