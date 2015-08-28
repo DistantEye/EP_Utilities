@@ -876,7 +876,7 @@ public class DataProc {
 				}
 				else if (subparts[1].length() > 0)
 				{
-					result += "Add trait: " + subparts[1];
+					result += "Add morph: " + subparts[1];
 				}
 				else
 				{

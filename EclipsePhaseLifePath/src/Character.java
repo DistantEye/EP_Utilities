@@ -877,11 +877,20 @@ public class Character {
 			return "";
 		}
 		
-		String result = this.sleightList.get(0).toString();
+		boolean first = true;
+		String result = "";
 		
-		for (int x = 1; x < this.sleightList.size(); x++)
+		for (Sleight s : sleightList.values())
 		{
-			result += ", " + this.sleightList.get(x).toString();
+			if (first)
+			{
+				result += s.getName() + " (" + s.getSleightType() +  ")";
+				first = false;
+			}
+			else
+			{
+				result += ", " + s.getName() + " (" + s.getSleightType() +  ")";
+			}
 		}
 		
 		return result;

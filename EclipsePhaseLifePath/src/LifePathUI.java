@@ -75,7 +75,26 @@ public class LifePathUI implements UI {
 			prompt += result[1];
 		}
 		
-		String inputValue = JOptionPane.showInputDialog(prompt); 
+		String inputValue = "";
+		
+		// for longer prompts we use a more proper scrollable UI object
+		// for short prompts we use a more compact/prettier/simpler one
+		if (prompt.length() > 3000)
+		{
+			JTextArea textArea = new JTextArea(prompt);
+			JScrollPane scrollPane = new JScrollPane(textArea);  
+			textArea.setLineWrap(true);  
+			textArea.setWrapStyleWord(true); 
+			textArea.setEditable(false);
+			scrollPane.setPreferredSize( new Dimension( 800, 500 ) );
+			inputValue = JOptionPane.showInputDialog(null, scrollPane, "Enter Choice",  
+															JOptionPane.QUESTION_MESSAGE);
+		}
+		else
+		{
+			inputValue = JOptionPane.showInputDialog(prompt);
+		}
+		
 		return inputValue;
 	}
 
@@ -112,6 +131,7 @@ public class LifePathUI implements UI {
 		// Marks the character gen process as stopped, disabling the buttons that used to advance it
 		mainPanel.remove(mappedComponents.get("Run Next Step"));
 		mainWindow.revalidate();
+		mainWindow.repaint();
 	}
 	
 	/**

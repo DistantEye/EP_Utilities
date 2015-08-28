@@ -51,7 +51,7 @@ public class Table implements UniqueNamedData {
 	 */
 	public String toStringDescription()
 	{
-		String result = "name\n";
+		String result = this.getName() + "\n";
 		
 		for (TableRow row : rows)
 		{
