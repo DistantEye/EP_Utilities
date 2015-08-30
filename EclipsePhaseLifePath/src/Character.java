@@ -12,6 +12,9 @@ import java.util.LinkedList;
  */
 public class Character {
 
+	// some values constant to all characters
+	public static HashMap<String,String> charConstants = new HashMap<String,String>();
+	
 	private HashMap<String,Skill> skillList;
 	private HashMap<String,Aptitude> aptitudeList;
 	private ArrayList<Trait> traitList;
@@ -132,6 +135,7 @@ public class Character {
 		sleightList = new HashMap<String, Sleight>();
 		
 		this.setVar("{credits}", "0");
+		this.setVar("{creditsSpent}", "0");
 		this.setVar("{faction}", "");
 		this.setVar("{background}", "");
 		this.setVar("{stress}", "0");
@@ -193,7 +197,126 @@ public class Character {
 		nonAppStats.put("IR", nonAppStats.get("LUC")*2);
 		nonAppStats.put("INIT", (int)Math.round( ( (getAptitude("INT")+getAptitude("REF"))) * 2 ) / 5 );
 		
-		
+		// calculate CP used if applicable mode
+		if (hasVar("{cpCalc}"))
+		{
+			int cpUsed;
+			int mox, totalRep,totalApt,numSleights,numSpec,activeSkillPoints,knowledgeSkillPoints,totalCredits;
+			
+			mox = nonAppStats.get("MOX");
+			totalRep = 0;
+			totalApt = 0;
+			numSleights = 0;
+			numSpec = 0;
+			activeSkillPoints = 0;
+			knowledgeSkillPoints = 0;
+			totalCredits = this.getVarInt("{credits}");
+			
+			// repCount			
+			for (Rep r : repList.values())
+			{
+				totalRep = r.getValue();
+			}
+			
+			for (Aptitude apt : aptitudeList.values())
+			{
+				totalApt += apt.getValue();
+			}
+			
+			// sleights we just need a simple count
+			numSleights = sleightList.size();
+			
+			// count skills that have specializations 
+			for (Skill skl : skillList.values())
+			{
+				if (skl.getSpecialization().length() > 0)
+				{
+					numSpec++;
+				}
+			}
+			
+			// figure out skillPoint stuff : note, we use getSkills because it already factors in aptitude values
+			for (String[] arr : getSkills())
+			{				
+				int sklVal = Integer.parseInt(arr[1]);
+				
+				if (sklVal > 60)
+				{
+					int remainder = sklVal-60;
+					sklVal += remainder; // the effect is to double remainder to reflect the double cost when past 60
+				}
+				
+				// sanity check, should always be true
+				if (hasSkill(arr[0]))
+				{
+					Skill tmp = skillList.get(arr[0]);
+					
+					// the aptitude isn't part of the cost
+					sklVal -= aptitudeList.get(tmp.getLinkedApt()).getValue();
+					
+					if (tmp.isKnowledge())
+					{
+						if (arr[0].equalsIgnoreCase(getVarSF("NatLang")))
+						{
+							sklVal -= getIntConst("FREE_NAT_LANG"); // don't count the free aspect of this skill
+						}
+						
+						knowledgeSkillPoints += sklVal;
+					}
+					else
+					{
+						activeSkillPoints += sklVal;
+					}
+				}
+				else
+				{
+					throw new IllegalArgumentException("Skill output from getSkills() wasn't found in skillList (" 
+								+ arr[0] +") this should not happen.");
+				}
+			}					
+			
+			// we adjust some values by their free amounts, making sure they never are negative
+			mox = Math.max(0, 		mox - getIntConst("FREE_MOX"));			
+			totalRep = Math.max(0,	totalRep - getIntConst("FREE_REP"));
+			totalApt = Math.max(0, 	totalApt - getIntConst("FREE_APT"));
+			numSleights = 0;
+			numSpec = 0;
+			activeSkillPoints = 0;
+			knowledgeSkillPoints = 0;
+			totalCredits = Math.max(0, 	totalCredits - getIntConst("FREE_CREDIT"));
+			
+			cpUsed = 15*mox + 10*totalApt + 5*numSleights + 5*numSpec + activeSkillPoints + knowledgeSkillPoints + totalRep/10 + totalCredits/1000;
+			
+			// set to relevant character variable
+			this.setVar("{cpUsed}", ""+cpUsed); 
+					
+		}
+	}
+	
+	/**
+	 * Attempts to retrieve integer constant from charConstants 
+	 * @param name
+	 * @return
+	 */
+	public static int getIntConst(String name)
+	{
+		if (charConstants.containsKey(name))
+		{
+			String val = charConstants.get(name);
+			
+			if (Utils.isInteger(val))
+			{
+				return Integer.parseInt(val);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Character Constant : " + name + " does not exist!");
+			}
+		}
+		else
+		{
+			throw new IllegalArgumentException("Character Constant : " + name + " does not exist!");
+		}
 	}
 	
 	public String toString()
@@ -1076,6 +1199,42 @@ public class Character {
 		else
 		{
 			return 0;
+		}
+	}
+	
+	/**
+	 * Gets the linked aptitude for the named skill, if it exists
+	 * @param name The name of the skill to search for
+	 * @return A string containing the aptitude linked to that skill
+	 */
+	public String getSkillApt(String name)
+	{
+		if (skillList.containsKey(name))
+		{
+			return skillList.get(name).getLinkedApt();
+		}
+		else
+		{
+			throw new IllegalArgumentException("No such skill exists(" + name + ")!");
+		}
+	}
+	
+	
+	/**
+	 * Retrieves a variable from the general store. 
+	 * This version returns "" instead of throwing an error if no such variable exists
+	 * @param name Name of variable to search for
+	 * @return The matching value for name, or "" if none exists
+	 */
+	public String getVarSF(String name)
+	{
+		if (hasVar(name))
+		{
+			return getVar(name);
+		}
+		else
+		{
+			return "";
 		}
 	}
 	

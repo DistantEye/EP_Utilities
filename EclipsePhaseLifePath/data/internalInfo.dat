@@ -50,6 +50,15 @@ Swimming;SOM;true;Active,Physical
 Throwing Weapons;COO;true;Active,Combat
 Unarmed Combat;SOM;true;Active,Combat
 ------------------------------------------------------------------------------------------
+charvars
+CP_ACTIVE_MAX_PERCENT:0.4
+CP_KNOWLEDGE_MAX_PERCENT:0.3
+FREE_APT:105
+FREE_MOX:1
+FREE_CREDIT:5000
+FREE_REP:50
+FREE_NAT_LANG:70
+------------------------------------------------------------------------------------------
 rep
 @;anarchists,Barsoomians,Extropians,Titanian, and scum;Autonomists
 c;hypercorps, Jovians, Lunars, Martians, Venusians;Hypercorps
@@ -58,6 +67,7 @@ f;socialites (also artists, glitterati, and media);Media
 g;Criminals;Criminals
 i;Firewall;Firewall
 r;argonauts (also technologists, researchers, and scientists);Scientists
+x;Gate-crashers;Gate-crashers
 ------------------------------------------------------------------------------------------
 morph
 <morph>
@@ -1570,7 +1580,7 @@ Spares are designed for portability. Packed as a flat disc 15 centimeters in dia
 
 <morph>
 <type>Synth</type>
-<name>Swarmanoid Smart Swarm Variant</name>
+<name>Swarmanoid Smart Swarm</name>
 <Desc>The swarmanoid is not a single shell per se, but rather a swarm of hundreds of insect-sized robotic microdrones. Each individual “bug” is capable of crawling, rolling, hopping several meters, or using nanocopter fan blades for airlift. The controlling computer and sensor systems are distributed throughout the swarm. Though the swarm can “meld” together into a roughly child-sized shape, the swarm is incapable of tackling physical tasks like grabbing, lifting, or holding as a unit. Individual bugs are quite capable of interfacing with electronics.
 	
 	The smart swarm is a robust attempt to get more utility out of the swarmanoid morph design. It makes use of larger modular minidrones (rather than microdrones) that can lock together into various shapes, enabling limited physical actions and tool use.</Desc>
