@@ -35,6 +35,7 @@ To run it, check out the entire repo, with existing structure left intact.
 Compile the src folder with javac
 
 java LifePathUI
+(You may have to move the two .dat files from the Data folder into the same directory as LifePathUI)
 
 ##RUNABLE PROGRAMS
 
