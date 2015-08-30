@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,8 +31,6 @@ public class LifePathUI implements UI {
 	 private GridBagUIPanel mainPanel, statPanel,sideBar;
 	 private JTextArea mainStatus;
 	 private LifePathGenerator gen;
-	
-
 	
 	/**
 	 * @throws HeadlessException
@@ -128,15 +125,12 @@ public class LifePathUI implements UI {
 	public void init()
 	{
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        
         mainWindow.setLayout(windowLayout);
         
 		// to make everything work right we add a mainPanel under the mainWindow
 		mainWindow.add(mainPanel);
 		
-		
-		//currentComponent = mainPanel;
-		
+		// start first row of rows of mixed size
 		mainPanel.addMappedTF(0,0,"Character Name",20,new TextChangeListener());
 		mainPanel.addMappedFixedTF(2,0,"Morph","",10,true);
 		mainPanel.addMappedFixedTF(4,0,"Background","",10,true);
@@ -144,7 +138,7 @@ public class LifePathUI implements UI {
 		mainPanel.addMappedFixedTF(8,0,"Faction","",10,true);
 		mainPanel.endRow(10,0);
 		
-		// init new Panel
+		// we init new Panel for the sidebar (skills displays)
 		sideBar = new GridBagUIPanel();
 		
 		// addC is (component,x,y,height,width)
@@ -217,8 +211,8 @@ public class LifePathUI implements UI {
 		statPanel.addMappedFixedTF(6,6,"Free CP", "",5,true);
 		statPanel.endRow(8,6);
 		
+		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
-		
 		for (Rep r : gen.getPC().getAllRep())
 		{
 			statPanel.addMappedFixedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,true);
@@ -246,18 +240,18 @@ public class LifePathUI implements UI {
 		    	if (gen.getPC().hasVar("{firewall}"))
 		    	{
 		    		gen.getPC().removeVar("{firewall}");
-		    		((JButton)mainPanel.getComponent("Firewall Events")).setText("Firewall Events (Off)");
+		    		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
 		    	}
 		    	else
 		    	{
 		    		gen.getPC().setVar("{firewall}", "1");
-		    		((JButton)mainPanel.getComponent("Firewall Events")).setText("Firewall Events (On)");
+		    		mainPanel.setButtonText("Firewall Events","Firewall Events (On)");
 		    	}
 		    }	
 		});
 		
 		// set this afterwards so it doesn't change the mapping name
-		((JButton)mainPanel.getComponent("Firewall Events")).setText("Firewall Events (Off)");
+		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
 		
 
 		mainPanel.addMappedButton(1,26,"Gatecrashing Events").addActionListener(new ActionListener() {
@@ -267,18 +261,18 @@ public class LifePathUI implements UI {
 		    	if (gen.getPC().hasVar("{gatecrashing}"))
 		    	{
 		    		gen.getPC().removeVar("{gatecrashing}");
-		    		((JButton)mainPanel.getComponent("Gatecrashing Events")).setText("Gatecrashing Events (Off)");
+		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
 		    	}
 		    	else
 		    	{
 		    		gen.getPC().setVar("{gatecrashing}", "1");
-		    		((JButton)mainPanel.getComponent("Gatecrashing Events")).setText("Gatecrashing Events (On)");
+		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (On)");
 		    	}
 		    }	
 		});
 		
 		// set this afterwards so it doesn't change the mapping name
-		((JButton)mainPanel.getComponent("Gatecrashing Events")).setText("Gatecrashing Events (Off)");
+		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
 		
 		mainPanel.addMappedButton(3,26,"Run Next Step").addActionListener(new ActionListener() {
 			
@@ -313,12 +307,12 @@ public class LifePathUI implements UI {
 				if (gen.isRolling())
 		    	{
 		    		gen.setRolling(false);
-		    		((JButton)mainPanel.getComponent("Rolling")).setText("Choosing Rolls");
+		    		mainPanel.setButtonText("Rolling","Choosing Rolls");
 		    	}
 		    	else
 		    	{
 		    		gen.setRolling(true);
-		    		((JButton)mainPanel.getComponent("Rolling")).setText("Rolling");		    		
+		    		mainPanel.setButtonText("Rolling","Rolling");		    		
 		    	}
 			}	
 		});
@@ -363,17 +357,17 @@ public class LifePathUI implements UI {
 		
 		if (gen.getPC().hasVar("{background}"))
 		{
-			mainPanel.getTextF("Background").setText(gen.getPC().getBackground());
+			mainPanel.setTextF("Background",gen.getPC().getBackground());
 		}
 		
 		if (gen.getPC().hasVar("NatLang"))
 		{
-			mainPanel.getTextF("Natural Language").setText(gen.getPC().getVar("NatLang"));
+			mainPanel.setTextF("Natural Language",gen.getPC().getVar("NatLang"));
 		}
 		
 		if (gen.getPC().hasVar("{factionName}"))
 		{
-			mainPanel.getTextF("Faction").setText(gen.getPC().getVar("{factionName}"));
+			mainPanel.setTextF("Faction",gen.getPC().getVar("{factionName}"));
 		}
 		
 		int[] stats = new int[16];
@@ -395,11 +389,11 @@ public class LifePathUI implements UI {
 		// update base stats for both
 		for (String key : primStats)
 		{
-			statPanel.getTextF("Base "+key).setText(""+stats[cnt++]);
+			statPanel.setTextF("Base "+key,stats[cnt++]);
 		}
 		for (String key : secStats)
 		{
-			statPanel.getTextF(key).setText(""+stats[cnt++]);
+			statPanel.setTextF(key,stats[cnt++]);
 		}
 		
 		// get bonus amounts
@@ -417,24 +411,24 @@ public class LifePathUI implements UI {
 		cnt = 0;
 		for (String key : primStats)
 		{
-			statPanel.getTextF("Total "+key).setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
 		for (String key : secStats)
 		{
-			statPanel.getTextF("Total "+key).setText(""+(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
 		cnt = 0;
 		
 		// update a few more display fields
-		statPanel.getTextF("Stress").setText(""+gen.getPC().getVarInt("{stress}"));
-		statPanel.getTextF("MOX").setText(""+gen.getPC().getSecStat("MOX"));
-		statPanel.getTextF("Credits").setText(""+gen.getPC().getVarInt("{credits}"));
-		statPanel.getTextF("Free CP").setText(""+gen.getPC().getVarInt("{CP}"));
+		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
+		statPanel.setTextF("MOX",gen.getPC().getSecStat("MOX"));
+		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
+		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
 		
 		// update rep
 		for (Rep r : gen.getPC().getAllRep())
 		{
-			statPanel.getTextF(r.getName()+"-rep").setText(""+r.getValue());
+			statPanel.setTextF(r.getName()+"-rep",+r.getValue());
 		}
 		
 		// rebuild skills panel

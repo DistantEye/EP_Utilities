@@ -427,6 +427,11 @@ public class GridBagUIPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Returns the integer value stored in a mapped textfield, if applicable
+	 * @param name Textfield to search for
+	 * @return Either the appropriate int value or 0 if no valid integer bearing field could be found
+	 */
 	public int getTextFVal(String name)
 	{
 		JTextField temp = getTextF(name);		
@@ -442,6 +447,69 @@ public class GridBagUIPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Attempts to retrieve a mapped text field with the matching name and change its text value to val
+	 * 
+	 * This function will fail silently if the field doesn't exist
+	 * 
+	 * @param name Name of the text field to look for
+	 * @param val Value to setText to
+	 */
+	public void setTextF(String name, String val)
+	{
+		JTextField temp = getTextF(name);		
+		
+		// does it exist and is it a number
+		if (temp == null)
+		{
+			return;
+		}
+		else
+		{
+			temp.setText(val);
+		}
+	}
+	
+	/**
+	 * Attempts to retrieve a mapped text field with the matching name and change its text value to val
+	 * This version takes an int value for convenience
+	 * @param name Name of the text field to look for
+	 * @param val int Value to setText to, will be converted to string
+	 */
+	public void setTextF(String name, int val)
+	{
+		this.setTextF(name, ""+val);
+	}
+	
+	/**
+	 * Attempts to retrieve a mapped button with the matching name and change its display text to val
+	 * 
+	 * This function will fail silently if the button doesn't exist
+	 * 
+	 * @param name Name of the button to look for
+	 * @param val Value to setText to
+	 */
+	public void setButtonText(String name, String val)
+	{
+		JComponent temp = mappedComponents.get(name);		
+		
+		// does it exist and is it a number
+		if (temp == null || !temp.getClass().getSimpleName().equalsIgnoreCase("JButton"))
+		{
+			return;
+		}
+		else
+		{
+			((JButton)temp).setText(val);
+		}
+	}
+	
+	/**
+	 * Adds a component to this Panel's mappedComponet list
+	 * @param name Name/key for the component
+	 * @param comp Component to add
+	 * @return the component added
+	 */
 	public JComponent put(String name, JComponent comp)
 	{
 		return this.mappedComponents.put(name, comp);

@@ -165,7 +165,6 @@ public class Utils {
 	 * @return Matching input stream inside startToken and endToken, or "" if there is no match found
 	 */
 	public static String returnStringInTokensStk(String startToken, String endToken, String input, int startIndex) {
-//		int inputLen = input.size();
 		int startOuter = input.indexOf(startToken,startIndex);
 		int endInner = -1;
 		int numEndsToSkip = 0;
@@ -178,10 +177,9 @@ public class Utils {
 		}
 		
 		for (int i = startOuter+1; i+(startTokenLen-1) < input.length() && i+(endTokenLen-1) < input.length(); i++) {
-			if (input.substring(i,i+startTokenLen).equals(startToken)) {
-				numEndsToSkip++;
-			}
-			else if (input.substring(i,i+endTokenLen).equals(endToken) ) {
+			
+			// we have to put the end condition first because in cases where endToken==startToken, it'd resolve poorly otherwise
+			if (input.substring(i,i+endTokenLen).equals(endToken) ) {
 				if (numEndsToSkip == 0) {
 					endInner = i;
 					break;
@@ -190,6 +188,10 @@ public class Utils {
 					numEndsToSkip--;
 				}
 			}
+			else if (input.substring(i,i+startTokenLen).equals(startToken)) {
+				numEndsToSkip++;
+			}
+			
 		}
 
 		// invalid matching of tokens o or endToken otherwise
