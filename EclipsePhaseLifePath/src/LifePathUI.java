@@ -20,10 +20,10 @@ import javax.swing.event.DocumentListener;
  */
 public class LifePathUI implements UI {
 
-	 final static boolean shouldWeightX = true;
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
-	 // we still hardcode some stats like this because the page would break if they were user definable anyways
+	 // we still hardcode some stats like this because the page would break 
+	 //		if they were user definable anyways
 	 final static String[] primStats = {"COG","COO","INT","REF","SAV","SOM","WIL"}; 
 	 final static String[] secStats = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
 	 private BorderLayout windowLayout;
@@ -88,7 +88,8 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public boolean handleError(String message) {
-		int resp = JOptionPane.showConfirmDialog(null,"Error Resulted, redo step?\n"+message, "Error", JOptionPane.YES_NO_OPTION);
+		int resp = JOptionPane.showConfirmDialog(null,"Error Resulted, redo step?\n"+message, 
+													"Error", JOptionPane.YES_NO_OPTION);
 		
 		if (resp == JOptionPane.YES_OPTION)
 		{
@@ -290,10 +291,12 @@ public class LifePathUI implements UI {
             {
                 update();             
                 
-                JTextArea updateArea= new JTextArea(gen.getPC().toString() + DIVIDER_STRING + mainStatus.getText(),10,120);              
+                JTextArea updateArea= new JTextArea(gen.getPC().toString() 
+                										+ DIVIDER_STRING + mainStatus.getText(),10,120);              
                 updateArea.setEditable(true);
                 updateArea.setLineWrap(true);
-                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                										JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
                 
             }	
