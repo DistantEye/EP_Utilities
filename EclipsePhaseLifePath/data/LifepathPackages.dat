@@ -687,7 +687,7 @@ SAVANT ASYNC
 Your infection gives you mental abilities beyond the reach of other transhumans.
 +Introspection, +Neurodiversity, +Personal Development, +Self Control
 PP;1>Academics: ?1? 30;Investigation 30;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?4?)
-PP;3>mox(1);rep?1?1,50;Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?5?)
+PP;3>mox(1);rep(?1?,50);Academics: ?1? 40;Art: ?1? 30;Hardware: ?1? 15;Interest: ?1? 30;Investigation 50;Networking: ?1? 30;Perception 40;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?5?)
 PP;5>mox(1);rep(?1?,50);addApt(COG,5);Academics: ?1? 40;Art: ?1? 40;Deception 30;Hardware: ?1? 25;Interest: ?1? 30;Investigation 50;Kinesics 30;Language: ?1? 30;Networking: ?1? 25;Perception 50;Profession: ?1? 30 ;trait(Psi,1);trait(Mental Disorder (?1?));psisleight(?6?)
 ---------------------------------------------------------------------------------------------
 Package
