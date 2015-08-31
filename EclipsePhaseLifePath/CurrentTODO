@@ -18,3 +18,6 @@ may need to do something special with if conditionals : right now getVar will tr
 
 Two choices in same effect still breaks things. This is an issue for the sklSpec() command
 
+
+*MOST ACTIVE* You can change your TextListeners up a bit into "ValidatedTextListeners" 
+	so some stuff like Morph on character sheet won't update unless it's an active morph?

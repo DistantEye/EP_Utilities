@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -45,6 +50,7 @@ public class CharacterSheetUI implements UI {
         statPanel = new GridBagUIPanel();
         sideBar = new GridBagUIPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        gen.getPC().setVar("{cpCalc}","1"); // enable CP calculator
 	}
 
 	/* (non-Javadoc)
@@ -116,10 +122,7 @@ public class CharacterSheetUI implements UI {
 	 */
 	@Override
 	public void end() {
-		// Marks the character gen process as stopped, disabling the buttons that used to advance it
-		mainPanel.remove(mainPanel.getComponent("Run Next Step"));
-		mainWindow.revalidate();
-		mainWindow.repaint();
+		// nop
 	}
 	
 	/**
@@ -140,7 +143,7 @@ public class CharacterSheetUI implements UI {
 		
 		// start first row of rows of mixed size
 		mainPanel.addMappedTF(0,0,"Character Name",20,new TextChangeListener());
-		mainPanel.addMappedFixedTF(2,0,"Morph","",10,true);
+		mainPanel.addMappedTF(2,0,"Morph",10,new TextChangeListener());
 		mainPanel.addMappedFixedTF(4,0,"Background","",10,true);
 		mainPanel.addMappedFixedTF(6,0,"Natural Language", "",15,true);
 		mainPanel.addMappedFixedTF(8,0,"Faction","",10,true);
@@ -177,7 +180,8 @@ public class CharacterSheetUI implements UI {
 		int idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedTF(idx,0,"Base "+key, ""+gen.getPC().getAptitude(key),5, new TextChangeListener());
+			statPanel.addMappedTF(idx,0,"Base "+key,5, new TextChangeListener());
+			statPanel.setTextF("Base "+key, Math.max(1,gen.getPC().getAptitude(key)));
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -188,6 +192,7 @@ public class CharacterSheetUI implements UI {
 		for (String key : primStats)
 		{
 			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, new TextChangeListener());
+			statPanel.setTextF("MorphBonus"+key, 0);
 			idx +=2;
 		}
 		statPanel.endRow(idx,1);
@@ -230,10 +235,14 @@ public class CharacterSheetUI implements UI {
 		statPanel.endRow(idx,5);
 		
 		// a few extra stats get factored in too
-		statPanel.addMappedTF(0,6,"Stress", "",5,new TextChangeListener());
-		statPanel.addMappedTF(2,6,"MOX", "",5,new TextChangeListener());
-		statPanel.addMappedTF(4,6,"Credits", "",5,new TextChangeListener());
-		statPanel.addMappedTF(6,6,"Base CP", "",5,new TextChangeListener());
+		statPanel.addMappedTF(0,6,"Stress",5,new TextChangeListener());
+			statPanel.setTextF("Stress",0);
+		statPanel.addMappedTF(2,6,"MOX",5,new TextChangeListener());
+			statPanel.setTextF("MOX",Character.getIntConst("FREE_MOX"));
+		statPanel.addMappedTF(4,6,"Credits",5,new TextChangeListener());
+			statPanel.setTextF("Credits",Character.getIntConst("FREE_CREDIT"));
+		statPanel.addMappedTF(6,6,"Base CP",5,new TextChangeListener());
+			statPanel.setTextF("Base CP",1000);
 		statPanel.addMappedFixedTF(8,6,"Free CP", "",5,true);
 		statPanel.endRow(10,6);
 		
@@ -317,27 +326,21 @@ public class CharacterSheetUI implements UI {
 		int[] bonuses = new int[16];
 		int cnt = 0;
 		
-		// fill stats with all the primary and secondary stat values
+		// fill stats with all the primary and secondary stat values from text fields, and update character info accordingly
 		for (String key : primStats)
 		{
-			stats[cnt++] = gen.getPC().getAptitude(key);
+			int val = Math.max(1, statPanel.getTextFVal("Base "+key));
+			gen.getPC().setAptitude(key, val);
+			stats[cnt++] = val;
 		}
 		for (String key : secStats)
 		{
+			int val = statPanel.getTextFVal("MorphBonus"+key);
+			gen.getPC().setSecStat(key, val);			
 			stats[cnt++] = gen.getPC().getSecStat(key);
 		}
 		
 		cnt = 0;
-		
-		// update base stats for both
-		for (String key : primStats)
-		{
-			statPanel.setTextF("Base "+key,stats[cnt++]);
-		}
-		for (String key : secStats)
-		{
-			statPanel.setTextF(key,stats[cnt++]);
-		}
 		
 		// get bonus amounts
 		cnt = 0;
@@ -362,11 +365,12 @@ public class CharacterSheetUI implements UI {
 		}
 		cnt = 0;
 		
-		// update a few more display fields
-		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().getSecStat("MOX"));
-		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
-		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
+		// update character with a few more display fields
+		gen.getPC().setVar("{stress}", ""+statPanel.getTextFVal("Stress"));
+		gen.getPC().setSecStat("MOX",statPanel.getTextFVal("MOX"));
+		gen.getPC().setVar("{credits}", ""+statPanel.getTextFVal("Credits"));
+		int freeCP = Math.max(0,statPanel.getTextFVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
+		statPanel.setTextF("Free CP",freeCP);
 		
 		// update rep
 		for (Rep r : gen.getPC().getAllRep())
@@ -437,5 +441,85 @@ public class CharacterSheetUI implements UI {
 			update();
 		}
 		
+	}
+	
+	// TODO repurpose this code (if applicable as an input verifier
+	private class TextListenerWhenExists implements DocumentListener
+	{
+		private Class<?> c;
+		private Method m;
+		private JTextField field;
+		
+		
+		public TextListenerWhenExists(String name, JTextField field)
+		{
+			try {
+				this.c = Class.forName(name);
+			} catch (ClassNotFoundException e) {
+				throw new IllegalArgumentException("No such class(" + name + ")");
+			}
+			
+			Class<?>[] cArg = new Class[1];
+	        cArg[0] = String.class;
+	        
+			try {
+				m = c.getMethod("exists",cArg);
+			} catch (NoSuchMethodException e) {
+				throw new IllegalArgumentException("Class(" + name + ") lacks exists method!");
+			} catch (SecurityException e) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + name + ")!");
+			}
+			
+			this.field = field;
+		}
+		
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			try {
+				if ((boolean) m.invoke(null, field.getText()))
+				{
+					update();
+				}
+			} catch (IllegalAccessException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (IllegalArgumentException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (InvocationTargetException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			}
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			try {
+				if ((boolean) m.invoke(null, field.getText()))
+				{
+					update();
+				}
+			} catch (IllegalAccessException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (IllegalArgumentException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (InvocationTargetException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			}
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			try {
+				if ((boolean) m.invoke(null, field.getText()))
+				{
+					update();
+				}
+			} catch (IllegalAccessException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (IllegalArgumentException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			} catch (InvocationTargetException e1) {
+				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
+			}
+		}
+			
 	}
 }

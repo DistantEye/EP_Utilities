@@ -219,6 +219,16 @@ public class Morph {
 	}
 
 	/**
+	 * Returns whether name is a valid morph
+	 * @param name String containing name of a Morph
+	 * @return True/False as appropriate
+	 */
+	public boolean itemExists(String name)
+	{
+		return Morph.exists(name);
+	}
+	
+	/**
 	 * Gets a copy of a morph from the predefined list (the level will be mutable, possibly more in the future)
 	 * 
 	 * @param morphName Name of morph to search for

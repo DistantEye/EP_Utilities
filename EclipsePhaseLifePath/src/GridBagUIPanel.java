@@ -32,7 +32,6 @@ public class GridBagUIPanel extends JPanel {
 	private GridBagConstraints cons;	
 	private GridBagLayout layout;
 	private ArrayList<JComponent> children;
-
 	
 	/**
 	 * Creates a new UIPanel with a double buffer and a flow layout.
@@ -393,6 +392,22 @@ public class GridBagUIPanel extends JPanel {
 			
 			return null;
 		}
+	}
+	
+	/**
+	 * Returns a list of keys for the the mappedComponents list
+	 * Keys are returned rather than values since keys sometimes themselves can be needed information
+	 * And themselves can be used to access the values
+	 * @return ArrayList of Strings for the component keys
+	 */
+	public ArrayList<String> getMappedComponentKeys()
+	{
+		ArrayList<String> result = new ArrayList<String>();
+		for (String key : mappedComponents.keySet())
+		{
+			result.add(key);
+		}
+		return result;
 	}
 	
 	/**

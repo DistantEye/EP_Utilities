@@ -518,6 +518,22 @@ public class Character {
 	}
 	
 	/**
+	 *  If a valid secondary stat name is provided, changes its value to value
+	 * @param stat Secondary Stat Name name
+	 * @param value value to change the stat to
+	 * @param
+	 */
+	public void setSecStat(String stat, int value)
+	{
+		if (!nonAppStats.containsKey(stat))
+		{
+			throw new IllegalArgumentException(stat + " is not a valid Secondary Stat");
+		}
+		
+		nonAppStats.put(stat,value);
+	}
+	
+	/**
 	 * Moxie accessor
 	 * @return int value of character's current moxie stat (max, not current amount)
 	 */
