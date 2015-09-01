@@ -31,4 +31,9 @@ public interface UI {
 	 * Ends the application
 	 */
 	public void end();
+	
+	/**
+	 * Updates the state of the UI, running checks as appropriate
+	 */
+	public void update();
 }

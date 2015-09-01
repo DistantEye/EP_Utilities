@@ -473,7 +473,7 @@ public class DataProc {
 			
 			String name = Utils.returnStringInTag("name", nextTrait, 0);
 			String cost = Utils.returnStringInTag("cost", nextTrait, 0);
-			String bonus = Utils.returnStringInTag("cost", nextTrait, 0);
+			String bonus = Utils.returnStringInTag("bonus", nextTrait, 0);
 			String desc = Utils.returnStringInTag("description", nextTrait, 0);
 
 			Trait.CreateInternalTrait(name,desc,cost,bonus,1);

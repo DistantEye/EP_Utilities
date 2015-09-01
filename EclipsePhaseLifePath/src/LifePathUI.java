@@ -133,7 +133,7 @@ public class LifePathUI implements UI {
 		mainWindow.add(mainPanel);
 		
 		// start first row of rows of mixed size
-		mainPanel.addMappedTF(0,0,"Character Name",20,new TextChangeListener());
+		mainPanel.addMappedTF(0,0,"Character Name",20,this);
 		mainPanel.addMappedFixedTF(2,0,"Morph","",10,true);
 		mainPanel.addMappedFixedTF(4,0,"Background","",10,true);
 		mainPanel.addMappedFixedTF(6,0,"Natural Language", "",15,true);
@@ -163,7 +163,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, new TextChangeListener());
+			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
 		}
 		statPanel.endRow(idx,1);
@@ -191,7 +191,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : secStats)
 		{
-			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, new TextChangeListener());
+			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
 		}
 		statPanel.endRow(idx,4);
@@ -342,7 +342,7 @@ public class LifePathUI implements UI {
 	/**
 	 * Updates all relevant display fields for the character
 	 */
-	private void update()
+	public void update()
 	{
 		gen.getPC().setName(mainPanel.getTextF("Character Name").getText());
 		
@@ -473,24 +473,4 @@ public class LifePathUI implements UI {
 		
 	}
 
-	// triggers an update if the text field changes
-	private class TextChangeListener implements DocumentListener
-	{
-		
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			update();
-		}
-		
-	}
 }

@@ -6,7 +6,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -142,8 +144,8 @@ public class CharacterSheetUI implements UI {
 		mainWindow.add(mainScroll);
 		
 		// start first row of rows of mixed size
-		mainPanel.addMappedTF(0,0,"Character Name",20,new TextChangeListener());
-		mainPanel.addMappedTF(2,0,"Morph",10,new TextChangeListener());
+		mainPanel.addMappedTF(0,0,"Character Name",20,this);
+		mainPanel.addMappedTF(2,0,"Morph",10,this).setInputVerifier(new ExistsValidator("Morph"));
 		mainPanel.addMappedFixedTF(4,0,"Background","",10,true);
 		mainPanel.addMappedFixedTF(6,0,"Natural Language", "",15,true);
 		mainPanel.addMappedFixedTF(8,0,"Faction","",10,true);
@@ -180,7 +182,7 @@ public class CharacterSheetUI implements UI {
 		int idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedTF(idx,0,"Base "+key,5, new TextChangeListener());
+			statPanel.addMappedTF(idx,0,"Base "+key,5, this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Base "+key, Math.max(1,gen.getPC().getAptitude(key)));
 			idx +=2;
 		}
@@ -191,7 +193,7 @@ public class CharacterSheetUI implements UI {
 		idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, new TextChangeListener());
+			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("MorphBonus"+key, 0);
 			idx +=2;
 		}
@@ -211,7 +213,7 @@ public class CharacterSheetUI implements UI {
 		idx = 0;
 		for (String key : secStats)
 		{
-			statPanel.addMappedTF(idx,3,key, ""+gen.getPC().getSecStat(key),5,new TextChangeListener());
+			statPanel.addMappedTF(idx,3,key,5,this).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
@@ -220,7 +222,7 @@ public class CharacterSheetUI implements UI {
 		idx = 0;
 		for (String key : secStats)
 		{
-			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, new TextChangeListener());
+			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,4);
@@ -235,13 +237,13 @@ public class CharacterSheetUI implements UI {
 		statPanel.endRow(idx,5);
 		
 		// a few extra stats get factored in too
-		statPanel.addMappedTF(0,6,"Stress",5,new TextChangeListener());
+		statPanel.addMappedTF(0,6,"Stress",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Stress",0);
-		statPanel.addMappedTF(2,6,"MOX",5,new TextChangeListener());
+		statPanel.addMappedTF(2,6,"MOX",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("MOX",Character.getIntConst("FREE_MOX"));
-		statPanel.addMappedTF(4,6,"Credits",5,new TextChangeListener());
+		statPanel.addMappedTF(4,6,"Credits",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Credits",Character.getIntConst("FREE_CREDIT"));
-		statPanel.addMappedTF(6,6,"Base CP",5,new TextChangeListener());
+		statPanel.addMappedTF(6,6,"Base CP",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Base CP",1000);
 		statPanel.addMappedFixedTF(8,6,"Free CP", "",5,true);
 		statPanel.endRow(10,6);
@@ -250,7 +252,7 @@ public class CharacterSheetUI implements UI {
 		int xIdx = 0;
 		for (Rep r : gen.getPC().getAllRep())
 		{
-			statPanel.addMappedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,new TextChangeListener());
+			statPanel.addMappedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,this).setInputVerifier(new NumericValidator());
 			xIdx += 2;
 		}
 		statPanel.endRow(xIdx,7);
@@ -268,7 +270,6 @@ public class CharacterSheetUI implements UI {
 		mainPanel.addC(tempPane,0,9,14,13,GridBagConstraints.BOTH);
 		mainPanel.endRow(14, 9);
 
-		
 		mainPanel.endVertical(0,27);
 		
 		this.update();
@@ -291,21 +292,21 @@ public class CharacterSheetUI implements UI {
 	/**
 	 * Updates all relevant display fields for the character
 	 */
-	private void update()
+	public void update()
 	{
 		gen.getPC().setName(mainPanel.getTextF("Character Name").getText());
 		
 		gen.getPC().calcStats(); // updates secondaries
 				
 		// set morph and background
-		String morphName = "";
+		JTextField morphField = mainPanel.getTextF("Morph");
 		
-		if (gen.getPC().getCurrentMorph() != null)
+		// if we have a valid morph we pull the value and update the character
+		if (morphField.getInputVerifier().verify(morphField))
 		{
-			morphName = gen.getPC().getCurrentMorph().getName();
+			gen.getPC().setCurrentMorph(Morph.createMorph(morphField.getText()));
 		}
-		
-		mainPanel.getTextF("Morph").setText(morphName);
+	
 		
 		if (gen.getPC().hasVar("{background}"))
 		{
@@ -335,7 +336,7 @@ public class CharacterSheetUI implements UI {
 		}
 		for (String key : secStats)
 		{
-			int val = statPanel.getTextFVal("MorphBonus"+key);
+			int val = statPanel.getTextFVal(key);
 			gen.getPC().setSecStat(key, val);			
 			stats[cnt++] = gen.getPC().getSecStat(key);
 		}
@@ -418,108 +419,6 @@ public class CharacterSheetUI implements UI {
 			}
 		});
 		
-		
-		
-	}
-
-	// triggers an update if the text field changes
-	private class TextChangeListener implements DocumentListener
-	{
-		
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			update();
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			update();
-		}
-		
 	}
 	
-	// TODO repurpose this code (if applicable as an input verifier
-	private class TextListenerWhenExists implements DocumentListener
-	{
-		private Class<?> c;
-		private Method m;
-		private JTextField field;
-		
-		
-		public TextListenerWhenExists(String name, JTextField field)
-		{
-			try {
-				this.c = Class.forName(name);
-			} catch (ClassNotFoundException e) {
-				throw new IllegalArgumentException("No such class(" + name + ")");
-			}
-			
-			Class<?>[] cArg = new Class[1];
-	        cArg[0] = String.class;
-	        
-			try {
-				m = c.getMethod("exists",cArg);
-			} catch (NoSuchMethodException e) {
-				throw new IllegalArgumentException("Class(" + name + ") lacks exists method!");
-			} catch (SecurityException e) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + name + ")!");
-			}
-			
-			this.field = field;
-		}
-		
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			try {
-				if ((boolean) m.invoke(null, field.getText()))
-				{
-					update();
-				}
-			} catch (IllegalAccessException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (IllegalArgumentException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (InvocationTargetException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			}
-		}
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			try {
-				if ((boolean) m.invoke(null, field.getText()))
-				{
-					update();
-				}
-			} catch (IllegalAccessException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (IllegalArgumentException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (InvocationTargetException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			}
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			try {
-				if ((boolean) m.invoke(null, field.getText()))
-				{
-					update();
-				}
-			} catch (IllegalAccessException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (IllegalArgumentException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			} catch (InvocationTargetException e1) {
-				throw new IllegalArgumentException("Could not access exists method for Class(" + c.getName() + ")!");
-			}
-		}
-			
-	}
 }

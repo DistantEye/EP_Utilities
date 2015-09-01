@@ -14,7 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentListener;
 
 /**
+ * Extension of JPanel to add many helper methods centered around 
+ * adding child components easier and tracking/returning added components
  * 
+ * Most methods (when applicable) return the JComponent added/modified/created,
+ * to support chaining
  */
 
 /**
@@ -122,12 +126,13 @@ public class GridBagUIPanel extends JPanel {
 	 * @param x non-negative integer
 	 * @param y non-negative integer
 	 * @param labelText Label to display
-	 * @param updateListen If not null, will add listener passed in to the text field
+	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
 	 * @param cols number of cols for the text field
+	 * @return The component created
 	 */
-	public void addMappedTF(int x, int y, String labelText, int cols, DocumentListener updateListen)
+	public JTextField addMappedTF(int x, int y, String labelText, int cols, UI parentUIForTextChangeListener)
 	{
-		addMappedTF(x,y,labelText,labelText,cols,updateListen);
+		return addMappedTF(x,y,labelText,labelText,cols,parentUIForTextChangeListener);
 	}
 	
 	/**
@@ -138,13 +143,16 @@ public class GridBagUIPanel extends JPanel {
 	 * @param y non-negative integer
 	 * @param labelText Label to display
 	 * @param mapName String to use for the map key for the text field
-	 * @param updateListen If not null, will add listener passed in to the text field
+	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
 	 * @param cols number of cols for the text field
+	 * @return The component created
 	 */
-	public void addMappedTF(int x, int y, String labelText, String mapName, int cols, DocumentListener updateListen)
+	public JTextField addMappedTF(int x, int y, String labelText, String mapName, int cols, UI parentUIForTextChangeListener)
 	{
 		addLabel(x,y,labelText);
-		this.mappedComponents.put(mapName, addTextF(x+1,y,cols,updateListen));
+		JTextField temp = addTextF(x+1,y,cols,parentUIForTextChangeListener);
+		this.mappedComponents.put(mapName, temp);
+		return temp;
 	}
 	
 	/**
@@ -157,8 +165,9 @@ public class GridBagUIPanel extends JPanel {
 	 * @param value The text to display in the field
 	 * @param cols number of cols for the text field
 	 * @param horiztonal Whether the pair is arranged horizontally (vertically if false)
+	 * @return The component created
 	 */
-	public void addMappedFixedTF(int x, int y, String labelText, String value, int cols, boolean horizontal)
+	public JTextField addMappedFixedTF(int x, int y, String labelText, String value, int cols, boolean horizontal)
 	{
 		int newX,newY;
 		
@@ -177,6 +186,8 @@ public class GridBagUIPanel extends JPanel {
 		JTextField temp = addTextF(newX,newY,value,cols,null);
 		temp.setEditable(false);
 		this.mappedComponents.put(labelText, temp);
+		
+		return temp;
 	}
 	
 	/**
@@ -184,6 +195,7 @@ public class GridBagUIPanel extends JPanel {
 	 * @param x non-negative integer
 	 * @param y non-negative integer
 	 * @param text Display Text for label
+	 * @return The component created
 	 */
 	public JLabel addLabel(int x, int y, String text)
 	{
@@ -231,24 +243,25 @@ public class GridBagUIPanel extends JPanel {
 	 * @param y non-negative integer
 	 * @param value the default value for the text field
 	 * @param cols Number of Columns
-	 * @param updateListen If not null, will add listener passed in to the text field
+	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
 	 * @return The component created
 	 */
-	public JTextField addTextF(int x, int y, String value, int cols, DocumentListener updateListen)
+	public JTextField addTextF(int x, int y, String value, int cols, UI parentUIForTextChangeListener)
 	{
 		cons.gridx = x;
 		cons.gridy = y;
 		JTextField temp = new JTextField(value, cols);
 		
 		// this prevents the common issue of the text fields turning into slits
-		temp.setMinimumSize(temp.getPreferredSize());
-
-		if (updateListen != null)
-		{
-			temp.getDocument().addDocumentListener(updateListen);
-		}
+		temp.setMinimumSize(temp.getPreferredSize());		
 		
 		addC(temp);
+		
+		if (parentUIForTextChangeListener != null)
+		{
+			temp.getDocument().addDocumentListener(new TextChangeListener(parentUIForTextChangeListener,temp));			
+		}
+		
 		return temp;
 	}
 	
@@ -257,12 +270,12 @@ public class GridBagUIPanel extends JPanel {
 	 * @param x non-negative integer
 	 * @param y non-negative integer
 	 * @param cols Number of Columns
-	 * @param updateListen If not null, will add listener passed in to the text field
+	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
 	 * @return The component created
 	 */
-	public JTextField addTextF(int x, int y, int cols, DocumentListener updateListen)
+	public JTextField addTextF(int x, int y, int cols, UI parentUIForTextChangeListener)
 	{
-		return this.addTextF(x, y, "", cols, updateListen);
+		return this.addTextF(x, y, "", cols, parentUIForTextChangeListener);
 	}
 	
 	/**
@@ -285,10 +298,13 @@ public class GridBagUIPanel extends JPanel {
 	/**
 	 * Shorthand to add new components to the UI tab
 	 * @param comp Component to add to UI
+	 * @return The component added
 	 */
-	public void addC(JComponent comp) {
+	public JComponent addC(JComponent comp) {
 		this.add(comp,cons);
 		this.children.add(comp);
+		
+		return comp;
 	}
 	
 	/**
@@ -296,13 +312,15 @@ public class GridBagUIPanel extends JPanel {
 	 * @param comp Component to add to UI
 	 * @param x non-negative integer
 	 * @param y non-negative integer
-	 * 
+	 * @return The component added
 	 */
-	public void addC(JComponent comp, int x, int y) {
+	public JComponent addC(JComponent comp, int x, int y) {
 		cons.gridx = x;
 		cons.gridy = y;
 		this.addC(comp);
 		this.children.add(comp);
+		
+		return comp;
 	}
 	
 	/**
@@ -312,8 +330,9 @@ public class GridBagUIPanel extends JPanel {
 	 * @param y non-negative integer
 	 * @param gridHeight valid number or GridBagConstraints constant
 	 * @param gridWidth valid number or GridBagConstraints constant
+	 * @return The component added
 	 */
-	public void addC(JComponent comp, int x, int y, int gridHeight, int gridWidth) {
+	public JComponent addC(JComponent comp, int x, int y, int gridHeight, int gridWidth) {
 		int oldHeight = cons.gridheight;
 		int oldWidth = cons.gridwidth;
 		cons.gridheight = gridHeight;
@@ -321,6 +340,8 @@ public class GridBagUIPanel extends JPanel {
 		this.addC(comp,x,y);
 		cons.gridheight = oldHeight;
 		cons.gridwidth = oldWidth;
+		
+		return comp;
 	}
 	
 	/**
@@ -331,12 +352,15 @@ public class GridBagUIPanel extends JPanel {
 	 * @param gridHeight valid number or GridBagConstraints constant
 	 * @param gridWidth valid number or GridBagConstraints constant
 	 * @param fill valid number or GridBagConstraints constant
+	 * @return The component added
 	 */
-	public void addC(JComponent comp, int x, int y, int gridHeight, int gridWidth, int fill) {
+	public JComponent addC(JComponent comp, int x, int y, int gridHeight, int gridWidth, int fill) {
 		int oldFill = cons.fill;
 		cons.fill = fill;
 		this.addC(comp,x,y,gridHeight,gridWidth);
 		cons.fill = oldFill;
+		
+		return comp;
 	}
 	
 	/**
