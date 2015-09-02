@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.github.distanteye.ep_utils.containers.Character;
-import com.github.distanteye.ep_utils.containers.Morph;
-import com.github.distanteye.ep_utils.containers.Package;
-import com.github.distanteye.ep_utils.containers.Rep;
-import com.github.distanteye.ep_utils.containers.Skill;
-import com.github.distanteye.ep_utils.containers.Sleight;
-import com.github.distanteye.ep_utils.containers.Trait;
+import com.github.distanteye.ep_utils.containers.*;
+import com.github.distanteye.ep_utils.containers.Package; // explicit because name ambiguity
 import com.github.distanteye.ep_utils.ui.UI;
 
 /**
@@ -24,7 +19,7 @@ import com.github.distanteye.ep_utils.ui.UI;
 public class LifePathGenerator {
 
 	public static SecureRandom rng = new SecureRandom();
-	private Character playerChar;
+	private PlayerCharacter playerChar;
 	private UI UIObject;
 	private boolean isRolling;
 	private String nextEffects; // used to store things between steps
@@ -43,7 +38,7 @@ public class LifePathGenerator {
 	 */
 	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling)
 	{
-		playerChar = new Character(characterName,false);
+		playerChar = new PlayerCharacter(characterName,false);
 		UIObject = UIObject_;
 		this.isRolling = isRolling;
 		this.nextEffects = "";
@@ -59,7 +54,7 @@ public class LifePathGenerator {
 	 * Returns the underlying player's Character object
 	 * @return Character object (copy by reference)
 	 */
-	public Character getPC() {
+	public PlayerCharacter getPC() {
 		return playerChar;
 	}
 
@@ -67,7 +62,7 @@ public class LifePathGenerator {
 	 * Sets a new Character object for the player
 	 * @param playerChar Valid character object
 	 */
-	public void setPC(Character playerChar) {
+	public void setPC(PlayerCharacter playerChar) {
 		this.playerChar = playerChar;
 	}
 

@@ -13,7 +13,7 @@ import com.github.distanteye.ep_utils.core.Utils;
  * 
  * @author Vigilant
  */
-public class Character {
+public class PlayerCharacter {
 
 	// some values constant to all Characters
 	public static HashMap<String,String> charConstants = new HashMap<String,String>();
@@ -92,7 +92,7 @@ public class Character {
 	 * @param name Character name
 	 * @param autoApplyMastery Whether Skills will start to receive half gains automatically after level > Skill.EXPENSIVE_LEVEL
 	 */
-	public Character(String name, boolean autoApplyMastery) 
+	public PlayerCharacter(String name, boolean autoApplyMastery) 
 	{
 		this.name = name;
 		this.autoApplyMastery = autoApplyMastery;

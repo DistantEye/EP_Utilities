@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.github.distanteye.ep_utils.containers.Character;
+import com.github.distanteye.ep_utils.containers.PlayerCharacter;
 import com.github.distanteye.ep_utils.containers.Morph;
 import com.github.distanteye.ep_utils.containers.Rep;
 import com.github.distanteye.ep_utils.core.DataProc;
@@ -238,9 +238,9 @@ public class CharacterSheetUI implements UI {
 		statPanel.addMappedTF(0,6,"Stress",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Stress",0);
 		statPanel.addMappedTF(2,6,"MOX",5,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("MOX",Character.getIntConst("FREE_MOX"));
+			statPanel.setTextF("MOX",PlayerCharacter.getIntConst("FREE_MOX"));
 		statPanel.addMappedTF(4,6,"Credits",5,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("Credits",Character.getIntConst("FREE_CREDIT"));
+			statPanel.setTextF("Credits",PlayerCharacter.getIntConst("FREE_CREDIT"));
 		statPanel.addMappedTF(6,6,"Base CP",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Base CP",1000);
 		statPanel.addMappedFixedTF(8,6,"Free CP", "",5,true);
