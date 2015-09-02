@@ -1,5 +1,8 @@
+package com.github.distanteye.ep_utils.containers;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Container for Morphs, holding all possible Morph information.

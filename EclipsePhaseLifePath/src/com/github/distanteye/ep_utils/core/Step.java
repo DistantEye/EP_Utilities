@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.core;
 /**
  * Container meant to encapsulate different linked steps in a generation process
  * Not strictly necessary, but makes intelligent navigation and management possible without forcing it 

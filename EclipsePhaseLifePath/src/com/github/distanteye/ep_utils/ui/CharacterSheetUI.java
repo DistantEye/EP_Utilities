@@ -1,21 +1,30 @@
+package com.github.distanteye.ep_utils.ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import com.github.distanteye.ep_utils.containers.Character;
+import com.github.distanteye.ep_utils.containers.Morph;
+import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.LifePathGenerator;
+import com.github.distanteye.ep_utils.ui.validators.ExistsValidator;
+import com.github.distanteye.ep_utils.ui.validators.NumericValidator;
 
 /**
- * Visual interface for LifePath type character generation. While there is room for some user
- * editting, most of the fields are driven by table rolling and character prompt choices
+ * Plain CharacterSheet UI, Most fields meant to be user editable, with some validation
+ * and auto-calculations being made 
  * 
  * @author Vigilant
  *
  */
-public class LifePathUI implements UI {
+public class CharacterSheetUI implements UI {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
@@ -32,7 +41,7 @@ public class LifePathUI implements UI {
 	/**
 	 * @throws HeadlessException
 	 */
-	public LifePathUI() throws HeadlessException {
+	public CharacterSheetUI() throws HeadlessException {
 		DataProc.init("LifepathPackages.dat","internalInfo.dat");
 		gen = new LifePathGenerator("",this,true);
 		windowLayout = new BorderLayout();
@@ -41,6 +50,7 @@ public class LifePathUI implements UI {
         statPanel = new GridBagUIPanel();
         sideBar = new GridBagUIPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        gen.getPC().setVar("{cpCalc}","1"); // enable CP calculator
 	}
 
 	/* (non-Javadoc)
@@ -112,10 +122,7 @@ public class LifePathUI implements UI {
 	 */
 	@Override
 	public void end() {
-		// Marks the character gen process as stopped, disabling the buttons that used to advance it
-		mainPanel.remove(mainPanel.getComponent("Run Next Step"));
-		mainWindow.revalidate();
-		mainWindow.repaint();
+		// nop
 	}
 	
 	/**
@@ -126,21 +133,44 @@ public class LifePathUI implements UI {
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         mainWindow.setLayout(windowLayout);
         
-		// to make everything work right we add a mainPanel under the mainWindow
-		mainWindow.add(mainPanel);
+        JScrollPane mainScroll = new JScrollPane(mainPanel);
+        mainScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        mainScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        mainScroll.setMinimumSize(mainWindow.getPreferredSize());
+        
+		// add mainScroll to window, then add mainPanel to that
+		mainWindow.add(mainScroll);
 		
 		// start first row of rows of mixed size
 		mainPanel.addMappedTF(0,0,"Character Name",20,this);
-		mainPanel.addMappedFixedTF(2,0,"Morph","",10,true);
+		mainPanel.addMappedTF(2,0,"Morph",10,this).setInputVerifier(new ExistsValidator("Morph"));
 		mainPanel.addMappedFixedTF(4,0,"Background","",10,true);
 		mainPanel.addMappedFixedTF(6,0,"Natural Language", "",15,true);
 		mainPanel.addMappedFixedTF(8,0,"Faction","",10,true);
-		mainPanel.endRow(10,0);
 		
-		// we add Panel for the sidebar (skills displays)		
+		// gives a quick export of the character
+		mainPanel.addMappedButton(12,0,"Export to Txt").addActionListener(new ActionListener() {
+			
+            public void actionPerformed(ActionEvent e)
+            {
+                update();             
+                
+                JTextArea updateArea= new JTextArea(gen.getPC().toString() 
+                										+ DIVIDER_STRING + mainStatus.getText(),10,120);              
+                updateArea.setEditable(true);
+                updateArea.setLineWrap(true);
+                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                										JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
+                
+            }	
+		});		
+		mainPanel.endRow(14,0);
+		
+		// we add Panel for the sidebar (skills displays)
 		
 		// addC is (component,x,y,height,width)
-		mainPanel.addC(sideBar,22,0,GridBagConstraints.REMAINDER,1);
+		mainPanel.addC(sideBar,14,0,GridBagConstraints.REMAINDER,1);
 	
 		mainPanel.addC(statPanel,0,1,6,GridBagConstraints.RELATIVE);
 		
@@ -150,7 +180,8 @@ public class LifePathUI implements UI {
 		int idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedFixedTF(idx,0,"Base "+key, ""+gen.getPC().getAptitude(key),5,true);
+			statPanel.addMappedTF(idx,0,"Base "+key,5, this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("Base "+key, Math.max(1,gen.getPC().getAptitude(key)));
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -160,7 +191,8 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : primStats)
 		{
-			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this);
+			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("MorphBonus"+key, 0);
 			idx +=2;
 		}
 		statPanel.endRow(idx,1);
@@ -179,7 +211,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : secStats)
 		{
-			statPanel.addMappedFixedTF(idx,3,key, ""+gen.getPC().getSecStat(key),5,true);
+			statPanel.addMappedTF(idx,3,key,5,this).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
@@ -188,7 +220,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : secStats)
 		{
-			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this);
+			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,4);
@@ -203,17 +235,22 @@ public class LifePathUI implements UI {
 		statPanel.endRow(idx,5);
 		
 		// a few extra stats get factored in too
-		statPanel.addMappedFixedTF(0,6,"Stress", "",5,true);
-		statPanel.addMappedFixedTF(2,6,"MOX", "",5,true);
-		statPanel.addMappedFixedTF(4,6,"Credits", "",5,true);
-		statPanel.addMappedFixedTF(6,6,"Free CP", "",5,true);
-		statPanel.endRow(8,6);
+		statPanel.addMappedTF(0,6,"Stress",5,this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("Stress",0);
+		statPanel.addMappedTF(2,6,"MOX",5,this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("MOX",Character.getIntConst("FREE_MOX"));
+		statPanel.addMappedTF(4,6,"Credits",5,this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("Credits",Character.getIntConst("FREE_CREDIT"));
+		statPanel.addMappedTF(6,6,"Base CP",5,this).setInputVerifier(new NumericValidator());
+			statPanel.setTextF("Base CP",1000);
+		statPanel.addMappedFixedTF(8,6,"Free CP", "",5,true);
+		statPanel.endRow(10,6);
 		
 		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
 		for (Rep r : gen.getPC().getAllRep())
 		{
-			statPanel.addMappedFixedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,true);
+			statPanel.addMappedTF(xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,this).setInputVerifier(new NumericValidator());
 			xIdx += 2;
 		}
 		statPanel.endRow(xIdx,7);
@@ -229,94 +266,8 @@ public class LifePathUI implements UI {
 		tempPane.setMinimumSize(tempPane.getPreferredSize());
 		
 		mainPanel.addC(tempPane,0,9,14,13,GridBagConstraints.BOTH);
+		mainPanel.endRow(14, 9);
 
-		
-		mainPanel.addMappedButton(0,26,"Firewall Events").addActionListener(new ActionListener() {
-					
-			public void actionPerformed(ActionEvent e)
-		    {
-		    	if (gen.getPC().hasVar("{firewall}"))
-		    	{
-		    		gen.getPC().removeVar("{firewall}");
-		    		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
-		    	}
-		    	else
-		    	{
-		    		gen.getPC().setVar("{firewall}", "1");
-		    		mainPanel.setButtonText("Firewall Events","Firewall Events (On)");
-		    	}
-		    }	
-		});
-		
-		// set this afterwards so it doesn't change the mapping name
-		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
-		
-
-		mainPanel.addMappedButton(1,26,"Gatecrashing Events").addActionListener(new ActionListener() {
-			
-		    public void actionPerformed(ActionEvent e)
-		    {
-		    	if (gen.getPC().hasVar("{gatecrashing}"))
-		    	{
-		    		gen.getPC().removeVar("{gatecrashing}");
-		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
-		    	}
-		    	else
-		    	{
-		    		gen.getPC().setVar("{gatecrashing}", "1");
-		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (On)");
-		    	}
-		    }	
-		});
-		
-		// set this afterwards so it doesn't change the mapping name
-		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
-		
-		mainPanel.addMappedButton(3,26,"Run Next Step").addActionListener(new ActionListener() {
-			
-            public void actionPerformed(ActionEvent e)
-            {
-                gen.step();
-                update();
-            }	
-		});
-		
-		// gives a quick export of the character
-		mainPanel.addButton(5,26,"Export to Txt").addActionListener(new ActionListener() {
-			
-            public void actionPerformed(ActionEvent e)
-            {
-                update();             
-                
-                JTextArea updateArea= new JTextArea(gen.getPC().toString() 
-                										+ DIVIDER_STRING + mainStatus.getText(),10,120);              
-                updateArea.setEditable(true);
-                updateArea.setLineWrap(true);
-                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-                										JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
-                
-            }	
-		});
-		
-		// rolling vs manually choosing
-		mainPanel.addMappedButton(7,26,"Rolling").addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e)
-			{
-				if (gen.isRolling())
-		    	{
-		    		gen.setRolling(false);
-		    		mainPanel.setButtonText("Rolling","Choosing Rolls");
-		    	}
-		    	else
-		    	{
-		    		gen.setRolling(true);
-		    		mainPanel.setButtonText("Rolling","Rolling");		    		
-		    	}
-			}	
-		});
-		
 		mainPanel.endVertical(0,27);
 		
 		this.update();
@@ -346,50 +297,49 @@ public class LifePathUI implements UI {
 		gen.getPC().calcStats(); // updates secondaries
 				
 		// set morph and background
-		String morphName = "";
+		JTextField morphField = mainPanel.getTextF("Morph");
 		
-		if (gen.getPC().getCurrentMorph() != null)
+		// if we have a valid morph we pull the value and update the character
+		if (morphField.getInputVerifier().verify(morphField))
 		{
-			morphName = gen.getPC().getCurrentMorph().getName();
+			gen.getPC().setCurrentMorph(Morph.createMorph(morphField.getText()));
 		}
-		
-		mainPanel.getTextF("Morph").setText(morphName);
+	
 		
 		if (gen.getPC().hasVar("{background}"))
 		{
 			mainPanel.setTextF("Background",gen.getPC().getBackground());
 		}
 		
-		mainPanel.setTextF("Natural Language",gen.getPC().getVarSF("NatLang"));
+		if (gen.getPC().hasVar("NatLang"))
+		{
+			mainPanel.setTextF("Natural Language",gen.getPC().getVar("NatLang"));
+		}
 		
-		mainPanel.setTextF("Faction",gen.getPC().getVarSF("{factionName}"));
-		
+		if (gen.getPC().hasVar("{factionName}"))
+		{
+			mainPanel.setTextF("Faction",gen.getPC().getVar("{factionName}"));
+		}
 		
 		int[] stats = new int[16];
 		int[] bonuses = new int[16];
 		int cnt = 0;
 		
-		// fill stats with all the primary and secondary stat values
+		// fill stats with all the primary and secondary stat values from text fields, and update character info accordingly
 		for (String key : primStats)
 		{
-			stats[cnt++] = gen.getPC().getAptitude(key);
+			int val = Math.max(1, statPanel.getTextFVal("Base "+key));
+			gen.getPC().setAptitude(key, val);
+			stats[cnt++] = val;
 		}
 		for (String key : secStats)
 		{
+			int val = statPanel.getTextFVal(key);
+			gen.getPC().setSecStat(key, val);			
 			stats[cnt++] = gen.getPC().getSecStat(key);
 		}
 		
 		cnt = 0;
-		
-		// update base stats for both
-		for (String key : primStats)
-		{
-			statPanel.setTextF("Base "+key,stats[cnt++]);
-		}
-		for (String key : secStats)
-		{
-			statPanel.setTextF(key,stats[cnt++]);
-		}
 		
 		// get bonus amounts
 		cnt = 0;
@@ -414,11 +364,12 @@ public class LifePathUI implements UI {
 		}
 		cnt = 0;
 		
-		// update a few more display fields
-		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().getSecStat("MOX"));
-		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
-		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
+		// update character with a few more display fields
+		gen.getPC().setVar("{stress}", ""+statPanel.getTextFVal("Stress"));
+		gen.getPC().setSecStat("MOX",statPanel.getTextFVal("MOX"));
+		gen.getPC().setVar("{credits}", ""+statPanel.getTextFVal("Credits"));
+		int freeCP = Math.max(0,statPanel.getTextFVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
+		statPanel.setTextF("Free CP",freeCP);
 		
 		// update rep
 		for (Rep r : gen.getPC().getAllRep())
@@ -428,7 +379,7 @@ public class LifePathUI implements UI {
 		
 		// rebuild skills panel
 		sideBar.removeAll();
-		
+
 		sideBar.addC(new JLabel("Skills            "),0,0);
 		sideBar.addC(new JLabel("                  "),1,0);
 		int x = 0, y = 1;
@@ -437,8 +388,8 @@ public class LifePathUI implements UI {
 			String linkedApt = gen.getPC().getSkillApt(pair[0]);
 			int morphBonus = statPanel.getTextFVal("MorphBonus"+linkedApt);
 			int finalVal = Integer.parseInt(pair[1])+morphBonus;
-			
-			
+
+
 			sideBar.addMappedFixedTF(x,y,pair[0], ""+finalVal, 5, false);
 			if (y <= 32)
 			{
@@ -461,13 +412,11 @@ public class LifePathUI implements UI {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				LifePathUI ui = new LifePathUI();
+				CharacterSheetUI ui = new CharacterSheetUI();
 				ui.init();
 			}
 		});
 		
-		
-		
 	}
-
+	
 }

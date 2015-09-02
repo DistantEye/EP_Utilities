@@ -1,7 +1,17 @@
+package com.github.distanteye.ep_utils.core;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.github.distanteye.ep_utils.containers.Character;
+import com.github.distanteye.ep_utils.containers.Morph;
+import com.github.distanteye.ep_utils.containers.Package;
+import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.containers.Sleight;
+import com.github.distanteye.ep_utils.containers.Trait;
+import com.github.distanteye.ep_utils.ui.UI;
 
 /**
  * The class takes in the appropriate information,

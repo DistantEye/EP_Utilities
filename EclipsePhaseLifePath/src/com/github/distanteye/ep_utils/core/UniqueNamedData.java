@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.core;
 /**
  * Make sure anything in the DataFileProcessor has getName and getType
  * This allows further decisions to be made

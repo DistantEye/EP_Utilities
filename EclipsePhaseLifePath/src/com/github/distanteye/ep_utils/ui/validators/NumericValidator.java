@@ -1,7 +1,10 @@
+package com.github.distanteye.ep_utils.ui.validators;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Validates that a number has been entered

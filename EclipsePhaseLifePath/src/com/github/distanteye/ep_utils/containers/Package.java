@@ -1,4 +1,7 @@
+package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
+
+import com.github.distanteye.ep_utils.core.UniqueNamedData;
 
 /**
  * Common effects container. Packages contain a list of effects, keyed to 

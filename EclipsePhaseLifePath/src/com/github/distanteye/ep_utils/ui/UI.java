@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.ui;
 /**
  * Defines the basic minimum function LifePathGenerator (and potentially other Generator classes)
  * needs from a user interface

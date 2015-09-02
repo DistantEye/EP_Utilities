@@ -1,6 +1,11 @@
+package com.github.distanteye.ep_utils.containers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import com.github.distanteye.ep_utils.core.LifePathGenerator;
+import com.github.distanteye.ep_utils.core.Step;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Represents entirety of a character in Eclipse Phase, holding Aptitude, gear, skills, sleights,etc

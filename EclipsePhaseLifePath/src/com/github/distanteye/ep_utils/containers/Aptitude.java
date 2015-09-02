@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.containers;
 /**
  * Container for Aptitudes, a characters primary stat type
  * @author Vigilant

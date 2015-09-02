@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.core;
 /**
  * TableRow encapsulates a single row of many in a particular Table object.
  * It sets it's own hashCode and as well as getCopy and other support methods.

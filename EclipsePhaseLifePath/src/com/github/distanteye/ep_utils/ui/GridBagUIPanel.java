@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.ui;
 import java.awt.ComponentOrientation;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Extension of JPanel to add many helper methods centered around 

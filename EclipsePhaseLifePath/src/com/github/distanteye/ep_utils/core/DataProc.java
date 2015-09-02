@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,6 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.github.distanteye.ep_utils.containers.Aptitude;
+import com.github.distanteye.ep_utils.containers.Character;
+import com.github.distanteye.ep_utils.containers.Morph;
+import com.github.distanteye.ep_utils.containers.Package;
+import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.containers.Sleight;
+import com.github.distanteye.ep_utils.containers.Trait;
 
 /**
  * The DataFileProcessor class serves to take commands to look up a particular table,

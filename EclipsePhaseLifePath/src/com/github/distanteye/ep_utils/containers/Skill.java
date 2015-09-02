@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.containers;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;

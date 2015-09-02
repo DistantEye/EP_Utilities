@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.core;
 /**
  * Simple function meant to allow to store references to effects lists that are long and used repeatedly.
  * Functions are shorter versions of packages that will auto-resolve to explain their effects. A convenience item

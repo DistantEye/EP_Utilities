@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.ui.validators;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javax.swing.InputVerifier;

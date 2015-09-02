@@ -1,3 +1,4 @@
+package com.github.distanteye.ep_utils.ui;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.event.DocumentEvent;
