@@ -1,14 +1,11 @@
 /**
- * 
- */
-
-/**
+ * Container for Aptitudes, a characters primary stat type
  * @author Vigilant
- *
  */
 public class Aptitude {
 	private String name;
 	private int value;
+	// APT_MAX normally 30 (EP Core 122), 40 possible with Exceptional Aptitude (EP Core 146)
 	public static final int APTITUDE_MAX = 40;
 	public static String[] aptitudes = {"COG","COO","INT","REF","SAV","SOM","WIL"};
 	
@@ -58,10 +55,5 @@ public class Aptitude {
 	public void addValue(int value) {
 		this.value += value;
 	}
-	
-	public void subValue(int value) {
-		this.value -= value;
-	}
-	
 	
 }

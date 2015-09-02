@@ -1,10 +1,9 @@
 import java.util.HashMap;
 
 /**
+ * General Utility class, mainly focusing on String management. It's under investigation
+ * whether some or all of this might be replaced by a common library
  * 
- */
-
-/**
  * @author Vigilant
  *
  */

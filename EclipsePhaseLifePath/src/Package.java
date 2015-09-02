@@ -1,10 +1,12 @@
 import java.util.HashMap;
 
 /**
+ * Common effects container. Packages contain a list of effects, keyed to 
+ * certain PP values (although some may only have PP=1 defined). 
  * 
- */
-
-/**
+ * Packages are intended to be unique and not repeated multiple times per character,
+ * although this is not strictly enforced at this time.
+ * 
  * @author Vigilant
  *
  */

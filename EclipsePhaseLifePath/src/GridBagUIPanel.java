@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentListener;
 
 /**
  * Extension of JPanel to add many helper methods centered around 
@@ -19,11 +18,8 @@ import javax.swing.event.DocumentListener;
  * 
  * Most methods (when applicable) return the JComponent added/modified/created,
  * to support chaining
- */
-
-/**
+ * 
  * @author Vigilant
- *
  */
 public class GridBagUIPanel extends JPanel {
 

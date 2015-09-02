@@ -3,12 +3,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
+ * Represents entirety of a character in Eclipse Phase, holding Aptitude, gear, skills, sleights,etc
+ * Has methods for aggregating and updating this data as driven by UI or Generator classes 
  * 
- */
-
-/**
  * @author Vigilant
- *
  */
 public class Character {
 
@@ -711,7 +709,7 @@ public class Character {
 		}
 		else
 		{
-			result = Skill.over60Adjust(skl.getValue()+aptValue);
+			result = Skill.skillAdjustExpensiveCap(skl.getValue()+aptValue);
 		}
 		
 		if (result > LEVEL_CAP)

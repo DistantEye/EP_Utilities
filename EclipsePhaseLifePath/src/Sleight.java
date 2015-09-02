@@ -1,10 +1,9 @@
 import java.util.HashMap;
 
 /**
- * Represents any valid sleight defined in the Internal Data file. Sleights are immutable
- */
-
-/**
+ * Represents any valid Sleight defined in the Internal Data file. Sleights are immutable
+ * This class has a static exists method for determining whether a name is a valid Sleight
+ * 
  * @author Vigilant
  *
  */

@@ -7,14 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
+ * Visual interface for LifePath type character generation. While there is room for some user
+ * editting, most of the fields are driven by table rolling and character prompt choices
  * 
- */
-
-/**
  * @author Vigilant
  *
  */

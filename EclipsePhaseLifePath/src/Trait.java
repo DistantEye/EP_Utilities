@@ -2,10 +2,13 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 /**
+ * Container for Eclipse Phase traits.
+ * Has an exists method, to validate whether a name is a valid Trait.
+ * Trait objects are intended to only be of certain names/descriptions predefined at start
  * 
- */
-
-/**
+ * Has at this time one static support method for getting random variants 
+ * of a particular trait (Derangement), with more possible in the future 
+ * 
  * @author Vigilant
  *
  */

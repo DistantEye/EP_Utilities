@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 
 /**
+ * Tables store a list of effects, with contiguous number ranges keyed to each row,
+ * as well as a max number for the end of the range set.
  * 
- */
-
-/**
+ * Table can be "rolled" in this way, providing the diceRolled number to an rng, and returning
+ * a TableRow with the effects matching a particular choice.
+ * 
+ * There is also support for wildcards, when a Table's effect might need some prior context
+ * 
  * @author Vigilant
  *
  */

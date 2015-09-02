@@ -1,13 +1,9 @@
 /**
- * 
- */
-
-/**
- * @author Vigilant
- *
  * Make sure anything in the DataFileProcessor has getName and getType
+ * This allows further decisions to be made
+ * @author Vigilant
  */
 public interface UniqueNamedData {
-	public String getName();
-	public String getType(); // returns Table, Package, etc
+	String getName();
+	String getType(); // returns Table, Package, etc
 }

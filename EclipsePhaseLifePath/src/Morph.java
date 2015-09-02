@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
+ * Container for Morphs, holding all possible Morph information.
+ * Has static methods for validating whether a Morph exists, and only
+ * accepts creating copies of a list of morphs made from CreateInternalMorph
  * 
- */
-
-/**
  * @author Vigilant
  *
  */

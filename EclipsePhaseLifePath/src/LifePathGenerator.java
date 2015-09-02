@@ -4,15 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 
- */
-
-/**
- * @author Vigilant
- *
- * The generator class takes in the appropriate information,
+ * The class takes in the appropriate information,
  * and then runs the lifepath process to interactively generate a character
  * through various stages,packages, and tables
+ * 
+ * @author Vigilant
+ *
  */
 public class LifePathGenerator {
 

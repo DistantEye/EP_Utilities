@@ -5,10 +5,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Container for Eclipse Phase skills.
+ * Has an exists method, to validate whether a name is a valid Skill.
+ * Skill objects are intended to only be of certain names/descriptions predefined at start
  * 
- */
-
-/**
+ * There is generally a rule that Skills cost more points to buy when over a certain value,
+ * this is defined by Skill.EXPENSIVE_LEVEL, and there are options available to either apply that
+ * adjustment directly to Skill value, or return it via a calculation method 
+ * 
  * @author Vigilant
  *
  */
@@ -23,6 +27,7 @@ public class Skill {
 	private boolean isKnowledge;
 	private boolean canDefault = true;
 	private ArrayList<String> categories;
+	public static int EXPENSIVE_LEVEL = 60; // As defined by Core, adding over this value costs more Rez/CP 
 	
 	// stuff related to regexes
 	// we define constants to make the regexes more readable
@@ -505,6 +510,8 @@ public class Skill {
 	}
 
 	/**
+	 * Adds a set value to this Skill's skill points, without any adjustments 
+	 * 
 	 * @param value the value to increase by (can be negative)
 	 */
 	public void addValue(int value) {
@@ -512,35 +519,42 @@ public class Skill {
 	}
 	
 	/**
-	 * This form of the method automatically halves any gains to the skill the add bring the skill above 60
+	 * This form of the method automatically halves any gains to the skill the add bring the skill above Skill.EXPENSIVE_LEVEL
 	 * 
 	 * @param value the value to increase by (can be negative)
-	 * @param masteryFlag If true, the value added will only add half gains once the skill would be pushed above 60
+	 * @param masteryFlag If true, the value added will only add half gains once the skill would be pushed above Skill.EXPENSIVE_LEVEL
 	 */
 	public void addValue(int value, boolean masteryFlag) {
-		if (value < 0 || !masteryFlag || this.value+value <= 60)
+		if (value < 0 || !masteryFlag || this.value+value <= Skill.EXPENSIVE_LEVEL)
 		{
 			this.addValue(value);
 		}
 		else
 		{
-			this.setValue(over60Adjust(this.value+value));
+			this.setValue(skillAdjustExpensiveCap(this.value+value));
 		}
 		
 	}
 	
-	protected static int over60Adjust(int val)
+	/**
+	 * After skills go above a certain point they become more expensive to level, this method assumes
+	 * those calculations haven't been applied yet and gives an adjusted value to the passed in number 
+	 * 
+	 * @param val Input to check against the cap
+	 * @return Adjusted version of val, which may be lower if it was over Skill.EXPENSIVE_LEVEL
+	 */
+	protected static int skillAdjustExpensiveCap(int val)
 	{
-		if (val <= 60)
+		if (val <= Skill.EXPENSIVE_LEVEL)
 		{
 			return val;
 		}
 		else
 		{
-			// calculate how much it goes over 60 and save that value
-			int leftover = val - 60;
+			// calculate how much it goes over Skill.EXPENSIVE_LEVEL and save that value
+			int leftover = val - Skill.EXPENSIVE_LEVEL;
 						
-			int result = 60;
+			int result = Skill.EXPENSIVE_LEVEL;
 						
 			// add the rest with calculations factored in
 			result += leftover/2;

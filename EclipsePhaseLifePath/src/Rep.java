@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
 /**
+ * Container for Rep types, for the different Reputation networks.
+ * Has an exists method, to validate whether a name is a valid Rep type.
+ * Rep are intended to only be of certain names/descriptions predefined at start
  * 
- */
-
-/**
  * @author Vigilant
  *
  */

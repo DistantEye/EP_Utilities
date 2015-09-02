@@ -1,7 +1,8 @@
 /**
+ * Defines the basic minimum function LifePathGenerator (and potentially other Generator classes)
+ * needs from a user interface
+ * 
  * @author Vigilant
- *
- * Defines any class that can use some means to prompt the user to enter a value in response to a question 
  */
 
 public interface UI {
@@ -12,28 +13,28 @@ public interface UI {
 	 * @param extraContext Any additional footnotes that may be relevant
 	 * @return String response from the program, usually an number representing the choice taken
 	 */
-	public String promptUser(String message,String extraContext); // asking the user to make a choice
+	String promptUser(String message,String extraContext); // asking the user to make a choice
 	
 	/**
 	 * Report an error to the user
 	 * @param message Message to display to the user
 	 * @return True if continuing, false otherwise
 	 */
-	public boolean handleError(String message); // messages about a parse error
+	boolean handleError(String message); // messages about a parse error
 	
 	/**
 	 * Informs user of major status updates (additions made to the character and the like)
 	 * @param message 
 	 */
-	public void statusUpdate(String message); // messages about what's been done to the character
+	void statusUpdate(String message); // messages about what's been done to the character
 	
 	/**
 	 * Ends the application
 	 */
-	public void end();
+	void end();
 	
 	/**
 	 * Updates the state of the UI, running checks as appropriate
 	 */
-	public void update();
+	void update();
 }

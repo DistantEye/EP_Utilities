@@ -4,12 +4,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * While traditionally DocumentListeners are just a class inside the UI, both code reuse
+ * While often DocumentListeners are just a class inside the UI, both code reuse
  * and some concerns about keeping code calls short led to this class being made on
  * the outside.
- */
-
-/**
+ * 
  * @author Vigilant
  *
  */

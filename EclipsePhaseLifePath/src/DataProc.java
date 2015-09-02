@@ -10,15 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 
- */
-
-/**
- * @author Vigilant
- *
  * The DataFileProcessor class serves to take commands to look up a particular table,
  * and results in the right table (from text files) being called up, and the appropriate
  * action being processed
+ * 
+ * @author Vigilant
  *
  */
 public class DataProc {

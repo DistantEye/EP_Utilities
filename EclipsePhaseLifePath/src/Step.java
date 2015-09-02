@@ -1,9 +1,8 @@
 /**
  * Container meant to encapsulate different linked steps in a generation process
- * Not strictly necessary, but makes intelligent navigation and management possible without forcing it into a general table
- */
-
-/**
+ * Not strictly necessary, but makes intelligent navigation and management possible without forcing it 
+ * into a Table or Function
+ * 
  * @author Vigilant
  *
  */
