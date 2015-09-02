@@ -47,7 +47,7 @@ LifepathPackages.dat uses a limited effect/command system, allowing users some a
 
 ##DATA NOTE/LEGAL
 The .dat files for this program contain Eclipse Phase content, 
-which is liscensed under the below
+which is licensed under the below
 
 >Posthuman Studios is: Rob Boyle, Brian Cross, Adam Jury
 
