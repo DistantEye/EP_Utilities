@@ -1,9 +1,9 @@
 package com.github.distanteye.ep_utils.containers;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import com.github.distanteye.ep_utils.core.LifePathGenerator;
 import com.github.distanteye.ep_utils.core.Step;
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -1044,15 +1044,15 @@ public class Character {
 		return result.trim();
 	}
 	
-	public String getRandSkill()
+	public String getRandSkill(SecureRandom rng)
 	{
-		int idx = LifePathGenerator.rng.nextInt(skillList.size());
+		int idx = rng.nextInt(skillList.size());
 		return ((Skill)skillList.values().toArray()[idx]).getFullName();
 	}
 	
-	public String getRandApt()
+	public String getRandApt(SecureRandom rng)
 	{
-		int idx = LifePathGenerator.rng.nextInt(aptitudeList.size());
+		int idx = rng.nextInt(aptitudeList.size());
 		return (String)aptitudeList.keySet().toArray()[idx];
 	}
 	

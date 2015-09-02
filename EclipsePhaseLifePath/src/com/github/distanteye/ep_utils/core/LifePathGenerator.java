@@ -372,7 +372,7 @@ public class LifePathGenerator {
 				{
 					if (playerChar.getNumSkills() > 0)
 					{
-						String randSkill = playerChar.getRandSkill();
+						String randSkill = playerChar.getRandSkill(rng);
 						effect = effect.replace("!RANDSKILL!", randSkill);
 					}
 					else
@@ -382,7 +382,7 @@ public class LifePathGenerator {
 				}
 				while(effect.contains("!RANDAPT!"))
 				{
-					effect = effect.replace("!RANDAPT!",playerChar.getRandApt());
+					effect = effect.replace("!RANDAPT!",playerChar.getRandApt(rng));
 				}
 				while(effect.contains("!RAND_DER!"))
 				{
