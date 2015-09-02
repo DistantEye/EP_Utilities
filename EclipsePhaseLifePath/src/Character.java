@@ -184,7 +184,7 @@ public class Character {
 				nonAppStats.put("DR", (int)Math.round(dr*1.5));
 			}
 			
-			nonAppStats.put("DB", (int)(getAptitude("SOM")/10));
+			nonAppStats.put("DB", getAptitude("SOM")/10);
 		}
 		else
 		{
