@@ -6,7 +6,7 @@
  */
 public class Function implements UniqueNamedData {
 	private String name;
-	private String effect; // effects for each PP value
+	private String effect;
 	
 	
 	/**
@@ -19,9 +19,6 @@ public class Function implements UniqueNamedData {
 		this.effect = effect;
 	}
 	
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}

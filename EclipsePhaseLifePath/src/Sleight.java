@@ -66,77 +66,46 @@ public class Sleight {
 	}
 	
 
-	/**
-	 * @return the sleightType
-	 */
 	public String getSleightType() {
 		return sleightType;
 	}
 
-	/**
-	 * @return the isExsurgent
-	 */
-	public String getIsExsurgent() {
+	public String isExsurgent() {
 		return isExsurgent;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the psiType
-	 */
 	public String getPsiType() {
 		return psiType;
 	}
 
-	/**
-	 * @return the actionType
-	 */
 	public String getActionType() {
 		return actionType;
 	}
 
-	/**
-	 * @return the range
-	 */
 	public String getRange() {
 		return range;
 	}
 
-	/**
-	 * @return the duration
-	 */
 	public String getDuration() {
 		return duration;
 	}
 
-	/**
-	 * @return the strainMod
-	 */
 	public String getStrainMod() {
 		return strainMod;
 	}
 
-	/**
-	 * @return the skillUsed
-	 */
 	public String getSkillUsed() {
 		return skillUsed;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
 	/**
 	 * Creates a new sleight that is stored statically in the class
 	 * @param input String[] of format SleightType;IsExsurgent;SleightName;ActivePassive;ActionType;Range;Duration;StrainMod;skillUsed;Description

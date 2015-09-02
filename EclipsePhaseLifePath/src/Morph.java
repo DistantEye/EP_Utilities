@@ -88,93 +88,54 @@ public class Morph {
 		this.notes = t.notes;
 	}
 	
-	/**
-	 * @return the implants
-	 */
 	public String getImplants() {
 		return implants;
 	}
 
-	/**
-	 * @param implants the implants to set
-	 */
 	public void setImplants(String implants) {
 		this.implants = implants;
 	}
 
-	/**
-	 * @return the effects
-	 */
 	public String getEffects() {
 		return effects;
 	}
 
-	/**
-	 * @param effects the effects to set
-	 */
 	public void setEffects(String effects) {
 		this.effects = effects;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the morphType
-	 */
 	public String getMorphType() {
 		return morphType;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @return the aptitudeMaximums
-	 */
 	public HashMap<String, Integer> getAptitudeMaximums() {
 		return aptitudeMaximums;
 	}
 
-	/**
-	 * @return the durability
-	 */
 	public int getDurability() {
 		return durability;
 	}
 
-	/**
-	 * @return the woundThreshold
-	 */
 	public int getWoundThreshold() {
 		return woundThreshold;
 	}
 
-	/**
-	 * @return the cP
-	 */
 	public int getCP() {
 		return CP;
 	}
 
-	/**
-	 * @return the creditCost
-	 */
 	public String getCreditCost() {
 		return creditCost;
 	}	
 	
-	/**
-	 * @return the notes
-	 */
 	public String getNotes() {
 		return notes;
 	}

@@ -46,14 +46,16 @@ public class LifePathGenerator {
 	
 	
 	/**
-	 * @return the playerChar
+	 * Returns the underlying player's Character object
+	 * @return Character object (copy by reference)
 	 */
 	public Character getPC() {
 		return playerChar;
 	}
 
 	/**
-	 * @param playerChar the playerChar to set
+	 * Sets a new Character object for the player
+	 * @param playerChar Valid character object
 	 */
 	public void setPC(Character playerChar) {
 		this.playerChar = playerChar;
@@ -1002,7 +1004,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						if (!temp.getEffectsTree().containsKey(Integer.parseInt(subparts[2])))
+						if (!temp.getAllEffects().containsKey(Integer.parseInt(subparts[2])))
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is a listed PP for package " + subparts[1]);
 						}
@@ -1925,28 +1927,12 @@ public class LifePathGenerator {
 	}	
 	
 	
-	
-	/**
-	 * @return the isRolling
-	 */
 	public boolean isRolling() {
 		return isRolling;
 	}
 
-
-	/**
-	 * @param isRolling the isRolling to set
-	 */
 	public void setRolling(boolean isRolling) {
 		this.isRolling = isRolling;
 	}
 
-
-	public static void main(String[] args)
-	{
-		DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		LifePathGenerator gen = new LifePathGenerator("",null,true);
-		
-		gen.runEffect("trait(Mental Disorder (?3?));incSkl(?1?,10)", "");
-	}
 }

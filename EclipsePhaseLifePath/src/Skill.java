@@ -51,12 +51,12 @@ public class Skill {
 	public static ArrayList<Skill> skillList = new ArrayList<Skill>();
 	
 	/**
-	 * @param name
-	 * @param linkedApt
-	 * @param subtype
-	 * @param specialization
-	 * @param value
-	 * @param canDefault
+	 * @param name Skill name
+	 * @param linkedApt What Aptitude this Skill uses (STR,WIL,etc)
+	 * @param subtype For field skills, the subtype, such as Ground for the Pilot Skill
+	 * @param specialization A special focus for this Skill (often blank)
+	 * @param value Skill level/skill points
+	 * @param canDefault Whether Characters without this skill can default to their Aptitude value
 	 * @param categories Cannot be null, first entry should always be knowledge or active
 	 */
 	private Skill(String name, String linkedApt, String subtype,
@@ -443,69 +443,49 @@ public class Skill {
 		return result;
 	}
 	
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the subtype
-	 */
 	public String getSubtype() {
 		return subtype;
 	}
 
-	/**
-	 * @param subtype the subtype to set
-	 */
 	public void setSubtype(String subtype) {
 		this.subtype = subtype;
 	}
 
-	/**
-	 * @return the specialization
-	 */
 	public String getSpecialization() {
 		return specialization;
 	}
 
-	/**
-	 * @param specialization the specialization to set
-	 */
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
 
-	/**
-	 * @return the value
-	 */
 	public int getValue() {
 		return value;
 	}
 
 	/**
+	 * Sets value for skill, capping between 0 and 99
 	 * @param value the value to set
 	 */
 	public void setValue(int value) {
 		this.value = value;
 		
-		// implement capping
+		// capping
 		if (this.value > 99)
 		{
 			this.value = 99;
 		}
-		else if (this.value < -1)
+		else if (this.value < 0)
 		{
-			this.value = -1;
+			this.value = 0;
 		}
 	}
 
@@ -562,37 +542,25 @@ public class Skill {
 		}
 	}
 	
-	/**
-	 * @return the isActive
-	 */
-	public boolean isActive() {
+	public boolean isActiveSkill() {
 		return isActive;
 	}
 
-	/**
-	 * @return the isKnowledge
-	 */
 	public boolean isKnowledge() {
 		return isKnowledge;
 	}
 
-
-	/**
-	 * @return the linkedApt
-	 */
 	public String getLinkedApt() {
 		return linkedApt;
 	}
 
-	/**
-	 * @return the canDefault
-	 */
 	public boolean getCanDefault() {
 		return canDefault;
 	}
 
 	/**
-	 * @return the categories
+	 * Returns a deepy copy of the Skill categories
+	 * @return String[] of Skill's categories
 	 */
 	public String[] getCategories() {
 		String[] deepCopy = new String[categories.size()];

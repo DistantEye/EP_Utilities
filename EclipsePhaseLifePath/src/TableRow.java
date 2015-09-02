@@ -97,53 +97,36 @@ public class TableRow {
 		return roll >= this.lowRange && roll <= this.highRange;
 	}
 	
-	/**
-	 * @return the lowRange
-	 */
 	public int getLowRange() {
 		return lowRange;
 	}
-	/**
-	 * @param lowRange the lowRange to set
-	 */
+
 	public void setLowRange(int lowRange) {
 		this.lowRange = lowRange;
 		this.setHash();
 	}
-	/**
-	 * @return the highRange
-	 */
+
 	public int getHighRange() {
 		return highRange;
 	}
-	/**
-	 * @param highRange the highRange to set
-	 */
+
 	public void setHighRange(int highRange) {
 		this.highRange = highRange;
 		this.setHash();
 	}
-	/**
-	 * @return the description
-	 */
+
 	public String getDescription() {
 		return description;
 	}
-	/**
-	 * @param description the description to set
-	 */
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/**
-	 * @return the effects
-	 */
+
 	public String getEffects() {
 		return effects;
 	}
-	/**
-	 * @param effects the effects to set
-	 */
+
 	public void setEffects(String effects) {
 		this.effects = effects;
 	}

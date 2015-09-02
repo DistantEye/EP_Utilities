@@ -10,8 +10,8 @@ public class Aptitude {
 	public static String[] aptitudes = {"COG","COO","INT","REF","SAV","SOM","WIL"};
 	
 	/**
-	 * @param name
-	 * @param value
+	 * @param name Name of aptitude
+	 * @param value Current value, should be between 1 and 40
 	 */
 	public Aptitude(String name, int value) {
 		super();
@@ -24,36 +24,41 @@ public class Aptitude {
 		return this.name + " " + this.value;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the value
-	 */
 	public int getValue() {
 		return value;
 	}
 
 	/**
-	 * @param value the value to set
+	 * Sets Aptitude value to val
+	 * Only accepts a range between 1 and APTITUDE_MAX,
+	 * will cap to these values if val is outside of them 
+	 * @param val Valid integer value
 	 */
-	public void setValue(int value) {
-		this.value = value;
+	public void setValue(int val) {
+		if (val < 1)
+		{
+			val = 1;
+		}
+		else if (val > APTITUDE_MAX)
+		{
+			val = APTITUDE_MAX;
+		}
+		else
+		{
+			this.value = val;
+		}
 	}
 	
 	public void addValue(int value) {
-		this.value += value;
+		setValue(getValue() + value);
 	}
 	
 }

@@ -98,37 +98,22 @@ public class Rep implements Comparable<Rep> {
 		return name+"-rep : " + value;
 	}
 	
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param description the description to set
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @return the value
-	 */
 	public int getValue() {
 		return value;
 	}
@@ -173,16 +158,10 @@ public class Rep implements Comparable<Rep> {
 		this.setValue(value+this.value);
 	}
 
-	/**
-	 * @return the networkingField
-	 */
 	public String getNetworkingField() {
 		return networkingField;
 	}
 
-	/**
-	 * @param networkingField the networkingField to set
-	 */
 	public void setNetworkingField(String networkingField) {
 		this.networkingField = networkingField;
 	}

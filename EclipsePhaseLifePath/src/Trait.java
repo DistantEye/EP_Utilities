@@ -149,31 +149,18 @@ public class Trait {
 		return this.name + " (" + this.level + ")";
 	}
 	
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 	
-	
-	/**
-	 * @return the level
-	 */
 	public int getLevel() {
 		return level;
 	}
 
-	/**
-	 * @param level the level to set
-	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
