@@ -29,3 +29,6 @@ Move things to packages soon
 	etc
 	
 Make the validators that override shouldYieldFocus have a common parent, since that's common code
+
+Field skills like Interest can't handle a Field that has a space in it. This may prove annoying/complicated to fix.
+	Or it may be easy if the next field has to be a number or have specialization notation
