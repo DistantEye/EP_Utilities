@@ -94,14 +94,8 @@ public class LifePathUI implements UI {
 		int resp = JOptionPane.showConfirmDialog(null,"Error Resulted, redo step?\n"+message, 
 													"Error", JOptionPane.YES_NO_OPTION);
 		
-		if (resp == JOptionPane.YES_OPTION)
-		{
-			return true;
-		}
-		else			
-		{
-			return false;
-		}		
+		return resp == JOptionPane.YES_OPTION;
+		
 	}
 
 	/* (non-Javadoc)

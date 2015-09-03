@@ -14,7 +14,7 @@ import com.github.distanteye.ep_utils.core.Utils;
  */
 public class Morph {
 	private String name;
-	private String morphType;
+	private MorphType morphType;
 	private String description;
 	private String implants;
 	private HashMap<String,Integer> aptitudeMaximums;
@@ -31,7 +31,7 @@ public class Morph {
 	
 	/**
 	 * @param name Name of morph
-	 * @param morphType The type of the morph Biomorph, Infomorph, Synth, Pod
+	 * @param morphType The type of the morph Biomorph, Infomorph, Synth, Pod. Not case sensitive
 	 * @param description Human readable description of morph
 	 * @param implants String containing list of implants for the morph
 	 * @param aptitudeMaxStr String of aptitude maximums. Can be a single value for all or a single default value with caveats
@@ -46,7 +46,7 @@ public class Morph {
 					String creditCost, String effects, String notes) {
 		super();
 		this.name = name;
-		this.morphType = morphType;
+		this.morphType = MorphType.getEnum(morphType);
 		this.description = description;
 		this.implants = implants;
 		
@@ -111,7 +111,7 @@ public class Morph {
 		return name;
 	}
 
-	public String getMorphType() {
+	public MorphType getMorphType() {
 		return morphType;
 	}
 
@@ -240,5 +240,25 @@ public class Morph {
 		Morph.morphList.add(temp);
 	}
 	
-	
+	/**
+	 * What family of morphs the morph is from: Biomorph, Synth, Pod, Infomorph
+	 * @author Vigilant
+	 */
+	public enum MorphType
+	{
+		BIOMORPH, INFOMORPH, SYNTH, POD;
+		
+		public static MorphType getEnum(String name)
+		{
+			for (MorphType m : MorphType.values())
+			{
+				if (name.toUpperCase().equals(m.name()))
+				{
+					return m;
+				}
+			}
+			
+			throw new IllegalArgumentException(name + " is not a valid MorphType!");			
+		}
+	}
 }

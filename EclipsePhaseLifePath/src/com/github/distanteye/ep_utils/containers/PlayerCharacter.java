@@ -175,12 +175,12 @@ public class PlayerCharacter {
 		nonAppStats.put("SPD", 1+speedBon);
 		
 		// Infomorphs don't have physical damage stats 
-		if (!currentMorph.getMorphType().equals("Infomorph"))
+		if (currentMorph.getMorphType()!=Morph.MorphType.INFOMORPH)
 		{
 			nonAppStats.put("DUR", currentMorph.getDurability());
 			nonAppStats.put("WT", currentMorph.getWoundThreshold());
 			int dr = currentMorph.getDurability();
-			if (currentMorph.getMorphType().equals("Synth"))
+			if (currentMorph.getMorphType()==Morph.MorphType.SYNTH)
 			{
 				nonAppStats.put("DR", dr*2);
 			}

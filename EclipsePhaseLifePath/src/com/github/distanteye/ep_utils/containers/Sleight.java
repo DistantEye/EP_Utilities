@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Sleight {
 	private String sleightType; 
-	private String isExsurgent;
+	private boolean isExsurgent;
 	private String name;		
 	private String psiType;
 	private String actionType;
@@ -35,7 +35,7 @@ public class Sleight {
 	 * @param skillUsed Skill the sleight uses (if active
 	 * @param description Human readable description of sleight
 	 */
-	private Sleight(String sleightType, String isExsurgent, String name,
+	private Sleight(String sleightType, Boolean isExsurgent, String name,
 			String psiType, String actionType, String range, String duration,
 			String strainMod, String skillUsed, String description) {
 		super();
@@ -71,7 +71,7 @@ public class Sleight {
 		return sleightType;
 	}
 
-	public String isExsurgent() {
+	public Boolean isExsurgent() {
 		return isExsurgent;
 	}
 
@@ -118,7 +118,20 @@ public class Sleight {
 			throw new IllegalArgumentException("Array for Sleight must have 10 parts");
 		}
 		
-		Sleight temp = new Sleight(input[0],input[1], input[2],input[3], input[4], input[5], input[6], input[7], input[8], input[9]);
+		int cnt = 0;
+		String sleightType = input[cnt++];
+		Boolean isExsurgent = Boolean.parseBoolean(input[cnt++]);
+		String sleightName = input[cnt++];
+		String activePassive = input[cnt++];
+		String actionType = input[cnt++];
+		String range = input[cnt++];
+		String duration = input[cnt++];
+		String strainMod = input[cnt++];
+		String skillUsed = input[cnt++];
+		String description = input[cnt++];
+		
+		
+		Sleight temp = new Sleight(sleightType, isExsurgent, sleightName,activePassive, actionType, range, duration, strainMod, skillUsed, description);
 		Sleight.sleightList.put(temp.getName(),temp);
 	}
 	

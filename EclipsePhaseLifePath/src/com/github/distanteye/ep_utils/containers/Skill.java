@@ -26,7 +26,7 @@ public class Skill {
 	private int value;
 	private boolean isActive;
 	private boolean isKnowledge;
-	private boolean canDefault = true;
+	private boolean canDefault;
 	private ArrayList<String> categories;
 	public static int EXPENSIVE_LEVEL = 60; // As defined by Core, adding over this value costs more Rez/CP 
 	

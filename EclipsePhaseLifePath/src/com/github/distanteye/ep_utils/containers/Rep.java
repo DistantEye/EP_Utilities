@@ -10,7 +10,7 @@ import java.util.HashMap;
  *
  */
 public class Rep implements Comparable<Rep> {
-	public static HashMap<String,Rep> repTypes = new HashMap<String,Rep>();
+	public static HashMap<String,Rep> repTypes = new HashMap<String,Rep>(); // these are dynamic so no Enums
 	
 	private String name;
 	private String description;

@@ -75,7 +75,7 @@ public class GridBagUIPanel extends JPanel {
 	/**
 	 * Groups common parts of object initialization away from the separate constructors
 	 */
-	public void init()
+	protected void init()
 	{
 		this.mappedComponents = new HashMap<String,JComponent>();
 		this.children = new ArrayList<JComponent>();
@@ -136,7 +136,7 @@ public class GridBagUIPanel extends JPanel {
 	
 	/**
 	 * Adds a JLabel JTextField pair (each weight 1 ), and adds the textField to the mappedComponents list
-	 * using the labelText for a key. This version specifies a different String for the label and the map key
+	 * using the labelText for a key. The label text and mapped name are set separately of each other
 	 * 
 	 * @param x non-negative integer
 	 * @param y non-negative integer
