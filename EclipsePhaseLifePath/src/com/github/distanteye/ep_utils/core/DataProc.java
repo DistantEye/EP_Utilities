@@ -10,8 +10,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// explicit because name ambiguity
 import com.github.distanteye.ep_utils.containers.*;
-import com.github.distanteye.ep_utils.containers.Package; // explicit because name ambiguity
+import com.github.distanteye.ep_utils.core.Package;
 
 /**
  * The DataFileProcessor class serves to take commands to look up a particular table,
