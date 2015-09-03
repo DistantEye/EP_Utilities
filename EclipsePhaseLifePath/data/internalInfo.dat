@@ -1783,7 +1783,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Quick</actionType>
 <range>Self</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>N/A</skillUsed>
 <desc>The async can temporarily elevate their cognitive performance. In game terms, Cognition is raised by 5 for the chosen duration. This boost to Cognition also raises the rating of skills linked to that aptitude.</desc>
@@ -1795,7 +1795,7 @@ sleight
 <exsurgentOnly>FALSE</exsurgentOnly>
 <name>Downtime</name>
 <activePassive>Active</activePassive>
-<actionType>Task (min. 4 hours)</actionType>
+<actionType>Task</actionType>
 <range>Self</range>
 <duration>Sustained</duration>
 <strainMod>0</strainMod>
@@ -1965,7 +1965,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Quick</actionType>
 <range>Self</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>N/A</skillUsed>
 <desc>The async can temporarily increase their intuitive grasp of things. In game terms, Intuition is raised by 5 for the chosen duration. This boost to Intuition also raises the rating of skills linked to that aptitude.</desc>
@@ -1993,7 +1993,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Quick</actionType>
 <range>Self</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–2</strainMod>
 <skillUsed>N/A</skillUsed>
 <desc>An async uses this sleight to increase their natural or augmented sensory perception (sight, audio, smell, augmented) by enhanced cerebral processing, granting a +20 bonus modifier on sensory-based Perception Tests.</desc>
@@ -2021,7 +2021,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Automatic</actionType>
 <range>Self</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>N/A</skillUsed>
 <desc>An async with this ability can slow down his perception of time, making everything appear to move in slow motion or at reduced speed. In game terms, this sleight grants the async a Speed of +1. This extra Action Phase, however, can only be spent on mental and mesh actions.</desc>
@@ -2035,7 +2035,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Automatic</actionType>
 <range>Self</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>+0</strainMod>
 <skillUsed>N/A</skillUsed>
 <desc>This sleight allows the async to override their consciousness and let their unconscious mind take point. While in this state, the async’s conscious mind is only dimly aware of what is transgressing, and any memories of this period will be hazy at best. The advantage is that the unconscious mind acts more quickly, and so the async’s Speed is boosted by +1. The character remains aware and active, but is incapable of complex communication or other mental actions and is motivated by instinct and primitive urges more than conscious thought. Though it is recommended that the player retain control of their character while using Unconscious Lead, the gamemaster should feel free to direct the character’s actions as they see fit.</desc>
@@ -2063,7 +2063,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>+0</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>Alienation is an offensive sleight that create a sense of disconnection between an ego and its morph—similar to that experienced when resleeved into a new body. The ego finds their body cumbersome, strange, and alien, almost like they are a prisoner within it. If the async beats the target in an Opposed Test, treat the test as a failed Integration Test for the target. This effect lasts for the sleight’s duration.</desc>
@@ -2077,7 +2077,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Minutes)</duration>
+<duration>TEMP_MINUTES</duration>
 <strainMod>+0</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>With a touch attack, the async temporarily blocks or scrambles the language-processing centers in the target’s brain. For the duration of the effect, the target cannot speak, initiate mesh actions, or otherwise communicate or read.</desc>
@@ -2091,7 +2091,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Quick</actionType>
 <range>Touch</range>
-<duration>Temp (Minutes)</duration>
+<duration>TEMP_MINUTES</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>The async uses this sleight to influence the target’s mind on a subconscious level, so that the target perceives them to be charming, magnetic, and persuasive. If the async beats the target in an Opposed Test, they gain a +30 modifier on all subsequent Social Skill Tests for the chosen duration.</desc>
@@ -2105,7 +2105,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Minutes)</duration>
+<duration>TEMP_MINUTES</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>Cloud Memory allows the async to temporarily disrupt the target’s ability to form long-term memories. If the async wins the Opposed Test, the target’s memory-saving ability is negated for the duration. The target will retain short-term memories during this time, but will soon forget anything that occurred while this sleight was in effect.</desc>
@@ -2133,7 +2133,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>This sleight allows the async to stimulate cortical areas of the target’s brain related to emotion. This allows the async to induce, amplify, or tone down specific emotions, thereby manipulating the target. If the async beats the target in an Opposed Test, they will act in accordance with the emotion for the duration and under certain circumstances may suffer from certain penalties (up to +/–30), as determined by the gamemaster. For example, an async might receive a +30 Intimidation Test modifier against a target imbued with fear.</desc>
@@ -2147,7 +2147,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Close</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Sense</skillUsed>
 <desc>Ego Sense can be used to detect the presence and location of other sentient and biological life forms (i.e., egos) within the async’s range. To detect these life forms, the async makes a single Sense Test, opposed by each life form within range. The async may suffer a modifier for detecting small animals and insects, similar to the modifier applied for targeting them in ranged combat; likewise, a modifier for detecting larger life forms may also be applied. If successful, the async has detected that the life form is nearby. Every 10 full points of MoS will ascertain another piece of information regarding the detected life: direction from async, approximate size, type of creature, distance from async, etc. The async will know if the target moves, if they do so during the sleight’s duration.</desc>
@@ -2175,7 +2175,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Duration Instant</duration>
+<duration>Instant</duration>
 <strainMod>+0</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>An async using this sleight can implant a memory of up to an hour’s length inside the target’s mind. This memory very obviously does not belong to the target—there is no way they will confuse it for one of their own. The intent is not to fake memories, but to place one of the async’s memories in the target’s mind so that the target can access it just like any other memory. This can be useful for “archiving” important data with an ally, providing a literal alternate perspective, or simply making a “data dump” for the target to peruse. Implant Memory requires an Opposed Test against unwilling participants. At the gamemaster’s discretion, particularly traumatic memories might inflict mental stress on the recipient.</desc>
@@ -2189,7 +2189,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>+0</strainMod>
 <skillUsed>Control</skillUsed>
 <desc>Similar to Implant Memory, this sleight allows the async to impart some of their expertise and implant it into the target’s mind. For the duration of the sleight, the target benefits when using that skill. If the async’s skill is between 31 and 60, the target receives a +10 bonus. If the async’s skill is 61+, the target receives a +20 bonus. Implant Skill requires an Opposed Test against unwilling participants. In some cases, the target has been known to use the skill with the async’s flair and mannerisms.</desc>
@@ -2231,7 +2231,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Quick</actionType>
 <range>Close</range>
-<duration>Temp (Minutes)</duration>
+<duration>TEMP_MINUTES</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Sense</skillUsed>
 <desc>An async with Omni Awareness is hypersensitive to other biological life that is observing them. During this sleight’s duration, the async makes a Sense Test that is opposed by any life that has focused their attention on them within the sleight’s range; if successful, the async knows they are being watched, but not by whom or what. It does, however, apply a +30 Perception bonus to spot the observer. This sleight does not register partial attention or fleeting attention, or simple perception of the async, it only notices targets who are actively observing (even if they are concealing their observation). This sleight is effective in spotting a tail, as well as finding potential mates in a bar.</desc>
@@ -2301,7 +2301,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>–1</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>Sense Block disables and short circuits one of the target’s sensory cortices (chosen by the async), interfering with and possibly negating a specific source of sensory input for the chosen duration. If the async beats the target in the Opposed Test, the target suffers a –30 modifier to Perception Tests with that sense equal (doubled to –60 if the async scores an Excellent Success).</desc>
@@ -2329,7 +2329,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>+0</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>The sleight allows the async to overload and flood one of the target’s sensory cortices (chosen by the async), spamming them with confusing and distracting sensory input and thereby impairing them. If the async wins the Opposed Test, the target suffers a –10 modifier to all tests the duration of the sleight (doubled to –20 if the async scores an Excellent Success).</desc>
@@ -2385,7 +2385,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>+2</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>This sleight temporarily “shorts out” a portion of the subject’s brain stem. The victim’s cerebral functions and motor activity become severely impaired; apply a –30 modifier to all actions. If an Excellent Success is scored, the target effectively loses all cerebral functioning, including vision, hearing, other sensory functions, and mesh use. Their muscles and limbs also tense and become rigid, essentially paralyzing them in what looks like an agonized state.</desc>
@@ -2399,7 +2399,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Action Turns)</duration>
+<duration>TEMP_ACTION_TURNS</duration>
 <strainMod>0</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>This offensive sleight floods the target’s mind with sensory input and thought processes that are so alien and disturbing that they inflict 1d10 + (WIL ÷ 10, round up) mental stress. Increase the stress by +5 if an Excellent Success is scored.</desc>
@@ -2427,7 +2427,7 @@ sleight
 <activePassive>Active</activePassive>
 <actionType>Complex</actionType>
 <range>Touch</range>
-<duration>Temp (Hours)</duration>
+<duration>TEMP_HOURS</duration>
 <strainMod>+2</strainMod>
 <skillUsed>Psi Assault</skillUsed>
 <desc>Strip allows the exsurgent to suppress certain memories in the target’s mind. This can be used to block memories of certain events or even the victim’s identity. The process is not exact, however, and so the memories may not be fully suppressed and/or related memories may also be blocked; the gamemaster decides on the effect as determined by the MoS. Strip can also be used to temporarily erase a specific skill from the target’s mind, preventing them from using or even defaulting to that ability while so affected.</desc>

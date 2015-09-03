@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.github.distanteye.ep_utils.containers.Aptitude;
 import com.github.distanteye.ep_utils.containers.Rep;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
@@ -26,7 +27,7 @@ public class LifePathUI implements UI {
 	 
 	 // we still hardcode some stats like this because the page would break 
 	 //		if they were user definable anyways
-	 final static String[] primStats = {"COG","COO","INT","REF","SAV","SOM","WIL"}; 
+	 final static String[] primStats = Aptitude.aptitudes; 
 	 final static String[] secStats = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
 	 private BorderLayout windowLayout;
 	 private JFrame mainWindow;

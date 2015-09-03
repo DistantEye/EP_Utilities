@@ -1,6 +1,12 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import com.github.distanteye.ep_utils.containers.Sleight.ActionType;
+import com.github.distanteye.ep_utils.containers.Sleight.Duration;
+import com.github.distanteye.ep_utils.containers.Sleight.Range;
+import com.github.distanteye.ep_utils.containers.Sleight.SleightType;
+import com.github.distanteye.ep_utils.containers.Sleight.UsageType;
+
 /**
  * Represents any valid Sleight defined in the Internal Data file. Sleights are immutable
  * This class has a static exists method for determining whether a name is a valid Sleight
@@ -9,13 +15,13 @@ import java.util.HashMap;
  *
  */
 public class Sleight {
-	private String sleightType; 
+	private SleightType sleightType; 
 	private boolean isExsurgent;
 	private String name;		
-	private String psiType;
-	private String actionType;
-	private String range;
-	private String duration;
+	private UsageType psiType;
+	private ActionType actionType;
+	private Range range;
+	private Duration duration;
 	private String strainMod;
 	private String skillUsed;
 	private String description;
@@ -35,8 +41,8 @@ public class Sleight {
 	 * @param skillUsed Skill the sleight uses (if active
 	 * @param description Human readable description of sleight
 	 */
-	private Sleight(String sleightType, Boolean isExsurgent, String name,
-			String psiType, String actionType, String range, String duration,
+	private Sleight(SleightType sleightType, Boolean isExsurgent, String name,
+			UsageType psiType, ActionType actionType, Range range, Duration duration,
 			String strainMod, String skillUsed, String description) {
 		super();
 		this.sleightType = sleightType;
@@ -67,7 +73,7 @@ public class Sleight {
 	}
 	
 
-	public String getSleightType() {
+	public SleightType getSleightType() {
 		return sleightType;
 	}
 
@@ -79,19 +85,19 @@ public class Sleight {
 		return name;
 	}
 
-	public String getPsiType() {
+	public UsageType getPsiType() {
 		return psiType;
 	}
 
-	public String getActionType() {
+	public ActionType getActionType() {
 		return actionType;
 	}
 
-	public String getRange() {
+	public Range getRange() {
 		return range;
 	}
 
-	public String getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 
@@ -119,13 +125,13 @@ public class Sleight {
 		}
 		
 		int cnt = 0;
-		String sleightType = input[cnt++];
+		SleightType sleightType = EnumFactory.getEnum(SleightType.class,input[cnt++]);
 		Boolean isExsurgent = Boolean.parseBoolean(input[cnt++]);
 		String sleightName = input[cnt++];
-		String activePassive = input[cnt++];
-		String actionType = input[cnt++];
-		String range = input[cnt++];
-		String duration = input[cnt++];
+		UsageType activePassive = EnumFactory.getEnum(UsageType.class,input[cnt++]);
+		ActionType actionType = EnumFactory.getEnum(ActionType.class,input[cnt++]);
+		Range range = EnumFactory.getEnum(Range.class,input[cnt++]);
+		Duration duration = EnumFactory.getEnum(Duration.class,input[cnt++]);
 		String strainMod = input[cnt++];
 		String skillUsed = input[cnt++];
 		String description = input[cnt++];
@@ -135,6 +141,51 @@ public class Sleight {
 		Sleight.sleightList.put(temp.getName(),temp);
 	}
 	
+	/**
+	 * The classification of this Sleight: CHI/GAMMA/EPSILON,etc
+	 * @author Vigilant
+	 */
+	public enum SleightType
+	{
+		CHI,GAMMA,EPSILON
+	}
+	
+	/**
+	 * Sleights can be either actively triggered or passive/constant
+	 * @author Vigilant
+	 */
+	public enum UsageType
+	{
+		ACTIVE,PASSIVE
+	}
+	
+	/**
+	 * If the Sleight is passive, this will be AUTOMATIC, if Active,
+	 * this enum stores what kind of active action it is to use the Sleight
+	 * @author Vigilant
+	 */
+	public enum ActionType
+	{
+		AUTOMATIC,QUICK,COMPLEX,TASK
+	}
+	
+	/**
+	 * The range of the Sleight, what area it effects
+	 * @author Vigilant
+	 */
+	public enum Range
+	{
+		SELF,TOUCH,CLOSE
+	}
+	
+	/**
+	 * How long the Sleight lasts (Passive Sleights are CONSTANT)
+	 * @author Vigilant
+	 */
+	public enum Duration
+	{
+		CONSTANT,INSTANT,TEMP_ACTION_TURNS,TEMP_MINUTES,TEMP_HOURS,SUSTAINED
+	}
 		
 	
 }

@@ -285,7 +285,7 @@ public class LifePathGenerator {
 								// remove all not chi sleights
 								for (Sleight s : options)
 								{
-									if (s.getSleightType().equalsIgnoreCase("chi"))
+									if (s.getSleightType()==Sleight.SleightType.CHI)
 									{
 										optionsFinal.add(s);
 									}
@@ -303,7 +303,7 @@ public class LifePathGenerator {
 								// remove all not gamma sleights
 								for (Sleight s : options)
 								{
-									if (s.getSleightType().equalsIgnoreCase("gamma"))
+									if (s.getSleightType()==Sleight.SleightType.GAMMA)
 									{
 										optionsFinal.add(s);
 									}
@@ -1094,7 +1094,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
 						}
 						
-						if (! Sleight.sleightList.get(subparts[1]).getSleightType().equalsIgnoreCase("chi") )
+						if ( Sleight.sleightList.get(subparts[1]).getSleightType()!=Sleight.SleightType.CHI )
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Chi sleight");
 						}
@@ -1120,7 +1120,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
 						}
 						
-						if (! Sleight.sleightList.get(subparts[1]).getSleightType().equalsIgnoreCase("gamma") )
+						if (Sleight.sleightList.get(subparts[1]).getSleightType()!=Sleight.SleightType.GAMMA )
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Gamma sleight");
 						}

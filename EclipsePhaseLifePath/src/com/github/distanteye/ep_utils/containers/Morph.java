@@ -42,11 +42,11 @@ public class Morph {
 	 * @param effects Effects string that models the effects caused by possessing the morph 
 	 * @param Notes Any remaining notes about the morph
 	 */
-	private Morph(String name, String morphType, String description, String implants, String aptitudeMaxStr, int durability, int woundThreshold, int CP,
+	private Morph(String name, MorphType morphType, String description, String implants, String aptitudeMaxStr, int durability, int woundThreshold, int CP,
 					String creditCost, String effects, String notes) {
 		super();
 		this.name = name;
-		this.morphType = MorphType.getEnum(morphType);
+		this.morphType = morphType;
 		this.description = description;
 		this.implants = implants;
 		
@@ -234,9 +234,20 @@ public class Morph {
 			throw new IllegalArgumentException("Invalidly formatted Morph string[] : " + Utils.joinStr(parts,","));
 		}
 		
+		int cnt = 0;
+		String name = parts[cnt++];
+		MorphType morphType = EnumFactory.getEnum(MorphType.class, parts[cnt++]);
+		String description = parts[cnt++];
+		String implants = parts[cnt++];
+		String aptitudeMaxStr = parts[cnt++];
+		int durability = Integer.parseInt(parts[cnt++]);
+		int woundThreshold = Integer.parseInt(parts[cnt++]);
+		int CP = Integer.parseInt(parts[cnt++]);
+		String creditCost = parts[cnt++];
+		String effects = parts[cnt++];
+		String notes = parts[cnt++];
 		
-		Morph temp = new Morph(parts[0],parts[1], parts[2],parts[3],parts[4],
-				Integer.parseInt(parts[5]),Integer.parseInt(parts[6]),Integer.parseInt(parts[7]),parts[8],parts[9], parts[10]);
+		Morph temp = new Morph(name,morphType,description,implants,aptitudeMaxStr,durability,woundThreshold,CP,creditCost,effects,notes);
 		Morph.morphList.add(temp);
 	}
 	
@@ -247,18 +258,5 @@ public class Morph {
 	public enum MorphType
 	{
 		BIOMORPH, INFOMORPH, SYNTH, POD;
-		
-		public static MorphType getEnum(String name)
-		{
-			for (MorphType m : MorphType.values())
-			{
-				if (name.toUpperCase().equals(m.name()))
-				{
-					return m;
-				}
-			}
-			
-			throw new IllegalArgumentException(name + " is not a valid MorphType!");			
-		}
 	}
 }

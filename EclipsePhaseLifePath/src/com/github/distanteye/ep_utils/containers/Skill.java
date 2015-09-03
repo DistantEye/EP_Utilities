@@ -137,7 +137,15 @@ public class Skill {
 	 */
 	public static Skill CreateSkill(String name, int value)
 	{
-		return Skill.CreateSkill(name,"","",value);
+		if (name.contains(":") || name.contains("["))
+		{
+			// if we see signs that it's a more advanced skill type, we have to use the stronger methods
+			return Skill.CreateSkillFromString(name + " " + value);
+		}
+		else
+		{
+			return Skill.CreateSkill(name,"","",value);
+		}
 	}
 	
 	/**
