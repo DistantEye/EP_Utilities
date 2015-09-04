@@ -30,6 +30,7 @@ public class Aptitude extends PrimaryStat {
 		else if (val > APTITUDE_MAX)
 		{
 			val = APTITUDE_MAX;
+			super.setValue(val);
 		}
 		else
 		{
