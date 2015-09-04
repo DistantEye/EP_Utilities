@@ -1,10 +1,9 @@
 package com.github.distanteye.ep_utils.containers;
-import java.security.SecureRandom;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import com.github.distanteye.ep_utils.core.Step;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -13,80 +12,20 @@ import com.github.distanteye.ep_utils.core.Utils;
  * 
  * @author Vigilant
  */
-public class EpCharacter {
+public class EpCharacter extends SkilledCharacter {
 
 	// some values constant to all Characters
 	public static HashMap<String,String> charConstants = new HashMap<String,String>();
-	public static final String[] secStats = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
+	public static String[] SECONDARY_STATS = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
 	
-	private HashMap<String,Skill> skills; // Skills are too tightly coupled to Character's state to be useful as AspectHashMap
-	private AspectHashMap<Aptitude> aptitudes;
 	private AspectHashMap<Trait> traits;
 	private AspectHashMap<Rep> reps;
 	private AspectHashMap<Sleight> sleights;
 	
-	private AspectHashMap<Integer> nonAppStats;
-	private HashMap<String,String> otherVars;
+	private AspectHashMap<Integer> secStats;
 	private ArrayList<String> gearList;
-	private String name;
-	private int age;
 	private LinkedList<String> allBackgrounds;
 	private Morph currentMorph;
-	
-	private LinkedList<Integer> lastRolls;
-	private String currentTable;
-	private Step lastStep;
-	private ArrayList<String[]> packages; // stores pkgs added to character
-	private boolean autoApplyMastery;
-	
-	/**
-	 * Returns the current Table name the player is rolling on (if LifePath generation)
-	 * @return String name of current table
-	 */
-	public String getCurrentTable() 
-	{
-		return currentTable;
-	}
-
-	public void setCurrentTable(String currentTable) 
-	{
-		if (!this.currentTable.equals(currentTable))
-		{
-			lastRolls = new LinkedList<Integer>();
-		}
-			
-		this.currentTable = currentTable;
-	}
-
-	/**
-	 * Whenever character is going through some kind of character gen, 
-	 * knowing what they rolled last may be useful. Returns that value
-	 * 
-	 * @return Integer for the last value rolled
-	 */
-	public int getLastRoll() 
-	{
-		return lastRolls.getLast();
-	}
-
-	/**
-	 * Checks whether a roll is in the stack of last rolls at all
-	 * @param val Int to check the rolls for
-	 * @return True if present in collection, false otherwise
-	 */
-	public boolean rollsContain(int val)
-	{
-		return lastRolls.contains(val);
-	}
-	
-	/**
-	 * Pushes a value onto the stack of last rolls
-	 * @param lastRoll int value
-	 */
-	public void addLastRoll(int lastRoll) 
-	{
-		this.lastRolls.push(lastRoll);
-	}
 
 	/**
 	 * @param name Character name
@@ -94,33 +33,28 @@ public class EpCharacter {
 	 */
 	public EpCharacter(String name, boolean autoApplyMastery) 
 	{
-		this.name = name;
-		this.autoApplyMastery = autoApplyMastery;
-		skills = new HashMap<String, Skill>();
-		aptitudes = new AspectHashMap<Aptitude>(" ",false);
+		super(name,autoApplyMastery);
+		
 		traits = new AspectHashMap<Trait>(", ",false);
 		
 		gearList = new ArrayList<String>();
-		nonAppStats = new AspectHashMap<Integer>(" ", true);
-		otherVars = new HashMap<String,String>();
-	
-		age = -1; // placeholder
+		secStats = new AspectHashMap<Integer>(" ", true);
 		
-		// set up placeholder values for aptitudes
-		for (String stat : Aptitude.aptitudes)
+		// We use Aptitudes, a more EP-Tailored Primary Stat
+		for (String stat : Aptitude.TYPES)
 		{
-			aptitudes.put(stat, new Aptitude(stat,0));	
+			primStats.put(stat, new Aptitude(stat,0));	
 		}
-		aptitudes.setImmutable();
+		primStats.setImmutable();
 		
 		// do it for MOX and the rest of the derived stats
 		// all stats other than mox,INIT,Speed reflect the user's bonus to that category, since the rest are calculated stats
-		for (String stat : secStats)
+		for (String stat : SECONDARY_STATS)
 		{
-			nonAppStats.put(stat, 0);	
+			secStats.put(stat, 0);	
 		}
-		nonAppStats.put("MOX", 1); // these two
-		nonAppStats.setImmutable();
+		secStats.put("MOX", 1); // these two
+		secStats.setImmutable();
 	
 		
 		reps = new AspectHashMap<Rep>("\n",false);
@@ -141,11 +75,7 @@ public class EpCharacter {
 		this.setVar("{CR}", "0");
 		this.setVar("{path}", "");
 		this.setVar("{isSynth}", "0");
-		
-		currentTable = "";
-		lastRolls = new LinkedList<Integer>();
 		allBackgrounds = new LinkedList<String>();
-		packages = new ArrayList<String[]>();
 	}
 	
 	/**
@@ -167,37 +97,37 @@ public class EpCharacter {
 			Integer.parseInt(this.getVar("{speedBonus}"));
 		}
 		
-		nonAppStats.put("SPD", 1+speedBon);
+		secStats.put("SPD", 1+speedBon);
 		
 		// Infomorphs don't have physical damage stats 
 		if (currentMorph.getMorphType()!=Morph.MorphType.INFOMORPH)
 		{
-			nonAppStats.put("DUR", currentMorph.getDurability());
-			nonAppStats.put("WT", currentMorph.getWoundThreshold());
+			secStats.put("DUR", currentMorph.getDurability());
+			secStats.put("WT", currentMorph.getWoundThreshold());
 			int dr = currentMorph.getDurability();
 			if (currentMorph.getMorphType()==Morph.MorphType.SYNTH)
 			{
-				nonAppStats.put("DR", dr*2);
+				secStats.put("DR", dr*2);
 			}
 			else
 			{
-				nonAppStats.put("DR", (int)Math.round(dr*1.5));
+				secStats.put("DR", (int)Math.round(dr*1.5));
 			}
 			
-			nonAppStats.put("DB", aptitudes().get("SOM").getValue()/10);
+			secStats.put("DB", primaryStats().get("SOM").getValue()/10);
 		}
 		else
 		{
-			nonAppStats.put("DUR", 0);
-			nonAppStats.put("WT", 0);
-			nonAppStats.put("DR", 0);
-			nonAppStats.put("DB", 0);
+			secStats.put("DUR", 0);
+			secStats.put("WT", 0);
+			secStats.put("DR", 0);
+			secStats.put("DB", 0);
 		}
 		
-		nonAppStats.put("LUC", aptitudes().get("WIL").getValue()*2);
-		nonAppStats.put("TT", (int)Math.round(nonAppStats.get("LUC")/5));
-		nonAppStats.put("IR", nonAppStats.get("LUC")*2);
-		nonAppStats.put("INIT", (int)Math.round( ( (aptitudes().get("INT").getValue()+aptitudes().get("REF").getValue())) * 2 ) / 5 );
+		secStats.put("LUC", primaryStats().get("WIL").getValue()*2);
+		secStats.put("TT", (int)Math.round(secStats.get("LUC")/5));
+		secStats.put("IR", secStats.get("LUC")*2);
+		secStats.put("INIT", (int)Math.round( ( (primaryStats().get("INT").getValue()+primaryStats().get("REF").getValue())) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
@@ -205,7 +135,7 @@ public class EpCharacter {
 			int cpUsed;
 			int mox, totalRep,totalApt,numSleights,numSpec,activeSkillPoints,knowledgeSkillPoints,totalCredits;
 			
-			mox = nonAppStats.get("MOX");
+			mox = secStats.get("MOX");
 			totalRep = 0;
 			totalApt = 0;
 			numSleights = 0;
@@ -220,7 +150,7 @@ public class EpCharacter {
 				totalRep = r.getValue();
 			}
 			
-			for (Aptitude apt : aptitudes.values())
+			for (PrimaryStat apt : primStats.values())
 			{
 				totalApt += apt.getValue();
 			}
@@ -254,7 +184,7 @@ public class EpCharacter {
 					Skill tmp = skills.get(arr[0]);
 					
 					// the aptitude isn't part of the cost
-					sklVal -= aptitudes.get(tmp.getLinkedApt()).getValue();
+					sklVal -= primStats.get(tmp.getLinkedApt()).getValue();
 					
 					if (tmp.isKnowledge())
 					{
@@ -323,14 +253,14 @@ public class EpCharacter {
 	
 	public String toString()
 	{
-		String result = this.name + "(" + this.age + ")"+ "\n";
+		String result = this.getName() + "(" + this.getAge() + ")"+ "\n";
 		result = "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
 					+ ", Background : " + this.getBackground() +"\n";
 		
 		result += "Traits : " + this.traits.toString() + "\n";
 		result += "Sleights : " + this.sleights.toString() + "\n";
-		result += this.aptitudes.toString() + "\n";
-		result += this.nonAppStats.toString() + "\n";
+		result += this.primStats.toString() + "\n";
+		result += this.secStats.toString() + "\n";
 		result += this.getSkillsString() + "\n";
 		result += this.reps.toString() + "\n";		
 		result += "Gear : " + this.getGearString();
@@ -453,7 +383,7 @@ public class EpCharacter {
 		}
 		
 		
-		this.aptitudes.get(apt).addValue(value);
+		this.primStats.get(apt).addValue(value);
 	}
 	
 	/**
@@ -462,7 +392,7 @@ public class EpCharacter {
 	 */
 	public int getMox()
 	{
-		return this.nonAppStats.get("MOX");
+		return this.secStats.get("MOX");
 	}
 	
 	/**
@@ -476,7 +406,7 @@ public class EpCharacter {
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.nonAppStats.put("MOX", val);
+		this.secStats.put("MOX", val);
 	}
 	
 	/**
@@ -485,145 +415,25 @@ public class EpCharacter {
 	 */
 	public void incMox(int val)
 	{
-		if (this.nonAppStats.get("MOX") + val < 1)
+		if (this.secStats.get("MOX") + val < 1)
 		{
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.nonAppStats.put("MOX", this.nonAppStats.get("MOX") + val);
-	}
-	
-	
-	
-	/**
-	 * Either adds the skill to the character (if it doesn't exist), or increments the skill level
-	 * of the skill that's already there, based on the value of the skill passed in
-	 * @param skill Valid Skill object with a meaningful Skill level value
-	 */
-	public void addSkill(Skill skill)
-	{
-		if (this.skills.containsKey(skill.getFullName()) )
-		{
-			this.skills.get(skill.getFullName()).addValue(skill.getValue(), true);						
-		}
-		else
-		{
-			this.skills.put(skill.getFullName(), skill);
-			this.setVar("{newestSkill}", skill.getFullName());
-		}
-	}
-	
-	/**
-	 * Removes a skill from the character
-	 * 
-	 * @param skillName Name of the skill the character has
-	 * @return True if successful, false if skill could not be found
-	 */
-	public boolean removeSkill(String skillName) 
-	{
-		if (this.skills.containsKey(skillName))
-		{
-			Skill temp = this.skills.remove(skillName);
-			this.setVar("{lastRemSkl}", temp.getFullName());
-			this.setVar("{lastRemSklVal}", ""+temp.getValue());
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Adds/subtracts levels from a skill that already exists
-	 * 
-	 * @param skillName Name of the skill the character has
-	 * @param amount Amount to add to the skill, can be negative
-	 * @return True if successful, false if skill could not be found or created
-	 */
-	public boolean incSkill(String skillName, int amount) 
-	{
-		if (this.skills.containsKey(skillName))
-		{
-			this.skills.get(skillName).addValue(amount, true);
-			return true;
-		}
-		else if (amount > 0)
-		{
-			this.addSkill(Skill.CreateSkill(skillName, amount));
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Sets a existing skill to a certain level, or creates it if it doesn't exist
-	 * 
-	 * @param skillName Name of the skill the character has
-	 * @param amount Level to set the skill to
-	 * @return True if successful, false if skill could not be found
-	 */
-	public boolean setSkill(String skillName, int amount) 
-	{
-		if (this.skills.containsKey(skillName))
-		{
-			this.skills.get(skillName).setValue(amount);
-			return true;
-		}
-		else if (Skill.isSkill(skillName))
-		{
-			Skill tempSkl = Skill.CreateSkill(skillName, amount);
-			this.skills.put(tempSkl.getFullName(), tempSkl);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Adds specialization to a skill that already exists
-	 * 
-	 * @param skillName Name of the skill the character has
-	 * @param specialization Amount to add to the skill, can be negative
-	 * @return True if successful, false if skill could not be found
-	 */
-	public boolean addSkillSpec(String skillName, String specialization) 
-	{
-		if (this.skills.containsKey(skillName))
-		{
-			this.skills.get(skillName).setSpecialization(specialization);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Returns whether player has the specified skill
-	 * @param skillName Skill to search for
-	 * @return True/False as appropriate
-	 */
-	public boolean hasSkill(String skillName)
-	{
-		return this.skills.containsKey(skillName);
+		this.secStats.put("MOX", this.secStats.get("MOX") + val);
 	}
 	
 	/**
 	 * Returns final adjusted value for a skill, factoring in base aptitude bonus and mastery adjustments, and skill cap
+	 * Natural Language is returned at full value
+	 * 
 	 * @param skl Valid skill object
 	 * @return Adjusted value/skill points for skill
 	 */
 	public int getFinalSklVal(Skill skl)
 	{
 		String linkedApt = skl.getLinkedApt();
-		int aptValue = aptitudes().get(linkedApt).getValue();
+		int aptValue = primaryStats().get(linkedApt).getValue();
 		
 		int result = 0;
 
@@ -645,45 +455,6 @@ public class EpCharacter {
 		return result;
 	}
 	
-	/**
-	 * Takes all the character's skills and returns a list of String[]
-	 * in the form of {skillName,value} . skillName will include the specialization if applicable
-	 * Character's base aptitude values will be factored into the calculation
-	 * 
-	 * @return ArrayList of strings representing character skill values
-	 */
-	public ArrayList<String[]> getSkills()
-	{
-		ArrayList<String[]> result = new ArrayList<String[]>();
-		
-		for (Skill skill : skills.values())
-		{
-			String[] temp = {skill.getFullName(), ""+getFinalSklVal(skill)};
-			result.add(temp);
-		}
-		
-		return result;
-	}
-	
-	public String getName() 
-	{
-		return name;
-	}
-
-	public void setName(String name) 
-	{
-		this.name = name;
-	}
-
-	public int getAge() 
-	{
-		return age;
-	}
-
-	public void setAge(int age) 
-	{
-		this.age = age;
-	}
 
 	public String getBackground() 
 	{
@@ -753,47 +524,6 @@ public class EpCharacter {
 		throw new IllegalArgumentException("Character lacks gear : " + gear);
 	}
 	
-	public String getRandSkill(SecureRandom rng)
-	{
-		int idx = rng.nextInt(skills.size());
-		return ((Skill)skills.values().toArray()[idx]).getFullName();
-	}
-	
-	public int getNumSkills()
-	{
-		return this.skills.size();
-	}
-	
-	public String getSkillsString()
-	{
-		String result = "";
-		int cnt = 0;
-		boolean first = true;
-		
-		
-		for (String[] skl : this.getSkills())
-		{
-			String separator = ",  ";
-			
-			if (first)
-			{
-				separator = "";
-				first = false;
-			}
-			
-			if (cnt >= 9)
-			{
-				separator = "\n";
-				cnt = 0;
-			}
-			
-			result += separator + skl[0] + " " + skl[1];
-			cnt++;
-		}
-		
-		return result.trim();
-	}
-	
 	public ArrayList<Rep> getAllRep()
 	{
 		ArrayList<Rep> result = new ArrayList<Rep>();
@@ -814,176 +544,7 @@ public class EpCharacter {
 		return result.trim();
 	}
 	
-	/**
-	 * Most generalized variable store. Sets a key,value pair for storage by the character
-	 * @param name Name of the variable
-	 * @param val Value of the variable
-	 */
-	public void setVar(String name, String val)
-	{
-		this.otherVars.put(name, val);
-	}
-	
-	/**
-	 * Overload for incVar that takes an integer second parameter (for convenience)
-	 * @param name name of variable
-	 * @param val Integer value
-	 */
-	public void incVar(String name, int val)
-	{
-		this.incVar(name, String.valueOf(val));
-	}
-	
-	/**
-	 * Most generalized variable store. Increments key,value pair for storage by the character
-	 * will throw error if the variable passed or the value passed is not a number.
-	 * Will create the variable if it doesn't exist, set to 0 (before val is added)
-	 * 
-	 * 
-	 * @param name Name of the variable (must be numeric holding variable)
-	 * @param val Value of the variable (must be numeric value in string)
-	 */
-	public void incVar(String name, String val)
-	{
-		if (!this.hasVar(name))
-		{
-			this.setVar(name, String.valueOf(0));
-		}
-		
-		String var = this.getVar(name);
-		
-		if (!Utils.isInteger(var))
-		{
-			throw new IllegalArgumentException("incVar(" + name + "," + val +"): variable value " + var + " is not a number!");
-		}
-		if (!Utils.isInteger(val))
-		{
-			throw new IllegalArgumentException("incVar(" + name + "," + val +"): " + val + " is not a number!");
-		}
-		
-		// otherwise proceed with increment
-		int newVal = Integer.parseInt(var) + Integer.parseInt(val);
-		this.setVar(name, String.valueOf(newVal));
-	}
-	
-	/**
-	 * Retrieves a variable from the general store. Does not throw error if it doesn't exist, returns 0 instead
-	 * Will still throw error if the variable exists but is not a number
-	 * @param name Name of variable to search for
-	 * @return The matching value for name, or 0 if it doesn't exist. 
-	 */
-	public int getVarInt(String name)
-	{
-		if (this.hasVar(name))
-		{
-			if (Utils.isInteger(this.getVar(name)))
-			{
-				return Integer.parseInt(this.otherVars.get(name));
-			}
-			else
-			{
-				throw new IllegalArgumentException(name + " is a non-integer variable and can't be returned by getVarInt");
-			}
-		}
-		else
-		{
-			return 0;
-		}
-	}	
-	
-	/**
-	 * Retrieves a variable from the general store. 
-	 * This version returns "" instead of throwing an error if no such variable exists
-	 * @param name Name of variable to search for
-	 * @return The matching value for name, or "" if none exists
-	 */
-	public String getVarSF(String name)
-	{
-		if (hasVar(name))
-		{
-			return getVar(name);
-		}
-		else
-		{
-			return "";
-		}
-	}
-	
-	/**
-	 * Retrieves a variable from the general store
-	 * @param name Name of variable to search for
-	 * @return The matching value for name
-	 * @throws IllegalArgumentException if no such variable exists
-	 */
-	public String getVar(String name)
-	{
-		if (this.hasVar(name))
-		{
-			return this.otherVars.get(name);
-		}
-		else
-		{
-			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
-		}
-	}
-	
-	/**
-	 * Returns whether a variable exists in the store (or from the character special store)
-	 * 
-	 * Will return false if the variable exists but has no value (length 0 string)
-	 * @param name Name/Key to search for
-	 * @return True if exists with a non "" value, false otherwise
-	 */
-	public boolean hasVar(String name)
-	{
-		return this.otherVars.containsKey(name) && this.otherVars.get(name).length() != 0;
-	}
-	
-	/**
-	 * Removes a variable from the store and returns it, if it exists
-	 * @param name Name/Key to remove
-	 * @return The variable removed
-	 * @throws IllegalArgumentException if nothing with that key exists
-	 */
-	public String removeVar(String name)
-	{
-		if (this.otherVars.containsKey(name))
-		{
-			return this.otherVars.remove(name);
-		}
-		else
-		{
-			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
-		}
-	}
-
-	public Step getLastStep() {
-		return lastStep;
-	}
-
-	public void setLastStep(Step lastStep) {
-		this.lastStep = lastStep;
-	}
-	
-	public boolean hasPackage(String name)
-	{
-		for (String[] info : this.packages)
-		{
-			if (info[0].equalsIgnoreCase(name))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	
 	// Sub containers : these give access to character aspects big enough for their own class 
-	
-	public AspectHashMap<Aptitude> aptitudes() {
-		return aptitudes;
-	}
 
 	public AspectHashMap<Trait> traits() {
 		return traits;
@@ -997,28 +558,10 @@ public class EpCharacter {
 		return sleights;
 	}
 
-	public AspectHashMap<Integer> nonAppStats() {
-		return nonAppStats;
+	public AspectHashMap<Integer> secStats() {
+		return secStats;
 	}
 	
 	//end sub-containers
-
-	/**
-	 * Adds package info to a character's list of added packages. This is mainly a log for purposes of keeping aware of duplications
-	 * @param info Length 2 String[] of form {PackageName,PP}
-	 */
-	public void addPackage(String[] info)
-	{
-		this.packages.add(info);
-	}
-
-	public boolean isAutoApplyMastery() {
-		return autoApplyMastery;
-	}
-
-	public void setAutoApplyMastery(boolean autoApplyMastery) {
-		this.autoApplyMastery = autoApplyMastery;
-	}
-	
 	
 }

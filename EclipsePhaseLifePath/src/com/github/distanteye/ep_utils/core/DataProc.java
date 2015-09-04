@@ -594,7 +594,7 @@ public class DataProc {
 			if (Utils.isInteger(aptitudeMaxStr))
 			{
 				int max = Integer.parseInt(aptitudeMaxStr);
-				for (String apt : Aptitude.aptitudes)
+				for (String apt : Aptitude.TYPES)
 				{
 					outputList.add(apt+":"+max);
 				}
@@ -605,7 +605,7 @@ public class DataProc {
 				
 				// build a list of all stats to cross off as we go
 				ArrayList<String> aptList = new ArrayList<String>();
-				for (String apt : Aptitude.aptitudes)
+				for (String apt : Aptitude.TYPES)
 				{
 					aptList.add(apt);
 				}			
@@ -633,7 +633,7 @@ public class DataProc {
 							max = Integer.parseInt(match.group());
 						}
 						
-						for (String apt : Aptitude.aptitudes)
+						for (String apt : Aptitude.TYPES)
 						{
 							if (str.toUpperCase().contains(apt))
 							{

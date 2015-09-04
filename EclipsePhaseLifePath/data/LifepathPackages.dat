@@ -799,7 +799,7 @@ Package
 ASYNC
 
 
-PP;1>Interest: ?1? 45;trait(Psi,1);trait(Mental Disorder (?1?));trait(Psi Chameleon (Level 1)/Psi Defense (Level 1));psichi(?5?);setVar(hasASYNC,1)
+PP;1>Interest: ?1? 45;trait(Psi,1);trait(Mental Disorder (?1?));extendedChoice(Choose either Psi Chameleon or Psi Defense at level 1,1=trait(Psi Chameleon,1)/2=trait(Psi Defense,1));psichi(?5?);setVar(hasASYNC,1)
 ------------------------------------------------------
 Package
 GEARHEAD

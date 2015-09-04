@@ -143,9 +143,9 @@ public class LifePathUI implements UI {
 		
 		// Add first row, with the Base Primary stat values
 		int idx = 0;
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
-			statPanel.addMappedFixedTF(idx,0,"Base "+key, ""+gen.getPC().aptitudes().get(key),5,true);
+			statPanel.addMappedFixedTF(idx,0,"Base "+key, ""+gen.getPC().primaryStats().get(key),5,true);
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -153,7 +153,7 @@ public class LifePathUI implements UI {
 		
 		// add row for bonuses
 		idx = 0;
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
 			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
@@ -162,7 +162,7 @@ public class LifePathUI implements UI {
 		
 		// add final row for totals.
 		idx = 0;
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
 			statPanel.addMappedFixedTF(idx,2,"Total "+key, "",5,true);
 			idx +=2;
@@ -172,16 +172,16 @@ public class LifePathUI implements UI {
 		
 		// add row for base secondary stats
 		idx = 0;
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedFixedTF(idx,3,key, ""+gen.getPC().nonAppStats().get(key),5,true);
+			statPanel.addMappedFixedTF(idx,3,key, ""+gen.getPC().secStats().get(key),5,true);
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
 		
 		// now we do bonuses
 		idx = 0;
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
@@ -190,7 +190,7 @@ public class LifePathUI implements UI {
 		
 		// now we do the totals
 		idx = 0;
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			statPanel.addMappedFixedTF(idx,5,"Total "+key, "",5,true);
 			idx +=2;
@@ -365,45 +365,45 @@ public class LifePathUI implements UI {
 		int cnt = 0;
 		
 		// fill stats with all the primary and secondary stat values
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
-			stats[cnt++] = gen.getPC().aptitudes().get(key).getValue();
+			stats[cnt++] = gen.getPC().primaryStats().get(key).getValue();
 		}
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			stats[cnt++] = gen.getPC().nonAppStats().get(key);
+			stats[cnt++] = gen.getPC().secStats().get(key);
 		}
 		
 		cnt = 0;
 		
 		// update base stats for both
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
 			statPanel.setTextF("Base "+key,stats[cnt++]);
 		}
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			statPanel.setTextF(key,stats[cnt++]);
 		}
 		
 		// get bonus amounts
 		cnt = 0;
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
 				
 		// build stat totals
 		cnt = 0;
-		for (String key : Aptitude.aptitudes)
+		for (String key : Aptitude.TYPES)
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
-		for (String key : EpCharacter.secStats)
+		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
@@ -411,7 +411,7 @@ public class LifePathUI implements UI {
 		
 		// update a few more display fields
 		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().nonAppStats().get("MOX"));
+		statPanel.setTextF("MOX",gen.getPC().secStats().get("MOX"));
 		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
 		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
 		
