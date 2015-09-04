@@ -20,7 +20,7 @@ import com.github.distanteye.ep_utils.ui.UI;
 public class LifePathGenerator {
 
 	public static SecureRandom rng = new SecureRandom();
-	private PlayerCharacter playerChar;
+	private EpCharacter playerChar;
 	private UI UIObject;
 	private boolean isRolling;
 	private String nextEffects; // used to store things between steps
@@ -39,7 +39,7 @@ public class LifePathGenerator {
 	 */
 	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling)
 	{
-		playerChar = new PlayerCharacter(characterName,false);
+		playerChar = new EpCharacter(characterName,false);
 		UIObject = UIObject_;
 		this.isRolling = isRolling;
 		this.nextEffects = "";
@@ -55,7 +55,7 @@ public class LifePathGenerator {
 	 * Returns the underlying player's Character object
 	 * @return Character object (copy by reference)
 	 */
-	public PlayerCharacter getPC() {
+	public EpCharacter getPC() {
 		return playerChar;
 	}
 
@@ -63,7 +63,7 @@ public class LifePathGenerator {
 	 * Sets a new Character object for the player
 	 * @param playerChar Valid character object
 	 */
-	public void setPC(PlayerCharacter playerChar) {
+	public void setPC(EpCharacter playerChar) {
 		this.playerChar = playerChar;
 	}
 

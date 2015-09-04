@@ -199,7 +199,7 @@ public class CharacterSheetUI implements UI {
 		
 		// add row for base secondary stats
 		idx = 0;
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			statPanel.addMappedTF(idx,3,key,5,this).setInputVerifier(new NumericValidator());
 			idx +=2;
@@ -208,7 +208,7 @@ public class CharacterSheetUI implements UI {
 		
 		// now we do bonuses
 		idx = 0;
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this).setInputVerifier(new NumericValidator());
 			idx +=2;
@@ -217,7 +217,7 @@ public class CharacterSheetUI implements UI {
 		
 		// now we do the totals
 		idx = 0;
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			statPanel.addMappedFixedTF(idx,5,"Total "+key, "",5,true);
 			idx +=2;
@@ -228,9 +228,9 @@ public class CharacterSheetUI implements UI {
 		statPanel.addMappedTF(0,6,"Stress",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Stress",0);
 		statPanel.addMappedTF(2,6,"MOX",5,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("MOX",PlayerCharacter.getIntConst("FREE_MOX"));
+			statPanel.setTextF("MOX",EpCharacter.getIntConst("FREE_MOX"));
 		statPanel.addMappedTF(4,6,"Credits",5,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("Credits",PlayerCharacter.getIntConst("FREE_CREDIT"));
+			statPanel.setTextF("Credits",EpCharacter.getIntConst("FREE_CREDIT"));
 		statPanel.addMappedTF(6,6,"Base CP",5,this).setInputVerifier(new NumericValidator());
 			statPanel.setTextF("Base CP",1000);
 		statPanel.addMappedFixedTF(8,6,"Free CP", "",5,true);
@@ -322,7 +322,7 @@ public class CharacterSheetUI implements UI {
 			gen.getPC().aptitudes().get(key).setValue(val);
 			stats[cnt++] = val;
 		}
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			int val = statPanel.getTextFVal(key);
 			gen.getPC().nonAppStats().put(key, val);			
@@ -337,7 +337,7 @@ public class CharacterSheetUI implements UI {
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
@@ -348,7 +348,7 @@ public class CharacterSheetUI implements UI {
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
-		for (String key : PlayerCharacter.secStats)
+		for (String key : EpCharacter.secStats)
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}

@@ -143,7 +143,7 @@ public class DataProc {
 					String[] parts = chunk[i].split(":");
 					if (parts.length == 2)
 					{
-						PlayerCharacter.charConstants.put(parts[0], parts[1]);
+						EpCharacter.charConstants.put(parts[0], parts[1]);
 					}
 					else
 					{
