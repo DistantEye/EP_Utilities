@@ -17,11 +17,15 @@ public class PlayerCharacter {
 
 	// some values constant to all Characters
 	public static HashMap<String,String> charConstants = new HashMap<String,String>();
+	public static final String[] secStats = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
 	
-	private HashMap<String,Skill> skillList;
-	private HashMap<String,Aptitude> aptitudeList;
-	private ArrayList<Trait> traitList;
-	private HashMap<String,Integer> nonAppStats;
+	private HashMap<String,Skill> skills; // Skills are too tightly coupled to Character's state to be useful as AspectHashMap
+	private AspectHashMap<Aptitude> aptitudes;
+	private AspectHashMap<Trait> traits;
+	private AspectHashMap<Rep> reps;
+	private AspectHashMap<Sleight> sleights;
+	
+	private AspectHashMap<Integer> nonAppStats;
 	private HashMap<String,String> otherVars;
 	private ArrayList<String> gearList;
 	private String name;
@@ -31,13 +35,9 @@ public class PlayerCharacter {
 	
 	private LinkedList<Integer> lastRolls;
 	private String currentTable;
-	private HashMap<String, Rep> repList;
-	private HashMap<String, Sleight> sleightList;
 	private Step lastStep;
 	private ArrayList<String[]> packages; // stores pkgs added to character
 	private boolean autoApplyMastery;
-	
-	private static final int LEVEL_CAP = 99;
 	
 	/**
 	 * Returns the current Table name the player is rolling on (if LifePath generation)
@@ -96,47 +96,42 @@ public class PlayerCharacter {
 	{
 		this.name = name;
 		this.autoApplyMastery = autoApplyMastery;
-		skillList = new HashMap<String,Skill>();
-		aptitudeList = new HashMap<String,Aptitude>();
-		traitList = new ArrayList<Trait>();
+		skills = new HashMap<String, Skill>();
+		aptitudes = new AspectHashMap<Aptitude>(" ",false);
+		traits = new AspectHashMap<Trait>(", ",false);
+		
 		gearList = new ArrayList<String>();
-		nonAppStats = new HashMap<String,Integer>();
+		nonAppStats = new AspectHashMap<Integer>(" ", true);
 		otherVars = new HashMap<String,String>();
 	
 		age = -1; // placeholder
 		
 		// set up placeholder values for aptitudes
-		aptitudeList.put("COG", new Aptitude("COG",0));
-		aptitudeList.put("COO", new Aptitude("COO",0));
-		aptitudeList.put("INT", new Aptitude("INT",0));
-		aptitudeList.put("REF", new Aptitude("REF",0));
-		aptitudeList.put("SAV", new Aptitude("SAV",0));
-		aptitudeList.put("SOM", new Aptitude("SOM",0));
-		aptitudeList.put("WIL", new Aptitude("WIL",0));
+		for (String stat : Aptitude.aptitudes)
+		{
+			aptitudes.put(stat, new Aptitude(stat,0));	
+		}
+		aptitudes.setImmutable();
 		
 		// do it for MOX and the rest of the derived stats
 		// all stats other than mox,INIT,Speed reflect the user's bonus to that category, since the rest are calculated stats
-		nonAppStats.put("MOX", 1);
-		nonAppStats.put("TT", 0);
-		nonAppStats.put("LUC", 0);
-		nonAppStats.put("IR", 0);
-		nonAppStats.put("WT", 0);
-		nonAppStats.put("DUR", 0);
-		nonAppStats.put("DR", 0);
-		nonAppStats.put("INIT", 1);
-		nonAppStats.put("SPD", 1);
-		nonAppStats.put("DB", 0);
+		for (String stat : secStats)
+		{
+			nonAppStats.put(stat, 0);	
+		}
+		nonAppStats.put("MOX", 1); // these two
+		nonAppStats.setImmutable();
 	
 		
-		repList = new HashMap<String,Rep>();
+		reps = new AspectHashMap<Rep>("\n",false);
 		
 		// gather all valid Rep categories from Rep class and add them at 0
 		for (String repKey : Rep.repTypes.keySet())
 		{
-			repList.put(repKey,Rep.getCopyOf(repKey));
+			reps.put(repKey,Rep.getCopyOf(repKey));
 		}
 		
-		sleightList = new HashMap<String, Sleight>();
+		sleights = new AspectHashMap<Sleight>(", ",false);
 		
 		this.setVar("{credits}", "0");
 		this.setVar("{creditsSpent}", "0");
@@ -189,7 +184,7 @@ public class PlayerCharacter {
 				nonAppStats.put("DR", (int)Math.round(dr*1.5));
 			}
 			
-			nonAppStats.put("DB", getAptitude("SOM")/10);
+			nonAppStats.put("DB", aptitudes().get("SOM").getValue()/10);
 		}
 		else
 		{
@@ -199,10 +194,10 @@ public class PlayerCharacter {
 			nonAppStats.put("DB", 0);
 		}
 		
-		nonAppStats.put("LUC", getAptitude("WIL")*2);
+		nonAppStats.put("LUC", aptitudes().get("WIL").getValue()*2);
 		nonAppStats.put("TT", (int)Math.round(nonAppStats.get("LUC")/5));
 		nonAppStats.put("IR", nonAppStats.get("LUC")*2);
-		nonAppStats.put("INIT", (int)Math.round( ( (getAptitude("INT")+getAptitude("REF"))) * 2 ) / 5 );
+		nonAppStats.put("INIT", (int)Math.round( ( (aptitudes().get("INT").getValue()+aptitudes().get("REF").getValue())) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
@@ -220,21 +215,21 @@ public class PlayerCharacter {
 			totalCredits = this.getVarInt("{credits}");
 			
 			// repCount			
-			for (Rep r : repList.values())
+			for (Rep r : reps.values())
 			{
 				totalRep = r.getValue();
 			}
 			
-			for (Aptitude apt : aptitudeList.values())
+			for (Aptitude apt : aptitudes.values())
 			{
 				totalApt += apt.getValue();
 			}
 			
 			// sleights we just need a simple count
-			numSleights = sleightList.size();
+			numSleights = sleights.size();
 			
 			// count skills that have specializations 
-			for (Skill skl : skillList.values())
+			for (Skill skl : skills.values())
 			{
 				if (skl.getSpecialization().length() > 0)
 				{
@@ -256,10 +251,10 @@ public class PlayerCharacter {
 				// sanity check, should always be true
 				if (hasSkill(arr[0]))
 				{
-					Skill tmp = skillList.get(arr[0]);
+					Skill tmp = skills.get(arr[0]);
 					
 					// the aptitude isn't part of the cost
-					sklVal -= aptitudeList.get(tmp.getLinkedApt()).getValue();
+					sklVal -= aptitudes.get(tmp.getLinkedApt()).getValue();
 					
 					if (tmp.isKnowledge())
 					{
@@ -332,31 +327,15 @@ public class PlayerCharacter {
 		result = "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
 					+ ", Background : " + this.getBackground() +"\n";
 		
-		result += "Traits : " + this.getTraitsString() + "\n";
-		result += "Sleights : " + this.getSleightsString() + "\n";
-		result += this.getAptitudesString() + "\n";
-		result += this.getNonAptitudesString() + "\n";
+		result += "Traits : " + this.traits.toString() + "\n";
+		result += "Sleights : " + this.sleights.toString() + "\n";
+		result += this.aptitudes.toString() + "\n";
+		result += this.nonAppStats.toString() + "\n";
 		result += this.getSkillsString() + "\n";
-		result += this.getRepString() + "\n";		
+		result += this.reps.toString() + "\n";		
 		result += "Gear : " + this.getGearString();
 		
 		return result;
-	}
-	
-	/**
-	 * Gets the current value of a particular Rep category
-	 * 
-	 * @param repName Rep category to look for
-	 * @return Value stored by that Rep object
-	 */
-	public int getRepValue(String repName)
-	{
-		if (!Rep.exists(repName))
-		{
-			throw new IllegalArgumentException(repName + " is not a valid Rep category!");
-		}
-		
-		return this.repList.get(repName).getValue();
 	}
 	
 	/**
@@ -373,7 +352,7 @@ public class PlayerCharacter {
 			throw new IllegalArgumentException(repName + " is not a valid Rep category!");
 		}
 		
-		Rep charRep = this.repList.get(repName);
+		Rep charRep = this.reps.get(repName);
 		charRep.incValue(val);
 	}
 	
@@ -461,31 +440,6 @@ public class PlayerCharacter {
 		this.incVar("{credits}",val);
 	}
 	
-	public boolean isValidAptitude(String str)
-	{
-		return this.aptitudeList.containsKey(str);
-	}
-	
-	/**
-	 * If a valid aptitude name is provided, will set it to the value provided
-	 * @param apt Aptitude name
-	 * @param value Integer value between 1 and APTITUDE_MAX
-	 */
-	public void setAptitude(String apt, int value)
-	{
-		if (!isValidAptitude(apt))
-		{
-			throw new IllegalArgumentException(apt + " is not a valid Aptitude");
-		}
-		
-		if (value < 1 || value > Aptitude.APTITUDE_MAX)
-		{
-			throw new IllegalArgumentException(value + " must be between 1 and " + Aptitude.APTITUDE_MAX);
-		}
-		
-		this.aptitudeList.get(apt).setValue(value);
-	}
-	
 	/**
 	 * If a valid aptitude name is provided, will add the value provided to it
 	 * @param apt Aptitude name
@@ -493,58 +447,13 @@ public class PlayerCharacter {
 	 */
 	public void incAptitude(String apt, int value)
 	{
-		if (!isValidAptitude(apt))
+		if (!Aptitude.exists(apt))
 		{
 			throw new IllegalArgumentException(apt + " is not a valid Aptitude");
 		}
 		
 		
-		this.aptitudeList.get(apt).addValue(value);
-	}
-	
-	/**
-	 * If a valid aptitude name is provided, returns its value
-	 * @param apt Aptitude name
-	 * @return Integer value between 1 and APTITUDE MAX
-	 */
-	public int getAptitude(String apt)
-	{
-		if (!isValidAptitude(apt))
-		{
-			throw new IllegalArgumentException(apt + " is not a valid Aptitude");
-		}
-		
-		return this.aptitudeList.get(apt).getValue();
-	}
-	
-	/**
-	 * If a valid secondary stat name is provided, returns its value
-	 * @param stat Secondary Stat name
-	 * @return Integer value
-	 */
-	public int getSecStat(String stat)
-	{
-		if (!nonAppStats.containsKey(stat))
-		{
-			throw new IllegalArgumentException(stat + " is not a valid Secondary Stat");
-		}
-		
-		return nonAppStats.get(stat);
-	}
-	
-	/**
-	 * If a valid secondary stat name is provided, changes its value to value
-	 * @param stat Secondary Stat name
-	 * @param value value to change the stat to
-	 */
-	public void setSecStat(String stat, int value)
-	{
-		if (!nonAppStats.containsKey(stat))
-		{
-			throw new IllegalArgumentException(stat + " is not a valid Secondary Stat");
-		}
-		
-		nonAppStats.put(stat,value);
+		this.aptitudes.get(apt).addValue(value);
 	}
 	
 	/**
@@ -593,13 +502,13 @@ public class PlayerCharacter {
 	 */
 	public void addSkill(Skill skill)
 	{
-		if (this.skillList.containsKey(skill.getFullName()) )
+		if (this.skills.containsKey(skill.getFullName()) )
 		{
-			this.skillList.get(skill.getFullName()).addValue(skill.getValue(), true);						
+			this.skills.get(skill.getFullName()).addValue(skill.getValue(), true);						
 		}
 		else
 		{
-			this.skillList.put(skill.getFullName(), skill);
+			this.skills.put(skill.getFullName(), skill);
 			this.setVar("{newestSkill}", skill.getFullName());
 		}
 	}
@@ -612,9 +521,9 @@ public class PlayerCharacter {
 	 */
 	public boolean removeSkill(String skillName) 
 	{
-		if (this.skillList.containsKey(skillName))
+		if (this.skills.containsKey(skillName))
 		{
-			Skill temp = this.skillList.remove(skillName);
+			Skill temp = this.skills.remove(skillName);
 			this.setVar("{lastRemSkl}", temp.getFullName());
 			this.setVar("{lastRemSklVal}", ""+temp.getValue());
 			return true;
@@ -634,9 +543,9 @@ public class PlayerCharacter {
 	 */
 	public boolean incSkill(String skillName, int amount) 
 	{
-		if (this.skillList.containsKey(skillName))
+		if (this.skills.containsKey(skillName))
 		{
-			this.skillList.get(skillName).addValue(amount, true);
+			this.skills.get(skillName).addValue(amount, true);
 			return true;
 		}
 		else if (amount > 0)
@@ -659,15 +568,15 @@ public class PlayerCharacter {
 	 */
 	public boolean setSkill(String skillName, int amount) 
 	{
-		if (this.skillList.containsKey(skillName))
+		if (this.skills.containsKey(skillName))
 		{
-			this.skillList.get(skillName).setValue(amount);
+			this.skills.get(skillName).setValue(amount);
 			return true;
 		}
 		else if (Skill.isSkill(skillName))
 		{
 			Skill tempSkl = Skill.CreateSkill(skillName, amount);
-			this.skillList.put(tempSkl.getFullName(), tempSkl);
+			this.skills.put(tempSkl.getFullName(), tempSkl);
 			return true;
 		}
 		else
@@ -685,9 +594,9 @@ public class PlayerCharacter {
 	 */
 	public boolean addSkillSpec(String skillName, String specialization) 
 	{
-		if (this.skillList.containsKey(skillName))
+		if (this.skills.containsKey(skillName))
 		{
-			this.skillList.get(skillName).setSpecialization(specialization);
+			this.skills.get(skillName).setSpecialization(specialization);
 			return true;
 		}
 		else
@@ -703,7 +612,7 @@ public class PlayerCharacter {
 	 */
 	public boolean hasSkill(String skillName)
 	{
-		return this.skillList.containsKey(skillName);
+		return this.skills.containsKey(skillName);
 	}
 	
 	/**
@@ -714,7 +623,7 @@ public class PlayerCharacter {
 	public int getFinalSklVal(Skill skl)
 	{
 		String linkedApt = skl.getLinkedApt();
-		int aptValue = this.getAptitude(linkedApt);
+		int aptValue = aptitudes().get(linkedApt).getValue();
 		
 		int result = 0;
 
@@ -728,9 +637,9 @@ public class PlayerCharacter {
 			result = Skill.skillAdjustExpensiveCap(skl.getValue()+aptValue);
 		}
 		
-		if (result > LEVEL_CAP)
+		if (result > Skill.LEVEL_CAP)
 		{
-			result = LEVEL_CAP;
+			result = Skill.LEVEL_CAP;
 		}
 		
 		return result;
@@ -747,7 +656,7 @@ public class PlayerCharacter {
 	{
 		ArrayList<String[]> result = new ArrayList<String[]>();
 		
-		for (Skill skill : skillList.values())
+		for (Skill skill : skills.values())
 		{
 			String[] temp = {skill.getFullName(), ""+getFinalSklVal(skill)};
 			result.add(temp);
@@ -843,222 +752,16 @@ public class PlayerCharacter {
 		
 		throw new IllegalArgumentException("Character lacks gear : " + gear);
 	}
-
-	/**
-	 * Gets trait from characters list, throwing an error if it doesn't exist
-	 * @param traitStr Name of trait to search for
-	 * @return Trait object matching the search name
-	 */
-	public Trait getTrait(String traitStr)
-	{
-
-		for (Trait t : traitList)
-		{
-			if (t.getName().equalsIgnoreCase(traitStr))
-			{
-				return t;
-			}
-		}
-
-		throw new IllegalArgumentException("Character lacks trait : " + traitStr);
-	}
-	
-	/**
-	 * Returns whether character has a trait of the name provided
-	 * @param traitStr Trait to search for
-	 * @return True/False as appropriate
-	 */
-	public boolean hasTrait(String traitStr)
-	{
-		for (Trait t : traitList)
-		{
-			if (t.getName().equalsIgnoreCase(traitStr))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	/**
-	 * Returns whether character has a trait of the name provided. Will do a partial (startsWith) search
-	 * @param traitStr Trait to search for
-	 * @return True/False as appropriate
-	 */
-	public boolean hasTraitPartial(String traitStr)
-	{
-		for (Trait t : traitList)
-		{
-			if (t.getName().startsWith(traitStr))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	/**
-	 * Add item to Trait list
-	 * @param t Valid trait object
-	 */
-	public void addTrait(Trait t)
-	{
-		traitList.add(t);
-	}
-	
-	/**
-	 * Remove trait from Trait list, throwing an error if it doesn't exist
-	 * @param t Valid name of trait that already exists on the character
-	 * @return The Trait removed
-	 */
-	public Trait removeTrait(String traitStr)
-	{
-		for (Trait t : traitList)
-		{
-			if (t.getName().equalsIgnoreCase(traitStr))
-			{
-				Trait temp = t;
-				traitList.remove(t);
-				return temp;
-			}
-		}
-		
-		throw new IllegalArgumentException("Character lacks trait : " + traitStr);
-	}
-	
-	/**
-	 * Gets sleight from characters list, throwing an error if it doesn't exist
-	 * @param sleightStr Name of sleight to search for
-	 * @return Sleight object matching the search name
-	 */
-	public Sleight getSleight(String sleightStr)
-	{
-
-		if ( sleightList.containsKey(sleightStr))
-		{
-			return sleightList.get(sleightStr);
-		}
-		else
-		{
-			throw new IllegalArgumentException("Character lacks sleight : " + sleightStr);
-		}
-	}
-	
-	/**
-	 * Add item to Sleight list
-	 * @param t Valid sleight object
-	 */
-	public void addSleight(Sleight t)
-	{
-		sleightList.put(t.getName(),t);
-	}
-	
-	/**
-	 * Remove sleight from Sleight list
-	 * @param sleightStr Valid name of sleight that already exists on the character, or it will have no effect
-	 * @return The Sleight removed, or null if it couldn't be removed
-	 */
-	public Sleight removeSleight(String sleightStr)
-	{
-		if ( sleightList.containsKey(sleightStr))
-		{
-			Sleight temp =  sleightList.remove(sleightStr);
-			return temp;
-		}
-		else
-		{
-			throw new IllegalArgumentException("Character lacks sleight : " + sleightStr);
-		}
-	}
-	
-	// Helper functions for toString
-	
-	public String getTraitsString()
-	{
-		if (this.traitList.size() == 0)
-		{
-			return "";
-		}
-		
-		String result = this.traitList.get(0).toStringShort();
-		
-		for (int x = 1; x < this.traitList.size(); x++)
-		{
-			result += ", " + this.traitList.get(x).toStringShort();
-		}
-		
-		return result;
-	}
-	
-	public String getSleightsString()
-	{
-		if (this.sleightList.size() == 0)
-		{
-			return "";
-		}
-		
-		boolean first = true;
-		String result = "";
-		
-		for (Sleight s : sleightList.values())
-		{
-			if (first)
-			{
-				result += s.getName() + " (" + s.getSleightType() +  ")";
-				first = false;
-			}
-			else
-			{
-				result += ", " + s.getName() + " (" + s.getSleightType() +  ")";
-			}
-		}
-		
-		return result;
-	}
-	
-	public String getAptitudesString()
-	{
-		String result = "";
-				
-		for (Aptitude apt : aptitudeList.values())
-		{
-			result += apt.toString() + " ";
-		}
-		
-		// removing trailing space
-		return result.trim();
-	}
-	
-	public String getNonAptitudesString()
-	{
-		String result = "";
-				
-		for (String key : nonAppStats.keySet())
-		{
-			result += key + " " + nonAppStats.get(key) + " ";
-		}
-		
-		// removing trailing space
-		return result.trim();
-	}
 	
 	public String getRandSkill(SecureRandom rng)
 	{
-		int idx = rng.nextInt(skillList.size());
-		return ((Skill)skillList.values().toArray()[idx]).getFullName();
-	}
-	
-	public String getRandApt(SecureRandom rng)
-	{
-		int idx = rng.nextInt(aptitudeList.size());
-		return (String)aptitudeList.keySet().toArray()[idx];
+		int idx = rng.nextInt(skills.size());
+		return ((Skill)skills.values().toArray()[idx]).getFullName();
 	}
 	
 	public int getNumSkills()
 	{
-		return this.skillList.size();
+		return this.skills.size();
 	}
 	
 	public String getSkillsString()
@@ -1094,22 +797,9 @@ public class PlayerCharacter {
 	public ArrayList<Rep> getAllRep()
 	{
 		ArrayList<Rep> result = new ArrayList<Rep>();
-		result.addAll(repList.values());
+		result.addAll(reps.values());
 		
 		return result;
-	}
-	
-	public String getRepString()
-	{
-		String result = "";
-		
-		for (Rep rep : repList.values())
-		{
-			result += rep.toString() + "\n";
-		}
-		
-		// removing trailing space
-		return result.trim();
 	}
 	
 	public String getGearString()
@@ -1199,25 +889,7 @@ public class PlayerCharacter {
 		{
 			return 0;
 		}
-	}
-	
-	/**
-	 * Gets the linked aptitude for the named skill, if it exists
-	 * @param name The name of the skill to search for
-	 * @return A string containing the aptitude linked to that skill
-	 */
-	public String getSkillApt(String name)
-	{
-		if (skillList.containsKey(name))
-		{
-			return skillList.get(name).getLinkedApt();
-		}
-		else
-		{
-			throw new IllegalArgumentException("No such skill exists(" + name + ")!");
-		}
-	}
-	
+	}	
 	
 	/**
 	 * Retrieves a variable from the general store. 
@@ -1306,6 +978,31 @@ public class PlayerCharacter {
 		return false;
 	}
 	
+	
+	// Sub containers : these give access to character aspects big enough for their own class 
+	
+	public AspectHashMap<Aptitude> aptitudes() {
+		return aptitudes;
+	}
+
+	public AspectHashMap<Trait> traits() {
+		return traits;
+	}
+
+	public AspectHashMap<Rep> reps() { 
+		return reps;
+	}
+
+	public AspectHashMap<Sleight> sleights() {
+		return sleights;
+	}
+
+	public AspectHashMap<Integer> nonAppStats() {
+		return nonAppStats;
+	}
+	
+	//end sub-containers
+
 	/**
 	 * Adds package info to a character's list of added packages. This is mainly a log for purposes of keeping aware of duplications
 	 * @param info Length 2 String[] of form {PackageName,PP}

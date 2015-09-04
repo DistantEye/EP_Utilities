@@ -90,17 +90,29 @@ public class Utils {
 	 * @return String[] of the commands, may be a singleton if the delimiter doesn't exist in string
 	 */
 	public static String[] splitCommands(String input, String delimiter)
-	{		
+	{	
+		String modInput = input;
+		String escapeCharacter = "\\"+delimiter;
+		String escapeReplace = findUniqueDelimiter(modInput);
+		boolean usingEscapes = false;
+		
+		if (modInput.contains(escapeCharacter))
+		{
+			// this causes odd behavior if we do it when there's no escape characters
+			usingEscapes = true;
+			modInput = modInput.replace(escapeCharacter, escapeReplace); // specially hide away escape chars for right now			
+		}		
+		
 		// Commands have parentheses, like +morph(randomRoll). We temporarily replace all the () content, then replace the delimeters with something else unique,
 		// put things back, then split everything
 		
 		// this is not the highest performance solution, but this function can easily be replaced with a more efficient solution later
 		// prototyping is important and this will get the job done
+				
 		
-		String modInput = input;
 		HashMap<String,String> replaceValues = new HashMap<String,String>();
 		
-		String key = findUniqueDelimeter(modInput);
+		String key = findUniqueDelimiter(modInput);
 		int cnt = 0;
 		
 		String output = "(" + returnStringInParen(modInput) + ")";
@@ -112,13 +124,19 @@ public class Utils {
 			output = "(" + returnStringInParen(modInput) + ")";
 		} 
 		
-		String newDelimiter = findUniqueDelimeter(input+modInput); // if it isn't unique to both the temporary and the original, this won't work 
+		String newDelimiter = findUniqueDelimiter(input+modInput); // if it isn't unique to both the temporary and the original, this won't work 
 		
 		modInput = modInput.replaceAll(delimiter, newDelimiter);
 		
 		for (String k : replaceValues.keySet())
 		{
 			modInput = modInput.replace(k, replaceValues.get(k));
+		}
+		
+		// the below causes odd behavior if it's done unnecessarily
+		if (usingEscapes)
+		{
+			modInput = modInput.replace(escapeReplace, delimiter); // this puts back the escapeCharacters we stashed away
 		}
 		
 		return modInput.split(newDelimiter);
@@ -130,7 +148,7 @@ public class Utils {
 	 * @param input
 	 * @return
 	 */
-	public static String findUniqueDelimeter(String input)
+	public static String findUniqueDelimiter(String input)
 	{		
 		int cnt = 0;
 		String result = "~0~";

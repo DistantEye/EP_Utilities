@@ -28,7 +28,8 @@ public class Skill {
 	private boolean isKnowledge;
 	private boolean canDefault;
 	private ArrayList<String> categories;
-	public static int EXPENSIVE_LEVEL = 60; // As defined by Core, adding over this value costs more Rez/CP 
+	public static int EXPENSIVE_LEVEL = 60; // As defined by Core, adding over this value costs more Rez/CP 	
+	public static final int LEVEL_CAP = 99;
 	
 	// stuff related to regexes
 	// we define constants to make the regexes more readable
@@ -601,4 +602,50 @@ public class Skill {
 		return false;
 	}
 	
+	/**
+	 * Checks the predefined skills to see if one exists with the given name
+	 * @param skillName Name of skills to search for
+	 * @return True/False as appropriate
+	 */
+	public static boolean exists(String skillName)
+	{
+		for (Skill s : skillList)
+		{
+			if (s.getName().equalsIgnoreCase(skillName))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Gets the linked aptitude for the named skill, if it exists
+	 * @param name The name of the skill to search for
+	 * @return A string containing the aptitude linked to that skill
+	 */
+	public static String getSkillApt(String name)
+	{
+		// we just need the primary skill name, nothing more advanced
+		if (name.contains(":"))
+		{
+			name = name.substring(0, name.indexOf(':')).trim();
+		}
+		if (name.contains("["))
+		{
+			name = name.substring(0, name.indexOf('[')).trim();
+		}
+		
+		for (Skill s : skillList)
+		{
+			if (s.getName().equalsIgnoreCase(name))
+			{
+				return s.getLinkedApt();
+			}
+		}
+		
+		throw new IllegalArgumentException("No such skill exists(" + name + ")!");
+		
+	}
 }

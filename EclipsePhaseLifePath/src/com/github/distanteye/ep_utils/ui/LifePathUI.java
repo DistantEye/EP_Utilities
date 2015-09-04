@@ -9,14 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import com.github.distanteye.ep_utils.containers.Aptitude;
-import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
- * editting, most of the fields are driven by table rolling and character prompt choices
+ * editing, most of the fields are driven by table rolling and character prompt choices
  * 
  * @author Vigilant
  *
@@ -25,10 +24,6 @@ public class LifePathUI implements UI {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
-	 // we still hardcode some stats like this because the page would break 
-	 //		if they were user definable anyways
-	 final static String[] primStats = Aptitude.aptitudes; 
-	 final static String[] secStats = {"DUR","WT","DR","LUC","TT","IR","INIT","SPD","DB"};
 	 private BorderLayout windowLayout;
 	 private JFrame mainWindow;
 	 private GridBagUIPanel mainPanel, statPanel,sideBar;
@@ -148,9 +143,9 @@ public class LifePathUI implements UI {
 		
 		// Add first row, with the Base Primary stat values
 		int idx = 0;
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
-			statPanel.addMappedFixedTF(idx,0,"Base "+key, ""+gen.getPC().getAptitude(key),5,true);
+			statPanel.addMappedFixedTF(idx,0,"Base "+key, ""+gen.getPC().aptitudes().get(key),5,true);
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -158,7 +153,7 @@ public class LifePathUI implements UI {
 		
 		// add row for bonuses
 		idx = 0;
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
 			statPanel.addMappedTF(idx, 1, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
@@ -167,7 +162,7 @@ public class LifePathUI implements UI {
 		
 		// add final row for totals.
 		idx = 0;
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
 			statPanel.addMappedFixedTF(idx,2,"Total "+key, "",5,true);
 			idx +=2;
@@ -177,16 +172,16 @@ public class LifePathUI implements UI {
 		
 		// add row for base secondary stats
 		idx = 0;
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
-			statPanel.addMappedFixedTF(idx,3,key, ""+gen.getPC().getSecStat(key),5,true);
+			statPanel.addMappedFixedTF(idx,3,key, ""+gen.getPC().nonAppStats().get(key),5,true);
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
 		
 		// now we do bonuses
 		idx = 0;
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
 			statPanel.addMappedTF(idx, 4, "Bonus", "MorphBonus"+key, 5, this);
 			idx +=2;
@@ -195,7 +190,7 @@ public class LifePathUI implements UI {
 		
 		// now we do the totals
 		idx = 0;
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
 			statPanel.addMappedFixedTF(idx,5,"Total "+key, "",5,true);
 			idx +=2;
@@ -370,45 +365,45 @@ public class LifePathUI implements UI {
 		int cnt = 0;
 		
 		// fill stats with all the primary and secondary stat values
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
-			stats[cnt++] = gen.getPC().getAptitude(key);
+			stats[cnt++] = gen.getPC().aptitudes().get(key).getValue();
 		}
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
-			stats[cnt++] = gen.getPC().getSecStat(key);
+			stats[cnt++] = gen.getPC().nonAppStats().get(key);
 		}
 		
 		cnt = 0;
 		
 		// update base stats for both
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
 			statPanel.setTextF("Base "+key,stats[cnt++]);
 		}
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
 			statPanel.setTextF(key,stats[cnt++]);
 		}
 		
 		// get bonus amounts
 		cnt = 0;
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
 			bonuses[cnt++] = statPanel.getTextFVal("MorphBonus"+key);
 		}
 				
 		// build stat totals
 		cnt = 0;
-		for (String key : primStats)
+		for (String key : Aptitude.aptitudes)
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
-		for (String key : secStats)
+		for (String key : PlayerCharacter.secStats)
 		{
 			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
 		}
@@ -416,7 +411,7 @@ public class LifePathUI implements UI {
 		
 		// update a few more display fields
 		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().getSecStat("MOX"));
+		statPanel.setTextF("MOX",gen.getPC().nonAppStats().get("MOX"));
 		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
 		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
 		
@@ -434,7 +429,7 @@ public class LifePathUI implements UI {
 		int x = 0, y = 1;
 		for(String[] pair : gen.getPC().getSkills())
 		{
-			String linkedApt = gen.getPC().getSkillApt(pair[0]);
+			String linkedApt = Skill.getSkillApt(pair[0]);
 			int morphBonus = statPanel.getTextFVal("MorphBonus"+linkedApt);
 			int finalVal = Integer.parseInt(pair[1])+morphBonus;
 			

@@ -2043,7 +2043,7 @@ false
 43`You make an unpopular choice that burns many bridges. Gain the Blacklisted trait (p. 149, EP).`trait(Blacklisted)
 44`A friend or relative opts for true death, but bequeaths you their estate. Gain 25,000 credits.`credit(25000)
 45`You are the unfortunate butt of a widespread online meme, but it works to your advantage. Gain the You’re That Guy! trait (p. 145, Panopticon).`trait(You're That Guy!)
-46`You are the unfortunate butt of a widespread online meme, and it continues to haunt you. Gain the Wait, That Was You? trait (p. 147, Panopticon).`trait(Wait, That Was You?)
+46`You are the unfortunate butt of a widespread online meme, and it continues to haunt you. Gain the Wait, That Was You? trait (p. 147, Panopticon).`trait(Wait\, That Was You?)
 47`As transhumanity re-organizes, you find a role in influencing others. Gain +5 SAV.`addApt(SAV,5)
 48`You have difficulty coming to grips with regular resleeving. Gain the Identity Crisis trait (p. 149, EP).`trait(Identity Crisis)
 49`One of your resleeves goes particularly poorly, and now it haunts you. Gain the Morphing Disorder (Level 2) trait (p. 150, EP).`trait(Morphing Disorder,2)

@@ -22,15 +22,12 @@ import com.github.distanteye.ep_utils.core.Utils;
  * Most methods (when applicable) return the JComponent added/modified/created,
  * to support chaining
  * 
+ * No intention of currently implementing serialization for this
+ * 
  * @author Vigilant
  */
-public class GridBagUIPanel extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8550646555771187030L;
-	
+@SuppressWarnings("serial")
+public class GridBagUIPanel extends JPanel {	
 	private HashMap<String,JComponent> mappedComponents;
 	private GridBagConstraints cons;	
 	private GridBagLayout layout;

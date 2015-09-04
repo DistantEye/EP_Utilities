@@ -140,12 +140,12 @@ public class Trait {
 		}		
 	}
 	
-	public String toString()
+	public String toStringLong()
 	{
-		return this.toStringShort() + " : " + this.description;
+		return this.toString() + " : " + this.description;
 	}
 	
-	public String toStringShort()
+	public String toString()
 	{
 		return this.name + " (" + this.level + ")";
 	}

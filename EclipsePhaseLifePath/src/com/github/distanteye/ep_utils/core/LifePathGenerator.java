@@ -378,7 +378,7 @@ public class LifePathGenerator {
 				}
 				while(effect.contains("!RANDAPT!"))
 				{
-					effect = effect.replace("!RANDAPT!",playerChar.getRandApt(rng));
+					effect = effect.replace("!RANDAPT!",playerChar.aptitudes().getRand(rng).getName());
 				}
 				while(effect.contains("!RAND_DER!"))
 				{
@@ -650,13 +650,14 @@ public class LifePathGenerator {
 					}
 					else if (subparts.length == 2 && Trait.exists(subparts[1]))
 					{
-						playerChar.addTrait(Trait.getTrait(subparts[1], 1));
+						Trait t = Trait.getTrait(subparts[1], 1);
+						playerChar.traits().put(t.getName(),t);
 					}
 					else if (subparts.length == 2 && Trait.existsPartial(subparts[1]) )
 					{
 						Trait t = Trait.getTraitFromPartial(subparts[1], 1);
 						
-						playerChar.addTrait(t);
+						playerChar.traits().put(t.getName(),t);
 					}
 					else if (subparts.length == 3 && Trait.exists(subparts[1]) )
 					{
@@ -665,7 +666,8 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						playerChar.addTrait(Trait.getTrait(subparts[1], Integer.parseInt(subparts[2])));
+						Trait t = Trait.getTrait(subparts[1], Integer.parseInt(subparts[2]));
+						playerChar.traits().put(t.getName(), t);
 					}
 					else if (subparts.length == 3 && Trait.existsPartial(subparts[1]) )
 					{
@@ -676,7 +678,7 @@ public class LifePathGenerator {
 						
 						Trait t = Trait.getTraitFromPartial(subparts[1], Integer.parseInt(subparts[2]));
 						
-						playerChar.addTrait(t);
+						playerChar.traits().put(t.getName(), t);
 					}
 					else
 					{
@@ -726,12 +728,12 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						if (! playerChar.isValidAptitude(subparts[1]))
+						if (! Aptitude.exists(subparts[1]))
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 						}
 						
-						playerChar.setAptitude(subparts[1], Integer.parseInt(subparts[2]));
+						playerChar.aptitudes().get(subparts[1]).setValue(Integer.parseInt(subparts[2]));
 					}
 					else
 					{
@@ -752,7 +754,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 						}
 						
-						if (! playerChar.isValidAptitude(subparts[1]))
+						if (! Aptitude.exists(subparts[1]))
 						{
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 						}
@@ -1100,7 +1102,9 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Chi sleight");
 						}
 
-						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+						Sleight s = Sleight.sleightList.get(subparts[1]);
+						
+						playerChar.sleights().put(s.getName(), s);
 					}
 					else
 					{
@@ -1126,7 +1130,9 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Gamma sleight");
 						}
 						
-						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+						Sleight s = Sleight.sleightList.get(subparts[1]);
+						
+						playerChar.sleights().put(s.getName(), s);
 					}
 					else
 					{
@@ -1147,7 +1153,9 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
 						}
 						
-						playerChar.addSleight(Sleight.sleightList.get(subparts[1]));
+						Sleight s = Sleight.sleightList.get(subparts[1]);
+						
+						playerChar.sleights().put(s.getName(), s);
 					}
 					else
 					{
@@ -1457,7 +1465,7 @@ public class LifePathGenerator {
 			
 			if (Trait.exists(parts[1]))
 			{
-				return playerChar.hasTrait(parts[1]);
+				return playerChar.traits().containsKeyIgnoreCase(parts[1]);
 			}
 			else
 			{

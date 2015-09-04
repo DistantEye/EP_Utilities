@@ -1,12 +1,6 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
-import com.github.distanteye.ep_utils.containers.Sleight.ActionType;
-import com.github.distanteye.ep_utils.containers.Sleight.Duration;
-import com.github.distanteye.ep_utils.containers.Sleight.Range;
-import com.github.distanteye.ep_utils.containers.Sleight.SleightType;
-import com.github.distanteye.ep_utils.containers.Sleight.UsageType;
-
 /**
  * Represents any valid Sleight defined in the Internal Data file. Sleights are immutable
  * This class has a static exists method for determining whether a name is a valid Sleight
@@ -68,6 +62,15 @@ public class Sleight {
 	}
 	
 	public String toString()
+	{
+		return this.name + " (" + this.sleightType + ")";
+	}
+	
+	/**
+	 * As before, but includes the description as well
+	 * @return A longer String representing the Sleight
+	 */
+	public String toStringLong()
 	{
 		return this.name + " (" + this.sleightType + ") " + " : " + this.description;
 	}

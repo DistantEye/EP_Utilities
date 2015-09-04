@@ -62,4 +62,22 @@ public class Aptitude {
 		setValue(getValue() + value);
 	}
 	
+	/**
+	 * Checks the predefined Aptitudes to see if one exists with the given name
+	 * @param aptName Name of Aptitude to search for
+	 * @return True/False as appropriate
+	 */
+	public static boolean exists(String aptName)
+	{
+		// loop throught our morphs and see if we find a match
+		for (String apt : aptitudes)
+		{
+			if (apt.equalsIgnoreCase(aptName))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
