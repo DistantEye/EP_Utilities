@@ -34,12 +34,12 @@ public class CharVarWrapper extends AccessWrapper<String> {
 	
 	@Override
 	public String getValue() {
-		return aChar.getVarVal(varName);
+		return aChar.getVar(varName);
 	}
 
 	@Override
 	public void setValue(String item) {
-		aChar.setVar(varName, new StringWrapper(item));
+		aChar.setVar(varName, item);
 	}
 
 	@Override

@@ -3,8 +3,6 @@ package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
 import com.github.distanteye.ep_utils.core.Utils;
-import com.github.distanteye.ep_utils.wrappers.AccessWrapper;
-import com.github.distanteye.ep_utils.wrappers.IntWrapper;
 
 /**
  * Most basic character representation that has simply a name, age, and a generalized variable store
@@ -13,7 +11,7 @@ import com.github.distanteye.ep_utils.wrappers.IntWrapper;
  */
 public class BaseCharacter {
 	
-	private HashMap<String,AccessWrapper<String>> otherVars;
+	private HashMap<String,String> otherVars;
 	private String name;
 	private int age;
 
@@ -23,7 +21,7 @@ public class BaseCharacter {
 	public BaseCharacter(String name) 
 	{
 		this.name = name;
-		otherVars = new HashMap<String,AccessWrapper<String>>();
+		otherVars = new HashMap<String,String>();
 		age = -1; // placeholder
 	}
 	
@@ -59,48 +57,51 @@ public class BaseCharacter {
 	 * @param name Name of the variable
 	 * @param val Value of the variable
 	 */
-	public void setVar(String name, AccessWrapper<String> val)
+	public void setVar(String name, String val)
 	{
-		// if no variable at all, just add it in
-		if (!hasVar(name))
-		{
-			this.otherVars.put(name, val);
-		}
-		// if variable, same type, replace the underlying value
-		else if (getVar(name).equals(val))
-		{	
-			getVar(name).setValue(val.getValue());
-		}
-		// if variable, different type, remove old, add new
-		else
-		{
-			this.otherVars.remove(name);
-			this.otherVars.put(name, val);
-		}
+		this.otherVars.put(name, val);
 	}
 	
 	/**
-	 * Increments key,value pair for variable stored by the character
-	 * will throw error if the variable passed or the value passed is not a number.
-	 * Will create the variable if it doesn't exist, set to 0 (before val is added)
-	 * 
+	 * Overload for incVar that takes an integer second parameter (for convenience)
 	 * @param name name of variable
 	 * @param val Integer value
 	 */
 	public void incVar(String name, int val)
 	{
+		this.incVar(name, String.valueOf(val));
+	}
+	
+	/**
+	 * Most generalized variable store. Increments key,value pair for storage by the character
+	 * will throw error if the variable passed or the value passed is not a number.
+	 * Will create the variable if it doesn't exist, set to 0 (before val is added)
+	 * 
+	 * 
+	 * @param name Name of the variable (must be numeric holding variable)
+	 * @param val Value of the variable (must be numeric value in string)
+	 */
+	public void incVar(String name, String val)
+	{
 		if (!this.hasVar(name))
 		{
-			this.setVar(name, new IntWrapper(val));
+			this.setVar(name, String.valueOf(0));
 		}
 		
-		AccessWrapper<String> temp = getVar(name);
+		String var = this.getVar(name);
 		
-		if (temp.isInt())
+		if (!Utils.isInteger(var))
 		{
-			int value = Integer.parseInt(temp.getValue()); // unfortunately because of limitations of the parent class we have to work it like this
-			temp.setValue(""+value+val);
+			throw new IllegalArgumentException("incVar(" + name + "," + val +"): variable value " + var + " is not a number!");
 		}
+		if (!Utils.isInteger(val))
+		{
+			throw new IllegalArgumentException("incVar(" + name + "," + val +"): " + val + " is not a number!");
+		}
+		
+		// otherwise proceed with increment
+		int newVal = Integer.parseInt(var) + Integer.parseInt(val);
+		this.setVar(name, String.valueOf(newVal));
 	}
 	
 	/**
@@ -113,9 +114,9 @@ public class BaseCharacter {
 	{
 		if (this.hasVar(name))
 		{
-			if (Utils.isInteger(this.getVarVal(name)))
+			if (Utils.isInteger(this.getVar(name)))
 			{
-				return Integer.parseInt(this.getVarVal(name));
+				return Integer.parseInt(this.otherVars.get(name));
 			}
 			else
 			{
@@ -134,11 +135,11 @@ public class BaseCharacter {
 	 * @param name Name of variable to search for
 	 * @return The matching value for name, or "" if none exists
 	 */
-	public String getVarValSF(String name)
+	public String getVarSF(String name)
 	{
 		if (hasVar(name))
 		{
-			return getVarVal(name);
+			return getVar(name);
 		}
 		else
 		{
@@ -152,9 +153,9 @@ public class BaseCharacter {
 	 * @return The matching value for name
 	 * @throws IllegalArgumentException if no such variable exists
 	 */
-	public AccessWrapper<String> getVar(String name)
+	public String getVar(String name)
 	{
-		if (this.otherVars.containsKey(name))
+		if (this.hasVar(name))
 		{
 			return this.otherVars.get(name);
 		}
@@ -173,7 +174,7 @@ public class BaseCharacter {
 	 */
 	public boolean hasVar(String name)
 	{
-		return this.otherVars.containsKey(name) && this.getVarVal(name).length() != 0;
+		return this.otherVars.containsKey(name) && this.otherVars.get(name).length() != 0;
 	}
 	
 	/**
@@ -186,16 +187,7 @@ public class BaseCharacter {
 	{
 		if (this.otherVars.containsKey(name))
 		{
-			AccessWrapper<String> temp = this.otherVars.remove(name);
-			
-			if (temp==null)
-			{
-				return null;
-			}
-			else
-			{
-				return temp.getValue();
-			}
+			return this.otherVars.remove(name);
 		}
 		else
 		{
@@ -203,14 +195,4 @@ public class BaseCharacter {
 		}
 	}
 	
-	/**
-	 * Shortcut method for getVar(name).getValue() 
-	 * Will return the underlying value of a variable of that name if it exists
-	 * @param name String key for the variable
-	 * @return String value stored for the variable
-	 */
-	public String getVarVal(String name)
-	{
-		return getVar(name).getValue();
-	}
 }

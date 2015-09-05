@@ -12,7 +12,6 @@ import javax.swing.JTextArea;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
-import com.github.distanteye.ep_utils.wrappers.IntWrapper;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
@@ -267,7 +266,7 @@ public class LifePathUI implements UI {
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{firewall}", new IntWrapper(1));
+		    		gen.getPC().setVar("{firewall}", "1");
 		    		mainPanel.setButtonText("Firewall Events","Firewall Events (On)");
 		    	}
 		    }	
@@ -288,7 +287,7 @@ public class LifePathUI implements UI {
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{gatecrashing}", new IntWrapper(1));
+		    		gen.getPC().setVar("{gatecrashing}", "1");
 		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (On)");
 		    	}
 		    }	
@@ -378,9 +377,9 @@ public class LifePathUI implements UI {
 			mainPanel.setTextF("Background",gen.getPC().getBackground());
 		}
 		
-		mainPanel.setTextF("Natural Language",gen.getPC().getVarValSF("NatLang"));
+		mainPanel.setTextF("Natural Language",gen.getPC().getVarSF("NatLang"));
 		
-		mainPanel.setTextF("Faction",gen.getPC().getVarValSF("{factionName}"));
+		mainPanel.setTextF("Faction",gen.getPC().getVarSF("{factionName}"));
 		
 		
 		int[] stats = new int[16];

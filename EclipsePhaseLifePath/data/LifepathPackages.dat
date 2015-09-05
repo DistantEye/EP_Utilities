@@ -1602,7 +1602,7 @@ false
 29-32`Heavy Weapons Training`package(HEAVY WEAPONS TRAINING)
 33-39`Jack-of-All-Trades`package(JACK-OF-ALL-TRADES)
 40-46`Lucky`package(LUCKY)
-47-50`Martial Arts Training`package(MARTIAL ARTS TRAINING)
+47-50`Martial Arts Training`package(MARTIAL ARTS)
 51-54`Mentalist†`if(?hasTrait(Psi),package(MENTALIST),msgClient(Re-rolling Table);rollTable(TABLE_6_12)))
 55-61`Networker`package(NETWORKER)
 62-65`Paramedic`package(PARAMEDIC)
