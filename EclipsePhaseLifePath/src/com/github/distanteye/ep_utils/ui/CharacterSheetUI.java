@@ -250,8 +250,6 @@ public class CharacterSheetUI implements UI {
 				
 		// create the main status window		
 		mainStatus = new JTextArea(40,60);
-		mainStatus.setMinimumSize(mainStatus.getPreferredSize());
-		mainStatus.setMaximumSize(mainStatus.getPreferredSize());
 		mainStatus.setLineWrap(true);
 		mainStatus.setWrapStyleWord(true);
 		JScrollPane tempPane = new JScrollPane(mainStatus);

@@ -209,20 +209,7 @@ public class LifePathUI implements UI {
 		statPanel.addMappedTF(EditState.FIXED,2,6,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null);
 		statPanel.addMappedTF(EditState.FIXED,4,6,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null);
 		statPanel.addMappedTF(EditState.FIXED,6,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null);
-		statPanel.endRow(8,6);
-		
-		
-		// addHeaderInfo(row,JPanel)
-		// addBasePrimStat(row,JPanel,Fixed/NotFixed)
-		// addBonusPrimStat(row,JPanel,Fixed/NotFixed)
-		// addFinalPrimStat(row,JPanel,Fixed) // always fixed
-				
-		// addBaseSecStat(row,JPanel,Fixed/NotFixed)
-		// addBonusSecStat(row,JPanel,Fixed/NotFixed)
-		// addFinalSecStat(row,JPanel,Fixed) // always fixed
-		
-		// addExtraStats(row,JPanel)
-		// addRepValues(row,JPanel,Fixed/NotFixed)
+		statPanel.endRow(8,6);		
 		
 		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
@@ -236,8 +223,6 @@ public class LifePathUI implements UI {
 				
 		// create the main status window		
 		mainStatus = new JTextArea(40,60);
-		mainStatus.setMinimumSize(mainStatus.getPreferredSize());
-		mainStatus.setMaximumSize(mainStatus.getPreferredSize());
 		mainStatus.setLineWrap(true);
 		mainStatus.setWrapStyleWord(true);
 		JScrollPane tempPane = new JScrollPane(mainStatus);
@@ -256,6 +241,61 @@ public class LifePathUI implements UI {
 		mainWindow.setSize(1700, 1000);
 
 		mainWindow.setVisible(true);
+	}
+	
+	// addHeaderInfo(row,JPanel)
+	// addBasePrimStat(row,JPanel,Fixed/NotFixed)
+	// addBonusPrimStat(row,JPanel,Fixed/NotFixed)
+	// addFinalPrimStat(row,JPanel,Fixed) // always fixed
+							
+			// addBaseSecStat(row,JPanel,Fixed/NotFixed)
+			// addBonusSecStat(row,JPanel,Fixed/NotFixed)
+			// addFinalSecStat(row,JPanel,Fixed) // always fixed
+					
+			// addExtraStats(row,JPanel)
+			// addRepValues(row,JPanel,Fixed/NotFixed)	
+			// createMainStatus(row)
+	
+	private int addHeaderInfo(GBagPanel p, int row)
+	{
+		
+		return 0;
+	}
+	
+	private int addBaseStatRow(GBagPanel p, int row, EditState e)
+	{
+		
+		return 0;
+	}
+	
+	private int addBonusStatRow(GBagPanel p, int row, EditState e)
+	{
+		
+		return 0;
+	}
+	
+	private int addFinalStatRow(GBagPanel p, int row)
+	{
+		
+		return 0;
+	}
+	
+	private int addBaseSecStat(GBagPanel p, int row, EditState e)
+	{
+		
+		return 0;
+	}
+	
+	private int addBonusSecStat(GBagPanel p, int row, EditState e)
+	{
+		
+		return 0;
+	}
+	
+	private int addFinalSecStat(GBagPanel p, int row)
+	{
+		
+		return 0;
 	}
 	
 	private int addActionButtons(int startRow)
