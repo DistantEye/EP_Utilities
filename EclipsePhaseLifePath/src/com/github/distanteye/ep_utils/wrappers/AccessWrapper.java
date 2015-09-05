@@ -20,27 +20,4 @@ public abstract class AccessWrapper<T> {
 	 */
 	abstract public boolean isInt();
 	
-	/**
-	 * Returns the Type of Wrapper, usually this is the Class name
-	 * @return String representing object identifier
-	 */
-	public String getType()
-	{
-		return this.getClass().getName();
-	}
-	
-	public boolean equals(Object o)
-	{
-		if(o instanceof AccessWrapper)
-		{
-		   @SuppressWarnings("unchecked") // mostly safe cast other than the generics
-		   AccessWrapper<T> temp = (AccessWrapper<T>)o;
-		   
-		   return this.getType().equals(temp.getType());
-		}
-		else
-		{
-			return false;
-		}
-	}
 }

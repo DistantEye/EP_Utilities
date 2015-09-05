@@ -7,8 +7,7 @@ import com.github.distanteye.ep_utils.containers.BaseCharacter;
 
 /**
  * Handles access control for a variable in the character store
- * Note : Do NOT add this as the variable itself, it has to reference a variable that already
- * exists, or it will throw an error
+ * Note : It has to reference a variable that already exists, or it will throw an error
  * 
  * @author Vigilant
  */

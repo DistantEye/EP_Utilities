@@ -114,60 +114,28 @@ public class GridBagUIPanel extends JPanel {
 		addLabel(x,y,"");
 		cons.weighty = 1.0;
 	}
-	
+		
 	/**
 	 * Adds a JLabel JTextField pair (each weight 1 ), and adds the textField to the mappedComponents list
-	 * using the labelText for a key
-	 * 
+	 * using the labelText for a key.
+	 * @param editState Whether the JTextField is editable or fixed
 	 * @param x non-negative integer
 	 * @param y non-negative integer
 	 * @param labelText Label to display
-	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
+	 * @param mapName The key for the TextField in MappedComponents
 	 * @param cols number of cols for the text field
-	 * @return The component created
-	 */
-	public JTextField addMappedTF(int x, int y, String labelText, int cols, UI parentUIForTextChangeListener)
-	{
-		return addMappedTF(x,y,labelText,labelText,cols,parentUIForTextChangeListener);
-	}
-	
-	/**
-	 * Adds a JLabel JTextField pair (each weight 1 ), and adds the textField to the mappedComponents list
-	 * using the labelText for a key. The label text and mapped name are set separately of each other
-	 * 
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @param labelText Label to display
-	 * @param mapName String to use for the map key for the text field
-	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
-	 * @param cols number of cols for the text field
-	 * @return The component created
-	 */
-	public JTextField addMappedTF(int x, int y, String labelText, String mapName, int cols, UI parentUIForTextChangeListener)
-	{
-		addLabel(x,y,labelText);
-		JTextField temp = addTextF(x+1,y,cols,parentUIForTextChangeListener);
-		this.mappedComponents.put(mapName, temp);
-		return temp;
-	}
-	
-	/**
-	 * Adds a JLabel JTextField pair (each weight 1 ), and adds the textField to the mappedComponents list
-	 * using the labelText for a key. The text field is not edittable
-	 * 
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @param labelText Label to display
 	 * @param value The text to display in the field
-	 * @param cols number of cols for the text field
-	 * @param horiztonal Whether the pair is arranged horizontally (vertically if false)
+	 * @param o Whether the label/textfield pair is oriented horizontally or vertically
+	 * @param parentUIForTextChangeListener if not null, will attach a TextChangeListener to this TextField, which reports back to the UI passed
+	 * 
 	 * @return The component created
 	 */
-	public JTextField addMappedFixedTF(int x, int y, String labelText, String value, int cols, boolean horizontal)
+	public JTextField addMappedTF(EditState editState, int x, int y, String labelText, String mapName, int cols, String value, 
+									Orientation o, UI parentUIForTextChangeListener)
 	{
 		int newX,newY;
 		
-		if (horizontal)
+		if (o == Orientation.HORIZONTAL)
 		{
 			newX = x+1;
 			newY = y;
@@ -178,10 +146,19 @@ public class GridBagUIPanel extends JPanel {
 			newY = y+1;
 		}
 		
+		if (editState == EditState.FIXED)
+		{
+			parentUIForTextChangeListener = null; // sanity check to prevent odd behavior
+		}
+		
 		addLabel(x,y,labelText);
-		JTextField temp = addTextF(newX,newY,value,cols,null);
-		temp.setEditable(false);
-		this.mappedComponents.put(labelText, temp);
+		JTextField temp = addTextF(newX,newY,value,cols,parentUIForTextChangeListener);
+		
+		if (editState == EditState.FIXED)
+		{
+			temp.setEditable(false);
+		}
+		this.mappedComponents.put(mapName, temp);
 		
 		return temp;
 	}
@@ -259,19 +236,6 @@ public class GridBagUIPanel extends JPanel {
 		}
 		
 		return temp;
-	}
-	
-	/**
-	 * Shorthand command to add Text Field at coordinates with text. No value set in this version
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @param cols Number of Columns
-	 * @param parentUIForTextChangeListener If not null, will add a TextChangeListener, which will trigger updates on this UI
-	 * @return The component created
-	 */
-	public JTextField addTextF(int x, int y, int cols, UI parentUIForTextChangeListener)
-	{
-		return this.addTextF(x, y, "", cols, parentUIForTextChangeListener);
 	}
 	
 	/**
@@ -386,7 +350,7 @@ public class GridBagUIPanel extends JPanel {
 	}
 	
 	/**
-	 * Returns eitehr the mapped component of the given name, or null
+	 * Returns either the mapped component of the given name, or null
 	 * @param name Name of the mapped component to look for
 	 * @return the JComponent if it exists, null otherwise
 	 */
@@ -467,7 +431,7 @@ public class GridBagUIPanel extends JPanel {
 	 * @param name Textfield to search for
 	 * @return Either the appropriate int value or 0 if no valid integer bearing field could be found
 	 */
-	public int getTextFVal(String name)
+	public int getTextFIntVal(String name)
 	{
 		JTextField temp = getTextF(name);		
 		
@@ -549,4 +513,5 @@ public class GridBagUIPanel extends JPanel {
 	{
 		return this.mappedComponents.put(name, comp);
 	}
+	
 }
