@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
 import com.github.distanteye.ep_utils.ui.UI;
+import com.github.distanteye.ep_utils.wrappers.StringWrapper;
 
 /**
  * The class takes in the appropriate information,
@@ -354,7 +355,7 @@ public class LifePathGenerator {
 					
 					if (playerChar.hasVar(insides))
 					{
-						String newStr = playerChar.getVar(insides);
+						String newStr = playerChar.getVarVal(insides);
 						effect = effect.replace(oldStr, newStr);
 					}
 					else
@@ -909,7 +910,7 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0)
 					{
-						playerChar.setVar("{path}",subparts[1]);
+						playerChar.setVar("{path}",new StringWrapper(subparts[1]));
 					}
 					else
 					{
@@ -925,7 +926,7 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0)
 					{
-						playerChar.setVar("{faction}",subparts[1]);
+						playerChar.setVar("{faction}",new StringWrapper(subparts[1]));
 					}
 					else
 					{
@@ -1304,7 +1305,7 @@ public class LifePathGenerator {
 					}
 					else if ( subparts[1].length() > 0 && subparts[2].length() > 0)
 					{
-						playerChar.setVar(subparts[1], subparts[2]);
+						playerChar.setVar(subparts[1], new StringWrapper(subparts[2]));
 					}
 					else
 					{
@@ -1324,7 +1325,7 @@ public class LifePathGenerator {
 					}
 					else if ( subparts[1].length() > 0 && subparts[2].length() > 0)
 					{
-						playerChar.incVar(subparts[1],subparts[2]);
+						playerChar.incVar(subparts[1],Integer.parseInt(subparts[2]));
 					}
 					else
 					{
@@ -1558,7 +1559,7 @@ public class LifePathGenerator {
 					
 					if (playerChar.hasVar(name))
 					{
-						parts[i] = playerChar.getVar(name);
+						parts[i] = playerChar.getVarVal(name);
 					}
 				}
 			}
@@ -1681,7 +1682,7 @@ public class LifePathGenerator {
 			
 			if (playerChar.hasVar("diceBonus"))
 			{
-				String diceB = playerChar.getVar("diceBonus");
+				String diceB = playerChar.getVarVal("diceBonus");
 				if (Utils.isInteger(diceB))
 				{
 					bonus = Integer.parseInt(diceB);

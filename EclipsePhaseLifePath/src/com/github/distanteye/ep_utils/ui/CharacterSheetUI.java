@@ -14,6 +14,7 @@ import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
 import com.github.distanteye.ep_utils.ui.validators.ExistsValidator;
 import com.github.distanteye.ep_utils.ui.validators.NumericValidator;
+import com.github.distanteye.ep_utils.wrappers.IntWrapper;
 
 /**
  * Plain CharacterSheet UI, Most fields meant to be user editable, with some validation
@@ -46,7 +47,7 @@ public class CharacterSheetUI implements UI {
         statPanel = new GridBagUIPanel();
         sideBar = new GridBagUIPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        gen.getPC().setVar("{cpCalc}","1"); // enable CP calculator
+        gen.getPC().setVar("{cpCalc}",new IntWrapper(1)); // enable CP calculator
 	}
 
 	/* (non-Javadoc)
@@ -303,12 +304,12 @@ public class CharacterSheetUI implements UI {
 		
 		if (gen.getPC().hasVar("NatLang"))
 		{
-			mainPanel.setTextF("Natural Language",gen.getPC().getVar("NatLang"));
+			mainPanel.setTextF("Natural Language",gen.getPC().getVarVal("NatLang"));
 		}
 		
 		if (gen.getPC().hasVar("{factionName}"))
 		{
-			mainPanel.setTextF("Faction",gen.getPC().getVar("{factionName}"));
+			mainPanel.setTextF("Faction",gen.getPC().getVarVal("{factionName}"));
 		}
 		
 		int[] stats = new int[16];
@@ -355,9 +356,9 @@ public class CharacterSheetUI implements UI {
 		cnt = 0;
 		
 		// update character with a few more display fields
-		gen.getPC().setVar("{stress}", ""+statPanel.getTextFVal("Stress"));
+		gen.getPC().setVar("{stress}", new IntWrapper(statPanel.getTextFVal("Stress")));
 		gen.getPC().secStats().put("MOX",statPanel.getTextFVal("MOX"));
-		gen.getPC().setVar("{credits}", ""+statPanel.getTextFVal("Credits"));
+		gen.getPC().setVar("{credits}", new IntWrapper(statPanel.getTextFVal("Credits")));
 		int freeCP = Math.max(0,statPanel.getTextFVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
 		statPanel.setTextF("Free CP",freeCP);
 		

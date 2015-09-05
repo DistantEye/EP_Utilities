@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.github.distanteye.ep_utils.core.Utils;
+import com.github.distanteye.ep_utils.wrappers.IntWrapper;
+import com.github.distanteye.ep_utils.wrappers.StringWrapper;
 
 /**
  * Represents entirety of a character in Eclipse Phase, holding Aptitude, gear, skills, sleights,etc
  * Has methods for aggregating and updating this data as driven by UI or Generator classes 
+ * 
+ * All String instance variables are stored in BaseCharacter.otherVars, although accessors and mutators exist as shortcuts
  * 
  * @author Vigilant
  */
@@ -67,14 +71,14 @@ public class EpCharacter extends SkilledCharacter {
 		
 		sleights = new AspectHashMap<Sleight>(", ",false);
 		
-		this.setVar("{credits}", "0");
-		this.setVar("{creditsSpent}", "0");
-		this.setVar("{faction}", "");
-		this.setVar("{background}", "");
-		this.setVar("{stress}", "0");
-		this.setVar("{CR}", "0");
-		this.setVar("{path}", "");
-		this.setVar("{isSynth}", "0");
+		this.setVar("{credits}", new IntWrapper(0));
+		this.setVar("{creditsSpent}", new IntWrapper(0));
+		this.setVar("{faction}", new StringWrapper(""));
+		this.setVar("{background}", new StringWrapper(""));
+		this.setVar("{stress}", new IntWrapper(0));
+		this.setVar("{CR}", new IntWrapper(0));
+		this.setVar("{path}", new StringWrapper(""));
+		this.setVar("{isSynth}", new IntWrapper(0));
 		allBackgrounds = new LinkedList<String>();
 	}
 	
@@ -94,7 +98,7 @@ public class EpCharacter extends SkilledCharacter {
 		
 		if (this.hasVar("{speedBonus}"))
 		{
-			Integer.parseInt(this.getVar("{speedBonus}"));
+			Integer.parseInt(this.getVarVal("{speedBonus}"));
 		}
 		
 		secStats.put("SPD", 1+speedBon);
@@ -188,7 +192,7 @@ public class EpCharacter extends SkilledCharacter {
 					
 					if (tmp.isKnowledge())
 					{
-						if (arr[0].equalsIgnoreCase(getVarSF("NatLang")))
+						if (arr[0].equalsIgnoreCase(getVarValSF("NatLang")))
 						{
 							sklVal -= getIntConst("FREE_NAT_LANG"); // don't count the free aspect of this skill
 						}
@@ -220,7 +224,7 @@ public class EpCharacter extends SkilledCharacter {
 			cpUsed = 15*mox + 10*totalApt + 5*numSleights + 5*numSpec + activeSkillPoints + knowledgeSkillPoints + totalRep/10 + totalCredits/1000;
 			
 			// set to relevant character variable
-			this.setVar("{cpUsed}", ""+cpUsed); 
+			this.setVar("{cpUsed}", new IntWrapper(cpUsed)); 
 					
 		}
 	}
@@ -317,7 +321,7 @@ public class EpCharacter extends SkilledCharacter {
 	{
 		if (hasVar("{factionName}"))
 		{
-			return getVar("{factionName}");
+			return getVarVal("{factionName}");
 		}
 		else
 		{
@@ -337,7 +341,7 @@ public class EpCharacter extends SkilledCharacter {
 	{
 		if (hasVar("{pathName}"))
 		{
-			return getVar("{pathName}");
+			return getVarVal("{pathName}");
 		}
 		else
 		{
@@ -347,7 +351,7 @@ public class EpCharacter extends SkilledCharacter {
 	
 	public int getCredits() 
 	{
-		return Integer.parseInt(this.getVar("{credits}"));
+		return Integer.parseInt(this.getVarVal("{credits}"));
 	}
 
 	/**
@@ -357,7 +361,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void setCredits(int credits) 
 	{
-		this.setVar("{credits}",String.valueOf(credits));
+		this.setVar("{credits}",new IntWrapper(credits));
 	}
 	
 	/**
@@ -438,7 +442,7 @@ public class EpCharacter extends SkilledCharacter {
 		int result = 0;
 
 		// The character's Natural Language doesn't play by same rules in regards to advancement over 60
-		if (hasVar("NatLang") && skl.getFullName().equalsIgnoreCase(getVar("NatLang")))
+		if (hasVar("NatLang") && skl.getFullName().equalsIgnoreCase(getVarVal("NatLang")))
 		{
 			result = skl.getValue()+aptValue;
 		}
@@ -460,7 +464,7 @@ public class EpCharacter extends SkilledCharacter {
 	{
 		if (hasVar("{background}"))
 		{
-			return this.getVar("{background}");
+			return this.getVarVal("{background}");
 		}
 		else
 		{
@@ -470,7 +474,7 @@ public class EpCharacter extends SkilledCharacter {
 
 	public void setBackground(String background) 
 	{
-		this.setVar("{background}", background);
+		this.setVar("{background}", new StringWrapper(background));
 		this.allBackgrounds.addFirst(background);
 	}
 

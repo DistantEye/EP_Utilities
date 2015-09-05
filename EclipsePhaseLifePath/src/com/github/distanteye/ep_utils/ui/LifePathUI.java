@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
+import com.github.distanteye.ep_utils.wrappers.IntWrapper;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
@@ -118,6 +119,9 @@ public class LifePathUI implements UI {
 	 */
 	public void init()
 	{
+		int x = 0; // current column, often refreshes
+		int y = 0; // current row
+		
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         mainWindow.setLayout(windowLayout);
         
@@ -204,6 +208,19 @@ public class LifePathUI implements UI {
 		statPanel.addMappedFixedTF(6,6,"Free CP", "",5,true);
 		statPanel.endRow(8,6);
 		
+		
+		// addHeaderInfo(row,JPanel)
+		// addBasePrimStat(row,JPanel,Fixed/NotFixed)
+		// addBonusPrimStat(row,JPanel,Fixed/NotFixed)
+		// addFinalPrimStat(row,JPanel,Fixed) // always fixed
+				
+		// addBaseSecStat(row,JPanel,Fixed/NotFixed)
+		// addBonusSecStat(row,JPanel,Fixed/NotFixed)
+		// addFinalSecStat(row,JPanel,Fixed) // always fixed
+		
+		// addExtraStats(row,JPanel)
+		// addRepValues(row,JPanel,Fixed/NotFixed)
+		
 		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
 		for (Rep r : gen.getPC().getAllRep())
@@ -225,9 +242,22 @@ public class LifePathUI implements UI {
 		
 		mainPanel.addC(tempPane,0,9,14,13,GridBagConstraints.BOTH);
 
+		// currently at 26 after mainStatus added 
+		y = addActionButtons(26);
 		
-		mainPanel.addMappedButton(0,26,"Firewall Events").addActionListener(new ActionListener() {
-					
+		mainPanel.endVertical(0,y);
+		
+		this.update();
+		
+		mainWindow.setSize(1700, 1000);
+
+		mainWindow.setVisible(true);
+	}
+	
+	private int addActionButtons(int startRow)
+	{
+		mainPanel.addMappedButton(0,startRow,"Firewall Events").addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e)
 		    {
 		    	if (gen.getPC().hasVar("{firewall}"))
@@ -237,7 +267,7 @@ public class LifePathUI implements UI {
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{firewall}", "1");
+		    		gen.getPC().setVar("{firewall}", new IntWrapper(1));
 		    		mainPanel.setButtonText("Firewall Events","Firewall Events (On)");
 		    	}
 		    }	
@@ -247,7 +277,7 @@ public class LifePathUI implements UI {
 		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
 		
 
-		mainPanel.addMappedButton(1,26,"Gatecrashing Events").addActionListener(new ActionListener() {
+		mainPanel.addMappedButton(1,startRow,"Gatecrashing Events").addActionListener(new ActionListener() {
 			
 		    public void actionPerformed(ActionEvent e)
 		    {
@@ -258,7 +288,7 @@ public class LifePathUI implements UI {
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{gatecrashing}", "1");
+		    		gen.getPC().setVar("{gatecrashing}", new IntWrapper(1));
 		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (On)");
 		    	}
 		    }	
@@ -267,7 +297,7 @@ public class LifePathUI implements UI {
 		// set this afterwards so it doesn't change the mapping name
 		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
 		
-		mainPanel.addMappedButton(3,26,"Run Next Step").addActionListener(new ActionListener() {
+		mainPanel.addMappedButton(3,startRow,"Run Next Step").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -277,7 +307,7 @@ public class LifePathUI implements UI {
 		});
 		
 		// gives a quick export of the character
-		mainPanel.addButton(5,26,"Export to Txt").addActionListener(new ActionListener() {
+		mainPanel.addButton(5,startRow,"Export to Txt").addActionListener(new ActionListener() {
 			
             public void actionPerformed(ActionEvent e)
             {
@@ -295,7 +325,7 @@ public class LifePathUI implements UI {
 		});
 		
 		// rolling vs manually choosing
-		mainPanel.addMappedButton(7,26,"Rolling").addActionListener(new ActionListener() {
+		mainPanel.addMappedButton(7,startRow,"Rolling").addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e)
 			{
@@ -312,15 +342,8 @@ public class LifePathUI implements UI {
 			}	
 		});
 		
-		mainPanel.endVertical(0,27);
-		
-		this.update();
-		
-		mainWindow.setSize(1700, 1000);
-
-		mainWindow.setVisible(true);
+		return startRow+1;
 	}
-	
 	
 	/**
 	 * Adds text to the end of the status text area
@@ -355,9 +378,9 @@ public class LifePathUI implements UI {
 			mainPanel.setTextF("Background",gen.getPC().getBackground());
 		}
 		
-		mainPanel.setTextF("Natural Language",gen.getPC().getVarSF("NatLang"));
+		mainPanel.setTextF("Natural Language",gen.getPC().getVarValSF("NatLang"));
 		
-		mainPanel.setTextF("Faction",gen.getPC().getVarSF("{factionName}"));
+		mainPanel.setTextF("Faction",gen.getPC().getVarValSF("{factionName}"));
 		
 		
 		int[] stats = new int[16];

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.github.distanteye.ep_utils.core.Step;
+import com.github.distanteye.ep_utils.wrappers.IntWrapper;
+import com.github.distanteye.ep_utils.wrappers.StringWrapper;
 
 /**
  * Represents a BaseCharacter that has both Skills and primary Stats
@@ -129,7 +131,7 @@ public class SkilledCharacter extends BaseCharacter {
 		else
 		{
 			this.skills.put(skill.getFullName(), skill);
-			this.setVar("{newestSkill}", skill.getFullName());
+			this.setVar("{newestSkill}", new StringWrapper(skill.getFullName()));
 		}
 	}
 	
@@ -144,8 +146,8 @@ public class SkilledCharacter extends BaseCharacter {
 		if (this.skills.containsKey(skillName))
 		{
 			Skill temp = this.skills.remove(skillName);
-			this.setVar("{lastRemSkl}", temp.getFullName());
-			this.setVar("{lastRemSklVal}", ""+temp.getValue());
+			this.setVar("{lastRemSkl}", new StringWrapper(temp.getFullName()));
+			this.setVar("{lastRemSklVal}", new IntWrapper(temp.getValue()));
 			return true;
 		}
 		else
@@ -248,7 +250,7 @@ public class SkilledCharacter extends BaseCharacter {
 		int result = 0;
 
 		// The character's Natural Language doesn't play by same rules in regards to advancement over 60
-		if (hasVar("NatLang") && skl.getFullName().equalsIgnoreCase(getVar("NatLang")))
+		if (hasVar("NatLang") && skl.getFullName().equalsIgnoreCase(getVarVal("NatLang")))
 		{
 			result = skl.getValue()+aptValue;
 		}
