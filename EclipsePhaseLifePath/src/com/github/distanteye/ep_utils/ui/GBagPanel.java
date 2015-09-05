@@ -1,22 +1,17 @@
 package com.github.distanteye.ep_utils.ui;
-import java.awt.ComponentOrientation;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
- * Extension of JPanel to add many helper methods centered around 
- * adding child components easier and tracking/returning added components
+ * GridBag flavor of ExtJPanel to add many helper methods related to adding, 
+ * tracking, returning components managed in a GridBagLayout
  * 
  * Most methods (when applicable) return the JComponent added/modified/created,
  * to support chaining
@@ -26,10 +21,7 @@ import com.github.distanteye.ep_utils.core.Utils;
  * @author Vigilant
  */
 @SuppressWarnings("serial")
-public class GBagPanel extends JPanel {	
-	private HashMap<String,JComponent> mappedComponents;
-	private GridBagConstraints cons;	
-	private ArrayList<JComponent> children;
+public class GBagPanel extends ExtJPanel {			
 	
 	/**
 	 * Creates a new UIPanel with a double buffer and a flow layout.
@@ -54,19 +46,7 @@ public class GBagPanel extends JPanel {
 	 */
 	protected void init()
 	{
-		this.mappedComponents = new HashMap<String,JComponent>();
-		this.children = new ArrayList<JComponent>();
-		this.cons = new GridBagConstraints();
-		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        
-        cons.ipadx = 5;
-		cons.ipady = 5;
-		cons.anchor = GridBagConstraints.NORTHWEST;
-		cons.fill = GridBagConstraints.NONE;
-		cons.weighty = 1.0;
-		cons.weightx = 1.0;
-		cons.gridheight = 1;
-		cons.gridwidth = 1;
+		super.init();		
 	}
 
 	/**
@@ -136,7 +116,7 @@ public class GBagPanel extends JPanel {
 		{
 			temp.setEditable(false);
 		}
-		this.mappedComponents.put(mapName, temp);
+		this.putMapped(mapName, temp);
 		
 		return temp;
 	}
@@ -184,7 +164,7 @@ public class GBagPanel extends JPanel {
 	public JButton addMappedButton(int x, int y, String text)
 	{
 		JButton temp = addButton(x,y,text);
-		this.mappedComponents.put(text, temp);
+		this.putMapped(text, temp);
 		return temp;
 	}
 	
@@ -231,265 +211,6 @@ public class GBagPanel extends JPanel {
 		JTextArea temp = new JTextArea(rows,cols);
 		addC(temp);
 		return temp;
-	}
-	
-	/**
-	 * Shorthand to add new components to the UI tab
-	 * @param comp Component to add to UI
-	 * @return The component added
-	 */
-	public JComponent addC(JComponent comp) {
-		this.add(comp,cons);
-		this.children.add(comp);
-		
-		return comp;
-	}
-	
-	/**
-	 * Shorthand to add new components to the UI tab at given coords
-	 * @param comp Component to add to UI
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @return The component added
-	 */
-	public JComponent addC(JComponent comp, int x, int y) {
-		cons.gridx = x;
-		cons.gridy = y;
-		this.addC(comp);
-		this.children.add(comp);
-		
-		return comp;
-	}
-	
-	/**
-	 * Shorthand to add new components to the UI tab at given coords with height and width
-	 * @param comp Component to add to UI
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @param gridHeight valid number or GridBagConstraints constant
-	 * @param gridWidth valid number or GridBagConstraints constant
-	 * @return The component added
-	 */
-	public JComponent addC(JComponent comp, int x, int y, int gridHeight, int gridWidth) {
-		int oldHeight = cons.gridheight;
-		int oldWidth = cons.gridwidth;
-		cons.gridheight = gridHeight;
-		cons.gridwidth = gridWidth;
-		this.addC(comp,x,y);
-		cons.gridheight = oldHeight;
-		cons.gridwidth = oldWidth;
-		
-		return comp;
-	}
-	
-	/**
-	 * Shorthand to add new components to the UI tab at given coords with height, width, and fill value
-	 * @param comp Component to add to UI
-	 * @param x non-negative integer
-	 * @param y non-negative integer
-	 * @param gridHeight valid number or GridBagConstraints constant
-	 * @param gridWidth valid number or GridBagConstraints constant
-	 * @param fill valid number or GridBagConstraints constant
-	 * @return The component added
-	 */
-	public JComponent addC(JComponent comp, int x, int y, int gridHeight, int gridWidth, int fill) {
-		int oldFill = cons.fill;
-		cons.fill = fill;
-		this.addC(comp,x,y,gridHeight,gridWidth);
-		cons.fill = oldFill;
-		
-		return comp;
-	}
-	
-	/**
-	 * Returns whether either this Panel or any of it's children have the component in question
-	 * @param name Name of the mapped component to look for
-	 * @return true or false as appropriate
-	 */
-	public boolean hasComponent(String name)
-	{
-		if (this.mappedComponents.containsKey(name))
-		{
-			return true;
-		}
-		else
-		{
-			for (JComponent j : this.children)
-			{
-				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
-				{
-					GBagPanel temp = (GBagPanel)j;
-					return temp.hasComponent(name);
-				}
-			}
-			
-			return false;
-		}
-	}
-	
-	/**
-	 * Returns either the mapped component of the given name, or null
-	 * @param name Name of the mapped component to look for
-	 * @return the JComponent if it exists, null otherwise
-	 */
-	public JComponent getComponent(String name)
-	{
-		if (this.mappedComponents.containsKey(name))
-		{
-			return this.mappedComponents.get(name);
-		}
-		else
-		{
-			for (JComponent j : this.children)
-			{
-				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
-				{
-					GBagPanel temp = (GBagPanel)j;
-					if ( temp.hasComponent(name) )
-					{
-						return temp.getComponent(name);
-					}
-				}
-			}
-			
-			return null;
-		}
-	}
-	
-	/**
-	 * Returns a list of keys for the the mappedComponents list
-	 * Keys are returned rather than values since keys sometimes themselves can be needed information
-	 * And themselves can be used to access the values
-	 * @return ArrayList of Strings for the component keys
-	 */
-	public ArrayList<String> getMappedComponentKeys()
-	{
-		ArrayList<String> result = new ArrayList<String>();
-		for (String key : mappedComponents.keySet())
-		{
-			result.add(key);
-		}
-		return result;
-	}
-	
-	/**
-	 * Helper method, searches mappedComponents for a JTextField with name, and returns it properly cast to JTextField
-	 * 
-	 * @param name Valid name 
-	 * @return The JTextField of matching name, or null if no matching JTextField exists
-	 */
-	public JTextField getTextF(String name)
-	{
-		// does it exist?
-		if (!this.hasComponent(name) )
-		{
-			return null;
-		}
-		else
-		{
-			
-			JComponent temp = this.getComponent(name);
-			
-			// is it the right type?
-			if ( !temp.getClass().getSimpleName().equalsIgnoreCase("jtextfield") )
-			{
-				return null;
-			}
-			else
-			{
-				return (JTextField)temp;
-			}
-			
-		}
-		
-	}
-	
-	/**
-	 * Returns the integer value stored in a mapped textfield, if applicable
-	 * @param name Textfield to search for
-	 * @return Either the appropriate int value or 0 if no valid integer bearing field could be found
-	 */
-	public int getTextFIntVal(String name)
-	{
-		JTextField temp = getTextF(name);		
-		
-		// does it exist and is it a number
-		if (temp == null || !Utils.isInteger(temp.getText()))
-		{
-			return 0;
-		}
-		else
-		{
-			return Integer.parseInt(temp.getText());
-		}
-	}
-	
-	/**
-	 * Attempts to retrieve a mapped text field with the matching name and change its text value to val
-	 * 
-	 * This function will fail silently if the field doesn't exist
-	 * 
-	 * @param name Name of the text field to look for
-	 * @param val Value to setText to
-	 */
-	public void setTextF(String name, String val)
-	{
-		JTextField temp = getTextF(name);		
-		
-		// does it exist and is it a number
-		if (temp == null)
-		{
-			return;
-		}
-		else
-		{
-			temp.setText(val);
-		}
-	}
-	
-	/**
-	 * Attempts to retrieve a mapped text field with the matching name and change its text value to val
-	 * This version takes an int value for convenience
-	 * @param name Name of the text field to look for
-	 * @param val int Value to setText to, will be converted to string
-	 */
-	public void setTextF(String name, int val)
-	{
-		this.setTextF(name, ""+val);
-	}
-	
-	/**
-	 * Attempts to retrieve a mapped button with the matching name and change its display text to val
-	 * 
-	 * This function will fail silently if the button doesn't exist
-	 * 
-	 * @param name Name of the button to look for
-	 * @param val Value to setText to
-	 */
-	public void setButtonText(String name, String val)
-	{
-		JComponent temp = mappedComponents.get(name);		
-		
-		// does it exist and is it a number
-		if (temp == null || !temp.getClass().getSimpleName().equalsIgnoreCase("JButton"))
-		{
-			return;
-		}
-		else
-		{
-			((JButton)temp).setText(val);
-		}
-	}
-	
-	/**
-	 * Adds a component to this Panel's mappedComponet list
-	 * @param name Name/key for the component
-	 * @param comp Component to add
-	 * @return the component added
-	 */
-	public JComponent put(String name, JComponent comp)
-	{
-		return this.mappedComponents.put(name, comp);
 	}
 	
 }
