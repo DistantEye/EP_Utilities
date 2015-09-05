@@ -45,9 +45,9 @@ public class EpCharacter extends SkilledCharacter {
 		// We use Aptitudes, a more EP-Tailored Primary Stat
 		for (String stat : Aptitude.TYPES)
 		{
-			primStats.put(stat, new Aptitude(stat,0));	
+			stats.put(stat, new Aptitude(stat,0));	
 		}
-		primStats.setImmutable();
+		stats.setImmutable();
 		
 		// do it for MOX and the rest of the derived stats
 		// all stats other than mox,INIT,Speed reflect the user's bonus to that category, since the rest are calculated stats
@@ -116,7 +116,7 @@ public class EpCharacter extends SkilledCharacter {
 				secStats.put("DR", (int)Math.round(dr*1.5));
 			}
 			
-			secStats.put("DB", primaryStats().get("SOM").getValue()/10);
+			secStats.put("DB", stats().get("SOM").getValue()/10);
 		}
 		else
 		{
@@ -126,10 +126,10 @@ public class EpCharacter extends SkilledCharacter {
 			secStats.put("DB", 0);
 		}
 		
-		secStats.put("LUC", primaryStats().get("WIL").getValue()*2);
+		secStats.put("LUC", stats().get("WIL").getValue()*2);
 		secStats.put("TT", (int)Math.round(secStats.get("LUC")/5));
 		secStats.put("IR", secStats.get("LUC")*2);
-		secStats.put("INIT", (int)Math.round( ( (primaryStats().get("INT").getValue()+primaryStats().get("REF").getValue())) * 2 ) / 5 );
+		secStats.put("INIT", (int)Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
@@ -152,7 +152,7 @@ public class EpCharacter extends SkilledCharacter {
 				totalRep = r.getValue();
 			}
 			
-			for (PrimaryStat apt : primStats.values())
+			for (Stat apt : stats.values())
 			{
 				totalApt += apt.getValue();
 			}
@@ -186,7 +186,7 @@ public class EpCharacter extends SkilledCharacter {
 					Skill tmp = skills.get(arr[0]);
 					
 					// the aptitude isn't part of the cost
-					sklVal -= primStats.get(tmp.getLinkedApt()).getValue();
+					sklVal -= stats.get(tmp.getLinkedApt()).getValue();
 					
 					if (tmp.isKnowledge())
 					{
@@ -261,7 +261,7 @@ public class EpCharacter extends SkilledCharacter {
 		
 		result += "Traits : " + this.traits.toString() + "\n";
 		result += "Sleights : " + this.sleights.toString() + "\n";
-		result += this.primStats.toString() + "\n";
+		result += this.stats.toString() + "\n";
 		result += this.secStats.toString() + "\n";
 		result += this.getSkillsString() + "\n";
 		result += this.reps.toString() + "\n";		
@@ -385,7 +385,7 @@ public class EpCharacter extends SkilledCharacter {
 		}
 		
 		
-		this.primStats.get(apt).addValue(value);
+		this.stats.get(apt).addValue(value);
 	}
 	
 	/**
@@ -435,7 +435,7 @@ public class EpCharacter extends SkilledCharacter {
 	public int getFinalSklVal(Skill skl)
 	{
 		String linkedApt = skl.getLinkedApt();
-		int aptValue = primaryStats().get(linkedApt).getValue();
+		int aptValue = stats().get(linkedApt).getValue();
 		
 		int result = 0;
 

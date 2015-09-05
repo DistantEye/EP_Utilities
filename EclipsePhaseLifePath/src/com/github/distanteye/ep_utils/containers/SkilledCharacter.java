@@ -17,7 +17,7 @@ import com.github.distanteye.ep_utils.core.Step;
 public class SkilledCharacter extends BaseCharacter {
 	
 	protected HashMap<String,Skill> skills; // Skills are too tightly coupled to Character's state to be useful as AspectHashMap
-	protected AspectHashMap<PrimaryStat> primStats;
+	protected AspectHashMap<Stat> stats;
 	
 	private LinkedList<Integer> lastRolls;
 	private String currentTable;
@@ -83,7 +83,7 @@ public class SkilledCharacter extends BaseCharacter {
 		super(name);
 		this.autoApplyMastery = autoApplyMastery;
 		skills = new HashMap<String, Skill>();
-		primStats = new AspectHashMap<PrimaryStat>(" ",false);
+		stats = new AspectHashMap<Stat>(" ",false);
 		
 		currentTable = "";
 		lastRolls = new LinkedList<Integer>();
@@ -93,7 +93,7 @@ public class SkilledCharacter extends BaseCharacter {
 	public String toString()
 	{
 		String result = this.getName() + "(" + this.getAge() + ")"+ "\n";
-		result += this.primStats.toString() + "\n";
+		result += this.stats.toString() + "\n";
 		result += this.getSkillsString();
 		
 		return result;
@@ -106,13 +106,13 @@ public class SkilledCharacter extends BaseCharacter {
 	 */
 	public void incPrimaryStat(String stat, int value)
 	{
-		if (!this.primStats.containsKey(stat))
+		if (!this.stats.containsKey(stat))
 		{
 			throw new IllegalArgumentException(stat + " is not a valid Primary Stat!");
 		}
 		
 		
-		this.primStats.get(stat).addValue(value);
+		this.stats.get(stat).addValue(value);
 	}
 	
 	/**
@@ -243,7 +243,7 @@ public class SkilledCharacter extends BaseCharacter {
 	public int getFinalSklVal(Skill skl)
 	{
 		String linkedApt = skl.getLinkedApt();
-		int aptValue = primaryStats().get(linkedApt).getValue();
+		int aptValue = stats().get(linkedApt).getValue();
 		
 		int result = 0;
 
@@ -350,8 +350,8 @@ public class SkilledCharacter extends BaseCharacter {
 	
 	// Sub containers : these give access to character aspects big enough for their own class 
 	
-	public AspectHashMap<PrimaryStat> primaryStats() {
-		return primStats;
+	public AspectHashMap<Stat> stats() {
+		return stats;
 	}
 
 	//end sub-containers

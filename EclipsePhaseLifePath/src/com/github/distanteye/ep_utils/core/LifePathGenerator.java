@@ -380,7 +380,7 @@ public class LifePathGenerator {
 				}
 				while(effect.contains("!RANDAPT!"))
 				{
-					effect = effect.replace("!RANDAPT!",playerChar.primaryStats().getRand(rng).getName());
+					effect = effect.replace("!RANDAPT!",playerChar.stats().getRand(rng).getName());
 				}
 				while(effect.contains("!RAND_DER!"))
 				{
@@ -735,7 +735,7 @@ public class LifePathGenerator {
 							throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 						}
 						
-						playerChar.primaryStats().get(subparts[1]).setValue(Integer.parseInt(subparts[2]));
+						playerChar.stats().get(subparts[1]).setValue(Integer.parseInt(subparts[2]));
 					}
 					else
 					{

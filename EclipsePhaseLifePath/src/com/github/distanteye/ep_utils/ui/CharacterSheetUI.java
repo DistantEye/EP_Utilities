@@ -172,7 +172,7 @@ public class CharacterSheetUI implements UI {
 		{
 			String name = "Base "+key;
 			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name,5,"",Orientation.HORIZONTAL, this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF(name, Math.max(1,gen.getPC().primaryStats().get(key).getValue()));
+			statPanel.setTextF(name, Math.max(1,gen.getPC().stats().get(key).getValue()));
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -320,7 +320,7 @@ public class CharacterSheetUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			int val = Math.max(1, statPanel.getTextFIntVal("Base "+key));
-			gen.getPC().primaryStats().get(key).setValue(val);
+			gen.getPC().stats().get(key).setValue(val);
 			stats[cnt++] = val;
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)

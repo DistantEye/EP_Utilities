@@ -149,7 +149,7 @@ public class LifePathUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,0,name,name, 5,""+gen.getPC().primaryStats().get(key),Orientation.HORIZONTAL,null);
+			statPanel.addMappedTF(EditState.FIXED,idx,0,name,name, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null);
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -434,7 +434,7 @@ public class LifePathUI implements UI {
 		// fill stats with all the primary and secondary stat values
 		for (String key : Aptitude.TYPES)
 		{
-			stats[cnt++] = gen.getPC().primaryStats().get(key).getValue();
+			stats[cnt++] = gen.getPC().stats().get(key).getValue();
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{

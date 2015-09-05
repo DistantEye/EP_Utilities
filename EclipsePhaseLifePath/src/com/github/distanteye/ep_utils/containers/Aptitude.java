@@ -3,7 +3,7 @@ package com.github.distanteye.ep_utils.containers;
  * Container for Aptitudes, an EpCharacter's primary stat type
  * @author Vigilant
  */
-public class Aptitude extends PrimaryStat {
+public class Aptitude extends Stat {
 	// APT_MAX normally 30 (EP Core 122), 40 possible with Exceptional Aptitude (EP Core 146)
 	public static final int APTITUDE_MAX = 40;
 	public static String[] TYPES = {"COG","COO","INT","REF","SAV","SOM","WIL"};

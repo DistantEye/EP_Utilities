@@ -3,7 +3,7 @@ package com.github.distanteye.ep_utils.containers;
  * Container for PrimaryStats, a generic class for primary stat types
  * @author Vigilant
  */
-public class PrimaryStat {
+public class Stat {
 	private String name;
 	private int value;
 	
@@ -11,7 +11,7 @@ public class PrimaryStat {
 	 * @param name Name of Stat type
 	 * @param value Current value, should be non-negative
 	 */
-	public PrimaryStat(String name, int value) {
+	public Stat(String name, int value) {
 		super();
 		this.name = name;
 		this.setValue(value);
