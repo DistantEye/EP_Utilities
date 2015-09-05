@@ -30,7 +30,7 @@ public class CharacterSheetUI implements UI {
 	 //		if they were user definable anyways
 	 private BorderLayout windowLayout;
 	 private JFrame mainWindow;
-	 private GridBagUIPanel mainPanel, statPanel,sideBar;
+	 private GBagPanel mainPanel, statPanel,sideBar;
 	 private JTextArea mainStatus;
 	 private LifePathGenerator gen;
 	
@@ -42,9 +42,9 @@ public class CharacterSheetUI implements UI {
 		gen = new LifePathGenerator("",this,true);
 		windowLayout = new BorderLayout();
         mainWindow = new JFrame();     
-        mainPanel = new GridBagUIPanel();
-        statPanel = new GridBagUIPanel();
-        sideBar = new GridBagUIPanel();
+        mainPanel = new GBagPanel();
+        statPanel = new GBagPanel();
+        sideBar = new GBagPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         gen.getPC().setVar("{cpCalc}","1"); // enable CP calculator
 	}

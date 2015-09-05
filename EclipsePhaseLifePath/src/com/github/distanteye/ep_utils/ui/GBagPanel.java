@@ -26,7 +26,7 @@ import com.github.distanteye.ep_utils.core.Utils;
  * @author Vigilant
  */
 @SuppressWarnings("serial")
-public class GridBagUIPanel extends JPanel {	
+public class GBagPanel extends JPanel {	
 	private HashMap<String,JComponent> mappedComponents;
 	private GridBagConstraints cons;	
 	private ArrayList<JComponent> children;
@@ -34,7 +34,7 @@ public class GridBagUIPanel extends JPanel {
 	/**
 	 * Creates a new UIPanel with a double buffer and a flow layout.
 	 */
-	public GridBagUIPanel() {
+	public GBagPanel() {
 		super(new GridBagLayout());
 		init();
 	}
@@ -43,7 +43,7 @@ public class GridBagUIPanel extends JPanel {
 	 * Creates a new UIPanel with FlowLayout and the specified buffering strategy. If isDoubleBuffered is true, the UIPanel will use a double buffer.
 	 * @param isDoubleBuffered - a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
 	 */
-	public GridBagUIPanel(boolean isDoubleBuffered) {
+	public GBagPanel(boolean isDoubleBuffered) {
 		super(new GridBagLayout(),isDoubleBuffered);
 		init();
 	}
@@ -318,7 +318,7 @@ public class GridBagUIPanel extends JPanel {
 			{
 				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
 				{
-					GridBagUIPanel temp = (GridBagUIPanel)j;
+					GBagPanel temp = (GBagPanel)j;
 					return temp.hasComponent(name);
 				}
 			}
@@ -344,7 +344,7 @@ public class GridBagUIPanel extends JPanel {
 			{
 				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
 				{
-					GridBagUIPanel temp = (GridBagUIPanel)j;
+					GBagPanel temp = (GBagPanel)j;
 					if ( temp.hasComponent(name) )
 					{
 						return temp.getComponent(name);
