@@ -180,7 +180,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.FIXED,idx,3,key,key, 5,""+gen.getPC().secStats().get(key),Orientation.HORIZONTAL,null);
+			statPanel.addMappedTF(EditState.FIXED,idx,3,key,key, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null);
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
@@ -438,7 +438,7 @@ public class LifePathUI implements UI {
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			stats[cnt++] = gen.getPC().secStats().get(key);
+			stats[cnt++] = gen.getPC().stats().get(key).getValue();
 		}
 		
 		cnt = 0;
@@ -478,7 +478,7 @@ public class LifePathUI implements UI {
 		
 		// update a few more display fields
 		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().secStats().get("MOX"));
+		statPanel.setTextF("MOX",gen.getPC().stats().get("MOX").getValue());
 		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
 		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
 		

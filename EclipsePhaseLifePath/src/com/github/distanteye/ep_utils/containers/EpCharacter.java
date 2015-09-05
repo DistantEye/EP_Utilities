@@ -24,7 +24,6 @@ public class EpCharacter extends SkilledCharacter {
 	private AspectHashMap<Rep> reps;
 	private AspectHashMap<Sleight> sleights;
 	
-	private AspectHashMap<Integer> secStats;
 	private ArrayList<String> gearList;
 	private LinkedList<String> allBackgrounds;
 	private Morph currentMorph;
@@ -40,23 +39,21 @@ public class EpCharacter extends SkilledCharacter {
 		traits = new AspectHashMap<Trait>(", ",false);
 		
 		gearList = new ArrayList<String>();
-		secStats = new AspectHashMap<Integer>(" ", true);
 		
 		// We use Aptitudes, a more EP-Tailored Primary Stat
 		for (String stat : Aptitude.TYPES)
 		{
 			stats.put(stat, new Aptitude(stat,0));	
 		}
-		stats.setImmutable();
 		
-		// do it for MOX and the rest of the derived stats
+		// now do it for MOX and the rest of the derived stats
 		// all stats other than mox,INIT,Speed reflect the user's bonus to that category, since the rest are calculated stats
 		for (String stat : SECONDARY_STATS)
 		{
-			secStats.put(stat, 0);	
+			stats.put(stat, new Stat(stat,0));	
 		}
-		secStats.put("MOX", 1); // these two
-		secStats.setImmutable();
+		stats.put("MOX",new Stat("MOX",1)); // Mox has a default value of 1
+		stats.setImmutable();
 	
 		
 		reps = new AspectHashMap<Rep>("\n",false);
@@ -99,37 +96,37 @@ public class EpCharacter extends SkilledCharacter {
 			Integer.parseInt(this.getVar("{speedBonus}"));
 		}
 		
-		secStats.put("SPD", 1+speedBon);
+		stats.get("SPD").setValue(1+speedBon);
 		
 		// Infomorphs don't have physical damage stats 
 		if (currentMorph.getMorphType()!=Morph.MorphType.INFOMORPH)
 		{
-			secStats.put("DUR", currentMorph.getDurability());
-			secStats.put("WT", currentMorph.getWoundThreshold());
+			stats.get("DUR").setValue(currentMorph.getDurability());
+			stats.get("WT").setValue(currentMorph.getWoundThreshold());
 			int dr = currentMorph.getDurability();
 			if (currentMorph.getMorphType()==Morph.MorphType.SYNTH)
 			{
-				secStats.put("DR", dr*2);
+				stats.get("DR").setValue(dr*2);
 			}
 			else
 			{
-				secStats.put("DR", (int)Math.round(dr*1.5));
+				stats.get("DR").setValue((int)Math.round(dr*1.5));
 			}
 			
-			secStats.put("DB", stats().get("SOM").getValue()/10);
+			stats.get("DB").setValue(stats().get("SOM").getValue()/10);
 		}
 		else
 		{
-			secStats.put("DUR", 0);
-			secStats.put("WT", 0);
-			secStats.put("DR", 0);
-			secStats.put("DB", 0);
+			stats.get("DUR").setValue(0);
+			stats.get("WT").setValue(0);
+			stats.get("DR").setValue(0);
+			stats.get("DB").setValue(0);
 		}
 		
-		secStats.put("LUC", stats().get("WIL").getValue()*2);
-		secStats.put("TT", (int)Math.round(secStats.get("LUC")/5));
-		secStats.put("IR", secStats.get("LUC")*2);
-		secStats.put("INIT", (int)Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
+		stats.get("LUC").setValue(stats().get("WIL").getValue()*2);
+		stats.get("TT").setValue((int)Math.round(stats.get("LUC").getValue()/5));
+		stats.get("IR").setValue(stats.get("LUC").getValue()*2);
+		stats.get("INIT").setValue((int)Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
@@ -137,7 +134,7 @@ public class EpCharacter extends SkilledCharacter {
 			int cpUsed;
 			int mox, totalRep,totalApt,numSleights,numSpec,activeSkillPoints,knowledgeSkillPoints,totalCredits;
 			
-			mox = secStats.get("MOX");
+			mox = stats.get("MOX").getValue();
 			totalRep = 0;
 			totalApt = 0;
 			numSleights = 0;
@@ -262,7 +259,6 @@ public class EpCharacter extends SkilledCharacter {
 		result += "Traits : " + this.traits.toString() + "\n";
 		result += "Sleights : " + this.sleights.toString() + "\n";
 		result += this.stats.toString() + "\n";
-		result += this.secStats.toString() + "\n";
 		result += this.getSkillsString() + "\n";
 		result += this.reps.toString() + "\n";		
 		result += "Gear : " + this.getGearString();
@@ -394,7 +390,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public int getMox()
 	{
-		return this.secStats.get("MOX");
+		return this.stats.get("MOX").getValue();
 	}
 	
 	/**
@@ -408,7 +404,7 @@ public class EpCharacter extends SkilledCharacter {
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.secStats.put("MOX", val);
+		this.stats.get("MOX").setValue(val);
 	}
 	
 	/**
@@ -417,12 +413,12 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void incMox(int val)
 	{
-		if (this.secStats.get("MOX") + val < 1)
+		if (this.stats.get("MOX").getValue() + val < 1)
 		{
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.secStats.put("MOX", this.secStats.get("MOX") + val);
+		this.stats.get("MOX").setValue(this.stats.get("MOX").getValue() + val);
 	}
 	
 	/**
@@ -560,9 +556,6 @@ public class EpCharacter extends SkilledCharacter {
 		return sleights;
 	}
 
-	public AspectHashMap<Integer> secStats() {
-		return secStats;
-	}
 	
 	//end sub-containers
 	

@@ -326,8 +326,8 @@ public class CharacterSheetUI implements UI {
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			int val = statPanel.getTextFIntVal(key);
-			gen.getPC().secStats().put(key, val);			
-			stats[cnt++] = gen.getPC().secStats().get(key);
+			gen.getPC().stats().get(key).setValue(val);			
+			stats[cnt++] = gen.getPC().stats().get(key).getValue();
 		}
 		
 		cnt = 0;
@@ -357,7 +357,7 @@ public class CharacterSheetUI implements UI {
 		
 		// update character with a few more display fields
 		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
-		gen.getPC().secStats().put("MOX",statPanel.getTextFIntVal("MOX"));
+		gen.getPC().stats().get("MOX").setValue(statPanel.getTextFIntVal("MOX"));
 		gen.getPC().setVar("{credits}", ""+statPanel.getTextFIntVal("Credits"));
 		int freeCP = Math.max(0,statPanel.getTextFIntVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
 		statPanel.setTextF("Free CP",freeCP);

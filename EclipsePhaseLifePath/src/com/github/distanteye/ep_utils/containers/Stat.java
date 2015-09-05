@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.containers;
 /**
- * Container for PrimaryStats, a generic class for primary stat types
+ * Container for Stats, a general class for encapsulating stats
+ * Stats are, at minimum, a name and a non-negative integer value
  * @author Vigilant
  */
 public class Stat {
@@ -35,7 +36,7 @@ public class Stat {
 	}
 
 	/**
-	 * Sets PrimaryStat value to val
+	 * Sets Stat value to val
 	 * @param val Valid non negative integer value
 	 */
 	public void setValue(int val) {
