@@ -28,6 +28,7 @@ public class AspectHashMap<T> extends HashMap<String,T> {
 	String separator;
 	boolean includeKey;
 	boolean mutable; // if false, put and remove will fail, except when put modifies an existing key
+	private ArrayList<String> order; 
 	
 	/**
 	 * Creates the class, specifying behaviors for the toString method to use, which does a somewhat customized
@@ -60,7 +61,7 @@ public class AspectHashMap<T> extends HashMap<String,T> {
 		boolean first = true;
 		String result = "";
 		
-		for (String key : keySet())
+		for (String key : getOrder())
 		{
 			String itemStr = "";
 			
@@ -183,5 +184,47 @@ public class AspectHashMap<T> extends HashMap<String,T> {
 			throw new IllegalStateException("AspectHashMap is not currently mutable and cannot accept changes to the number of keys");
 		}
 	}
+
+	/**
+	 * Retrieves the print order of the keyList, generating a new one if necessary
+	 * @return Ordered String[] of keys in the HashMap
+	 */
+	public ArrayList<String> getOrder()
+	{
+		if (order==null || order.size() != size())
+		{
+			order = new ArrayList<String>(keySet());
+			return order;
+		}
+		else
+		{
+			return order;
+		}
+	}
 	
+	/**
+	 * Validates an ordered list of Strings. If they correspond to all of the keys in the HashMap, will
+	 * be set as a the new print order for toString()
+	 * @param order ArrayList<String>, must contain every key in the HashMap, and only those keys to be valid
+	 */
+	public void setOrder(ArrayList<String> order)
+	{
+		if (order.size() != size())
+		{
+			throw new IllegalArgumentException("Order array does not match size of AspectHashMap");
+		}
+		else
+		{
+			for (String key : keySet())
+			{
+				if (!order.contains(key))
+				{
+					throw new IllegalArgumentException("Order array is not a 1:1 match for keySet of AspectHashMap");
+				}
+			}
+			
+			// if the code hasn't thrown an error by now we have a match
+			this.order = order;
+		}
+	}
 }

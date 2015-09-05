@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.containers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -52,9 +53,12 @@ public class EpCharacter extends SkilledCharacter {
 		{
 			stats.put(stat, new Stat(stat,0));	
 		}
-		stats.put("MOX",new Stat("MOX",1)); // Mox has a default value of 1
 		stats.setImmutable();
 	
+		// build the order we need to print as for Stats
+		ArrayList<String> tempOrder = new ArrayList<String>(Arrays.asList(Aptitude.TYPES));
+		tempOrder.addAll(Arrays.asList(SECONDARY_STATS));
+		stats.setOrder(tempOrder);
 		
 		reps = new AspectHashMap<Rep>("\n",false);
 		
@@ -66,6 +70,7 @@ public class EpCharacter extends SkilledCharacter {
 		
 		sleights = new AspectHashMap<Sleight>(", ",false);
 		
+		this.setVar("{MOX}", "1");
 		this.setVar("{credits}", "0");
 		this.setVar("{creditsSpent}", "0");
 		this.setVar("{faction}", "");
@@ -258,7 +263,8 @@ public class EpCharacter extends SkilledCharacter {
 		
 		result += "Traits : " + this.traits.toString() + "\n";
 		result += "Sleights : " + this.sleights.toString() + "\n";
-		result += this.stats.toString() + "\n";
+		result += this.stats.toString().replace(SECONDARY_STATS[0], "\n" + SECONDARY_STATS[0]) + "\n"; // quick modification to split to two lines
+		result += "MOX: " + getMox() + ", Credits: " + getCredits() + "\n";
 		result += this.getSkillsString() + "\n";
 		result += this.reps.toString() + "\n";		
 		result += "Gear : " + this.getGearString();
@@ -390,7 +396,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public int getMox()
 	{
-		return this.stats.get("MOX").getValue();
+		return this.getVarInt("{MOX}");
 	}
 	
 	/**
@@ -404,7 +410,7 @@ public class EpCharacter extends SkilledCharacter {
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.stats.get("MOX").setValue(val);
+		this.setVar("{MOX}", ""+val);
 	}
 	
 	/**
@@ -413,12 +419,13 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void incMox(int val)
 	{
-		if (this.stats.get("MOX").getValue() + val < 1)
+		int mox = this.getVarInt("{MOX}");
+		if (mox + val < 1)
 		{
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.stats.get("MOX").setValue(this.stats.get("MOX").getValue() + val);
+		this.setMox(mox+val);
 	}
 	
 	/**

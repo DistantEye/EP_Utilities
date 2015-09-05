@@ -357,7 +357,7 @@ public class CharacterSheetUI implements UI {
 		
 		// update character with a few more display fields
 		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
-		gen.getPC().stats().get("MOX").setValue(statPanel.getTextFIntVal("MOX"));
+		gen.getPC().setMox(statPanel.getTextFIntVal("MOX"));
 		gen.getPC().setVar("{credits}", ""+statPanel.getTextFIntVal("Credits"));
 		int freeCP = Math.max(0,statPanel.getTextFIntVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
 		statPanel.setTextF("Free CP",freeCP);

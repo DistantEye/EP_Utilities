@@ -478,7 +478,7 @@ public class LifePathUI implements UI {
 		
 		// update a few more display fields
 		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().stats().get("MOX").getValue());
+		statPanel.setTextF("MOX",gen.getPC().getMox());
 		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
 		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
 		
