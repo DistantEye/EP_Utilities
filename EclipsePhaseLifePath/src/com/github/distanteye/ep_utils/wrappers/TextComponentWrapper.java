@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.github.distanteye.ep_utils.wrappers;
 
 import javax.swing.text.JTextComponent;

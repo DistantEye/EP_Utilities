@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.github.distanteye.ep_utils.core.Utils;
+import com.github.distanteye.ep_utils.wrappers.MappedComponent;
 
 /**
  * Basic extension of JPanel which adds helper methods to make adding other Swing objects.
@@ -31,7 +32,7 @@ import com.github.distanteye.ep_utils.core.Utils;
  */
 @SuppressWarnings("serial")
 public class ExtJPanel extends JPanel {
-	private HashMap<String,JComponent> mappedComponents;
+	private HashMap<String,MappedComponent> mappedComponents;
 	protected GridBagConstraints cons;	
 	private ArrayList<JComponent> children;
 	
@@ -73,7 +74,7 @@ public class ExtJPanel extends JPanel {
 		this.children = new ArrayList<JComponent>();
 		this.cons = new GridBagConstraints();
 		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		this.mappedComponents = new HashMap<String,JComponent>();
+		this.mappedComponents = new HashMap<String,MappedComponent>();
 		
         cons.ipadx = 5;
 		cons.ipady = 5;
@@ -186,9 +187,9 @@ public class ExtJPanel extends JPanel {
 	/**
 	 * Returns either the mapped component of the given name, or null
 	 * @param name Name of the mapped component to look for
-	 * @return the JComponent if it exists, null otherwise
+	 * @return the MappedComponent if it exists, null otherwise
 	 */
-	public JComponent getComponent(String name)
+	public MappedComponent getMappedComponent(String name)
 	{
 		if (this.mappedComponents.containsKey(name))
 		{
@@ -203,12 +204,32 @@ public class ExtJPanel extends JPanel {
 					GBagPanel temp = (GBagPanel)j;
 					if ( temp.hasComponent(name) )
 					{
-						return temp.getComponent(name);
+						return temp.getMappedComponent(name);
 					}
 				}
 			}
 			
 			return null;
+		}
+	}
+	
+	/**
+	 * Shortcut method that gets the MappedComponent matching name, then returns its
+	 * underlying JComponent
+	 * @param name Name of the mapped component to look for
+	 * @return The underlying JComponent for the MappedComponent named, or null if none found
+	 */
+	public JComponent getComponentVal(String name)
+	{
+		MappedComponent temp = getMappedComponent(name);
+		
+		if (temp == null)
+		{
+			return null;
+		}
+		else
+		{
+			return temp.getComp();
 		}
 	}
 	
@@ -229,12 +250,21 @@ public class ExtJPanel extends JPanel {
 	}
 	
 	/**
+	 * Callls up a MappedComponent and instructs it to update()
+	 * @param name Name/key of MappedComponent
+	 */
+	public void updateComp(String name)
+	{
+		getMappedComponent(name).update();
+	}
+	
+	/**
 	 * Adds a component to this Panel's mappedComponet list
 	 * @param name Name/key for the component
-	 * @param comp Component to add
+	 * @param comp MappedComponent to add
 	 * @return the component added
 	 */
-	public JComponent putMapped(String name, JComponent comp)
+	public MappedComponent putMapped(String name, MappedComponent comp)
 	{
 		return this.mappedComponents.put(name, comp);
 	}
@@ -255,7 +285,7 @@ public class ExtJPanel extends JPanel {
 		else
 		{
 			
-			JComponent temp = this.getComponent(name);
+			JComponent temp = this.getComponentVal(name);
 			
 			// is it the right type?
 			if ( !temp.getClass().getSimpleName().equalsIgnoreCase("jtextfield") )
@@ -335,7 +365,7 @@ public class ExtJPanel extends JPanel {
 	 */
 	public void setButtonText(String name, String val)
 	{
-		JComponent temp = this.getComponent(name);		
+		JComponent temp = this.getComponentVal(name);		
 		
 		// does it exist and is it a number
 		if (temp == null || !temp.getClass().getSimpleName().equalsIgnoreCase("JButton"))

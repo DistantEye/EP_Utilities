@@ -19,8 +19,8 @@ public class StatWrapper extends AccessWrapper<String> {
 	
 	/**
 	 * 
-	 * @param aChar
-	 * @param statName
+	 * @param aChar SkilledCharacter (or subclass) with valid Stat values added
+	 * @param statName String name of the stat to link to
 	 */
 	public StatWrapper(SkilledCharacter aChar, String statName)
 	{
@@ -35,7 +35,13 @@ public class StatWrapper extends AccessWrapper<String> {
 
 	@Override
 	public void setValue(String item) {
-		if (Utils.isInteger(statName))
+		// we silent exit if blank/whitespace
+		if (item.trim().length() == 0)
+		{
+			return;
+		}
+		
+		if (!Utils.isInteger(item))
 		{
 			throw new IllegalArgumentException("StatWrapper.setValue needs an integer value!");
 		}

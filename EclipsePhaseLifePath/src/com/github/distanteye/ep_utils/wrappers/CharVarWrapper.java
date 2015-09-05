@@ -17,23 +17,18 @@ public class CharVarWrapper extends AccessWrapper<String> {
 	
 	/**
 	 * 
-	 * @param aChar
-	 * @param varName
+	 * @param aChar Valid BaseCharacter (or subclass)
+	 * @param varName String name of the variable in the character
 	 */
 	public CharVarWrapper(BaseCharacter aChar, String varName)
 	{
-		if (!aChar.hasVar(varName))
-		{
-			throw new IllegalArgumentException("Invalid varName(" + varName +"), variable does not exist in character");
-		}
-		
 		this.aChar = aChar;
 		this.varName = varName;		
 	}
 	
 	@Override
 	public String getValue() {
-		return aChar.getVar(varName);
+		return aChar.getVarSF(varName);
 	}
 
 	@Override

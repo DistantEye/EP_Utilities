@@ -8,9 +8,6 @@ import java.util.regex.Pattern;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
 import com.github.distanteye.ep_utils.ui.UI;
-import com.github.distanteye.ep_utils.wrappers.CharVarWrapper;
-import com.github.distanteye.ep_utils.wrappers.StringWrapper;
-
 /**
  * The class takes in the appropriate information,
  * and then runs the lifepath process to interactively generate a character

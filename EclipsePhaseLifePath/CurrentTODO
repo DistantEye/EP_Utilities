@@ -32,3 +32,7 @@ Make the validators that override shouldYieldFocus have a common parent, since t
 
 Field skills like Interest can't handle a Field that has a space in it. This may prove annoying/complicated to fix.
 	Or it may be easy if the next field has to be a number or have specialization notation
+	
+	
+For any of the "Add 10 to one of these skills" or similar, just use an extendedChoice rather than a conditional, it's easier
+	Also, implement random picks for extended choices, that should be easy to do

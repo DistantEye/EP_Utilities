@@ -14,6 +14,7 @@ import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
 import com.github.distanteye.ep_utils.ui.validators.ExistsValidator;
 import com.github.distanteye.ep_utils.ui.validators.NumericValidator;
+import com.github.distanteye.ep_utils.wrappers.*;
 
 /**
  * Plain CharacterSheet UI, Most fields meant to be user editable, with some validation
@@ -132,11 +133,13 @@ public class CharacterSheetUI implements UI {
 		mainWindow.add(mainScroll);
 		
 		// start first row of rows of mixed size
-		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this);
-		mainPanel.addMappedTF(EditState.NOTFIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,this).setInputVerifier(new ExistsValidator("Morph"));
-		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null);
-		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null);
-		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null);
+		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
+		mainPanel.addMappedTF(EditState.NOTFIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,this, 
+									new CharMorphWrapper(gen.getPC())).setInputVerifier(new ExistsValidator(Morph.class.getName()));
+		
+		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{background}"));
+		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"NatLang"));
+		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{faction}"));
 		
 		// gives a quick export of the character
 		mainPanel.addMappedButton(12,0,"Export to Txt").addActionListener(new ActionListener() {
@@ -166,84 +169,104 @@ public class CharacterSheetUI implements UI {
 		
 		// stats are predictable in format and appearance, so we do them via loops
 		
+		// stats are predictable in format and appearance, so we do them via loops
+		
 		// Add first row, with the Base Primary stat values
 		int idx = 0;
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name,5,"",Orientation.HORIZONTAL, this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF(name, Math.max(1,gen.getPC().stats().get(key).getValue()));
+			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name, 5,"",Orientation.HORIZONTAL,null,
+										new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
-		
-		
+
+
 		// add row for bonuses
 		idx = 0;
 		for (String key : Aptitude.TYPES)
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", "MorphBonus"+key,5, "",Orientation.HORIZONTAL, this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("MorphBonus"+key, 0);
+			String name = "MorphBonus"+key;
+			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,1);
-		
+
 		// add final row for totals.
 		idx = 0;
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Total "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null);
+			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF("Base "+key)),
+					new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
+
+			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null, basePlusBonus);
 			idx +=2;
 		}
 		statPanel.endRow(idx,2);
-		
-		
+
+
 		// add row for base secondary stats
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,3,key,key,5,"",Orientation.HORIZONTAL, this).setInputVerifier(new NumericValidator());
+			statPanel.addMappedTF(EditState.NOTFIXED,idx,3,key,key, 5,"",Orientation.HORIZONTAL,null,
+									new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
-		
+
 		// now we do bonuses
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "",Orientation.HORIZONTAL, this).setInputVerifier(new NumericValidator());
+			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "", Orientation.HORIZONTAL, this,null).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
 		statPanel.endRow(idx,4);
-		
+
 		// now we do the totals
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			String name = "Total "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null);
+			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF(key)),
+					new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
+			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null,basePlusBonus);
 			idx +=2;
 		}
 		statPanel.endRow(idx,5);
 		
+				
 		// a few extra stats get factored in too
-		statPanel.addMappedTF(EditState.NOTFIXED,0,6,"Stress","Stress",5,"", Orientation.HORIZONTAL,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("Stress",0);
-		statPanel.addMappedTF(EditState.NOTFIXED,2,6,"MOX","MOX",5,"", Orientation.HORIZONTAL,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("MOX",EpCharacter.getIntConst("FREE_MOX"));
-		statPanel.addMappedTF(EditState.NOTFIXED,4,6,"Credits","Credits",5,"", Orientation.HORIZONTAL,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("Credits",EpCharacter.getIntConst("FREE_CREDIT"));
-		statPanel.addMappedTF(EditState.NOTFIXED,6,6,"Base CP","Base CP",5,"" ,Orientation.HORIZONTAL,this).setInputVerifier(new NumericValidator());
-			statPanel.setTextF("Base CP",1000);
-		statPanel.addMappedTF(EditState.FIXED,8,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null);
+		int fMox = EpCharacter.getIntConst("FREE_MOX");
+		int fCred = EpCharacter.getIntConst("FREE_CREDIT");
+		int bCP = 1000;
+		
+		statPanel.addMappedTF(EditState.NOTFIXED,0,6,"Stress","Stress",5,"0", Orientation.HORIZONTAL,this, 
+							  new CharVarWrapper(gen.getPC(),"{stress}")).setInputVerifier(new NumericValidator());
+			
+		statPanel.addMappedTF(EditState.NOTFIXED,2,6,"MOX","MOX",5,""+fMox, Orientation.HORIZONTAL,this,
+				 			  new CharVarWrapper(gen.getPC(),"{MOX}")).setInputVerifier(new NumericValidator());
+			
+		statPanel.addMappedTF(EditState.NOTFIXED,4,6,"Credits","Credits",5,""+fCred, Orientation.HORIZONTAL,this,
+				 			  new CharVarWrapper(gen.getPC(),"{credits}")).setInputVerifier(new NumericValidator());
+			
+		statPanel.addMappedTF(EditState.NOTFIXED,6,6,"Base CP","Base CP",5,""+bCP,Orientation.HORIZONTAL,this,null).setInputVerifier(new NumericValidator());
+		
+		SubtractWrapper baseMinusUsed = new SubtractWrapper(new TextComponentWrapper(statPanel.getTextF("Base CP")),
+															new CharVarWrapper(gen.getPC(),"{cpUsed}"));
+				
+		statPanel.addMappedTF(EditState.FIXED,8,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null,baseMinusUsed);
 		statPanel.endRow(10,6);
 		
 		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
 		for (Rep r : gen.getPC().getAllRep())
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,"",Orientation.HORIZONTAL,this).setInputVerifier(new NumericValidator());
+			statPanel.addMappedTF(EditState.NOTFIXED,xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,"",Orientation.HORIZONTAL,this,
+									new RepWrapper(gen.getPC(),r.getName())).setInputVerifier(new NumericValidator());
 			xIdx += 2;
 		}
 		statPanel.endRow(xIdx,7);
@@ -283,77 +306,50 @@ public class CharacterSheetUI implements UI {
 	 */
 	public void update()
 	{
-		gen.getPC().setName(mainPanel.getTextF("Character Name").getText());
-		
+		// most components are setup to know what they need to do dataflow wise,
+		// they only need to be told to update in a certain order to avoid race conditions
+
+		mainPanel.updateComp("Character Name");
+
 		gen.getPC().calcStats(); // updates secondaries
-				
+
 		// set morph and background
-		JTextField morphField = mainPanel.getTextF("Morph");
-		
-		// if we have a valid morph we pull the value and update the character
-		if (morphField.getInputVerifier().verify(morphField))
-		{
-			gen.getPC().setCurrentMorph(Morph.createMorph(morphField.getText()));
-		}
-	
-		
-		if (gen.getPC().hasVar("{background}"))
-		{
-			mainPanel.setTextF("Background",gen.getPC().getBackground());
-		}
-		
-		if (gen.getPC().hasVar("NatLang"))
-		{
-			mainPanel.setTextF("Natural Language",gen.getPC().getVar("NatLang"));
-		}
-		
-		if (gen.getPC().hasVar("{factionName}"))
-		{
-			mainPanel.setTextF("Faction",gen.getPC().getVar("{factionName}"));
-		}
-		
-		int[] stats = new int[16];
-		int[] bonuses = new int[16];
-		int cnt = 0;
-		
-		// fill stats with all the primary and secondary stat values from text fields, and update character info accordingly
+		mainPanel.updateComp("Morph");		
+		mainPanel.updateComp("Background");
+
+		// natural language and faction next
+		mainPanel.updateComp("Natural Language");
+		mainPanel.updateComp("Faction");
+
+		// update base stats for primary and secondary stat values
 		for (String key : Aptitude.TYPES)
 		{
-			int val = Math.max(1, statPanel.getTextFIntVal("Base "+key));
-			gen.getPC().stats().get(key).setValue(val);
-			stats[cnt++] = val;
+			statPanel.updateComp("Base "+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			int val = statPanel.getTextFIntVal(key);
-			gen.getPC().stats().get(key).setValue(val);			
-			stats[cnt++] = gen.getPC().stats().get(key).getValue();
+			statPanel.updateComp(key);
 		}
-		
-		cnt = 0;
-		
-		// get bonus amounts
-		cnt = 0;
+
+		// run updates on bonus amounts for both
 		for (String key : Aptitude.TYPES)
 		{
-			bonuses[cnt++] = statPanel.getTextFIntVal("MorphBonus"+key);
+			statPanel.updateComp("MorphBonus"+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			bonuses[cnt++] = statPanel.getTextFIntVal("MorphBonus"+key);
+			statPanel.updateComp("MorphBonus"+key);
 		}
-				
+
 		// build stat totals
-		cnt = 0;
 		for (String key : Aptitude.TYPES)
 		{
-			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.updateComp("Total "+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.updateComp("Total "+key);
 		}
-		cnt = 0;
 		
 		// update character with a few more display fields
 		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
@@ -380,8 +376,8 @@ public class CharacterSheetUI implements UI {
 			int morphBonus = statPanel.getTextFIntVal("MorphBonus"+linkedApt);
 			int finalVal = Integer.parseInt(pair[1])+morphBonus;
 
-
-			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null);
+			// TODO may need to carefully implement update() for this section in future
+			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null,null);
 			if (y <= 32)
 			{
 				y+=2;

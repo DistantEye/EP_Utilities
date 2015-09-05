@@ -76,7 +76,7 @@ public class EpCharacter extends SkilledCharacter {
 		this.setVar("{faction}", "");
 		this.setVar("{background}", "");
 		this.setVar("{stress}", "0");
-		this.setVar("{CR}", "0");
+		this.setVar("{CP}", "0");
 		this.setVar("{path}", "");
 		this.setVar("{isSynth}", "0");
 		allBackgrounds = new LinkedList<String>();

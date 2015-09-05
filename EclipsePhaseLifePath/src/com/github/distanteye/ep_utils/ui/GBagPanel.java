@@ -2,12 +2,13 @@ package com.github.distanteye.ep_utils.ui;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.github.distanteye.ep_utils.core.Utils;
+import com.github.distanteye.ep_utils.wrappers.AccessWrapper;
+import com.github.distanteye.ep_utils.wrappers.MappedComponent;
+import com.github.distanteye.ep_utils.wrappers.MappedComponent.DataFlow;
 
 /**
  * GridBag flavor of ExtJPanel to add many helper methods related to adding, 
@@ -85,11 +86,12 @@ public class GBagPanel extends ExtJPanel {
 	 * @param value The text to display in the field
 	 * @param o Whether the label/textfield pair is oriented horizontally or vertically
 	 * @param parentUIForTextChangeListener if not null, will attach a TextChangeListener to this TextField, which reports back to the UI passed
+	 * @param accessWrapper valid AccessWrapper that links to the data element this TextField will pull or push from
 	 * 
 	 * @return The component created
 	 */
 	public JTextField addMappedTF(EditState editState, int x, int y, String labelText, String mapName, int cols, String value, 
-									Orientation o, UI parentUIForTextChangeListener)
+									Orientation o, UI parentUIForTextChangeListener, AccessWrapper<String> accessWrapper)
 	{
 		int newX,newY;
 		
@@ -104,9 +106,22 @@ public class GBagPanel extends ExtJPanel {
 			newY = y+1;
 		}
 		
+		DataFlow df; // for later
+		
 		if (editState == EditState.FIXED)
 		{
 			parentUIForTextChangeListener = null; // sanity check to prevent odd behavior
+			df = DataFlow.PULL;
+		}
+		else
+		{
+			df = DataFlow.PUSH;
+		}
+		
+		// however if accessWrapper is null, df becomes static as a fallback
+		if (accessWrapper == null)
+		{
+			df = DataFlow.STATIC;
 		}
 		
 		addLabel(x,y,labelText);
@@ -116,7 +131,7 @@ public class GBagPanel extends ExtJPanel {
 		{
 			temp.setEditable(false);
 		}
-		this.putMapped(mapName, temp);
+		this.putMapped(mapName, new MappedComponent(df,accessWrapper,temp)); // TODO fix this later
 		
 		return temp;
 	}
@@ -164,7 +179,7 @@ public class GBagPanel extends ExtJPanel {
 	public JButton addMappedButton(int x, int y, String text)
 	{
 		JButton temp = addButton(x,y,text);
-		this.putMapped(text, temp);
+		this.putMapped(text, new MappedComponent(DataFlow.STATIC,null,temp));
 		return temp;
 	}
 	

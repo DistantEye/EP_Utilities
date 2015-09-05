@@ -115,6 +115,8 @@ public class SkilledCharacter extends BaseCharacter {
 		this.stats.get(stat).addValue(value);
 	}
 	
+	
+	
 	/**
 	 * Either adds the skill to the character (if it doesn't exist), or increments the skill level
 	 * of the skill that's already there, based on the value of the skill passed in
@@ -124,12 +126,30 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		if (this.skills.containsKey(skill.getFullName()) )
 		{
-			this.skills.get(skill.getFullName()).addValue(skill.getValue(), true);						
+			getSkill(skill.getFullName()).addValue(skill.getValue(), true);						
 		}
 		else
 		{
 			this.skills.put(skill.getFullName(), skill);
 			this.setVar("{newestSkill}", skill.getFullName());
+		}
+	}
+	
+	/**
+	 * Returns a skill from the character, throwing an error if it doesn't exist
+	 * 
+	 * @param skillName Name of the skill the character has
+	 * @return Skill object matching skillName
+	 */
+	public Skill getSkill(String skillName)
+	{
+		if (this.skills.containsKey(skillName))
+		{
+			return this.skills.get(skillName);
+		}
+		else
+		{
+			throw new IllegalArgumentException("No matching Skill in character for name: " + skillName);
 		}
 	}
 	
@@ -165,7 +185,7 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		if (this.skills.containsKey(skillName))
 		{
-			this.skills.get(skillName).addValue(amount, true);
+			getSkill(skillName).addValue(amount, true);
 			return true;
 		}
 		else if (amount > 0)
@@ -190,7 +210,7 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		if (this.skills.containsKey(skillName))
 		{
-			this.skills.get(skillName).setValue(amount);
+			getSkill(skillName).setValue(amount);
 			return true;
 		}
 		else if (Skill.isSkill(skillName))
@@ -216,7 +236,7 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		if (this.skills.containsKey(skillName))
 		{
-			this.skills.get(skillName).setSpecialization(specialization);
+			getSkill(skillName).setSpecialization(specialization);
 			return true;
 		}
 		else

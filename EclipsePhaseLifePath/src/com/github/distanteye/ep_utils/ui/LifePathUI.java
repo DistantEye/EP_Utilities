@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
+import com.github.distanteye.ep_utils.wrappers.*;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
@@ -108,7 +109,7 @@ public class LifePathUI implements UI {
 	@Override
 	public void end() {
 		// Marks the character gen process as stopped, disabling the buttons that used to advance it
-		mainPanel.remove(mainPanel.getComponent("Run Next Step"));
+		mainPanel.remove(mainPanel.getComponentVal("Run Next Step"));
 		mainWindow.revalidate();
 		mainWindow.repaint();
 	}
@@ -128,11 +129,11 @@ public class LifePathUI implements UI {
 		mainWindow.add(mainPanel);
 		
 		// start first row of rows of mixed size
-		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this);
-		mainPanel.addMappedTF(EditState.FIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,null);
-		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null);
-		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null);
-		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null);
+		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
+		mainPanel.addMappedTF(EditState.FIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,null, new CharMorphWrapper(gen.getPC()));
+		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{background}"));
+		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"NatLang"));
+		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{faction}"));
 		mainPanel.endRow(10,0);
 		
 		// we add Panel for the sidebar (skills displays)		
@@ -149,7 +150,7 @@ public class LifePathUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,0,name,name, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null);
+			statPanel.addMappedTF(EditState.FIXED,idx,0,name,name, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null,new StatWrapper(gen.getPC(),key));
 			idx +=2;
 		}
 		statPanel.endRow(idx,0);
@@ -160,7 +161,7 @@ public class LifePathUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "MorphBonus"+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", name,5, "", Orientation.HORIZONTAL, this);
+			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null);
 			idx +=2;
 		}
 		statPanel.endRow(idx,1);
@@ -170,7 +171,10 @@ public class LifePathUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Total "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null);
+			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF("Base "+key)),
+													  new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
+			
+			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null, basePlusBonus);
 			idx +=2;
 		}
 		statPanel.endRow(idx,2);
@@ -180,7 +184,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.FIXED,idx,3,key,key, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null);
+			statPanel.addMappedTF(EditState.FIXED,idx,3,key,key, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null,new StatWrapper(gen.getPC(),key));
 			idx +=2;
 		}
 		statPanel.endRow(idx,3);
@@ -189,7 +193,7 @@ public class LifePathUI implements UI {
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "", Orientation.HORIZONTAL, this);
+			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "", Orientation.HORIZONTAL, this,null);
 			idx +=2;
 		}
 		statPanel.endRow(idx,4);
@@ -199,16 +203,18 @@ public class LifePathUI implements UI {
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
 			String name = "Total "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null);
+			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF(key)),
+					  								  new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
+			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null,basePlusBonus);
 			idx +=2;
 		}
 		statPanel.endRow(idx,5);
 		
 		// a few extra stats get factored in too
-		statPanel.addMappedTF(EditState.FIXED,0,6,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null);
-		statPanel.addMappedTF(EditState.FIXED,2,6,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null);
-		statPanel.addMappedTF(EditState.FIXED,4,6,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null);
-		statPanel.addMappedTF(EditState.FIXED,6,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null);
+		statPanel.addMappedTF(EditState.FIXED,0,6,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{stress}"));
+		statPanel.addMappedTF(EditState.FIXED,2,6,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{MOX}"));
+		statPanel.addMappedTF(EditState.FIXED,4,6,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{credits}"));
+		statPanel.addMappedTF(EditState.FIXED,6,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{CP}"));
 		statPanel.endRow(8,6);		
 		
 		// last bar is Rep values, which can vary based on configuration
@@ -216,7 +222,7 @@ public class LifePathUI implements UI {
 		for (Rep r : gen.getPC().getAllRep())
 		{
 			String name = r.getName()+"-rep";
-			statPanel.addMappedTF(EditState.FIXED,xIdx,7,name,name, 5,""+r.getValue(),Orientation.HORIZONTAL,null);
+			statPanel.addMappedTF(EditState.FIXED,xIdx,7,name,name, 5,""+r.getValue(),Orientation.HORIZONTAL,null, new RepWrapper(gen.getPC(),r.getName()));
 			xIdx += 2;
 		}
 		statPanel.endRow(xIdx,7);
@@ -243,19 +249,10 @@ public class LifePathUI implements UI {
 		mainWindow.setVisible(true);
 	}
 	
-	// addHeaderInfo(row,JPanel)
-	// addBasePrimStat(row,JPanel,Fixed/NotFixed)
-	// addBonusPrimStat(row,JPanel,Fixed/NotFixed)
-	// addFinalPrimStat(row,JPanel,Fixed) // always fixed
-							
-			// addBaseSecStat(row,JPanel,Fixed/NotFixed)
-			// addBonusSecStat(row,JPanel,Fixed/NotFixed)
-			// addFinalSecStat(row,JPanel,Fixed) // always fixed
-					
-			// addExtraStats(row,JPanel)
-			// addRepValues(row,JPanel,Fixed/NotFixed)	
-			// createMainStatus(row)
 	
+	// move stuff into below methods and then try and move common code into an abstract SkeletonUI class for common code reasons
+	// see what overall you can gather in common into the abstract class then have the other two classes call init/update with calls to super.init, super.update,
+	// etc
 	private int addHeaderInfo(GBagPanel p, int row)
 	{
 		
@@ -403,89 +400,61 @@ public class LifePathUI implements UI {
 	 */
 	public void update()
 	{
-		gen.getPC().setName(mainPanel.getTextF("Character Name").getText());
+		// most components are setup to know what they need to do dataflow wise,
+		// they only need to be told to update in a certain order to avoid race conditions
+		
+		mainPanel.updateComp("Character Name");
 		
 		gen.getPC().calcStats(); // updates secondaries
 				
 		// set morph and background
-		String morphName = "";
+		mainPanel.updateComp("Morph");		
+		mainPanel.updateComp("Background");
 		
-		if (gen.getPC().getCurrentMorph() != null)
-		{
-			morphName = gen.getPC().getCurrentMorph().getName();
-		}
+		// natural language and faction next
+		mainPanel.updateComp("Natural Language");
+		mainPanel.updateComp("Faction");
 		
-		mainPanel.getTextF("Morph").setText(morphName);
-		
-		if (gen.getPC().hasVar("{background}"))
-		{
-			mainPanel.setTextF("Background",gen.getPC().getBackground());
-		}
-		
-		mainPanel.setTextF("Natural Language",gen.getPC().getVarSF("NatLang"));
-		
-		mainPanel.setTextF("Faction",gen.getPC().getVarSF("{factionName}"));
-		
-		
-		int[] stats = new int[16];
-		int[] bonuses = new int[16];
-		int cnt = 0;
-		
-		// fill stats with all the primary and secondary stat values
+		// update base stats for primary and secondary stat values
 		for (String key : Aptitude.TYPES)
 		{
-			stats[cnt++] = gen.getPC().stats().get(key).getValue();
+			statPanel.updateComp("Base "+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			stats[cnt++] = gen.getPC().stats().get(key).getValue();
+			statPanel.updateComp(key);
 		}
 		
-		cnt = 0;
-		
-		// update base stats for both
+		// run updates on bonus amounts for both
 		for (String key : Aptitude.TYPES)
 		{
-			statPanel.setTextF("Base "+key,stats[cnt++]);
+			statPanel.updateComp("MorphBonus"+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.setTextF(key,stats[cnt++]);
-		}
-		
-		// get bonus amounts
-		cnt = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			bonuses[cnt++] = statPanel.getTextFIntVal("MorphBonus"+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			bonuses[cnt++] = statPanel.getTextFIntVal("MorphBonus"+key);
+			statPanel.updateComp("MorphBonus"+key);
 		}
 				
 		// build stat totals
-		cnt = 0;
 		for (String key : Aptitude.TYPES)
 		{
-			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.updateComp("Total "+key);
 		}
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.setTextF("Total "+key,(stats[cnt] + bonuses[cnt]));cnt++;
+			statPanel.updateComp("Total "+key);
 		}
-		cnt = 0;
 		
 		// update a few more display fields
-		statPanel.setTextF("Stress",gen.getPC().getVarInt("{stress}"));
-		statPanel.setTextF("MOX",gen.getPC().getMox());
-		statPanel.setTextF("Credits",gen.getPC().getVarInt("{credits}"));
-		statPanel.setTextF("Free CP",gen.getPC().getVarInt("{CP}"));
+		statPanel.updateComp("Stress");
+		statPanel.updateComp("MOX");
+		statPanel.updateComp("Credits");
+		statPanel.updateComp("Free CP");
 		
 		// update rep
 		for (Rep r : gen.getPC().getAllRep())
 		{
-			statPanel.setTextF(r.getName()+"-rep",+r.getValue());
+			statPanel.updateComp(r.getName()+"-rep");
 		}
 		
 		// rebuild skills panel
@@ -500,8 +469,8 @@ public class LifePathUI implements UI {
 			int morphBonus = statPanel.getTextFIntVal("MorphBonus"+linkedApt);
 			int finalVal = Integer.parseInt(pair[1])+morphBonus;
 			
-			
-			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null);
+			// since these are remade each update from scratch, skills don't call update()
+			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null,null); 
 			if (y <= 32)
 			{
 				y+=2;

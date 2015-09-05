@@ -1779,7 +1779,7 @@ if(?hasVar(s9FactionPkg),func(assignFactionPkgFromVar),rollTable(TABLE_9_2))
 FUNCTION
 setTable9FocusPkg
 // note if we manually pick Focus package we have to make sure user has a faction package. they may not always
-if(?hasVar(s9FocusPkg),func(assignFocusPkgFromVar);if(!hasVar({faction}),rollTable_9_3),rollTable(TABLE_9_1))
+if(?hasVar(s9FocusPkg),func(assignFocusPkgFromVar),if(!hasVar({faction}),rollTable(TABLE_9_3),rollTable(TABLE_9_1)))
 --------------------------------------------------------------
 // the below two packages are to hide s9FocusPkg/FactionPkg variables from getVar trying to resolve them if they don't exist
 // right now conditionals don't short-circuit, they try and resolve both options, which can break things
