@@ -2,7 +2,6 @@ package com.github.distanteye.ep_utils.ui;
 import java.awt.ComponentOrientation;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,23 +29,13 @@ import com.github.distanteye.ep_utils.core.Utils;
 public class GridBagUIPanel extends JPanel {	
 	private HashMap<String,JComponent> mappedComponents;
 	private GridBagConstraints cons;	
-	private GridBagLayout layout;
 	private ArrayList<JComponent> children;
 	
 	/**
 	 * Creates a new UIPanel with a double buffer and a flow layout.
 	 */
 	public GridBagUIPanel() {
-		super();
-		init();
-	}
-
-	/**
-	 * Create a new buffered UIPanel with the specified layout manager
-	 * @param layout - the LayoutManager to use
-	 */
-	public GridBagUIPanel(LayoutManager layout) {
-		super(layout);
+		super(new GridBagLayout());
 		init();
 	}
 
@@ -55,19 +44,10 @@ public class GridBagUIPanel extends JPanel {
 	 * @param isDoubleBuffered - a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
 	 */
 	public GridBagUIPanel(boolean isDoubleBuffered) {
-		super(isDoubleBuffered);
+		super(new GridBagLayout(),isDoubleBuffered);
 		init();
 	}
 
-	/**
-	 * 
-	 * @param layout - the LayoutManager to use
-	 * @param isDoubleBuffered - a boolean, true for double-buffering, which uses additional memory space to achieve fast, flicker-free updates
-	 */
-	public GridBagUIPanel(LayoutManager layout, boolean isDoubleBuffered) {
-		super(layout, isDoubleBuffered);
-		init();
-	}
 	
 	/**
 	 * Groups common parts of object initialization away from the separate constructors
@@ -77,9 +57,7 @@ public class GridBagUIPanel extends JPanel {
 		this.mappedComponents = new HashMap<String,JComponent>();
 		this.children = new ArrayList<JComponent>();
 		this.cons = new GridBagConstraints();
-		this.layout = new GridBagLayout();
-		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);        
-        this.setLayout(layout);
+		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         
         cons.ipadx = 5;
 		cons.ipady = 5;
