@@ -129,9 +129,9 @@ public class EpCharacter extends SkilledCharacter {
 		}
 		
 		stats.get("LUC").setValue(stats().get("WIL").getValue()*2);
-		stats.get("TT").setValue((int)Math.round(stats.get("LUC").getValue()/5));
+		stats.get("TT").setValue(Math.round(stats.get("LUC").getValue()/5));
 		stats.get("IR").setValue(stats.get("LUC").getValue()*2);
-		stats.get("INIT").setValue((int)Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
+		stats.get("INIT").setValue(Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
