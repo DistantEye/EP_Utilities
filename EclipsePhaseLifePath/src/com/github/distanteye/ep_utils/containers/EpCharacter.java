@@ -86,7 +86,7 @@ public class EpCharacter extends SkilledCharacter {
 	 * Calculates and updates derived secondary stats based on primary values,
 	 * as well as the option to determine how much CP the character has used
 	 */
-	public void calcStats()
+	public void calc()
 	{
 		// don't try and calc if we don't have a morph yet
 		if (getCurrentMorph() == null)
@@ -103,6 +103,12 @@ public class EpCharacter extends SkilledCharacter {
 		
 		stats.get("SPD").setValue(1+speedBon);
 		
+		// for readability as well as factoring in bonuses we prefetch Aptitudes and set them to variables here
+		int INT = stats().get("INT").getValue()+getVarInt("bonusINT");
+		int REF = stats().get("REF").getValue()+getVarInt("bonusREF");
+		int SOM = stats().get("SOM").getValue()+getVarInt("bonusSOM");
+		int WIL = stats().get("WIL").getValue()+getVarInt("bonusWIL");
+		
 		// Infomorphs don't have physical damage stats 
 		if (currentMorph.getMorphType()!=Morph.MorphType.INFOMORPH)
 		{
@@ -118,7 +124,7 @@ public class EpCharacter extends SkilledCharacter {
 				stats.get("DR").setValue((int)Math.round(dr*1.5));
 			}
 			
-			stats.get("DB").setValue(stats().get("SOM").getValue()/10);
+			stats.get("DB").setValue(SOM/10);
 		}
 		else
 		{
@@ -128,10 +134,10 @@ public class EpCharacter extends SkilledCharacter {
 			stats.get("DB").setValue(0);
 		}
 		
-		stats.get("LUC").setValue(stats().get("WIL").getValue()*2);
+		stats.get("LUC").setValue(WIL*2);
 		stats.get("TT").setValue(Math.round(stats.get("LUC").getValue()/5));
 		stats.get("IR").setValue(stats.get("LUC").getValue()*2);
-		stats.get("INIT").setValue(Math.round( ( (stats().get("INT").getValue()+stats().get("REF").getValue())) * 2 ) / 5 );
+		stats.get("INIT").setValue(Math.round( (INT+REF) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
 		if (hasVar("{cpCalc}"))
@@ -172,7 +178,7 @@ public class EpCharacter extends SkilledCharacter {
 			}
 			
 			// figure out skillPoint stuff : note, we use getSkills because it already factors in aptitude values
-			for (String[] arr : getSkills())
+			for (String[] arr : getSkills(null))
 			{				
 				int sklVal = Integer.parseInt(arr[1]);
 				
@@ -261,13 +267,24 @@ public class EpCharacter extends SkilledCharacter {
 		result = "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
 					+ ", Background : " + this.getBackground() +"\n";
 		
+		String statString = this.stats.toString().replace(SECONDARY_STATS[0], "\n" + SECONDARY_STATS[0]) + "\n"; // quick modification to split to two lines
+		String skillString = this.getSkillsString() + "\n"; 
+		
+		// replace the stats/skills strings with more appropriate values if bonuses are availible to be factored in
+		if (hasBonusStats())
+		{
+			HashMap<String,Integer> bonuses = getBonusStats();
+			statString = this.stats.toString(bonuses).replace(SECONDARY_STATS[0], "\n" + SECONDARY_STATS[0]) + "\n"; // quick modification to split to two lines
+			skillString = this.getSkillsString(bonuses) + "\n"; 
+		}
+		
 		result += "Traits : " + this.traits.toString() + "\n";
-		result += "Sleights : " + this.sleights.toString() + "\n";
-		result += this.stats.toString().replace(SECONDARY_STATS[0], "\n" + SECONDARY_STATS[0]) + "\n"; // quick modification to split to two lines
+		result += "Sleights : " + this.sleights.toString() + "\n";		
+		result += statString;
 		result += "MOX: " + getMox() + ", Credits: " + getCredits() + "\n";
-		result += this.getSkillsString() + "\n";
+		result += skillString;
 		result += this.reps.toString() + "\n";		
-		result += "Gear : " + this.getGearString();
+		result += "Gear : " + this.getGearString();		
 		
 		return result;
 	}
@@ -288,6 +305,7 @@ public class EpCharacter extends SkilledCharacter {
 		
 		Rep charRep = this.reps.get(repName);
 		charRep.incValue(val);
+		calc();
 	}
 	
 	/**
@@ -362,6 +380,7 @@ public class EpCharacter extends SkilledCharacter {
 	public void setCredits(int credits) 
 	{
 		this.setVar("{credits}",String.valueOf(credits));
+		calc();
 	}
 	
 	/**
@@ -372,6 +391,7 @@ public class EpCharacter extends SkilledCharacter {
 	public void incCredits(int val) 
 	{
 		this.incVar("{credits}",val);
+		calc();
 	}
 	
 	/**
@@ -388,6 +408,7 @@ public class EpCharacter extends SkilledCharacter {
 		
 		
 		this.stats.get(apt).addValue(value);
+		// stats will trigger calc on its own
 	}
 	
 	/**
@@ -411,6 +432,7 @@ public class EpCharacter extends SkilledCharacter {
 		}
 		
 		this.setVar("{MOX}", ""+val);
+		calc();
 	}
 	
 	/**
@@ -426,6 +448,7 @@ public class EpCharacter extends SkilledCharacter {
 		}
 		
 		this.setMox(mox+val);
+		// setMox will trigger calc()
 	}
 	
 	/**
@@ -497,6 +520,7 @@ public class EpCharacter extends SkilledCharacter {
 	public void setCurrentMorph(Morph currentMorph) 
 	{
 		this.currentMorph = currentMorph;
+		calc();
 	}
 
 	public ArrayList<String> getGearList() 

@@ -50,6 +50,7 @@ public class RepWrapper extends AccessWrapper<String> {
 		
 		int val = Integer.parseInt(item);
 		aChar.reps().get(repName).setValue(val);
+		aChar.calc();
 	}
 
 	@Override

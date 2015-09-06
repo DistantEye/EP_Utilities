@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.github.distanteye.ep_utils.core.Step;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Represents a BaseCharacter that has both Skills and primary Stats
@@ -17,7 +18,7 @@ import com.github.distanteye.ep_utils.core.Step;
 public class SkilledCharacter extends BaseCharacter {
 	
 	protected HashMap<String,Skill> skills; // Skills are too tightly coupled to Character's state to be useful as AspectHashMap
-	protected AspectHashMap<Stat> stats;
+	protected StatHashMap stats;
 	
 	private LinkedList<Integer> lastRolls;
 	private String currentTable;
@@ -83,7 +84,7 @@ public class SkilledCharacter extends BaseCharacter {
 		super(name);
 		this.autoApplyMastery = autoApplyMastery;
 		skills = new HashMap<String, Skill>();
-		stats = new AspectHashMap<Stat>(" ",false);
+		stats = new StatHashMap(" ",false);
 		
 		currentTable = "";
 		lastRolls = new LinkedList<Integer>();
@@ -92,9 +93,63 @@ public class SkilledCharacter extends BaseCharacter {
 	
 	public String toString()
 	{
-		String result = this.getName() + "(" + this.getAge() + ")"+ "\n";
-		result += this.stats.toString() + "\n";
-		result += this.getSkillsString();
+		String result = this.getName() + "(" + this.getAge() + ")"+ "\n";	
+
+		if (hasBonusStats())
+		{
+			HashMap<String,Integer> bonuses = getBonusStats();
+			result += this.stats.toString(bonuses) + "\n";
+			result += this.getSkillsString(bonuses);	
+		}
+		else
+		{
+			result += this.stats.toString() + "\n";
+			result += this.getSkillsString();
+		}
+		
+		return result;
+	}
+	
+	
+	protected boolean hasBonusStats()
+	{
+		for (Stat stat : stats.values())
+		{
+			if (hasVar("bonus"+stat.getName()))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	protected HashMap<String,Integer> getBonusStats()
+	{
+		HashMap<String,Integer> result = new HashMap<String,Integer>();
+		
+		// we need to populate for every stat we have, putting 0 if there's no variable that matches, that's still ok.
+		for (Stat stat : stats.values())			
+		{	
+			String key = "bonus"+stat.getName();
+			if (hasVar(key))
+			{
+				String val = getVar(key);
+				
+				if (Utils.isInteger(val))
+				{
+					result.put("bonus"+stat.getName(), Integer.parseInt(val));
+				}
+				else
+				{
+					result.put("bonus"+stat.getName(), 0);
+				}
+			}
+			else
+			{
+				result.put("bonus"+stat.getName(), 0);
+			}
+		}
 		
 		return result;
 	}
@@ -113,6 +168,8 @@ public class SkilledCharacter extends BaseCharacter {
 		
 		
 		this.stats.get(stat).addValue(value);
+		
+		calc();
 	}
 	
 	
@@ -133,6 +190,8 @@ public class SkilledCharacter extends BaseCharacter {
 			this.skills.put(skill.getFullName(), skill);
 			this.setVar("{newestSkill}", skill.getFullName());
 		}
+		
+		calc();
 	}
 	
 	/**
@@ -166,6 +225,8 @@ public class SkilledCharacter extends BaseCharacter {
 			Skill temp = this.skills.remove(skillName);
 			this.setVar("{lastRemSkl}", temp.getFullName());
 			this.setVar("{lastRemSklVal}", ""+temp.getValue());
+			
+			calc();
 			return true;
 		}
 		else
@@ -186,11 +247,13 @@ public class SkilledCharacter extends BaseCharacter {
 		if (this.skills.containsKey(skillName))
 		{
 			getSkill(skillName).addValue(amount, true);
+			calc();
 			return true;
 		}
 		else if (amount > 0)
 		{
 			this.addSkill(Skill.CreateSkill(skillName, amount));
+			calc();
 			return true;
 		}
 		else
@@ -211,12 +274,14 @@ public class SkilledCharacter extends BaseCharacter {
 		if (this.skills.containsKey(skillName))
 		{
 			getSkill(skillName).setValue(amount);
+			calc();
 			return true;
 		}
 		else if (Skill.isSkill(skillName))
 		{
 			Skill tempSkl = Skill.CreateSkill(skillName, amount);
 			this.skills.put(tempSkl.getFullName(), tempSkl);
+			calc();
 			return true;
 		}
 		else
@@ -237,12 +302,14 @@ public class SkilledCharacter extends BaseCharacter {
 		if (this.skills.containsKey(skillName))
 		{
 			getSkill(skillName).setSpecialization(specialization);
+			calc();
 			return true;
 		}
 		else if (Skill.exists(skillName))
 		{
 			getSkill(skillName).setSpecialization(specialization);			
 			incSkill(skillName,5);
+			calc();
 			return true;
 		}
 		else
@@ -295,16 +362,31 @@ public class SkilledCharacter extends BaseCharacter {
 	 * Takes all the character's skills and returns a list of String[]
 	 * in the form of {skillName,value} . skillName will include the specialization if applicable
 	 * Character's base aptitude values will be factored into the calculation
-	 * 
+	 * @param bonuses Optional array of bonus values to factor in. Can be null safely
 	 * @return ArrayList of strings representing character skill values
 	 */
-	public ArrayList<String[]> getSkills()
+	public ArrayList<String[]> getSkills(HashMap<String,Integer> bonuses)
 	{
 		ArrayList<String[]> result = new ArrayList<String[]>();
 		
 		for (Skill skill : skills.values())
-		{
-			String[] temp = {skill.getFullName(), ""+getFinalSklVal(skill)};
+		{			
+			int bonus = 0;
+			if (bonuses != null)
+			{
+				String key = "bonus"+skill.getLinkedApt();
+				
+				// if we have bonuses our logic gets a bit more complicated
+				if (bonuses.containsKey(key))
+				{
+					bonus = bonuses.get(key);
+				}
+			}
+			
+			int finalVal = Math.min(99, getFinalSklVal(skill)+bonus); // note that bonuses are outside of usual rules for increases past the reduction point
+																	  // they apply in full
+			
+			String[] temp = {skill.getFullName(), ""+finalVal};
 			result.add(temp);
 		}
 		
@@ -324,12 +406,17 @@ public class SkilledCharacter extends BaseCharacter {
 	
 	public String getSkillsString()
 	{
+		return getSkillsString(null);
+	}
+	
+	public String getSkillsString(HashMap<String,Integer> bonuses)
+	{
 		String result = "";
 		int cnt = 0;
 		boolean first = true;
 		
 		
-		for (String[] skl : this.getSkills())
+		for (String[] skl : this.getSkills(bonuses))
 		{
 			String separator = ",  ";
 			
@@ -376,7 +463,7 @@ public class SkilledCharacter extends BaseCharacter {
 	
 	// Sub containers : these give access to character aspects big enough for their own class 
 	
-	public AspectHashMap<Stat> stats() {
+	public StatHashMap stats() {
 		return stats;
 	}
 

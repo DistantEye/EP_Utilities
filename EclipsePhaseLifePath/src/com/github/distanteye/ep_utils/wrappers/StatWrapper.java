@@ -47,6 +47,7 @@ public class StatWrapper extends AccessWrapper<String> {
 		
 		int val = Integer.parseInt(item);
 		aChar.stats().get(statName).setValue(val);
+		aChar.calc();
 	}
 
 	@Override

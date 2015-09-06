@@ -310,7 +310,7 @@ public class CharacterSheetUI implements UI {
 		// they only need to be told to update in a certain order to avoid race conditions
 		// and even this is handled by most panels, and a simple updateAll call is all that's needed
 				
-		gen.getPC().calcStats(); // updates secondaries
+		gen.getPC().calc(); // updates secondaries
 			
 		// updates direct fields under mainPanel, but not children
 		// this mainly handles name, morph, background,etc
@@ -326,7 +326,7 @@ public class CharacterSheetUI implements UI {
 		sideBar.addC(new JLabel("Skills            "),0,0);
 		sideBar.addC(new JLabel("                  "),1,0);
 		int x = 0, y = 1;
-		for(String[] pair : gen.getPC().getSkills())
+		for(String[] pair : gen.getPC().getSkills(null))
 		{
 			String linkedApt = Skill.getSkillApt(pair[0]);
 			int morphBonus = statPanel.getTextFIntVal("MorphBonus"+linkedApt);

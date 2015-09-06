@@ -63,7 +63,6 @@ public class Skill {
 	 */
 	private Skill(String name, String linkedApt, String subtype,
 			String specialization, int value,boolean canDefault, String[] categories) {
-		super();
 		this.name = name;
 		this.linkedApt = linkedApt;
 		this.subtype = subtype;
@@ -95,6 +94,29 @@ public class Skill {
 				throw new IllegalArgumentException("The first category must be either knowledge or active");
 			}
 		}
+	}
+	
+	/**
+	 * Copy constructor for Skill
+	 * @param skl Valid Skill object
+	 */
+	public Skill(Skill skl)
+	{
+		this.name = skl.name;
+		this.linkedApt = skl.linkedApt;
+		this.subtype = skl.subtype;
+		this.specialization = skl.specialization;
+		this.value = skl.value;
+		this.canDefault = skl.canDefault;
+		this.isActive = skl.isActive;
+		this.isKnowledge = skl.isKnowledge;
+		this.categories = new ArrayList<String>();
+		
+		for (String str : skl.categories)
+		{
+			this.categories.add(str);
+		}
+		
 	}
 
 	/**
@@ -455,10 +477,6 @@ public class Skill {
 	
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getSubtype() {

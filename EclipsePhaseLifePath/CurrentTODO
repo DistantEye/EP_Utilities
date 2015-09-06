@@ -41,3 +41,11 @@ For any of the "Add 10 to one of these skills" or similar, just use an extendedC
 Make sure characters are provided with/track final stat values (factoring in bonuses) so that exports work correctly
 
 Exotic Language is broken a bit because no fields table is defined for it
+
+UI fields shouldn't let aptitudes exceed max values (cap?)
+
+Try and implement aptitude maximums being factored in for displays on morphs?
+
+need to factor specializations into CP cost calculation
+
+may need to have a flag that determines whether or not morph cost is factored into CP cost calculation

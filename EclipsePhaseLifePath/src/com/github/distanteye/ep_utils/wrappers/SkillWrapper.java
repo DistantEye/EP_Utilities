@@ -48,6 +48,7 @@ public class SkillWrapper extends AccessWrapper<String> {
 		int val = Integer.parseInt(item);
 		
 		aChar.getSkill(skillName).setValue(val);
+		aChar.calc();
 	}
 
 	@Override

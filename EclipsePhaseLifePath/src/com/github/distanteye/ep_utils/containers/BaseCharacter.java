@@ -58,8 +58,14 @@ public class BaseCharacter {
 	 * @param val Value of the variable
 	 */
 	public void setVar(String name, String val)
-	{
+	{		
 		this.otherVars.put(name, val);
+		
+		// messing with bonus variables triggers calc
+		if (name.startsWith("bonus"))
+		{
+			this.calc();
+		}
 	}
 	
 	/**
@@ -102,6 +108,15 @@ public class BaseCharacter {
 		// otherwise proceed with increment
 		int newVal = Integer.parseInt(var) + Integer.parseInt(val);
 		this.setVar(name, String.valueOf(newVal));
+	}
+	
+	/**
+	 * Skeleton method for telling the character to recalculate derived values
+	 * Changing any variable that starts with "bonus" will trigger this
+	 */
+	public void calc()
+	{
+		
 	}
 	
 	/**
@@ -187,7 +202,15 @@ public class BaseCharacter {
 	{
 		if (this.otherVars.containsKey(name))
 		{
-			return this.otherVars.remove(name);
+			String result = this.otherVars.remove(name);
+			
+			// messing with bonus variables triggers calc
+			if (name.startsWith("bonus"))
+			{
+				this.calc();
+			}
+			
+			return result;
 		}
 		else
 		{

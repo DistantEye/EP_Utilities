@@ -255,12 +255,12 @@ public class LifePathUI implements UI {
 			
 			cnt++;
 			
-			// add row for bonuses
+			// add row for bonuses, which are fed back to the character
 			idx = 0;
 			for (String key : keys)
 			{
-				String name = "MorphBonus"+key;
-				statPanel.addMappedTF(eList[cnt],idx, row+cnt, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null);
+				String name = "MorphBonus"+key;		
+				statPanel.addMappedTF(eList[cnt],idx, row+cnt, "Bonus", name,5, "", Orientation.HORIZONTAL, this,new CharVarWrapper(gen.getPC(),"bonus"+key));
 				idx +=2;
 			}
 			statPanel.endRow(idx,row+cnt);
@@ -401,7 +401,8 @@ public class LifePathUI implements UI {
 		// they only need to be told to update in a certain order to avoid race conditions
 		// and even this is handled by most panels, and a simple updateAll call is all that's needed
 		
-		gen.getPC().calcStats(); // updates secondaries
+		// note that PC will automatically calc when a many types of changes will happen
+		// some AccessWrappers will also trigger calc
 	
 		// updates direct fields under mainPanel, but not children
 		// this mainly handles name, morph, background,etc
@@ -417,11 +418,11 @@ public class LifePathUI implements UI {
 		sideBar.addC(new JLabel("Skills            "),0,0);
 		sideBar.addC(new JLabel("                  "),1,0);
 		int x = 0, y = 1;
-		for(String[] pair : gen.getPC().getSkills())
+		for(String[] pair : gen.getPC().getSkills(null))
 		{
 			String linkedApt = Skill.getSkillApt(pair[0]);
 			int morphBonus = statPanel.getTextFIntVal("MorphBonus"+linkedApt);
-			int finalVal = Integer.parseInt(pair[1])+morphBonus;
+			int finalVal = Math.min(99, Integer.parseInt(pair[1])+morphBonus);
 			
 			// since these are remade each update from scratch, skills don't call update()
 			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null,null); 
