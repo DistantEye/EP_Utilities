@@ -119,7 +119,6 @@ public class LifePathUI implements UI {
 	 */
 	public void init()
 	{
-		int x = 0; // current column, often refreshes
 		int y = 0; // current row
 		
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -132,92 +131,35 @@ public class LifePathUI implements UI {
 		y = addHeaderAndSideBar(mainPanel, sideBar, 0, new EditState[]{EditState.NOTFIXED,EditState.FIXED,EditState.FIXED,EditState.FIXED,EditState.FIXED});
 		
 		
-	
-		mainPanel.addC(statPanel,0,1,6,GridBagConstraints.RELATIVE);
+		int statPanelHeight = 6;
+		mainPanel.addC(statPanel,0,y,statPanelHeight,GridBagConstraints.RELATIVE);
 		
-		// stats are predictable in format and appearance, so we do them via loops
+		EditState[] statRows = new EditState[]{EditState.FIXED,EditState.NOTFIXED,EditState.FIXED,EditState.FIXED,EditState.NOTFIXED,EditState.FIXED};
 		
-		// Add first row, with the Base Primary stat values
-		int idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.FIXED,idx,0,name,name, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null,new StatWrapper(gen.getPC(),key));
-			idx +=2;
-		}
-		statPanel.endRow(idx,0);
-		
-		
-		// add row for bonuses
-		idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "MorphBonus"+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null);
-			idx +=2;
-		}
-		statPanel.endRow(idx,1);
-		
-		// add final row for totals.
-		idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "Total "+key;
-			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF("Base "+key)),
-													  new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
-			
-			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null, basePlusBonus);
-			idx +=2;
-		}
-		statPanel.endRow(idx,2);
-		
-		
-		// add row for base secondary stats
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.addMappedTF(EditState.FIXED,idx,3,key,key, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null,new StatWrapper(gen.getPC(),key));
-			idx +=2;
-		}
-		statPanel.endRow(idx,3);
-		
-		// now we do bonuses
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "", Orientation.HORIZONTAL, this,null);
-			idx +=2;
-		}
-		statPanel.endRow(idx,4);
-		
-		// now we do the totals
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			String name = "Total "+key;
-			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF(key)),
-					  								  new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
-			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null,basePlusBonus);
-			idx +=2;
-		}
-		statPanel.endRow(idx,5);
+		// There are three rows of MappedJTextFields for each stat : Base, MorphBonus, Final 
+		// The below sets up a pair of these, with appropriate listeners and DataFlow relationships for updates
+		y += addStatRows(statPanel,0,statRows, new String[][]{Aptitude.TYPES,EpCharacter.SECONDARY_STATS});
 		
 		// a few extra stats get factored in too
-		statPanel.addMappedTF(EditState.FIXED,0,6,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{stress}"));
-		statPanel.addMappedTF(EditState.FIXED,2,6,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{MOX}"));
-		statPanel.addMappedTF(EditState.FIXED,4,6,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{credits}"));
-		statPanel.addMappedTF(EditState.FIXED,6,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{CP}"));
-		statPanel.endRow(8,6);		
+		statPanel.addMappedTF(EditState.FIXED,0,y,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{stress}"));
+		statPanel.addMappedTF(EditState.FIXED,2,y,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{MOX}"));
+		statPanel.addMappedTF(EditState.FIXED,4,y,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{credits}"));
+		statPanel.addMappedTF(EditState.FIXED,6,y,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{CP}"));
+		statPanel.endRow(8,y);
+		y++;
+		
 		
 		// last bar is Rep values, which can vary based on configuration
 		int xIdx = 0;
 		for (Rep r : gen.getPC().getAllRep())
 		{
 			String name = r.getName()+"-rep";
-			statPanel.addMappedTF(EditState.FIXED,xIdx,7,name,name, 5,""+r.getValue(),Orientation.HORIZONTAL,null, new RepWrapper(gen.getPC(),r.getName()));
+			statPanel.addMappedTF(EditState.FIXED,xIdx,y,name,name, 5,""+r.getValue(),Orientation.HORIZONTAL,null, new RepWrapper(gen.getPC(),r.getName()));
 			xIdx += 2;
 		}
-		statPanel.endRow(xIdx,7);
+		statPanel.endRow(xIdx,y);
+		
+		y++;
 				
 		// create the main status window		
 		mainStatus = new JTextArea(40,60);
@@ -227,10 +169,12 @@ public class LifePathUI implements UI {
 		tempPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		tempPane.setMinimumSize(tempPane.getPreferredSize());
 		
-		mainPanel.addC(tempPane,0,9,14,13,GridBagConstraints.BOTH);
-
+		int mainStatusHeight = 14;
+		mainPanel.addC(tempPane,0,y,mainStatusHeight,13,GridBagConstraints.BOTH);
+		y+= mainStatusHeight;
+		
 		// currently at 26 after mainStatus added 
-		y = addActionButtons(26);
+		y = addActionButtons(y);
 		
 		mainPanel.endVertical(0,y);
 		
@@ -246,12 +190,19 @@ public class LifePathUI implements UI {
 	// see what overall you can gather in common into the abstract class then have the other two classes call init/update with calls to super.init, super.update,
 	// etc
 	
-	
+	/**
+	 * Adds a set of irregular length top rows, containing basic char information, and creates the sidebar for later population
+	 * @param p panel to add to, should be the principle panel in the UI
+	 * @param sideBar Panel meant to occupy the far side of the UI
+	 * @param row row to start at
+	 * @param eList 
+	 * @return
+	 */
 	private int addHeaderAndSideBar(GBagPanel p, GBagPanel sideBar, int row, EditState[] eList)
 	{
 		if (eList.length != 5)
 		{
-			throw new IllegalArgumentException("fixedList must be length 5, found: " + eList.length);
+			throw new IllegalArgumentException("eList must be length 5, found: " + eList.length);
 		}
 		
 		int cnt = 0;
@@ -270,50 +221,77 @@ public class LifePathUI implements UI {
 		return row+1;
 	}
 	
-	private int addStatRows(GBagPanel p, int row, EditState[] eList, String[][] keys)
+	/**
+	 * Adds a list of arranged rows for for the sets of stats defined by keyArr
+	 * Each set of Strings in keyArr becomes a trio of rows covering "Base value","Bonus","Final Value", 
+	 * with appropriate DataFlow relationships and listeners set
+	 * @param p Panel to add to
+	 * @param row starting row
+	 * @param eList EditState array covering whether each row should be fixed or not
+	 * @param keyArr Array of arrays of keys for the various stat rows
+	 * 			for every String[] in keysArr, we have a triple set of rows for "Base value","Bonus","Final Value"
+	 * @return The next free row (row+keyArr.length*3)
+	 */
+	private int addStatRows(GBagPanel p, int row, EditState[] eList, String[][] keyArr)
 	{
-		// for every String[] in keys, we have a triple set of rows for "Base value","Bonus","Final Value" 
+		if (eList.length != keyArr.length*3)
+		{
+			throw new IllegalArgumentException("eList must be length " + keyArr.length*3 + ", found: " + eList.length);
+		}
 		
+		int cnt = 0;
+		
+		for (String[] keys : keyArr)
+		{
+			// Add first row, with the Base stat values
+			int idx = 0;
+			for (String key : keys)
+			{
+				String name = "Base "+key;
+				statPanel.addMappedTF(eList[cnt],idx,row+cnt,name,name, 5,""+gen.getPC().stats().get(key),Orientation.HORIZONTAL,null,new StatWrapper(gen.getPC(),key));
+				idx +=2;
+			}
+			statPanel.endRow(idx,row+cnt);
+			
+			cnt++;
+			
+			// add row for bonuses
+			idx = 0;
+			for (String key : keys)
+			{
+				String name = "MorphBonus"+key;
+				statPanel.addMappedTF(eList[cnt],idx, row+cnt, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null);
+				idx +=2;
+			}
+			statPanel.endRow(idx,row+cnt);
+			
+			cnt++;
+			
+			// add final row for totals.
+			idx = 0;
+			for (String key : keys)
+			{
+				String name = "Total "+key;
+				SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF("Base "+key)),
+														  new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
+				
+				statPanel.addMappedTF(eList[cnt],idx,row+cnt,name,name, 5,"",Orientation.HORIZONTAL,null, basePlusBonus);
+				idx +=2;
+			}
+			statPanel.endRow(idx,row+cnt);
+			
+			cnt++;
+		}
 
-		return row;
+		return row+cnt; // this should tell us how far we've gone
 	}
 	
-	private int addBaseStatRow(GBagPanel p, int row, EditState e)
-	{
-		
-		return 0;
-	}
 	
-	private int addBonusStatRow(GBagPanel p, int row, EditState e)
-	{
-		
-		return 0;
-	}
-	
-	private int addFinalStatRow(GBagPanel p, int row)
-	{
-		
-		return 0;
-	}
-	
-	private int addBaseSecStat(GBagPanel p, int row, EditState e)
-	{
-		
-		return 0;
-	}
-	
-	private int addBonusSecStat(GBagPanel p, int row, EditState e)
-	{
-		
-		return 0;
-	}
-	
-	private int addFinalSecStat(GBagPanel p, int row)
-	{
-		
-		return 0;
-	}
-	
+	/**
+	 * Adds the bottom set of ActionEvent buttons to the ui
+	 * @param startRow row to start at
+	 * @return next free row after creating the buttons
+	 */
 	private int addActionButtons(int startRow)
 	{
 		mainPanel.addMappedButton(0,startRow,"Firewall Events").addActionListener(new ActionListener() {

@@ -239,9 +239,15 @@ public class SkilledCharacter extends BaseCharacter {
 			getSkill(skillName).setSpecialization(specialization);
 			return true;
 		}
+		else if (Skill.exists(skillName))
+		{
+			getSkill(skillName).setSpecialization(specialization);			
+			incSkill(skillName,5);
+			return true;
+		}
 		else
 		{
-			return false;
+			throw new IllegalArgumentException("No skill exists for : " + skillName);
 		}
 	}
 	

@@ -39,3 +39,5 @@ For any of the "Add 10 to one of these skills" or similar, just use an extendedC
 	
 	
 Make sure characters are provided with/track final stat values (factoring in bonuses) so that exports work correctly
+
+Exotic Language is broken a bit because no fields table is defined for it

@@ -176,7 +176,7 @@ public class CharacterSheetUI implements UI {
 		for (String key : Aptitude.TYPES)
 		{
 			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name, 5,"",Orientation.HORIZONTAL,null,
+			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name, 5,"",Orientation.HORIZONTAL,this,
 										new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
@@ -211,7 +211,7 @@ public class CharacterSheetUI implements UI {
 		idx = 0;
 		for (String key : EpCharacter.SECONDARY_STATS)
 		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,3,key,key, 5,"",Orientation.HORIZONTAL,null,
+			statPanel.addMappedTF(EditState.NOTFIXED,idx,3,key,key, 5,"",Orientation.HORIZONTAL,this,
 									new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
 			idx +=2;
 		}
@@ -319,58 +319,6 @@ public class CharacterSheetUI implements UI {
 		// updates all fields under statPanel, including child panels
 		// this will handle all the calculations using the relationships/data flows we established in init()
 		statPanel.updateAllComps(true);
-
-//		mainPanel.updateComp("Character Name");		
-//		// set morph and background
-//		mainPanel.updateComp("Morph");		
-//		mainPanel.updateComp("Background");
-//
-//		// natural language and faction next
-//		mainPanel.updateComp("Natural Language");
-//		mainPanel.updateComp("Faction");
-//
-//		// update base stats for primary and secondary stat values
-//		for (String key : Aptitude.TYPES)
-//		{
-//			statPanel.updateComp("Base "+key);
-//		}
-//		for (String key : EpCharacter.SECONDARY_STATS)
-//		{
-//			statPanel.updateComp(key);
-//		}
-//
-//		// run updates on bonus amounts for both
-//		for (String key : Aptitude.TYPES)
-//		{
-//			statPanel.updateComp("MorphBonus"+key);
-//		}
-//		for (String key : EpCharacter.SECONDARY_STATS)
-//		{
-//			statPanel.updateComp("MorphBonus"+key);
-//		}
-//
-//		// build stat totals
-//		for (String key : Aptitude.TYPES)
-//		{
-//			statPanel.updateComp("Total "+key);
-//		}
-//		for (String key : EpCharacter.SECONDARY_STATS)
-//		{
-//			statPanel.updateComp("Total "+key);
-//		}
-//		
-//		// update character with a few more display fields
-//		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
-//		gen.getPC().setMox(statPanel.getTextFIntVal("MOX"));
-//		gen.getPC().setVar("{credits}", ""+statPanel.getTextFIntVal("Credits"));
-//		int freeCP = Math.max(0,statPanel.getTextFIntVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
-//		statPanel.setTextF("Free CP",freeCP);
-//		
-//		// update rep
-//		for (Rep r : gen.getPC().getAllRep())
-//		{
-//			statPanel.setTextF(r.getName()+"-rep",+r.getValue());
-//		}
 		
 		// rebuild skills panel
 		sideBar.removeAll();
