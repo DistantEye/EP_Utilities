@@ -11,7 +11,7 @@ import com.github.distanteye.ep_utils.containers.BaseCharacter;
  *
  */
 public class CharNameWrapper extends AccessWrapper<String> {
-	BaseCharacter aChar;
+	private BaseCharacter aChar;
 	
 	/**
 	 * 

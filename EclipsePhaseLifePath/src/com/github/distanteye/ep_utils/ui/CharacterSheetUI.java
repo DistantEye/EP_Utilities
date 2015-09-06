@@ -308,61 +308,69 @@ public class CharacterSheetUI implements UI {
 	{
 		// most components are setup to know what they need to do dataflow wise,
 		// they only need to be told to update in a certain order to avoid race conditions
-
-		mainPanel.updateComp("Character Name");
-
+		// and even this is handled by most panels, and a simple updateAll call is all that's needed
+				
 		gen.getPC().calcStats(); // updates secondaries
+			
+		// updates direct fields under mainPanel, but not children
+		// this mainly handles name, morph, background,etc
+		mainPanel.updateAllComps(false); 
+				
+		// updates all fields under statPanel, including child panels
+		// this will handle all the calculations using the relationships/data flows we established in init()
+		statPanel.updateAllComps(true);
 
-		// set morph and background
-		mainPanel.updateComp("Morph");		
-		mainPanel.updateComp("Background");
-
-		// natural language and faction next
-		mainPanel.updateComp("Natural Language");
-		mainPanel.updateComp("Faction");
-
-		// update base stats for primary and secondary stat values
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("Base "+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp(key);
-		}
-
-		// run updates on bonus amounts for both
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("MorphBonus"+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp("MorphBonus"+key);
-		}
-
-		// build stat totals
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("Total "+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp("Total "+key);
-		}
-		
-		// update character with a few more display fields
-		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
-		gen.getPC().setMox(statPanel.getTextFIntVal("MOX"));
-		gen.getPC().setVar("{credits}", ""+statPanel.getTextFIntVal("Credits"));
-		int freeCP = Math.max(0,statPanel.getTextFIntVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
-		statPanel.setTextF("Free CP",freeCP);
-		
-		// update rep
-		for (Rep r : gen.getPC().getAllRep())
-		{
-			statPanel.setTextF(r.getName()+"-rep",+r.getValue());
-		}
+//		mainPanel.updateComp("Character Name");		
+//		// set morph and background
+//		mainPanel.updateComp("Morph");		
+//		mainPanel.updateComp("Background");
+//
+//		// natural language and faction next
+//		mainPanel.updateComp("Natural Language");
+//		mainPanel.updateComp("Faction");
+//
+//		// update base stats for primary and secondary stat values
+//		for (String key : Aptitude.TYPES)
+//		{
+//			statPanel.updateComp("Base "+key);
+//		}
+//		for (String key : EpCharacter.SECONDARY_STATS)
+//		{
+//			statPanel.updateComp(key);
+//		}
+//
+//		// run updates on bonus amounts for both
+//		for (String key : Aptitude.TYPES)
+//		{
+//			statPanel.updateComp("MorphBonus"+key);
+//		}
+//		for (String key : EpCharacter.SECONDARY_STATS)
+//		{
+//			statPanel.updateComp("MorphBonus"+key);
+//		}
+//
+//		// build stat totals
+//		for (String key : Aptitude.TYPES)
+//		{
+//			statPanel.updateComp("Total "+key);
+//		}
+//		for (String key : EpCharacter.SECONDARY_STATS)
+//		{
+//			statPanel.updateComp("Total "+key);
+//		}
+//		
+//		// update character with a few more display fields
+//		gen.getPC().setVar("{stress}", ""+statPanel.getTextFIntVal("Stress"));
+//		gen.getPC().setMox(statPanel.getTextFIntVal("MOX"));
+//		gen.getPC().setVar("{credits}", ""+statPanel.getTextFIntVal("Credits"));
+//		int freeCP = Math.max(0,statPanel.getTextFIntVal("Base CP") - gen.getPC().getVarInt("{cpUsed}")); // we don't want negative
+//		statPanel.setTextF("Free CP",freeCP);
+//		
+//		// update rep
+//		for (Rep r : gen.getPC().getAllRep())
+//		{
+//			statPanel.setTextF(r.getName()+"-rep",+r.getValue());
+//		}
 		
 		// rebuild skills panel
 		sideBar.removeAll();

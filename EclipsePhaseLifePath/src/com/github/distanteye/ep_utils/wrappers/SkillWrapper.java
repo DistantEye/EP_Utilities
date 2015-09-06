@@ -13,8 +13,8 @@ import com.github.distanteye.ep_utils.core.Utils;
  *
  */
 public class SkillWrapper extends AccessWrapper<String> {
-	SkilledCharacter aChar;
-	String skillName;
+	private SkilledCharacter aChar;
+	private String skillName;
 	
 	/**
 	 * 

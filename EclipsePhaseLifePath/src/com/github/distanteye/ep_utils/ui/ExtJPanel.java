@@ -36,6 +36,8 @@ public class ExtJPanel extends JPanel {
 	protected GridBagConstraints cons;	
 	private ArrayList<JComponent> children;
 	
+	private ArrayList<MappedComponent> orderedComponentList;
+	
 	/**
 	 * Creates a new ExtJPanel with a double buffer and a flow layout.
 	 */
@@ -75,6 +77,7 @@ public class ExtJPanel extends JPanel {
 		this.cons = new GridBagConstraints();
 		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		this.mappedComponents = new HashMap<String,MappedComponent>();
+		orderedComponentList = new ArrayList<MappedComponent>();
 		
         cons.ipadx = 5;
 		cons.ipady = 5;
@@ -171,13 +174,9 @@ public class ExtJPanel extends JPanel {
 		}
 		else
 		{
-			for (JComponent j : this.getChildren())
+			for (ExtJPanel j : this.getExtJPanelChildren())
 			{
-				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
-				{
-					GBagPanel temp = (GBagPanel)j;
-					return temp.hasComponent(name);
-				}
+				j.hasComponent(name);
 			}
 			
 			return false;
@@ -197,16 +196,13 @@ public class ExtJPanel extends JPanel {
 		}
 		else
 		{
-			for (JComponent j : this.getChildren())
+			for (ExtJPanel j : this.getExtJPanelChildren())
 			{
-				if (j.getClass().getSimpleName().equalsIgnoreCase("GridBagUIPanel"))
+				
+				if ( j.hasComponent(name) )
 				{
-					GBagPanel temp = (GBagPanel)j;
-					if ( temp.hasComponent(name) )
-					{
-						return temp.getMappedComponent(name);
-					}
-				}
+					return j.getMappedComponent(name);
+				}				
 			}
 			
 			return null;
@@ -250,12 +246,52 @@ public class ExtJPanel extends JPanel {
 	}
 	
 	/**
-	 * Callls up a MappedComponent and instructs it to update()
+	 * Calls up a MappedComponent and instructs it to update()
 	 * @param name Name/key of MappedComponent
 	 */
 	public void updateComp(String name)
 	{
 		getMappedComponent(name).update();
+	}
+	
+	/**
+	 * Calls up all MappedComponents, in insertion order, and calls their update() method.
+	 * Will only effect components owned by this 
+	 * @param andChildren If true, will run this recursively on any children that are ExtJPanels
+	 */
+	public void updateAllComps(boolean andChildren)
+	{
+		for (MappedComponent m : orderedComponentList)
+		{
+			m.update();
+		}
+		
+		if (andChildren)
+		{
+			for (ExtJPanel child : getExtJPanelChildren())
+			{
+				child.updateAllComps(true);
+			}
+		}
+	}
+	
+	/**
+	 * Searches through children list and returns only the ones that are ExtJPanels (or subclass)
+	 * @return ArrayList of ExtJPanel children of this ExtJPanel
+	 */
+	protected ArrayList<ExtJPanel> getExtJPanelChildren()
+	{
+		ArrayList<ExtJPanel> result = new ArrayList<ExtJPanel>();
+		
+		for (JComponent child : children)
+		{
+			if (child instanceof ExtJPanel)
+			{
+				result.add((ExtJPanel)child);
+			}
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -266,6 +302,7 @@ public class ExtJPanel extends JPanel {
 	 */
 	public MappedComponent putMapped(String name, MappedComponent comp)
 	{
+		orderedComponentList.add(comp); // add reference to list so we have ordered result
 		return this.mappedComponents.put(name, comp);
 	}
 	

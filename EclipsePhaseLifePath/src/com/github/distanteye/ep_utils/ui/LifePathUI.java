@@ -129,17 +129,9 @@ public class LifePathUI implements UI {
 		mainWindow.add(mainPanel);
 		
 		// start first row of rows of mixed size
-		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
-		mainPanel.addMappedTF(EditState.FIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,null, new CharMorphWrapper(gen.getPC()));
-		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{background}"));
-		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"NatLang"));
-		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{faction}"));
-		mainPanel.endRow(10,0);
+		y = addHeaderAndSideBar(mainPanel, sideBar, 0, new EditState[]{EditState.NOTFIXED,EditState.FIXED,EditState.FIXED,EditState.FIXED,EditState.FIXED});
 		
-		// we add Panel for the sidebar (skills displays)		
 		
-		// addC is (component,x,y,height,width)
-		mainPanel.addC(sideBar,22,0,GridBagConstraints.REMAINDER,1);
 	
 		mainPanel.addC(statPanel,0,1,6,GridBagConstraints.RELATIVE);
 		
@@ -253,10 +245,37 @@ public class LifePathUI implements UI {
 	// move stuff into below methods and then try and move common code into an abstract SkeletonUI class for common code reasons
 	// see what overall you can gather in common into the abstract class then have the other two classes call init/update with calls to super.init, super.update,
 	// etc
-	private int addHeaderInfo(GBagPanel p, int row)
+	
+	
+	private int addHeaderAndSideBar(GBagPanel p, GBagPanel sideBar, int row, EditState[] eList)
 	{
+		if (eList.length != 5)
+		{
+			throw new IllegalArgumentException("fixedList must be length 5, found: " + eList.length);
+		}
 		
-		return 0;
+		int cnt = 0;
+		// we pass UI for listeners for all fields just incase it's needed
+		// if eList makes it a fixed field, the listener stuff will be ignored
+		p.addMappedTF(eList[cnt++],0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
+		p.addMappedTF(eList[cnt++],2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,this, new CharMorphWrapper(gen.getPC()));
+		p.addMappedTF(eList[cnt++],4,0,"Background","Background",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"{background}"));
+		p.addMappedTF(eList[cnt++],6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"NatLang"));
+		p.addMappedTF(eList[cnt++],8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"{factionName}"));
+		p.endRow(10,0);		
+		
+		// we add Panel for the sidebar (skills displays)
+		p.addC(sideBar,22,0,GridBagConstraints.REMAINDER,1);
+		
+		return row+1;
+	}
+	
+	private int addStatRows(GBagPanel p, int row, EditState[] eList, String[][] keys)
+	{
+		// for every String[] in keys, we have a triple set of rows for "Base value","Bonus","Final Value" 
+		
+
+		return row;
 	}
 	
 	private int addBaseStatRow(GBagPanel p, int row, EditState e)
@@ -402,62 +421,19 @@ public class LifePathUI implements UI {
 	{
 		// most components are setup to know what they need to do dataflow wise,
 		// they only need to be told to update in a certain order to avoid race conditions
-		
-		mainPanel.updateComp("Character Name");
+		// and even this is handled by most panels, and a simple updateAll call is all that's needed
 		
 		gen.getPC().calcStats(); // updates secondaries
-				
-		// set morph and background
-		mainPanel.updateComp("Morph");		
-		mainPanel.updateComp("Background");
+	
+		// updates direct fields under mainPanel, but not children
+		// this mainly handles name, morph, background,etc
+		mainPanel.updateAllComps(false); 
 		
-		// natural language and faction next
-		mainPanel.updateComp("Natural Language");
-		mainPanel.updateComp("Faction");
+		// updates all fields under statPanel, including child panels
+		// this will handle all the calculations using the relationships/data flows we established in init()
+		statPanel.updateAllComps(true);
 		
-		// update base stats for primary and secondary stat values
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("Base "+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp(key);
-		}
-		
-		// run updates on bonus amounts for both
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("MorphBonus"+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp("MorphBonus"+key);
-		}
-				
-		// build stat totals
-		for (String key : Aptitude.TYPES)
-		{
-			statPanel.updateComp("Total "+key);
-		}
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.updateComp("Total "+key);
-		}
-		
-		// update a few more display fields
-		statPanel.updateComp("Stress");
-		statPanel.updateComp("MOX");
-		statPanel.updateComp("Credits");
-		statPanel.updateComp("Free CP");
-		
-		// update rep
-		for (Rep r : gen.getPC().getAllRep())
-		{
-			statPanel.updateComp(r.getName()+"-rep");
-		}
-		
-		// rebuild skills panel
+		// rebuild skills panel : this unfortunately cannot be done automatically
 		sideBar.removeAll();
 		
 		sideBar.addC(new JLabel("Skills            "),0,0);

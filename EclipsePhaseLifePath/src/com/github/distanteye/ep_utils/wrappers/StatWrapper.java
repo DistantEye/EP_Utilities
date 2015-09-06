@@ -13,9 +13,8 @@ import com.github.distanteye.ep_utils.core.Utils;
  *
  */
 public class StatWrapper extends AccessWrapper<String> {
-
-	SkilledCharacter aChar;
-	String statName;
+	private SkilledCharacter aChar;
+	private String statName;
 	
 	/**
 	 * 

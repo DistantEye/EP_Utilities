@@ -12,8 +12,8 @@ import com.github.distanteye.ep_utils.containers.BaseCharacter;
  * @author Vigilant
  */
 public class CharVarWrapper extends AccessWrapper<String> {
-	BaseCharacter aChar;
-	String varName;
+	protected BaseCharacter aChar;
+	protected String varName;
 	
 	/**
 	 * 

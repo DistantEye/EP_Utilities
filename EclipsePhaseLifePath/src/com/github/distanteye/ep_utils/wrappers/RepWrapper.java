@@ -12,8 +12,8 @@ import com.github.distanteye.ep_utils.core.Utils;
  *
  */
 public class RepWrapper extends AccessWrapper<String> {
-	EpCharacter aChar;
-	String repName;
+	private EpCharacter aChar;
+	private String repName;
 	
 	/**
 	 * 
@@ -38,7 +38,12 @@ public class RepWrapper extends AccessWrapper<String> {
 
 	@Override
 	public void setValue(String item) {
-		if (Utils.isInteger(item))
+		if (item.trim().length() == 0)
+		{
+			return; // don't set blank values
+		}
+		
+		if (!Utils.isInteger(item))
 		{
 			throw new IllegalArgumentException("StatWrapper.setValue needs an integer value!");
 		}

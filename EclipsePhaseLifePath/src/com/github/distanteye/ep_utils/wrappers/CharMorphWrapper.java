@@ -12,7 +12,7 @@ import com.github.distanteye.ep_utils.containers.Morph;
  *
  */
 public class CharMorphWrapper extends AccessWrapper<String> {
-	EpCharacter aChar;
+	private EpCharacter aChar;
 	
 	/**
 	 * 
