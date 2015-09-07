@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
@@ -23,7 +22,7 @@ import com.github.distanteye.ep_utils.wrappers.*;
  * @author Vigilant
  *
  */
-public class CharacterSheetUI implements UI {
+public class CharacterSheetUI extends UISkeleton {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
@@ -32,8 +31,6 @@ public class CharacterSheetUI implements UI {
 	 private BorderLayout windowLayout;
 	 private JFrame mainWindow;
 	 private GBagPanel mainPanel, statPanel,sideBar;
-	 private JTextArea mainStatus;
-	 private LifePathGenerator gen;
 	
 	/**
 	 * @throws HeadlessException
@@ -121,6 +118,7 @@ public class CharacterSheetUI implements UI {
 	 */
 	public void init()
 	{
+		int y = 0;
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         mainWindow.setLayout(windowLayout);
         
@@ -132,155 +130,24 @@ public class CharacterSheetUI implements UI {
 		// add mainScroll to window, then add mainPanel to that
 		mainWindow.add(mainScroll);
 		
-		// start first row of rows of mixed size
-		mainPanel.addMappedTF(EditState.NOTFIXED,0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
-		mainPanel.addMappedTF(EditState.NOTFIXED,2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,this, 
-									new CharMorphWrapper(gen.getPC())).setInputVerifier(new ExistsValidator(Morph.class.getName()));
+		// start first row of rows of mixed size, setup sideBar and statPanel
+		y = addHeader(mainPanel, sideBar, y, new EditState[]{EditState.NOTFIXED,EditState.NOTFIXED,EditState.FIXED,EditState.FIXED,EditState.FIXED},false);
 		
-		mainPanel.addMappedTF(EditState.FIXED,4,0,"Background","Background",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{background}"));
-		mainPanel.addMappedTF(EditState.FIXED,6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"NatLang"));
-		mainPanel.addMappedTF(EditState.FIXED,8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{faction}"));
+		EditState[] statRows = new EditState[]{EditState.NOTFIXED,EditState.NOTFIXED,EditState.FIXED,EditState.NOTFIXED,EditState.NOTFIXED,EditState.FIXED};
 		
-		// gives a quick export of the character
-		mainPanel.addMappedButton(12,0,"Export to Txt").addActionListener(new ActionListener() {
-			
-            public void actionPerformed(ActionEvent e)
-            {
-                update();             
-                
-                JTextArea updateArea= new JTextArea(gen.getPC().toString() 
-                										+ DIVIDER_STRING + mainStatus.getText(),10,120);              
-                updateArea.setEditable(true);
-                updateArea.setLineWrap(true);
-                JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-                										JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
-                
-            }	
-		});		
-		mainPanel.endRow(14,0);
-		
-		// we add Panel for the sidebar (skills displays)
-		
-		// addC is (component,x,y,height,width)
-		mainPanel.addC(sideBar,14,0,GridBagConstraints.REMAINDER,1);
-	
-		mainPanel.addC(statPanel,0,1,6,GridBagConstraints.RELATIVE);
-		
-		// stats are predictable in format and appearance, so we do them via loops
-		
-		// stats are predictable in format and appearance, so we do them via loops
-		
-		// Add first row, with the Base Primary stat values
-		int idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "Base "+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,0,name,name, 5,"",Orientation.HORIZONTAL,this,
-										new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
-			idx +=2;
-		}
-		statPanel.endRow(idx,0);
-
-
-		// add row for bonuses
-		idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "MorphBonus"+key;
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 1, "Bonus", name,5, "", Orientation.HORIZONTAL, this,null).setInputVerifier(new NumericValidator());
-			idx +=2;
-		}
-		statPanel.endRow(idx,1);
-
-		// add final row for totals.
-		idx = 0;
-		for (String key : Aptitude.TYPES)
-		{
-			String name = "Total "+key;
-			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF("Base "+key)),
-					new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
-
-			statPanel.addMappedTF(EditState.FIXED,idx,2,name,name, 5,"",Orientation.HORIZONTAL,null, basePlusBonus);
-			idx +=2;
-		}
-		statPanel.endRow(idx,2);
-
-
-		// add row for base secondary stats
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx,3,key,key, 5,"",Orientation.HORIZONTAL,this,
-									new StatWrapper(gen.getPC(),key)).setInputVerifier(new NumericValidator());
-			idx +=2;
-		}
-		statPanel.endRow(idx,3);
-
-		// now we do bonuses
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			statPanel.addMappedTF(EditState.NOTFIXED,idx, 4, "Bonus", "MorphBonus"+key,5, "", Orientation.HORIZONTAL, this,null).setInputVerifier(new NumericValidator());
-			idx +=2;
-		}
-		statPanel.endRow(idx,4);
-
-		// now we do the totals
-		idx = 0;
-		for (String key : EpCharacter.SECONDARY_STATS)
-		{
-			String name = "Total "+key;
-			SumWrapper basePlusBonus = new SumWrapper(new TextComponentWrapper(statPanel.getTextF(key)),
-					new TextComponentWrapper(statPanel.getTextF("MorphBonus"+key)));
-			statPanel.addMappedTF(EditState.FIXED,idx,5,name,name, 5,"",Orientation.HORIZONTAL,null,basePlusBonus);
-			idx +=2;
-		}
-		statPanel.endRow(idx,5);
+		// There are three rows of MappedJTextFields for each stat : Base, MorphBonus, Final 
+		// The below sets up a pair of these, with appropriate listeners and DataFlow relationships for updates
+		y += addStatRows(statPanel,0,statRows, new String[][]{Aptitude.TYPES,EpCharacter.SECONDARY_STATS});
 		
 				
 		// a few extra stats get factored in too
-		int fMox = EpCharacter.getIntConst("FREE_MOX");
-		int fCred = EpCharacter.getIntConst("FREE_CREDIT");
-		int bCP = 1000;
-		
-		statPanel.addMappedTF(EditState.NOTFIXED,0,6,"Stress","Stress",5,"0", Orientation.HORIZONTAL,this, 
-							  new CharVarWrapper(gen.getPC(),"{stress}")).setInputVerifier(new NumericValidator());
-			
-		statPanel.addMappedTF(EditState.NOTFIXED,2,6,"MOX","MOX",5,""+fMox, Orientation.HORIZONTAL,this,
-				 			  new CharVarWrapper(gen.getPC(),"{MOX}")).setInputVerifier(new NumericValidator());
-			
-		statPanel.addMappedTF(EditState.NOTFIXED,4,6,"Credits","Credits",5,""+fCred, Orientation.HORIZONTAL,this,
-				 			  new CharVarWrapper(gen.getPC(),"{credits}")).setInputVerifier(new NumericValidator());
-			
-		statPanel.addMappedTF(EditState.NOTFIXED,6,6,"Base CP","Base CP",5,""+bCP,Orientation.HORIZONTAL,this,null).setInputVerifier(new NumericValidator());
-		
-		SubtractWrapper baseMinusUsed = new SubtractWrapper(new TextComponentWrapper(statPanel.getTextF("Base CP")),
-															new CharVarWrapper(gen.getPC(),"{cpUsed}"));
-				
-		statPanel.addMappedTF(EditState.FIXED,8,6,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null,baseMinusUsed);
-		statPanel.endRow(10,6);
+		y = addOtherStatFields(statPanel, y);
 		
 		// last bar is Rep values, which can vary based on configuration
-		int xIdx = 0;
-		for (Rep r : gen.getPC().getAllRep())
-		{
-			statPanel.addMappedTF(EditState.NOTFIXED,xIdx,7,r.getName()+"-rep", ""+r.getValue(),5,"",Orientation.HORIZONTAL,this,
-									new RepWrapper(gen.getPC(),r.getName())).setInputVerifier(new NumericValidator());
-			xIdx += 2;
-		}
-		statPanel.endRow(xIdx,7);
-				
-		// create the main status window		
-		mainStatus = new JTextArea(40,60);
-		mainStatus.setLineWrap(true);
-		mainStatus.setWrapStyleWord(true);
-		JScrollPane tempPane = new JScrollPane(mainStatus);
-		tempPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		tempPane.setMinimumSize(tempPane.getPreferredSize());
-		
-		mainPanel.addC(tempPane,0,9,14,13,GridBagConstraints.BOTH);
-		mainPanel.endRow(14, 9);
+		y = addRepRows(statPanel,y,EditState.NOTFIXED);
+						
+		// create the main status window
+		y = addMainStatus(mainPanel, y, 14, 13);
 
 		mainPanel.endVertical(0,27);
 		
@@ -291,6 +158,83 @@ public class CharacterSheetUI implements UI {
 		mainWindow.setVisible(true);
 	}
 	
+	/**
+	 * Adds a set of irregular length top rows, containing basic char information, and creates the sidebar and statPanel for later population
+	 * @param p panel to add to, should be the principle panel in the UI
+	 * @param sideBar Panel meant to occupy the far side of the UI
+	 * @param row row to start at
+	 * @param eArr array of values for whether fields added are Fixed/NonFixed
+	 * @return integer value for next available row row after the content added
+	 */
+	protected int addHeader(GBagPanel p, GBagPanel sideBar, int row, EditState[] eArr, boolean endRow)
+	{
+		int result = super.addHeader(p, sideBar, row, eArr, endRow);
+		
+		// do work on top of that for the remaining details
+		
+		// add necessary text validator onto the JTextField
+		p.getTextF("Morph").setInputVerifier(new ExistsValidator(Morph.class.getName()));
+		
+		// gives a quick export of the character
+		p.addMappedButton(12,row,"Export to Txt").addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				update();             
+
+				JTextArea updateArea= new JTextArea(gen.getPC().toString() 
+						+ DIVIDER_STRING + mainStatus.getText(),10,120);              
+				updateArea.setEditable(true);
+				updateArea.setLineWrap(true);
+				JScrollPane scroll = new JScrollPane (updateArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+						JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				JOptionPane.showMessageDialog(null, scroll,"Exported Character", JOptionPane.PLAIN_MESSAGE);
+
+			}	
+		});		
+		p.endRow(14,row);
+		
+		// we add Panel for the sidebar (skills displays)
+		p.addC(sideBar,15,row,GridBagConstraints.REMAINDER,1);
+						
+		int statPanelHeight = 6;
+		p.addC(statPanel,0,row+1,statPanelHeight,GridBagConstraints.RELATIVE);
+		
+		return result;
+	}
+	
+	/**
+	 * Adds misc stat and var-type fields under the main stat block,
+	 * this row often changes implementation between different UI implementations
+	 * @param p Panel to add to
+	 * @param row Row to start adding at
+	 * @return  integer value for next available row row after the content added
+	 */
+	protected int addOtherStatFields(GBagPanel p, int row)
+	{
+		int fMox = EpCharacter.getIntConst("FREE_MOX");
+		int fCred = EpCharacter.getIntConst("FREE_CREDIT");
+		int bCP = 1000;
+		
+		p.addMappedTF(EditState.NOTFIXED,0,row,"Stress","Stress",5,"0", Orientation.HORIZONTAL,this, 
+							  new CharVarWrapper(gen.getPC(),"{stress}")).setInputVerifier(new NumericValidator());
+			
+		p.addMappedTF(EditState.NOTFIXED,2,row,"MOX","MOX",5,""+fMox, Orientation.HORIZONTAL,this,
+				 			  new CharVarWrapper(gen.getPC(),"{MOX}")).setInputVerifier(new NumericValidator());
+			
+		p.addMappedTF(EditState.NOTFIXED,4,row,"Credits","Credits",5,""+fCred, Orientation.HORIZONTAL,this,
+				 			  new CharVarWrapper(gen.getPC(),"{credits}")).setInputVerifier(new NumericValidator());
+			
+		p.addMappedTF(EditState.NOTFIXED,6,row,"Base CP","Base CP",5,""+bCP,Orientation.HORIZONTAL,this,null).setInputVerifier(new NumericValidator());
+		
+		SubtractWrapper baseMinusUsed = new SubtractWrapper(new TextComponentWrapper(p.getTextF("Base CP")),
+															new CharVarWrapper(gen.getPC(),"{cpUsed}"));
+				
+		p.addMappedTF(EditState.FIXED,8,row,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null,baseMinusUsed);
+		p.endRow(10,6);
+		
+		return row+1;
+	}
 	
 	/**
 	 * Adds text to the end of the status text area
