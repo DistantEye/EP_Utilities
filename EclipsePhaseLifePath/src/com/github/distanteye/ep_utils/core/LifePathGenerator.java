@@ -137,8 +137,7 @@ public class LifePathGenerator {
 		}
 		
 		// we let users define \, so that commas can be escaped until after the splitting of a comma delimited effects chain
-		String modifiedInput = effectInput.replace("\\,", "!!COMMA!!");
-		modifiedInput = modifiedInput.replace("\\;", "!!SEMICOLON!!");		
+		String modifiedInput = effectInput;		
 		
 		String[] effects = Utils.splitCommands(modifiedInput, ";");
 		
@@ -153,7 +152,7 @@ public class LifePathGenerator {
 		
 		for (String eff : effects)
 		{
-			String tempEff = eff.replace("!!COMMA!!",",");
+			String tempEff = eff;
 				
 			ArrayList<String> buffer = new ArrayList<String>();
 			
@@ -1170,15 +1169,13 @@ public class LifePathGenerator {
 					}
 					else if (subparts[1].length() > 0 && subparts[2].length() > 0)
 					{
-						String response = UIObject.promptUser(subparts[1], ""); // response should be an integer
-						
-						int choice = Integer.parseInt(response);
-						
+						String response = "";						
+						int choice = -1;						
 						String[] choiceEffects = subparts[2].split("/");
 						
 						while (!Utils.isInteger(response) || Integer.parseInt(response) <= 0 || Integer.parseInt(response) > choiceEffects.length)
 						{
-							response = UIObject.promptUser(subparts[1], ""); 
+							response = UIObject.promptUser(subparts[1], "Entering blank will choose a random value"); 
 							
 							// response should be an integer
 							if (Utils.isInteger(response))
@@ -1186,10 +1183,16 @@ public class LifePathGenerator {
 								// only do these when we at least get a number
 								choice = Integer.parseInt(response);
 								choiceEffects = subparts[2].split("/");
-							}																					
+							}
+							else if (response.length() == 0)
+							{
+								choice = rng.nextInt(choiceEffects.length)+1;
+								response = ""+choice;
+								choiceEffects = subparts[2].split("/");
+							}
 						}
 							
-							this.runEffect(choiceEffects[choice-1].split("=")[1], subparts[1]);
+						this.runEffect(choiceEffects[choice-1].split("=")[1], subparts[1]);
 							
 						
 
