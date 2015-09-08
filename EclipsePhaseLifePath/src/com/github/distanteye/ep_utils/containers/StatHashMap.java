@@ -3,6 +3,8 @@
  */
 package com.github.distanteye.ep_utils.containers;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -61,4 +63,19 @@ public class StatHashMap extends AspectHashMap<Stat> {
 		return result;
 	}
 
+	public Aptitude getRandApt(SecureRandom rng)
+	{
+		ArrayList<Aptitude> temp = new ArrayList<Aptitude>();
+		
+		for (Stat stat : this.values())
+		{
+			if (stat instanceof Aptitude)
+			{
+				temp.add((Aptitude)stat);
+			}
+		}
+		int idx = rng.nextInt(temp.size());
+
+		return temp.get(idx); // most Type safe way to do
+	}
 }

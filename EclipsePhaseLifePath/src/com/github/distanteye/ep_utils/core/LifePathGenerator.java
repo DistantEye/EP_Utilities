@@ -323,8 +323,8 @@ public class LifePathGenerator {
 					}
 				}
 				while(effect.contains("!RANDAPT!"))
-				{
-					effect = effect.replace("!RANDAPT!",playerChar.stats().getRand(rng).getName());
+				{	
+					effect = effect.replace("!RANDAPT!",playerChar.stats().getRandApt(rng).getName());
 				}
 				while(effect.contains("!RAND_DER!"))
 				{
