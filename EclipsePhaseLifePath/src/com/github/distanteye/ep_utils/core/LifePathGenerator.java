@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.commands.Command;
 // explicit because name ambiguity
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
@@ -65,59 +66,6 @@ public class LifePathGenerator {
 	public void setPC(EpCharacter playerChar) {
 		this.playerChar = playerChar;
 	}
-
-
-	/**
-	 * Recursive function that splits effects with a high numbered choice parameter like ?3? into single choice parameter effects
-	 * trait(Mental Disorder (?3?)) would become trait(Mental Disorder (?1?));trait(Mental Disorder (?1?));trait(Mental Disorder (?1?)) 
-	 * @param input
-	 * @param buffer Initiall blank list used to store 
-	 * @return The split effect String, or "" if nothing could be split
-	 */
-	protected String splitChoiceTokens(String input, ArrayList<String> buffer)
-	{
-		Pattern groups = Pattern.compile("\\?([2-9]+)\\?\\**");		
-		Matcher m = groups.matcher(input);
-		if(!m.find())
-		{
-			return "";
-		}
-		int val = Integer.parseInt(m.group(1));
-		
-		// clone effect for every value over 1, so that ?2? leads to two effects with ?1?
-		input = input.replaceFirst("\\?" + val + "\\?","?1?");
-		for (int i = 0; i < val; i++)
-		{
-			buffer.add(input);
-		}
-		
-		ArrayList<String> buffer2 = new ArrayList<String>();
-		
-		for (String str : buffer)
-		{
-			splitChoiceTokens(str,buffer2);
-		}
-		
-		buffer.addAll(buffer2);
-		
-		String result = "";
-		
-		if (buffer.size() == 0)
-		{
-			return "";
-		}
-		else
-		{
-			result = buffer.get(0);
-			
-			for (int i = 1; i < buffer.size(); i++)
-			{
-				result += ";" + buffer.get(i);
-			}
-		}
-		
-		return result;
-	}
 	
 	/**
 	 * Attempts to execute the effects of the passed in string. Whenever a "step changing" event would happen, returns the effects for that step 
@@ -164,7 +112,7 @@ public class LifePathGenerator {
 			while (Pattern.compile("\\?([2-9]+)\\?\\**").matcher(tempEff).find())
 			{
 				didSplit = true;
-				tempEff = splitChoiceTokens(tempEff,buffer);								
+				tempEff = Command.splitChoiceTokens(tempEff,buffer);								
 			}
 				
 			// if there were no choices split, we have to add the normal effect to the buffer
@@ -508,6 +456,7 @@ public class LifePathGenerator {
 				
 				if (Skill.isSkill(effect))
 				{
+					// this is not a true command so we don't use the infastructure
 					Skill temp = Skill.CreateSkillFromString(effect);
 					playerChar.addSkill(temp);
 				}

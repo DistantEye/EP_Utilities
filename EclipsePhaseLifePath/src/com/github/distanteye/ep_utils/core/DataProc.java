@@ -1395,7 +1395,7 @@ public class DataProc {
 	/**
 	 * Like containsChoice, but returns true if input contains a choice wildcard, as well as any other wildcard or special symbol like !RANDSKILL!
 	 * @param input
-	 * @return
+	 * @return True or false as appropriate
 	 */
 	public static boolean containsUncertainty(String input)
 	{
