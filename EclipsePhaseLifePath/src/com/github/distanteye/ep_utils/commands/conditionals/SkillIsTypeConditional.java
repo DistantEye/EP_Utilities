@@ -27,14 +27,14 @@ import com.github.distanteye.ep_utils.commands.Command;
  * @author Vigilant
  *
  */
-public class skillIsTypeConditional extends ConditionalStatement {
+public class SkillIsTypeConditional extends ConditionalStatement {
 
 	/**
 	 * Returns appropriate Conditional based on the input provided 
 	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
-	public skillIsTypeConditional(String input, Command parent) {
+	public SkillIsTypeConditional(String input, Command parent) {
 		super(input, parent);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.github.distanteye.ep_utils.commands;
+package com.github.distanteye.ep_utils.commands.conditionals;
 
-import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+import com.github.distanteye.ep_utils.commands.Command;
 
 /**
  * Conditional with syntax :
