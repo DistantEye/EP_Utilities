@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -26,12 +28,26 @@ public abstract class Command {
 	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, or other Commands, unfortunately
 										// the emphasis on controlled, well-formed Command subclasses is meant to offset this
 	protected String[] subparts; // subparts are the raw String version of params
+	protected ConditionalStatement cond;
 	
 	public Command(String input)
 	{
 		origString = input;
 		params = new HashMap<Integer,Object>();
 		subparts = splitParts(input);
+		cond = null; // null by default
+	}
+	
+	public boolean resolveConditional(EpCharacter playerChar)
+	{
+		if (cond == null)
+		{
+			return true;
+		}
+		else
+		{
+			return cond.resolve(playerChar);
+		}
 	}
 	
 	/**

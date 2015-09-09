@@ -54,7 +54,7 @@ public class SetSklCommand extends Command {
 		
 		if (subparts.length == 4)
 		{
-			result += ", Conditional must be true: " + subparts[3];
+			result += ", Conditional must be true: " + cond.toString();
 		}
 		
 		return result;

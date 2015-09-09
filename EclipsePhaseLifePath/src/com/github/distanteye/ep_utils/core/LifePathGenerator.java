@@ -1,7 +1,6 @@
 package com.github.distanteye.ep_utils.core;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.commands.Command;
