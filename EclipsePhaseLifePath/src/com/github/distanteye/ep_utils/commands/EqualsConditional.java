@@ -3,6 +3,8 @@
  */
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+
 /**
  * Conditional with syntax :
  * ?hastrait(trait)

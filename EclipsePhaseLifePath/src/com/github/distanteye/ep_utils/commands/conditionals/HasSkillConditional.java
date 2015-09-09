@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.github.distanteye.ep_utils.commands;
+package com.github.distanteye.ep_utils.commands.conditionals;
+
+import com.github.distanteye.ep_utils.commands.Command;
 
 /**
  * Conditional with syntax :
@@ -25,14 +27,14 @@ package com.github.distanteye.ep_utils.commands;
  * @author Vigilant
  *
  */
-public class skillIsTypeConditional extends ConditionalStatement {
+public class HasSkillConditional extends ConditionalStatement {
 
 	/**
 	 * Returns appropriate Conditional based on the input provided 
 	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
-	public skillIsTypeConditional(String input, Command parent) {
+	public HasSkillConditional(String input, Command parent) {
 		super(input, parent);
 		// TODO Auto-generated constructor stub
 	}

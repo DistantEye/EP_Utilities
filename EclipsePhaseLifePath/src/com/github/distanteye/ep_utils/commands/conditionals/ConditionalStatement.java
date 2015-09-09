@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.github.distanteye.ep_utils.commands;
+package com.github.distanteye.ep_utils.commands.conditionals;
+
+import com.github.distanteye.ep_utils.commands.Command;
 
 /**
  * ConditionalStatement class gives the basic structure to all conditionals

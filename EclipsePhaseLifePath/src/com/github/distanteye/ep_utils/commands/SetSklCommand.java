@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Utils;

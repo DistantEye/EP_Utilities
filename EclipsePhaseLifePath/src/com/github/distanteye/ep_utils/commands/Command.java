@@ -33,6 +33,16 @@ public abstract class Command {
 	}
 	
 	/**
+	 * For a given effects string, pulls the name of the first command in the string
+	 * @param input Valid effects string
+	 * @return Command name such that is the first text before an '(' character in string
+	 */
+	public static String getCommandName(String input)
+	{
+		return input.substring(0,input.indexOf('('));
+	}
+	
+	/**
 	 * Returns the parameter at the given index
 	 * @param i valid index within range for params
 	 * @return Appropriate parameter for that slot, be it Integer, String, or Command object
