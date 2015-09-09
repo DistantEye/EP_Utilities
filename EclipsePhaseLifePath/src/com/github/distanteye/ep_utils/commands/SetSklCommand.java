@@ -16,7 +16,7 @@ public class SetSklCommand extends Command {
 
 	/**
 	* Creates a command from the given effects string
-	* @param input Valid formatted command effect string
+	* @param input Valid input string, this should be the full String with command name and () still
 	*/
 	public SetSklCommand(String input) {
 		super(input);
@@ -38,7 +38,7 @@ public class SetSklCommand extends Command {
 			
 			if (subparts.length == 4)
 			{	
-				params.put(3, ConditionalStatement.getConditional(subparts[3]));
+				params.put(3, ConditionalStatement.getConditional(subparts[3],this));
 			}
 			
 		}

@@ -8,7 +8,7 @@ import com.github.distanteye.ep_utils.containers.EpCharacter;
 
 /**
  * Conditional with syntax :
- * ?hasVar(varname)
+ * ?hasHadBackground(<value>)
  * 
  * $0,$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
  * incSkl(<skill>,<number>,<conditional>) leads to $0 accessing incSkl, $1 accessing <skill> and so on
@@ -20,7 +20,7 @@ import com.github.distanteye.ep_utils.containers.EpCharacter;
  * @author Vigilant
  *
  */
-public class HasVarConditional extends ConditionalStatement {
+public class HasHadBackgroundConditional extends ConditionalStatement {
 
 	/**
 	 * Returns appropriate Conditional based on the input provided 
@@ -28,7 +28,7 @@ public class HasVarConditional extends ConditionalStatement {
 	 * @param Command that contains the calling conditional
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
-	public HasVarConditional(String input, Command parent) {
+	public HasHadBackgroundConditional(String input, Command parent) {
 		super(input, parent);
 
 		if (subparts.length != 2)
@@ -42,13 +42,15 @@ public class HasVarConditional extends ConditionalStatement {
 
 	@Override
 	public boolean resolve(EpCharacter playerChar) {
-		return playerChar.hasVar(subparts[1]);
+		// we control params, so we know these are safe casts
+		String background = (String)subparts[1];
+		
+		return playerChar.hasHadBackground(background);
 	}
 
 	public String toString()
 	{
-		return "player has Var : " + subparts[1]; 
+		return "player has had background : " + subparts[1]; 
 	}
-
 
 }

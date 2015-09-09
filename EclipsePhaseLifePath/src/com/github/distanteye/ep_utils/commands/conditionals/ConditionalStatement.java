@@ -19,21 +19,54 @@ public abstract class ConditionalStatement extends Command {
 	/**
 	 * Returns appropriate Conditional based on the input provided 
 	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
+	 * @param Command that contains the calling conditional
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
 	public ConditionalStatement(String input, Command parent) {
-		super(input);
+		super(replaceParentRefs(input,parent));
 		this.parent = parent;
+	}
+	
+	/**
+	 * Replaces $0,$1,etc with the corresponding subpart/parameter from parent 
+	 * @param input Valid effect String for a conditional
+	 * @param parent valid Command object that contains the current conditional represented by input
+	 * @return
+	 */
+	public static String replaceParentRefs(String input, Command parent)
+	{
+		for (int i = 0; i < parent.getSubparts().length; i++)
+		{
+			if (input.contains("$"+i))
+			{
+				input = input.replace("$"+i, parent.getSubparts()[i]);
+			}
+		}
+		
+		return input;
 	}
 	
 	/**
 	 * Returns appropriate subclass of Conditional based on the input provided 
 	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
+	 * @param Command that contains the calling conditional
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
-	public static ConditionalStatement getConditional(String input)
+	public static ConditionalStatement getConditional(String input,Command parent)
 	{
-		return null;
+		// special cases first for AND and OR
+		if (input.contains("||"))
+		{
+			return new OrConditional(input,parent);
+		}
+		else if (input.contains("&&"))
+		{
+			return new AndConditional(input,parent);
+		}
+		else
+		{
+			throw new IllegalArgumentException("No valid conditional recognized");
+		}
 	}
 	
 	/**

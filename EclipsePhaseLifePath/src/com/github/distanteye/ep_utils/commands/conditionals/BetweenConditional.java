@@ -4,17 +4,11 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Conditional with syntax :
- * ?hastrait(trait)
- * ?hasSkill(skill)
- * ?skillIsType(skill,type)  (skill is name of skill, type is a type you want it to be, like Technical
- * ?hasBackground
- * ?hasHadBackground
- * ?hasRolled(number)
- * ?equals(string1,string2)
- * ?hasVar(varname)
  * ?between(input,lower,upper)
  * 
  * $0,$1,$2,$3, etc when inside conditionals references the subparams of the effect containing the conditional, so 
@@ -32,20 +26,43 @@ public class BetweenConditional extends ConditionalStatement {
 	/**
 	 * Returns appropriate Conditional based on the input provided 
 	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
+	 * @param Command that contains the calling conditional
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
 	public BetweenConditional(String input, Command parent) {
 		super(input, parent);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 4)
+		{
+			throw new IllegalArgumentException("Invalidly formatted between condition (wrong number of parts " + input + ")");
+		}
+		
+		// check all conditions for being valid numbers
+		for (int i = 1; i < subparts.length; i++)
+		{
+			if (!Utils.isInteger(subparts[i]))
+			{
+				throw new IllegalArgumentException("Invalidly formatted between condition ( " + subparts[i] + ") is not an number");
+			}
+		}
+		
+		params.put(0, subparts[0]);
+		params.put(1, Integer.parseInt(subparts[1]));
+		params.put(2, Integer.parseInt(subparts[2]));
+		params.put(3, Integer.parseInt(subparts[3]));
+		
 	}
 
-	/* (non-Javadoc)
-	 * @see com.github.distanteye.ep_utils.commands.ConditionalStatement#resolve()
-	 */
 	@Override
-	public boolean resolve() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean resolve(EpCharacter playerChar) {
+		// we control params, so we know these are safe casts
+		int input = (Integer)params.get(1);
+		int low = (Integer)params.get(2);
+		int high = (Integer)params.get(3);
+		
+		return input >= low && input <= high;
 	}
+
+
 
 }

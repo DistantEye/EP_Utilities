@@ -21,6 +21,8 @@ import com.github.distanteye.ep_utils.core.Utils;
  */
 public abstract class Command {
 	protected String origString;
+	
+	// for both params and subparts, index 0 is the command name
 	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, or other Commands, unfortunately
 										// the emphasis on controlled, well-formed Command subclasses is meant to offset this
 	protected String[] subparts; // subparts are the raw String version of params
@@ -29,17 +31,26 @@ public abstract class Command {
 	{
 		origString = input;
 		params = new HashMap<Integer,Object>();
-		subparts = getParts(input);
+		subparts = splitParts(input);
 	}
 	
 	/**
 	 * For a given effects string, pulls the name of the first command in the string
-	 * @param input Valid effects string
+	 * @param input Valid input string, this should be the full String with command name and () still
 	 * @return Command name such that is the first text before an '(' character in string
 	 */
 	public static String getCommandName(String input)
 	{
 		return input.substring(0,input.indexOf('('));
+	}
+	
+	/**
+	 * Returns the name of the command for this current object
+	 * @return String containing the command's name
+	 */
+	public String getCommandName()
+	{
+		return subparts[0];
 	}
 	
 	/**
@@ -62,12 +73,19 @@ public abstract class Command {
 	/**
 	 * Parses input into an array of subparts, respecting command syntax/nesting. Placed here incase subclasses need to
 	 * override this with more specialized behaviors
-	 * @param input Valid input string
+	 * @param input Valid input string, this should be the full String with command name and () still
 	 * @return Sting[] of the input split, may be length 1 if no subparts were found
 	 */
-	public String[] getParts(String input)
+	public String[] splitParts(String input)
 	{
-		return Utils.splitCommands(input);
+		String insideParams = Utils.returnStringInParen(input);
+		String commandName = getCommandName(input);
+		return Utils.splitCommands(commandName+","+insideParams);
+	}
+	
+	public String[] getSubparts()
+	{
+		return this.subparts;
 	}
 	
 	/**

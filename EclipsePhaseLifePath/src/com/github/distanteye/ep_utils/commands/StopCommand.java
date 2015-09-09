@@ -10,7 +10,7 @@ public class StopCommand extends Command {
 
 	/**
 	*Creates a command from the given effects string
-	* @param input Valid formatted command effect string
+	* @param input Valid input string, this should be the full String with command name and () still
 	*/
 	public StopCommand(String input) {
 		super(input);
