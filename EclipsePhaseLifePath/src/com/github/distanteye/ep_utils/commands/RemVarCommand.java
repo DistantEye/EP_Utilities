@@ -1,62 +1,57 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
-import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
- * rep(<type>,<value>)
- * rep(<type>,<value>,<conditional>)	(as with others, conditional must be true for the command to work)
- *
+ * setSkl(<skill>,<value>,<conditional>)		( the three parameter versions throw an error if the conditional isn't true )
+ * 
  * @author Vigilant
  *
  */
-public class RepCommand extends Command {
+public class RemVarCommand extends Command {
 
 	/**
-	*Creates a command from the given effects string
+	* Creates a command from the given effects string
 	* @param input Valid input string, this should be the full String with command name and () still
 	*/
-	public RepCommand(String input) {
+	public RemVarCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
-		
+
 		if (subparts.length != 3 && subparts.length != 4)
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
-		else if (subparts[1].length() > 0 )
+		else if (Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1]))
 		{
-			if (! Rep.exists(subparts[1]) )
-			{
-				throw new IllegalArgumentException("Poorly formatted effect Rep (" + subparts[1] + ") does not exist");
-			}
-			
-			
 			if (! Utils.isInteger(subparts[2]) )
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
 			
-			if (subparts.length == 4)
-			{	
-				this.cond = ConditionalStatement.getConditional(subparts[3], this);
-			}
 			
 			params.put(1, subparts[1]);
 			params.put(2, Integer.parseInt(subparts[2]));
-			params.put(3, cond);
+			
+			if (subparts.length == 4)
+			{	
+				this.cond = ConditionalStatement.getConditional(subparts[3],this);
+				params.put(3, cond);
+			}
+			
 		}
 		else
 		{
-			throw new IllegalArgumentException("Poorly formated effect " + input);
+			throw new IllegalArgumentException("Poorly formated effect : skill does not exist " + origString);
 		}
 	}
 	
 	public String toString()
 	{
-		String result = "Add " + subparts[2] + " to Rep(" + subparts[1] +  ") for character";
+		String result = "Set skl " + subparts[2] + " to " + subparts[1];
 		
 		if (subparts.length == 4)
 		{

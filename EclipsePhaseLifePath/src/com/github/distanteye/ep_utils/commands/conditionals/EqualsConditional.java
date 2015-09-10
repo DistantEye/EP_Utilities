@@ -36,7 +36,7 @@ public class EqualsConditional extends ConditionalStatement {
 			throw new IllegalArgumentException("Invalidly formatted Equals condition (wrong number of parts " + input + ")");
 		}
 		
-		params.put(0, subparts[0]);
+		
 		params.put(1, subparts[1]);
 		params.put(2, subparts[2]);
 	}

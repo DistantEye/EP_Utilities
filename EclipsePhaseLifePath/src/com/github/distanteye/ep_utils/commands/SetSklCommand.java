@@ -23,7 +23,7 @@ public class SetSklCommand extends Command {
 
 		if (subparts.length != 3 && subparts.length != 4)
 		{
-			throw new IllegalArgumentException("Poorly formated effect, wrong parameter length" + origString);
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
 		else if (Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1]))
 		{
@@ -32,13 +32,14 @@ public class SetSklCommand extends Command {
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
 			
-			params.put(0, subparts[0]);
+			
 			params.put(1, subparts[1]);
 			params.put(2, Integer.parseInt(subparts[2]));
 			
 			if (subparts.length == 4)
 			{	
-				params.put(3, ConditionalStatement.getConditional(subparts[3],this));
+				this.cond = ConditionalStatement.getConditional(subparts[3],this);
+				params.put(3, cond);
 			}
 			
 		}

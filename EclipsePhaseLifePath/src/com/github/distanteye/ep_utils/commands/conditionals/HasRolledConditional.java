@@ -42,7 +42,7 @@ public class HasRolledConditional extends ConditionalStatement {
 			throw new IllegalArgumentException(input + " does not specify a number!");
 		}
 		
-		params.put(0, subparts[0]);
+		
 		params.put(1, Integer.parseInt(subparts[1]));
 	}
 

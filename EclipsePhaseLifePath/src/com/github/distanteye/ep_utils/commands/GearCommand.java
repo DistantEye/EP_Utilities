@@ -15,7 +15,18 @@ public class GearCommand extends Command {
 	*/
 	public GearCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 2)
+		{
+			throw new IllegalArgumentException("Invalidly formatted effect " + input + ")");
+		}
+		
+		subpartsToParams();
+	}
+	
+	public String toString()
+	{
+		return "Add gear to character " + subparts[1];
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.Table;
+
 /**
  * Command of following syntax types:
  * rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
@@ -17,7 +20,63 @@ public class RollTableCommand extends Command {
 	*/
 	public RollTableCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 2 && subparts.length != 3)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if (subparts[1].length() > 0 )
+		{
+			if (! DataProc.dataObjExists(subparts[1]))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+			}
+			
+			if (! DataProc.getDataObj(subparts[1]).getType().equals("table"))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
+			}
+
+			
+			Table temp = (Table)DataProc.getDataObj(subparts[1]);
+			
+			if (temp.containsWildCards() && (subparts.length != 3 || subparts[2].length() == 0) )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, Table " + subparts[1] + 
+													" has wildcards but no wildcard value was specified for this call");
+			}
+			
+			params.put(1, temp);
+			
+			if (subparts.length == 3)
+			{
+				params.put(2, subparts[2]);
+			}
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + input);
+		}
 	}
 
+	public String toString()
+	{
+		String start = "R";
+		
+		if (this.isForceRoll())
+		{
+			start = "Force r";
+		}
+		
+		String addendum = "";
+		
+		if (subparts.length == 3)
+		{
+			addendum = " (with wildcard replace(" + params.get(2) + "))"; 
+		}
+		
+		return start + "oll result" + addendum + " from :\n" + params.get(2).toString();
+		
+		
+	}
 }

@@ -9,13 +9,13 @@ import com.github.distanteye.ep_utils.core.Utils;
  * @author Vigilant
  *
  */
-public class SetVarCommand extends Command {
+public class IncVarCommand extends Command {
 
 	/**
 	*Creates a command from the given effects string
 	* @param input Valid input string, this should be the full String with command name and () still
 	*/
-	public SetVarCommand(String input) {
+	public IncVarCommand(String input) {
 		super(input);
 
 		if (subparts.length != 3 )
@@ -38,6 +38,6 @@ public class SetVarCommand extends Command {
 
 	public String toString()
 	{
-		return "Set character variable(" + subparts[1] + ") to value: " + subparts[2];
+		return "Add " + subparts[2] + " to character variable: " + subparts[1];
 	}
 }

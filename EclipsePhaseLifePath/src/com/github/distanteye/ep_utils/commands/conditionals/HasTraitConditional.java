@@ -42,7 +42,7 @@ public class HasTraitConditional extends ConditionalStatement {
 			throw new IllegalArgumentException("Trait : " + subparts[1] + " does not exist!");
 		}
 		
-		params.put(0, subparts[0]);
+		
 		params.put(1, subparts[1]);
 	}
 

@@ -15,7 +15,19 @@ public class MsgClientCommand extends Command {
 	*/
 	public MsgClientCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 2 )
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if ( subparts[1].length() > 0)
+		{
+			params.put(1, subparts[1]);					
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect (params empty)" + input);
+		}
 	}
 
 }

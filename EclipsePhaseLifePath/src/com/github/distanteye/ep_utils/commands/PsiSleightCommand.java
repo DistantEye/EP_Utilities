@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.Sleight;
+
 /**
  * Command of following syntax types:
  * psisleight(<name>)				(can use ?1?,?2?, etc)
@@ -15,7 +17,31 @@ public class PsiSleightCommand extends Command {
 	*/
 	public PsiSleightCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+		
+		if (subparts.length != 2)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if (subparts[1].length() > 0 )
+		{
+			if (! Sleight.exists(subparts[1] ) )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
+			}
+			
+			Sleight s = Sleight.sleightList.get(subparts[1]);
+			
+			params.put(1, s);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + input);
+		}
+	}
+	
+	public String toString()
+	{
+		return "Add Psi Sleight: " + subparts[1];
 	}
 
 }

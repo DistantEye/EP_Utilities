@@ -1,5 +1,9 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.Package;
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Command of following syntax types:
  * package(<name>)				(add package -- assume 1 PP if it needs a value)
@@ -16,7 +20,62 @@ public class PackageCommand extends Command {
 	*/
 	public PackageCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		// checks for package being valid
+		if (subparts.length == 2 || subparts.length == 3)
+		{
+			if ( subparts[1].length() == 0 )
+			{
+				throw new IllegalArgumentException("Poorly formatted effect (" +  input + "): no package name found");
+			}
+			
+			if (! DataProc.dataObjExists(subparts[1]))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+			}
+			
+			if (! DataProc.getDataObj(subparts[1]).getType().equals("package"))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a package");
+			}
+			
+			int pp = 1;
+			
+			Package temp = (Package)DataProc.getDataObj(subparts[1]); 
+			
+			if (subparts.length == 3)
+			{
+				if (! Utils.isInteger(subparts[2]) )
+				{
+					throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+				}
+				else if (!temp.getAllEffects().containsKey(Integer.parseInt(subparts[2])))
+				{
+					throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is a listed PP for package " + subparts[1]);
+				}
+				else
+				{
+					pp = Integer.parseInt(subparts[2]);
+				}
+				
+			}
+			
+			params.put(1, temp);
+			params.put(2, pp);
+			
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		
 	}
 
+	public String toString()
+	{
+		Package temp = (Package)params.get(1);
+		
+		return "Execute package("+ temp.getName() + ") with PP:" + params.get(2);
+	}
+	
 }

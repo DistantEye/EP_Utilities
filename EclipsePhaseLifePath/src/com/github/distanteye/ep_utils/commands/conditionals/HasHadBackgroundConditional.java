@@ -36,7 +36,7 @@ public class HasHadBackgroundConditional extends ConditionalStatement {
 			throw new IllegalArgumentException("Invalidly formatted condition " + input + ")");
 		}
 		
-		params.put(0, subparts[0]);
+		
 		params.put(1, subparts[1]);
 	}
 

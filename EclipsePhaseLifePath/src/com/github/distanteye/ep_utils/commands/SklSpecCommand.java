@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.Skill;
+
 /**
  * Command of following syntax types:
  * SklSpec(<skill>,<specializationName>)
@@ -15,7 +17,19 @@ public class SklSpecCommand extends Command {
 	*/
 	public SklSpecCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 3)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if (Skill.isSkill(subparts[1]) && subparts[2].length() > 0)
+		{
+			this.subpartsToParams();
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formated effect (Skill does not exist or specialization blank) " + input);
+		}
 	}
 
 }

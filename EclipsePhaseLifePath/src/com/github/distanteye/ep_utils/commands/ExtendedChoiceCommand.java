@@ -16,7 +16,25 @@ public class ExtendedChoiceCommand extends Command {
 	*/
 	public ExtendedChoiceCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+	
+		if (subparts.length != 3)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if (subparts[1].length() <= 0 && subparts[2].length() <= 0)
+		{
+			throw new IllegalArgumentException("Poorly formated effect " + input);
+		}
+		else
+		{
+			subpartsToParams();
+		}
+		
 	}
 
+	public String toString()
+	{
+		return "Player makes choice according to Text(" + subparts[1] + ")";
+	}
+	
 }

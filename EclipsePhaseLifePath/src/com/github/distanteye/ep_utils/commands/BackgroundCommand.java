@@ -15,7 +15,18 @@ public class BackgroundCommand extends Command {
 	*/
 	public BackgroundCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+		
+		if (subparts.length != 2)
+		{
+			throw new IllegalArgumentException("Invalidly formatted effect " + input + ")");
+		}
+		
+		subpartsToParams();
+	}
+	
+	public String toString()
+	{
+		return "Set character background to " + subparts[1];
 	}
 
 }

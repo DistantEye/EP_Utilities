@@ -39,7 +39,7 @@ public class AndConditional extends ConditionalStatement {
 	public AndConditional(String input, Command parent) {
 		super(input, parent);
 		
-		params.put(0, subparts[0]);
+		
 		params.put(1, ConditionalStatement.getConditional(subparts[0], parent));
 		params.put(2, ConditionalStatement.getConditional(subparts[1], parent));
 	}
@@ -55,6 +55,8 @@ public class AndConditional extends ConditionalStatement {
 
 		part1 = input.substring(0, input.indexOf("&&"));
 		part2 = input.substring(input.indexOf("&&")+2);
+		
+		params.put(0, subparts[0]); // we always want to set commandname to params 0
 		
 		return new String[]{"AND",part1,part2};
 	}

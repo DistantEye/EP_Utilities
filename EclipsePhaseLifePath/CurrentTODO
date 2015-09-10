@@ -49,3 +49,7 @@ Try and implement aptitude maximums being factored in for displays on morphs?
 need to factor specializations into CP cost calculation
 
 may need to have a flag that determines whether or not morph cost is factored into CP cost calculation
+
+toString for all command objects and all data validation needs to consider Choice/Other uncertainty placeholders like getVar, etc
+
+Commands should throw invalidstateexception if uncertainties still exist when running it

@@ -25,19 +25,29 @@ public abstract class Command {
 	protected String origString;
 	
 	// for both params and subparts, index 0 is the command name
-	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, or other Commands, unfortunately
-										// the emphasis on controlled, well-formed Command subclasses is meant to offset this
-	protected String[] subparts; // subparts are the raw String version of params
+	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, Funcs, Tables, or other Commands, unfortunately
+											  // the emphasis on controlled, well-formed Command subclasses is meant to offset this
+
+	protected String[] subparts; // subparts are the raw String version of params. Oftentimes this is enough. Params is for more advanced behaviors
 	protected ConditionalStatement cond;
+	protected boolean forceRoll; // any dice rolled in this command cannot be chosen manually
 	
 	public Command(String input)
 	{
-		origString = input;
+		origString = input; // used to preserve what's there after wildcard/choice substitution
 		params = new HashMap<Integer,Object>();
 		subparts = splitParts(input);
 		cond = null; // null by default
 	}
 	
+	//abstract Command resolve(EpCharacter playerChar);
+	
+	/**
+	 * Returns whether the attached conditional to the command is true or not
+	 * If none exists, defaults to true
+	 * @param playerChar Player effected by this command
+	 * @return True if conditional evaluates to true, or no conditional exists. False otherwise
+	 */
 	public boolean resolveConditional(EpCharacter playerChar)
 	{
 		if (cond == null)
@@ -50,6 +60,16 @@ public abstract class Command {
 		}
 	}
 	
+	
+	
+	public boolean isForceRoll() {
+		return forceRoll;
+	}
+
+	public void setForceRoll(boolean forceRoll) {
+		this.forceRoll = forceRoll;
+	}
+
 	/**
 	 * For a given effects string, pulls the name of the first command in the string
 	 * @param input Valid input string, this should be the full String with command name and () still
@@ -67,6 +87,29 @@ public abstract class Command {
 	public String getCommandName()
 	{
 		return subparts[0];
+	}
+	
+	public void changeParam(int key,Object value)
+	{
+		if (params.containsKey(key))
+		{
+			Object old = params.get(key);
+			
+			// types must match, or old must be a wildcard/uncertain value
+			if (old.getClass().getName().equals(value.getClass().getName()) || 
+					(old instanceof String && isUncertain((String)old)))
+			{
+				params.put(key, value);
+			}
+			else
+			{
+				throw new IllegalArgumentException("New param must be same type as old param: " + old.getClass().getName());
+			}
+		}
+		else
+		{
+			throw new IllegalArgumentException("Params must contain key(" + key + ")");
+		}
 	}
 	
 	/**
@@ -96,12 +139,26 @@ public abstract class Command {
 	{
 		String insideParams = Utils.returnStringInParen(input);
 		String commandName = getCommandName(input);
-		return Utils.splitCommands(commandName+","+insideParams);
+		String[] results = Utils.splitCommands(commandName+","+insideParams);
+		
+		params.put(0, commandName); // we always want to set commandname to params 0
+		return results;
 	}
 	
 	public String[] getSubparts()
 	{
 		return this.subparts;
+	}
+	
+	/**
+	 * Shortcut method for when it's a straight copy from subparts to params
+	 */
+	public void subpartsToParams()
+	{
+		for (int i = 0; i < subparts.length; i++)
+		{
+			params.put(i, subparts[i]);
+		}
 	}
 	
 	/**
@@ -179,10 +236,11 @@ public abstract class Command {
 	
 	/**
 	 * Like containsChoice, but returns true if input contains a choice wildcard, as well as any other wildcard or special symbol like !RANDSKILL!
+	 * also triggers on preprocessing commands : getVar, rollDice, etc
 	 * @param input
 	 * @return True or false as appropriate
 	 */
-	public static boolean containsUncertainty(String input)
+	public static boolean isUncertain(String input)
 	{
 		if (containsChoice(input))
 		{
@@ -190,7 +248,7 @@ public abstract class Command {
 		}
 		else
 		{
-			String[] specialStrs = {"!RANDSKILL!","!RANDAPT!","!RAND_DER!"};
+			String[] specialStrs = {"!RANDSKILL!","!RANDAPT!","!RAND_DER!", "rollDice(","simpRollDice(","concat(","mult("};
 			
 			for (String str : specialStrs)
 			{

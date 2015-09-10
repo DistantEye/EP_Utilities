@@ -1229,22 +1229,6 @@ public class LifePathGenerator {
 						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 					}
 				}
-				else if (lcEffect.startsWith("msgclient"))
-				{
-					String[] subparts = Utils.splitCommands(params);
-					if (subparts.length != 2 )
-					{
-						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
-					}
-					else if ( subparts[1].length() > 0)
-					{
-						UIObject.statusUpdate(subparts[1]);						
-					}
-					else
-					{
-						throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
-					}
-				}
 				else if (lcEffect.startsWith("setvar"))
 				{
 					String[] subparts = Utils.splitCommands(params);

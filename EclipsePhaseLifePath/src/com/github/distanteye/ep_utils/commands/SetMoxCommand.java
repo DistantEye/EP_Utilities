@@ -9,15 +9,15 @@ import com.github.distanteye.ep_utils.core.Utils;
  * @author Vigilant
  *
  */
-public class MoxCommand extends Command {
+public class SetMoxCommand extends Command {
 
 	/**
 	*Creates a command from the given effects string
 	* @param input Valid input string, this should be the full String with command name and () still
 	*/
-	public MoxCommand(String input) {
+	public SetMoxCommand(String input) {
 		super(input);
-
+		
 		if (subparts.length != 2)
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
@@ -34,7 +34,7 @@ public class MoxCommand extends Command {
 	
 	public String toString()
 	{
-		return "Add " + subparts[1] + " to character's MOX";
+		return "Set character's MOX to " + subparts[1];
 	}
 
 }

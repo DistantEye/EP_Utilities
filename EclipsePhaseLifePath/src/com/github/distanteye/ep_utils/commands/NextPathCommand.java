@@ -15,7 +15,18 @@ public class NextPathCommand extends Command {
 	*/
 	public NextPathCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+		
+		if (subparts.length != 2)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		
+		subpartsToParams();
+	}
+	
+	public String toString()
+	{
+		return "Set character's NextPath to " + subparts[1];
 	}
 
 }

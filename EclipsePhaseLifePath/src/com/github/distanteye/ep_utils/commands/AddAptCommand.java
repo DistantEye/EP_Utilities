@@ -27,19 +27,34 @@ public class AddAptCommand extends Command {
 		}
 		else if (subparts[1].length() > 0 )
 		{
-			if (! Utils.isInteger(subparts[2]) )
-			{
-				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
-			}
 			
-			if (! Aptitude.exists(subparts[1]))
+			if (Aptitude.exists(subparts[1]) || isUncertain(subparts[1]))
+			{
+				params.put(1, subparts[1]);
+			}
+			else
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 			}
 			
+			if (Utils.isInteger(subparts[2]) )
+			{
+				params.put(2, Integer.parseInt(subparts[2]));
+			}
+			else if ( isUncertain(subparts[2]))
+			{
+				params.put(2, subparts[2]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+			}
+			
+			
 			if (subparts.length == 4)
 			{	
 				this.cond = ConditionalStatement.getConditional(subparts[3], this);
+				params.put(3,cond);
 			}
 		}
 		else

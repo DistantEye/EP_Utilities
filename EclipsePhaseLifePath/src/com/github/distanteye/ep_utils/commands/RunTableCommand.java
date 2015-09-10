@@ -1,5 +1,9 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.Table;
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Command of following syntax types:
  * runTable(<tableName>,<number>)
@@ -16,7 +20,53 @@ public class RunTableCommand extends Command {
 	*/
 	public RunTableCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 3 && subparts.length != 4)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
+		else if (Utils.isInteger(subparts[2]))
+		{
+			if (! DataProc.dataObjExists(subparts[1]))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
+			}
+			
+			if (! DataProc.getDataObj(subparts[1]).getType().equals("table"))
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a table");
+			}
+			
+			Table temp = (Table)DataProc.getDataObj(subparts[1]);
+
+			params.put(1, temp);
+			
+			params.put(1, Integer.parseInt(subparts[2]));
+			
+			if (subparts.length == 4)
+			{
+				params.put(3, subparts[3]);
+			}
+			
+		}
+		else
+		{						
+			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");											
+		}			
+	}
+	
+	public String toString()
+	{	
+		String addendum = "";
+		
+		if (subparts.length == 4)
+		{
+			addendum = " (with wildcard replace(" + params.get(3) + "))"; 
+		}
+		
+		return "Run result(" + params.get(2) + ")" + addendum + " from :\n" + params.get(1).toString();
+		
+		
 	}
 
 }

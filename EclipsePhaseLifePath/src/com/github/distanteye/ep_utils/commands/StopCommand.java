@@ -2,6 +2,7 @@ package com.github.distanteye.ep_utils.commands;
 
 /**
  * Command of following syntax types:
+ * stop()
  * 
  * @author Vigilant
  *
@@ -14,7 +15,15 @@ public class StopCommand extends Command {
 	*/
 	public StopCommand(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		if (subparts.length != 1)
+		{
+			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
+		}
 	}
 
+	public String toString()
+	{
+		return "Orders the UI to stop";
+	}
 }
