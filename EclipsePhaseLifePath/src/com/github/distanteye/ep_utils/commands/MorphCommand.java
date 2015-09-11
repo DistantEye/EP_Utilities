@@ -32,7 +32,7 @@ public class MorphCommand extends Command {
 		}
 		else if (subparts[1].length() > 0)
 		{
-			if (Morph.exists(subparts[1]))
+			if (Morph.exists(subparts[1]) || isUncertain(subparts[1]))
 			{
 				params.put(1, subparts[1]);
 				randomRoll = false;

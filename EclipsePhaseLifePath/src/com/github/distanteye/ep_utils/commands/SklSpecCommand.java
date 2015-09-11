@@ -22,7 +22,7 @@ public class SklSpecCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
-		else if (Skill.isSkill(subparts[1]) && subparts[2].length() > 0)
+		else if ((Skill.isSkill(subparts[1]) || isUncertain(subparts[1])) && subparts[2].length() > 0)
 		{
 			this.subpartsToParams();
 		}
@@ -30,6 +30,11 @@ public class SklSpecCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (Skill does not exist or specialization blank) " + input);
 		}
+	}
+	
+	public String toString()
+	{
+		return "Add specialization(" + subparts[2] + ") to skill " + subparts[1];
 	}
 
 }

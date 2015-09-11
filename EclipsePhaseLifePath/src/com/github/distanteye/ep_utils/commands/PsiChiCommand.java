@@ -24,19 +24,25 @@ public class PsiChiCommand extends Command {
 		}
 		else if (subparts[1].length() > 0 )
 		{
-			if (! Sleight.exists(subparts[1] ) )
+			if ( isUncertain(subparts[1]) )
+			{
+				params.put(1, subparts[1]);
+			}
+			else if (! Sleight.exists(subparts[1] ) )
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
 			}
-			
-			if ( Sleight.sleightList.get(subparts[1]).getSleightType()!=Sleight.SleightType.CHI )
+			else if ( Sleight.sleightList.get(subparts[1]).getSleightType()!=Sleight.SleightType.CHI )
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " is not a Psi Chi sleight");
 			}
-
-			Sleight s = Sleight.sleightList.get(subparts[1]);
+			else
+			{
+				Sleight s = Sleight.sleightList.get(subparts[1]);
+				
+				params.put(1, s);
+			}
 			
-			params.put(1, s);
 		}
 		else
 		{

@@ -22,14 +22,21 @@ public class MoxCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
-		else if (Utils.isInteger(subparts[1]))
+
+		// check for integer or wildcard value
+		if ( Utils.isInteger(subparts[1]) )
 		{
 			params.put(1, Integer.parseInt(subparts[1]));
 		}
-		else
-		{						
-			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");											
+		else if (isUncertain(subparts[1]))
+		{
+			params.put(1, subparts[1]);
 		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");
+		}
+		
 	}
 	
 	public String toString()

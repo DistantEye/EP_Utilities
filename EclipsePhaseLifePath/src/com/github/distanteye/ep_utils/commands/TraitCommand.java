@@ -13,8 +13,11 @@ import com.github.distanteye.ep_utils.core.Utils;
  */
 public class TraitCommand extends Command {
 
+	// TODO decide whether to add isUncertain support?
+	
 	/**
-	*Creates a command from the given effects string
+	* Creates a command from the given effects string
+	* This class must already have uncertainties resolved at runtime
 	* @param input Valid input string, this should be the full String with command name and () still
 	*/
 	public TraitCommand(String input) {

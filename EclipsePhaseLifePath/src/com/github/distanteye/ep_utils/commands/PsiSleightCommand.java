@@ -24,14 +24,20 @@ public class PsiSleightCommand extends Command {
 		}
 		else if (subparts[1].length() > 0 )
 		{
-			if (! Sleight.exists(subparts[1] ) )
+			if ( isUncertain(subparts[1]) )
+			{
+				params.put(1, subparts[1]);
+			}
+			else if (! Sleight.exists(subparts[1] ) )
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, sleight " + subparts[1] + " does not exist");
 			}
-			
-			Sleight s = Sleight.sleightList.get(subparts[1]);
-			
-			params.put(1, s);
+			else
+			{
+				Sleight s = Sleight.sleightList.get(subparts[1]);
+				
+				params.put(1, s);
+			}
 		}
 		else
 		{

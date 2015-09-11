@@ -33,8 +33,8 @@ public class DecSklCommand extends Command {
 			params.put(3, cond);
 		}
 		
-		// does the Skill exist?
-		if (Skill.isSkill(subparts[1]))
+		// does the Skill exist? or is at least a wildcard value
+		if (!Skill.isSkill(subparts[1]) && !isUncertain(subparts[1]))
 		{
 			throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[1]);	
 		}
@@ -49,13 +49,18 @@ public class DecSklCommand extends Command {
 		}
 		else
 		{
-			if (! Utils.isInteger(subparts[2]) )
+			// check for integer or wildcard value
+			if ( Utils.isInteger(subparts[2]) )
 			{
-				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+				params.put(2, Integer.parseInt(subparts[2]));
+			}
+			else if (isUncertain(subparts[2]))
+			{
+				params.put(2, subparts[2]);
 			}
 			else
 			{
-				params.put(2, Integer.parseInt(subparts[2]));
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
 		}
 

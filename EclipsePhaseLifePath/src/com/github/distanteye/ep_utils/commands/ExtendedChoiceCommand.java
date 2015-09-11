@@ -23,7 +23,7 @@ public class ExtendedChoiceCommand extends Command {
 		}
 		else if (subparts[1].length() <= 0 && subparts[2].length() <= 0)
 		{
-			throw new IllegalArgumentException("Poorly formated effect " + input);
+			throw new IllegalArgumentException("Poorly formated effect (empty params)" + input);
 		}
 		else
 		{

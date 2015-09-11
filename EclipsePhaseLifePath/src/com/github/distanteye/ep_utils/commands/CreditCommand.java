@@ -24,13 +24,21 @@ public class CreditCommand extends Command {
 			throw new IllegalArgumentException("Invalidly formatted effect " + input + ")");
 		}
 		
-		if (!Utils.isInteger(subparts[1]))
+		
+		if (Utils.isInteger(subparts[1]))
+		{
+			params.put(1, Integer.parseInt(subparts[1]));
+		}
+		else if ( isUncertain(subparts[1]) )
+		{
+			params.put(1, subparts[1]);
+		}
+		else
 		{
 			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");
 		}
 		
 		
-		params.put(1, Integer.parseInt(subparts[1]));
 	}
 	
 	public String toString()

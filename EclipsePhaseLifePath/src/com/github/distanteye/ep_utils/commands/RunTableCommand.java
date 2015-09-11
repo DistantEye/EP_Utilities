@@ -25,8 +25,7 @@ public class RunTableCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
-		else if (Utils.isInteger(subparts[2]))
-		{
+		
 			if (! DataProc.dataObjExists(subparts[1]))
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " does not exist");
@@ -40,19 +39,30 @@ public class RunTableCommand extends Command {
 			Table temp = (Table)DataProc.getDataObj(subparts[1]);
 
 			params.put(1, temp);
+
 			
-			params.put(1, Integer.parseInt(subparts[2]));
+			// check for integer or wildcard value
+			if ( Utils.isInteger(subparts[2]) )
+			{
+				params.put(2, Integer.parseInt(subparts[2]));
+			}
+			else if (isUncertain(subparts[2]))
+			{
+				params.put(2, subparts[2]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+			}
+			
 			
 			if (subparts.length == 4)
 			{
 				params.put(3, subparts[3]);
 			}
 			
-		}
-		else
-		{						
-			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");											
-		}			
+		
+				
 	}
 	
 	public String toString()

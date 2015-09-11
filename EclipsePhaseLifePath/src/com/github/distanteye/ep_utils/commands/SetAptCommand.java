@@ -26,14 +26,27 @@ public class SetAptCommand extends Command {
 		}
 		else if (subparts[1].length() > 0 )
 		{
-			if (! Utils.isInteger(subparts[2]) )
+			if (Aptitude.exists(subparts[1]) || isUncertain(subparts[1]))
 			{
-				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+				params.put(1, subparts[1]);
 			}
-			
-			if (! Aptitude.exists(subparts[1]))
+			else
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
+			}
+			
+			// we can't parse if it's an wildcard/choice/etc but we can still store it as "valid"
+			if (Utils.isInteger(subparts[2]) )
+			{
+				params.put(2, Integer.parseInt(subparts[2]));
+			}
+			else if ( isUncertain(subparts[2]))
+			{
+				params.put(2, subparts[2]);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
 			
 		}
@@ -42,8 +55,6 @@ public class SetAptCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
 
-		params.put(1, subparts[1]);
-		params.put(2, Integer.parseInt(subparts[2]));
 	}
 	
 	public String toString()

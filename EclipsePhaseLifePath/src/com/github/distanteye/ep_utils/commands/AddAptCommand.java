@@ -37,6 +37,7 @@ public class AddAptCommand extends Command {
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a valid aptitude");
 			}
 			
+			// we can't parse if it's an wildcard/choice/etc but we can still store it as "valid"
 			if (Utils.isInteger(subparts[2]) )
 			{
 				params.put(2, Integer.parseInt(subparts[2]));

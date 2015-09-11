@@ -45,7 +45,11 @@ public class PackageCommand extends Command {
 			
 			if (subparts.length == 3)
 			{
-				if (! Utils.isInteger(subparts[2]) )
+				if ( isUncertain(subparts[2]))
+				{
+					params.put(2, subparts[2]);
+				}				
+				else if (! Utils.isInteger(subparts[2]) )
 				{
 					throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 				}
@@ -55,13 +59,13 @@ public class PackageCommand extends Command {
 				}
 				else
 				{
-					pp = Integer.parseInt(subparts[2]);
+					params.put(2, Integer.parseInt(subparts[2]));
 				}
 				
 			}
 			
 			params.put(1, temp);
-			params.put(2, pp);
+			
 			
 		}
 		else

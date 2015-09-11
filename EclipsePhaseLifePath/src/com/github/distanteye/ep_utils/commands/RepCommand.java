@@ -28,13 +28,27 @@ public class RepCommand extends Command {
 		}
 		else if (subparts[1].length() > 0 )
 		{
-			if (! Rep.exists(subparts[1]) )
+			
+			if ( Rep.exists(subparts[1]) || isUncertain(subparts[1]))
+			{
+				params.put(1, subparts[1]);
+			}
+			else
 			{
 				throw new IllegalArgumentException("Poorly formatted effect Rep (" + subparts[1] + ") does not exist");
 			}
 			
 			
-			if (! Utils.isInteger(subparts[2]) )
+			// check for integer or wildcard value
+			if ( Utils.isInteger(subparts[2]) )
+			{
+				params.put(2, Integer.parseInt(subparts[2]));
+			}
+			else if (isUncertain(subparts[2]))
+			{
+				params.put(2, subparts[2]);
+			}
+			else
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
@@ -42,11 +56,10 @@ public class RepCommand extends Command {
 			if (subparts.length == 4)
 			{	
 				this.cond = ConditionalStatement.getConditional(subparts[3], this);
+				params.put(3, cond);
 			}
 			
-			params.put(1, subparts[1]);
-			params.put(2, Integer.parseInt(subparts[2]));
-			params.put(3, cond);
+			
 		}
 		else
 		{

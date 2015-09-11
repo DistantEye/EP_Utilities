@@ -25,28 +25,30 @@ public class SetSklCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
-		else if (Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1]))
+		
+		// does the Skill exist? or is at least a wildcard value?
+		if (!Skill.isSkill(subparts[1]) && !isUncertain(subparts[1]))
 		{
-			if (! Utils.isInteger(subparts[2]) )
-			{
-				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
-			}
-			
-			
-			params.put(1, subparts[1]);
+			throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + subparts[1]);	
+		}
+
+
+		params.put(1, subparts[1]);
+
+		// check for integer or wildcard value
+		if ( Utils.isInteger(subparts[2]) )
+		{
 			params.put(2, Integer.parseInt(subparts[2]));
-			
-			if (subparts.length == 4)
-			{	
-				this.cond = ConditionalStatement.getConditional(subparts[3],this);
-				params.put(3, cond);
-			}
-			
+		}
+		else if (isUncertain(subparts[2]))
+		{
+			params.put(2, subparts[2]);
 		}
 		else
 		{
-			throw new IllegalArgumentException("Poorly formated effect : skill does not exist " + origString);
+			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 		}
+		
 	}
 	
 	public String toString()

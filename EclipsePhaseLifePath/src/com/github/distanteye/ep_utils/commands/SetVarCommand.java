@@ -22,18 +22,26 @@ public class SetVarCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
-		else if (!Utils.isInteger(subparts[2]))
-		{
-			throw new IllegalArgumentException("Poorly formated effect " + input + ", " + subparts[2] + " is not a number");
-		}
 		else if (!( subparts[1].length() > 0 && subparts[2].length() > 0))
 		{
 			throw new IllegalArgumentException("Poorly formated effect (params blank) " + input);
 		}
 		
-		
 		params.put(1, subparts[1]);
-		params.put(2, Integer.parseInt(subparts[2]));
+		
+		// check for integer or wildcard value
+		if ( Utils.isInteger(subparts[2]) )
+		{
+			params.put(2, Integer.parseInt(subparts[2]));
+		}
+		else if (isUncertain(subparts[2]))
+		{
+			params.put(2, subparts[2]);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
+		}
 	}
 
 	public String toString()
