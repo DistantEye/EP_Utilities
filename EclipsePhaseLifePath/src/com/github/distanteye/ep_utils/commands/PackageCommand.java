@@ -47,7 +47,7 @@ public class PackageCommand extends Command {
 			{
 				if ( isUncertain(subparts[2]))
 				{
-					params.put(2, subparts[2]);
+					params.set(2, subparts[2]);
 				}				
 				else if (! Utils.isInteger(subparts[2]) )
 				{
@@ -59,12 +59,12 @@ public class PackageCommand extends Command {
 				}
 				else
 				{
-					params.put(2, Integer.parseInt(subparts[2]));
+					params.set(2, Integer.parseInt(subparts[2]));
 				}
 				
 			}
 			
-			params.put(1, temp);
+			params.set(1, temp);
 			
 			
 		}

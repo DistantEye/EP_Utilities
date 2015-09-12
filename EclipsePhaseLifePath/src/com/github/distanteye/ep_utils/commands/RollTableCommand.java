@@ -46,11 +46,11 @@ public class RollTableCommand extends Command {
 													" has wildcards but no wildcard value was specified for this call");
 			}
 			
-			params.put(1, temp);
+			params.set(1, temp);
 			
 			if (subparts.length == 3)
 			{
-				params.put(2, subparts[2]);
+				params.set(2, subparts[2]);
 			}
 		}
 		else

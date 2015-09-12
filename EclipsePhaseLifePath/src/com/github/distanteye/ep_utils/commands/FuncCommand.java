@@ -30,11 +30,11 @@ public class FuncCommand extends Command {
 				Function temp = (Function)DataProc.getDataObj(subparts[1]);
 				
 				
-				params.put(1, temp);
+				params.set(1, temp);
 				
 				for (int i = 2; i < subparts.length; i++)
 				{
-					params.put(i, subparts[i]);
+					params.set(i, subparts[i]);
 				}
 			}
 			else

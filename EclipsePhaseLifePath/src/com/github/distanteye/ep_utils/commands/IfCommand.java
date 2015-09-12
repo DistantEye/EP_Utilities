@@ -32,11 +32,11 @@ public class IfCommand extends Command {
 		}
 		
 		this.cond = ConditionalStatement.getConditional(subparts[1], this);
-		params.put(1, cond);
+		params.set(1, cond);
 		
 		for (int i = 2; i < subparts.length; i++)
 		{
-			params.put(i, subparts[i]);
+			params.set(i, subparts[i]);
 		}
 		
 	}

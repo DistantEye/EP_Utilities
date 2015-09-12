@@ -38,17 +38,17 @@ public class RunTableCommand extends Command {
 			
 			Table temp = (Table)DataProc.getDataObj(subparts[1]);
 
-			params.put(1, temp);
+			params.set(1, temp);
 
 			
 			// check for integer or wildcard value
 			if ( Utils.isInteger(subparts[2]) )
 			{
-				params.put(2, Integer.parseInt(subparts[2]));
+				params.set(2, Integer.parseInt(subparts[2]));
 			}
 			else if (isUncertain(subparts[2]))
 			{
-				params.put(2, subparts[2]);
+				params.set(2, subparts[2]);
 			}
 			else
 			{
@@ -58,7 +58,7 @@ public class RunTableCommand extends Command {
 			
 			if (subparts.length == 4)
 			{
-				params.put(3, subparts[3]);
+				params.set(3, subparts[3]);
 			}
 			
 		

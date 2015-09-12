@@ -37,7 +37,7 @@ public class HasHadBackgroundConditional extends ConditionalStatement {
 		}
 		
 		
-		params.put(1, subparts[1]);
+		params.set(1, subparts[1]);
 	}
 
 	@Override

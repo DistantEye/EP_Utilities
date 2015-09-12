@@ -26,11 +26,11 @@ public class SetMoxCommand extends Command {
 		// we can't parse if it's an wildcard/choice/etc but we can still store it as "valid"
 		if (Utils.isInteger(subparts[1]) )
 		{
-			params.put(1, Integer.parseInt(subparts[1]));
+			params.set(1, Integer.parseInt(subparts[1]));
 		}
 		else if ( isUncertain(subparts[1]))
 		{
-			params.put(1, subparts[1]);
+			params.set(1, subparts[1]);
 		}
 		else
 		{

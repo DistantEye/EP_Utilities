@@ -1,7 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +24,7 @@ public abstract class Command {
 	protected String origString;
 	
 	// for both params and subparts, index 0 is the command name
-	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, Funcs, Tables, or other Commands, unfortunately
+	protected ArrayList<Object> params; // Params can be Strings, Integers, Funcs, Tables, or other Commands, unfortunately
 											  // the emphasis on controlled, well-formed Command subclasses is meant to offset this
 
 	protected String[] subparts; // subparts are the raw String version of params. Oftentimes this is enough. Params is for more advanced behaviors
@@ -35,7 +34,7 @@ public abstract class Command {
 	public Command(String input)
 	{
 		origString = input; // used to preserve what's there after wildcard/choice substitution
-		params = new HashMap<Integer,Object>();
+		params = new ArrayList<Object>();
 		subparts = splitParts(input);
 		cond = null; // null by default
 	}
@@ -91,7 +90,7 @@ public abstract class Command {
 	
 	public void changeParam(int key,Object value)
 	{
-		if (params.containsKey(key))
+		if (key >= 0 && key < params.size())
 		{
 			Object old = params.get(key);
 			
@@ -99,7 +98,7 @@ public abstract class Command {
 			if (old.getClass().getName().equals(value.getClass().getName()) || 
 					(old instanceof String && isUncertain((String)old)))
 			{
-				params.put(key, value);
+				params.set(key, value);
 			}
 			else
 			{
@@ -108,7 +107,7 @@ public abstract class Command {
 		}
 		else
 		{
-			throw new IllegalArgumentException("Params must contain key(" + key + ")");
+			throw new IllegalArgumentException("Params must contain idx(" + key + ")");
 		}
 	}
 	
@@ -141,7 +140,7 @@ public abstract class Command {
 		String commandName = getCommandName(input);
 		String[] results = Utils.splitCommands(commandName+","+insideParams);
 		
-		params.put(0, commandName); // we always want to set commandname to params 0
+		params.set(0, commandName); // we always want to set commandname to params 0
 		return results;
 	}
 	
@@ -157,7 +156,7 @@ public abstract class Command {
 	{
 		for (int i = 0; i < subparts.length; i++)
 		{
-			params.put(i, subparts[i]);
+			params.set(i, subparts[i]);
 		}
 	}
 	
