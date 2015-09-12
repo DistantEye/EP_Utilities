@@ -3,7 +3,10 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Step;
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -486,5 +489,131 @@ public class SkilledCharacter extends BaseCharacter {
 		this.autoApplyMastery = autoApplyMastery;
 	}
 	
+	
+	/**
+	 * Collects the character's data into a set of XML tags, not enclosed in a greater tag,
+	 * this less subclasses redefine saving while still being able to draw off the superclass
+	 * @return Returns a String containing the character's vital data in a list of XML tags
+	 */
+	protected String getInnerXML()
+	{
+		String result = "";
+		
+		result += Utils.tab(1) + "<skills>\n";
+		
+		for (String key : skills.keySet())
+		{
+			String tagOpen = Utils.tab(2) + "<" + key + ">\n";
+			String tagClose = Utils.tab(2) + "</" + key + ">\n";
+			result += tagOpen + skills.get(key).toXML(3) + tagClose;
+		}
+		
+		result += Utils.tab(1) + "</skills>\n";
+		
+		result += Utils.tab(1) + "<stats>\n";
+		
+		for (String key : stats.keySet())
+		{
+			String tagOpen = Utils.tab(2) + "<" + key + ">\n";
+			String tagClose = Utils.tab(2) + "</" + key + ">\n";
+			result += tagOpen + stats.get(key).toXML(3) + tagClose;
+		}
+		
+		result += Utils.tab(1) + "</stats>\n";
+		
+		result += Utils.tab(1) + "<lastRolls>" + Utils.joinStrObjArr(lastRolls.toArray(new Integer[packages.size()]), ";") + "</lastRolls>\n";
+		result += Utils.tab(1) + "<currentTable>" + currentTable + "</currentTable>\n";
+		result += Utils.tab(1) + "<lastStep>" + lastStep.getName() + "</lastStep>\n";
+		
+		String[] packagesArr = new String[packages.size()];
+		int idx = 0;
+		for (String[] tempArr : packages)
+		{
+			packagesArr[idx++] = Utils.joinStr(tempArr,"|");
+		}
+		
+		result += Utils.tab(1) + "<packages>" + Utils.joinStr(packages.toArray(new String[packages.size()]), ";") + "</packages>\n";
+		result += Utils.tab(1) + "<autoApplyMastery>" + String.valueOf(autoApplyMastery) + "</autoApplyMastery>\n";
+		
+		return result;
+	}
+	
+	/**
+	 * Discards the character's current data and replaces it with the data encoded into the xml string passed
+	 * @param xml a validly formatted XML string as returned by getXML()
+	 */
+	public void loadXML(String xml)
+	{
+		this.autoApplyMastery = false;
+		skills = new HashMap<String, Skill>();
+		stats = new StatHashMap(" ",false);
+		
+		currentTable = "";
+		lastRolls = new LinkedList<Integer>();
+		packages = new ArrayList<String[]>();
+		
+		
+		// rebuild Skills
+		String skillsBlock = Utils.returnStringInTag("skills", xml, 0);
+		Pattern tagReg = Pattern.compile("<skill>");
+		Matcher m = tagReg.matcher(skillsBlock);
+		int idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = "skill"; 
+			String tagContent = "<skill>" + Utils.returnStringInTag(tagName, skillsBlock, idx) + "</skill>";
+			Skill tmp = Skill.fromXML(tagContent);
+			skills.put(tmp.getFullName(), tmp);
+		} 
+			
+		// rebuild Stats
+		String statsBlock = Utils.returnStringInTag("skills", xml, 0);
+		tagReg = Pattern.compile("<stat>");
+		m = tagReg.matcher(statsBlock);
+		idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = "stat"; 
+			String tagContent = "<stat>" + Utils.returnStringInTag(tagName, statsBlock, idx) + "</stat>";
+			Stat tmpStat = Stat.fromXML(tagContent);
+			stats.put(tmpStat.getName(), tmpStat);
+		} 
+		
+		String lastRollsStr = Utils.returnStringInTag("lastRolls", xml, 0);
+		String[] lastRollsArr = lastRollsStr.split(";");
+		for (String str : lastRollsArr)
+		{
+			if (!Utils.isInteger(str))
+			{
+				throw new IllegalArgumentException("All items in lastRolls must be integers!");
+			}
+			
+			lastRolls.addLast(Integer.parseInt(str));
+		}
+		
+		this.currentTable = Utils.returnStringInTag("currentTable", xml, 0);
+		String lastStepStr = Utils.returnStringInTag("lastStep", xml, 0);
+		
+		if (DataProc.dataObjExists(lastStepStr) && DataProc.getDataObj(lastStepStr).getType().equals("step"))
+		{
+			this.lastStep = (Step)DataProc.getDataObj(lastStepStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Laststep has an invalid name");
+		}
+		
+		// packages have to be double split since each "package" is a String[] itself, from an bigger list/array
+		String[] packagesArr = Utils.returnStringInTag("packages", xml, 0).split(";");
+		
+		for (String tempStr : packagesArr)
+		{
+			this.packages.add(tempStr.split("|")); 
+		}
+		
+		this.autoApplyMastery = Boolean.parseBoolean( Utils.returnStringInTag("autoApplyMastery", xml, 0).toLowerCase() );
+	}
 	
 }

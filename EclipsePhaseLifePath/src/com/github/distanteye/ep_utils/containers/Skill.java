@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Container for Eclipse Phase skills.
  * Has an exists method, to validate whether a name is a valid Skill.
@@ -663,7 +665,43 @@ public class Skill {
 			}
 		}
 		
-		throw new IllegalArgumentException("No such skill exists(" + name + ")!");
+		throw new IllegalArgumentException("No such skill exists(" + name + ")!");		
+	}
+	
+	/**
+	 * Returns information sufficient to reconstruct this object, encoded in xml
+	 * Contains:	 * 
+	 * String name, String subtype, String specialization, int value
+	 * @param tab The number of tabs to set everything by.
+	 * @return An xml tag <skill><name>name</name><subtype>subtype</subtype><specialization>specialization</specialization><value>value</value></skill>
+	 */
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) +"<skill>\n"+
+						Utils.tab(tab+1) + "<name>"+name+"</name>\n" +
+						Utils.tab(tab+1) + "<subtype>"+subtype+"</subtype>\n" +
+						Utils.tab(tab+1) + "<specialization>"+specialization+"</specialization>\n" +
+						Utils.tab(tab+1) + "<value>"+value+"</value>\n" +
+				Utils.tab(tab) + "</skill>\n";
+	}
+	
+	public static Skill fromXML(String xml)
+	{
+		String skillBlock = Utils.returnStringInTag("skill", xml, 0);
+		String name = Utils.returnStringInTag("name",skillBlock,0);
+		String subtype = Utils.returnStringInTag("subtype",skillBlock,0);
+		String specialization = Utils.returnStringInTag("specialization",skillBlock,0);
+		String valueStr = Utils.returnStringInTag("value",skillBlock,0);
+		int value = -1;
+		if (Utils.isInteger(valueStr))
+		{
+			value = Integer.parseInt(valueStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Value must be integer!");
+		}
 		
+		return CreateSkill(name,subtype,specialization,value);
 	}
 }

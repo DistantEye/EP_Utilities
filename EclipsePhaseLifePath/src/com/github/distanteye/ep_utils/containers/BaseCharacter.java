@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.containers;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -217,5 +219,87 @@ public class BaseCharacter {
 			throw new IllegalArgumentException("getVar(" + name + "): No such variable exists in character: " + this.getName());
 		}
 	}
+	
+	/**
+	 * Converts the chracter's data to XML, valid for storing/saving
+	 * @return Returns a String containing an XML representation of all the character's data
+	 */
+	public String getXML()
+	{
+		String result = "<Character>\n";
+		
+		result += this.getInnerXML();
+		
+		result += "</Character>";
+		
+		return result;
+	}
+	
+	/**
+	 * Collects the character's data into a set of XML tags, not enclosed in a greater tag,
+	 * this less subclasses redefine saving while still being able to draw off the superclass
+	 * @return Returns a String containing the character's vital data in a list of XML tags
+	 */
+	protected String getInnerXML()
+	{
+		String result = "";
+		
+		result += Utils.tab(1) + "<charName>" + this.name + "</charName>\n";
+		result += Utils.tab(1) + "<charAge>" + this.name + "</charAge>\n";
+		
+		result += Utils.tab(1) + "<otherVars>\n";
+		
+		for (String key : otherVars.keySet())
+		{
+			String tagOpen = Utils.tab(2) + "<" + key + ">";
+			String tagClose = "</" + key + ">\n";
+			result += tagOpen + otherVars.get(key) + tagClose;
+		}
+		
+		result += Utils.tab(1) + "</otherVars>\n";
+		
+		
+		return result;
+	}
+	
+	/**
+	 * Discards the character's current data and replaces it with the data encoded into the xml string passed
+	 * @param xml a validly formatted XML string as returned by getXML()
+	 */
+	public void loadXML(String xml)
+	{
+		this.name = "";
+		otherVars = new HashMap<String,String>();
+		age = -1; // placeholder
+		
+		this.name = Utils.returnStringInTag("charName", xml, 0);
+		
+		String ageStr = Utils.returnStringInTag("charAge", xml, 0);
+		
+		if (Utils.isInteger(ageStr))
+		{
+			this.age = Integer.parseInt(ageStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Age must be an integer.");
+		}
+		
+		// otherVars is a bit more complicated, since the tags inside are the variable names, and are dynamic/unique
+		String otherVarsBlock = Utils.returnStringInTag("otherVars", xml, 0);
+		Pattern tagReg = Pattern.compile("<([^>]+)>");
+		Matcher m = tagReg.matcher(otherVarsBlock);
+		int idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = m.group(1); // what's inside the brackets
+			String tagContent = Utils.returnStringInTag(tagName, otherVarsBlock, idx);
+			otherVars.put(tagName, tagContent);
+		} 
+				
+	}
+	
+	
 	
 }

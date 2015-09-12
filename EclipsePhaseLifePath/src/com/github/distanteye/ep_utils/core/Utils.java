@@ -20,8 +20,51 @@ public class Utils {
 	}
 	
 	/**
+	 * Returns the number of tabs specified
+	 * @param num Positive integer
+	 * @return Returns "\t" repeated num times.
+	 */
+	public static String tab(int num)
+	{
+		String result = "";
+		for (int i = 0; i < num; i++)
+		{
+			result += "\t";
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Version of joinStr that takes a plain Object[], calling the toString on each
+	 * entry to make it into a String[], then passes it to joinStr. This is slower.
+	 * @param arr Object[], where the objects have a meaningful toString() conversion
+	 * @param joiner Delimeter to separate entries in the array for the String 
+	 * @return Will return "" if empty, else, a single String joining all of arr's values together between the joiner passed
+	 */
+	public static String joinStrObjArr(Object[] arr, String joiner)
+	{
+		String[] tempArr = new String[arr.length];
+		
+		int idx = 0;
+		for (Object o : arr)
+		{
+			// not all values in array would need to be initialized, careful with that.
+			if (o != null)
+			{
+				tempArr[idx] = o.toString();
+			}
+			
+			idx++;
+		}
+		
+		return joinStr(tempArr, joiner);
+	}
+	
+	/**
 	 * Joins String[] into single String, separated by String joiner
 	 * @param arr valid String[]
+	 * @param joiner Delimeter to separate entries in the array for the String
 	 * @return Will return "" if empty, else, a single String joining all of arr's values together between the joiner passed
 	 */
 	public static String joinStr(String[] arr, String joiner)

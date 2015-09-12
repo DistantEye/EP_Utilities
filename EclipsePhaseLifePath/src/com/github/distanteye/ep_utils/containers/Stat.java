@@ -1,4 +1,7 @@
 package com.github.distanteye.ep_utils.containers;
+
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Container for Stats, a general class for encapsulating stats
  * Stats are, at minimum, a name and a non-negative integer value
@@ -54,4 +57,30 @@ public class Stat {
 		setValue(getValue() + value);
 	}
 	
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) + "<stat>\n"+
+						Utils.tab(tab+1) + "<name>" + name + "</name>\n" +
+						Utils.tab(tab+1) + "<value>" + value + "</value>\n" +
+			Utils.tab(tab) + "</stat>\n";
+	}
+	
+	public static Stat fromXML(String xml)
+	{
+		String statBlock = Utils.returnStringInTag("stat", xml, 0);
+		String nameStr = Utils.returnStringInTag("name", statBlock, 0);
+		String valueStr = Utils.returnStringInTag("value", statBlock, 0);
+		
+		int val = -1;
+		if (Utils.isInteger(valueStr))
+		{
+			val = Integer.parseInt(valueStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Value must be an integer.");
+		}
+		
+		return new Stat(nameStr,val);
+	}
 }
