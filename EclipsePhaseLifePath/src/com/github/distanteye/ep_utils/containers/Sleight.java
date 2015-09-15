@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Represents any valid Sleight defined in the Internal Data file. Sleights are immutable
  * This class has a static exists method for determining whether a name is a valid Sleight
@@ -190,5 +192,23 @@ public class Sleight {
 		CONSTANT,INSTANT,TEMP_ACTION_TURNS,TEMP_MINUTES,TEMP_HOURS,SUSTAINED
 	}
 		
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) + "<sleight>\n" +
+				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
+			Utils.tab(tab) + "</sleight>\n";		
+	}
 	
+	public static Sleight fromXML(String xml)
+	{
+		String sleightBlock = Utils.returnStringInTag("sleight", xml, 0);
+		String nameStr = Utils.returnStringInTag("name", sleightBlock, 0);
+		
+		if (!sleightList.containsKey(nameStr))
+		{
+			throw new IllegalArgumentException("Trait called for name : " + nameStr + ", but no such Sleight exists!");
+		}
+		
+		return Sleight.sleightList.get(nameStr);
+	}
 }

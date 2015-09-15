@@ -1400,15 +1400,15 @@ TABLE
 CHARACTER_AGE
 100
 false
-1-20`In your 20s. Proceed directly to Step 8.`setVar(ageRange,20s);stepskip(STEP_8)
-21-50`In your 30s. Proceed to Step 6.`setVar(ageRange,30s);stepskip(STEP_6_0)
-51-70`In your 40s. Proceed to Step 6.`setVar(ageRange,40s);stepskip(STEP_6_0)
-71-80`In your 50s. Proceed to Step 6.`setVar(ageRange,50s);stepskip(STEP_6_0)
-81-85`In your 60s. Proceed to Step 6.`setVar(ageRange,60s);stepskip(STEP_6_0)
-86-90`In your 70s. Proceed to Step 6.`setVar(ageRange,70s);stepskip(STEP_6_0)
-91-94`In your 80s. Proceed to Step 6.`setVar(ageRange,80s);stepskip(STEP_6_0)
-95-98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar(ageRange,90s);setVar(diceBonus,1);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
-99-100`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar(ageRange,100+);rollTable(ADVANCED_AGE)
+1-20`In your 20s. Proceed directly to Step 8.`setVar({age},add(19,simpRollDice(1,10)));stepskip(STEP_8)
+21-50`In your 30s. Proceed to Step 6.`setVar({age},add(29,simpRollDice(1,10)));stepskip(STEP_6_0)
+51-70`In your 40s. Proceed to Step 6.`setVar({age},add(39,simpRollDice(1,10)));stepskip(STEP_6_0)
+71-80`In your 50s. Proceed to Step 6.`setVar({age},add(49,simpRollDice(1,10)));stepskip(STEP_6_0)
+81-85`In your 60s. Proceed to Step 6.`setVar({age},add(59,simpRollDice(1,10)));stepskip(STEP_6_0)
+86-90`In your 70s. Proceed to Step 6.`setVar({age},add(69,simpRollDice(1,10)));stepskip(STEP_6_0)
+91-94`In your 80s. Proceed to Step 6.`setVar({age},add(79,simpRollDice(1,10)));stepskip(STEP_6_0)
+95-98`In your 90s. Roll on the Advanced Age table with a +1 modifier.`setVar({age},add(89,simpRollDice(1,10)));setVar(diceBonus,1);setVar(diceBonusPerm,1);rollTable(ADVANCED_AGE)
+99-100`Over 100 years (up to 130). Roll on the Advanced Age table.`setVar({age},add(99,simpRollDice(1,31)));rollTable(ADVANCED_AGE)
 --------------------------------------------------------------
 TABLE
 ADVANCED_AGE
@@ -1416,7 +1416,7 @@ ADVANCED_AGE
 false
 1`Lose -10 SOM, REF, or COO (your choice). Roll again. Ignore this result if rolled more than twice; proceed to Step 6 instead.`incVar(AA_1_ROLL,1);if(?equals(getVar(AA_1_ROLL),3),stepskip(STEP_6_0),extendedChoice(Lose -10 SOM\, REF\, or COO.1=SOM\,2=REF\,3=COO,1=addApt(SOM,-10)/2=addApt(REF,-10)/3=addApt(COO,-10));rollTable(ADVANCED_AGE))
 2`Lose -5 SOM, REF, or COO (your choice). Roll again.`extendedChoice(Lose -5 SOM\, REF\, or COO.1=SOM\,2=REF\,3=COO,1=addApt(SOM,-5)/2=addApt(REF,-5)/3=addApt(COO,-5));rollTable(ADVANCED_AGE)
-3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Imortality Blues);stepskip(STEP_6_0)
+3`Gain the Immortality Blues trait (p. 149, EP). Proceed to Step 6.`trait(Immortality Blues);stepskip(STEP_6_0)
 4`Gain +5 COG, INT, SAV, or WIL. Roll again. Ignore this result if rolled more than three times; proceed to Step 6 instead.`incVar(AA_4_ROLL,1);if(?equals(getVar(AA_4_ROLL),4),stepskip(STEP_6_0),extendedChoice(Gain +5 COG\, INT\, or SAV.1=COG\,2=INT\,3=SAV,1=addApt(COG,5)/2=addApt(INT,5)/3=addApt(SAV,5));rollTable(ADVANCED_AGE))
 5-10`Proceed to Step 6.`stepskip(STEP_6_0)
 --------------------------------------------------------------
@@ -2271,8 +2271,13 @@ msgClient(START STEP 15);stepskip(STEP_16)
 --------------------------------------------------------------
 STEP
 STEP_16
+STEP_END
+msgClient(START STEP 16);rollTable(TABLE_16);stepSkipNoStop(STEP_END);
+--------------------------------------------------------------
+STEP
+STEP_END
 
-msgClient(START STEP 16);rollTable(TABLE_16);stop()
+stop()
 --------------------------------------------------------------
 TABLE
 TABLE_16

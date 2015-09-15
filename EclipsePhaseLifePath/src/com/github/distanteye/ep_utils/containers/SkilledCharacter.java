@@ -497,7 +497,7 @@ public class SkilledCharacter extends BaseCharacter {
 	 */
 	protected String getInnerXML()
 	{
-		String result = "";
+		String result = super.getInnerXML();
 		
 		result += Utils.tab(1) + "<skills>\n";
 		
@@ -521,7 +521,7 @@ public class SkilledCharacter extends BaseCharacter {
 		
 		result += Utils.tab(1) + "</stats>\n";
 		
-		result += Utils.tab(1) + "<lastRolls>" + Utils.joinStrObjArr(lastRolls.toArray(new Integer[packages.size()]), ";") + "</lastRolls>\n";
+		result += Utils.tab(1) + "<lastRolls>" + Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") + "</lastRolls>\n";
 		result += Utils.tab(1) + "<currentTable>" + currentTable + "</currentTable>\n";
 		result += Utils.tab(1) + "<lastStep>" + lastStep.getName() + "</lastStep>\n";
 		
@@ -532,7 +532,7 @@ public class SkilledCharacter extends BaseCharacter {
 			packagesArr[idx++] = Utils.joinStr(tempArr,"|");
 		}
 		
-		result += Utils.tab(1) + "<packages>" + Utils.joinStr(packages.toArray(new String[packages.size()]), ";") + "</packages>\n";
+		result += Utils.tab(1) + "<packages>" + Utils.joinStr(packagesArr, ";") + "</packages>\n";
 		result += Utils.tab(1) + "<autoApplyMastery>" + String.valueOf(autoApplyMastery) + "</autoApplyMastery>\n";
 		
 		return result;
@@ -544,6 +544,8 @@ public class SkilledCharacter extends BaseCharacter {
 	 */
 	public void loadXML(String xml)
 	{
+		super.loadXML(xml); // call the superclass to handle superclass values
+		
 		this.autoApplyMastery = false;
 		skills = new HashMap<String, Skill>();
 		stats = new StatHashMap(" ",false);
@@ -568,7 +570,7 @@ public class SkilledCharacter extends BaseCharacter {
 		} 
 			
 		// rebuild Stats
-		String statsBlock = Utils.returnStringInTag("skills", xml, 0);
+		String statsBlock = Utils.returnStringInTag("stats", xml, 0);
 		tagReg = Pattern.compile("<stat>");
 		m = tagReg.matcher(statsBlock);
 		idx = -1;

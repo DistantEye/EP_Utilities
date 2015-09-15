@@ -2,7 +2,6 @@ package com.github.distanteye.ep_utils.ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -10,7 +9,6 @@ import javax.swing.JTextArea;
 
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
-import com.github.distanteye.ep_utils.core.LifePathGenerator;
 import com.github.distanteye.ep_utils.ui.validators.ExistsValidator;
 import com.github.distanteye.ep_utils.ui.validators.NumericValidator;
 import com.github.distanteye.ep_utils.wrappers.*;
@@ -26,21 +24,14 @@ public class CharacterSheetUI extends UISkeleton {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
-	 // we still hardcode some stats like this because the page would break 
-	 //		if they were user definable anyways
-	 private BorderLayout windowLayout;
-	 private JFrame mainWindow;
 	 private GBagPanel mainPanel, statPanel,sideBar;
 	
 	/**
 	 * @throws HeadlessException
 	 */
 	public CharacterSheetUI() throws HeadlessException {
-		DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		gen = new LifePathGenerator("",this,true);
-		windowLayout = new BorderLayout();
-        mainWindow = new JFrame();     
-        mainPanel = new GBagPanel();
+		super();
+ 
         statPanel = new GBagPanel();
         sideBar = new GBagPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,8 +110,6 @@ public class CharacterSheetUI extends UISkeleton {
 	public void init()
 	{
 		int y = 0;
-        mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        mainWindow.setLayout(windowLayout);
         
         JScrollPane mainScroll = new JScrollPane(mainPanel);
         mainScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -305,5 +294,5 @@ public class CharacterSheetUI extends UISkeleton {
 		});
 		
 	}
-	
+
 }

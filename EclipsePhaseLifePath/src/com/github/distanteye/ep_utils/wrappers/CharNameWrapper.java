@@ -10,8 +10,7 @@ import com.github.distanteye.ep_utils.containers.BaseCharacter;
  * @author Vigilant
  *
  */
-public class CharNameWrapper extends AccessWrapper<String> {
-	private BaseCharacter aChar;
+public class CharNameWrapper extends CharAccessWrapper<String> {
 	
 	/**
 	 * 

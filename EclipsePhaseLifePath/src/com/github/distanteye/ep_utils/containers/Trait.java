@@ -2,6 +2,8 @@ package com.github.distanteye.ep_utils.containers;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Container for Eclipse Phase traits.
  * Has an exists method, to validate whether a name is a valid Trait.
@@ -195,4 +197,30 @@ public class Trait {
 		return tempList.get(rng.nextInt(tempList.size()));
 	}
 	
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) + "<trait>\n" +
+					Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
+					Utils.tab(tab+1) + "<level>" + getLevel() + "</level>\n" +
+				Utils.tab(tab) + "</trait>\n";
+	}
+	
+	public static Trait fromXML(String xml)
+	{
+		String traitBlock = Utils.returnStringInTag("trait", xml, 0);
+		String nameStr = Utils.returnStringInTag("name", traitBlock, 0);
+		String valueStr = Utils.returnStringInTag("level", traitBlock, 0);
+		
+		int val = -1;
+		if (Utils.isInteger(valueStr))
+		{
+			val = Integer.parseInt(valueStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Level must be an integer.");
+		}
+		
+		return getTraitFromPartial(nameStr,val);
+	}
 }

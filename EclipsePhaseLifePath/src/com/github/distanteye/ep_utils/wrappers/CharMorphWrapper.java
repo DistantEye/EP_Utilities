@@ -11,8 +11,7 @@ import com.github.distanteye.ep_utils.containers.Morph;
  * @author Vigilant
  *
  */
-public class CharMorphWrapper extends AccessWrapper<String> {
-	private EpCharacter aChar;
+public class CharMorphWrapper extends CharAccessWrapper<String> {
 	
 	/**
 	 * 
@@ -25,12 +24,12 @@ public class CharMorphWrapper extends AccessWrapper<String> {
 
 	@Override
 	public String getValue() {
-		return aChar.getMorphName();
+		return ((EpCharacter)aChar).getMorphName();
 	}
 
 	@Override
 	public void setValue(String item) {
-		aChar.setCurrentMorph(Morph.createMorph(item));
+		((EpCharacter)aChar).setCurrentMorph(Morph.createMorph(item));
 	}
 
 	@Override

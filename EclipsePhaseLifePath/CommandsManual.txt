@@ -17,6 +17,8 @@ Extra whitespace beyond the command spec is not well tolerated
 		getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
 		rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
 		simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
+		add(num1,num2)						Math method : adds num1+num2
+		mult(num1,num2)						Math method : mult num1*num2
 		
 		?1? can be used to prompt the user to make a choice (will open a text prompt)
 		?2? and ?3? and etc are used as shortcuts which cause the command to split into multiple commands, each with ?1?, a single choice

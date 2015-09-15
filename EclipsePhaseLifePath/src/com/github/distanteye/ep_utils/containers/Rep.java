@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import com.github.distanteye.ep_utils.core.Utils;
+
 /**
  * Container for Rep types, for the different Reputation networks.
  * Has an exists method, to validate whether a name is a valid Rep type.
@@ -167,7 +169,33 @@ public class Rep implements Comparable<Rep> {
 		this.networkingField = networkingField;
 	}
 	
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) + "<rep>\n" +
+				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
+				Utils.tab(tab+1) + "<value>" + getValue() + "</value>\n" +
+			Utils.tab(tab) + "</rep>\n";		
+	}
 	
-	
+	public static Rep fromXML(String xml)
+	{
+		String repBlock = Utils.returnStringInTag("rep", xml, 0);
+		String nameStr = Utils.returnStringInTag("name", repBlock, 0);
+		String valueStr = Utils.returnStringInTag("value", repBlock, 0);
+		
+		int val = -1;
+		if (Utils.isInteger(valueStr) && Integer.parseInt(valueStr) >= 0)
+		{
+			val = Integer.parseInt(valueStr);
+		}
+		else
+		{
+			throw new IllegalArgumentException("Value must be a positive integer.");
+		}
+		
+		Rep temp = getCopyOf(nameStr);
+		temp.setValue(val);
+		return temp;
+	}
 	
 }

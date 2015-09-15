@@ -3,12 +3,34 @@
  */
 package com.github.distanteye.ep_utils.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.LifePathGenerator;
 import com.github.distanteye.ep_utils.wrappers.*;
 
@@ -21,6 +43,84 @@ import com.github.distanteye.ep_utils.wrappers.*;
 public abstract class UISkeleton implements UI {
 	protected JTextArea mainStatus;
 	protected LifePathGenerator gen;
+	protected JFrame mainWindow;
+	protected GBagPanel mainPanel;
+	private BorderLayout windowLayout;
+	
+	private JMenuBar menuBar;
+	private JMenu fileMenu;
+	private JMenuItem save,load;
+	
+	public UISkeleton()
+	{
+		gen = new LifePathGenerator("",this,true);
+        mainWindow = new JFrame();  
+        windowLayout = new BorderLayout();
+        DataProc.init("LifepathPackages.dat","internalInfo.dat");
+		gen = new LifePathGenerator("",this,true);
+		
+        mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        mainWindow.setLayout(windowLayout);
+        mainPanel = new GBagPanel();
+        
+        // setup menu
+        save = new JMenuItem("Save");
+        load = new JMenuItem("Load");
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu("File");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        fileMenu.add(save);
+        fileMenu.add(load);
+        menuBar.add(fileMenu);
+        mainWindow.setJMenuBar(menuBar);
+        save.addActionListener(new ClickListener());
+        load.addActionListener(new ClickListener());
+	}
+	
+	abstract public void update();
+	
+	protected void save(String fileName)
+	{
+		try {
+			PrintWriter fileO = new PrintWriter(new FileOutputStream(fileName));
+			update();
+			fileO.println(gen.getPC().getXML());
+			fileO.close();
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("File : \"" + fileName + "\" could not be created");
+		}
+	}
+
+	protected void load(String filename) {
+		try {
+			Scanner fileIn = new Scanner(new FileInputStream(filename));
+			String temp = "";
+			
+			while (fileIn.hasNextLine())
+			{
+				temp += fileIn.nextLine();
+			}
+			
+			gen.getPC().loadXML(temp);
+			fileIn.close();
+
+			mainPanel.refreshAllComps(gen.getPC(),true);
+			
+			gen.getPC().calc(); // we give it a hint to recalculate			
+			
+			update();
+			
+			
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("File : \"" + filename + "\" could not be found");
+		}
+	}
+	
+	protected void reInit()
+	{
+		// attempt to fix some fields if there was already something there
+		
+	}
 	
 	/**
 	 * Adds a set of irregular length top rows, containing basic char information, and any other start row setup classes want to implement
@@ -177,4 +277,157 @@ public abstract class UISkeleton implements UI {
 
 		return row+1;
 	}
+	
+	public class ClickListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource().equals(save)) {
+				JFrame frm = new SaveBox();
+				frm.setSize(200,100);
+				frm.setVisible(true);
+			}
+			else if (e.getSource().equals(load)) {
+				JFrame frm = new LoadBox();
+				frm.setSize(200,100);
+				frm.setVisible(true);
+			}
+		}
+	}
+	
+	@SuppressWarnings("serial")
+	public class SaveBox extends JFrame {
+		private JLabel label;
+		private JTextField inputPrompt;
+
+		private GridBagConstraints cons;
+		private Container mainWindow;
+		private GridBagLayout layout;
+
+		public SaveBox() throws HeadlessException {
+			super();
+			this.label = new JLabel("Filename");
+			this.inputPrompt = new JTextField("",256);
+
+			
+			layout = new GridBagLayout();
+			mainWindow = getContentPane();
+			mainWindow.setLayout(layout);
+			cons = new GridBagConstraints();
+
+			cons.gridx = 0;
+			cons.gridy = 0;
+			cons.gridheight = 1;
+			cons.gridwidth = 1;
+			cons.weightx = 50;
+			cons.fill = GridBagConstraints.BOTH;
+			addC(label);
+			cons.gridy++;
+			addC(inputPrompt);
+			inputPrompt.addKeyListener(new EnterListener(this));
+		}
+
+		// done as a shorthand for some of the code
+		private void addC(Component comp) {
+			layout.setConstraints(comp, cons);
+			mainWindow.add(comp);
+		}
+
+
+		public class EnterListener implements KeyListener {
+			SaveBox sb;
+			public EnterListener(SaveBox sb) {
+				this.sb = sb;
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == 10) {
+					save(inputPrompt.getText());
+					sb.setVisible(false);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// do nothing
+
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// do nothing
+
+			}
+
+		}
+	}
+
+	@SuppressWarnings("serial")
+	public class LoadBox extends JFrame {
+		private JLabel label;
+		private JTextField inputPrompt;
+
+		private GridBagConstraints cons;
+		private Container mainWindow;
+		private GridBagLayout layout;
+
+		public LoadBox() throws HeadlessException {
+			super();
+			this.label = new JLabel("Filename");
+			this.inputPrompt = new JTextField("",256);
+
+			layout = new GridBagLayout();
+			mainWindow = getContentPane();
+			mainWindow.setLayout(layout);
+			cons = new GridBagConstraints();
+
+			cons.gridx = 0;
+			cons.gridy = 0;
+			cons.gridheight = 1;
+			cons.gridwidth = 1;
+			cons.weightx = 50;
+			cons.fill = GridBagConstraints.BOTH;
+			addC(label);
+			cons.gridy++;
+			addC(inputPrompt);
+			inputPrompt.addKeyListener(new EnterListener(this));
+		}
+
+		// done as a shorthand for some of the code
+		private void addC(Component comp) {
+			layout.setConstraints(comp, cons);
+			mainWindow.add(comp);
+		}
+
+
+		public class EnterListener implements KeyListener {
+			LoadBox sb;
+
+			public EnterListener(LoadBox sb) {
+				this.sb = sb;
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == 10) {
+					load(inputPrompt.getText());
+					sb.setVisible(false);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// do nothing
+
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// do nothing
+
+			}
+
+		}
+	}
+	
 }

@@ -9,6 +9,18 @@ import java.util.HashMap;
  *
  */
 public class Utils {
+	
+	/**
+	 * Simple boolean method to return whether a String is in a particular String array
+	 * @param arr String[] to search
+	 * @param search String to search for
+	 * @return True/False as appropriate
+	 */
+	public static boolean arrayContains(String[] arr, String search)
+	{
+		
+		return false;
+	}
 
 	public static boolean isInteger(String str) {
 	    try {

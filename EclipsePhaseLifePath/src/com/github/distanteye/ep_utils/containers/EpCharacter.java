@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.Step;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -263,8 +267,8 @@ public class EpCharacter extends SkilledCharacter {
 	
 	public String toString()
 	{
-		String result = this.getName() + "(" + this.getAge() + ")"+ "\n";
-		result = "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
+		String result = "Name: " + this.getName() + ", Age(" + this.getAge() + ")"+ "\n";
+		result += "Morph : " + this.getMorphName() + ", Faction : " + this.getFaction()  + ", Path : " + this.getPath() 
 					+ ", Background : " + this.getBackground() +"\n";
 		
 		String statString = this.stats.toString().replace(SECONDARY_STATS[0], "\n" + SECONDARY_STATS[0]) + "\n"; // quick modification to split to two lines
@@ -589,5 +593,188 @@ public class EpCharacter extends SkilledCharacter {
 
 	
 	//end sub-containers
+	
+	/**
+	 * Collects the character's data into a set of XML tags, not enclosed in a greater tag,
+	 * this less subclasses redefine saving while still being able to draw off the superclass
+	 * @return Returns a String containing the character's vital data in a list of XML tags
+	 */
+	protected String getInnerXML()
+	{
+		String result = super.getInnerXML();
+		
+		result += Utils.tab(1) + "<traits>\n";
+		for (String key : traits.keySet())
+		{
+			result += traits.get(key).toXML(2);
+		}
+		result += Utils.tab(1) + "</traits>\n";
+		
+		
+		result += Utils.tab(1) + "<reps>\n";
+		for (String key : reps.keySet())
+		{
+			result += reps.get(key).toXML(2);
+		}
+		result += Utils.tab(1) + "</reps>\n";
+		
+		
+		result += Utils.tab(1) + "<sleights>\n";
+		for (String key : sleights.keySet())
+		{
+			result += sleights.get(key).toXML(2);
+		}		
+		result += Utils.tab(1) + "</sleights>\n";
+		
+		
+		result += Utils.tab(1) + "<gearList>\n";
+		for (String gear : gearList)
+		{
+			String tagOpen = Utils.tab(2) + "<gear>";
+			String tagClose = "</gear>\n";
+			result += tagOpen + gear + tagClose;
+		}
+		result += Utils.tab(1) + "</gearList>\n";
+		
+		
+		result += Utils.tab(1) + "<allBackgrounds>\n";
+		for (String gear : gearList)
+		{
+			String tagOpen = Utils.tab(2) + "<background>";
+			String tagClose = "</background>\n";
+			result += tagOpen + gear + tagClose;
+		}
+		result += Utils.tab(1) + "</allBackgrounds>\n";
+		
+		String morphStr = "<character_morph></character_morph>";
+		if (currentMorph != null)
+		{
+			morphStr = "<character_morph>" + currentMorph.toXML(1) + "</character_morph>";
+		}
+		
+		result += morphStr;
+		
+		return result;
+	}
+	
+	/**
+	 * Discards the character's current data and replaces it with the data encoded into the xml string passed
+	 * @param xml a validly formatted XML string as returned by getXML()
+	 */
+	public void loadXML(String xml)
+	{
+		super.loadXML(xml);
+		
+		// zero out all current variables
+		traits = new AspectHashMap<Trait>(", ",false);		
+		gearList = new ArrayList<String>();
+		reps = new AspectHashMap<Rep>("\n",false);
+		sleights = new AspectHashMap<Sleight>(", ",false);
+		allBackgrounds = new LinkedList<String>();
+		currentMorph = null;
+		
+		// We use Aptitudes, a more EP-Tailored Primary Stat
+		// We have to replace the applicable entries from SkilledCharacter with those
+		// unfortunately because of setImmutable() we also have to recreate the whole thing
+		StatHashMap statsTemp = new StatHashMap(" ",false);
+
+		for (String key : stats.keySet())
+		{
+			Stat temp = stats.get(key);
+
+			if (Utils.arrayContains(Aptitude.TYPES, key))
+			{
+				statsTemp.put(key, new Aptitude(temp.getName(),temp.getValue()));
+			}
+			else
+			{
+				statsTemp.put(key, temp);
+			}
+		}
+		stats = statsTemp; // our new aptitude containing array replaces the old stat-only one
+		
+		// build the order we need to print as for Stats
+		ArrayList<String> tempOrder = new ArrayList<String>(Arrays.asList(Aptitude.TYPES));
+		tempOrder.addAll(Arrays.asList(SECONDARY_STATS));
+		stats.setOrder(tempOrder);
+		
+		
+		// rebuild Traits
+		String traitsBlock = Utils.returnStringInTag("traits", xml, 0);
+		Pattern tagReg = Pattern.compile("<trait>");
+		Matcher m = tagReg.matcher(traitsBlock);
+		int idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = "trait"; 
+			String tagContent = "<trait>" + Utils.returnStringInTag(tagName, traitsBlock, idx) + "</trait>";
+			Trait tmp = Trait.fromXML(tagContent);
+			traits.put(tmp.getName(), tmp);
+		} 
+			
+		// rebuild Reps
+		String repsBlock = Utils.returnStringInTag("reps", xml, 0);
+		tagReg = Pattern.compile("<rep>");
+		m = tagReg.matcher(repsBlock);
+		idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = "rep"; 
+			String tagContent = "<rep>" + Utils.returnStringInTag(tagName, repsBlock, idx) + "</rep>";
+			Rep tmpRep = Rep.fromXML(tagContent);
+			reps.put(tmpRep.getName(), tmpRep);
+		}
+		
+		// rebuild Sleights
+		String sleightsBlock = Utils.returnStringInTag("sleights", xml, 0);
+		tagReg = Pattern.compile("<sleight>");
+		m = tagReg.matcher(sleightsBlock);
+		idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tagName = "sleight"; 
+			String tagContent = "<sleight>" + Utils.returnStringInTag(tagName, sleightsBlock, idx) + "</sleight>";
+			Sleight tmpSleight = Sleight.fromXML(tagContent);
+			sleights.put(tmpSleight.getName(), tmpSleight);
+		}
+		
+		// rebuild Gearlist
+		String gearsBlock = Utils.returnStringInTag("gears", xml, 0);
+		tagReg = Pattern.compile("<gear>");
+		m = tagReg.matcher(gearsBlock);
+		idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tmpGear = Utils.returnStringInTag("gear", gearsBlock, idx);
+			gearList.add(tmpGear);
+		}
+		
+		// rebuild AllBackgrounds
+		String backgroundsBlock = Utils.returnStringInTag("allBackgrounds", xml, 0);
+		tagReg = Pattern.compile("<background>");
+		m = tagReg.matcher(backgroundsBlock);
+		idx = -1;
+		while ( m.find() )
+		{
+			idx = m.start();
+			String tmpBackground = Utils.returnStringInTag("background", backgroundsBlock, idx);
+			allBackgrounds.addFirst(tmpBackground);
+		}
+		
+		// set morph (if applicable)
+		String morphStr = Utils.returnStringInTag("character_morph", xml, 0).trim();
+		
+		if (morphStr.length() != 0)
+		{
+			setCurrentMorph(Morph.fromXML(morphStr));
+		}
+		
+	}
+	
+	
 	
 }

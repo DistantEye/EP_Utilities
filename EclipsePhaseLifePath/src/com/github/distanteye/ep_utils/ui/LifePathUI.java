@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -11,7 +10,6 @@ import javax.swing.JTextArea;
 
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
-import com.github.distanteye.ep_utils.core.LifePathGenerator;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
@@ -24,24 +22,36 @@ public class LifePathUI extends UISkeleton {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
-	 private BorderLayout windowLayout;
-	 private GBagPanel mainPanel, statPanel,sideBar;
-	 private JFrame mainWindow;
+	 private GBagPanel statPanel,sideBar;
+	 
 	
 	/**
 	 * @throws HeadlessException
 	 */
 	public LifePathUI() throws HeadlessException {
-		DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		gen = new LifePathGenerator("",this,true);
-		windowLayout = new BorderLayout();
-        mainWindow = new JFrame();     
-        mainPanel = new GBagPanel();
+		super();        
         statPanel = new GBagPanel();
         sideBar = new GBagPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	}
 
+	protected void load(String fileName)
+	{
+		super.load(fileName);
+		
+		// detect the step for a loaded character
+		if (!gen.hasStarted() && gen.getPC().getLastStep() != null)
+		{
+			gen.setNextEffects(gen.getPC().getLastStep().getEffects());
+
+			// auto stop if we loaded a stop character
+			if (gen.getNextEffects().equalsIgnoreCase("stop()"))
+			{
+				end();
+			}
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see UI#promptUser(java.lang.String, java.lang.String)
 	 */
@@ -106,7 +116,7 @@ public class LifePathUI extends UISkeleton {
 	@Override
 	public void end() {
 		// Marks the character gen process as stopped, disabling the buttons that used to advance it
-		mainPanel.remove(mainPanel.getComponentVal("Run Next Step"));
+		mainPanel.getComponentVal("Run Next Step").setEnabled(false);
 		mainWindow.revalidate();
 		mainWindow.repaint();
 	}
@@ -117,9 +127,6 @@ public class LifePathUI extends UISkeleton {
 	public void init()
 	{
 		int y = 0; // current row
-		
-        mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        mainWindow.setLayout(windowLayout);
         
 		// to make everything work right we add a mainPanel under the mainWindow
 		mainWindow.add(mainPanel);

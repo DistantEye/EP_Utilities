@@ -259,4 +259,26 @@ public class Morph {
 	{
 		BIOMORPH, INFOMORPH, SYNTH, POD;
 	}
+	
+	
+	public String toXML(int tab)
+	{
+		return Utils.tab(tab) + "<morph>\n" +
+				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
+			Utils.tab(tab) + "</morph>\n";		
+	}
+	
+	public static Morph fromXML(String xml)
+	{
+		String morphBlock = Utils.returnStringInTag("morph", xml, 0);
+		String nameStr = Utils.returnStringInTag("name", morphBlock, 0);
+		
+		if (!exists(nameStr))
+		{
+			throw new IllegalArgumentException("Morph called for name : " + nameStr + ", but no such Morph exists!");
+		}
+		
+		return Morph.createMorph(nameStr); 
+	}
+	
 }

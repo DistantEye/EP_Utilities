@@ -15,7 +15,6 @@ public class BaseCharacter {
 	
 	private HashMap<String,String> otherVars;
 	private String name;
-	private int age;
 
 	/**
 	 * @param name Character name
@@ -24,12 +23,12 @@ public class BaseCharacter {
 	{
 		this.name = name;
 		otherVars = new HashMap<String,String>();
-		age = -1; // placeholder
+		otherVars.put("{age}", ""+(-1));
 	}
 	
 	public String toString()
 	{
-		String result = this.name + "(" + this.age + ")";
+		String result = this.name + "(" + this.getAge() + ")";
 		
 		return result;
 	}
@@ -46,12 +45,12 @@ public class BaseCharacter {
 
 	public int getAge() 
 	{
-		return age;
+		return this.getVarInt("{age}");
 	}
 
 	public void setAge(int age) 
 	{
-		this.age = age;
+		otherVars.put("{age}", ""+age);
 	}
 	
 	/**
@@ -245,7 +244,6 @@ public class BaseCharacter {
 		String result = "";
 		
 		result += Utils.tab(1) + "<charName>" + this.name + "</charName>\n";
-		result += Utils.tab(1) + "<charAge>" + this.name + "</charAge>\n";
 		
 		result += Utils.tab(1) + "<otherVars>\n";
 		
@@ -270,24 +268,13 @@ public class BaseCharacter {
 	{
 		this.name = "";
 		otherVars = new HashMap<String,String>();
-		age = -1; // placeholder
+		setAge(-1); // placeholder
 		
 		this.name = Utils.returnStringInTag("charName", xml, 0);
 		
-		String ageStr = Utils.returnStringInTag("charAge", xml, 0);
-		
-		if (Utils.isInteger(ageStr))
-		{
-			this.age = Integer.parseInt(ageStr);
-		}
-		else
-		{
-			throw new IllegalArgumentException("Age must be an integer.");
-		}
-		
 		// otherVars is a bit more complicated, since the tags inside are the variable names, and are dynamic/unique
 		String otherVarsBlock = Utils.returnStringInTag("otherVars", xml, 0);
-		Pattern tagReg = Pattern.compile("<([^>]+)>");
+		Pattern tagReg = Pattern.compile("<(?!/)([^>]+)>");
 		Matcher m = tagReg.matcher(otherVarsBlock);
 		int idx = -1;
 		while ( m.find() )
@@ -297,7 +284,6 @@ public class BaseCharacter {
 			String tagContent = Utils.returnStringInTag(tagName, otherVarsBlock, idx);
 			otherVars.put(tagName, tagContent);
 		} 
-				
 	}
 	
 	

@@ -427,6 +427,29 @@ public class LifePathGenerator {
 					String newStr = ""+(p1*p2);
 					effect = effect.replace(oldStr, newStr);
 
+				}
+				
+				while (effect.contains("add("))
+				{
+					int idx = effect.indexOf("add(");
+					
+					String insides = Utils.returnStringInParen(effect,idx);
+					
+					String oldStr = "add(" + insides + ")";
+
+					String[] subParts = Utils.splitCommands(insides);
+					
+					if (subParts.length != 2  || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
+					{
+						throw new IllegalArgumentException("Effect : " + effect + " calls for add but lacks the correct format");
+					}
+					
+					int p1 = Integer.parseInt(subParts[0]);
+					int p2 = Integer.parseInt(subParts[1]);
+					
+					String newStr = ""+(p1+p2);
+					effect = effect.replace(oldStr, newStr);
+
 					
 				}
 				
@@ -1545,6 +1568,7 @@ public class LifePathGenerator {
 	 */
 	public void step()
 	{
+		
 		if (hasStarted && nextEffects != null && nextEffects.length() == 0)
 		{
 			hasFinished = true; // don't attempt to run steps that aren't there
@@ -1887,5 +1911,27 @@ public class LifePathGenerator {
 	public void setRolling(boolean isRolling) {
 		this.isRolling = isRolling;
 	}
+
+
+	public boolean hasStarted() {
+		return hasStarted;
+	}
+
+
+	public boolean hasFinished() {
+		return hasFinished;
+	}
+
+
+	public String getNextEffects() {
+		return nextEffects;
+	}
+
+
+	public void setNextEffects(String nextEffects) {
+		this.nextEffects = nextEffects;
+	}
+	
+	
 
 }
