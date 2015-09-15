@@ -14,7 +14,6 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.github.distanteye.ep_utils.containers.BaseCharacter;
 import com.github.distanteye.ep_utils.core.Utils;
 import com.github.distanteye.ep_utils.wrappers.MappedComponent;
 
@@ -260,21 +259,20 @@ public class ExtJPanel extends JPanel {
 	 * This is meant to reintialize all values in the UI after the underlying data source has changed
 	 * 
 	 * Will only effect components owned by this unless andChildren is true
-	 * @param pc Copy of the current character being used. Connections to BaseCharacters will be reset to this character
 	 * @param andChildren If true, will run this recursively on any children that are ExtJPanels
 	 */
-	public void refreshAllComps(BaseCharacter pc, boolean andChildren)
+	public void refreshAllComps(boolean andChildren)
 	{
 		for (MappedComponent m : orderedComponentList)
 		{
-			m.refresh(pc);
+			m.refresh();
 		}
 		
 		if (andChildren)
 		{
 			for (ExtJPanel child : getExtJPanelChildren())
 			{
-				child.refreshAllComps(pc,true);
+				child.refreshAllComps(true);
 			}
 		}
 	}

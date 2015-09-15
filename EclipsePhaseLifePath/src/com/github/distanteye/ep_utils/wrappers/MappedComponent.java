@@ -7,8 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 
-import com.github.distanteye.ep_utils.containers.BaseCharacter;
-
 /**
  * MappedComponent is a Wrapper for JComponents when used in 
  * a mappedComponents list, typically via ExtJPanel. It adds on functionality
@@ -51,9 +49,8 @@ public class MappedComponent {
 
 	/**
 	 * Cause any attached JTextComponents to refresh their displayed text via pulling from linkedData
-	 * @param pc Copy of the current character being used. Connections to BaseCharacters will be reset to this character
 	 */
-	public void refresh(BaseCharacter pc)
+	public void refresh()
 	{
 		// STATIC Components don't update or refresh
 		if (df==DataFlow.STATIC)
@@ -61,13 +58,7 @@ public class MappedComponent {
 			return;
 		}
 		else
-		{
-			// if the accesswrapper points to a character we make sure it's set to pc and not a legacy character
-			if (linkedData instanceof CharAccessWrapper)
-			{
-				((CharAccessWrapper<?>)linkedData).setChar(pc);
-			}
-			
+		{	
 			setCompText(linkedData.getValue());
 		}
 	}

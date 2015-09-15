@@ -1922,6 +1922,27 @@ public class LifePathGenerator {
 		return hasFinished;
 	}
 
+	
+
+	public boolean isHasStarted() {
+		return hasStarted;
+	}
+
+
+	public void setHasStarted(boolean hasStarted) {
+		this.hasStarted = hasStarted;
+	}
+
+
+	public boolean isHasFinished() {
+		return hasFinished;
+	}
+
+
+	public void setHasFinished(boolean hasFinished) {
+		this.hasFinished = hasFinished;
+	}
+
 
 	public String getNextEffects() {
 		return nextEffects;

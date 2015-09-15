@@ -523,7 +523,13 @@ public class SkilledCharacter extends BaseCharacter {
 		
 		result += Utils.tab(1) + "<lastRolls>" + Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") + "</lastRolls>\n";
 		result += Utils.tab(1) + "<currentTable>" + currentTable + "</currentTable>\n";
-		result += Utils.tab(1) + "<lastStep>" + lastStep.getName() + "</lastStep>\n";
+		
+		String lastStepName = "";
+		if (lastStep != null)
+		{
+			lastStepName = lastStep.getName();
+		}
+		result += Utils.tab(1) + "<lastStep>" + lastStepName + "</lastStep>\n";
 		
 		String[] packagesArr = new String[packages.size()];
 		int idx = 0;
@@ -584,27 +590,39 @@ public class SkilledCharacter extends BaseCharacter {
 		} 
 		
 		String lastRollsStr = Utils.returnStringInTag("lastRolls", xml, 0);
-		String[] lastRollsArr = lastRollsStr.split(";");
-		for (String str : lastRollsArr)
-		{
-			if (!Utils.isInteger(str))
+		// only update if not null
+		if (lastRollsStr.length() > 0)
+				{
+			String[] lastRollsArr = lastRollsStr.split(";");
+			for (String str : lastRollsArr)
 			{
-				throw new IllegalArgumentException("All items in lastRolls must be integers!");
+				if (!Utils.isInteger(str))
+				{
+					throw new IllegalArgumentException("All items in lastRolls must be integers!");
+				}
+				
+				lastRolls.addLast(Integer.parseInt(str));
 			}
-			
-			lastRolls.addLast(Integer.parseInt(str));
 		}
 		
 		this.currentTable = Utils.returnStringInTag("currentTable", xml, 0);
 		String lastStepStr = Utils.returnStringInTag("lastStep", xml, 0);
 		
-		if (DataProc.dataObjExists(lastStepStr) && DataProc.getDataObj(lastStepStr).getType().equals("step"))
+		// only update lastStep if not null
+		if (lastStepStr.length() > 0)
 		{
-			this.lastStep = (Step)DataProc.getDataObj(lastStepStr);
+			if (DataProc.dataObjExists(lastStepStr) && DataProc.getDataObj(lastStepStr).getType().equals("step"))
+			{
+				this.lastStep = (Step)DataProc.getDataObj(lastStepStr);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Laststep has an invalid name");
+			}
 		}
 		else
 		{
-			throw new IllegalArgumentException("Laststep has an invalid name");
+			lastStep = null;
 		}
 		
 		// packages have to be double split since each "package" is a String[] itself, from an bigger list/array

@@ -239,6 +239,11 @@ public class CharacterSheetUI extends UISkeleton {
 	 */
 	public void update()
 	{
+		if (!updateEnabled)
+		{
+			return; // don't update when we're told not to
+		}
+		
 		// most components are setup to know what they need to do dataflow wise,
 		// they only need to be told to update in a certain order to avoid race conditions
 		// and even this is handled by most panels, and a simple updateAll call is all that's needed

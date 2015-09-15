@@ -2047,7 +2047,7 @@ false
 47`As transhumanity re-organizes, you find a role in influencing others. Gain +5 SAV.`addApt(SAV,5)
 48`You have difficulty coming to grips with regular resleeving. Gain the Identity Crisis trait (p. 149, EP).`trait(Identity Crisis)
 49`One of your resleeves goes particularly poorly, and now it haunts you. Gain the Morphing Disorder (Level 2) trait (p. 150, EP).`trait(Morphing Disorder,2)
-50`You work hard to establish a solid network. +20 to one Networking skill.`incSkl(?1?,20,?skillIsType(Networking))
+50`You work hard to establish a solid network. +20 to one Networking skill.`incSkl(?1?,20,?skillIsType($1,Networking))
 51`You take up a sport. +10 to Climbing, Fray, Free Fall, Freerunning, or Swimming. `extendedChoice(Gain +10 to Skill of choice:1=Climbing\,2=Fray\,3=Free Fall\,4=Freerunning\,5=Swimming,1=incSkl(Climbing,10)/2=incSkl(Fray,10)/3=incSkl(Free Fall,10)/4=incSkl(Freerunning,10)/5=incSkl(Swimming,10))
 52`You decide to experiment. Roll randomly on the Choosing a Morph table (p. 44).`rollTable(CHOOSING_A_MORPH)
 53`Practice makes perfect, and your hard work pays off. Increase one aptitude by +5.`addApt(?1?,5)

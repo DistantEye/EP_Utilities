@@ -39,4 +39,9 @@ public class CharVarWrapper extends CharAccessWrapper<String> {
 		return false;
 	}
 
+	public String getVarName() {
+		return varName;
+	}
+
+	
 }

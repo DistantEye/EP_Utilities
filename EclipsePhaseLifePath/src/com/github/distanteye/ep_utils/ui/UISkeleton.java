@@ -50,6 +50,7 @@ public abstract class UISkeleton implements UI {
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
 	private JMenuItem save,load;
+	protected boolean updateEnabled;
 	
 	public UISkeleton()
 	{
@@ -75,8 +76,15 @@ public abstract class UISkeleton implements UI {
         mainWindow.setJMenuBar(menuBar);
         save.addActionListener(new ClickListener());
         load.addActionListener(new ClickListener());
+        
+        updateEnabled = false;
 	}
 	
+	/**
+	 * Updates all relevant display fields for the character.
+	 * 
+	 * Note update should respect updateEnabled, and not act if updateEnabled=false
+	 */
 	abstract public void update();
 	
 	protected void save(String fileName)
@@ -104,10 +112,12 @@ public abstract class UISkeleton implements UI {
 			gen.getPC().loadXML(temp);
 			fileIn.close();
 
-			mainPanel.refreshAllComps(gen.getPC(),true);
+			updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
+								   // from setText()
 			
-			gen.getPC().calc(); // we give it a hint to recalculate			
+			mainPanel.refreshAllComps(true);	
 			
+			updateEnabled = true;
 			update();
 			
 			

@@ -2,7 +2,6 @@ package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Skill;
-import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -49,6 +48,11 @@ public class SetSklCommand extends Command {
 			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 		}
 		
+		if (subparts.length == 4)
+		{	
+			this.cond = ConditionalStatement.getConditional(subparts[3], this);
+			params.set(3,cond);
+		}
 	}
 	
 	public String toString()

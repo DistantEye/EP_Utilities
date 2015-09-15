@@ -59,13 +59,14 @@ public class PackageCommand extends Command {
 				}
 				else
 				{
-					params.set(2, Integer.parseInt(subparts[2]));
+					pp = Integer.parseInt(subparts[2]);
 				}
 				
 			}
+
 			
 			params.set(1, temp);
-			
+			params.set(2, pp);
 			
 		}
 		else

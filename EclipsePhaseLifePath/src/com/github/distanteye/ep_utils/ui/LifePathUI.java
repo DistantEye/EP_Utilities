@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.DataProc;
+import com.github.distanteye.ep_utils.core.Step;
 
 /**
  * Visual interface for LifePath type character generation. While there is room for some user
@@ -42,11 +43,14 @@ public class LifePathUI extends UISkeleton {
 		// detect the step for a loaded character
 		if (!gen.hasStarted() && gen.getPC().getLastStep() != null)
 		{
-			gen.setNextEffects(gen.getPC().getLastStep().getEffects());
-
+			Step next = (Step)DataProc.getDataObj(gen.getPC().getLastStep().getNextStep());
+			gen.setNextEffects(next.getEffects());
+			gen.setHasStarted(true);
+			
 			// auto stop if we loaded a stop character
 			if (gen.getNextEffects().equalsIgnoreCase("stop()"))
 			{
+				gen.setHasFinished(true);
 				end();
 			}
 		}
@@ -288,11 +292,13 @@ public class LifePathUI extends UISkeleton {
 		this.mainStatus.setText(this.mainStatus.getText() + "\n\n" + text);
 	}
 	
-	/**
-	 * Updates all relevant display fields for the character
-	 */
 	public void update()
 	{
+		if (!updateEnabled)
+		{
+			return; // don't update when we're told not to
+		}
+		
 		// most components are setup to know what they need to do dataflow wise,
 		// they only need to be told to update in a certain order to avoid race conditions
 		// and even this is handled by most panels, and a simple updateAll call is all that's needed
