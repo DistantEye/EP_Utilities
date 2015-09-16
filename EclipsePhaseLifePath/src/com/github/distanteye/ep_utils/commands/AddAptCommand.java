@@ -2,6 +2,7 @@ package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Aptitude;
+import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -63,6 +64,15 @@ public class AddAptCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
 
+	}
+	
+	public String run(EpCharacter pc)
+	{
+		super.run(pc);
+		
+		pc.stats().get(params.get(1)).addValue((Integer)params.get(2));
+		
+		return "";
 	}
 	
 	public String toString()

@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+
 /**
  * Command of following syntax types:
  * background(<name>)
@@ -22,6 +24,15 @@ public class BackgroundCommand extends Command {
 		}
 		
 		subpartsToParams();
+	}
+	
+	public String run(EpCharacter pc)
+	{
+		super.run(pc);
+		
+		pc.setBackground((String)params.get(1));
+		
+		return "";
 	}
 	
 	public String toString()

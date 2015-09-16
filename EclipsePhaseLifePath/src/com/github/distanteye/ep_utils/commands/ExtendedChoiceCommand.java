@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+
 /**
  * Command of following syntax types:
  * extendedChoice(Text,1=effect/2=effect/3=effect/etc)   (this allows us a bit more freedom when a choice is complicated)
@@ -30,6 +32,18 @@ public class ExtendedChoiceCommand extends Command {
 			subpartsToParams();
 		}
 		
+	}
+	
+	public String run(EpCharacter pc)
+	{
+		super.run(pc);
+		
+		// TODO Working here! Am not sure how to resolve the need to prompt the UI.
+		// either we give more rights back to lifepath generator or we take some away via also passing UI context to run()
+		
+		// and strictly speaking if we were to pass that, there'd be no reason why Command couldn't resolve it's own wildcards...
+		
+		return "";
 	}
 
 	public String toString()

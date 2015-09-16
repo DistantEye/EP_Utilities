@@ -25,6 +25,7 @@ public abstract class ConditionalStatement extends Command {
 	public ConditionalStatement(String input, Command parent) {
 		super(replaceParentRefs(input,parent));
 		this.parent = parent;
+		cond = this; // to patch some interactions with Command as parent
 	}
 	
 	/**

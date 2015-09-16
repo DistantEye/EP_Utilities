@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -65,6 +66,34 @@ public class DecSklCommand extends Command {
 		}
 
 		
+	}
+	
+	public String run(EpCharacter pc)
+	{
+		super.run(pc);
+		
+		String skillname = (String)params.get(1);
+		
+		// determine whether a dec or a decAll
+		if (params.get(2) instanceof Integer)
+		{
+			int val = (Integer)params.get(2);
+			
+			if (! pc.incSkill(skillname, val * -1) )
+			{
+				throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + skillname);
+			}
+		}
+		else
+		{
+			// must be a 'remove all'
+			if (! pc.removeSkill(skillname) )
+			{
+				throw new IllegalArgumentException("Poorly formated effect, skill does not exist : " + skillname);
+			}
+		}
+		
+		return "";
 	}
 	
 	public String toString()

@@ -25,10 +25,9 @@ public class CommandBuilder {
 		
 		if (Utils.splitCommands(input, ";").length > 1)
 		{
-			throw new IllegalArgumentException("Cannot accept more than a single top level command in input string");
+			return new CommandList(input);
 		}
-		
-		if (lcEffect.startsWith("setskl"))
+		else if (lcEffect.startsWith("setskl"))
 		{
 			 return new SetSklCommand(input);
 		}

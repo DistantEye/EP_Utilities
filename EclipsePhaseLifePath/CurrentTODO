@@ -22,12 +22,6 @@ Two choices in same effect still breaks things. This is an issue for the sklSpec
 *MOST ACTIVE* You can change your TextListeners up a bit into "ValidatedTextListeners" 
 	so some stuff like Morph on character sheet won't update unless it's an active morph?
 	
-	
-Move things to packages soon 
-	Containers to some kind of named package
-	UI stuff to a UI package
-	etc
-	
 Make the validators that override shouldYieldFocus have a common parent, since that's common code
 
 Field skills like Interest can't handle a Field that has a space in it. This may prove annoying/complicated to fix.

@@ -39,28 +39,6 @@ public abstract class Command {
 		cond = null; // null by default
 	}
 	
-	//abstract Command resolve(EpCharacter playerChar);
-	
-	/**
-	 * Returns whether the attached conditional to the command is true or not
-	 * If none exists, defaults to true
-	 * @param playerChar Player effected by this command
-	 * @return True if conditional evaluates to true, or no conditional exists. False otherwise
-	 */
-	public boolean resolveConditional(EpCharacter playerChar)
-	{
-		if (cond == null)
-		{
-			return true;
-		}
-		else
-		{
-			return cond.resolve(playerChar);
-		}
-	}
-	
-	
-	
 	public boolean isForceRoll() {
 		return forceRoll;
 	}
@@ -134,7 +112,7 @@ public abstract class Command {
 	 * @param input Valid input string, this should be the full String with command name and () still
 	 * @return Sting[] of the input split, may be length 1 if no subparts were found
 	 */
-	public String[] splitParts(String input)
+	protected String[] splitParts(String input)
 	{
 		String insideParams = Utils.returnStringInParen(input);
 		String commandName = getCommandName(input);
@@ -261,6 +239,73 @@ public abstract class Command {
 		}
 	}
 	
+	/**
+	 * Helper method, throws error if the Command's params list still contains any wildcard/ambiguous parameters. Meant to be redefined
+	 * if the implementing Command wants a more specialized response.
+	 */
+	protected void throwErrorIfAmbiguities()
+	{
+		for (Object o : params)
+		{
+			if (o instanceof String)
+			{
+				String str = (String)o;
+				if (isUncertain(str))
+				{
+					throw new IllegalStateException("Uncertainties still exist in params(" + str + "), Command cannot be run at this time.");
+				}
+			}
+		}
+	}
 	
+	/**
+	 * Helper method, processes the Command's conditional, if it exists, returning true if the conditional is satisfied, throwing an error if it's not
+	 * (this is default behavior for most commands, it can be redefined in the case of others)
+	 * 
+	 * The boolean return is optional given the error throwing for false and meant more so that subclasses can implement a more useful boolean return
+	 * @param pc Character to give the Conditional as context
+	 * @return True if Cond is null or resolves to true, IllegalArgumentException if Cond resolves to false
+	 */
+	protected boolean resolveConditional(EpCharacter pc)
+	{
+		if (cond == null)
+		{
+			return true;
+		}
+		else if (cond.resolve(pc))
+		{
+			return true;
+		}
+		else
+		{
+			throw new IllegalArgumentException("Condition must be true (" + cond.toString() + ")");
+		}
+	}
+	
+	/**
+	 * Attempts to resolve and run the command, checking readiness and conditionals (if applicable)
+	 * 
+	 * Note that, by design, implementations of run will/should not check before casting objects, since
+	 * type checking of params was already supposed to be done during construction and changeParam is highly restricted in changing types
+	 * 
+	 * Note that Command cannot resolve wildcard/uncertainties if they are still present. If it's prompted to anyways, it will throw an error.
+	 * If it is about to enter a situation in resolution of run that would result in these situations, it'll dump the pending effects to String and return
+	 * them so the context environment can handle it
+	 *  
+	 * @param pc The character to run the command on
+	 * @return Any pending effects after this command has run. Often "". Returning a String not length 0 indicates execution cannot continue until the 
+	 * 			context environment does more work on the pending effects
+	 */
+	public String run(EpCharacter pc)
+	{
+		// we check the active params for any ambiguities. Having wildcards unresolved makes the command nonprocessable
+		throwErrorIfAmbiguities();
+		
+		// if cond exists, we check that next, it must be true or else error
+		resolveConditional(pc);
+		
+		// subclasses implement the rest
+		return "";
+	}
 	
 }
