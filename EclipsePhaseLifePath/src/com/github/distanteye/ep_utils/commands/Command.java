@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+import com.github.distanteye.ep_utils.commands.directives.Directive;
 import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -219,24 +220,8 @@ public abstract class Command {
 	 */
 	public static boolean isUncertain(String input)
 	{
-		if (containsChoice(input))
-		{
-			return true;
-		}
-		else
-		{
-			String[] specialStrs = {"!RANDSKILL!","!RANDAPT!","!RAND_DER!", "rollDice(","simpRollDice(","concat(","mult("};
-			
-			for (String str : specialStrs)
-			{
-				if (input.contains(str))
-				{
-					return true;
-				}
-			}
-			
-			return false;
-		}
+		return containsChoice(input) || Directive.containsDirective(input);
+		
 	}
 	
 	/**

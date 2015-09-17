@@ -134,153 +134,10 @@ public class LifePathGenerator {
 				while (DataProc.containsChoice(effect))
 				{
 					choiceEffects.add(effect);
-						String extraInfo = extraContext;											
 					
-						// we look for a context bubble (tells user what you might be wanting them to enter)
-						if (Pattern.matches("#[^#]+#", effect))
-						{							
-							extraInfo = Pattern.compile("#[^#]+#").matcher(effect).group(1);
-							
-							// once done, we remove this from the effect
-							effect = effect.replaceFirst("#[^#]+#", "");
-						}
-						
-						// will make assumption user knows that choices are resolved left to right
-						// will also remove any asterisks that appeared after since they'll probably interfere
-						String promptMsg = DataProc.effectsToString(effect);
-						
-						// don't use extra info for * type notes if * is not in the String
-						if (extraInfo.startsWith("*") && !effect.contains("*")) 
-						{
-							extraInfo = "";
-						}
-						
-						String promptRes = UIObject.promptUser(promptMsg,extraInfo);
-						
-						// if they entered blank, we attempt to pick a random (but valid answer)
-						if (promptRes.equals(""))
-						{
-							// if the right stuff are in the prompt, we can do some extra actions
-							// check for a few things that lets us provide extra info
-							String[] result = DataProc.getExtraPromptOptions(promptMsg,extraInfo);
-							if (result != null && result[0].equals("field"))
-							{
-								String sklName = result[2];
-								promptRes = getSkillField(sklName);
-							}
-							else if (result != null && result[0].equals("skill"))
-							{
-								Skill temp = Skill.getRandomSkill(rng, 0);
-								
-								if (Skill.hasCategory(temp.getName(), "Field"))
-								{
-									temp.setSubtype(getSkillField(temp.getName()));
-								}
-								
-								promptRes = temp.getFullName();
-							}
-							
-							else if (result != null && result[0].equals("skillNoPsi"))
-							{
-								Skill temp = Skill.getRandomSkill(rng, 0);
-								
-								while (Skill.hasCategory(temp.getName(), "Psi"))
-								{
-									temp = Skill.getRandomSkill(rng, 0);
-								}
-								
-								if (Skill.hasCategory(temp.getName(), "Field"))
-								{
-									temp.setSubtype(getSkillField(temp.getName()));
-								}
-								
-								promptRes = temp.getFullName();
-							}
-							else if (result != null && result[0].equals("skillPsi"))
-							{
-								Skill temp = Skill.getRandomSkill(rng, 0);
-								
-								// TODO probably should make a function that only returns possibilities with a particular category
-								while (!Skill.hasCategory(temp.getName(), "Psi"))
-								{
-									temp = Skill.getRandomSkill(rng, 0);
-								}
-								
-								if (Skill.hasCategory(temp.getName(), "Field"))
-								{
-									temp.setSubtype(getSkillField(temp.getName()));
-								}
-								
-								promptRes = temp.getFullName();
-							}
-							else if (result != null && result[0].equals("sleight"))
-							{
-								ArrayList<Sleight> options = new ArrayList<Sleight>();
-								options.addAll(Sleight.sleightList.values());
-								
-								Sleight temp = options.get(rng.nextInt(options.size()));
-								promptRes = temp.getName();
-							}
-							else if (result != null && result[0].equals("sleightChi"))
-							{
-								ArrayList<Sleight> options = new ArrayList<Sleight>();
-								ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
-								options.addAll(Sleight.sleightList.values());
-								
-								
-								// remove all not chi sleights
-								for (Sleight s : options)
-								{
-									if (s.getSleightType()==Sleight.SleightType.CHI)
-									{
-										optionsFinal.add(s);
-									}
-								}
-								
-								Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
-								promptRes = temp.getName();
-							}
-							else if (result != null && result[0].equals("sleightGamma"))
-							{
-								ArrayList<Sleight> options = new ArrayList<Sleight>();
-								options.addAll(Sleight.sleightList.values());
-								ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
-								
-								// remove all not gamma sleights
-								for (Sleight s : options)
-								{
-									if (s.getSleightType()==Sleight.SleightType.GAMMA)
-									{
-										optionsFinal.add(s);
-									}
-								}
-								
-								Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
-								promptRes = temp.getName();
-							}
-							else if (result != null && result[0].equals("rep"))
-							{
-								ArrayList<Rep> options = new ArrayList<Rep>();
-								options.addAll(Rep.repTypes.values());
-								
-								Rep temp = options.get(rng.nextInt(options.size()));
-								promptRes = temp.getName();
-							}
-							else if (result != null && result[0].equals("mentDisorder"))
-							{
-								Trait t = Trait.getTrait("Mental Disorder", 1);
-								
-								// we grab the text right after the part in the description where "*Possibilities:" appears
-								int len = "*Possibilities: ".length();
-								String possibilities = t.getDescription().substring(t.getDescription().indexOf("*Possibilities:")+len).trim();
-								String[] options = possibilities.split(",");
-								
-								promptRes = options[rng.nextInt(options.length)];
-							}
-						}
-
-						mainStuff.set(i, effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes));
-						effect = mainStuff.get(i);
+					// get user input from UI and replace the choice with a tangible value
+					mainStuff.set(i, getChoice(effect, extraContext));					
+					effect = mainStuff.get(i);
 				}
 				
 				// big wall of cases follow.
@@ -1903,6 +1760,166 @@ public class LifePathGenerator {
 		}
 	}	
 	
+	/**
+	 * Takes an effect String with a choice value inside and prompts the user to fill the wildcard with a valid choice
+	 * @param effect Effect/Command string, must contain a choice value or will throw errors
+	 * @param extraContext Any additional context to pass to the UI
+	 * @return The original effect string with it's first choice Value replaced with user input;
+	 */
+	protected String getChoice(String effect, String extraContext)
+	{
+		if (!Command.containsChoice(effect))
+		{
+			throw new IllegalArgumentException("Effect must contain a choice value!");
+		}
+		
+		String extraInfo = extraContext;											
+		
+		// we look for a context bubble (tells user what you might be wanting them to enter)
+		if (Pattern.matches("#[^#]+#", effect))
+		{							
+			extraInfo = Pattern.compile("#[^#]+#").matcher(effect).group(1);
+			
+			// once done, we remove this from the effect
+			effect = effect.replaceFirst("#[^#]+#", "");
+		}
+		
+		// will make assumption user knows that choices are resolved left to right
+		// will also remove any asterisks that appeared after since they'll probably interfere
+		String promptMsg = DataProc.effectsToString(effect);
+		
+		// don't use extra info for * type notes if * is not in the String
+		if (extraInfo.startsWith("*") && !effect.contains("*")) 
+		{
+			extraInfo = "";
+		}
+		
+		String promptRes = UIObject.promptUser(promptMsg,extraInfo);
+		
+		// if they entered blank, we attempt to pick a random (but valid answer)
+		if (promptRes.equals(""))
+		{
+			// if the right stuff are in the prompt, we can do some extra actions
+			// check for a few things that lets us provide extra info
+			String[] result = DataProc.getExtraPromptOptions(promptMsg,extraInfo);
+			if (result != null && result[0].equals("field"))
+			{
+				String sklName = result[2];
+				promptRes = getSkillField(sklName);
+			}
+			else if (result != null && result[0].equals("skill"))
+			{
+				Skill temp = Skill.getRandomSkill(rng, 0);
+				
+				if (Skill.hasCategory(temp.getName(), "Field"))
+				{
+					temp.setSubtype(getSkillField(temp.getName()));
+				}
+				
+				promptRes = temp.getFullName();
+			}
+			
+			else if (result != null && result[0].equals("skillNoPsi"))
+			{
+				Skill temp = Skill.getRandomSkill(rng, 0);
+				
+				while (Skill.hasCategory(temp.getName(), "Psi"))
+				{
+					temp = Skill.getRandomSkill(rng, 0);
+				}
+				
+				if (Skill.hasCategory(temp.getName(), "Field"))
+				{
+					temp.setSubtype(getSkillField(temp.getName()));
+				}
+				
+				promptRes = temp.getFullName();
+			}
+			else if (result != null && result[0].equals("skillPsi"))
+			{
+				Skill temp = Skill.getRandomSkill(rng, 0);
+				
+				// TODO probably should make a function that only returns possibilities with a particular category
+				while (!Skill.hasCategory(temp.getName(), "Psi"))
+				{
+					temp = Skill.getRandomSkill(rng, 0);
+				}
+				
+				if (Skill.hasCategory(temp.getName(), "Field"))
+				{
+					temp.setSubtype(getSkillField(temp.getName()));
+				}
+				
+				promptRes = temp.getFullName();
+			}
+			else if (result != null && result[0].equals("sleight"))
+			{
+				ArrayList<Sleight> options = new ArrayList<Sleight>();
+				options.addAll(Sleight.sleightList.values());
+				
+				Sleight temp = options.get(rng.nextInt(options.size()));
+				promptRes = temp.getName();
+			}
+			else if (result != null && result[0].equals("sleightChi"))
+			{
+				ArrayList<Sleight> options = new ArrayList<Sleight>();
+				ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
+				options.addAll(Sleight.sleightList.values());
+				
+				
+				// remove all not chi sleights
+				for (Sleight s : options)
+				{
+					if (s.getSleightType()==Sleight.SleightType.CHI)
+					{
+						optionsFinal.add(s);
+					}
+				}
+				
+				Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
+				promptRes = temp.getName();
+			}
+			else if (result != null && result[0].equals("sleightGamma"))
+			{
+				ArrayList<Sleight> options = new ArrayList<Sleight>();
+				options.addAll(Sleight.sleightList.values());
+				ArrayList<Sleight> optionsFinal = new ArrayList<Sleight>();
+				
+				// remove all not gamma sleights
+				for (Sleight s : options)
+				{
+					if (s.getSleightType()==Sleight.SleightType.GAMMA)
+					{
+						optionsFinal.add(s);
+					}
+				}
+				
+				Sleight temp = optionsFinal.get(rng.nextInt(optionsFinal.size()));
+				promptRes = temp.getName();
+			}
+			else if (result != null && result[0].equals("rep"))
+			{
+				ArrayList<Rep> options = new ArrayList<Rep>();
+				options.addAll(Rep.repTypes.values());
+				
+				Rep temp = options.get(rng.nextInt(options.size()));
+				promptRes = temp.getName();
+			}
+			else if (result != null && result[0].equals("mentDisorder"))
+			{
+				Trait t = Trait.getTrait("Mental Disorder", 1);
+				
+				// we grab the text right after the part in the description where "*Possibilities:" appears
+				int len = "*Possibilities: ".length();
+				String possibilities = t.getDescription().substring(t.getDescription().indexOf("*Possibilities:")+len).trim();
+				String[] options = possibilities.split(",");
+				
+				promptRes = options[rng.nextInt(options.length)];
+			}
+		}
+
+		return effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes);
+	}
 	
 	public boolean isRolling() {
 		return isRolling;
