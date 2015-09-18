@@ -24,6 +24,16 @@ public abstract class Directive extends Command {
 	}
 	
 	/**
+	 * For a given effects string, pulls the name of the first Directive in the string
+	 * @param input Valid input string, this should be the full String with command name and () still
+	 * @return Command name such that is the first text before an '(' character in string
+	 */
+	public static String getDirective(String input)
+	{
+		return input.substring(0,input.indexOf('('));
+	}
+	
+	/**
 	 * Processes the directive, returning an appropriate result to replace the directive with.
 	 * Note the directive itself is not replaced, only the replace value is given
 	 * @param pc Character object, sometimes needed for context for making the decision
