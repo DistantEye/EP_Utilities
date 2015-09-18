@@ -3,6 +3,7 @@ package com.github.distanteye.ep_utils.commands;
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Aptitude;
 import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -66,10 +67,10 @@ public class AddAptCommand extends Command {
 
 	}
 	
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
-		super.run(pc);
-		
+		super.run(env);
+		EpCharacter pc = env.getPC();
 		pc.stats().get(params.get(1)).addValue((Integer)params.get(2));
 		
 		return "";

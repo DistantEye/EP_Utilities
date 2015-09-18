@@ -5,6 +5,7 @@ package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Conditional with syntax :
@@ -41,7 +42,9 @@ public class HasBackgroundConditional extends ConditionalStatement {
 	}
 
 	@Override
-	public boolean resolve(EpCharacter playerChar) {
+	public boolean resolve(CharacterEnvironment env) {
+		EpCharacter playerChar = env.getPC();
+		
 		// we control params, so we know these are safe casts
 		String background = (String)subparts[1];
 		

@@ -1,6 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Command of following syntax types:
@@ -34,9 +34,9 @@ public class ExtendedChoiceCommand extends Command {
 		
 	}
 	
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
-		super.run(pc);
+		super.run(env);
 		
 		// TODO Working here! Am not sure how to resolve the need to prompt the UI.
 		// either we give more rights back to lifepath generator or we take some away via also passing UI context to run()

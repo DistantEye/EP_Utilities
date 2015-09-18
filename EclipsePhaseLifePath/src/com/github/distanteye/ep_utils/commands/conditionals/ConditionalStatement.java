@@ -4,7 +4,7 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * ConditionalStatement class gives the basic structure to all conditionals
@@ -75,7 +75,7 @@ public abstract class ConditionalStatement extends Command {
 	 * @param playerChar Valid EpCharacter to be used when resolving the conditional
 	 * @return True or False
 	 */
-	public abstract boolean resolve(EpCharacter playerChar);
+	public abstract boolean resolve(CharacterEnvironment env);
 	
 	public boolean isInverted() {
 		return isInverted;

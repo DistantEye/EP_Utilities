@@ -48,4 +48,7 @@ toString for all command objects and all data validation needs to consider Choic
 
 Commands should throw invalidstateexception if uncertainties still exist when running it
 
-Create a RunningContext interface that LifePathGenerator implements (getPC(), getRng(), getUI(), etc, and then you have a onestop shop for passing context to Commands and Directives)
+Note you can implement a quick version of Package based Character creation via making custom tables and an UI permanently set to let characters "choose" rolls
+along with some variable checking to make sure people don't go over the package limit, it should go in relatively fast.
+
+Don't forget that you can use the new character saving/load system to make character backups and finally have a more elegant solution for the "undo last step" problem!!

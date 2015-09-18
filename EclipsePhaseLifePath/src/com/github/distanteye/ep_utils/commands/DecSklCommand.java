@@ -3,6 +3,7 @@ package com.github.distanteye.ep_utils.commands;
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -68,10 +69,10 @@ public class DecSklCommand extends Command {
 		
 	}
 	
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
-		super.run(pc);
-		
+		super.run(env);
+		EpCharacter pc = env.getPC();
 		String skillname = (String)params.get(1);
 		
 		// determine whether a dec or a decAll

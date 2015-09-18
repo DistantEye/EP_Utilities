@@ -4,7 +4,7 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Conditional with syntax :
@@ -42,7 +42,7 @@ public class EqualsConditional extends ConditionalStatement {
 	}
 
 	@Override
-	public boolean resolve(EpCharacter playerChar) {
+	public boolean resolve(CharacterEnvironment env) {
 		return subparts[1].equals(subparts[2]);
 	}
 

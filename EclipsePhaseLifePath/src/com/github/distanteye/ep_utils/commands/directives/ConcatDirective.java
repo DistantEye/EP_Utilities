@@ -1,6 +1,6 @@
 package com.github.distanteye.ep_utils.commands.directives;
 
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Directive of syntax:
@@ -32,8 +32,8 @@ public class ConcatDirective extends Directive {
 	 * @see com.github.distanteye.ep_utils.commands.directives.Directive#process(com.github.distanteye.ep_utils.containers.EpCharacter)
 	 */
 	@Override
-	public String process(EpCharacter pc) {
-		ensureStrings(1,2,pc);
+	public String process(CharacterEnvironment env) {
+		ensureStrings(1,2,env);
 		String left = getStrParam(1);
 		String right = getStrParam(2);
 		

@@ -1,6 +1,6 @@
 package com.github.distanteye.ep_utils.commands.directives;
 
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Directive of syntax:
@@ -31,7 +31,7 @@ public class GetVarDirective extends Directive {
 	 * @see com.github.distanteye.ep_utils.commands.directives.Directive#process(com.github.distanteye.ep_utils.containers.EpCharacter)
 	 */
 	@Override
-	public String process(EpCharacter pc) {
+	public String process(CharacterEnvironment env) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,7 +4,7 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -54,7 +54,7 @@ public class BetweenConditional extends ConditionalStatement {
 	}
 
 	@Override
-	public boolean resolve(EpCharacter playerChar) {
+	public boolean resolve(CharacterEnvironment env) {
 		// we control params, so we know these are safe casts
 		int input = (Integer)params.get(1);
 		int low = (Integer)params.get(2);

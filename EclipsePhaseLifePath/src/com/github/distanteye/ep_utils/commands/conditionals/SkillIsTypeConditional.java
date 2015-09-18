@@ -4,8 +4,8 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Conditional with syntax :
@@ -48,7 +48,7 @@ public class SkillIsTypeConditional extends ConditionalStatement {
 	}
 
 	@Override
-	public boolean resolve(EpCharacter playerChar) {
+	public boolean resolve(CharacterEnvironment env) {
 		return Skill.hasCategory(subparts[1], subparts[2]);
 	}
 

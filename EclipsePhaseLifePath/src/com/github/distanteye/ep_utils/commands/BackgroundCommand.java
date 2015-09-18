@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Command of following syntax types:
@@ -26,10 +27,10 @@ public class BackgroundCommand extends Command {
 		subpartsToParams();
 	}
 	
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
-		super.run(pc);
-		
+		super.run(env);
+		EpCharacter pc = env.getPC();
 		pc.setBackground((String)params.get(1));
 		
 		return "";

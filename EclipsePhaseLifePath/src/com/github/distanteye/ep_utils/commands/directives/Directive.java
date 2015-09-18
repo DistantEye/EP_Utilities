@@ -4,7 +4,7 @@
 package com.github.distanteye.ep_utils.commands.directives;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -40,7 +40,7 @@ public abstract class Directive extends Command {
 	 * @param pc Character object, sometimes needed for context for making the decision
 	 * @return String containing the data replace for this.
 	 */
-	abstract public String process(EpCharacter pc);
+	abstract public String process(CharacterEnvironment env);
 	
 	public static boolean containsDirective(String input)
 	{
@@ -65,7 +65,7 @@ public abstract class Directive extends Command {
 	 * @param highRange idx within params to finish at
 	 * @param pc Character object to provide context for resolving directives.
 	 */
-	protected void ensureStrings(int lowRange, int highRange, EpCharacter pc)
+	protected void ensureStrings(int lowRange, int highRange, CharacterEnvironment env)
 	{
 		
 		for (int i = lowRange; i <= highRange; i++)
@@ -74,7 +74,7 @@ public abstract class Directive extends Command {
 			if (containsDirective(param))
 			{
 				Directive temp = DirectiveBuilder.getDirective(param);
-				params.set(i, temp.process(pc));
+				params.set(i, temp.process(env));
 				i--; // go back and make sure there aren't more directives nested (this may further loop before concluding)
 			}
 
@@ -94,9 +94,9 @@ public abstract class Directive extends Command {
 	 * @param highRange idx within params to finish at
 	 * @param pc Character object to provide context for resolving directives.
 	 */
-	protected void ensureIntegers(int lowRange, int highRange, EpCharacter pc)
+	protected void ensureIntegers(int lowRange, int highRange, CharacterEnvironment env)
 	{
-		ensureStrings(lowRange,highRange,pc);
+		ensureStrings(lowRange,highRange,env);
 		// we have to check whether we have integers or Directives, and process the latter the rest of the way if need be
 		for (int i = lowRange; i <= highRange; i++)
 		{

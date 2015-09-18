@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.commands.directives.Directive;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -272,13 +272,13 @@ public abstract class Command {
 	 * @param pc Character to give the Conditional as context
 	 * @return True if Cond is null or resolves to true, IllegalArgumentException if Cond resolves to false
 	 */
-	protected boolean resolveConditional(EpCharacter pc)
+	protected boolean resolveConditional(CharacterEnvironment env)
 	{
 		if (cond == null)
 		{
 			return true;
 		}
-		else if (cond.resolve(pc))
+		else if (cond.resolve(env))
 		{
 			return true;
 		}
@@ -302,13 +302,13 @@ public abstract class Command {
 	 * @return Any pending effects after this command has run. Often "". Returning a String not length 0 indicates execution cannot continue until the 
 	 * 			context environment does more work on the pending effects
 	 */
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
 		// we check the active params for any ambiguities. Having wildcards unresolved makes the command nonprocessable
 		throwErrorIfAmbiguities();
 		
 		// if cond exists, we check that next, it must be true or else error
-		resolveConditional(pc);
+		resolveConditional(env);
 		
 		// subclasses implement the rest
 		return "";

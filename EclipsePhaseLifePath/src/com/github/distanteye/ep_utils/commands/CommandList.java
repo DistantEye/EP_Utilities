@@ -3,7 +3,7 @@
  */
 package com.github.distanteye.ep_utils.commands;
 
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -36,7 +36,7 @@ public class CommandList extends Command {
 		throw new UnsupportedOperationException();
 	}
 	
-	protected boolean resolveConditional(EpCharacter pc)
+	protected boolean resolveConditional(CharacterEnvironment env)
 	{
 		return true;
 	}
@@ -69,11 +69,11 @@ public class CommandList extends Command {
 	 *  
 	 * @param pc The character to run the command on
 	 */
-	public String run(EpCharacter pc)
+	public String run(CharacterEnvironment env)
 	{
 		for (int i = 1; i < params.size(); i++)
 		{
-			String result = ((Command)params.get(i)).run(pc);
+			String result = ((Command)params.get(i)).run(env);
 			
 			if (result.length() > 0)
 			{

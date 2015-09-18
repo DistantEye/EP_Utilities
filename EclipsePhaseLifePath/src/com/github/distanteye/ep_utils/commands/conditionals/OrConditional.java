@@ -4,7 +4,7 @@
 package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Special conditional for resolving boolean OR
@@ -46,12 +46,13 @@ public class OrConditional extends ConditionalStatement {
 	}
 	
 	@Override
-	public boolean resolve(EpCharacter playerChar) {
+	public boolean resolve(CharacterEnvironment env) {
+		
 		// we control params so we know this will be a safe cast
 		ConditionalStatement left = (ConditionalStatement)params.get(1);
 		ConditionalStatement right = (ConditionalStatement)params.get(2);
 		
-		return left.resolve(playerChar) || right.resolve(playerChar);
+		return left.resolve(env) || right.resolve(env);
 	}
 
 	public String toString()

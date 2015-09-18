@@ -1,6 +1,6 @@
 package com.github.distanteye.ep_utils.commands.directives;
 
-import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -48,8 +48,8 @@ public class MultDirective extends Directive{
 	 * @see com.github.distanteye.ep_utils.commands.directives.Directive#process(com.github.distanteye.ep_utils.containers.EpCharacter)
 	 */
 	@Override
-	public String process(EpCharacter pc) {		
-		ensureIntegers(1, 2, pc);
+	public String process(CharacterEnvironment env) {		
+		ensureIntegers(1, 2, env);
 		
 		int left = getIntParam(1);
 		int right = getIntParam(2);

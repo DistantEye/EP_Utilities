@@ -16,9 +16,9 @@ import com.github.distanteye.ep_utils.ui.UI;
  * @author Vigilant
  *
  */
-public class LifePathGenerator {
+public class LifePathGenerator implements CharacterEnvironment {
 
-	public static SecureRandom rng = new SecureRandom();
+	private SecureRandom rng = new SecureRandom();
 	private EpCharacter playerChar;
 	private UI UIObject;
 	private boolean isRolling;
@@ -28,7 +28,7 @@ public class LifePathGenerator {
 	private String stepSkipTo; // keeps track of if a stepskip was triggered and to what the item to jump to is.
 	private boolean noStop;
 	private ArrayList<String> choiceEffects; // keeps track of the original state of input choices the player had made incase we need to back stuff out because error
-	
+
 	/**
 	 * Creates the LifePathGenerator
 	 * 
@@ -1970,6 +1970,12 @@ public class LifePathGenerator {
 		this.nextEffects = nextEffects;
 	}
 	
-	
+	public SecureRandom getRng() {
+		return rng;
+	}
+
+	public UI getUI() {
+		return UIObject;
+	}
 
 }
