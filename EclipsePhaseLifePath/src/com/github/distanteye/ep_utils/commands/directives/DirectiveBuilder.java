@@ -31,6 +31,34 @@ public class DirectiveBuilder {
 		{
 			return new ConcatDirective(input);
 		}
+		else if (lcEffect.startsWith("getRand"))
+		{
+			return new GetRandDirective(input);
+		}
+		else if (lcEffect.startsWith("getRandFromChar"))
+		{
+			return new GetRandFromCharDirective(input);
+		}
+		else if (lcEffect.startsWith("getVar"))
+		{
+			return new GetVarDirective(input);
+		}
+		else if (lcEffect.startsWith("rollDice"))
+		{
+			return new RollDiceDirective(input);
+		}
+		else if (lcEffect.startsWith("simpRollDice"))
+		{
+			return new SimpRollDiceDirective(input);
+		}
+		else if (lcEffect.startsWith("add"))
+		{
+			return new AddDirective(input);
+		}
+		else if (lcEffect.startsWith("mult"))
+		{
+			return new MultDirective(input);
+		}
 		else
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);

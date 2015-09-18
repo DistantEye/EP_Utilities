@@ -47,3 +47,5 @@ may need to have a flag that determines whether or not morph cost is factored in
 toString for all command objects and all data validation needs to consider Choice/Other uncertainty placeholders like getVar, etc
 
 Commands should throw invalidstateexception if uncertainties still exist when running it
+
+Create a RunningContext interface that LifePathGenerator implements (getPC(), getRng(), getUI(), etc, and then you have a onestop shop for passing context to Commands and Directives)

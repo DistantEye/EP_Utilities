@@ -5,6 +5,7 @@ package com.github.distanteye.ep_utils.commands.directives;
 
 import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Directives encapsulate a preprocessing command that should be processed and replaced before execution of the actual command.
@@ -54,4 +55,66 @@ public abstract class Directive extends Command {
 		return false;
 	}
 
+	/**
+	 * Loops through params, ensuring that all indexes in params between lowRange and highRange (inclusive)
+	 * are either String/basic types, or Directives that can be resolved(by end of execution these are resolved as such)
+	 * 
+	 * By the end of execution, the params within the specified range will either be String values or primitive types
+	 * 
+	 * @param lowRange idx within params to start at
+	 * @param highRange idx within params to finish at
+	 * @param pc Character object to provide context for resolving directives.
+	 */
+	protected void ensureStrings(int lowRange, int highRange, EpCharacter pc)
+	{
+		
+		for (int i = lowRange; i <= highRange; i++)
+		{
+			String param = getStrParam(i);
+			if (containsDirective(param))
+			{
+				Directive temp = DirectiveBuilder.getDirective(param);
+				params.set(i, temp.process(pc));
+				i--; // go back and make sure there aren't more directives nested (this may further loop before concluding)
+			}
+
+		}
+		
+	}
+	
+	/**
+	 * Loops through params, ensuring that all indexes in params between lowRange and highRange (inclusive)
+	 * are either Integer values, or Directives that can be resolved to an integer value (by end of execution these are resolved as such)
+	 * 
+	 * By the end of execution, the params within the specified range will either be integers or an error will have been thrown
+	 * 
+	 * Calls ensureStrings() as a part of execution.
+	 * 
+	 * @param lowRange idx within params to start at
+	 * @param highRange idx within params to finish at
+	 * @param pc Character object to provide context for resolving directives.
+	 */
+	protected void ensureIntegers(int lowRange, int highRange, EpCharacter pc)
+	{
+		ensureStrings(lowRange,highRange,pc);
+		// we have to check whether we have integers or Directives, and process the latter the rest of the way if need be
+		for (int i = lowRange; i <= highRange; i++)
+		{
+			String param = getStrParam(i);
+			if (Utils.isInteger(param))
+			{
+				params.set(i, Integer.parseInt(param));
+			}
+			else
+			{
+				throw new IllegalArgumentException(subparts[i] + " cannot be evaluated to an integer!");
+			}
+		}
+	}
+	
+	
+	public String toString()
+	{
+		return origString;
+	}
 }

@@ -24,7 +24,8 @@ public class ConcatDirective extends Directive {
 	*/
 	public ConcatDirective(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		subpartsToParams();
 	}
 
 	/* (non-Javadoc)
@@ -32,8 +33,11 @@ public class ConcatDirective extends Directive {
 	 */
 	@Override
 	public String process(EpCharacter pc) {
-		// TODO Auto-generated method stub
-		return null;
+		ensureStrings(1,2,pc);
+		String left = getStrParam(1);
+		String right = getStrParam(2);
+		
+		return left+right;
 	}
 
 }

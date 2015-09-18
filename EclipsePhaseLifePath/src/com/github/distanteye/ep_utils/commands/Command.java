@@ -108,6 +108,27 @@ public abstract class Command {
 	}
 	
 	/**
+	 * Shortcut for converting getParam output to String
+	 * @param i valid index within range for params
+	 * @return Appropriate parameter for that slot, converted to String (using toString);
+	 */
+	public String getStrParam(int i)
+	{
+		return getParam(i).toString();
+	}
+	
+	/**
+	 * Shortcut for converting getParam output to Int. Note. as this is an internal only shortcut,
+	 * it is assumed validation was already done to confirm the value in question is an integer.
+	 * @param i valid index within range for params
+	 * @return Appropriate parameter for that slot, converted to an integer;
+	 */
+	protected int getIntParam(int i)
+	{
+		return Integer.parseInt(getParam(i).toString());
+	}
+	
+	/**
 	 * Parses input into an array of subparts, respecting command syntax/nesting. Placed here incase subclasses need to
 	 * override this with more specialized behaviors
 	 * @param input Valid input string, this should be the full String with command name and () still
