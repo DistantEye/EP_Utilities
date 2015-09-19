@@ -35,10 +35,6 @@ public class DirectiveBuilder {
 		{
 			return new GetRandDirective(input);
 		}
-		else if (lcEffect.startsWith("getRandFromChar"))
-		{
-			return new GetRandFromCharDirective(input);
-		}
 		else if (lcEffect.startsWith("getVar"))
 		{
 			return new GetVarDirective(input);

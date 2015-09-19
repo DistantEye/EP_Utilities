@@ -4,14 +4,7 @@ import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Directive of syntax:
- * concat(<value1>,<value2>) (appends value2 to the end of value1)
- * getRand(<type>)			(picks random item from all possibilities APT,DERANGEMENT, etc)
- * getRandFromChar(<type>) (picks random item that the character already has)
  * getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
- * rollDice(<sides>,<message>)			players can choose the result of this if choose mode is on
- * simpRollDice(<numDice>,<sides>)		players cannot choose the result of this (always forceRoll true)
- * add(num1,num2)						Math method : adds num1+num2
- * mult(num1,num2)						Math method : mult num1*num2
  * 
  * @author Vigilant
  *
@@ -19,12 +12,14 @@ import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 public class GetVarDirective extends Directive {
 
 	/**
-	*Creates a command from the given effects string
+	*Creates a Directive from the given effects string
 	* @param input Valid formatted command effect string, this should be the full String with command name and  still
 	*/
 	public GetVarDirective(String input) {
 		super(input);
-		// TODO Auto-generated constructor stub
+
+		// no advanced validation on this command is particularly possible
+		subpartsToParams();
 	}
 
 	/* (non-Javadoc)
@@ -32,8 +27,13 @@ public class GetVarDirective extends Directive {
 	 */
 	@Override
 	public String process(CharacterEnvironment env) {
-		// TODO Auto-generated method stub
-		return null;
+		ensureStrings(1, 1, env);
+		
+		String varName = getStrParam(1).toLowerCase();
+		
+		// getVar will do it's own validation as to whether varName exists
+		// we want this to throw an error if varName is invalid.
+		return env.getPC().getVar(varName);
 	}
 
 }

@@ -1467,7 +1467,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 	 * @param forceRoll If true, is always a true random roll, if false, and if isRolling is false, prompts the user to make an interactive choice
 	 * @return
 	 */
-	protected int rollDice(int numSides, String rollMessage, boolean forceRoll)
+	public int rollDice(int numSides, String rollMessage, boolean forceRoll)
 	{
 		int roll = -1;
 		
