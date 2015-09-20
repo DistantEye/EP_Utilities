@@ -83,7 +83,8 @@ public class RunTableCommand extends Command {
 		{
 			tempRow = temp.findMatch(val);
 		}
-		
+		env.getUI().statusUpdate(tempRow.getDescription());
+		this.setExtraContext(tempRow.getDescription());
 		return tempRow.getEffects();		
 	}
 	

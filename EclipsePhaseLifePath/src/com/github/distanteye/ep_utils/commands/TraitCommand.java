@@ -25,6 +25,7 @@ public class TraitCommand extends Command {
 		super(input);
 
 		Trait t = null;
+		int level = 1;
 		
 		if (subparts.length < 2 || subparts.length > 3)
 		{
@@ -47,6 +48,10 @@ public class TraitCommand extends Command {
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
+			else
+			{
+				level = Integer.parseInt(subparts[2]);
+			}
 			
 			t = Trait.getTrait(subparts[1], Integer.parseInt(subparts[2]));
 
@@ -57,6 +62,10 @@ public class TraitCommand extends Command {
 			{
 				throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 			}
+			else
+			{
+				level = Integer.parseInt(subparts[2]);
+			}
 			
 			t = Trait.getTraitFromPartial(subparts[1], Integer.parseInt(subparts[2]));
 		}
@@ -66,7 +75,7 @@ public class TraitCommand extends Command {
 		}
 		
 		params.put(1, t);
-		params.put(2, subparts[2]);
+		params.put(2, level);
 	}
 	
 	public String run(CharacterEnvironment env)

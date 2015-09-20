@@ -48,29 +48,6 @@ public abstract class ConditionalStatement extends Command {
 	}
 	
 	/**
-	 * Returns appropriate subclass of Conditional based on the input provided 
-	 * @param input Validly formated conditional. Should still contain the command and ? or ! prefix
-	 * @param Command that contains the calling conditional
-	 * @return Conditional object (a subclass, as Conditional is abstract)
-	 */
-	public static ConditionalStatement getConditional(String input,Command parent)
-	{
-		// special cases first for AND and OR
-		if (input.contains("||"))
-		{
-			return new OrConditional(input,parent);
-		}
-		else if (input.contains("&&"))
-		{
-			return new AndConditional(input,parent);
-		}
-		else
-		{
-			throw new IllegalArgumentException("No valid conditional recognized");
-		}
-	}
-	
-	/**
 	 * Executes the Conditional, returning true/false as appropriate
 	 * @param playerChar Valid EpCharacter to be used when resolving the conditional
 	 * @return True or False

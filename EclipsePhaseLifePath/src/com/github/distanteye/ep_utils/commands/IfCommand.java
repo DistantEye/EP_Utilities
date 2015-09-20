@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.commands.conditionals.ConditionalBuilder;
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
@@ -32,7 +33,7 @@ public class IfCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect (effects empty) " + input);
 		}
 		
-		params.put(1, ConditionalStatement.getConditional(subparts[1], this));
+		params.put(1, ConditionalBuilder.getConditional(subparts[1], this));
 		
 		for (int i = 2; i < subparts.length; i++)
 		{
@@ -58,6 +59,11 @@ public class IfCommand extends Command {
 		{
 			Command c = CommandBuilder.getCommand(getStrParam(3));
 			result = c.run(env);
+		}
+		
+		if (result.contains("null"))
+		{
+			int foo = 0;
 		}
 
 		return result;

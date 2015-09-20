@@ -31,6 +31,7 @@ public class ExtendedChoiceCommand extends Command {
 		else
 		{
 			subpartsToParams();
+			this.setExtraContext(subparts[1]);
 		}
 		
 	}
@@ -62,7 +63,11 @@ public class ExtendedChoiceCommand extends Command {
 			}
 		}
 		
-		return "";
+		String effect = choiceEffects[choice-1].split("=")[1];
+		
+		Command c = CommandBuilder.getCommand(effect);
+
+		return c.run(env);
 	}
 
 	public String toString()

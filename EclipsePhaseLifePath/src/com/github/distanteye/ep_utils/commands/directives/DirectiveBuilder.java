@@ -6,7 +6,7 @@ package com.github.distanteye.ep_utils.commands.directives;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
- * Static only class responsible for building Command objects out of input strings
+ * Static only class responsible for building Directive objects out of input strings
  * @author Vigilant
  *
  */

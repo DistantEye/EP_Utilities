@@ -41,7 +41,7 @@ public class StepSkipCommand extends Command {
 			Step temp = (Step)DataProc.getDataObj(subparts[1]);
 			
 			// special version allows for a clean jump that doesn't interrupt the UI
-			if (getCommandName().startsWith("stepskipnostop"))
+			if (getCommandName().toLowerCase().startsWith("stepskipnostop"))
 			{
 				noStop = true;
 			}
@@ -62,8 +62,8 @@ public class StepSkipCommand extends Command {
 		env.setEffectsNeedReturn();
 		
 		Step temp = (Step)params.get(1);
-		
-		return temp.getEffects();
+		env.setStepSkipTo(temp.getName());
+		return temp.getName();
 	}
 	
 	public boolean isNoStop() {

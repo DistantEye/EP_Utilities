@@ -64,7 +64,8 @@ public class PackageCommand extends Command {
 				}
 				
 			}
-
+			
+			this.setExtraContext(temp.getSpecialNotes());
 			
 			params.put(1, temp);
 			params.put(2, pp);
@@ -82,8 +83,11 @@ public class PackageCommand extends Command {
 		super.run(env);
 
 		Package temp = (Package)params.get(1);
+		int pp = getIntParam(2);
+		env.getPC().incVar("packageVal", pp);
+		env.getUI().statusUpdate("Package added (PP" + pp + ") : " + temp.getName() + " " + temp.getDescription());
 		
-		return temp.getEffects(getIntParam(2));
+		return temp.getEffects(pp);
 	}
 	
 	public String toString()

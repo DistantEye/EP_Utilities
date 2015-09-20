@@ -1987,7 +1987,7 @@ false
 --------------------------------------------------------------
 FUNCTION
 s10Loop
-if(?between(getVar(packageVal),0,9),rollTable(TABLE_10),func(s10Loop))
+if(?between(getVar(packageVal),0,9),rollTable(TABLE_10);func(s10Loop))
 --------------------------------------------------------------
 TABLE
 TABLE_10
@@ -2306,13 +2306,13 @@ true
 41-42`Your life has been blissfully serene and untroubled. Your friends may secretly hate you.`msgClient(Your life has been blissfully serene and untroubled. Your friends may secretly hate you.)
 43-44`You find out that one or both of your parents weren’t really your parents.`msgClient(You find out that one or both of your parents weren’t really your parents.)
 45-46`You pursue a period of self-isolation and introspection.`msgClient(You pursue a period of self-isolation and introspection.)
-47-48`You catch an authority figure doing something illicit, but you don’t have the means to prove it.`msgClient(You catch an authority figure doing something illicit, but you don’t have the means to prove it.)
+47-48`You catch an authority figure doing something illicit, but you don’t have the means to prove it.`msgClient(You catch an authority figure doing something illicit\, but you don’t have the means to prove it.)
 49-50`You take a sabbatical with the Solarians, ringers, or other space-faring clade.`msgClient(You take a sabbatical with the Solarians, ringers, or other space-faring clade.)
 51-52`You have an affair.`msgClient(You have an affair.)
 53-54`You are privileged enough to meet a Factor.`msgClient(You are privileged enough to meet a Factor.)
 55-56`You discover an unknown and intriguing or devastating secret about your family’s past.`msgClient(You discover an unknown and intriguing or devastating secret about your family’s past.)
 57-58`An unfortunate accident leaves you stuck in a healing vat for a couple of weeks.`msgClient(An unfortunate accident leaves you stuck in a healing vat for a couple of weeks.)
-59-60`While traveling by spacecraft, a malfunction takes you months off course. `msgClient(While traveling by spacecraft, a malfunction takes you months off course. )
+59-60`While traveling by spacecraft, a malfunction takes you months off course. `msgClient(While traveling by spacecraft\, a malfunction takes you months off course. )
 61-62`You use someone to get ahead.`msgClient(You use someone to get ahead.)
 63-64`Someone uses you to get ahead.`msgClient(Someone uses you to get ahead.)
 65-66`You unexpectedly make a close friend with someone from a rival or even hostile faction.`msgClient(You unexpectedly make a close friend with someone from a rival or even hostile faction.)

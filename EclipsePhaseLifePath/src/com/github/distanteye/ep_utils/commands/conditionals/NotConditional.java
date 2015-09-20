@@ -7,12 +7,12 @@ import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
- * Special conditional for resolving boolean And
+ * Special conditional for resolving boolean NOT
  * 
  * @author Vigilant
  *
  */
-public class AndConditional extends ConditionalStatement {
+public class NotConditional extends ConditionalStatement {
 
 	/**
 	 * Returns appropriate Conditional based on the input provided 
@@ -20,46 +20,37 @@ public class AndConditional extends ConditionalStatement {
 	 * @param Command that contains the calling conditional
 	 * @return Conditional object (a subclass, as Conditional is abstract)
 	 */
-	public AndConditional(String input, Command parent) {
+	public NotConditional(String input, Command parent) {
 		super(input, parent);
 		
-		
 		params.put(1, ConditionalBuilder.getConditional(subparts[1], parent));
-		params.put(2, ConditionalBuilder.getConditional(subparts[2], parent));
 	}
 
 	/**
-	 * Parses input into a pair of statements representing the two parts of the And Conditional
-	 * @param input Valid input string, this should be the full String with command name and () still. Must contain &&
+	 * Parses input into a a single parameter, the condition this Boolean Not is operating on
+	 * @param input Valid input string, this should be the full String with command name and () still.
 	 * @return Sting[] of the input split
 	 */
 	public String[] splitParts(String input)
-	{
-		String part1, part2;
-
-		part1 = input.substring(0, input.indexOf("&&"));
-		part2 = input.substring(input.indexOf("&&")+2);
+	{		
+		params.put(0, "NOT"); // we always want to set commandname to params 0
 		
-		params.put(0, "AND"); // we always want to set commandname to params 0
-		
-		return new String[]{"AND",part1,part2};
+		return new String[]{"NOT",input};
 	}
 	
 	@Override
 	public boolean resolve(CharacterEnvironment env) {
 		// we control params so we know this will be a safe cast
 		ConditionalStatement left = (ConditionalStatement)params.get(1);
-		ConditionalStatement right = (ConditionalStatement)params.get(2);
 		
-		return left.resolve(env) && right.resolve(env);
+		return !left.resolve(env);
 	}
 
 	public String toString()
 	{
 		// we control params so we know this will be a safe cast
 		ConditionalStatement left = (ConditionalStatement)params.get(1);
-		ConditionalStatement right = (ConditionalStatement)params.get(2);
-		return "(" + left.toString() + ") AND (" + right.toString() +")"; 
+		return "NOT(" + left.toString() + ")"; 
 	}
 
 }

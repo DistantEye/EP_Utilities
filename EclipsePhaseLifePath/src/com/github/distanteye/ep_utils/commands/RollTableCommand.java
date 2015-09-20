@@ -65,7 +65,7 @@ public class RollTableCommand extends Command {
 	{
 		super.run(env);
 		
-		Table temp = (Table)params.get(2);
+		Table temp = (Table)params.get(1);
 		int val = temp.getDiceRolled();
 		int roll = env.rollDice(val, this.toString(), false);
 		
@@ -78,6 +78,20 @@ public class RollTableCommand extends Command {
 		else
 		{
 			tempRow = temp.findMatch(roll);
+		}
+		this.setExtraContext(tempRow.getDescription());
+		
+		// we want to reroll instead  if this would add a package already present
+		if (containsDuplicatePackage(tempRow.getEffects(),env))
+		{
+			env.getUI().statusUpdate("Roll would add an already present package: rerolling!");
+			return this.run(env);			
+		}
+					
+		// give the description to the client, unless the suppress flag is true		
+		if (!temp.isSuppressDescriptions())
+		{
+			env.getUI().statusUpdate(tempRow.getDescription());
 		}
 		
 		return tempRow.getEffects();
@@ -99,7 +113,7 @@ public class RollTableCommand extends Command {
 			addendum = " (with wildcard replace(" + params.get(2) + "))"; 
 		}
 		
-		return start + "oll result" + addendum + " from :\n" + params.get(2).toString();
+		return start + "oll result" + addendum + " from :\n" + params.get(1).toString();
 		
 		
 	}

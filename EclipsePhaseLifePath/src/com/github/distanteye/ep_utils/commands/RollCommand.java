@@ -105,7 +105,9 @@ public class RollCommand extends Command {
 		Table temp = (Table)params.get(2);
 		int roll = env.rollDice(val, this.toString(), false);
 		
-		Command c = CommandBuilder.getCommand(temp.findMatch(roll).getEffects());
+		TableRow tempRow = temp.findMatch(roll);
+		this.setExtraContext(tempRow.getDescription());
+		Command c = CommandBuilder.getCommand(tempRow.getEffects());
 		
 		return c.run(env);		
 	}

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.distanteye.ep_utils.commands.Command;
 // explicit because name ambiguity
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
@@ -782,7 +783,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || Command.isUncertain(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Add " + subparts[2] + " to " + subparts[1];
 				}
@@ -803,7 +804,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || Command.isUncertain(subparts[1])) && (Utils.isInteger(subparts[2]) || Command.isUncertain(subparts[2])))
 				{
 					result += "Set skl " + subparts[2] + " to " + subparts[1];
 				}
@@ -824,11 +825,11 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && subparts[2].equalsIgnoreCase("all"))
+				else if ((Skill.isSkill(subparts[1]) || Command.isUncertain(subparts[1])) && subparts[2].equalsIgnoreCase("all"))
 				{
 					result += "Remove skill: " + subparts[1];
 				}
-				else if ((Skill.isSkill(subparts[1]) || DataProc.containsUncertainty(subparts[1])) && Utils.isInteger(subparts[2]))
+				else if ((Skill.isSkill(subparts[1]) || Command.isUncertain(subparts[1])) && Utils.isInteger(subparts[2]))
 				{
 					result += "Subtract " + subparts[2] + " to " + subparts[1];
 				}
@@ -849,7 +850,7 @@ public class DataProc {
 				{
 					throw new IllegalArgumentException("Poorly formated effect " + errorInfo);
 				}
-				else if ( (Skill.isSkill(subparts[1])|| DataProc.containsUncertainty(subparts[1])) && subparts[2].length() > 0)
+				else if ( (Skill.isSkill(subparts[1])|| Command.isUncertain(subparts[1])) && subparts[2].length() > 0)
 				{
 					result += "Add specialization(" + subparts[2] + ") to skill " + subparts[1];
 				}

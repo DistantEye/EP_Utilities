@@ -1,7 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
-import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
@@ -28,21 +27,7 @@ public class SetVarCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect (params blank) " + input);
 		}
 		
-		params.put(1, subparts[1]);
-		
-		// check for integer or wildcard value
-		if ( Utils.isInteger(subparts[2]) )
-		{
-			params.put(2, Integer.parseInt(subparts[2]));
-		}
-		else if (isUncertain(subparts[2]))
-		{
-			params.put(2, subparts[2]);
-		}
-		else
-		{
-			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
-		}
+		subpartsToParams();
 	}
 	
 	public String run(CharacterEnvironment env)

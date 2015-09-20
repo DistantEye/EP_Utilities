@@ -32,13 +32,14 @@ public abstract class Command {
 	protected String[] subparts; // subparts are the raw String version of params. Oftentimes this is enough. Params is for more advanced behaviors
 	protected ConditionalStatement cond;
 	protected boolean forceRoll; // any dice rolled in this command cannot be chosen manually
+	private String extraContext; // return value for some Commands
 	
 	public Command(String input)
 	{
 		origString = input; // used to preserve what's there after wildcard/choice substitution
 		params = new HashMap<Integer,Object>();
 		subparts = splitParts(input);		
-		
+		extraContext = "";
 		cond = null; // null by default
 	}
 	
@@ -57,7 +58,14 @@ public abstract class Command {
 	 */
 	public static String getCommandName(String input)
 	{
-		return input.substring(0,input.indexOf('('));
+		int idx = input.indexOf('(');
+		
+		if (idx == -1)
+		{
+			throw new IllegalArgumentException("Unexpected error : no '(' found in input : " + input);
+		}
+		
+		return input.substring(0,idx);
 	}
 	
 	/**
@@ -290,6 +298,16 @@ public abstract class Command {
 		}
 	}
 	
+	
+	
+	public String getExtraContext() {
+		return extraContext;
+	}
+
+	public void setExtraContext(String extraContext) {
+		this.extraContext = extraContext;
+	}
+
 	/**
 	 * Attempts to resolve and run the command, checking readiness and conditionals (if applicable)
 	 * 
@@ -314,6 +332,32 @@ public abstract class Command {
 		
 		// subclasses implement the rest
 		return "";
+	}
+	
+	/**
+	 * Does a "quick parse" to see whether the effects would seem to add a package the character already has 
+	 * @param effects Valid effects String to search
+	 * @return true/false as appropriate
+	 */
+	protected boolean containsDuplicatePackage(String effects, CharacterEnvironment env)
+	{
+		String[] effectsArr = Utils.splitCommands(effects, ";");
+		
+		for (String eff : effectsArr)
+		{
+			String effLC = eff.toLowerCase();
+			
+			if (effLC.startsWith("package"))
+			{
+				String params = Utils.returnStringInParen(eff);
+				
+				String[] subparts = Utils.splitCommands(params);
+				
+				return env.getPC().hasPackage(subparts[0]);
+			}
+		}
+		
+		return false;
 	}
 	
 }

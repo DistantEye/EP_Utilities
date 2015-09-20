@@ -1,6 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
-import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
+import com.github.distanteye.ep_utils.commands.conditionals.ConditionalBuilder;
 import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
@@ -47,7 +47,7 @@ public class RemVarCommand extends Command {
 			
 			if (subparts.length == 4)
 			{	
-				this.cond = ConditionalStatement.getConditional(subparts[3],this);
+				this.cond = ConditionalBuilder.getConditional(subparts[3],this);
 				params.put(3, cond);
 			}
 			

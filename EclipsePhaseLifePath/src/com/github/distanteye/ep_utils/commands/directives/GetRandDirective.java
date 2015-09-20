@@ -30,7 +30,7 @@ public class GetRandDirective extends Directive {
 	public String process(CharacterEnvironment env) {
 		ensureStrings(1, 1, env);
 		
-		String type = getStrParam(1).toLowerCase();
+		String type = getStrParam(1);
 		
 		if (type.equals("DERANG"))
 		{

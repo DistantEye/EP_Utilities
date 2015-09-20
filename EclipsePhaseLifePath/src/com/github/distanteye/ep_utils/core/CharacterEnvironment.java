@@ -40,4 +40,10 @@ public interface CharacterEnvironment {
 	 */
 	void setEffectsNeedReturn();
 	
+	/**
+	 * Flags the effects processing engine to skip to the specified effects String, overriding 
+	 * default behavior when moving to the next step
+	 * @param stepSkipTo Valid command/effects string
+	 */
+	void setStepSkipTo(String stepSkipTo);
 }
