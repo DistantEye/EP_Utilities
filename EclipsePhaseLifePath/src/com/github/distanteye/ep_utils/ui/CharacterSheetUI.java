@@ -17,6 +17,8 @@ import com.github.distanteye.ep_utils.wrappers.*;
  * Plain CharacterSheet UI, Most fields meant to be user editable, with some validation
  * and auto-calculations being made 
  * 
+ * NOTE : This UI is not yet fully implemented!
+ * 
  * @author Vigilant
  *
  */

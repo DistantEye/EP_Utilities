@@ -1,9 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
-import com.github.distanteye.ep_utils.commands.conditionals.ConditionalBuilder;
-import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
-import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:

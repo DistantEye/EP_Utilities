@@ -52,3 +52,5 @@ Note you can implement a quick version of Package based Character creation via m
 along with some variable checking to make sure people don't go over the package limit, it should go in relatively fast.
 
 Don't forget that you can use the new character saving/load system to make character backups and finally have a more elegant solution for the "undo last step" problem!!
+
+Take down note about ChararcterSheetUI not being fully implemented when it becomes so
