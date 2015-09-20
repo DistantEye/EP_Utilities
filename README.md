@@ -15,9 +15,9 @@ While several elements of the code/structure are clearly tied to Eclipse Phase, 
 
 The general philosophy of the project is to adhere to a certain level of good practice and standards, with compromises made sometimes to keep momentum up. With the addendum note that code will (and has) get refactored from time to time, with an eventual focus on bringing the code up to full presentation quality.
 
-Bear minimum, you can expect comments and javadocs for most major methods and classes, and hopefully meaningful levels of code organization.
+Bare minimum, you can expect comments and javadocs for most major methods and classes, and hopefully meaningful levels of code organization.
 
-Some items are still a work in progress interms of adhering to proper practices, as I learn more, or realize in hindsight how to do things better, code items get refactored.
+Some items are still a work in progress in terms of adhering to proper practices, as I learn more, or realize in hindsight how to do things better, code items get refactored.
 
 ##Setup
 
@@ -37,7 +37,7 @@ Compile the src folder with javac
 java LifePathUI
 (You may have to move the two .dat files from the Data folder into the same directory as LifePathUI)
 
-##RUNABLE PROGRAMS
+##RUNNABLE PROGRAMS
 
 1) LifePathUI : Only current program. Runs a no-thrills GUI interface that allows players to move through each step, prompting for choices as necessary, by hitting 'Run Next Step'
 
