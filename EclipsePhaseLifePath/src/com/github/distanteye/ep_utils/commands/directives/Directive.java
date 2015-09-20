@@ -3,6 +3,9 @@
  */
 package com.github.distanteye.ep_utils.commands.directives;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
@@ -15,6 +18,16 @@ import com.github.distanteye.ep_utils.core.Utils;
 public abstract class Directive extends Command {
 
 	public static final String[] DIRECTIVES = {"concat","getRand","getRandFromChar","getVar","rollDice","simpRollDice","add","mult"};
+	public static String[] DIRECTIVES_LC; // shortcut so we don't have toLower DIRECTIVES all the time
+	
+	static
+	{
+		DIRECTIVES_LC = new String[DIRECTIVES.length];
+		for (int i = 0; i < DIRECTIVES.length; i++)
+		{
+			DIRECTIVES_LC[i] = DIRECTIVES[i].toLowerCase();
+		}
+	}
 	
 	/**
 	* Creates a Directive from the given effects string
@@ -29,9 +42,26 @@ public abstract class Directive extends Command {
 	 * @param input Valid input string, this should be the full String with command name and () still
 	 * @return Command name such that is the first text before an '(' character in string
 	 */
-	public static String getDirective(String input)
+	public static String getDirectiveName(String input)
 	{
-		return input.substring(0,input.indexOf('('));
+		int idx = input.indexOf('(',0);
+		String candidate = input.substring(0,idx);
+		
+		while (!Utils.arrayContains(DIRECTIVES_LC, candidate.toLowerCase()))
+		{
+			idx = input.indexOf('(',idx+1);
+			candidate = input.substring(0,idx);
+			// this still contains far to much, we take from the tail the variable name
+			Matcher m = Pattern.compile("[a-zA-Z0-9_]+$").matcher(candidate);
+			if (!m.find())
+			{
+				throw new IllegalArgumentException("No valid directive could be found inside: " + input);
+			}		
+			
+			candidate = m.group();
+		}
+		
+		return candidate;
 	}
 	
 	/**
@@ -44,9 +74,9 @@ public abstract class Directive extends Command {
 	
 	public static boolean containsDirective(String input)
 	{
-		for (String str : DIRECTIVES)
+		for (String str : DIRECTIVES_LC)
 		{
-			if (input.toLowerCase().contains(str.toLowerCase()))
+			if (input.toLowerCase().contains(str+"("))
 			{
 				return true;
 			}
@@ -74,7 +104,7 @@ public abstract class Directive extends Command {
 			if (containsDirective(param))
 			{
 				Directive temp = DirectiveBuilder.getDirective(param);
-				params.set(i, temp.process(env));
+				params.put(i, temp.process(env));
 				i--; // go back and make sure there aren't more directives nested (this may further loop before concluding)
 			}
 
@@ -103,7 +133,7 @@ public abstract class Directive extends Command {
 			String param = getStrParam(i);
 			if (Utils.isInteger(param))
 			{
-				params.set(i, Integer.parseInt(param));
+				params.put(i, Integer.parseInt(param));
 			}
 			else
 			{

@@ -20,29 +20,30 @@ public class DirectiveBuilder {
 	 */
 	public static Directive getDirective(String input)
 	{
-		String lcEffect = Directive.getCommandName(input).toLowerCase();
+		String commandName = Directive.getDirectiveName(input);
+		String lcEffect = commandName.toLowerCase();
 		
 		// structured so only the first top level directive is returned
-		String insides = Utils.returnStringInParen(input, input.indexOf(lcEffect));
-		String inputMod = lcEffect + "(" + insides + ")";
+		String insides = Utils.returnStringInParen(input, input.indexOf(commandName));
+		String inputMod = commandName + "(" + insides + ")";
 		
 		if (lcEffect.startsWith("concat"))
 		{
 			return new ConcatDirective(inputMod);
 		}
-		else if (lcEffect.startsWith("getRand"))
+		else if (lcEffect.startsWith("getrand"))
 		{
 			return new GetRandDirective(inputMod);
 		}
-		else if (lcEffect.startsWith("getVar"))
+		else if (lcEffect.startsWith("getvar"))
 		{
 			return new GetVarDirective(inputMod);
 		}
-		else if (lcEffect.startsWith("rollDice"))
+		else if (lcEffect.startsWith("rolldice"))
 		{
 			return new RollDiceDirective(inputMod);
 		}
-		else if (lcEffect.startsWith("simpRollDice"))
+		else if (lcEffect.startsWith("simprolldice"))
 		{
 			return new SimpRollDiceDirective(inputMod);
 		}

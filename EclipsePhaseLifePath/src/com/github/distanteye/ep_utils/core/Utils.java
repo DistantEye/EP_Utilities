@@ -18,6 +18,13 @@ public class Utils {
 	 */
 	public static boolean arrayContains(String[] arr, String search)
 	{
+		for (String str : arr)
+		{
+			if (str.equals(search))
+			{
+				return true;
+			}
+		}
 		
 		return false;
 	}

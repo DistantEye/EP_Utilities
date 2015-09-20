@@ -28,14 +28,14 @@ public class MorphCommand extends Command {
 
 		if (subparts[1].equalsIgnoreCase("randomroll"))
 		{
-			params.set(1, "randomroll");
+			params.put(1, "randomroll");
 			randomRoll = true;
 		}
 		else if (subparts[1].length() > 0)
 		{
 			if (Morph.exists(subparts[1]) || isUncertain(subparts[1]))
 			{
-				params.set(1, subparts[1]);
+				params.put(1, subparts[1]);
 				randomRoll = false;
 			}
 			else

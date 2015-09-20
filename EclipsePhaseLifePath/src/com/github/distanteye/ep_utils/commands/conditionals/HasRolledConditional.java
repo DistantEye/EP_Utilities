@@ -44,7 +44,7 @@ public class HasRolledConditional extends ConditionalStatement {
 		}
 		
 		
-		params.set(1, Integer.parseInt(subparts[1]));
+		params.put(1, Integer.parseInt(subparts[1]));
 	}
 
 	@Override

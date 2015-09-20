@@ -24,7 +24,7 @@ public class MsgClientCommand extends Command {
 		}
 		else if ( subparts[1].length() > 0)
 		{
-			params.set(1, subparts[1]);					
+			params.put(1, subparts[1]);					
 		}
 		else
 		{

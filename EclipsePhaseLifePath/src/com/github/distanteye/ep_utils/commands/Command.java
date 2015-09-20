@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +26,7 @@ public abstract class Command {
 	protected String origString;
 	
 	// for both params and subparts, index 0 is the command name
-	protected ArrayList<Object> params; // Params can be Strings, Integers, Funcs, Tables, or other Commands, unfortunately
+	protected HashMap<Integer,Object> params; // Params can be Strings, Integers, Funcs, Tables, or other Commands, unfortunately
 											  // the emphasis on controlled, well-formed Command subclasses is meant to offset this
 
 	protected String[] subparts; // subparts are the raw String version of params. Oftentimes this is enough. Params is for more advanced behaviors
@@ -35,8 +36,9 @@ public abstract class Command {
 	public Command(String input)
 	{
 		origString = input; // used to preserve what's there after wildcard/choice substitution
-		params = new ArrayList<Object>();
-		subparts = splitParts(input);
+		params = new HashMap<Integer,Object>();
+		subparts = splitParts(input);		
+		
 		cond = null; // null by default
 	}
 	
@@ -77,7 +79,7 @@ public abstract class Command {
 			if (old.getClass().getName().equals(value.getClass().getName()) || 
 					(old instanceof String && isUncertain((String)old)))
 			{
-				params.set(key, value);
+				params.put(key, value);
 			}
 			else
 			{
@@ -140,7 +142,7 @@ public abstract class Command {
 		String commandName = getCommandName(input);
 		String[] results = Utils.splitCommands(commandName+","+insideParams);
 		
-		params.set(0, commandName); // we always want to set commandname to params 0
+		params.put(0, commandName); // we always want to set commandname to params 0
 		return results;
 	}
 	
@@ -156,7 +158,7 @@ public abstract class Command {
 	{
 		for (int i = 0; i < subparts.length; i++)
 		{
-			params.set(i, subparts[i]);
+			params.put(i, subparts[i]);
 		}
 	}
 	
@@ -251,7 +253,7 @@ public abstract class Command {
 	 */
 	protected void throwErrorIfAmbiguities()
 	{
-		for (Object o : params)
+		for (Object o : params.values())
 		{
 			if (o instanceof String)
 			{

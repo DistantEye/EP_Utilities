@@ -19,7 +19,7 @@ public class AddDirective extends Directive {
 	public AddDirective(String input) {
 		super(input);
 
-		if (subparts.length != 2  || !Utils.isInteger(subparts[1]) || !Utils.isInteger(subparts[2]))
+		if (subparts.length != 3 )
 		{
 			throw new IllegalArgumentException("Effect : " + input + " calls for add but lacks the correct format");
 		}
@@ -29,12 +29,12 @@ public class AddDirective extends Directive {
 		{
 			if (Utils.isInteger(subparts[i]))
 			{
-				params.set(i, Integer.parseInt(subparts[i]));
+				params.put(i, Integer.parseInt(subparts[i]));
 			}
 			else if (containsDirective(subparts[i]))
 			{
 				Directive temp = DirectiveBuilder.getDirective(subparts[i]);
-				params.set(i, temp);
+				params.put(i, temp);
 			}
 		}
 		

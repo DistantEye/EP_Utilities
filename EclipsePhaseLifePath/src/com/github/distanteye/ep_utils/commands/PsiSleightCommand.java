@@ -28,7 +28,7 @@ public class PsiSleightCommand extends Command {
 		{
 			if ( isUncertain(subparts[1]) )
 			{
-				params.set(1, subparts[1]);
+				params.put(1, subparts[1]);
 			}
 			else if (! Sleight.exists(subparts[1] ) )
 			{
@@ -38,7 +38,7 @@ public class PsiSleightCommand extends Command {
 			{
 				Sleight s = Sleight.sleightList.get(subparts[1]);
 				
-				params.set(1, s);
+				params.put(1, s);
 			}
 		}
 		else

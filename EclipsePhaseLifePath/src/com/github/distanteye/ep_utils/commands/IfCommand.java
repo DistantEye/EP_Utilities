@@ -32,11 +32,11 @@ public class IfCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect (effects empty) " + input);
 		}
 		
-		params.set(1, ConditionalStatement.getConditional(subparts[1], this));
+		params.put(1, ConditionalStatement.getConditional(subparts[1], this));
 		
 		for (int i = 2; i < subparts.length; i++)
 		{
-			params.set(i, subparts[i]);
+			params.put(i, subparts[i]);
 		}
 		
 	}

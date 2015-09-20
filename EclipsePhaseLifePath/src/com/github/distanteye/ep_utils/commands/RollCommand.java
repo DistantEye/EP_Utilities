@@ -93,8 +93,8 @@ public class RollCommand extends Command {
 			rows.add(new TableRow(low,high,"",currEffect.substring(currEffect.indexOf('=')+1))); 							
 		}
 		
-		params.set(1, Integer.parseInt(subparts[1]));
-		params.set(2, new Table("temp",numDie,rows, false));
+		params.put(1, Integer.parseInt(subparts[1]));
+		params.put(2, new Table("temp",numDie,rows, false));
 	}
 	
 	public String run(CharacterEnvironment env)

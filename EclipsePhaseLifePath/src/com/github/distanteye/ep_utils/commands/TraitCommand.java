@@ -33,13 +33,13 @@ public class TraitCommand extends Command {
 		else if (subparts.length == 2 && Trait.exists(subparts[1]))
 		{
 			t = Trait.getTrait(subparts[1], 1);
-			params.set(2,1);
+			params.put(2,1);
 
 		}
 		else if (subparts.length == 2 && Trait.existsPartial(subparts[1]) )
 		{
 			t = Trait.getTraitFromPartial(subparts[1], 1);
-			params.set(2,1);
+			params.put(2,1);
 		}
 		else if (subparts.length == 3 && Trait.exists(subparts[1]) )
 		{
@@ -65,8 +65,8 @@ public class TraitCommand extends Command {
 			throw new IllegalArgumentException("Trait " + subparts[1] + " does not exist, or other formating problem: ("+ input + ")");
 		}
 		
-		params.set(1, t);
-		params.set(2, subparts[2]);
+		params.put(1, t);
+		params.put(2, subparts[2]);
 	}
 	
 	public String run(CharacterEnvironment env)

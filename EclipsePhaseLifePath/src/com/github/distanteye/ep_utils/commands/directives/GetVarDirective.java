@@ -29,7 +29,7 @@ public class GetVarDirective extends Directive {
 	public String process(CharacterEnvironment env) {
 		ensureStrings(1, 1, env);
 		
-		String varName = getStrParam(1).toLowerCase();
+		String varName = getStrParam(1);
 		
 		// getVar will do it's own validation as to whether varName exists
 		// we want this to throw an error if varName is invalid.

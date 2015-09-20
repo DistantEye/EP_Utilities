@@ -46,7 +46,7 @@ public class StepSkipCommand extends Command {
 				noStop = true;
 			}
 			
-			params.set(1, temp);
+			params.put(1, temp);
 		}
 	}
 

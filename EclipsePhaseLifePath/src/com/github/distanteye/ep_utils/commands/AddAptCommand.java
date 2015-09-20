@@ -32,7 +32,7 @@ public class AddAptCommand extends Command {
 			
 			if (Aptitude.exists(subparts[1]) || isUncertain(subparts[1]))
 			{
-				params.set(1, subparts[1]);
+				params.put(1, subparts[1]);
 			}
 			else
 			{
@@ -42,11 +42,11 @@ public class AddAptCommand extends Command {
 			// we can't parse if it's an wildcard/choice/etc but we can still store it as "valid"
 			if (Utils.isInteger(subparts[2]) )
 			{
-				params.set(2, Integer.parseInt(subparts[2]));
+				params.put(2, Integer.parseInt(subparts[2]));
 			}
 			else if ( isUncertain(subparts[2]))
 			{
-				params.set(2, subparts[2]);
+				params.put(2, subparts[2]);
 			}
 			else
 			{
@@ -57,7 +57,7 @@ public class AddAptCommand extends Command {
 			if (subparts.length == 4)
 			{	
 				this.cond = ConditionalStatement.getConditional(subparts[3], this);
-				params.set(3,cond);
+				params.put(3,cond);
 			}
 		}
 		else

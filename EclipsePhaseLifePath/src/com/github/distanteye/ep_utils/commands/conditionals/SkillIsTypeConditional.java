@@ -43,8 +43,8 @@ public class SkillIsTypeConditional extends ConditionalStatement {
 		}
 		
 		
-		params.set(1, subparts[1]);
-		params.set(2, subparts[2]);
+		params.put(1, subparts[1]);
+		params.put(2, subparts[2]);
 	}
 
 	@Override

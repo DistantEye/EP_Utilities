@@ -28,11 +28,11 @@ public class MoxCommand extends Command {
 		// check for integer or wildcard value
 		if ( Utils.isInteger(subparts[1]) )
 		{
-			params.set(1, Integer.parseInt(subparts[1]));
+			params.put(1, Integer.parseInt(subparts[1]));
 		}
 		else if (isUncertain(subparts[1]))
 		{
-			params.set(1, subparts[1]);
+			params.put(1, subparts[1]);
 		}
 		else
 		{

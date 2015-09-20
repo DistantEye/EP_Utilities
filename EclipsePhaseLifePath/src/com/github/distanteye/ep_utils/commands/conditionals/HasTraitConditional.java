@@ -44,7 +44,7 @@ public class HasTraitConditional extends ConditionalStatement {
 		}
 		
 		
-		params.set(1, subparts[1]);
+		params.put(1, subparts[1]);
 	}
 
 	@Override

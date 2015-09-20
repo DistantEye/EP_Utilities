@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.commands.Command;
+import com.github.distanteye.ep_utils.commands.directives.Directive;
+import com.github.distanteye.ep_utils.commands.directives.DirectiveBuilder;
 // explicit because name ambiguity
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
@@ -145,173 +147,16 @@ public class LifePathGenerator implements CharacterEnvironment {
 				// big wall of cases follow.
 				String errorInfo = ": " + effect;
 
-				
-				
 				// much preprocessing can't be done until the last second because it can be effected by other calls
-				while (effect.contains("getVar("))
+				while (Directive.containsDirective(effect))
 				{
-					int idx = effect.indexOf("getVar(");
+					Directive d = DirectiveBuilder.getDirective(effect);
+					String result = d.process(this);
 					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "getVar(" + insides + ")";
-					
-					if (playerChar.hasVar(insides))
-					{
-						String newStr = playerChar.getVar(insides);
-						effect = effect.replace(oldStr, newStr);
-					}
-					else
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for a variable that doesn't exist : ");
-					}
-					
+					// pattern.quote is needed to avoid problems with control characters
+					effect = effect.replaceFirst(Pattern.quote(d.toString()), result);
 				}
-				// handle preprocessing
-				while(effect.contains("!RANDSKILL!"))
-				{
-					if (playerChar.getNumSkills() > 0)
-					{
-						String randSkill = playerChar.getRandSkill(rng);
-						effect = effect.replace("!RANDSKILL!", randSkill);
-					}
-					else
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for random skill but the character has no skills!");
-					}
-				}
-				while(effect.contains("!RANDAPT!"))
-				{	
-					effect = effect.replace("!RANDAPT!",playerChar.stats().getRandApt(rng).getName());
-				}
-				while(effect.contains("!RAND_DER!"))
-				{
-					effect = effect.replace("!RAND_DER!",Trait.getRandomDerangement(rng).getName());
-				}
-				while (effect.contains("rollDice("))
-				{
-					int idx = effect.indexOf("rollDice(");
-					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "rollDice(" + insides + ")";
 
-					String[] subParts = Utils.splitCommands(insides);
-					
-					if (subParts.length != 2 || !Utils.isInteger(subParts[0]))
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for rollDice but lacks the correct format");
-					}
-					
-					int diceSides = Integer.parseInt(subParts[0]);
-					String message = subParts[1];
-					
-					String newStr = "" + this.rollDice(diceSides, message, false);
-					effect = effect.replace(oldStr, newStr);
-
-					
-				}
-				
-				// this version does multiple dice and is forced (player cannot choose)
-				while (effect.contains("simpRollDice("))
-				{
-					int idx = effect.indexOf("simpRollDice(");
-					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "simpRollDice(" + insides + ")";
-
-					String[] subParts = Utils.splitCommands(insides);
-					
-					if (subParts.length != 2 || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for simpRollDice but lacks the correct format");
-					}
-					
-					int result = 0;
-					int numDice = Integer.parseInt(subParts[0]);
-					int numSides = Integer.parseInt(subParts[1]);
-					
-					for (int x = 0; x < numDice; x++)
-					{
-						result += rollDice(numSides,"",true);
-					}
-					
-					String newStr = ""+result;
-					effect = effect.replace(oldStr, newStr);
-				}
-				
-				
-				// for best results this should be one of the last (or the last) preprocessing effect run
-				while (effect.contains("concat("))
-				{
-					int idx = effect.indexOf("concat(");
-					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "concat(" + insides + ")";
-
-					String[] subParts = Utils.splitCommands(insides);
-					
-					if (subParts.length != 2)
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for concat but lacks the correct format");
-					}
-					
-					String newStr = subParts[0] + subParts[1];
-					effect = effect.replace(oldStr, newStr);
-
-					
-				}
-				
-				// same with this, this needs to go near the end
-				while (effect.contains("mult("))
-				{
-					int idx = effect.indexOf("mult(");
-					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "mult(" + insides + ")";
-
-					String[] subParts = Utils.splitCommands(insides);
-					
-					if (subParts.length != 2  || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for mult but lacks the correct format");
-					}
-					
-					int p1 = Integer.parseInt(subParts[0]);
-					int p2 = Integer.parseInt(subParts[1]);
-					
-					String newStr = ""+(p1*p2);
-					effect = effect.replace(oldStr, newStr);
-
-				}
-				
-				while (effect.contains("add("))
-				{
-					int idx = effect.indexOf("add(");
-					
-					String insides = Utils.returnStringInParen(effect,idx);
-					
-					String oldStr = "add(" + insides + ")";
-
-					String[] subParts = Utils.splitCommands(insides);
-					
-					if (subParts.length != 2  || !Utils.isInteger(subParts[0]) || !Utils.isInteger(subParts[1]))
-					{
-						throw new IllegalArgumentException("Effect : " + effect + " calls for add but lacks the correct format");
-					}
-					
-					int p1 = Integer.parseInt(subParts[0]);
-					int p2 = Integer.parseInt(subParts[1]);
-					
-					String newStr = ""+(p1+p2);
-					effect = effect.replace(oldStr, newStr);
-
-					
-				}
-				
 				
 				// note for some of these, we sacrifice performance by making the if conditions a bit more error aware up front, and leaving
 				// the code a bit simpler. This is probably for the best since even with that the app will have reasonable performance,

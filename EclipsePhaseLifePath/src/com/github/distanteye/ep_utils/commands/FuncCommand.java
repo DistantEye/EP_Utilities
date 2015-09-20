@@ -31,11 +31,11 @@ public class FuncCommand extends Command {
 				Function temp = (Function)DataProc.getDataObj(subparts[1]);
 				
 				
-				params.set(1, temp);
+				params.put(1, temp);
 				
 				for (int i = 2; i < subparts.length; i++)
 				{
-					params.set(i, subparts[i]);
+					params.put(i, subparts[i]);
 				}
 			}
 			else

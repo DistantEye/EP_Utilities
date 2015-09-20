@@ -47,9 +47,9 @@ public class BetweenConditional extends ConditionalStatement {
 		}
 		
 		
-		params.set(1, Integer.parseInt(subparts[1]));
-		params.set(2, Integer.parseInt(subparts[2]));
-		params.set(3, Integer.parseInt(subparts[3]));
+		params.put(1, Integer.parseInt(subparts[1]));
+		params.put(2, Integer.parseInt(subparts[2]));
+		params.put(3, Integer.parseInt(subparts[3]));
 		
 	}
 

@@ -27,7 +27,7 @@ public class CommandList extends Command {
 		
 		for (int i = 1; i < subparts.length; i++)
 		{
-			params.set(i, CommandBuilder.getCommand(subparts[i]));
+			params.put(i, CommandBuilder.getCommand(subparts[i]));
 		}
 	}
 

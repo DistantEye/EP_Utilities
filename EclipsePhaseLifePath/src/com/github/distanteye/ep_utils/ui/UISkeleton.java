@@ -77,7 +77,7 @@ public abstract class UISkeleton implements UI {
         save.addActionListener(new ClickListener());
         load.addActionListener(new ClickListener());
         
-        updateEnabled = false;
+        updateEnabled = true;
 	}
 	
 	/**
