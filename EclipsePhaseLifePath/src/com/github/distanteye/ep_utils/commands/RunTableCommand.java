@@ -1,7 +1,9 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Table;
+import com.github.distanteye.ep_utils.core.TableRow;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -59,10 +61,30 @@ public class RunTableCommand extends Command {
 			if (subparts.length == 4)
 			{
 				params.set(3, subparts[3]);
-			}
-			
-		
+			}		
 				
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+
+		Table temp = (Table)params.get(1);
+		int val = getIntParam(2);
+		
+		TableRow tempRow = null;
+		
+		if (params.size() == 3)
+		{
+			tempRow = temp.findMatch(val, getStrParam(2));
+		}
+		else
+		{
+			tempRow = temp.findMatch(val);
+		}
+		
+		return tempRow.getEffects();		
 	}
 	
 	public String toString()

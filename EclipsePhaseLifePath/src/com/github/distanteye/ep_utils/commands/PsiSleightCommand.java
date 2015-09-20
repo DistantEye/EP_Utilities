@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.containers.Sleight;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Command of following syntax types:
@@ -43,6 +45,17 @@ public class PsiSleightCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		EpCharacter pc = env.getPC();
+		Sleight s = (Sleight)params.get(1);
+		
+		pc.sleights().put(s.getName(), s);
+		
+		return "";
 	}
 	
 	public String toString()

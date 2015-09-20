@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -39,6 +41,15 @@ public class CreditCommand extends Command {
 		}
 		
 		
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		EpCharacter pc = env.getPC();
+		pc.incVar("{credits}", getIntParam(1));
+		
+		return "";
 	}
 	
 	public String toString()

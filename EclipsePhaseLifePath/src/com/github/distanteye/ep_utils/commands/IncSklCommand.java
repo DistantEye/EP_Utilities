@@ -2,6 +2,7 @@ package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -57,6 +58,22 @@ public class IncSklCommand extends Command {
 		}
 		
 	
+	}
+	
+	public String run(CharacterEnvironment env)
+	{	
+		super.run(env);
+		
+		String name = getStrParam(1);
+		int val = getIntParam(2);
+		
+		// executes the add, throwing error if the skill didn't exist
+		if (! env.getPC().incSkill(name, val) )
+		{
+			throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + subparts[1]);
+		}
+		
+		return "";
 	}
 	
 	public String toString()

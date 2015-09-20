@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Command of following syntax types:
@@ -30,6 +31,22 @@ public class SklSpecCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (Skill does not exist or specialization blank) " + input);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{	
+		super.run(env);
+		
+		String name = getStrParam(1);
+		String val = getStrParam(2);
+		
+		// executes the add, throwing error if the skill didn't exist
+		if (! env.getPC().addSkillSpec(name, val) )
+		{
+			throw new IllegalArgumentException("Poorly formated effect, skill does not exist " + name);
+		}
+		
+		return "";
 	}
 	
 	public String toString()

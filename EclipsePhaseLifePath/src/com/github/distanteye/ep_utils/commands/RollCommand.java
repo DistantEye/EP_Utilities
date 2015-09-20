@@ -2,6 +2,7 @@ package com.github.distanteye.ep_utils.commands;
 
 import java.util.ArrayList;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Table;
 import com.github.distanteye.ep_utils.core.TableRow;
 import com.github.distanteye.ep_utils.core.Utils;
@@ -21,6 +22,11 @@ public class RollCommand extends Command {
 	*/
 	public RollCommand(String input) {
 		super(input);
+		
+		if (Command.isUncertain(input))
+		{
+			throw new IllegalArgumentException("Choices and wildcards must be resolved before this Command is built");
+		}
 
 		if (subparts.length != 3)
 		{
@@ -89,6 +95,19 @@ public class RollCommand extends Command {
 		
 		params.set(1, Integer.parseInt(subparts[1]));
 		params.set(2, new Table("temp",numDie,rows, false));
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		int val = getIntParam(1);
+		Table temp = (Table)params.get(2);
+		int roll = env.rollDice(val, this.toString(), false);
+		
+		Command c = CommandBuilder.getCommand(temp.findMatch(roll).getEffects());
+		
+		return c.run(env);		
 	}
 	
 	public String toString()

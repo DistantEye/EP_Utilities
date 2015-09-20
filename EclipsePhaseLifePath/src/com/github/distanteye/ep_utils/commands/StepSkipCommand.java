@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Step;
 
@@ -49,7 +50,21 @@ public class StepSkipCommand extends Command {
 		}
 	}
 
-	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		if (noStop)
+		{
+			env.setNoStop();
+		}
+		
+		env.setEffectsNeedReturn();
+		
+		Step temp = (Step)params.get(1);
+		
+		return temp.getEffects();
+	}
 	
 	public boolean isNoStop() {
 		return noStop;

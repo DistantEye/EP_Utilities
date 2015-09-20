@@ -1,7 +1,9 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Table;
+import com.github.distanteye.ep_utils.core.TableRow;
 
 /**
  * Command of following syntax types:
@@ -57,6 +59,28 @@ public class RollTableCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		Table temp = (Table)params.get(2);
+		int val = temp.getDiceRolled();
+		int roll = env.rollDice(val, this.toString(), false);
+		
+		TableRow tempRow = null;
+		
+		if (params.size() == 3)
+		{
+			tempRow = temp.findMatch(roll, getStrParam(2));
+		}
+		else
+		{
+			tempRow = temp.findMatch(roll);
+		}
+		
+		return tempRow.getEffects();
 	}
 
 	public String toString()

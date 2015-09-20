@@ -2,11 +2,12 @@ package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Skill;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
- * setSkl(<skill>,<value>,<conditional>)		( the three parameter versions throw an error if the conditional isn't true )
+ * remVar(<name>)
  * 
  * @author Vigilant
  *
@@ -55,6 +56,15 @@ public class RemVarCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect : skill does not exist " + origString);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		env.getPC().removeVar(getStrParam(1));
+		
+		return "";
 	}
 	
 	public String toString()

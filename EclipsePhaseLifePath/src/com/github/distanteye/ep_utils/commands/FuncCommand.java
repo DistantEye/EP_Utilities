@@ -47,6 +47,7 @@ public class FuncCommand extends Command {
 	
 	public String run(CharacterEnvironment env)
 	{
+		super.run(env);
 		Function temp = (Function)DataProc.getDataObj(subparts[1]);
 		
 		String effectStr = temp.getEffect();

@@ -48,7 +48,8 @@ Extra whitespace beyond the command spec is not well tolerated
 		setApt(<aptitudeName>,<value>)
 		addApt(<aptitudeName>,<value>)					(can also be used to subtract with a negative value)
 		addApt(<aptitudeName>,<value>,<conditional)		(the three parameter version throw an error if the conditional isn't true)
-		mox(<value>)
+		mox(<value>)								(incrementsMox)
+		setMox(<value>)								(sets Mox)
 		gear(<gearName>)
 		roll(<dieNumber>,#-#=effect/#-#=effect)  (list can be as long as needed)		(ex, roll(1-6=morph,splicer/7-10=morph(bouncer)) 
 		rollTable(<tableName>)						(replace semicolon, spaces and periods in table name with underscore, e.g. Table_6_5)
@@ -73,6 +74,8 @@ Extra whitespace beyond the command spec is not well tolerated
 		if(<condition>,<effectWhenTrue>,<effectWhenFalse>)		(The latter can be blank)
 		msgClient(<message>)					(says something to the UI about character changes)
 		setVar(<name>,<value>)
+		incVar(<name>,<value>)					(like setVar but adds integer to var with name = <name>)
+		remVar(<name>)
 		func(<name>)
 		func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
 		stop()			(marks character generation as over)

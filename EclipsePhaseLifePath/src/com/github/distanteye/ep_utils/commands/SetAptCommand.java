@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.containers.Aptitude;
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -55,6 +57,15 @@ public class SetAptCommand extends Command {
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
 
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		EpCharacter pc = env.getPC();
+		pc.stats().get(getStrParam(1)).setValue(getIntParam(2));
+		
+		return "";
 	}
 	
 	public String toString()

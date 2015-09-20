@@ -1,10 +1,11 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
- * setVar(<name>,<value>)
+ * incVar(<name>,<value>)   <value> must be int
  * 
  * @author Vigilant
  *
@@ -43,6 +44,15 @@ public class IncVarCommand extends Command {
 			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 		}
 				
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		env.getPC().incVar(getStrParam(1),getIntParam(2));
+		
+		return "";
 	}
 
 	public String toString()

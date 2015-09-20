@@ -71,7 +71,7 @@ public class AddAptCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.stats().get(params.get(1)).addValue((Integer)params.get(2));
+		pc.stats().get(getStrParam(1)).addValue(getIntParam(2));
 		
 		return "";
 	}

@@ -2,6 +2,7 @@ package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.containers.Rep;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -65,6 +66,15 @@ public class RepCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+
+		env.getPC().incRepValue(getStrParam(1), getIntParam(2));
+		
+		return "";
 	}
 	
 	public String toString()

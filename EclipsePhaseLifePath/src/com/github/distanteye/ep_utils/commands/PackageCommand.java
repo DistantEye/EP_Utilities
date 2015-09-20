@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Package;
 import com.github.distanteye.ep_utils.core.Utils;
@@ -76,6 +77,15 @@ public class PackageCommand extends Command {
 		
 	}
 
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+
+		Package temp = (Package)params.get(1);
+		
+		return temp.getEffects(getIntParam(2));
+	}
+	
 	public String toString()
 	{
 		Package temp = (Package)params.get(1);

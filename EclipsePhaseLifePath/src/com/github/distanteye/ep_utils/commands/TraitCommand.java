@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.containers.Trait;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -66,6 +67,16 @@ public class TraitCommand extends Command {
 		
 		params.set(1, t);
 		params.set(2, subparts[2]);
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		Trait t = (Trait)params.get(1);
+		env.getPC().traits().put(t.getName(), t);
+		
+		return "";
 	}
 	
 	public String toString()

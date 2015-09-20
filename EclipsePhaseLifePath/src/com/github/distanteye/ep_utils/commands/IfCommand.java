@@ -1,7 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
-import com.github.distanteye.ep_utils.containers.EpCharacter;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
@@ -45,10 +44,23 @@ public class IfCommand extends Command {
 	public String run(CharacterEnvironment env)
 	{
 		ConditionalStatement ifParam = (ConditionalStatement)params.get(1);
+	
+		String result = "";
 		
-		
-		
-		return "";
+		// if true, parse and run the command
+		if (ifParam.resolve(env))
+		{
+			Command c = CommandBuilder.getCommand(getStrParam(2));
+			result = c.run(env);
+		}
+		// if there was a command string for false, and cond was falls, parse and run
+		else if (params.size() == 4)
+		{
+			Command c = CommandBuilder.getCommand(getStrParam(3));
+			result = c.run(env);
+		}
+
+		return result;
 	}
 	
 	public String toString()

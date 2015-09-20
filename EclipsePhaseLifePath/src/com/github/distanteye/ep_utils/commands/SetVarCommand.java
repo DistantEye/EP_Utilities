@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -42,6 +43,15 @@ public class SetVarCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[2] + " is not a number");
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		env.getPC().setVar(getStrParam(1),getStrParam(2));
+		
+		return "";
 	}
 
 	public String toString()

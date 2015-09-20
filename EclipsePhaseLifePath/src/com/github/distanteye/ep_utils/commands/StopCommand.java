@@ -1,5 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
+
 /**
  * Command of following syntax types:
  * stop()
@@ -20,6 +22,16 @@ public class StopCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formated effect (wrong number params) " + input);
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		env.setHasFinished(true);
+		env.getUI().end();		
+		
+		return "";
 	}
 
 	public String toString()

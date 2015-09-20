@@ -1,10 +1,12 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
- * mox(<value>)
+ * setMox(<value>)
  * 
  * @author Vigilant
  *
@@ -36,6 +38,15 @@ public class SetMoxCommand extends Command {
 		{
 			throw new IllegalArgumentException("Poorly formatted effect, " + subparts[1] + " is not a number");
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		EpCharacter pc = env.getPC();
+		pc.setVar("{MOX}",""+getIntParam(1));
+		
+		return "";
 	}
 	
 	public String toString()

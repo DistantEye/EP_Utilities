@@ -27,4 +27,17 @@ public interface CharacterEnvironment {
 	 */
 	int rollDice(int numSides, String rollMessage, boolean forceRoll);
 	
+	void setHasFinished(boolean hasFinished);
+	
+	/**
+	 * Flags the effects processing engine to notStop after finishing this current step
+	 */
+	void setNoStop();
+	
+	/**
+	 * Flags the effects processing engine that it needs to return control to UI after finishing
+	 * the current step. If setNoStop was called, this will be ignored.
+	 */
+	void setEffectsNeedReturn();
+	
 }

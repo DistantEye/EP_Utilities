@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.containers.Morph;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Command of following syntax types:
@@ -55,7 +56,22 @@ public class MorphCommand extends Command {
 		return randomRoll;
 	}
 
-
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		
+		if (randomRoll)
+		{
+			Command c = CommandBuilder.getCommand("rollTable(CHOOSING_A_MORPH)");
+			c.run(env);
+		}
+		else
+		{
+			env.getPC().setCurrentMorph(Morph.createMorph(getStrParam(1)));
+		}
+		
+		return "";
+	}
 
 	public String toString()
 	{

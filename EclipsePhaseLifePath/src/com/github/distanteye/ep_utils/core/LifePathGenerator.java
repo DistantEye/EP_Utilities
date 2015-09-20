@@ -28,6 +28,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 	private String stepSkipTo; // keeps track of if a stepskip was triggered and to what the item to jump to is.
 	private boolean noStop;
 	private ArrayList<String> choiceEffects; // keeps track of the original state of input choices the player had made incase we need to back stuff out because error
+	private boolean effectsNeedReturn; // signifies the need to return from runEffects immediately instead of continuing to loop
 
 	/**
 	 * Creates the LifePathGenerator
@@ -47,6 +48,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 		stepSkipTo = "";
 		noStop = false;
 		choiceEffects = new ArrayList<String>();
+		effectsNeedReturn = false;
 	}	
 	
 	
@@ -1976,6 +1978,16 @@ public class LifePathGenerator implements CharacterEnvironment {
 
 	public UI getUI() {
 		return UIObject;
+	}
+
+
+	public void setNoStop() {
+		this.noStop = true;
+	}
+	
+	public void setEffectsNeedReturn()
+	{
+		this.effectsNeedReturn = true; 
 	}
 
 }

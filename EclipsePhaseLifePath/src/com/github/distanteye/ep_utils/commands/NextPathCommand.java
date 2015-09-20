@@ -1,5 +1,8 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.EpCharacter;
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
+
 /**
  * Command of following syntax types:
  * nextPath(<name>)
@@ -22,6 +25,15 @@ public class NextPathCommand extends Command {
 		}
 		
 		subpartsToParams();
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		super.run(env);
+		EpCharacter pc = env.getPC();
+		pc.setVar("{path}",getStrParam(1));
+		
+		return "";
 	}
 	
 	public String toString()
