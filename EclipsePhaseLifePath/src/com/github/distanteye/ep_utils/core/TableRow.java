@@ -1,4 +1,7 @@
 package com.github.distanteye.ep_utils.core;
+
+import com.github.distanteye.ep_utils.commands.Command;
+
 /**
  * TableRow encapsulates a single row of many in a particular Table object.
  * It sets it's own hashCode and as well as getCopy and other support methods.
@@ -14,6 +17,7 @@ public class TableRow {
 	private String description;
 	private String effects;
 	private int hash = -1;
+	private String parentName; // needed to avoid cyclical printing
 	
 	
 	
@@ -24,7 +28,7 @@ public class TableRow {
 	 * @param effects
 	 */
 	public TableRow(int lowRange, int highRange, String description,
-			String effects) {
+			String effects, String parentName) {
 		super();
 		this.lowRange = lowRange;
 		this.highRange = highRange;
@@ -39,7 +43,7 @@ public class TableRow {
 	 */
 	public TableRow getCopy()
 	{
-		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects);
+		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects, this.parentName);
 		return temp;
 	}
 	
@@ -51,7 +55,7 @@ public class TableRow {
 	 */
 	public TableRow getCopy(String search, String replace)
 	{
-		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects.replace(search, replace));
+		TableRow temp = new TableRow(this.lowRange,this.highRange,this.description, this.effects.replace(search, replace),this.parentName);
 		return temp;
 	}
 	
@@ -79,7 +83,41 @@ public class TableRow {
 		String lowRange = String.valueOf(this.lowRange);
 		String highRange = String.valueOf(this.highRange);
 		
-		return "" + padLeft(lowRange,2) + "-" + padLeft(highRange,2) + " " + DataProc.effectsToString(this.effects);
+		// we have to do a bit more special printing to avoid Cyclical toString with a TableRow rolling it's parent
+		return "" + padLeft(lowRange,2) + "-" + padLeft(highRange,2) + " " + effectsToString();
+	}
+	
+	public String effectsToString()
+	{
+		// we have to do a bit more special printing to avoid Cyclical toString with a TableRow rolling it's parent
+		String[] effects = Utils.splitCommands(this.effects, ";");
+		String effectsString = "";
+		boolean first = true;
+		
+		for (int i = 0; i < effects.length; i++)
+		{
+			String part = "";
+			if (effects[i].startsWith("rollTable") && Utils.returnStringInParen(effects[i]).equalsIgnoreCase(parentName))
+			{
+				// avoids printing any nesting of rollTable/runTable
+				part = "Reroll table";
+			}
+			else
+			{
+				part = Command.effectsToString(effects[i]);
+			}
+			
+			if (first)
+			{
+				effectsString = part;
+			}
+			else
+			{
+				effectsString += "; " + part;
+			}
+		}
+		
+		return effectsString;
 	}
 	
 	/**

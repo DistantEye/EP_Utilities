@@ -67,7 +67,7 @@ public class RollTableCommand extends Command {
 		
 		Table temp = (Table)params.get(1);
 		int val = temp.getDiceRolled();
-		int roll = env.rollDice(val, this.toString(), false);
+		int roll = env.rollDice(val, temp.toStringDescription(), false);
 		
 		TableRow tempRow = null;
 		

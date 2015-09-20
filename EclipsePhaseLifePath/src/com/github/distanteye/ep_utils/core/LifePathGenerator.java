@@ -135,7 +135,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 			try
 			{
 			
-				while (DataProc.containsChoice(effect))
+				while (Command.containsChoice(effect))
 				{
 					choiceEffects.add(effect);
 					
@@ -391,7 +391,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 		
 		// will make assumption user knows that choices are resolved left to right
 		// will also remove any asterisks that appeared after since they'll probably interfere
-		String promptMsg = DataProc.effectsToString(effect);
+		String promptMsg = Command.effectsToString(effect);
 		
 		// don't use extra info for * type notes if * is not in the String
 		if (extraInfo.startsWith("*") && !effect.contains("*")) 

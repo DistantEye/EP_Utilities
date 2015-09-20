@@ -48,8 +48,8 @@ public class CommandList extends Command {
 	 */
 	private String remainingEffects(int idx)
 	{
-		String[] temp = new String[params.size()-idx];
-		
+		String[] temp = new String[params.size()-idx-1];
+
 		int tempIdx = 0;
 		for (int i = idx+1; i < subparts.length; i++)
 		{

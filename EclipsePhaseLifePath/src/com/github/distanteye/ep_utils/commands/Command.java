@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 
 import com.github.distanteye.ep_utils.commands.conditionals.ConditionalStatement;
 import com.github.distanteye.ep_utils.commands.directives.Directive;
+import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
+import com.github.distanteye.ep_utils.core.Table;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -146,7 +148,7 @@ public abstract class Command {
 	 */
 	protected String[] splitParts(String input)
 	{
-		String insideParams = Utils.returnStringInParen(input);
+		String insideParams = Utils.returnStringInParen(input).replace("\\,", "\\\\,"); // we want to avoid early escaping of escaped commas
 		String commandName = getCommandName(input);
 		String[] results = Utils.splitCommands(commandName+","+insideParams);
 		
@@ -251,7 +253,7 @@ public abstract class Command {
 	 */
 	public static boolean isUncertain(String input)
 	{
-		return containsChoice(input) || Directive.containsDirective(input);
+		return containsChoice(input) || Directive.containsDirective(input) || input.contains(Table.wildCard);
 		
 	}
 	
@@ -358,6 +360,68 @@ public abstract class Command {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Takes a list of commands and attempts to parse them into a human friendly description
+	 * @param effects Any list of syntax correct commands
+	 * @return Human readable version of the string input
+	 * @throw IllegalStateException if the datastore isn't intialized
+	 */
+	public static String effectsToString(String effects)
+	{
+		effects = effects.replaceAll("#[^#]+#", ""); // this tags are mostly unparseable, ignore them 
+		
+		String result = "";
+		
+		String[] effectsArr = Utils.splitCommands(effects, ";"); 
+		
+		for (String effect : effectsArr)
+		{
+			
+			String params = Utils.returnStringInParen(effect);
+			
+			String commandName = "";
+			if (effect.indexOf('(') > 0 )
+			{
+				commandName = effect.substring(0, effect.indexOf('('));
+			}
+			else
+			{
+				commandName = effect;
+			}
+			
+			// TODO : to comply with older code, we have to insert the command at the beginning of params
+			// can probably redo this at some point
+			params = commandName + "," + params;
+			
+			if (Skill.isSkill(effect))
+			{
+				result += ("Add skill : " + effect).replace("?1?", "(Choose One Skl)");;
+			}
+			else
+			{
+				Command c = CommandBuilder.getCommand(effect);
+				result += c.toString();
+			}
+		
+			result += ",";
+		}
+		
+		// we give nice words for up to Choose 5, because these are the most common
+		result = result.replaceAll("\\?1\\?", "(Choose One)");
+		result = result.replaceAll("\\?2\\?", "(Choose Two");
+		result = result.replaceAll("\\?3\\?", "(Choose Three)");
+		result = result.replaceAll("\\?4\\?", "(Choose Four)");
+		result = result.replaceAll("\\?5\\?", "(Choose Five)");
+		
+		//remaining ones get ugly number based notation
+		result = result.replaceAll("\\?([0-9]*)\\?", "(Choose $1)");
+		
+		// fix any still escaped characters
+		result = result.replace("\\,", ",");
+		
+		return result;
 	}
 	
 }

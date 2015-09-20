@@ -94,7 +94,10 @@ public class PackageCommand extends Command {
 	{
 		Package temp = (Package)params.get(1);
 		
-		return "Execute package("+ temp.getName() + ") with PP:" + params.get(2);
+		String pp = getStrParam(2);
+		pp = pp.replace("!!X!!", "*");
+		
+		return "Execute package("+ temp.getName() + ") with PP:" + pp;
 	}
 	
 }

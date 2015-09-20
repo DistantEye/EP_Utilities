@@ -1,4 +1,7 @@
 package com.github.distanteye.ep_utils.core;
+
+import com.github.distanteye.ep_utils.commands.Command;
+
 /**
  * Container meant to encapsulate different linked steps in a generation process
  * Not strictly necessary, but makes intelligent navigation and management possible without forcing it 
@@ -35,7 +38,7 @@ public class Step implements UniqueNamedData {
 
 	public String toString()
 	{
-		return DataProc.effectsToString(this.effects);
+		return Command.effectsToString(this.effects);
 	}
 	
 	/**

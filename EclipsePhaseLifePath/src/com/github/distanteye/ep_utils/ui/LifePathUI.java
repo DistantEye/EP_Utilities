@@ -61,7 +61,7 @@ public class LifePathUI extends UISkeleton {
 	 */
 	@Override
 	public String promptUser(String message, String extraContext) {
-		
+
 		String prompt = message + "\n" + extraContext;
 		
 		// check for a few things that lets us provide extra info

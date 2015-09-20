@@ -1,4 +1,7 @@
 package com.github.distanteye.ep_utils.core;
+
+import com.github.distanteye.ep_utils.commands.Command;
+
 /**
  * Simple function meant to allow to store references to effects lists that are long and used repeatedly.
  * Functions are shorter versions of packages that will auto-resolve to explain their effects. A convenience item
@@ -26,7 +29,7 @@ public class Function implements UniqueNamedData {
 
 	public String toString()
 	{
-		return DataProc.effectsToString(this.effect);
+		return Command.effectsToString(this.effect);
 	}
 	
 	/**

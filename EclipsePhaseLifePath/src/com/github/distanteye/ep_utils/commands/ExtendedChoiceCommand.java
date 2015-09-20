@@ -67,7 +67,9 @@ public class ExtendedChoiceCommand extends Command {
 		
 		Command c = CommandBuilder.getCommand(effect);
 
-		return c.run(env);
+		String result = c.run(env);
+		this.setExtraContext(c.getExtraContext()); // inherit any context from inner command
+		return result;
 	}
 
 	public String toString()

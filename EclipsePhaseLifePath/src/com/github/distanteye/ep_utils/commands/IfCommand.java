@@ -48,24 +48,24 @@ public class IfCommand extends Command {
 	
 		String result = "";
 		
+		Command c = null;
+		
 		// if true, parse and run the command
 		if (ifParam.resolve(env))
 		{
-			Command c = CommandBuilder.getCommand(getStrParam(2));
+			c = CommandBuilder.getCommand(getStrParam(2));
 			result = c.run(env);
 		}
 		// if there was a command string for false, and cond was falls, parse and run
 		else if (params.size() == 4)
 		{
-			Command c = CommandBuilder.getCommand(getStrParam(3));
+			c = CommandBuilder.getCommand(getStrParam(3));
 			result = c.run(env);
 		}
 		
-		if (result.contains("null"))
-		{
-			int foo = 0;
-		}
-
+		// inherit any context from inner command when returning this one
+		this.setExtraContext(c.getExtraContext());
+		
 		return result;
 	}
 	

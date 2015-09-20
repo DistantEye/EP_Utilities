@@ -479,7 +479,7 @@ PP;1>setVar({factionName},Socialite);Art: ?1? 30;Networking: Media 40;Kinesics 3
 PP;3>setVar({factionName},Socialite);rep(f,50);Art: ?1? 40;Deception 25;Interest: ?1? 50;Intimidation 30;Kinesics 40;Networking: Media 40;Persuasion 30;Protocol 40
 -----------------------------------------------------------------------------------
 Package
-Solarian
+SOLARIAN
 You have skated the magnetic fields in the sun’s corona with your pack of surya.
 +Exploration, +Morphological Freedom, +Personal Development, +Research
 PP;1>setVar({factionName},Solarian);Flight 40;Interest: ?1? 30;Medicine: Nanomedicine 30
@@ -2102,7 +2102,7 @@ GATECRASHING_EVENT
 100
 false
 01-20`You go on 1d10 gatecrashing missions, with no major consequences. You do see some cool things, though. Gain +1 Moxie.`mox(1)
-21-48`You serve on 1d10 missions and pick up some new skills. Replace a 1 PP Focus, Faction, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP (p. 32). `msgClient( Replace a 1 PP Focus, Faction, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP)
+21-48`You serve on 1d10 missions and pick up some new skills. Replace a 1 PP Focus, Faction, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP (p. 32). `msgClient( Replace a 1 PP Focus\, Faction\, or Customization package you  acquired in Step 10 with the Explorer package at 1 PP)
 49-50`You make a new home on Portal (p. 122, Gatecrashing) or some other exoplanet outpost. `msgClient(You make a new home on Portal (p. 122, Gatecrashing) or some other exoplanet outpost)
 51-52`You go through a gate but never come through on the other side. Start game with 10 points of stress and roll randomly  on the Choosing a Morph table (p. 44).`incVar({stress},10);rollTable(CHOOSING_A_MORPH)
 53-54`You receive some focused training in gate operations. Gain the Infosec (Gate Hacking) specialization   (p. 142, Gatecrashing).`sklspec(Infosec,Gate Hacking)

@@ -23,9 +23,9 @@ public class RollCommand extends Command {
 	public RollCommand(String input) {
 		super(input);
 		
-		if (Command.isUncertain(input))
+		if (Command.isUncertain(subparts[0]))
 		{
-			throw new IllegalArgumentException("Choices and wildcards must be resolved before this Command is built");
+			throw new IllegalArgumentException("Choices and wildcards must be resolved for <dieNumber> before this Command is built");
 		}
 
 		if (subparts.length != 3)
@@ -90,7 +90,7 @@ public class RollCommand extends Command {
 			}
 			
 			// this gets everything after the =
-			rows.add(new TableRow(low,high,"",currEffect.substring(currEffect.indexOf('=')+1))); 							
+			rows.add(new TableRow(low,high,"",currEffect.substring(currEffect.indexOf('=')+1),"temp")); 							
 		}
 		
 		params.put(1, Integer.parseInt(subparts[1]));
@@ -107,9 +107,7 @@ public class RollCommand extends Command {
 		
 		TableRow tempRow = temp.findMatch(roll);
 		this.setExtraContext(tempRow.getDescription());
-		Command c = CommandBuilder.getCommand(tempRow.getEffects());
-		
-		return c.run(env);		
+		return tempRow.getEffects();		
 	}
 	
 	public String toString()
@@ -121,7 +119,22 @@ public class RollCommand extends Command {
 			start = "Force r";
 		}
 		
-		return start + "oll result from :\n" + params.get(2).toString();
+		String result = start + "oll result from ("; 
+		Table t = (Table)params.get(2);
+		boolean first = true;
+		for (TableRow row : t.getRows())
+		{
+			if (first)
+			{
+			result += row.toString();
+			}
+			else
+			{
+				result += ";" + row.toString();
+			}
+		}
+		
+		return result + ")";
 	}
 
 }

@@ -36,6 +36,10 @@ public class Table implements UniqueNamedData {
 		this.suppressDescriptions = suppressDescriptions;
 	}
 	
+	public ArrayList<TableRow> getRows() {
+		return rows;
+	}
+
 	/**
 	 * Returns a String with the Table name, and all the toString of the rows, containing the lowRange, highRange, and Row effects converted to String
 	 */
