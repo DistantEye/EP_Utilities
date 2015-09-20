@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Function;
 
@@ -42,6 +43,21 @@ public class FuncCommand extends Command {
 				throw new IllegalArgumentException("Poorly formated effect, " + subparts[1] + " does not exist or is not a function" + input);
 			}
 		}
+	}
+	
+	public String run(CharacterEnvironment env)
+	{
+		Function temp = (Function)DataProc.getDataObj(subparts[1]);
+		
+		String effectStr = temp.getEffect();
+		
+		for (int x = 2; x < subparts.length; x++)
+		{
+			int idx = x-1; // we start with looking to replace &1&
+			effectStr = effectStr.replaceAll("&" + idx + "&", subparts[x]);
+		}
+		
+		return effectStr;
 	}
 	
 	public String toString()

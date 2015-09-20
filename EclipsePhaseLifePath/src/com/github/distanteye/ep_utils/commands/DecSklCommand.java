@@ -73,7 +73,7 @@ public class DecSklCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		String skillname = (String)params.get(1);
+		String skillname = getStrParam(1);
 		
 		// determine whether a dec or a decAll
 		if (params.get(2) instanceof Integer)

@@ -31,7 +31,7 @@ public class BackgroundCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.setBackground((String)params.get(1));
+		pc.setBackground(getStrParam(1));
 		
 		return "";
 	}

@@ -1,6 +1,7 @@
 package com.github.distanteye.ep_utils.commands;
 
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
@@ -38,10 +39,28 @@ public class ExtendedChoiceCommand extends Command {
 	{
 		super.run(env);
 		
-		// TODO Working here! Am not sure how to resolve the need to prompt the UI.
-		// either we give more rights back to lifepath generator or we take some away via also passing UI context to run()
+		String response = "";						
+		int choice = -1;						
+		String[] choiceEffects = subparts[2].split("/");
 		
-		// and strictly speaking if we were to pass that, there'd be no reason why Command couldn't resolve it's own wildcards...
+		while (!Utils.isInteger(response) || Integer.parseInt(response) <= 0 || Integer.parseInt(response) > choiceEffects.length)
+		{
+			response = env.getUI().promptUser(subparts[1], "Entering blank will choose a random value"); 
+			
+			// response should be an integer
+			if (Utils.isInteger(response))
+			{
+				// only do these when we at least get a number
+				choice = Integer.parseInt(response);
+				choiceEffects = subparts[2].split("/");
+			}
+			else if (response.length() == 0)
+			{
+				choice = env.getRng().nextInt(choiceEffects.length)+1;
+				response = ""+choice;
+				choiceEffects = subparts[2].split("/");
+			}
+		}
 		
 		return "";
 	}
