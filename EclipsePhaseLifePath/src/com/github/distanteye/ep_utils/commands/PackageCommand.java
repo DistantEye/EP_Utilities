@@ -85,6 +85,7 @@ public class PackageCommand extends Command {
 		Package temp = (Package)params.get(1);
 		int pp = getIntParam(2);
 		env.getPC().incVar("packageVal", pp);
+		env.getPC().addPackage(new String[]{temp.getName(),""+pp});
 		env.getUI().statusUpdate("Package added (PP" + pp + ") : " + temp.getName() + " " + temp.getDescription());
 		
 		return temp.getEffects(pp);

@@ -152,6 +152,12 @@ public abstract class Command {
 		String commandName = getCommandName(input);
 		String[] results = Utils.splitCommands(commandName+","+insideParams);
 		
+		// fix issues with whitespace
+		for (int i = 0; i < results.length; i++)
+		{
+			results[i] = results[i].trim();
+		}
+		
 		params.put(0, commandName); // we always want to set commandname to params 0
 		return results;
 	}

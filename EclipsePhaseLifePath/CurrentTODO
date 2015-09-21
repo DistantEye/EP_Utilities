@@ -44,13 +44,10 @@ need to factor specializations into CP cost calculation
 
 may need to have a flag that determines whether or not morph cost is factored into CP cost calculation
 
-toString for all command objects and all data validation needs to consider Choice/Other uncertainty placeholders like getVar, etc
-
-Commands should throw invalidstateexception if uncertainties still exist when running it
-
 Note you can implement a quick version of Package based Character creation via making custom tables and an UI permanently set to let characters "choose" rolls
 along with some variable checking to make sure people don't go over the package limit, it should go in relatively fast.
 
-Don't forget that you can use the new character saving/load system to make character backups and finally have a more elegant solution for the "undo last step" problem!!
-
 Take down note about ChararcterSheetUI not being fully implemented when it becomes so
+
+Make maybe a second backup String for characters run before every table roll : it would allow characters to use the "Use MOX to reroll last table roll" feature
+	-This might have to be limited to scrubbing the whole step or it would be hard to implement in the UI aspect of "how do people trigger it?"
