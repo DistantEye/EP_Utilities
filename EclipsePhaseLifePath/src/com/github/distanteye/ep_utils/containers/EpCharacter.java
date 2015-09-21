@@ -663,14 +663,6 @@ public class EpCharacter extends SkilledCharacter {
 	{
 		super.loadXML(xml);
 		
-		// zero out all current variables
-		traits = new AspectHashMap<Trait>(", ",false);		
-		gearList = new ArrayList<String>();
-		reps = new AspectHashMap<Rep>("\n",false);
-		sleights = new AspectHashMap<Sleight>(", ",false);
-		allBackgrounds = new LinkedList<String>();
-		currentMorph = null;
-		
 		// We use Aptitudes, a more EP-Tailored Primary Stat
 		// We have to replace the applicable entries from SkilledCharacter with those
 		// unfortunately because of setImmutable() we also have to recreate the whole thing
@@ -773,6 +765,60 @@ public class EpCharacter extends SkilledCharacter {
 		
 	}
 	
+	/**
+	 * Discards character's current data and sets everything to default values
+	 */
+	public void setToDefaults()
+	{
+		super.setToDefaults();
+		
+		// zero out all current variables to their default state
+		this.currentMorph = null;
+		traits = new AspectHashMap<Trait>(", ",false);
+		
+		gearList = new ArrayList<String>();
+		
+		// We use Aptitudes, a more EP-Tailored Primary Stat
+		for (String stat : Aptitude.TYPES)
+		{
+			stats.put(stat, new Aptitude(stat,0));	
+		}
+		
+		// now do it for MOX and the rest of the derived stats
+		// all stats other than mox,INIT,Speed reflect the user's bonus to that category, since the rest are calculated stats
+		for (String stat : SECONDARY_STATS)
+		{
+			stats.put(stat, new Stat(stat,0));	
+		}
+		stats.setImmutable();
 	
-	
+		// build the order we need to print as for Stats
+		ArrayList<String> tempOrder = new ArrayList<String>(Arrays.asList(Aptitude.TYPES));
+		tempOrder.addAll(Arrays.asList(SECONDARY_STATS));
+		stats.setOrder(tempOrder);
+		
+		reps = new AspectHashMap<Rep>("\n",false);
+		
+		// gather all valid Rep categories from Rep class and add them at 0
+		for (String repKey : Rep.repTypes.keySet())
+		{
+			reps.put(repKey,Rep.getCopyOf(repKey));
+		}
+		
+		sleights = new AspectHashMap<Sleight>(", ",false);
+		
+		this.setVar("{MOX}", "1");
+		this.setVar("{credits}", "0");
+		this.setVar("{creditsSpent}", "0");
+		this.setVar("{faction}", "");
+		this.setVar("{background}", "");
+		this.setVar("{stress}", "0");
+		this.setVar("{CP}", "0");
+		this.setVar("{path}", "");
+		this.setVar("{isSynth}", "0");
+		allBackgrounds = new LinkedList<String>();
+
+		
+	}
+		
 }

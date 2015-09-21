@@ -64,7 +64,10 @@ public class IfCommand extends Command {
 		}
 		
 		// inherit any context from inner command when returning this one
-		this.setExtraContext(c.getExtraContext());
+		if (c != null)
+		{
+			this.setExtraContext(c.getExtraContext());
+		}
 		
 		return result;
 	}

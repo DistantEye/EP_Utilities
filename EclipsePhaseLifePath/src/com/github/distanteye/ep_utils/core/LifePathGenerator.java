@@ -40,9 +40,18 @@ public class LifePathGenerator implements CharacterEnvironment {
 	 * @param UIObject_ Valid object that can perform user interaction (prompts, alerts)
 	 * @param isRolling Boolean flag for whether dice rolls are rolled, or instead prompts to the user. Not all dice rolls can be manual
 	 */
-	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling)
+	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling_)
 	{
 		playerChar = new EpCharacter(characterName,false);
+		initNonCharValues(UIObject_,isRolling_);
+	}	
+	
+	/**
+	 * Sets most of the default values, except for character. Can be used to reinit this class
+	 * when coupled with playerChar.setToDefaults
+	 */
+	public void initNonCharValues(UI UIObject_, boolean isRolling)
+	{
 		UIObject = UIObject_;
 		this.isRolling = isRolling;
 		this.nextEffects = "";
@@ -52,8 +61,13 @@ public class LifePathGenerator implements CharacterEnvironment {
 		noStop = false;
 		choiceEffects = new ArrayList<String>();
 		effectsNeedReturn = false;
-	}	
+	}
 	
+	public void reset()
+	{
+		playerChar.setToDefaults();
+		initNonCharValues(UIObject, isRolling);
+	}
 	
 	/**
 	 * Returns the underlying player's Character object

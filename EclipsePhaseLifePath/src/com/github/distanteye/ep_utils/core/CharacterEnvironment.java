@@ -27,6 +27,11 @@ public interface CharacterEnvironment {
 	 */
 	int rollDice(int numSides, String rollMessage, boolean forceRoll);
 	
+	/**
+	 * Resets the CharacterEnvironment to its default state
+	 */
+	void reset();
+	
 	void setHasFinished(boolean hasFinished);
 	
 	/**

@@ -44,7 +44,7 @@ public abstract class UISkeleton implements UI {
 	
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
-	private JMenuItem save,load;
+	private JMenuItem save,load,newChar;
 	protected boolean updateEnabled;
 	
 	public UISkeleton()
@@ -60,15 +60,19 @@ public abstract class UISkeleton implements UI {
         mainPanel = new GBagPanel();
         
         // setup menu
+        newChar = new JMenuItem("New");
         save = new JMenuItem("Save");
         load = new JMenuItem("Load");
+        
         menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
+        fileMenu.add(newChar);
         fileMenu.add(save);
         fileMenu.add(load);
         menuBar.add(fileMenu);
         mainWindow.setJMenuBar(menuBar);
+        newChar.addActionListener(new ClickListener());
         save.addActionListener(new ClickListener());
         load.addActionListener(new ClickListener());
         
@@ -81,6 +85,30 @@ public abstract class UISkeleton implements UI {
 	 * Note update should respect updateEnabled, and not act if updateEnabled=false
 	 */
 	abstract public void update();
+	
+	/**
+	 * Tells the UI to refresh all components, pulling new values from the backend for everything.
+	 * Typically called when the underlying character has had a massive change.
+	 */
+	public void refreshAll()
+	{
+		updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
+		
+		mainPanel.refreshAllComps(true);	
+
+		updateEnabled = true;
+		update();
+	}
+	
+	/**
+	 * Blanks out all values and sets up the UI to handle a new character
+	 */
+	public void newChar()
+	{
+		gen.reset();
+		mainStatus.setText("");
+		refreshAll();
+	}
 	
 	public void save(String fileName)
 	{
@@ -117,14 +145,7 @@ public abstract class UISkeleton implements UI {
 	{
 		gen.getPC().loadXML(xml);
 		
-
-		updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
-							   // from setText()
-		
-		mainPanel.refreshAllComps(true);	
-		
-		updateEnabled = true;
-		update();
+		refreshAll();
 	}
 	
 	protected void reInit()
@@ -292,7 +313,10 @@ public abstract class UISkeleton implements UI {
 	public class ClickListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(save)) {
+			if (e.getSource().equals(newChar)) {
+				newChar();
+			}
+			else if (e.getSource().equals(save)) {
 				JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 			        "Data Files", "xml", "txt");

@@ -266,9 +266,7 @@ public class BaseCharacter {
 	 */
 	public void loadXML(String xml)
 	{
-		this.name = "";
-		otherVars = new HashMap<String,String>();
-		setAge(-1); // placeholder
+		this.setToDefaults();
 		
 		this.name = Utils.returnStringInTag("charName", xml, 0);
 		
@@ -286,6 +284,14 @@ public class BaseCharacter {
 		} 
 	}
 	
-	
+	/**
+	 * Discards character's current data and sets everything to default values
+	 */
+	public void setToDefaults()
+	{
+		this.name = "";
+		otherVars = new HashMap<String,String>();
+		setAge(-1); // placeholder
+	}
 	
 }

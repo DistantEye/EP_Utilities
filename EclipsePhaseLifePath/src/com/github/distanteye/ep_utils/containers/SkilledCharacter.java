@@ -552,15 +552,6 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		super.loadXML(xml); // call the superclass to handle superclass values
 		
-		this.autoApplyMastery = false;
-		skills = new HashMap<String, Skill>();
-		stats = new StatHashMap(" ",false);
-		
-		currentTable = "";
-		lastRolls = new LinkedList<Integer>();
-		packages = new ArrayList<String[]>();
-		
-		
 		// rebuild Skills
 		String skillsBlock = Utils.returnStringInTag("skills", xml, 0);
 		Pattern tagReg = Pattern.compile("<skill>");
@@ -634,6 +625,24 @@ public class SkilledCharacter extends BaseCharacter {
 		}
 		
 		this.autoApplyMastery = Boolean.parseBoolean( Utils.returnStringInTag("autoApplyMastery", xml, 0).toLowerCase() );
+	}
+	
+	/**
+	 * Discards character's current data and sets everything to default values
+	 */
+	public void setToDefaults()
+	{
+		super.setToDefaults();
+		
+		this.autoApplyMastery = false;
+		skills = new HashMap<String, Skill>();
+		stats = new StatHashMap(" ",false);
+		
+		currentTable = "";
+		lastRolls = new LinkedList<Integer>();
+		packages = new ArrayList<String[]>();
+		this.lastStep = null;
+		
 	}
 	
 }

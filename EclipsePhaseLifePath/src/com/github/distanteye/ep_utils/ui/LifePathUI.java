@@ -36,12 +36,18 @@ public class LifePathUI extends UISkeleton {
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	public void loadString(String xml)
+	public void refreshAll()
 	{
-		super.loadString(xml);
+		super.refreshAll();
+		
+		// reset button incase it was disabled
+		mainPanel.getComponentVal("Run Next Step").setEnabled(true);
+		mainWindow.revalidate();
+		mainWindow.repaint();
 		
 		gen.setNextEffects(""); // blank any previous values
 		gen.setHasStarted(false);
+		gen.setHasFinished(false);
 		
 		// detect the step for a loaded character
 		if (gen.getPC().getLastStep() != null)
@@ -60,7 +66,7 @@ public class LifePathUI extends UISkeleton {
 			}			
 			
 			// auto stop if we loaded a stopped character
-			if (gen.getNextEffects().length() == 0)
+			if (gen.getNextEffects().length() == 0 && gen.hasStarted())
 			{
 				gen.setHasFinished(true);
 				end();
