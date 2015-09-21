@@ -38,4 +38,6 @@ public interface UI {
 	 * Updates the state of the UI, running checks as appropriate
 	 */
 	void update();
+	
+	void loadString(String xml);
 }

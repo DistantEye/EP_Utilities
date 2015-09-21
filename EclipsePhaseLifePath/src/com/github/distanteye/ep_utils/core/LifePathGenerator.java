@@ -22,6 +22,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 
 	private SecureRandom rng = new SecureRandom();
 	private EpCharacter playerChar;
+	private String characterBackup;
 	private UI UIObject;
 	private boolean isRolling;
 	private String nextEffects; // used to store things between steps
@@ -524,6 +525,23 @@ public class LifePathGenerator implements CharacterEnvironment {
 		}
 
 		return effect.replaceFirst("\\?([0-9]+)\\?[\\*]*", promptRes);
+	}
+	
+	public void backupCharacter()
+	{
+		characterBackup = getPC().getXML();
+	}
+	
+	public void loadBackup()
+	{
+		if (characterBackup.length() != 0)
+		{
+			getUI().loadString(characterBackup);
+		}
+		else
+		{
+			throw new IllegalArgumentException("No backup availible to load!");
+		}
 	}
 	
 	public boolean isRolling() {

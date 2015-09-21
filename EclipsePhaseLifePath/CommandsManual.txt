@@ -79,6 +79,8 @@ Extra whitespace beyond the command spec is not well tolerated
 		func(<name>)
 		func(<name>,<param1>,<param2>,<...etc>)  (any params passed after name will substitute in for <1>,<2>, etc, in the function 
 		stop()			(marks character generation as over)
+		backupCharacter()
+		loadCharBackup()
 		
 		Conditions:
 		?hastrait(trait)

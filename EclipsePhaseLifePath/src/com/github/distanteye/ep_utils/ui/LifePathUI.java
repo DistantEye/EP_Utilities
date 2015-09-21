@@ -36,19 +36,31 @@ public class LifePathUI extends UISkeleton {
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	protected void load(String fileName)
+	public void loadString(String xml)
 	{
-		super.load(fileName);
+		super.loadString(xml);
+		
+		gen.setNextEffects(""); // blank any previous values
+		gen.setHasStarted(false);
 		
 		// detect the step for a loaded character
-		if (!gen.hasStarted() && gen.getPC().getLastStep() != null)
+		if (gen.getPC().getLastStep() != null)
 		{
-			Step next = (Step)DataProc.getDataObj(gen.getPC().getLastStep().getNextStep());
-			gen.setNextEffects(next.getEffects());
-			gen.setHasStarted(true);
+			Step currStep = (Step)DataProc.getDataObj(gen.getPC().getLastStep().getName());
+			Step next = (Step)DataProc.getDataObj(currStep.getNextStep());
 			
-			// auto stop if we loaded a stop character
-			if (gen.getNextEffects().equalsIgnoreCase("stop()"))
+			if (currStep != null)
+			{
+				gen.setHasStarted(true);
+			}
+			
+			if (next != null)
+			{
+				gen.setNextEffects(next.getEffects());				
+			}			
+			
+			// auto stop if we loaded a stopped character
+			if (gen.getNextEffects().length() == 0)
 			{
 				gen.setHasFinished(true);
 				end();

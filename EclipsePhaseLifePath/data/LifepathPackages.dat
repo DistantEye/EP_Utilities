@@ -2271,8 +2271,8 @@ msgClient(START STEP 15);stepskip(STEP_16)
 --------------------------------------------------------------
 STEP
 STEP_16
-STEP_END
-msgClient(START STEP 16);rollTable(TABLE_16);stepSkipNoStop(STEP_END);
+
+msgClient(START STEP 16);rollTable(TABLE_16)
 --------------------------------------------------------------
 STEP
 STEP_END

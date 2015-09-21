@@ -46,4 +46,16 @@ public interface CharacterEnvironment {
 	 * @param stepSkipTo Valid command/effects string
 	 */
 	void setStepSkipTo(String stepSkipTo);
+	
+	/**
+	 * A "quick save" that pushes to an internal String the current character state.
+	 * Can be loaded to character with loadBackup
+	 */
+	public void backupCharacter();
+
+	/**
+	 * Takes the backup from backupCharacter and overwrites Character with it
+	 * Will not work if backupCharacter hasn't been called yet
+	 */
+	public void loadBackup();
 }

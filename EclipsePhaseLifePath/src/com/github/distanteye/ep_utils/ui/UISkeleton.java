@@ -4,30 +4,25 @@
 package com.github.distanteye.ep_utils.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
-import java.awt.Container;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.github.distanteye.ep_utils.containers.Rep;
 import com.github.distanteye.ep_utils.core.DataProc;
@@ -87,7 +82,7 @@ public abstract class UISkeleton implements UI {
 	 */
 	abstract public void update();
 	
-	protected void save(String fileName)
+	public void save(String fileName)
 	{
 		try {
 			PrintWriter fileO = new PrintWriter(new FileOutputStream(fileName));
@@ -99,7 +94,7 @@ public abstract class UISkeleton implements UI {
 		}
 	}
 
-	protected void load(String filename) {
+	public void load(String filename) {
 		try {
 			Scanner fileIn = new Scanner(new FileInputStream(filename));
 			String temp = "";
@@ -109,21 +104,27 @@ public abstract class UISkeleton implements UI {
 				temp += fileIn.nextLine();
 			}
 			
-			gen.getPC().loadXML(temp);
 			fileIn.close();
-
-			updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
-								   // from setText()
 			
-			mainPanel.refreshAllComps(true);	
-			
-			updateEnabled = true;
-			update();
-			
+			loadString(temp);
 			
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException("File : \"" + filename + "\" could not be found");
 		}
+	}
+	
+	public void loadString(String xml)
+	{
+		gen.getPC().loadXML(xml);
+		
+
+		updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
+							   // from setText()
+		
+		mainPanel.refreshAllComps(true);	
+		
+		updateEnabled = true;
+		update();
 	}
 	
 	protected void reInit()
@@ -292,151 +293,25 @@ public abstract class UISkeleton implements UI {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource().equals(save)) {
-				JFrame frm = new SaveBox();
-				frm.setSize(200,100);
-				frm.setVisible(true);
+				JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			        "Data Files", "xml", "txt");
+			    chooser.setFileFilter(filter);
+			    int returnVal = chooser.showOpenDialog(mainWindow);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	save(chooser.getSelectedFile().getName());
+			    }
 			}
 			else if (e.getSource().equals(load)) {
-				JFrame frm = new LoadBox();
-				frm.setSize(200,100);
-				frm.setVisible(true);
+				JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			        "Data Files", "xml", "txt");
+			    chooser.setFileFilter(filter);
+			    int returnVal = chooser.showOpenDialog(mainWindow);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	load(chooser.getSelectedFile().getName());
+			    }
 			}
-		}
-	}
-	
-	@SuppressWarnings("serial")
-	public class SaveBox extends JFrame {
-		private JLabel label;
-		private JTextField inputPrompt;
-
-		private GridBagConstraints cons;
-		private Container mainWindow;
-		private GridBagLayout layout;
-
-		public SaveBox() throws HeadlessException {
-			super();
-			this.label = new JLabel("Filename");
-			this.inputPrompt = new JTextField("",256);
-
-			
-			layout = new GridBagLayout();
-			mainWindow = getContentPane();
-			mainWindow.setLayout(layout);
-			cons = new GridBagConstraints();
-
-			cons.gridx = 0;
-			cons.gridy = 0;
-			cons.gridheight = 1;
-			cons.gridwidth = 1;
-			cons.weightx = 50;
-			cons.fill = GridBagConstraints.BOTH;
-			addC(label);
-			cons.gridy++;
-			addC(inputPrompt);
-			inputPrompt.addKeyListener(new EnterListener(this));
-		}
-
-		// done as a shorthand for some of the code
-		private void addC(Component comp) {
-			layout.setConstraints(comp, cons);
-			mainWindow.add(comp);
-		}
-
-
-		public class EnterListener implements KeyListener {
-			SaveBox sb;
-			public EnterListener(SaveBox sb) {
-				this.sb = sb;
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() == 10) {
-					save(inputPrompt.getText());
-					sb.setVisible(false);
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// do nothing
-
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// do nothing
-
-			}
-
-		}
-	}
-
-	@SuppressWarnings("serial")
-	public class LoadBox extends JFrame {
-		private JLabel label;
-		private JTextField inputPrompt;
-
-		private GridBagConstraints cons;
-		private Container mainWindow;
-		private GridBagLayout layout;
-
-		public LoadBox() throws HeadlessException {
-			super();
-			this.label = new JLabel("Filename");
-			this.inputPrompt = new JTextField("",256);
-
-			layout = new GridBagLayout();
-			mainWindow = getContentPane();
-			mainWindow.setLayout(layout);
-			cons = new GridBagConstraints();
-
-			cons.gridx = 0;
-			cons.gridy = 0;
-			cons.gridheight = 1;
-			cons.gridwidth = 1;
-			cons.weightx = 50;
-			cons.fill = GridBagConstraints.BOTH;
-			addC(label);
-			cons.gridy++;
-			addC(inputPrompt);
-			inputPrompt.addKeyListener(new EnterListener(this));
-		}
-
-		// done as a shorthand for some of the code
-		private void addC(Component comp) {
-			layout.setConstraints(comp, cons);
-			mainWindow.add(comp);
-		}
-
-
-		public class EnterListener implements KeyListener {
-			LoadBox sb;
-
-			public EnterListener(LoadBox sb) {
-				this.sb = sb;
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() == 10) {
-					load(inputPrompt.getText());
-					sb.setVisible(false);
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// do nothing
-
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// do nothing
-
-			}
-
 		}
 	}
 	

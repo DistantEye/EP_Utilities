@@ -167,6 +167,14 @@ public class CommandBuilder {
 		{
 			return new StopCommand(input);
 		}
+		else if (lcEffect.startsWith("backupcharacter"))
+		{
+			return new BackupCharCommand(input);
+		}
+		else if (lcEffect.startsWith("loadcharbackup"))
+		{
+			return new LoadCharBackupCommand(input);
+		}
 		else
 		{
 			throw new IllegalArgumentException("Poorly formated effect " + input);
