@@ -51,3 +51,17 @@ Take down note about ChararcterSheetUI not being fully implemented when it becom
 
 Make maybe a second backup String for characters run before every table roll : it would allow characters to use the "Use MOX to reroll last table roll" feature
 	-This might have to be limited to scrubbing the whole step or it would be hard to implement in the UI aspect of "how do people trigger it?"
+	
+	
+Needs done before launch stuff:	
+	
+Errors are not always recoverable even when do to user choice, diagnose and figure out how to fix that.
+
+Improve documentation : give a structural diagram, an improved readme (think to explain to non system users), and 
+	Make it clear that LifePathGenerator catches errors for runtime gracefulrecovery attempts
+	
+Make an allrandom button to toggle.
+
+Make it so statustext is saved as a part of the character.
+
+You should probably use an actual XML parser. JAXB? DOM? something?
