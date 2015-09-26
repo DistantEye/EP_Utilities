@@ -80,7 +80,9 @@ Functions are parameterized packages. They store a single list of Commands, but 
 
 ### Support packages
 
-* Wrappers => Defines two major items : AccessWrapper and MappedComponent
+#### Wrappers
+
+Defines two major items : AccessWrapper and MappedComponent
   
   * MappedComponent stores a JComponent and an AccessWrapper, tying a UI object to a Data element
     
@@ -106,4 +108,6 @@ Functions are parameterized packages. They store a single list of Commands, but 
       
   * This allows for short UI that only need to set up the initial structure, after which, the MappedComponents can be looped through and told to manage their updates in response to user input
   
-* UI.Validators => Short package containing Validation classes used by the UI
+#### UI.Validators
+
+Short package containing Validation classes used by the UI
