@@ -1,6 +1,10 @@
 # EP_Utilities
 Open Source utility programs for the Eclipse Phase roleplaying system.
 
+##THIS DOC
+
+The readme here will discuss a high level overview of the project, including basic setup and other prerequiste knowledge. A pure technical explanation is located in README_TECH.md .
+
 ##ABOUT
 
 This project started out of a mix of appreciation and frustration for the character generation for Eclipse Phase. The Transhuman book added the Lifepath option, but this became a mess of table flipping and rolling that was overall unwieldy. Thus the goal became first to make a program that could do that in a guided way, then expanded to implementing that goal in as configurable and generalized way as possible.
