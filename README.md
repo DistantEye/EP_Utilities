@@ -1,9 +1,7 @@
 # EP_Utilities
 Open Source utility programs for the Eclipse Phase roleplaying system.
 
-##THIS DOC
-
-The readme here will discuss a high level overview of the project, including basic setup and other prerequiste knowledge. A pure technical explanation is located in README_TECH.md .
+The readme here will discuss a high level overview of the project, including basic setup and other prerequiste knowledge. A pure technical explanation is located in README_TECH.md
 
 ##ABOUT
 
