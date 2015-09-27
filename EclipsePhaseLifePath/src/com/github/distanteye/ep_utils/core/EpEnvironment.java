@@ -11,8 +11,7 @@ import com.github.distanteye.ep_utils.commands.directives.DirectiveBuilder;
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.ui.UI;
 /**
- * The class takes in the appropriate information,
- * and then runs the lifepath process to interactively generate a character
+ * The class takes in the appropriate information via DataProc to interactively generate a character
  * through various stages,packages, and tables
  * 
  * @author Vigilant
@@ -34,7 +33,7 @@ public class EpEnvironment implements CharacterEnvironment {
 	private boolean effectsNeedReturn; // signifies the need to return from runEffects immediately instead of continuing to loop
 
 	/**
-	 * Creates the LifePathGenerator
+	 * Creates the EpEnvironment
 	 * 
 	 * @param characterName Name of the character being genned
 	 * @param UIObject_ Valid object that can perform user interaction (prompts, alerts)
