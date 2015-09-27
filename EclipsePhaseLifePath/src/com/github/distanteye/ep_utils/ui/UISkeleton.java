@@ -26,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.github.distanteye.ep_utils.containers.Rep;
 import com.github.distanteye.ep_utils.core.DataProc;
-import com.github.distanteye.ep_utils.core.LifePathGenerator;
+import com.github.distanteye.ep_utils.core.EpEnvironment;
 import com.github.distanteye.ep_utils.wrappers.*;
 
 /**
@@ -37,7 +37,7 @@ import com.github.distanteye.ep_utils.wrappers.*;
  */
 public abstract class UISkeleton implements UI {
 	protected JTextArea mainStatus;
-	protected LifePathGenerator gen;
+	protected EpEnvironment gen;
 	protected JFrame mainWindow;
 	protected GBagPanel mainPanel;
 	private BorderLayout windowLayout;
@@ -49,11 +49,11 @@ public abstract class UISkeleton implements UI {
 	
 	public UISkeleton()
 	{
-		gen = new LifePathGenerator("",this,true);
+		gen = new EpEnvironment("",this,true);
         mainWindow = new JFrame();  
         windowLayout = new BorderLayout();
         DataProc.init("LifepathPackages.dat","internalInfo.dat");
-		gen = new LifePathGenerator("",this,true);
+		gen = new EpEnvironment("",this,true);
 		
         mainWindow.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         mainWindow.setLayout(windowLayout);

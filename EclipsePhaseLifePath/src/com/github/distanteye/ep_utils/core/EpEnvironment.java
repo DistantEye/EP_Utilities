@@ -18,7 +18,7 @@ import com.github.distanteye.ep_utils.ui.UI;
  * @author Vigilant
  *
  */
-public class LifePathGenerator implements CharacterEnvironment {
+public class EpEnvironment implements CharacterEnvironment {
 
 	private SecureRandom rng = new SecureRandom();
 	private EpCharacter playerChar;
@@ -40,7 +40,7 @@ public class LifePathGenerator implements CharacterEnvironment {
 	 * @param UIObject_ Valid object that can perform user interaction (prompts, alerts)
 	 * @param isRolling Boolean flag for whether dice rolls are rolled, or instead prompts to the user. Not all dice rolls can be manual
 	 */
-	public LifePathGenerator(String characterName, UI UIObject_, boolean isRolling_)
+	public EpEnvironment(String characterName, UI UIObject_, boolean isRolling_)
 	{
 		playerChar = new EpCharacter(characterName,false);
 		initNonCharValues(UIObject_,isRolling_);
