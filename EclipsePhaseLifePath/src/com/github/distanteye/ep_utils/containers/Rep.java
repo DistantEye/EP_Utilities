@@ -1,6 +1,8 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import org.simpleframework.xml.*;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -11,12 +13,20 @@ import com.github.distanteye.ep_utils.core.Utils;
  * @author Vigilant
  *
  */
+@Root
 public class Rep implements Comparable<Rep> {
 	public static HashMap<String,Rep> repTypes = new HashMap<String,Rep>(); // these are dynamic so no Enums
 	
+	@Attribute
 	private String name;
+	
+	@Element
 	private String description;
+	
+	@Element
 	private String networkingField;
+	
+	@Element
 	private int value;
 	
 	/**
@@ -197,5 +207,7 @@ public class Rep implements Comparable<Rep> {
 		temp.setValue(val);
 		return temp;
 	}
+	
+	
 	
 }
