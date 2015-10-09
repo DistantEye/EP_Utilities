@@ -1,5 +1,6 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
