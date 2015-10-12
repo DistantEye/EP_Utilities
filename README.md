@@ -34,10 +34,10 @@ Use Eclipse's 'Import Projects'->Projects from git
 ###If you don't use Eclipse
 To run it, check out the entire repo, with existing structure left intact.
 
-Compile the src folder with javac
+The project is setup with maven. Follow normal procedures to build.
 
-java LifePathUI
-(You may have to move the two .dat files from the Data folder into the same directory as LifePathUI)
+The main classes for ui are in target\classes\com\github\distanteye\ep_utils\ui
+See runnable programs (below for the names)
 
 ##RUNNABLE PROGRAMS
 
