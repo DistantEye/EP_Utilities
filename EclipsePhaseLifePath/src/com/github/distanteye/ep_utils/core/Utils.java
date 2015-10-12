@@ -1,14 +1,113 @@
 package com.github.distanteye.ep_utils.core;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 /**
- * General Utility class, mainly focusing on String management. It's under investigation
- * whether some or all of this might be replaced by a common library
+ * General Utility class, mainly focusing on String management. Most entries here are meant to be short consolidations of frequent
+ * actions/calls 
+ * 
+ * It's under investigation whether some or all of this might be replaced by a common library
  * 
  * @author Vigilant
  *
  */
 public class Utils {
+	
+	/**
+	 * Checks whether elem is a tag equal to String name, throwing an error if it isn't
+	 * Placed here for code brevity and reuse
+	 * @param elem Valid XML element
+	 * @param name Name of the tag to match against elem. Case insensitive
+	 */
+	public static void verifyTag(Element elem, String name)
+	{
+		if (!elem.getName().equalsIgnoreCase(name))
+		{
+			throw new IllegalArgumentException("Tag is wrong type! Expected (" + name + "), found (" + elem.getName() + ")");
+		}
+	}
+	
+	/**
+	 * Checks whether elem has children in the array passed, throwing error if it doesn't.
+	 * Placed here for code brevity and reuse
+	 * @param elem Valid XML element
+	 * @param name children Array of strings equal to the child element names to look for
+	 */
+	public static void verifyChildren(Element elem, String[] children)
+	{
+		for (String child : children)
+		{
+			if (elem.getChild(child) == null)
+			{
+				throw new IllegalArgumentException("Tag (" + elem.getName() + "), is missing child element (" + child + ")");
+			}
+		}
+	}
+	
+	/**
+	 * Checks whether elem has Attribute of String name, throwing error if it doesn't
+	 * Placed here for code brevity and reuse
+	 * @param elem Valid XML element
+	 * @param name Name of the tag to match against elem. Case insensitive
+	 */
+	public static void verifyAttr(Element elem, String name)
+	{
+		if (elem.getAttribute(name) == null)
+		{
+			throw new IllegalArgumentException("Tag (" + elem.getName() + "), is missing tag attribute (" + name + ")");
+		}
+	}
+	
+	/**
+	 * Handles the conversion from xml String to JDOM Document, also performing the necessary error catch
+	 * @param xml Valid xml String
+	 * @return JDOM xml Document.
+	 */
+	public static Document getXMLDoc(String xml)
+	{
+		SAXBuilder builder = new SAXBuilder();
+		Document document = null;
+		
+		try {
+			document = (Document) builder.build(new ByteArrayInputStream(xml.getBytes()));
+		} catch (JDOMException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return document;
+	}
+	
+	/**
+	 * Handles the conversion from xml String to JDOM Document and returns the root element.
+	 * Calls getXMLDoc
+	 * 
+	 * @param xml Valid xml String
+	 * @return Root Element for the structure contained in String sml
+	 */
+	public static Element getRootElement(String xml)
+	{
+		Element tmp = getXMLDoc(xml).getRootElement();
+		tmp.detach();
+		
+		return tmp;
+	}
+	
+	
+	public static String elemToString(Element e)
+	{
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(e);
+	}
 	
 	/**
 	 * Simple boolean method to return whether a String is in a particular String array

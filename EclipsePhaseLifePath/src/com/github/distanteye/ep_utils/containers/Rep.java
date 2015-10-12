@@ -1,6 +1,10 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import org.jdom2.*;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -172,19 +176,30 @@ public class Rep implements Comparable<Rep> {
 		this.networkingField = networkingField;
 	}
 	
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) + "<rep>\n" +
-				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
-				Utils.tab(tab+1) + "<value>" + getValue() + "</value>\n" +
-			Utils.tab(tab) + "</rep>\n";		
+		Element root = new Element("rep");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( getName() ));
+		doc.getRootElement().addContent(new Element("value").setText( ""+getValue() ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);
 	}
 	
 	public static Rep fromXML(String xml)
 	{
-		String repBlock = Utils.returnStringInTag("rep", xml, 0);
-		String nameStr = Utils.returnStringInTag("name", repBlock, 0);
-		String valueStr = Utils.returnStringInTag("value", repBlock, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "rep");
+		Utils.verifyChildren(root, new String[]{"name","value"});
+		
+		String nameStr = root.getChildText("name");
+		String valueStr = root.getChildText("value");
 		
 		int val = -1;
 		if (Utils.isInteger(valueStr) && Integer.parseInt(valueStr) >= 0)

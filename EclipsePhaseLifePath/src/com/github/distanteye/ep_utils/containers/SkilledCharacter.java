@@ -1,10 +1,14 @@
 package com.github.distanteye.ep_utils.containers;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import com.github.distanteye.ep_utils.core.DataProc;
 import com.github.distanteye.ep_utils.core.Step;
@@ -497,51 +501,63 @@ public class SkilledCharacter extends BaseCharacter {
 	 */
 	protected String getInnerXML()
 	{
-		String result = super.getInnerXML();
+		StringWriter result = new StringWriter();
+		Element root = new Element("Character");
+		Document doc = new Document(root);
 		
-		result += Utils.tab(1) + "<skills>\n";
+		Element elemSkills = new Element("skills");
 		
 		for (String key : skills.keySet())
 		{
-			String tagOpen = Utils.tab(2) + "<" + key + ">\n";
-			String tagClose = Utils.tab(2) + "</" + key + ">\n";
-			result += tagOpen + skills.get(key).toXML(3) + tagClose;
+			Element skl = Utils.getRootElement(skills.get(key).toXML());
+			elemSkills.addContent( skl );
 		}
 		
-		result += Utils.tab(1) + "</skills>\n";
 		
-		result += Utils.tab(1) + "<stats>\n";
+		doc.getRootElement().addContent(elemSkills);
 		
+		Element elemStats = new Element("stats");
 		for (String key : stats.keySet())
 		{
-			String tagOpen = Utils.tab(2) + "<" + key + ">\n";
-			String tagClose = Utils.tab(2) + "</" + key + ">\n";
-			result += tagOpen + stats.get(key).toXML(3) + tagClose;
+			Element stat = Utils.getRootElement(stats.get(key).toXML());
+			elemStats.addContent( stat );
 		}
+		doc.getRootElement().addContent(elemStats);
 		
-		result += Utils.tab(1) + "</stats>\n";
+		doc.getRootElement().addContent(new Element("lastRolls").setText( Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
+		doc.getRootElement().addContent(new Element("currentTable").setText( Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
 		
-		result += Utils.tab(1) + "<lastRolls>" + Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") + "</lastRolls>\n";
-		result += Utils.tab(1) + "<currentTable>" + currentTable + "</currentTable>\n";
 		
 		String lastStepName = "";
 		if (lastStep != null)
 		{
 			lastStepName = lastStep.getName();
 		}
-		result += Utils.tab(1) + "<lastStep>" + lastStepName + "</lastStep>\n";
+		doc.getRootElement().addContent(new Element("lastStep").setText( lastStepName ));
 		
-		String[] packagesArr = new String[packages.size()];
-		int idx = 0;
+		Element elemPackages = new Element("packages");
 		for (String[] tempArr : packages)
 		{
-			packagesArr[idx++] = Utils.joinStr(tempArr,"|");
+			Element pkg = new Element("package");
+			pkg.addContent(new Element("name").setText(tempArr[0]));
+			pkg.addContent(new Element("pp").setText(tempArr[1]));
 		}
 		
-		result += Utils.tab(1) + "<packages>" + Utils.joinStr(packagesArr, ";") + "</packages>\n";
-		result += Utils.tab(1) + "<autoApplyMastery>" + String.valueOf(autoApplyMastery) + "</autoApplyMastery>\n";
+		doc.getRootElement().addContent( elemPackages );
+		doc.getRootElement().addContent(new Element("autoApplyMastery").setText( String.valueOf(autoApplyMastery) ));
 		
-		return result;
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		
+		try {
+			xmlOut.outputElementContent(root, result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return super.getInnerXML() + "\n" + result.toString();
+
 	}
 	
 	/**
@@ -552,35 +568,30 @@ public class SkilledCharacter extends BaseCharacter {
 	{
 		super.loadXML(xml); // call the superclass to handle superclass values
 		
-		// rebuild Skills
-		String skillsBlock = Utils.returnStringInTag("skills", xml, 0);
-		Pattern tagReg = Pattern.compile("<skill>");
-		Matcher m = tagReg.matcher(skillsBlock);
-		int idx = -1;
-		while ( m.find() )
-		{
-			idx = m.start();
-			String tagName = "skill"; 
-			String tagContent = "<skill>" + Utils.returnStringInTag(tagName, skillsBlock, idx) + "</skill>";
-			Skill tmp = Skill.fromXML(tagContent);
-			skills.put(tmp.getFullName(), tmp);
-		} 
-			
-		// rebuild Stats
-		String statsBlock = Utils.returnStringInTag("stats", xml, 0);
-		tagReg = Pattern.compile("<stat>");
-		m = tagReg.matcher(statsBlock);
-		idx = -1;
-		while ( m.find() )
-		{
-			idx = m.start();
-			String tagName = "stat"; 
-			String tagContent = "<stat>" + Utils.returnStringInTag(tagName, statsBlock, idx) + "</stat>";
-			Stat tmpStat = Stat.fromXML(tagContent);
-			stats.put(tmpStat.getName(), tmpStat);
-		} 
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
 		
-		String lastRollsStr = Utils.returnStringInTag("lastRolls", xml, 0);
+		Utils.verifyTag(root, "Character");
+		Utils.verifyChildren(root, new String[]{"skills","stats","lastRolls","currentTable","lastStep","packages", "autoApplyMastery"});
+		
+		// rebuild Skills
+		Element elemSkills = root.getChild("skills");
+		for (Element e : elemSkills.getChildren())
+		{
+			Skill tmp = Skill.fromXML( Utils.elemToString(e) );
+			skills.put(tmp.getFullName(), tmp);
+		}
+		
+		// rebuild Stats
+		Element elemStats = root.getChild("stats");
+		for (Element e : elemStats.getChildren())
+		{
+			Stat tmpStat = Stat.fromXML( Utils.elemToString(e) );
+			stats.put(tmpStat.getName(), tmpStat);
+		}
+		
+		
+		String lastRollsStr = root.getChildText("lastRolls");
 		// only update if not null
 		if (lastRollsStr.length() > 0)
 				{
@@ -596,8 +607,8 @@ public class SkilledCharacter extends BaseCharacter {
 			}
 		}
 		
-		this.currentTable = Utils.returnStringInTag("currentTable", xml, 0);
-		String lastStepStr = Utils.returnStringInTag("lastStep", xml, 0);
+		this.currentTable = root.getChildText("currentTable");
+		String lastStepStr = root.getChildText("lastStep");
 		
 		// only update lastStep if not null
 		if (lastStepStr.length() > 0)
@@ -616,15 +627,17 @@ public class SkilledCharacter extends BaseCharacter {
 			lastStep = null;
 		}
 		
-		// packages have to be double split since each "package" is a String[] itself, from an bigger list/array
-		String[] packagesArr = Utils.returnStringInTag("packages", xml, 0).split(";");
+		// rebuild packages
+		Element elemPackages = root.getChild("packages");
 		
-		for (String tempStr : packagesArr)
+		for (Element pkg : elemPackages.getChildren())
 		{
-			this.packages.add(tempStr.split("|")); 
+			String name = pkg.getChildText("name");
+			String pp = pkg.getChildText("pp");
+			this.packages.add( new String[]{name,pp} ); 
 		}
 		
-		this.autoApplyMastery = Boolean.parseBoolean( Utils.returnStringInTag("autoApplyMastery", xml, 0).toLowerCase() );
+		this.autoApplyMastery = Boolean.parseBoolean( root.getChildText("autoApplyMastery").toLowerCase() );
 	}
 	
 	/**

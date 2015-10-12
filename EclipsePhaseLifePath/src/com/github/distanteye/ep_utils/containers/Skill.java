@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -672,26 +677,36 @@ public class Skill {
 	 * Returns information sufficient to reconstruct this object, encoded in xml
 	 * Contains:	 * 
 	 * String name, String subtype, String specialization, int value
-	 * @param tab The number of tabs to set everything by.
 	 * @return An xml tag <skill><name>name</name><subtype>subtype</subtype><specialization>specialization</specialization><value>value</value></skill>
 	 */
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) +"<skill>\n"+
-						Utils.tab(tab+1) + "<name>"+name+"</name>\n" +
-						Utils.tab(tab+1) + "<subtype>"+subtype+"</subtype>\n" +
-						Utils.tab(tab+1) + "<specialization>"+specialization+"</specialization>\n" +
-						Utils.tab(tab+1) + "<value>"+value+"</value>\n" +
-				Utils.tab(tab) + "</skill>\n";
-	}
+		Element root = new Element("skill");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( name ));
+		doc.getRootElement().addContent(new Element("subtype").setText( subtype ));
+		doc.getRootElement().addContent(new Element("specialization").setText( specialization ));
+		doc.getRootElement().addContent(new Element("value").setText( ""+value ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);}
 	
 	public static Skill fromXML(String xml)
 	{
-		String skillBlock = Utils.returnStringInTag("skill", xml, 0);
-		String name = Utils.returnStringInTag("name",skillBlock,0);
-		String subtype = Utils.returnStringInTag("subtype",skillBlock,0);
-		String specialization = Utils.returnStringInTag("specialization",skillBlock,0);
-		String valueStr = Utils.returnStringInTag("value",skillBlock,0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "skill");
+		Utils.verifyChildren(root, new String[]{"name","subtype","specialization","value"});
+		
+		String name = root.getChildText("name");
+		String subtype = root.getChildText("subtype");
+		String specialization = root.getChildText("specialization");
+		String valueStr = root.getChildText("value");
+		
 		int value = -1;
 		if (Utils.isInteger(valueStr))
 		{

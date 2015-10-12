@@ -1,8 +1,13 @@
 package com.github.distanteye.ep_utils.containers;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -241,23 +246,33 @@ public class BaseCharacter {
 	 */
 	protected String getInnerXML()
 	{
-		String result = "";
+		StringWriter result = new StringWriter();
+		Element root = new Element("Character");
+		Document doc = new Document(root);
 		
-		result += Utils.tab(1) + "<charName>" + this.name + "</charName>\n";
+		doc.getRootElement().addContent(new Element("charName").setText( this.name ));
 		
-		result += Utils.tab(1) + "<otherVars>\n";
+		Element elemOtherVars = new Element("otherVars");
 		
 		for (String key : otherVars.keySet())
 		{
-			String tagOpen = Utils.tab(2) + "<" + key + ">";
-			String tagClose = "</" + key + ">\n";
-			result += tagOpen + otherVars.get(key) + tagClose;
+			elemOtherVars.addContent(new Element(key).setText(  otherVars.get(key)  ));
 		}
 		
-		result += Utils.tab(1) + "</otherVars>\n";
+		
+		doc.getRootElement().addContent(elemOtherVars);
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
 		
 		
-		return result;
+		try {
+			xmlOut.outputElementContent(root, result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result.toString();
 	}
 	
 	/**
@@ -268,20 +283,20 @@ public class BaseCharacter {
 	{
 		this.setToDefaults();
 		
-		this.name = Utils.returnStringInTag("charName", xml, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
 		
-		// otherVars is a bit more complicated, since the tags inside are the variable names, and are dynamic/unique
-		String otherVarsBlock = Utils.returnStringInTag("otherVars", xml, 0);
-		Pattern tagReg = Pattern.compile("<(?!/)([^>]+)>");
-		Matcher m = tagReg.matcher(otherVarsBlock);
-		int idx = -1;
-		while ( m.find() )
+		Utils.verifyTag(root, "Character");
+		Utils.verifyChildren(root, new String[]{"charName","otherVars"});
+		
+		this.name = root.getChildText("charName");
+		Element elemOtherVars = root.getChild("otherVars");
+		
+		for (Element e : elemOtherVars.getChildren())
 		{
-			idx = m.start();
-			String tagName = m.group(1); // what's inside the brackets
-			String tagContent = Utils.returnStringInTag(tagName, otherVarsBlock, idx);
-			otherVars.put(tagName, tagContent);
-		} 
+			otherVars.put(e.getName(), e.getText());
+		}
+		
 	}
 	
 	/**

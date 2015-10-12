@@ -2,6 +2,11 @@ package com.github.distanteye.ep_utils.containers;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -197,19 +202,30 @@ public class Trait {
 		return tempList.get(rng.nextInt(tempList.size()));
 	}
 	
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) + "<trait>\n" +
-					Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
-					Utils.tab(tab+1) + "<level>" + getLevel() + "</level>\n" +
-				Utils.tab(tab) + "</trait>\n";
+		Element root = new Element("trait");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( getName() ));
+		doc.getRootElement().addContent(new Element("level").setText( ""+getLevel() ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);
 	}
 	
 	public static Trait fromXML(String xml)
 	{
-		String traitBlock = Utils.returnStringInTag("trait", xml, 0);
-		String nameStr = Utils.returnStringInTag("name", traitBlock, 0);
-		String valueStr = Utils.returnStringInTag("level", traitBlock, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "trait");
+		Utils.verifyChildren(root, new String[]{"name","level"});
+		
+		String nameStr = root.getChildText("name");
+		String valueStr = root.getChildText("level");
 		
 		int val = -1;
 		if (Utils.isInteger(valueStr))

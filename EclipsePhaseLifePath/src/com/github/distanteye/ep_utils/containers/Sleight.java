@@ -1,6 +1,11 @@
 package com.github.distanteye.ep_utils.containers;
 import java.util.HashMap;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -192,17 +197,28 @@ public class Sleight {
 		CONSTANT,INSTANT,TEMP_ACTION_TURNS,TEMP_MINUTES,TEMP_HOURS,SUSTAINED
 	}
 		
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) + "<sleight>\n" +
-				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
-			Utils.tab(tab) + "</sleight>\n";		
+		Element root = new Element("sleight");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( getName() ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);
 	}
 	
 	public static Sleight fromXML(String xml)
 	{
-		String sleightBlock = Utils.returnStringInTag("sleight", xml, 0);
-		String nameStr = Utils.returnStringInTag("name", sleightBlock, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "sleight");
+		Utils.verifyChildren(root, new String[]{"name"});
+		
+		String nameStr = root.getChildText("name");
 		
 		if (!sleightList.containsKey(nameStr))
 		{

@@ -2,6 +2,11 @@ package com.github.distanteye.ep_utils.containers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -261,17 +266,28 @@ public class Morph {
 	}
 	
 	
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) + "<morph>\n" +
-				Utils.tab(tab+1) + "<name>" + getName() + "</name>\n" +
-			Utils.tab(tab) + "</morph>\n";		
+		Element root = new Element("morph");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( getName() ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);	
 	}
 	
 	public static Morph fromXML(String xml)
 	{
-		String morphBlock = Utils.returnStringInTag("morph", xml, 0);
-		String nameStr = Utils.returnStringInTag("name", morphBlock, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "morph");
+		Utils.verifyChildren(root, new String[]{"name"});
+		
+		String nameStr = root.getChildText("name");
 		
 		if (!exists(nameStr))
 		{

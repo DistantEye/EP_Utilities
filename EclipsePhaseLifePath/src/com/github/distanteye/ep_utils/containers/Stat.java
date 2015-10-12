@@ -1,5 +1,10 @@
 package com.github.distanteye.ep_utils.containers;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -57,19 +62,30 @@ public class Stat {
 		setValue(getValue() + value);
 	}
 	
-	public String toXML(int tab)
+	public String toXML()
 	{
-		return Utils.tab(tab) + "<stat>\n"+
-						Utils.tab(tab+1) + "<name>" + name + "</name>\n" +
-						Utils.tab(tab+1) + "<value>" + value + "</value>\n" +
-			Utils.tab(tab) + "</stat>\n";
+		Element root = new Element("stat");
+		Document doc = new Document(root);
+		
+		doc.getRootElement().addContent(new Element("name").setText( name ));
+		doc.getRootElement().addContent(new Element("value").setText( ""+value ));
+		
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		return xmlOut.outputString(doc);
 	}
 	
 	public static Stat fromXML(String xml)
 	{
-		String statBlock = Utils.returnStringInTag("stat", xml, 0);
-		String nameStr = Utils.returnStringInTag("name", statBlock, 0);
-		String valueStr = Utils.returnStringInTag("value", statBlock, 0);
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "stat");
+		Utils.verifyChildren(root, new String[]{"name","value"});
+		
+		String nameStr = root.getChildText("name");
+		String valueStr = root.getChildText("value");
 		
 		int val = -1;
 		if (Utils.isInteger(valueStr))

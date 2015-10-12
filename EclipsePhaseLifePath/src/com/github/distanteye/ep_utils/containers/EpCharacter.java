@@ -1,11 +1,15 @@
 package com.github.distanteye.ep_utils.containers;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -599,60 +603,68 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	protected String getInnerXML()
 	{
-		String result = super.getInnerXML();
+		StringWriter result = new StringWriter();
+		Element root = new Element("Character");
+		Document doc = new Document(root);
 		
-		result += Utils.tab(1) + "<traits>\n";
-		for (String key : traits.keySet())
+		Element elemTraits = new Element("traits");
+		for (Trait t : traits.values())
 		{
-			result += traits.get(key).toXML(2);
+			Element e = Utils.getRootElement(t.toXML());
+			elemTraits.addContent( e );
 		}
-		result += Utils.tab(1) + "</traits>\n";
+		doc.getRootElement().addContent(elemTraits);
 		
-		
-		result += Utils.tab(1) + "<reps>\n";
-		for (String key : reps.keySet())
+		Element elemReps = new Element("reps");
+		for (Rep r : reps.values())
 		{
-			result += reps.get(key).toXML(2);
+			Element e = Utils.getRootElement(r.toXML());
+			elemReps.addContent( e );
 		}
-		result += Utils.tab(1) + "</reps>\n";
+		doc.getRootElement().addContent(elemReps);
 		
 		
-		result += Utils.tab(1) + "<sleights>\n";
-		for (String key : sleights.keySet())
+		Element elemSleights = new Element("sleights");
+		for (Sleight s : sleights.values())
 		{
-			result += sleights.get(key).toXML(2);
-		}		
-		result += Utils.tab(1) + "</sleights>\n";
+			Element e = Utils.getRootElement(s.toXML());
+			elemSleights.addContent( e );
+		}
+		doc.getRootElement().addContent(elemSleights);
 		
-		
-		result += Utils.tab(1) + "<gearList>\n";
+		Element elemGearList = new Element("gearList");
 		for (String gear : gearList)
 		{
-			String tagOpen = Utils.tab(2) + "<gear>";
-			String tagClose = "</gear>\n";
-			result += tagOpen + gear + tagClose;
+			elemGearList.addContent( new Element("gear").setText( gear ) );
 		}
-		result += Utils.tab(1) + "</gearList>\n";
+		doc.getRootElement().addContent(elemGearList);
 		
-		
-		result += Utils.tab(1) + "<allBackgrounds>\n";
-		for (String gear : gearList)
+		Element elemAllBackgrounds = new Element("allBackgrounds");
+		for (String background : allBackgrounds)
 		{
-			String tagOpen = Utils.tab(2) + "<background>";
-			String tagClose = "</background>\n";
-			result += tagOpen + gear + tagClose;
+			elemGearList.addContent( new Element("background").setText( background ) );
 		}
-		result += Utils.tab(1) + "</allBackgrounds>\n";
+		doc.getRootElement().addContent(elemAllBackgrounds);
 		
-		String morphStr = "<character_morph></character_morph>";
+		Element elemCharMorph = new Element("character_morph");
 		if (currentMorph != null)
 		{
-			morphStr = "<character_morph>" + currentMorph.toXML(1) + "</character_morph>";
+			elemCharMorph.setText(currentMorph.toXML());
+		}
+		doc.getRootElement().addContent(elemCharMorph);
+
+		XMLOutputter xmlOut = new XMLOutputter();
+		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		
+		
+		try {
+			xmlOut.outputElementContent(root, result);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		result += morphStr;
+		return super.getInnerXML() + "\n" + result.toString();
 		
-		return result;
 	}
 	
 	/**
@@ -688,79 +700,56 @@ public class EpCharacter extends SkilledCharacter {
 		tempOrder.addAll(Arrays.asList(SECONDARY_STATS));
 		stats.setOrder(tempOrder);
 		
+		Document document = Utils.getXMLDoc(xml);
+		Element root = document.getRootElement();
+		
+		Utils.verifyTag(root, "Character");
+		Utils.verifyChildren(root, new String[]{"traits","reps","sleights","gearList","allBackgrounds","character_morph"});
 		
 		// rebuild Traits
-		String traitsBlock = Utils.returnStringInTag("traits", xml, 0);
-		Pattern tagReg = Pattern.compile("<trait>");
-		Matcher m = tagReg.matcher(traitsBlock);
-		int idx = -1;
-		while ( m.find() )
+		Element elemTraits = root.getChild("traits");
+		for (Element e : elemTraits.getChildren())
 		{
-			idx = m.start();
-			String tagName = "trait"; 
-			String tagContent = "<trait>" + Utils.returnStringInTag(tagName, traitsBlock, idx) + "</trait>";
-			Trait tmp = Trait.fromXML(tagContent);
+			Trait tmp = Trait.fromXML( Utils.elemToString(e) );
 			traits.put(tmp.getName(), tmp);
-		} 
-			
+		}
+		
 		// rebuild Reps
-		String repsBlock = Utils.returnStringInTag("reps", xml, 0);
-		tagReg = Pattern.compile("<rep>");
-		m = tagReg.matcher(repsBlock);
-		idx = -1;
-		while ( m.find() )
+		Element elemReps = root.getChild("reps");
+		for (Element e : elemReps.getChildren())
 		{
-			idx = m.start();
-			String tagName = "rep"; 
-			String tagContent = "<rep>" + Utils.returnStringInTag(tagName, repsBlock, idx) + "</rep>";
-			Rep tmpRep = Rep.fromXML(tagContent);
-			reps.put(tmpRep.getName(), tmpRep);
+			Rep tmp = Rep.fromXML( Utils.elemToString(e) );
+			reps.put(tmp.getName(), tmp);
 		}
 		
 		// rebuild Sleights
-		String sleightsBlock = Utils.returnStringInTag("sleights", xml, 0);
-		tagReg = Pattern.compile("<sleight>");
-		m = tagReg.matcher(sleightsBlock);
-		idx = -1;
-		while ( m.find() )
+		Element elemSleights = root.getChild("sleights");
+		for (Element e : elemSleights.getChildren())
 		{
-			idx = m.start();
-			String tagName = "sleight"; 
-			String tagContent = "<sleight>" + Utils.returnStringInTag(tagName, sleightsBlock, idx) + "</sleight>";
-			Sleight tmpSleight = Sleight.fromXML(tagContent);
-			sleights.put(tmpSleight.getName(), tmpSleight);
+			Sleight tmp = Sleight.fromXML( Utils.elemToString(e) );
+			sleights.put(tmp.getName(), tmp);
 		}
 		
 		// rebuild Gearlist
-		String gearsBlock = Utils.returnStringInTag("gears", xml, 0);
-		tagReg = Pattern.compile("<gear>");
-		m = tagReg.matcher(gearsBlock);
-		idx = -1;
-		while ( m.find() )
+		Element elemGearList = root.getChild("gearList");
+		for (Element e : elemGearList.getChildren())
 		{
-			idx = m.start();
-			String tmpGear = Utils.returnStringInTag("gear", gearsBlock, idx);
-			gearList.add(tmpGear);
+			gearList.add( e.getText() );
 		}
 		
 		// rebuild AllBackgrounds
-		String backgroundsBlock = Utils.returnStringInTag("allBackgrounds", xml, 0);
-		tagReg = Pattern.compile("<background>");
-		m = tagReg.matcher(backgroundsBlock);
-		idx = -1;
-		while ( m.find() )
+		Element elemBackgrounds = root.getChild("allBackgrounds");
+		for (Element e : elemBackgrounds.getChildren())
 		{
-			idx = m.start();
-			String tmpBackground = Utils.returnStringInTag("background", backgroundsBlock, idx);
-			allBackgrounds.addFirst(tmpBackground);
+			allBackgrounds.addFirst( e.getText() );
 		}
 		
 		// set morph (if applicable)
-		String morphStr = Utils.returnStringInTag("character_morph", xml, 0).trim();
+		Element elemMorph = root.getChild("character_morph");
 		
-		if (morphStr.length() != 0)
+		if (elemMorph != null)
 		{
-			setCurrentMorph(Morph.fromXML(morphStr));
+			setCurrentMorph(Morph.fromXML( Utils.elemToString( elemMorph ) ));
 		}
 		
 	}
