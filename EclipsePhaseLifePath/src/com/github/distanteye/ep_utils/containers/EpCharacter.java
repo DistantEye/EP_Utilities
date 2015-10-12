@@ -76,15 +76,15 @@ public class EpCharacter extends SkilledCharacter {
 		
 		sleights = new AspectHashMap<Sleight>(", ",false);
 		
-		this.setVar("{MOX}", "1");
-		this.setVar("{credits}", "0");
-		this.setVar("{creditsSpent}", "0");
-		this.setVar("{faction}", "");
-		this.setVar("{background}", "");
-		this.setVar("{stress}", "0");
-		this.setVar("{CP}", "0");
-		this.setVar("{path}", "");
-		this.setVar("{isSynth}", "0");
+		this.setVar("_MOX", "1");
+		this.setVar("_credits", "0");
+		this.setVar("_creditsSpent", "0");
+		this.setVar("_faction", "");
+		this.setVar("_background", "");
+		this.setVar("_stress", "0");
+		this.setVar("_CP", "0");
+		this.setVar("_path", "");
+		this.setVar("_isSynth", "0");
 		allBackgrounds = new LinkedList<String>();
 	}
 	
@@ -102,9 +102,9 @@ public class EpCharacter extends SkilledCharacter {
 		
 		int speedBon = 0;
 		
-		if (this.hasVar("{speedBonus}"))
+		if (this.hasVar("_speedBonus"))
 		{
-			Integer.parseInt(this.getVar("{speedBonus}"));
+			Integer.parseInt(this.getVar("_speedBonus"));
 		}
 		
 		stats.get("SPD").setValue(1+speedBon);
@@ -146,7 +146,7 @@ public class EpCharacter extends SkilledCharacter {
 		stats.get("INIT").setValue(Math.round( (INT+REF) * 2 ) / 5 );
 		
 		// calculate CP used if applicable mode
-		if (hasVar("{cpCalc}"))
+		if (hasVar("_cpCalc"))
 		{
 			int cpUsed;
 			int mox, totalRep,totalApt,numSleights,numSpec,activeSkillPoints,knowledgeSkillPoints,totalCredits;
@@ -158,7 +158,7 @@ public class EpCharacter extends SkilledCharacter {
 			numSpec = 0;
 			activeSkillPoints = 0;
 			knowledgeSkillPoints = 0;
-			totalCredits = this.getVarInt("{credits}");
+			totalCredits = this.getVarInt("_credits");
 			
 			// repCount			
 			for (Rep r : reps.values())
@@ -236,7 +236,7 @@ public class EpCharacter extends SkilledCharacter {
 			cpUsed = 15*mox + 10*totalApt + 5*numSleights + 5*numSpec + activeSkillPoints + knowledgeSkillPoints + totalRep/10 + totalCredits/1000;
 			
 			// set to relevant character variable
-			this.setVar("{cpUsed}", ""+cpUsed); 
+			this.setVar("_cpUsed", ""+cpUsed); 
 					
 		}
 	}
@@ -334,18 +334,18 @@ public class EpCharacter extends SkilledCharacter {
 	}
 	
 	/**
-	 * Returns any available {factionName}, or "" if none exist
+	 * Returns any available _factionName, or "" if none exist
 	 * 
 	 * Silent fail as "" done to be more friendly to UI as this can often
 	 * be blank at start and filled in later
 	 * 
-	 * @return String either equal to {factionName} or ""
+	 * @return String either equal to _factionName or ""
 	 */
 	public String getFaction()
 	{
-		if (hasVar("{factionName}"))
+		if (hasVar("_factionName"))
 		{
-			return getVar("{factionName}");
+			return getVar("_factionName");
 		}
 		else
 		{
@@ -354,18 +354,18 @@ public class EpCharacter extends SkilledCharacter {
 	}
 	
 	/**
-	 * Returns any availible {pathName}, or "" if none exist
+	 * Returns any availible _pathName, or "" if none exist
 	 * 
 	 * Silent fail as "" done to be more friendly to UI as this can often
 	 * be blank at start and filled in later
 	 * 
-	 * @return String either equal to {pathName} or ""
+	 * @return String either equal to _pathName or ""
 	 */
 	public String getPath()
 	{
-		if (hasVar("{pathName}"))
+		if (hasVar("_pathName"))
 		{
-			return getVar("{pathName}");
+			return getVar("_pathName");
 		}
 		else
 		{
@@ -375,7 +375,7 @@ public class EpCharacter extends SkilledCharacter {
 	
 	public int getCredits() 
 	{
-		return Integer.parseInt(this.getVar("{credits}"));
+		return Integer.parseInt(this.getVar("_credits"));
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void setCredits(int credits) 
 	{
-		this.setVar("{credits}",String.valueOf(credits));
+		this.setVar("_credits",String.valueOf(credits));
 		calc();
 	}
 	
@@ -396,7 +396,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void incCredits(int val) 
 	{
-		this.incVar("{credits}",val);
+		this.incVar("_credits",val);
 		calc();
 	}
 	
@@ -423,7 +423,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public int getMox()
 	{
-		return this.getVarInt("{MOX}");
+		return this.getVarInt("_MOX");
 	}
 	
 	/**
@@ -437,7 +437,7 @@ public class EpCharacter extends SkilledCharacter {
 			throw new IllegalArgumentException("MOX value must be positive");
 		}
 		
-		this.setVar("{MOX}", ""+val);
+		this.setVar("_MOX", ""+val);
 		calc();
 	}
 	
@@ -447,7 +447,7 @@ public class EpCharacter extends SkilledCharacter {
 	 */
 	public void incMox(int val)
 	{
-		int mox = this.getVarInt("{MOX}");
+		int mox = this.getVarInt("_MOX");
 		if (mox + val < 1)
 		{
 			throw new IllegalArgumentException("MOX value must be positive");
@@ -492,9 +492,9 @@ public class EpCharacter extends SkilledCharacter {
 
 	public String getBackground() 
 	{
-		if (hasVar("{background}"))
+		if (hasVar("_background"))
 		{
-			return this.getVar("{background}");
+			return this.getVar("_background");
 		}
 		else
 		{
@@ -504,7 +504,7 @@ public class EpCharacter extends SkilledCharacter {
 
 	public void setBackground(String background) 
 	{
-		this.setVar("{background}", background);
+		this.setVar("_background", background);
 		this.allBackgrounds.addFirst(background);
 	}
 
@@ -649,7 +649,7 @@ public class EpCharacter extends SkilledCharacter {
 		Element elemCharMorph = new Element("character_morph");
 		if (currentMorph != null)
 		{
-			elemCharMorph.setText(currentMorph.toXML());
+			elemCharMorph.addContent( Utils.getRootElement( currentMorph.toXML() ));
 		}
 		doc.getRootElement().addContent(elemCharMorph);
 
@@ -746,10 +746,10 @@ public class EpCharacter extends SkilledCharacter {
 		
 		// set morph (if applicable)
 		Element elemMorph = root.getChild("character_morph");
-		
-		if (elemMorph != null)
+		Element innerMorph = elemMorph.getChild("morph");
+		if (innerMorph != null && innerMorph.getChildText("name").length() > 0)
 		{
-			setCurrentMorph(Morph.fromXML( Utils.elemToString( elemMorph ) ));
+			setCurrentMorph(Morph.fromXML( Utils.elemToString(innerMorph)) );
 		}
 		
 	}
@@ -796,15 +796,15 @@ public class EpCharacter extends SkilledCharacter {
 		
 		sleights = new AspectHashMap<Sleight>(", ",false);
 		
-		this.setVar("{MOX}", "1");
-		this.setVar("{credits}", "0");
-		this.setVar("{creditsSpent}", "0");
-		this.setVar("{faction}", "");
-		this.setVar("{background}", "");
-		this.setVar("{stress}", "0");
-		this.setVar("{CP}", "0");
-		this.setVar("{path}", "");
-		this.setVar("{isSynth}", "0");
+		this.setVar("_MOX", "1");
+		this.setVar("_credits", "0");
+		this.setVar("_creditsSpent", "0");
+		this.setVar("_faction", "");
+		this.setVar("_background", "");
+		this.setVar("_stress", "0");
+		this.setVar("_CP", "0");
+		this.setVar("_path", "");
+		this.setVar("_isSynth", "0");
 		allBackgrounds = new LinkedList<String>();
 
 		

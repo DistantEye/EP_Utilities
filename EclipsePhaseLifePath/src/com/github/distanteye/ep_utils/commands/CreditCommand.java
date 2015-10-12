@@ -47,7 +47,7 @@ public class CreditCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.incVar("{credits}", getIntParam(1));
+		pc.incVar("_credits", getIntParam(1));
 		
 		return "";
 	}

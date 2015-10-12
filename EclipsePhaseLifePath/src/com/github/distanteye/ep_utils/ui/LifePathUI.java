@@ -216,14 +216,14 @@ public class LifePathUI extends UISkeleton {
 			
 			public void actionPerformed(ActionEvent e)
 		    {
-		    	if (gen.getPC().hasVar("{firewall}"))
+		    	if (gen.getPC().hasVar("_firewall"))
 		    	{
-		    		gen.getPC().removeVar("{firewall}");
+		    		gen.getPC().removeVar("_firewall");
 		    		mainPanel.setButtonText("Firewall Events","Firewall Events (Off)");
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{firewall}", "1");
+		    		gen.getPC().setVar("_firewall", "1");
 		    		mainPanel.setButtonText("Firewall Events","Firewall Events (On)");
 		    	}
 		    }	
@@ -237,14 +237,14 @@ public class LifePathUI extends UISkeleton {
 			
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	if (gen.getPC().hasVar("{gatecrashing}"))
+		    	if (gen.getPC().hasVar("_gatecrashing"))
 		    	{
-		    		gen.getPC().removeVar("{gatecrashing}");
+		    		gen.getPC().removeVar("_gatecrashing");
 		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (Off)");
 		    	}
 		    	else
 		    	{
-		    		gen.getPC().setVar("{gatecrashing}", "1");
+		    		gen.getPC().setVar("_gatecrashing", "1");
 		    		mainPanel.setButtonText("Gatecrashing Events","Gatecrashing Events (On)");
 		    	}
 		    }	

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.github.distanteye.ep_utils.ui;
 
 import java.awt.BorderLayout;
@@ -174,9 +171,9 @@ public abstract class UISkeleton implements UI {
 		// if eList makes it a fixed field, the listener stuff will be ignored
 		p.addMappedTF(eArr[cnt++],0,0,"Character Name","Character Name",20,"",Orientation.HORIZONTAL,this, new CharNameWrapper(gen.getPC()));
 		p.addMappedTF(eArr[cnt++],2,0,"Morph","Morph",10,"",Orientation.HORIZONTAL,this, new CharMorphWrapper(gen.getPC()));
-		p.addMappedTF(eArr[cnt++],4,0,"Background","Background",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"{background}"));
+		p.addMappedTF(eArr[cnt++],4,0,"Background","Background",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"_background"));
 		p.addMappedTF(eArr[cnt++],6,0,"Natural Language","Natural Language", 15,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"NatLang"));
-		p.addMappedTF(eArr[cnt++],8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"{factionName}"));
+		p.addMappedTF(eArr[cnt++],8,0,"Faction","Faction",10,"",Orientation.HORIZONTAL,this, new CharVarWrapper(gen.getPC(),"_factionName"));
 		if (endRow)
 		{
 			p.endRow(10,0);
@@ -259,10 +256,10 @@ public abstract class UISkeleton implements UI {
 	 */
 	protected int addOtherStatFields(GBagPanel p, int row)
 	{
-		p.addMappedTF(EditState.FIXED,0,row,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{stress}"));
-		p.addMappedTF(EditState.FIXED,2,row,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{MOX}"));
-		p.addMappedTF(EditState.FIXED,4,row,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{credits}"));
-		p.addMappedTF(EditState.FIXED,6,row,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"{CP}"));
+		p.addMappedTF(EditState.FIXED,0,row,"Stress","Stress", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"_stress"));
+		p.addMappedTF(EditState.FIXED,2,row,"MOX","MOX", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"_MOX"));
+		p.addMappedTF(EditState.FIXED,4,row,"Credits","Credits", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"_credits"));
+		p.addMappedTF(EditState.FIXED,6,row,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null, new CharVarWrapper(gen.getPC(),"_CP"));
 		p.endRow(8,row);
 		return row+1;
 	}

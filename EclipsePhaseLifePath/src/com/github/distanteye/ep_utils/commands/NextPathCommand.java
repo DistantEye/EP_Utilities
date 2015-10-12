@@ -31,7 +31,7 @@ public class NextPathCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.setVar("{path}",getStrParam(1));
+		pc.setVar("_path",getStrParam(1));
 		
 		return "";
 	}

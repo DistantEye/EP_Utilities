@@ -4,7 +4,7 @@ import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 
 /**
  * Directive of syntax:
- * getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like {nextPath})
+ * getVar(<name>)			(returns data stored for this var) (some character fields can be accessed via {}, like _nextPath)
  * 
  * @author Vigilant
  *

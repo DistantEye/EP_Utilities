@@ -28,7 +28,7 @@ public class BaseCharacter {
 	{
 		this.name = name;
 		otherVars = new HashMap<String,String>();
-		otherVars.put("{age}", ""+(-1));
+		otherVars.put("_age", ""+(-1));
 	}
 	
 	public String toString()
@@ -50,12 +50,12 @@ public class BaseCharacter {
 
 	public int getAge() 
 	{
-		return this.getVarInt("{age}");
+		return this.getVarInt("_age");
 	}
 
 	public void setAge(int age) 
 	{
-		otherVars.put("{age}", ""+age);
+		otherVars.put("_age", ""+age);
 	}
 	
 	/**

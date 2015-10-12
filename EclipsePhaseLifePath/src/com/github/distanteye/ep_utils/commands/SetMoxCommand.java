@@ -44,7 +44,7 @@ public class SetMoxCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.setVar("{MOX}",""+getIntParam(1));
+		pc.setMox(getIntParam(1));
 		
 		return "";
 	}

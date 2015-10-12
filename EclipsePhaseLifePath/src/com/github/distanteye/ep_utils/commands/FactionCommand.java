@@ -31,7 +31,7 @@ public class FactionCommand extends Command {
 	{
 		super.run(env);
 		EpCharacter pc = env.getPC();
-		pc.setVar("{faction}",getStrParam(1));
+		pc.setVar("_faction",getStrParam(1));
 		
 		return "";
 	}

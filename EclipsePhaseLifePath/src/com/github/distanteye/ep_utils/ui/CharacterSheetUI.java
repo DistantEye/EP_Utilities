@@ -37,7 +37,7 @@ public class CharacterSheetUI extends UISkeleton {
         statPanel = new GBagPanel();
         sideBar = new GBagPanel();
         mainWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        gen.getPC().setVar("{cpCalc}","1"); // enable CP calculator
+        gen.getPC().setVar("_cpCalc","1"); // enable CP calculator
 	}
 
 	/* (non-Javadoc)
@@ -208,18 +208,18 @@ public class CharacterSheetUI extends UISkeleton {
 		int bCP = 1000;
 		
 		p.addMappedTF(EditState.NOTFIXED,0,row,"Stress","Stress",5,"0", Orientation.HORIZONTAL,this, 
-							  new CharVarWrapper(gen.getPC(),"{stress}")).setInputVerifier(new NumericValidator());
+							  new CharVarWrapper(gen.getPC(),"_stress")).setInputVerifier(new NumericValidator());
 			
 		p.addMappedTF(EditState.NOTFIXED,2,row,"MOX","MOX",5,""+fMox, Orientation.HORIZONTAL,this,
-				 			  new CharVarWrapper(gen.getPC(),"{MOX}")).setInputVerifier(new NumericValidator());
+				 			  new CharVarWrapper(gen.getPC(),"_MOX")).setInputVerifier(new NumericValidator());
 			
 		p.addMappedTF(EditState.NOTFIXED,4,row,"Credits","Credits",5,""+fCred, Orientation.HORIZONTAL,this,
-				 			  new CharVarWrapper(gen.getPC(),"{credits}")).setInputVerifier(new NumericValidator());
+				 			  new CharVarWrapper(gen.getPC(),"_credits")).setInputVerifier(new NumericValidator());
 			
 		p.addMappedTF(EditState.NOTFIXED,6,row,"Base CP","Base CP",5,""+bCP,Orientation.HORIZONTAL,this,null).setInputVerifier(new NumericValidator());
 		
 		SubtractWrapper baseMinusUsed = new SubtractWrapper(new TextComponentWrapper(p.getTextF("Base CP")),
-															new CharVarWrapper(gen.getPC(),"{cpUsed}"));
+															new CharVarWrapper(gen.getPC(),"_cpUsed"));
 				
 		p.addMappedTF(EditState.FIXED,8,row,"Free CP","Free CP", 5,"",Orientation.HORIZONTAL,null,baseMinusUsed);
 		p.endRow(10,6);

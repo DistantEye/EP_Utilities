@@ -8,7 +8,7 @@ import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * Command of following syntax types:
- * decSkl(<skill>,<value/all>)					(decSkl all will set two variables {lastRemSkl} {lastRemSklVal}, equal to what was removed)
+ * decSkl(<skill>,<value/all>)					(decSkl all will set two variables _lastRemSkl _astRemSklVal, equal to what was removed)
  * decSkl(<skill>,<value/all>,<conditional>)	' the three parameter versions throw an error if the conditional isn't true		
  * 
  * @author Vigilant

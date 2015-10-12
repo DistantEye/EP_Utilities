@@ -195,7 +195,7 @@ public class SkilledCharacter extends BaseCharacter {
 		else
 		{
 			this.skills.put(skill.getFullName(), skill);
-			this.setVar("{newestSkill}", skill.getFullName());
+			this.setVar("_newestSkill", skill.getFullName());
 		}
 		
 		calc();
@@ -230,8 +230,8 @@ public class SkilledCharacter extends BaseCharacter {
 		if (this.skills.containsKey(skillName))
 		{
 			Skill temp = this.skills.remove(skillName);
-			this.setVar("{lastRemSkl}", temp.getFullName());
-			this.setVar("{lastRemSklVal}", ""+temp.getValue());
+			this.setVar("_lastRemSkl", temp.getFullName());
+			this.setVar("_lastRemSklVal", ""+temp.getValue());
 			
 			calc();
 			return true;
