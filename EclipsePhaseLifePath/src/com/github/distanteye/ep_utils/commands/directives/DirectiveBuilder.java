@@ -24,7 +24,7 @@ public class DirectiveBuilder {
 		String lcEffect = commandName.toLowerCase();
 		
 		// structured so only the first top level directive is returned
-		String insides = Utils.returnStringInParen(input, input.indexOf(commandName));
+		String insides = Utils.stringInParen(input, input.indexOf(commandName));
 		String inputMod = commandName + "(" + insides + ")";
 		
 		if (lcEffect.startsWith("concat"))

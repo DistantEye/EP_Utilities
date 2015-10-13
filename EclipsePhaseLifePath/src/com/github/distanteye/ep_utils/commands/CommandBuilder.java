@@ -3,6 +3,7 @@
  */
 package com.github.distanteye.ep_utils.commands;
 
+import com.github.distanteye.ep_utils.containers.Skill;
 import com.github.distanteye.ep_utils.core.Utils;
 
 /**
@@ -21,7 +22,13 @@ public class CommandBuilder {
 	 */
 	public static Command getCommand(String input)
 	{
-		String lcEffect = Command.getCommandName(input).toLowerCase();
+		// adding new skills is a special case
+		if (Skill.isSkill(input))
+		{
+			return new NewSkillCommand(input);
+		}
+		
+		String lcEffect = Command.getCommandName(input).toLowerCase();		
 		
 		if (Utils.splitCommands(input, ";").length > 1)
 		{

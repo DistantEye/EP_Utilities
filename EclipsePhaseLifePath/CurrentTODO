@@ -64,4 +64,5 @@ Make an allrandom button to toggle.
 
 Make it so statustext is saved as a part of the character.
 
-You should probably use an actual XML parser. JAXB? DOM? something?
+MsgClient should not bother attempting to split text, and then remove all the escapes for the commas you've already placed. Trying to escape them all is a losing battle.
+	Make the function smarter instead.

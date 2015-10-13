@@ -148,7 +148,7 @@ public abstract class Command {
 	 */
 	protected String[] splitParts(String input)
 	{
-		String insideParams = Utils.returnStringInParen(input).replace("\\,", "\\\\,"); // we want to avoid early escaping of escaped commas
+		String insideParams = Utils.stringInParen(input).replace("\\,", "\\\\,"); // we want to avoid early escaping of escaped commas
 		String commandName = getCommandName(input);
 		String[] results = Utils.splitCommands(commandName+","+insideParams);
 		
@@ -357,7 +357,7 @@ public abstract class Command {
 			
 			if (effLC.startsWith("package"))
 			{
-				String params = Utils.returnStringInParen(eff);
+				String params = Utils.stringInParen(eff);
 				
 				String[] subparts = Utils.splitCommands(params);
 				
@@ -385,7 +385,7 @@ public abstract class Command {
 		for (String effect : effectsArr)
 		{
 			
-			String params = Utils.returnStringInParen(effect);
+			String params = Utils.stringInParen(effect);
 			
 			String commandName = "";
 			if (effect.indexOf('(') > 0 )

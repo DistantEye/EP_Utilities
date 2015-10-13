@@ -6,6 +6,8 @@ package com.github.distanteye.ep_utils.commands.directives;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
@@ -47,7 +49,7 @@ public abstract class Directive extends Command {
 		int idx = input.indexOf('(',0);
 		String candidate = input.substring(0,idx);
 		
-		while (!Utils.arrayContains(DIRECTIVES_LC, candidate.toLowerCase()))
+		while (!ArrayUtils.contains(DIRECTIVES_LC, candidate.toLowerCase()))
 		{
 			idx = input.indexOf('(',idx+1);
 			candidate = input.substring(0,idx);

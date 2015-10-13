@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -684,7 +686,7 @@ public class EpCharacter extends SkilledCharacter {
 		{
 			Stat temp = stats.get(key);
 
-			if (Utils.arrayContains(Aptitude.TYPES, key))
+			if (ArrayUtils.contains(Aptitude.TYPES, key))
 			{
 				statsTemp.put(key, new Aptitude(temp.getName(),temp.getValue()));
 			}

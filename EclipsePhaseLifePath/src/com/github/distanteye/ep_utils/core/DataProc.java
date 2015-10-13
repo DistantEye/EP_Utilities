@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 // explicit because name ambiguity
 import com.github.distanteye.ep_utils.containers.*;
 import com.github.distanteye.ep_utils.core.Package;
@@ -409,7 +411,7 @@ public class DataProc {
 		int startIdx = 0;
 		
 		// we rejoin into a single string for XML parsing
-		String chunkStr = Utils.joinStr(lines);
+		String chunkStr = StringUtils.join(lines,"\n");
 		
 		while ( true )
 		{
@@ -420,18 +422,18 @@ public class DataProc {
 				break; // no more matches exist
 			}
 			
-			String nextSleight = Utils.returnStringInTag("sleight", chunkStr, startIdx);
+			String nextSleight = Utils.stringInTag("sleight", chunkStr, startIdx);
 			
-			String sleightType = Utils.returnStringInTag("sleightType", nextSleight, 0);
-			String isExsurgent = Utils.returnStringInTag("exsurgentOnly", nextSleight, 0);
-			String sleightName = Utils.returnStringInTag("name", nextSleight, 0);
-			String activePassive = Utils.returnStringInTag("activePassive", nextSleight, 0);
-			String actionType = Utils.returnStringInTag("actionType", nextSleight, 0);
-			String range = Utils.returnStringInTag("range", nextSleight, 0);
-			String duration = Utils.returnStringInTag("duration", nextSleight, 0);
-			String strainMod = Utils.returnStringInTag("strainMod", nextSleight, 0);
-			String skillUsed = Utils.returnStringInTag("skillUsed", nextSleight, 0);
-			String description = Utils.returnStringInTag("desc", nextSleight, 0);
+			String sleightType = Utils.stringInTag("sleightType", nextSleight, 0);
+			String isExsurgent = Utils.stringInTag("exsurgentOnly", nextSleight, 0);
+			String sleightName = Utils.stringInTag("name", nextSleight, 0);
+			String activePassive = Utils.stringInTag("activePassive", nextSleight, 0);
+			String actionType = Utils.stringInTag("actionType", nextSleight, 0);
+			String range = Utils.stringInTag("range", nextSleight, 0);
+			String duration = Utils.stringInTag("duration", nextSleight, 0);
+			String strainMod = Utils.stringInTag("strainMod", nextSleight, 0);
+			String skillUsed = Utils.stringInTag("skillUsed", nextSleight, 0);
+			String description = Utils.stringInTag("desc", nextSleight, 0);
 			
 			Sleight.CreateInternalsleight(new String[]{sleightType,isExsurgent,sleightName,activePassive,actionType,range,duration,strainMod,skillUsed,description});
 			
@@ -459,7 +461,7 @@ public class DataProc {
 		int startIdx = 0;
 		
 		// we rejoin into a single string for XML parsing
-		String chunkStr = Utils.joinStr(lines);
+		String chunkStr = StringUtils.join(lines,"\n");
 		
 		while ( true )
 		{
@@ -470,12 +472,12 @@ public class DataProc {
 				break; // no more matches exist
 			}
 			
-			String nextTrait = Utils.returnStringInTag("trait", chunkStr, startIdx);
+			String nextTrait = Utils.stringInTag("trait", chunkStr, startIdx);
 			
-			String name = Utils.returnStringInTag("name", nextTrait, 0);
-			String cost = Utils.returnStringInTag("cost", nextTrait, 0);
-			String bonus = Utils.returnStringInTag("bonus", nextTrait, 0);
-			String desc = Utils.returnStringInTag("description", nextTrait, 0);
+			String name = Utils.stringInTag("name", nextTrait, 0);
+			String cost = Utils.stringInTag("cost", nextTrait, 0);
+			String bonus = Utils.stringInTag("bonus", nextTrait, 0);
+			String desc = Utils.stringInTag("description", nextTrait, 0);
 
 			Trait.CreateInternalTrait(name,desc,cost,bonus,1);
 			startIdx++;
@@ -506,10 +508,10 @@ public class DataProc {
 	private static void addMorph(String[] lines)
 	{
 		// we use no divider between lines because it will make the tag parsing actually go slightly easier.
-		String lineStream = Utils.joinStr(lines,"");
+		String lineStream = StringUtils.join(lines,"");
 		int idx = 0;
 		
-		String nextMorph = Utils.returnStringInTokensStk("<morph>", "</morph>", lineStream, idx);
+		String nextMorph = Utils.stringInNestedTokens("<morph>", "</morph>", lineStream, idx);
 		String fullMorphBlock = "<morph>" + nextMorph + "</morph>";
 		
 		// this sets idx to next time start looking right after when the past block ended
@@ -517,14 +519,14 @@ public class DataProc {
 		
 		while (nextMorph.length() != 0)
 		{				
-			String name = Utils.returnStringInTag("name",nextMorph,0);
-			String morphType = Utils.returnStringInTag("type",nextMorph,0);
-			String description = Utils.returnStringInTag("Desc",nextMorph,0);
-			String implants = Utils.returnStringInTag("Implants",nextMorph,0);
-			String aptitudeMaxStr = Utils.returnStringInTag("Aptitude Maximum",nextMorph,0);			
-			String durStr = Utils.returnStringInTag("Durability",nextMorph,0);
-			String woundThrStr = Utils.returnStringInTag("Wound Threshold",nextMorph,0);
-			String cpStr = Utils.returnStringInTag("CP Cost",nextMorph,0);
+			String name = Utils.stringInTag("name",nextMorph,0);
+			String morphType = Utils.stringInTag("type",nextMorph,0);
+			String description = Utils.stringInTag("Desc",nextMorph,0);
+			String implants = Utils.stringInTag("Implants",nextMorph,0);
+			String aptitudeMaxStr = Utils.stringInTag("Aptitude Maximum",nextMorph,0);			
+			String durStr = Utils.stringInTag("Durability",nextMorph,0);
+			String woundThrStr = Utils.stringInTag("Wound Threshold",nextMorph,0);
+			String cpStr = Utils.stringInTag("CP Cost",nextMorph,0);
 			
 			// while not strictly necessary, we make sure all of the following values parse into integers, because they should logically be ints.
 			// it may cause problems elsewhere otherwise.
@@ -584,8 +586,8 @@ public class DataProc {
 				throw new IllegalArgumentException("CP("+cpStr+") isn't parseable as a number for morph: " + name);
 			}
 									
-			String creditCost = Utils.returnStringInTag("Credit Cost",nextMorph,0);
-			String notes = Utils.returnStringInTag("Notes",nextMorph,0);
+			String creditCost = Utils.stringInTag("Credit Cost",nextMorph,0);
+			String notes = Utils.stringInTag("Notes",nextMorph,0);
 			String effects = "";
 			
 			// now we do some stuff to figure out the aptitude maximums
@@ -672,13 +674,13 @@ public class DataProc {
 				
 			}
 			
-			String aptMaxArrStr = Utils.joinStr(outputList.toArray(new String[outputList.size()]),";");
+			String aptMaxArrStr = StringUtils.join(outputList.toArray(new String[outputList.size()]),";");
 			
 			String[] toAdd = {name, morphType, description, implants, aptMaxArrStr, ""+durability, ""+woundThreshold, ""+CP, creditCost, effects, notes};
 			
 			Morph.CreateInternalMorph(toAdd);
 			
-			nextMorph = Utils.returnStringInTokensStk("<morph>", "</morph>", lineStream, idx);
+			nextMorph = Utils.stringInNestedTokens("<morph>", "</morph>", lineStream, idx);
 			fullMorphBlock = "<morph>" + nextMorph + "</morph>";
 			
 			// this sets idx to next time start looking right after when the past block ended

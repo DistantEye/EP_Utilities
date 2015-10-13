@@ -8,6 +8,8 @@ import org.jdom2.output.XMLOutputter;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
+import org.apache.commons.lang3.EnumUtils;
+
 /**
  * Represents any valid Sleight defined in the Internal Data file. Sleights are immutable
  * This class has a static exists method for determining whether a name is a valid Sleight
@@ -135,13 +137,13 @@ public class Sleight {
 		}
 		
 		int cnt = 0;
-		SleightType sleightType = EnumFactory.getEnum(SleightType.class,input[cnt++]);
+		SleightType sleightType = EnumUtils.getEnum(SleightType.class,input[cnt++]);
 		Boolean isExsurgent = Boolean.parseBoolean(input[cnt++]);
 		String sleightName = input[cnt++];
-		UsageType activePassive = EnumFactory.getEnum(UsageType.class,input[cnt++]);
-		ActionType actionType = EnumFactory.getEnum(ActionType.class,input[cnt++]);
-		Range range = EnumFactory.getEnum(Range.class,input[cnt++]);
-		Duration duration = EnumFactory.getEnum(Duration.class,input[cnt++]);
+		UsageType activePassive = EnumUtils.getEnum(UsageType.class,input[cnt++].toUpperCase());
+		ActionType actionType = EnumUtils.getEnum(ActionType.class,input[cnt++].toUpperCase());
+		Range range = EnumUtils.getEnum(Range.class,input[cnt++].toUpperCase());
+		Duration duration = EnumUtils.getEnum(Duration.class,input[cnt++].toUpperCase());
 		String strainMod = input[cnt++];
 		String skillUsed = input[cnt++];
 		String description = input[cnt++];

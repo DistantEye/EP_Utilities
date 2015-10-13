@@ -176,7 +176,7 @@ public class EpEnvironment implements CharacterEnvironment {
 				// An additional consideration is that thrown exceptions are caught and passed to the UI, so sending descriptive messages is a
 				// good idea
 								
-				String params = Utils.returnStringInParen(effect);
+				String params = Utils.stringInParen(effect);
 				String commandName = "";
 				if (effect.indexOf('(') > 0 )
 				{
@@ -189,29 +189,21 @@ public class EpEnvironment implements CharacterEnvironment {
 				// TODO : to comply with older code, we have to insert the command at the beginning of params
 				params = commandName + "," + params;
 				
-				if (Skill.isSkill(effect))
+				Command c = CommandBuilder.getCommand(effect);
+				String result = c.run(this);
+
+				if (this.effectsNeedReturn)
 				{
-					// this is not a true command so we don't use the infastructure
-					Skill temp = Skill.CreateSkillFromString(effect);
-					playerChar.addSkill(temp);
+					effectsNeedReturn = false;
+					return result;
 				}
-				else 
+
+				// we have pending effects that need to run if result isn't 0
+				if (result.length() != 0)
 				{
-					Command c = CommandBuilder.getCommand(effect);
-					String result = c.run(this);
-										
-					if (this.effectsNeedReturn)
-					{
-						effectsNeedReturn = false;
-						return result;
-					}
-					
-					// we have pending effects that need to run if result isn't 0
-					if (result.length() != 0)
-					{
-						this.runEffect(result, c.getExtraContext());
-					}
+					this.runEffect(result, c.getExtraContext());
 				}
+				
 			}
 			catch( Exception e) 
 			{
@@ -255,17 +247,22 @@ public class EpEnvironment implements CharacterEnvironment {
 	 */
 	public void step()
 	{
-		
-		if (hasStarted && nextEffects != null && nextEffects.length() == 0)
-		{
-			hasFinished = true; // don't attempt to run steps that aren't there
-		}
-		
 		if (hasFinished)
 		{
 			// do nothing
 			return;
 		}
+		
+		// this should typically not execute because we set this at the end when we see we've reached an end point
+		// placed as an extra catch
+		if (hasStarted && nextEffects != null && nextEffects.length() == 0)
+		{
+			hasFinished = true; // don't attempt to run steps that aren't there
+			UIObject.end();
+			return;
+		}
+		
+		
 		
 		// Reset both of these each step
 		noStop = false;
@@ -287,6 +284,15 @@ public class EpEnvironment implements CharacterEnvironment {
 		if (noStop)
 		{
 			step();
+		}
+		else
+		{
+			if (hasStarted && nextEffects != null && nextEffects.length() == 0)
+			{
+				hasFinished = true; // don't attempt to run steps that aren't there
+				UIObject.end();
+				return;
+			}
 		}
 	}
 	

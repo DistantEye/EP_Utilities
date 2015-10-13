@@ -3,6 +3,8 @@
  */
 package com.github.distanteye.ep_utils.commands;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
 import com.github.distanteye.ep_utils.core.Utils;
 
@@ -56,7 +58,7 @@ public class CommandList extends Command {
 			temp[tempIdx++] = subparts[i];
 		}
 		
-		return Utils.joinStr(temp, ";");
+		return StringUtils.join(temp, ";");
 	}
 	
 	/**

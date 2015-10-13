@@ -97,7 +97,7 @@ public class TableRow {
 		for (int i = 0; i < effects.length; i++)
 		{
 			String part = "";
-			if (effects[i].startsWith("rollTable") && Utils.returnStringInParen(effects[i]).equalsIgnoreCase(parentName))
+			if (effects[i].startsWith("rollTable") && Utils.stringInParen(effects[i]).equalsIgnoreCase(parentName))
 			{
 				// avoids printing any nesting of rollTable/runTable
 				part = "Reroll table";

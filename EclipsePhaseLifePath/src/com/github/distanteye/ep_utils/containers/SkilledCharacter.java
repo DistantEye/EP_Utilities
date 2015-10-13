@@ -5,6 +5,8 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -524,8 +526,8 @@ public class SkilledCharacter extends BaseCharacter {
 		}
 		doc.getRootElement().addContent(elemStats);
 		
-		doc.getRootElement().addContent(new Element("lastRolls").setText( Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
-		doc.getRootElement().addContent(new Element("currentTable").setText( Utils.joinStrObjArr(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
+		doc.getRootElement().addContent(new Element("lastRolls").setText( StringUtils.join(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
+		doc.getRootElement().addContent(new Element("currentTable").setText( StringUtils.join(lastRolls.toArray(new Integer[lastRolls.size()]), ";") ));
 		
 		
 		String lastStepName = "";

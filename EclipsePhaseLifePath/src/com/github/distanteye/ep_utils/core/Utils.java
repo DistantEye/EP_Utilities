@@ -12,9 +12,7 @@ import org.jdom2.output.XMLOutputter;
 
 /**
  * General Utility class, mainly focusing on String management. Most entries here are meant to be short consolidations of frequent
- * actions/calls 
- * 
- * It's under investigation whether some or all of this might be replaced by a common library
+ * actions/calls.
  * 
  * @author Vigilant
  *
@@ -108,26 +106,8 @@ public class Utils {
 		
 		return xmlOut.outputString(e);
 	}
-	
-	/**
-	 * Simple boolean method to return whether a String is in a particular String array
-	 * @param arr String[] to search
-	 * @param search String to search for
-	 * @return True/False as appropriate
-	 */
-	public static boolean arrayContains(String[] arr, String search)
-	{
-		for (String str : arr)
-		{
-			if (str.equals(search))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
 
+	// Still using this because StringUtils.isNumber returns true for Floats
 	public static boolean isInteger(String str) {
 	    try {
 	        Integer.parseInt(str);
@@ -135,100 +115,6 @@ public class Utils {
 	    } catch (NumberFormatException nfe) {
 	        return false;
 	    }
-	}
-	
-	/**
-	 * Returns the number of tabs specified
-	 * @param num Positive integer
-	 * @return Returns "\t" repeated num times.
-	 */
-	public static String tab(int num)
-	{
-		String result = "";
-		for (int i = 0; i < num; i++)
-		{
-			result += "\t";
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Version of joinStr that takes a plain Object[], calling the toString on each
-	 * entry to make it into a String[], then passes it to joinStr. This is slower.
-	 * @param arr Object[], where the objects have a meaningful toString() conversion
-	 * @param joiner Delimeter to separate entries in the array for the String 
-	 * @return Will return "" if empty, else, a single String joining all of arr's values together between the joiner passed
-	 */
-	public static String joinStrObjArr(Object[] arr, String joiner)
-	{
-		String[] tempArr = new String[arr.length];
-		
-		int idx = 0;
-		for (Object o : arr)
-		{
-			// not all values in array would need to be initialized, careful with that.
-			if (o != null)
-			{
-				tempArr[idx] = o.toString();
-			}
-			
-			idx++;
-		}
-		
-		return joinStr(tempArr, joiner);
-	}
-	
-	/**
-	 * Joins String[] into single String, separated by String joiner
-	 * @param arr valid String[]
-	 * @param joiner Delimeter to separate entries in the array for the String
-	 * @return Will return "" if empty, else, a single String joining all of arr's values together between the joiner passed
-	 */
-	public static String joinStr(String[] arr, String joiner)
-	{
-		if (arr.length == 0)
-		{
-			return "";			
-		}
-		
-		String result = arr[0];
-		
-		for (int x = 1; x < arr.length; x++)
-		{
-			result += joiner + arr[x];
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Joins String[] into single String, separated by newlines 
-	 * @param arr valid String[]
-	 * @return Will return "" if empty, else, a single String joining all of arr's values together between newlines
-	 */
-	public static String joinStr(String[] arr)
-	{
-		return joinStr(arr,"\n");
-	}
-		
-	/**
-	 * Like split, but will only split around the first deliminter found, so splitOnce("a,b,c,d",",") = {"a","b,c,d"}
-	 * @param input Input string to split on
-	 * @param delimiter delimiter to search for
-	 * @return String[] of the split Strings. May be a length 0 array if the delimeter does not exist at all
-	 */
-	public static String[] splitOnce(String input, String delimiter)
-	{
-		if (input.contains(delimiter))
-		{
-			int idx = input.indexOf(delimiter);
-			return new String[] {input.substring(0, idx), input.substring(idx+delimiter.length())};
-		}
-		else
-		{
-			return new String[] {input};
-		}
 	}
 	
 	/**
@@ -276,13 +162,13 @@ public class Utils {
 		String key = findUniqueDelimiter(modInput);
 		int cnt = 0;
 		
-		String output = "(" + returnStringInParen(modInput) + ")";
+		String output = "(" + stringInParen(modInput) + ")";
 		
 		while (!output.equals("()")) {
 			modInput = modInput.replace(output, key+cnt+"~"); // adding the extra ~ prevents match collisons between ~0~1 and ~0~10 and stuff like that 
 			replaceValues.put(key+cnt+"~", output);
 			cnt++;
-			output = "(" + returnStringInParen(modInput) + ")";
+			output = "(" + stringInParen(modInput) + ")";
 		} 
 		
 		String newDelimiter = findUniqueDelimiter(input+modInput); // if it isn't unique to both the temporary and the original, this won't work 
@@ -327,9 +213,9 @@ public class Utils {
 	 * @param input string to search
 	 * @return Matching input string inside outer parenthesis, or "" if there is no match found
 	 */
-	public static String returnStringInParen(String input)
+	public static String stringInParen(String input)
 	{
-		return returnStringInTokensStk("(",")",input,0);
+		return stringInNestedTokens("(",")",input,0);
 	}
 	
 	/**
@@ -338,9 +224,9 @@ public class Utils {
 	 * @param index index to start searching at
 	 * @return Matching input string inside outer parenthesis, or "" if there is no match found
 	 */
-	public static String returnStringInParen(String input, int index)
+	public static String stringInParen(String input, int index)
 	{
-		return returnStringInTokensStk("(",")",input,index);
+		return stringInNestedTokens("(",")",input,index);
 	}
 	
 	/**
@@ -353,7 +239,7 @@ public class Utils {
 	 * @param startIndex non-negative integer, the index to start looking at
 	 * @return Matching input stream inside startToken and endToken, or "" if there is no match found
 	 */
-	public static String returnStringInTokensStk(String startToken, String endToken, String input, int startIndex) {
+	public static String stringInNestedTokens(String startToken, String endToken, String input, int startIndex) {
 		int startOuter = input.indexOf(startToken,startIndex);
 		int endInner = -1;
 		int numEndsToSkip = 0;
@@ -404,10 +290,10 @@ public class Utils {
 	 * @param startIndex index to start looking at
 	 * @return
 	 */
-	public static String returnStringInTag(String tagName, String input, int startIndex)
+	public static String stringInTag(String tagName, String input, int startIndex)
 	{
 		String open = "<" + tagName + ">";
 		String close = "</" + tagName + ">";
-		return returnStringInTokensStk(open,close,input,startIndex);
+		return stringInNestedTokens(open,close,input,startIndex);
 	}
 }

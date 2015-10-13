@@ -9,6 +9,9 @@ import org.jdom2.output.XMLOutputter;
 
 import com.github.distanteye.ep_utils.core.Utils;
 
+import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Container for Morphs, holding all possible Morph information.
  * Has static methods for validating whether a Morph exists, and only
@@ -236,12 +239,12 @@ public class Morph {
 	{
 		if (parts.length != 11 || !Utils.isInteger(parts[5]) || !Utils.isInteger(parts[6]) || !Utils.isInteger(parts[7]))
 		{
-			throw new IllegalArgumentException("Invalidly formatted Morph string[] : " + Utils.joinStr(parts,","));
+			throw new IllegalArgumentException("Invalidly formatted Morph string[] : " + StringUtils.join(parts,","));
 		}
 		
 		int cnt = 0;
 		String name = parts[cnt++];
-		MorphType morphType = EnumFactory.getEnum(MorphType.class, parts[cnt++]);
+		MorphType morphType = EnumUtils.getEnum(MorphType.class, parts[cnt++].toUpperCase());
 		String description = parts[cnt++];
 		String implants = parts[cnt++];
 		String aptitudeMaxStr = parts[cnt++];
