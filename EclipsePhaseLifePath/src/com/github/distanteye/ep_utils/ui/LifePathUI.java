@@ -280,6 +280,27 @@ public class LifePathUI extends UISkeleton {
             }	
 		});
 		
+		// toggle to automatically chose randomly whenever possible
+		mainPanel.addMappedButton(6,startRow,"Random Choices").addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				if (gen.isAllRandom())
+				{
+					gen.setAllRandom(false);
+					mainPanel.setButtonText("Random Choices","Random Choices (Off)");
+				}
+				else
+				{
+					gen.setAllRandom(true);
+					mainPanel.setButtonText("Random Choices","Random Choices (On)");		    		
+				}
+			}	
+		});
+		
+		// set this afterwards so it doesn't change the mapping name
+		mainPanel.setButtonText("Random Choices","Random Choices (Off)");
+		
 		// rolling vs manually choosing
 		mainPanel.addMappedButton(7,startRow,"Rolling").addActionListener(new ActionListener() {
 

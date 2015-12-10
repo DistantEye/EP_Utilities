@@ -24,6 +24,7 @@ public class EpEnvironment implements CharacterEnvironment {
 	private String characterBackup;
 	private UI UIObject;
 	private boolean isRolling;
+	private boolean allRandom;
 	private String nextEffects; // used to store things between steps
 	private boolean hasStarted;
 	private boolean hasFinished;
@@ -42,7 +43,7 @@ public class EpEnvironment implements CharacterEnvironment {
 	public EpEnvironment(String characterName, UI UIObject_, boolean isRolling_)
 	{
 		playerChar = new EpCharacter(characterName,false);
-		initNonCharValues(UIObject_,isRolling_);
+		initNonCharValues(UIObject_,isRolling_);		
 	}	
 	
 	/**
@@ -60,6 +61,7 @@ public class EpEnvironment implements CharacterEnvironment {
 		noStop = false;
 		choiceEffects = new ArrayList<String>();
 		effectsNeedReturn = false;
+		this.allRandom = false; // default
 	}
 	
 	public void reset()
@@ -419,7 +421,13 @@ public class EpEnvironment implements CharacterEnvironment {
 			extraInfo = "";
 		}
 		
-		String promptRes = UIObject.promptUser(promptMsg,extraInfo);
+		String promptRes = ""; 
+		
+		// only prompt user if we're not all randoming
+		if (!this.allRandom)
+		{
+			UIObject.promptUser(promptMsg,extraInfo);
+		}
 		
 		// if they entered blank, we attempt to pick a random (but valid answer)
 		if (promptRes.equals(""))
@@ -634,5 +642,15 @@ public class EpEnvironment implements CharacterEnvironment {
 	{
 		this.effectsNeedReturn = true; 
 	}
+
+	public boolean isAllRandom() {
+		return allRandom;
+	}
+
+	public void setAllRandom(boolean allRandom) {
+		this.allRandom = allRandom;
+	}
+	
+	
 
 }
