@@ -63,4 +63,6 @@ public interface CharacterEnvironment {
 	 * Will not work if backupCharacter hasn't been called yet
 	 */
 	public void loadBackup();
+	
+	public boolean isAllRandom();
 }

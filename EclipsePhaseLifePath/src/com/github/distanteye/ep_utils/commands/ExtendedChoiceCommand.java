@@ -46,7 +46,14 @@ public class ExtendedChoiceCommand extends Command {
 		
 		while (!Utils.isInteger(response) || Integer.parseInt(response) <= 0 || Integer.parseInt(response) > choiceEffects.length)
 		{
-			response = env.getUI().promptUser(subparts[1], "Entering blank will choose a random value"); 
+			if (env.isAllRandom())
+			{
+				response = "";
+			}
+			else
+			{
+				response = env.getUI().promptUser(subparts[1], "Entering blank will choose a random value");
+			}
 			
 			// response should be an integer
 			if (Utils.isInteger(response))

@@ -26,7 +26,7 @@ public class CharacterSheetUI extends UISkeleton {
 
 	 final static String DIVIDER_STRING = "\n------------------------------------------\n";
 	 
-	 private GBagPanel mainPanel, statPanel,sideBar;
+	 private GBagPanel statPanel,sideBar;
 	
 	/**
 	 * @throws HeadlessException
