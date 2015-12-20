@@ -36,7 +36,8 @@ public class EpCharacter extends SkilledCharacter {
 	private ArrayList<String> gearList;
 	private LinkedList<String> allBackgrounds;
 	private Morph currentMorph;
-
+	private String statusText; // for some forms of generators
+	
 	/**
 	 * @param name Character name
 	 * @param autoApplyMastery Whether Skills will start to receive half gains automatically after level > Skill.EXPENSIVE_LEVEL
@@ -594,10 +595,22 @@ public class EpCharacter extends SkilledCharacter {
 	public AspectHashMap<Sleight> sleights() {
 		return sleights;
 	}
-
 	
 	//end sub-containers
 	
+	public String getStatusText() {
+		return statusText;
+	}
+
+	public void setStatusText(String statusText) {
+		this.statusText = statusText;
+	}
+	
+	public void appendStatusText(String text)
+	{
+		this.statusText += "\n" + text;
+	}
+
 	/**
 	 * Collects the character's data into a set of XML tags, not enclosed in a greater tag,
 	 * this less subclasses redefine saving while still being able to draw off the superclass
@@ -655,6 +668,8 @@ public class EpCharacter extends SkilledCharacter {
 		}
 		doc.getRootElement().addContent(elemCharMorph);
 
+		doc.getRootElement().addContent(new Element("statusText").setText( this.getStatusText() ));
+		
 		XMLOutputter xmlOut = new XMLOutputter();
 		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
 		
@@ -754,6 +769,9 @@ public class EpCharacter extends SkilledCharacter {
 			setCurrentMorph(Morph.fromXML( Utils.elemToString(innerMorph)) );
 		}
 		
+		// set status text
+		this.setStatusText(root.getChildText("statusText"));
+		
 	}
 	
 	/**
@@ -809,7 +827,8 @@ public class EpCharacter extends SkilledCharacter {
 		this.setVar("_isSynth", "0");
 		allBackgrounds = new LinkedList<String>();
 
-		
+		this.setStatusText("");
 	}
+	
 		
 }

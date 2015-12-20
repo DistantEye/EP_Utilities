@@ -263,7 +263,7 @@ public class BaseCharacter {
 		doc.getRootElement().addContent(elemOtherVars);
 		
 		XMLOutputter xmlOut = new XMLOutputter();
-		xmlOut.setFormat(Format.getPrettyFormat().setOmitDeclaration(true));
+		xmlOut.setFormat(Format.getPrettyFormat().setEncoding("UTF-8").setOmitEncoding(false));
 		
 		
 		try {
@@ -284,6 +284,7 @@ public class BaseCharacter {
 		this.setToDefaults();
 		
 		Document document = Utils.getXMLDoc(xml);
+		
 		Element root = document.getRootElement();
 		
 		Utils.verifyTag(root, "Character");

@@ -72,6 +72,8 @@ public class LifePathUI extends UISkeleton {
 				end();
 			}
 		}
+		
+		this.mainStatus.setText(gen.getPC().getStatusText());
 	}
 	
 	/* (non-Javadoc)
@@ -328,7 +330,9 @@ public class LifePathUI extends UISkeleton {
 	 */
 	private void appendStatusText(String text)
 	{
-		this.mainStatus.setText(this.mainStatus.getText() + "\n\n" + text);
+		String updatedText = this.mainStatus.getText() + "\n\n" + text;
+		this.mainStatus.setText(updatedText);
+		this.gen.getPC().setStatusText(updatedText);
 	}
 	
 	public void update()

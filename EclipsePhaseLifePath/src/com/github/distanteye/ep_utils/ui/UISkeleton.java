@@ -6,9 +6,12 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -119,22 +122,22 @@ public abstract class UISkeleton implements UI {
 		}
 	}
 
-	public void load(String filename) {
+	public void load(String fileName) {
 		try {
-			Scanner fileIn = new Scanner(new FileInputStream(filename));
-			String temp = "";
-			
-			while (fileIn.hasNextLine())
-			{
-				temp += fileIn.nextLine();
-			}
-			
-			fileIn.close();
-			
+			File f = new File(fileName);
+		    FileInputStream fin = new FileInputStream(f);
+		    byte[] buffer = new byte[(int) f.length()];
+		    new DataInputStream(fin).readFully(buffer);
+		    fin.close();
+		    String temp = new String(buffer, "UTF-8");
+		    
 			loadString(temp);
 			
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException("File : \"" + filename + "\" could not be found");
+			throw new RuntimeException("File : \"" + fileName + "\" could not be found");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

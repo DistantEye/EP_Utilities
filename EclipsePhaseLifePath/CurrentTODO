@@ -60,9 +60,3 @@ Errors are not always recoverable even when do to user choice, diagnose and figu
 Improve documentation : give a structural diagram, an improved readme (think to explain to non system users), and 
 	Make it clear that LifePathGenerator catches errors for runtime gracefulrecovery attempts
 	
-Make an allrandom button to toggle.
-
-Make it so statustext is saved as a part of the character.
-
-MsgClient should not bother attempting to split text, and then remove all the escapes for the commas you've already placed. Trying to escape them all is a losing battle.
-	Make the function smarter instead.
