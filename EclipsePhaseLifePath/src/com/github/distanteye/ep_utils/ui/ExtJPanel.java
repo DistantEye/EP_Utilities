@@ -254,6 +254,13 @@ public class ExtJPanel extends JPanel {
 		getMappedComponent(name).update();
 	}
 	
+	// need to ditch mapped components on removeAll or they can partially survive, causing issues
+	public void removeAll()
+	{		
+		super.removeAll();
+		this.init();
+	}
+	
 	/**
 	 * Calls up all MappedComponents, in insertion order, and if they have an AccessWrapper, calls setValue(getValue())
 	 * This is meant to reintialize all values in the UI after the underlying data source has changed

@@ -40,7 +40,7 @@ public class SkillWrapper extends AccessWrapper<String> {
 
 	@Override
 	public void setValue(String item) {
-		if (Utils.isInteger(item))
+		if (!Utils.isInteger(item))
 		{
 			throw new IllegalArgumentException("StatWrapper.setValue needs an integer value!");
 		}

@@ -370,6 +370,27 @@ public class SkilledCharacter extends BaseCharacter {
 	/**
 	 * Takes all the character's skills and returns a list of String[]
 	 * in the form of {skillName,value} . skillName will include the specialization if applicable
+	 * No bonuses will be factored into value
+	 * @return ArrayList of strings representing character skill values
+	 */
+	public ArrayList<String[]> getRawSkills()
+	{
+		ArrayList<String[]> result = new ArrayList<String[]>();
+		
+		for (Skill skill : skills.values())
+		{			
+			int finalVal = Math.min(99, skill.getValue());
+			
+			String[] temp = {skill.getFullName(), ""+finalVal};
+			result.add(temp);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Takes all the character's skills and returns a list of String[]
+	 * in the form of {skillName,value} . skillName will include the specialization if applicable
 	 * Character's base aptitude values will be factored into the calculation
 	 * @param bonuses Optional array of bonus values to factor in. Can be null safely
 	 * @return ArrayList of strings representing character skill values

@@ -1,10 +1,12 @@
 package com.github.distanteye.ep_utils.ui;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import com.github.distanteye.ep_utils.wrappers.AccessWrapper;
 import com.github.distanteye.ep_utils.wrappers.MappedComponent;
@@ -95,7 +97,13 @@ public class GBagPanel extends ExtJPanel {
 	{
 		int newX,newY;
 		
-		if (o == Orientation.HORIZONTAL)
+		// if orientation is null => no label
+		if (o == null)
+		{
+			newX = x;
+			newY = y;
+		}
+		else if (o == Orientation.HORIZONTAL)
 		{
 			newX = x+1;
 			newY = y;
@@ -124,7 +132,11 @@ public class GBagPanel extends ExtJPanel {
 			df = DataFlow.STATIC;
 		}
 		
-		addLabel(x,y,labelText);
+		// no label if no orientation
+		if (o != null)
+		{
+			addLabel(x,y,labelText);
+		}
 		JTextField temp = addTextF(newX,newY,value,cols,parentUIForTextChangeListener);
 		
 		if (editState == EditState.FIXED)
@@ -161,10 +173,29 @@ public class GBagPanel extends ExtJPanel {
 	 */
 	public JButton addButton(int x, int y, String text)
 	{
-		cons.gridx = x;
-		cons.gridy = y;
+	
 		JButton temp = new JButton(text);
-		addC(temp);
+		
+		if (text.equals("##Save"))
+		{
+			temp.setText("");
+			temp.setIcon(UIManager.getIcon("OptionPane.questionIcon"));
+			temp.setBorderPainted(false);
+			temp.setContentAreaFilled(false);
+			addC(temp,x,y,1,1,GridBagConstraints.NONE);
+		}
+		if (text.equals("##X"))
+		{
+			temp.setText("");
+			temp.setIcon(UIManager.getIcon("OptionPane.errorIcon")); 
+			temp.setBorderPainted(false);
+			temp.setContentAreaFilled(false);
+			addC(temp,x,y,1,1,GridBagConstraints.NONE);
+		}
+		else
+		{
+			addC(temp,x,y);
+		}
 		return temp;
 	}
 	

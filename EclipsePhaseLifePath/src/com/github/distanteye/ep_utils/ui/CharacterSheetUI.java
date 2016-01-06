@@ -40,6 +40,20 @@ public class CharacterSheetUI extends UISkeleton {
         gen.getPC().setVar("_cpCalc","1"); // enable CP calculator
 	}
 
+	/**
+	 * Tells the UI to refresh all components, pulling new values from the backend for everything.
+	 * Typically called when the underlying character has had a massive change.
+	 */
+	public void refreshAll()
+	{
+		updateEnabled = false; // we don't want to trigger any updates during this rebuild phase, and listeners CAN trigger
+		sideBar.removeAll();
+		mainPanel.refreshAllComps(true);	
+
+		updateEnabled = true;
+		update();
+	}
+	
 	/* (non-Javadoc)
 	 * @see UI#promptUser(java.lang.String, java.lang.String)
 	 */
@@ -260,33 +274,59 @@ public class CharacterSheetUI extends UISkeleton {
 		// this will handle all the calculations using the relationships/data flows we established in init()
 		statPanel.updateAllComps(true);
 		
+		sideBar.updateAllComps(true);
+		
 		// rebuild skills panel
 		sideBar.removeAll();
 
 		sideBar.addC(new JLabel("Skills            "),0,0);
 		sideBar.addC(new JLabel("                  "),1,0);
-		int x = 0, y = 1;
-		for(String[] pair : gen.getPC().getSkills(null))
+		RollingColumn pos = new RollingColumn(32,4,2,0,1);
+		
+		for(String[] pair : gen.getPC().getRawSkills())
 		{
 			String linkedApt = Skill.getSkillApt(pair[0]);
-			int morphBonus = statPanel.getTextFIntVal("MorphBonus"+linkedApt);
-			int finalVal = Integer.parseInt(pair[1])+morphBonus;
+			int sklBonus = statPanel.getTextFIntVal("Total "+linkedApt);
+			int finalVal = Integer.parseInt(pair[1])+sklBonus;
 
-			// TODO may need to carefully implement update() for this section in future
-			sideBar.addMappedTF(EditState.FIXED,x,y,pair[0],pair[0], 5, ""+finalVal, Orientation.VERTICAL,null,null);
-			if (y <= 32)
-			{
-				y+=2;
-			}
-			else
-			{
-				x += 2;
-				y =  0;
-			}
+			
+			
+			// TODO working here : need to add more customizations to set layout for MappedTextFields
+			// Recommend finally going for some kind of decorator/adder class maybe?
+			
+			
+			sideBar.addMappedTF(EditState.NOTFIXED,pos.getX(),pos.getY(),pair[0],pair[0], 
+								3, pair[1], Orientation.VERTICAL,null,null);
+			sideBar.addLabel(pos.getX()+1, pos.getY()+1, "+" + sklBonus + "=" + finalVal);
+			sideBar.addButton(pos.getX()+2, pos.getY(), "##X").addActionListener(new SkillDelete(this,pair[0]));
+			sideBar.addButton(pos.getX()+2, pos.getY()+1, "##Save").addActionListener(new SkillUpdate(this,sideBar,pair[0],pair[0]));
+			
+			// will manage the starting of new columns when the height is too high
+			pos.increment();
 		}
 		
+		// add row for new skills
+		sideBar.addMappedTF(EditState.NOTFIXED,pos.getX(),pos.getY(),"New","newSkill", 
+				5, "", Orientation.VERTICAL,null,null);
+		sideBar.addMappedTF(EditState.NOTFIXED,pos.getX(),pos.getY()+2,"","newSkillVal", 
+				2, "", null,null,null).setInputVerifier(new NumericValidator());
+		sideBar.addButton(pos.getX()+2, pos.getY()+2, "##Save").addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{			
+				String skill = sideBar.getTextF("newSkill").getText();
+				int skillVal = sideBar.getTextFIntVal("newSkillVal");
+				String skillString = skill + " " + skillVal;
+				if (Skill.isSkillFormat(skillString))
+				{
+					gen.getPC().addSkill(Skill.CreateSkillFromString(skillString));
+					update();
+				}
+			}	
+		});
+		
 	    mainPanel.revalidate();
-	}
+	} 
 	
 	/**
 	 * @param args
@@ -302,4 +342,89 @@ public class CharacterSheetUI extends UISkeleton {
 		
 	}
 
+	/**
+	 * x,y tracking system set to make columns of a certain height, tracking coordinates
+	 * After that height is reached, the x value increases by a set value and the y returns to 0
+	 * @author Vigilant
+	 *
+	 */
+	private static class RollingColumn 
+	{
+		private int incX,incY;
+		private int maxY;
+		private int x,y;
+		
+		public RollingColumn(int maxY, int incX, int incY, int x, int y)
+		{
+			this.maxY = maxY;
+			this.incX = incX;
+			this.incY = incY;
+			this.x = x;
+			this.y = y;
+		}
+		
+		public int getX()
+		{
+			return x;
+		}
+		
+		public int getY()
+		{
+			return y;
+		}
+		
+		public void increment()
+		{
+			if (y <= maxY)
+			{
+				y+= incY;
+			}
+			else
+			{
+				x += incX;
+				y =  0;
+			}
+		}
+	}
+	
+	private static class SkillUpdate implements ActionListener
+	{
+		private String skillName, skillValField;
+		private ExtJPanel panel;
+		private CharacterSheetUI ui;
+				
+		public SkillUpdate(CharacterSheetUI ui, ExtJPanel panel, String skillName, String skillValField)
+		{
+			this.ui = ui;
+			this.panel = panel;
+			this.skillName = skillName;
+			this.skillValField = skillValField;			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ui.gen.getPC().setSkill(skillName, panel.getTextFIntVal(skillValField));
+			ui.update();
+		}
+		
+	}
+	
+	private static class SkillDelete implements ActionListener
+	{
+		private String skillName;
+		private CharacterSheetUI ui;
+		
+		public SkillDelete(CharacterSheetUI ui,String skillName)
+		{
+			this.ui = ui;
+			this.skillName = skillName;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ui.gen.getPC().removeSkill(skillName);
+			ui.update();
+		}
+		
+	}
 }
