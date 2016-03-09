@@ -60,3 +60,5 @@ Errors are not always recoverable even when do to user choice, diagnose and figu
 Improve documentation : give a structural diagram, an improved readme (think to explain to non system users), and 
 	Make it clear that LifePathGenerator catches errors for runtime gracefulrecovery attempts
 	
+	
+Improve visual appeal, make some areas have distinct bordering and improve how things are rearranged. there should be more spacing between rows
