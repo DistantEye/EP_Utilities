@@ -37,7 +37,7 @@ public class SkillIsTypeConditional extends ConditionalStatement {
 			throw new IllegalArgumentException("Invalidly formatted condition " + input + ")");
 		}
 			
-		if (!Skill.isSkill(subparts[1]) && !Command.isUncertain(subparts[1]))
+		if (!Command.isUncertain(input) && !Skill.isSkill(subparts[1]) )
 		{
 			throw new IllegalArgumentException("Skill : " + subparts[1] + " does not exist!");
 		}

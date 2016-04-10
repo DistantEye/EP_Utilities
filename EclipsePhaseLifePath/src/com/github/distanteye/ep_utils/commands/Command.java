@@ -259,8 +259,7 @@ public abstract class Command {
 	 */
 	public static boolean isUncertain(String input)
 	{
-		return containsChoice(input) || Directive.containsDirective(input) || input.contains(Table.wildCard);
-		
+		return containsChoice(input) || Directive.containsDirective(input) || input.contains(Table.wildCard) || ConditionalStatement.containsParentRef(input);		
 	}
 	
 	/**

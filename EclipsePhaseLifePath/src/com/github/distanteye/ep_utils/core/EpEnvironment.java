@@ -32,6 +32,7 @@ public class EpEnvironment implements CharacterEnvironment {
 	private boolean noStop;
 	private ArrayList<String> choiceEffects; // keeps track of the original state of input choices the player had made incase we need to back stuff out because error
 	private boolean effectsNeedReturn; // signifies the need to return from runEffects immediately instead of continuing to loop
+	private boolean doCombatFixes; // whether we try and nudge the numbers so people actually get Fray
 
 	/**
 	 * Creates the EpEnvironment
@@ -67,6 +68,7 @@ public class EpEnvironment implements CharacterEnvironment {
 	public void reset()
 	{
 		playerChar.setToDefaults();
+		playerChar.setVar("_comFixes", "1");
 		initNonCharValues(UIObject, isRolling);
 	}
 	
@@ -650,7 +652,25 @@ public class EpEnvironment implements CharacterEnvironment {
 	public void setAllRandom(boolean allRandom) {
 		this.allRandom = allRandom;
 	}
-	
-	
+
+	public boolean doCombatFixes() {
+		return doCombatFixes;
+	}
+
+	public void setCombatFixes(boolean combatFixes) {
+		this.doCombatFixes = combatFixes;
+		
+		if (combatFixes)
+		{
+			playerChar.setVar("_comFixes", "1");
+		}
+		else
+		{
+			if (playerChar.hasVar("comFixes"))
+			{
+				playerChar.removeVar("_comFixes");
+			}
+		}
+	}	
 
 }

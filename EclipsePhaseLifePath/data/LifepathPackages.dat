@@ -695,7 +695,7 @@ SCANNER ASYNC
 Your mind is altered in a way that provides you with preternatural senses.
 +Exploration, +Neurodiversity, +Personal Development, +Self Control
 PP;1>Academics: ?1? 30;Sense 30;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?3?)
-PP;3>rep(?1?,50.Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?4? )
+PP;3>rep(?1?,50 Academics: ?1? 30);Impersonation 35;Interest: ?2? 30;Kinesics 35;Perception 40;Sense 50;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?4? )
 PP;5>mox(1);rep(?1?,50);addApt(INT,5);Academics: ?1? 40;Impersonation 35;Interest: ?1? 40;Investigation 30;Kinesics 35;Language: ?1? 40;Perception 50;Persuasion 25;Profession: ?1? 30;Sense 50;trait(Psi,2);trait(Mental Disorder (?2?));psisleight(?6? )
 ---------------------------------------------------------------------------------------
 Package
@@ -1709,16 +1709,16 @@ TABLE
 TABLE_9_3
 10
 false
-1`Table 9.4: Autonomist`setVar(_faction,TABLE_9_4)
-2`Table 9.5: Civilian`setVar(_faction,TABLE_9_5)
-3`Table 9.6: Criminal`setVar(_faction,TABLE_9_6)
-4`Table 9.7: Elite`setVar(_faction,TABLE_9_7)
-5`Table 9.8: Enclaver`setVar(_faction,TABLE_9_8)
-6`Table 9.9: Indenture`setVar(_faction,TABLE_9_9)
-7`Table 9.10: Military`setVar(_faction,TABLE_9_10)
-8`Table 9.11: Scientist`setVar(_faction,TABLE_9_11)
-9`Table 9.12: Spacer`setVar(_faction,TABLE_9_12)
-10`Table 9.13: Techie`setVar(_faction,TABLE_9_13)
+1`Table 9.4: Autonomist`faction(TABLE_9_4)
+2`Table 9.5: Civilian`faction(TABLE_9_5)
+3`Table 9.6: Criminal`faction(TABLE_9_6)
+4`Table 9.7: Elite`faction(TABLE_9_7)
+5`Table 9.8: Enclaver`faction(TABLE_9_8)
+6`Table 9.9: Indenture`faction(TABLE_9_9)
+7`Table 9.10: Military`faction(TABLE_9_10)
+8`Table 9.11: Scientist`faction(TABLE_9_11)
+9`Table 9.12: Spacer`faction(TABLE_9_12)
+10`Table 9.13: Techie`faction(TABLE_9_13)
 --------------------------------------------------------------
 TABLE
 TABLE_9_4
@@ -1887,7 +1887,11 @@ false
 --------------------------------------------------------------
 FUNCTION
 s10Loop
-if(?between(getVar(packageVal),0,9),rollTable(TABLE_10);func(s10Loop))
+if(?between(getVar(packageVal),0,9),func(s10PkgAssign);func(s10Loop))
+--------------------------------------------------------------
+FUNCTION
+s10PkgAssign
+if(?hasVar(_comFixes)&&!hasSkill(Fray),package(ESSENTIAL SKILLS,1),rollTable(TABLE_10))
 --------------------------------------------------------------
 TABLE
 TABLE_10
@@ -1981,7 +1985,7 @@ false
 83`You team up with a partner to get the job done. Gain the Minion/Partner trait (p. 85).`trait(Minion/Partner)
 84`Someone you respect shows their true colors, and they aren’t pretty. Gain +1 Moxie.`mox(1)
 85`Your exceptional nature is noticed. Gain the Patron trait (p. 146, EP).`trait(Patron)
-86`You get fired/kicked out. Lose 10,000 from your starting credit or -10 rep.`setVar(choice86,?1?#Choose C for -10000 Credit, else will use -10 Rep#);if(?equals(getVar(choice86),C),credit(-10000),rep(?1?,-10));remVar(choice86)
+86`You get fired/kicked out. Lose 10,000 from your starting credit or -10 rep.`setVar(choice86,?1?#Choose C for -10000 Credit\, else will use -10 Rep#);if(?equals(getVar(choice86),C),credit(-10000),rep(?1?,-10));remVar(choice86)
 87`An established university offers you a steady position. Gain the Tenure trait (p. 86).`trait(Tenure)
 88`A fork goes missing. It could be nothing, but it was in possession of some compromising information about yourself. Gain the Lost Fork trait (p. 91).`trait(Lost Fork)
 89`You fall for the smooth lies of a convincing member of another faction. You realize your error only after the damage is done. Lose 10 rep from the rep network appropriate to your faction.`rep(?1?#Rep most relevant to your current faction#,-10)

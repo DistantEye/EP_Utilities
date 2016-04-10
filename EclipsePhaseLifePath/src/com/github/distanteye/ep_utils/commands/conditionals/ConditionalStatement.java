@@ -5,6 +5,7 @@ package com.github.distanteye.ep_utils.commands.conditionals;
 
 import com.github.distanteye.ep_utils.commands.Command;
 import com.github.distanteye.ep_utils.core.CharacterEnvironment;
+import com.github.distanteye.ep_utils.core.Utils;
 
 /**
  * ConditionalStatement class gives the basic structure to all conditionals
@@ -45,6 +46,22 @@ public abstract class ConditionalStatement extends Command {
 		}
 		
 		return input;
+	}
+	
+	public static boolean containsParentRef(String input)
+	{
+		String insideParams = Utils.stringInParen(input);
+		String[] tempParams = Utils.splitCommands(insideParams);
+		
+		for (int x = 0; x < tempParams.length; x++)
+		{
+			if (tempParams[x].matches("\\$[0-9]+"))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	/**

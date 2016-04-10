@@ -38,7 +38,7 @@ public class HasSkillConditional extends ConditionalStatement {
 			throw new IllegalArgumentException("Invalidly formatted condition " + input + ")");
 		}
 		
-		if (!Skill.isSkill(subparts[1]))
+		if (!ConditionalStatement.containsParentRef(input) && !Skill.isSkill(subparts[1]))
 		{
 			throw new IllegalArgumentException("Skill : " + subparts[1] + " does not exist!");
 		}

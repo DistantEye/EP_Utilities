@@ -321,6 +321,26 @@ public class LifePathUI extends UISkeleton {
 			}	
 		});
 		
+		// Combat fixes tries to give people Fray that don't have it near the ending parts of generation
+		mainPanel.addMappedButton(8,startRow,"Combat Fixes").addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				if (gen.doCombatFixes())
+				{
+					gen.setCombatFixes(false);
+					mainPanel.setButtonText("Combat Fixes","Combat Fixes (Off)");
+				}
+				else
+				{
+					gen.setCombatFixes(true);
+					mainPanel.setButtonText("Combat Fixes","Combat Fixes (On)");		    		
+				}
+			}	
+		});
+		// set this afterwards so it doesn't change the mapping name
+		mainPanel.setButtonText("Combat Fixes","Combat Fixes (Off)");
+		
 		return startRow+1;
 	}
 	
