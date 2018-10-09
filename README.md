@@ -3,7 +3,7 @@ Open Source utility programs for the Eclipse Phase roleplaying system.
 
 The readme here will discuss a high level overview of the project, including basic setup and other prerequiste knowledge. A pure technical explanation is located in README_TECH.md
 
-##ABOUT
+## ABOUT
 
 This project started out of a mix of appreciation and frustration for the character generation for Eclipse Phase. The Transhuman book added the Lifepath option, but this became a mess of table flipping and rolling that was overall unwieldy. Thus the goal became first to make a program that could do that in a guided way, then expanded to implementing that goal in as configurable and generalized way as possible.
 
@@ -21,17 +21,17 @@ Bare minimum, you can expect comments and javadocs for most major methods and cl
 
 Some items are still a work in progress in terms of adhering to proper practices, as I learn more, or realize in hindsight how to do things better, code items get refactored.
 
-##Setup
+## Setup
 
 At this time, this is still a largely work in process project. 
 
-###If you use Eclipse
+### If you use Eclipse
 
 The project contains a valid .classpath and .project
 
 Use Eclipse's 'Import Projects'->Projects from git
 
-###If you don't use Eclipse
+### If you don't use Eclipse
 To run it, check out the entire repo, with existing structure left intact.
 
 The project is setup with maven. Follow normal procedures to build.
@@ -39,15 +39,15 @@ The project is setup with maven. Follow normal procedures to build.
 The main classes for ui are in target\classes\com\github\distanteye\ep_utils\ui
 See runnable programs (below for the names)
 
-##RUNNABLE PROGRAMS
+## RUNNABLE PROGRAMS
 
 1) LifePathUI : Only current program. Runs a no-thrills GUI interface that allows players to move through each step, prompting for choices as necessary, by hitting 'Run Next Step'
 
-##Commands
+## Commands
 
 LifepathPackages.dat uses a limited effect/command system, allowing users some ability to create advanced behavior when customizing the file contents. A general guide on these can be found in CommandsManual.txt.
 
-##DATA NOTE/LEGAL
+## DATA NOTE/LEGAL
 The .dat files for this program contain Eclipse Phase content, 
 which is licensed under the below
 
